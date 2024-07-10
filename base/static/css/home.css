@@ -1,0 +1,33 @@
+/* home/static/css/home.css */
+.spell-list {
+  list-style-type: none;
+  padding: 0;
+}
+.spell-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #e6d8c0;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+.spell-list li:hover {
+  transform: translateX(10px);
+}
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8b4513;
+  color: #f0e6d2;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+  background-color: #a0522d;
+}
+
+.padded-x-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}

@@ -1,0 +1,21 @@
+{% extends "docs/base.html" %}
+
+{% block content %}
+<h1>Grimoire Index</h1>
+<ul>
+{% for key, value in grimoire_structure.items %}
+    {% if 'url_path' in value %}
+        <li><a href="{% url 'docs:page' value.url_path|slice:"1:" %}">{{ value.title }}</a></li>
+    {% elif 'children' in value %}
+        <li>
+            {{ key }}
+            <ul>
+            {% for child_key, child_value in value.children.items %}
+                <li><a href="{% url 'docs:page' child_value.url_path|slice:"1:" %}">{{ child_value.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+{% endblock %}

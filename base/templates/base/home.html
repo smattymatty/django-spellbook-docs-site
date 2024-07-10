@@ -1,0 +1,33 @@
+<!-- core/templates/home.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Django-Spellbook - Enchant Your Django Templates{% endblock %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="padded-x-content">
+    <div class="magical-border">
+        <h2>Welcome, Apprentice Django Mage!</h2>
+        <p>Discover the arcane art of enchanting your Django templates with Django-Spellbook. Harness the power of server-side magic to create interactive web experiences without writing a single line of JavaScript.</p>
+    </div>
+
+    <div class="magical-border">
+        <h3>Spells in Your Grimoire:</h3>
+        <ul class="spell-list">
+            <li>🔮 ActionInvoker - Cast actions with a mere whisper</li>
+            <li>🧙‍♂️ ContentToggleHandler - Reveal hidden knowledge at will</li>
+            <li>⚡ InstantUpdater - Refresh content in the blink of an eye</li>
+            <li>🎭 ClassToggler - Transform elements with mystical classes</li>
+        </ul>
+    </div>
+
+    <div class="magical-border">
+        <h3>Begin Your Magical Journey</h3>
+        <p>Ready to weave spells into your Django templates? Embark on your quest to master Django-Spellbook!</p>
+        <a href="#" class="cta-button">Learn the Craft</a>
+    </div>
+</div>
+{% endblock %}
