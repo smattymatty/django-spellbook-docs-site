@@ -5,15 +5,16 @@ import html
 
 class GrimoireParser:
     def __init__(self):
-        self.custom_blocks = {
-            'code': self.parse_code_block,
-            'spell': self.parse_spell_block,
-            'potion': self.parse_potion_block,
+        self.custom_elements = {
+            'p': self.parse_custom_element,
+            'div': self.parse_custom_element,
+            'span': self.parse_custom_element,
         }
 
     def parse(self, content: str) -> str:
         """
-        Parse the given content, handling both custom blocks and standard markdown.
+        Parse the given content, handling custom elements and standard markdown.
+        Custom elements are defined using the `{% element_type attributes %}` syntax.
 
         Args:
             content (str): The markdown content to be parsed.
@@ -23,36 +24,112 @@ class GrimoireParser:
 
         Example:
         >>> parser = GrimoireParser()
-        >>> content = "# Header\\n```spell\\nMagic Missile\\n```\\nNormal paragraph"
+        >>> content = '''
+        ... # Header
+        ...
+        ... {% p class='custom-class' %}
+        ... This is a custom paragraph.
+        ... {% endp %}
+        ...
+        ... Standard markdown **bold** and *italic*.
+        ...
+        ... ```python
+        ... def hello():
+        ...     print("Hello, World!")
+        ... ```
+        ... '''
         >>> print(parser.parse(content))
-        <h1>Header</h1>
-        <div class="spell-block">Magic Missile</div>
-        <p>Normal paragraph</p>
+        {% verbatim %}<h1>Header</h1>
+        <p class="custom-class">This is a custom paragraph.</p>
+        <p>Standard markdown <strong>bold</strong> and <em>italic</em>.</p>
+        <pre><code class="language-python">def hello():
+            print("Hello, World!")</code></pre>{% endverbatim %}
+
         """
         lines = content.split('\n')
         parsed_lines = []
         i = 0
         while i < len(lines):
-            line = lines[i].rstrip()
+            line = lines[i].strip()
             if line.startswith('#'):
                 parsed_lines.append(self.parse_header(line))
+            elif line.startswith('{%') and line.endswith('%}'):
+                match = re.match(r'{%\s*(\w+)(.*?)%}', line)
+                if match:
+                    element_type, attributes = match.groups()
+                    if element_type in self.custom_elements:
+                        i, parsed_block = self.parse_custom_block(
+                            lines, i + 1, element_type, attributes)
+                        parsed_lines.append(parsed_block)
+                    else:
+                        parsed_lines.append(self.parse_standard_markdown(line))
             elif line.startswith('```'):
-                block_type = line[3:].strip()
-                if block_type in self.custom_blocks:
-                    i, parsed_block = self.custom_blocks[block_type](
-                        lines, i + 1)
-                    parsed_lines.append(parsed_block)
-                else:
-                    i, parsed_block = self.parse_standard_code_block(
-                        lines, i + 1)
-                    parsed_lines.append(parsed_block)
-            elif line.startswith('* '):
-                i, parsed_list = self.parse_list(lines, i)
-                parsed_lines.append(parsed_list)
+                lang = line[3:].strip()
+                i, parsed_block = self.parse_code_block(lines, i + 1, lang)
+                parsed_lines.append(parsed_block)
             else:
                 parsed_lines.append(self.parse_standard_markdown(line))
             i += 1
-        return '\n'.join(filter(None, parsed_lines))
+        content_to_return = '\n'.join(filter(None, parsed_lines))
+        return "{% verbatim %}" + content_to_return + "{% endverbatim %}"
+
+    def parse_custom_element(self, content: str, element_type: str, attributes: str) -> str:
+        """
+        Parse a custom element.
+
+        Args:
+            content (str): The content of the element.
+            element_type (str): The type of the element.
+            attributes (str): The attributes of the element.
+
+        Returns:
+            str: The parsed HTML.
+
+        Example:
+        >>> parser = GrimoireParser()
+        >>> print(parser.parse_custom_element('Hello, world!', 'p', 'class="my-class"'))
+        <p class="my-class">Hello, world!</p>
+        >>> print(parser.parse_custom_element('Hello, world!', 'div', 'id="my-div"'))
+        <div id="my-div">Hello, world!</div>
+        """
+        # Parse attributes
+        attr_dict = self.parse_attributes(attributes)
+
+        # Convert attributes to HTML string
+        attr_str = ' '.join([f'{k}="{v}"' for k, v in attr_dict.items()])
+
+        # Parse the content
+        parsed_content = self.parse_block_content(content, surround=None)
+
+        # Return the HTML
+        return f'<{element_type} {attr_str}>{parsed_content}</{element_type}>'
+
+    def parse_attributes(self, attributes: str) -> dict:
+        """
+        Parse attributes from a string.
+
+        Args:
+            attributes (str): The attributes string.
+
+        Returns:
+            dict: A dictionary of attribute names and values.
+
+        Example:
+        >>> parser = GrimoireParser()
+        >>> attr_dict = parser.parse_attributes('class="my-class" id="my-id"')
+        >>> print(attr_dict)
+        {'class': 'my-class', 'id': 'my-id'}
+        >>> attr_dict = parser.parse_attributes('data-test="true"')
+        >>> print(attr_dict)
+        {'data-test': 'true'}
+        >>> attr_dict = parser.parse_attributes('data-custom-attr="value" another-attr="test"')
+        >>> print(attr_dict)
+        {'data-custom-attr': 'value', 'another-attr': 'test'}
+        """
+        attr_dict = {}
+        for attr in re.findall(r'([\w-]+)=[\'"]([^\'"]*)[\'"]', attributes):
+            attr_dict[attr[0]] = attr[1]
+        return attr_dict
 
     def parse_header(self, line: str) -> str:
         """
@@ -88,96 +165,35 @@ class GrimoireParser:
             return f'<h{level}>{self.escape_html(content)}</h{level}>'
         return self.parse_standard_markdown(line)
 
-    def parse_code_block(self, lines: List[str], start: int) -> Tuple[int, str]:
+    def parse_code_block(self, lines: List[str], start: int, lang: str) -> Tuple[int, str]:
         """
-        Parse a custom code block.
+        Parse a code block, escaping Django template tags.
 
         Args:
-            lines (List[str]): All lines of the content being parsed.
-            start (int): The line number where the code block content starts.
-
-        Returns:
-            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
-
-        Example:
-        >>> parser = GrimoireParser()
-        >>> lines = ['```code', 'def hello():', '    print("Hello, world!")', '```', 'Next line']
-        >>> end, result = parser.parse_code_block(lines, 1)
-        >>> print(end)
-        3
-        >>> print(result)
-        <pre><code>def hello():
-            print("Hello, world!")</code></pre>
-        """
-        return self.parse_custom_block(lines, start, 'pre', 'code')
-
-    def parse_spell_block(self, lines: List[str], start: int) -> Tuple[int, str]:
-        """
-        Parse a custom spell block.
-
-        Args:
-            lines (List[str]): All lines of the content being parsed.
-            start (int): The line number where the spell block content starts.
-
-        Returns:
-            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
-
-        Example:
-        >>> parser = GrimoireParser()
-        >>> lines = ['```spell', 'Fireball', 'Deals 8d6 fire damage', '```', 'Next line']
-        >>> end, result = parser.parse_spell_block(lines, 1)
-        >>> print(end)
-        3
-        >>> print(result)
-        <div class="spell-block">Fireball
-        Deals 8d6 fire damage</div>
-        """
-        return self.parse_custom_block(lines, start, 'div', 'spell-block')
-
-    def parse_potion_block(self, lines: List[str], start: int) -> Tuple[int, str]:
-        """
-        Parse a custom potion block.
-
-        Args:
-            lines (List[str]): All lines of the content being parsed.
-            start (int): The line number where the potion block content starts.
-
-        Returns:
-            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
-
-        Example:
-        >>> parser = GrimoireParser()
-        >>> lines = ['```potion', 'Healing Elixir', 'Restores 2d4+2 hit points', '```', 'Next line']
-        >>> end, result = parser.parse_potion_block(lines, 1)
-        >>> print(end)
-        3
-        >>> print(result)
-        <div class="potion-block">Healing Elixir
-        Restores 2d4+2 hit points</div>
-        """
-        return self.parse_custom_block(lines, start, 'div', 'potion-block')
-
-    def parse_custom_block(self, lines: List[str], start: int, tag: str, class_name: str) -> Tuple[int, str]:
-        """
-        Parse a custom block.
-
-        Args:
-            lines (List[str]): The lines of the block.
+            lines (List[str]): The lines of content.
             start (int): The starting line number.
-            tag (str): The HTML tag to use.
-            class_name (str): The CSS class to use.
+            lang (str): The language of the code block.
 
         Returns:
-            Tuple[int, str]: The ending line number and the parsed HTML.
+            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
 
         Example:
         >>> parser = GrimoireParser()
-        >>> lines = ['```code', 'print("Hello, world!")', '```', 'Next line']
-        >>> end, result = parser.parse_custom_block(lines, 1, 'pre', 'code')
+        >>> lines = ['```python', "print('Hello, {% element_type %}!')", '```']
+        >>> end, result = parser.parse_code_block(lines, 1, 'python')
         >>> print(end)
-        3
+        2
         >>> print(result)
-        <pre class="code"><code>print("Hello, world!")</code></pre>
+        <pre><code class="language-python">print('Hello, {% element_type %}!')</code></pre>
+
+        >>> lines = ['```django', '{% for item in items %}', '    <li>{{ item }}</li>', '{% endfor %}', '```']
+        >>> end, result = parser.parse_code_block(lines, 1, 'django')
+        >>> print(end)
+        4
+        >>> print(result)
+        <pre><code class="language-django">{% for item in items %}
+            &lt;li&gt;{{ item }}&lt;/li&gt;
+        {% endfor %}</code></pre>
         """
         block_lines = []
         i = start
@@ -185,16 +201,68 @@ class GrimoireParser:
             block_lines.append(lines[i])
             i += 1
         block_content = '\n'.join(block_lines)
-        if tag == 'pre':
-            # For code blocks, don't parse the content and use nested <code> tag
-            parsed_content = self.escape_html(block_content)
-            return i, f'<{tag}><code>{parsed_content}</code></{tag}>'
-        else:
-            # For other blocks, parse the content but don't wrap in <p> tags
-            parsed_content = self.parse_block_content(block_content)
-            return i, f'<{tag} class="{class_name}">{parsed_content}</{tag}>'
 
-    def parse_block_content(self, content: str) -> str:
+        return i, f'<pre><code class="language-{lang}">{self.escape_html(block_content)}</code></pre>'
+
+    def parse_custom_block(self, lines: List[str], start: int, element_type: str, attributes: str) -> Tuple[int, str]:
+        """
+        Parse a custom block element.
+
+        Args:
+            lines (List[str]): The lines of content.
+            start (int): The starting line number.
+            element_type (str): The type of the custom element.
+            attributes (str): The attributes string for the element.
+
+        Returns:
+            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
+
+        Examples:
+        >>> parser = GrimoireParser()
+        >>> lines = [
+        ...     '{% p class="test" %}',
+        ...     'This is a test paragraph.',
+        ...     'It has multiple lines.',
+        ...     '{% endp %}'
+        ... ]
+        >>> end, result = parser.parse_custom_block(lines, 1, 'p', 'class="test"')
+        >>> print(end)
+        3
+        >>> print(result)
+        <p class="test">This is a test paragraph.
+        It has multiple lines.</p>
+
+        >>> lines = [
+        ...     '{% div id="example" %}',
+        ...     '<p>This is nested content.</p>',
+        ...     '{% enddiv %}'
+        ... ]
+        >>> end, result = parser.parse_custom_block(lines, 1, 'div', 'id="example"')
+        >>> print(end)
+        2
+        >>> print(result)
+        <div id="example">&lt;p&gt;This is nested content.&lt;/p&gt;</div>
+
+        >>> lines = [
+        ...     '{% span data-test="true" %}',
+        ...     'Inline content',
+        ...     '{% endspan %}'
+        ... ]
+        >>> end, result = parser.parse_custom_block(lines, 1, 'span', 'data-test="true"')
+        >>> print(end)
+        2
+        >>> print(result)
+        <span data-test="true">Inline content</span>
+        """
+        block_lines = []
+        i = start
+        while i < len(lines) and not lines[i].strip().startswith('{% end' + element_type + ' %}'):
+            block_lines.append(lines[i])
+            i += 1
+        block_content = '\n'.join(block_lines)
+        return i, self.custom_elements[element_type](block_content, element_type, attributes)
+
+    def parse_block_content(self, content: str, surround: str = 'p') -> str:
         """
         Parse the content of a block.
 
@@ -206,15 +274,16 @@ class GrimoireParser:
 
         Example:
         >>> parser = GrimoireParser()
-        >>> print(parser.parse_block_content('Line 1\nLine 2'))
+        >>> print(parser.parse_block_content('Line 1\\nLine 2'))
         <p>Line 1</p>
         <p>Line 2</p>
         """
         lines = content.split('\n')
-        parsed_lines = [self.parse_inline_markdown(line) for line in lines]
+        parsed_lines = [self.parse_inline_markdown(
+            line, surround) for line in lines]
         return '\n'.join(parsed_lines)
 
-    def parse_inline_markdown(self, line: str) -> str:
+    def parse_inline_markdown(self, line: str, surround: str = 'p') -> str:
         """
         Parse inline markdown.
 
@@ -234,32 +303,10 @@ class GrimoireParser:
         line = re.sub(r'\*(.*?)\*', r'<em>\1</em>', line)
         line = re.sub(r'\[(.*?)\]\((.*?)\)', r'<a href="\2">\1</a>', line)
         line = re.sub(r'`(.*?)`', r'<code>\1</code>', line)
-        return line
-
-    def parse_standard_code_block(self, lines: List[str], start: int) -> Tuple[int, str]:
-        """
-        Parse a standard markdown code block.
-
-        This method is used for code blocks that don't match any custom block types.
-
-        Args:
-            lines (List[str]): All lines of the content being parsed.
-            start (int): The line number where the code block content starts.
-
-        Returns:
-            Tuple[int, str]: A tuple containing the ending line number and the parsed HTML.
-
-        Example:
-        >>> parser = GrimoireParser()
-        >>> lines = ['```', 'Standard code', 'No specific type', '```', 'Next line']
-        >>> end, result = parser.parse_standard_code_block(lines, 1)
-        >>> print(end)
-        3
-        >>> print(result)
-        <pre><code>Standard code
-        No specific type</code></pre>
-        """
-        return self.parse_custom_block(lines, start, 'pre', 'code')
+        if surround:
+            return f"<{surround}>{line}</{surround}>"
+        else:
+            return line
 
     def parse_standard_markdown(self, line: str) -> str:
         """
@@ -279,6 +326,7 @@ class GrimoireParser:
         >>> print(parser.parse_standard_markdown("**Bold** and *italic* and [link](https://example.com)"))
         <p><strong>Bold</strong> and <em>italic</em> and <a href="https://example.com">link</a></p>
         >>> print(parser.parse_standard_markdown(""))
+        <BLANKLINE>
 
         """
         if not line.strip():
@@ -340,7 +388,7 @@ class GrimoireParser:
 
         return f'<p>{"".join(result)}</p>'
 
-    def parse_list(self, lines: List[str], start: int) -> Tuple[int, str]:
+    def parse_list(self, lines: List[str], start: int) -> str:
         """
         Parse a list.
 
@@ -349,19 +397,24 @@ class GrimoireParser:
             start (int): The starting line number.
 
         Returns:
-            Tuple[int, str]: The ending line number and the parsed HTML.
+            str: The parsed HTML.
 
         Example:
         >>> parser = GrimoireParser()
         >>> print(parser.parse_list(['* Item 1', '* Item 2'], 0))
         <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
+            <li><p>Item 1</p></li>
+            <li><p>Item 2</p></li>
+        </ul>
+        >>> print(parser.parse_list(['- Item 1', '- Item 2'], 0))
+        <ul>
+            <li><p>Item 1</p></li>
+            <li><p>Item 2</p></li>
         </ul>
         """
         list_items = []
         i = start
-        while i < len(lines) and lines[i].strip().startswith('* '):
+        while i < len(lines) and (lines[i].strip().startswith('* ') or lines[i].strip().startswith('- ')):
             item = lines[i].strip()[2:]
             nested_content = []
             i += 1
@@ -370,14 +423,19 @@ class GrimoireParser:
                 i += 1
 
             if nested_content:
-                _, nested_list = self.parse_list(nested_content, 0)
+                nested_list = self.parse_list(nested_content, 0)
                 list_items.append(
-                    f'<li>{self.parse_inline_markdown(item)}{nested_list}</li>')
+                    f'    <li>{self.parse_inline_markdown(item)}{nested_list}</li>')
             else:
                 list_items.append(
-                    f'<li>{self.parse_inline_markdown(item)}</li>')
+                    f'    <li>{self.parse_inline_markdown(item)}</li>')
 
-        return i - 1, f'<ul>\n{"".join(list_items)}\n</ul>'
+        return '<ul>\n' + '\n'.join(list_items) + '\n</ul>'
 
     def escape_html(self, text: str) -> str:
         return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

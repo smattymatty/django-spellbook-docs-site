@@ -17,7 +17,7 @@
     <body>
         <header>
             <div class="header-content">
-                <h1>Django-Spellbook</h1>
+                <h1 class="website-title"><a href="/">Django-Spellbook</a></h1>
                 <nav>
                     <ul>
                         <li><a href="/">Home</a></li>
@@ -41,14 +41,54 @@
     
         
             <li>
-                <span class="spell-icon"></span>About
+                About
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
+                <a href="/docs/About/Compatibility/">
+                    Compatibility
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Installation/">
+                    Installation
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Configuration/">
+                    Settings
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Quick_Start_Guide/">
+                    Quick Start Guide
+                </a>
+            </li>
+        
+    
+        
+            <li>
                 <a href="/docs/About/What_is_Django-Spellbook%3F/">
-                    <span class="spell-icon">📜</span>What is Django-Spellbook?
+                    What is Django-Spellbook?
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Changelog/">
+                    Changelog
                 </a>
             </li>
         
@@ -59,28 +99,134 @@
     
         
             <li>
-                <a href="/docs/introduction/">
-                    <span class="spell-icon">📜</span>Welcome to Your Grimoire
+                Glossary
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/Glossary/Key%20Terms%20and%20Definitions/">
+                    Key Terms and Definitions
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                FAQ
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/FAQ/Frequently%20Asked%20Questions/">
+                    Frequently Asked Questions
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Extensions
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                Grimoire Generator Extension
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/API%20Reference/">
+                    API Reference
                 </a>
             </li>
         
     
         
             <li>
-                <span class="spell-icon"></span>Modules
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Configuration/">
+                    Setup
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Usage%20Example/">
+                    Usage Example
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Introduction/">
+                    Introduction
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Tutorials
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
-                <span class="spell-icon"></span>ToggledContentHandler
+                <a href="/docs/Tutorials/Creating%20a%20Dynamic%20Navigation%20Menu/">
+                    Creating a Dynamic Navigation Menu
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Tutorials/Building%20a%20Simple%20Interactive%20Form/">
+                    Building a Simple Interactive Form
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Modules
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                ToggledContentHandler
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
                 <a href="/docs/Modules/ToggledContentHandler/Introduction/">
-                    <span class="spell-icon">📜</span>Introduction
+                    Introduction
                 </a>
             </li>
         
@@ -91,14 +237,14 @@
     
         
             <li>
-                <span class="spell-icon"></span>ActionInvoker
+                ActionInvoker
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
                 <a href="/docs/Modules/ActionInvoker/Introduction/">
-                    <span class="spell-icon">📜</span>Introduction
+                    What is Django-Spellbook?
                 </a>
             </li>
         
@@ -113,14 +259,22 @@
     
         
             <li>
-                <span class="spell-icon"></span>Grimoire Generator Extension
+                Advanced
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
-                <a href="/docs/Grimoire%20Generator%20Extension/What_is_Grimoire_Generator%3F/">
-                    <span class="spell-icon">📜</span>What is the Grimoire Generator?
+                <a href="/docs/Advanced/Custom_Module_Development/">
+                    Custom Module Development
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Advanced/Performance_Optimisation/">
+                    Performance Optimisation
                 </a>
             </li>
         
@@ -135,16 +289,21 @@
     <div class="content">
         
 <div>
-    <h1>What is Django-Spellbook?</h1>
+    {% verbatim %}<h1>What is Django-Spellbook?</h1>
 <p>Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates.</p>
 <p>In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags.</p>
-<ul>
-<li><strong>Simplicity</strong>: Add interactive elements using familiar Django template tags.</li><li><strong>Productivity</strong>: Achieve more with less code using pre-built modules.</li><li><strong>Flexibility</strong>: Works seamlessly with HTMX and Tailwind CSS, or standalone.</li><li><strong>Maintainability</strong>: Keep front-end logic close to your HTML structure for improved readability.</li><li><strong>Gentle Learning Curve</strong>: Easy to adopt for developers familiar with Django templates.</li>
-</ul>
+<p><em> <strong>Simplicity</strong>: Add interactive elements using familiar Django template tags.</em></p>
+<p><em> <strong>Productivity</strong>: Achieve more with less code using pre-built modules.</em></p>
+<p><em> <strong>Flexibility</strong>: Works seamlessly with HTMX and Tailwind CSS, or standalone.</em></p>
+<p><em> <strong>Maintainability</strong>: Keep front-end logic close to your HTML structure for improved readability.</em></p>
+<p><em> <strong>Gentle Learning Curve</strong>: Easy to adopt for developers familiar with Django templates.</em></p>
 <h2>How It Works</h2>
 <p>Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module:</p>
-<pre><code>{ % load action_invoker_tags % }
-{ % invoke_action "click" "add-class" "this" "my-button" config='class:active' % }</code></pre>
+<pre><code class="language-code">{% load action_invoker_tags %}
+{% invoke_action 
+	"click" "add-class" "this" "my-button" 
+	config='class:active' 
+%}</code></pre>
 <p>This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript.</p>
 <h2>Why Choose Django-Spellbook?</h2>
 <p>Django-Spellbook solves several common pain points in web development:</p>
@@ -154,9 +313,9 @@
 <p>- Promotes consistency in front-end interactions across your project</p>
 <h2>Getting Started</h2>
 <p>Ready to add some magic to your Django project? Let's begin with a simple installation:</p>
-<pre><code>pip install django-spellbook</code></pre>
+<pre><code class="language-code">pip install django-spellbook</code></pre>
 <p>Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py:</p>
-<pre><code>INSTALLED_APPS = [
+<pre><code class="language-code">INSTALLED_APPS = [
     # ...
     'django_spellbook',
     # ...
@@ -167,9 +326,9 @@
 <p>- <a href="./modules.md">Available Modules</a></p>
 <p>- <a href="./best-practices.md">Best Practices</a></p>
 <p>- <a href="./advanced-usage.md">Advanced Usage</a></p>
-<p>Welcome to the world of Django-Spellbook, where crafting interactive web applications is as simple as casting a spell!</p>
+<p>Welcome to the world of Django-Spellbook, where crafting interactive web applications is as simple as casting a spell!</p>{% endverbatim %}
     <span style="text-align: right; text-size: small; opacity: 0.5">
-    July 10, 2024, 1:05 a.m.</span>
+    July 10, 2024, 8:25 p.m.</span>
 </div>
 
     </div>

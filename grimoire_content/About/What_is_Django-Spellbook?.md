@@ -14,8 +14,11 @@ In theory, you should be able to include many interactive elements such as navig
 Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module:
 
 ```code
-{ % load action_invoker_tags % }
-{ % invoke_action "click" "add-class" "this" "my-button" config='class:active' % }
+{% load action_invoker_tags %}
+{% invoke_action 
+	"click" "add-class" "this" "my-button" 
+	config='class:active' 
+%}
 ```
 
 This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript.

@@ -4,12 +4,12 @@
         {% if 'url_path' in value %}
             <li>
                 <a href="{% url 'docs:page' value.url_path|slice:"1:" %}">
-                    <span class="spell-icon">📜</span>{{ value.title }}
+                    {{ value.title }}
                 </a>
             </li>
         {% elif 'children' in value %}
             <li>
-                <span class="spell-icon"></span>{{ key }}
+                {{ key }}
                 {% include 'docs/parts/grimoire_nav.html' with structure=value.children only %}
             </li>
         {% endif %}

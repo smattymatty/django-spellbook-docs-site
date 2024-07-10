@@ -1,2 +1,2 @@
-# What is the Grimoire Generator?
+# Introduction
 It's a static site generator for documentation using markdown files.

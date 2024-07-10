@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Modules/ToggledContentHandler/Introduction.md",
+                "file": "Glossary/Key Terms and Definitions.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "193115654e1fa0ce",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Modules/ActionInvoker/Introduction.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,7 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 229.5
   },
   "right": {
     "id": "a4bc53190a639e58",
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Modules/ToggledContentHandler/Introduction.md",
+                "file": "Modules/ActionInvoker/Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Modules/ToggledContentHandler/Introduction.md",
+                "file": "Modules/ActionInvoker/Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Modules/ToggledContentHandler/Introduction.md"
+                "file": "Modules/ActionInvoker/Introduction.md"
               }
             }
           }
@@ -146,25 +159,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "739c709fb153946b",
+  "active": "193115654e1fa0ce",
   "lastOpenFiles": [
+    "About/What_is_Django-Spellbook?.md",
     "Modules/ActionInvoker/Introduction.md",
+    "FAQ/Frequently Asked Questions.md",
+    "Tutorials/Creating a Dynamic Navigation Menu.md",
+    "Tutorials/Building a Simple Interactive Form.md",
+    "Advanced/Performance_Optimisation.md",
+    "Advanced/Custom_Module_Development.md",
+    "Advanced",
+    "Extensions/Grimoire Generator Extension/Introduction.md",
+    "Extensions/Grimoire Generator Extension/Usage Example.md",
+    "Extensions/Grimoire Generator Extension/API Reference.md",
+    "Tutorials",
+    "Glossary/Key Terms and Definitions.md",
+    "Glossary",
+    "Extensions/Grimoire Generator Extension/Configuration.md",
+    "FAQ",
+    "Concepts/Integration with Django.md",
+    "Concepts/How Django-Spellbook Works.md",
+    "Concepts/Best Practices.md",
+    "About/Changelog.md",
+    "Concepts",
+    "About/Quick_Start_Guide.md",
+    "About/Installation.md",
+    "About/Configuration.md",
+    "About/Compatibility.md",
+    "introduction.md",
+    "Extensions",
     "Modules/ToggledContentHandler/Introduction.md",
     "Modules/ToggledContentHandler",
-    "Grimoire Generator Extension/What_is_Grimoire_Generator?.md",
     "Modules/ActionInvoker",
     "Grimoire Generator Extension/Untitled 1.md",
-    "Grimoire Generator Extension",
+    "Extensions/Grimoire Generator Extension",
     "Deep Dive",
-    "Examples",
-    "introduction.md",
-    "Untitled.md",
-    "Modules",
-    "About/What_is_Django-Spellbook?.md",
     "spells/basic_spells.md",
-    "About",
     "silly/Sillyness.md",
-    "potions/healing_potions.md",
-    "silly"
+    "potions/healing_potions.md"
   ]
 }

@@ -17,7 +17,7 @@
     <body>
         <header>
             <div class="header-content">
-                <h1>Django-Spellbook</h1>
+                <h1 class="website-title"><a href="/">Django-Spellbook</a></h1>
                 <nav>
                     <ul>
                         <li><a href="/">Home</a></li>
@@ -41,14 +41,54 @@
     
         
             <li>
-                <span class="spell-icon"></span>About
+                About
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
+                <a href="/docs/About/Compatibility/">
+                    Compatibility
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Installation/">
+                    Installation
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Configuration/">
+                    Settings
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Quick_Start_Guide/">
+                    Quick Start Guide
+                </a>
+            </li>
+        
+    
+        
+            <li>
                 <a href="/docs/About/What_is_Django-Spellbook%3F/">
-                    <span class="spell-icon">📜</span>What is Django-Spellbook?
+                    What is Django-Spellbook?
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/About/Changelog/">
+                    Changelog
                 </a>
             </li>
         
@@ -59,28 +99,134 @@
     
         
             <li>
-                <a href="/docs/introduction/">
-                    <span class="spell-icon">📜</span>Welcome to Your Grimoire
+                Glossary
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/Glossary/Key%20Terms%20and%20Definitions/">
+                    Key Terms and Definitions
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                FAQ
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/FAQ/Frequently%20Asked%20Questions/">
+                    Frequently Asked Questions
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Extensions
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                Grimoire Generator Extension
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/API%20Reference/">
+                    API Reference
                 </a>
             </li>
         
     
         
             <li>
-                <span class="spell-icon"></span>Modules
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Configuration/">
+                    Setup
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Usage%20Example/">
+                    Usage Example
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Extensions/Grimoire%20Generator%20Extension/Introduction/">
+                    Introduction
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Tutorials
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
-                <span class="spell-icon"></span>ToggledContentHandler
+                <a href="/docs/Tutorials/Creating%20a%20Dynamic%20Navigation%20Menu/">
+                    Creating a Dynamic Navigation Menu
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Tutorials/Building%20a%20Simple%20Interactive%20Form/">
+                    Building a Simple Interactive Form
+                </a>
+            </li>
+        
+    
+</ul>
+            </li>
+        
+    
+        
+            <li>
+                Modules
+                <!-- docs/templates/docs/grimoire_nav.html -->
+<ul class="spell-list">
+    
+        
+            <li>
+                ToggledContentHandler
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
                 <a href="/docs/Modules/ToggledContentHandler/Introduction/">
-                    <span class="spell-icon">📜</span>Introduction
+                    Introduction
                 </a>
             </li>
         
@@ -91,14 +237,14 @@
     
         
             <li>
-                <span class="spell-icon"></span>ActionInvoker
+                ActionInvoker
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
                 <a href="/docs/Modules/ActionInvoker/Introduction/">
-                    <span class="spell-icon">📜</span>Introduction
+                    What is Django-Spellbook?
                 </a>
             </li>
         
@@ -113,14 +259,22 @@
     
         
             <li>
-                <span class="spell-icon"></span>Grimoire Generator Extension
+                Advanced
                 <!-- docs/templates/docs/grimoire_nav.html -->
 <ul class="spell-list">
     
         
             <li>
-                <a href="/docs/Grimoire%20Generator%20Extension/What_is_Grimoire_Generator%3F/">
-                    <span class="spell-icon">📜</span>What is the Grimoire Generator?
+                <a href="/docs/Advanced/Custom_Module_Development/">
+                    Custom Module Development
+                </a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/docs/Advanced/Performance_Optimisation/">
+                    Performance Optimisation
                 </a>
             </li>
         
@@ -135,10 +289,13 @@
     <div class="content">
         
 <div>
-    <h2>Introduction the the ActionInvoker</h2>
-<p>Hey</p>
+    {% verbatim %}<h1>What is Django-Spellbook?</h1>
+<p class="spell-block">... This is a custom paragraph.</p>
+<div class="potion-block" id="funny">... This is a custom div</div>
+<div style="color:red;">yo yo yo</div>
+<h1>the end</h1>{% endverbatim %}
     <span style="text-align: right; text-size: small; opacity: 0.5">
-    July 10, 2024, 1:15 a.m.</span>
+    July 10, 2024, 9:34 p.m.</span>
 </div>
 
     </div>
