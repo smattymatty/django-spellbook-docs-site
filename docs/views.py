@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from django.conf import settings
 from grimoire_generator.generator import GrimoireGenerator
-import os
+from grimoire_generator.utils import sort_structure
 
 
 def home(request):
@@ -14,6 +14,7 @@ def home(request):
     context = {
         'grimoire_structure': structure
     }
+    print(f"structure: {structure}")
 
     return render(request, 'docs/home.html', context)
 
@@ -23,7 +24,6 @@ def grimoire_page(request, path=''):
     generator = GrimoireGenerator(content_dir)
 
     structure = generator.generate_structure()
-    print("Generated structure:", structure)  # Debug output
 
     file_info = generator.get_file_by_path(path)
 
@@ -36,9 +36,8 @@ def grimoire_page(request, path=''):
             'grimoire_url_path': file_info.get('url_path', ''),
             'grimoire_structure': structure
         }
-        print("Context being passed to template:", context)  # Debug output
+        print(f"structure: {structure}")
         response = render(request, template_path, context)
-        print("Rendered template:", response.content[:1000])  # Debug output
         return response
     else:
         raise Http404("Grimoire page not found")

@@ -1,0 +1,7 @@
+{% load string_enchants %}
+<div class="code-block-container">
+    {% if has_copy_button %}
+    <button class="copy-button" data-clipboard-target="#sb-code-{{ id }}">Copy</button>
+    {% endif %}
+    <pre id="sb-code-{{ id }}" class="code-block"{% if language %} data-language="{{ language }}"{% endif %}><div>{{ content|safe|replace:"```,"|strip }}</div></pre>
+</div>

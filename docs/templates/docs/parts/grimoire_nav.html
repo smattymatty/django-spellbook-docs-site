@@ -1,17 +1,21 @@
-<!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    {% for key, value in structure.items %}
-        {% if 'url_path' in value %}
-            <li>
-                <a href="{% url 'docs:page' value.url_path|slice:"1:" %}">
-                    {{ value.title }}
-                </a>
-            </li>
-        {% elif 'children' in value %}
-            <li>
-                {{ key }}
-                {% include 'docs/parts/grimoire_nav.html' with structure=value.children only %}
-            </li>
-        {% endif %}
-    {% endfor %}
+{% load string_enchants %}
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+{% for key, value in structure.items %}
+    {% if value.url_path %}
+        <li class="nav-item">
+            <a href="{% url 'docs:page' value.url_path|slice:"1:" %}">{{ value.title }}</a>
+        </li>
+    {% elif value.children %}
+        <li class="nav-dir">
+            {{ key|replace:"-," }}
+            {% include 'docs/parts/grimoire_nav.html' with structure=value.children only %}
+        </li>
+    {% else %}
+        <li>
+            {{ key|replace:"-," }}
+            {% include 'docs/parts/grimoire_nav.html' with structure=value only %}
+        </li>
+    {% endif %}
+{% endfor %}
 </ul>

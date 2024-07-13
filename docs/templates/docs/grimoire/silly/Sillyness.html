@@ -1,18 +1,13 @@
 <!-- docs/templates/docs/base.html -->
 <!-- core/templates/base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Django-Spellbook
-        </title>
+        <title>Django-Spellbook</title>
         <link rel="stylesheet" href="/static/css/main.css">
-        
-<link rel="stylesheet" href="/static/css/docs.css">
-
+        <link rel="stylesheet" href="/static/css/docs.css">
     </head>
     <body>
         <header>
@@ -20,121 +15,93 @@
                 <h1>Django-Spellbook</h1>
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/docs/">Docs</a></li>
-                        <li><a href="#">Examples</a></li>
-                        <li><a href="#">Download</a></li>
-                        <li><a href="#">Community</a></li>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/docs/">Docs</a>
+                        </li>
+                        <li>
+                            <a href="#">Examples</a>
+                        </li>
+                        <li>
+                            <a href="#">Download</a>
+                        </li>
+                        <li>
+                            <a href="#">Community</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </header>
         <main class="container">
-            
-<div class="docs-container">
-    <aside class="sidebar">
-        <div class="grimoire">
-            <h3>Spellbook Navigation</h3>
-            <!-- Debug output -->
-            <!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    
-        
-            <li>
-                <span class="spell-icon">📚</span>About
-                <!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    
-        
-            <li>
-                <a href="/docs/About/What_is_Django-Spellbook%3F/">
-                    <span class="spell-icon">📜</span>What is Django-Spellbook?
-                </a>
-            </li>
-        
-    
-</ul>
-            </li>
-        
-    
-        
-            <li>
-                <span class="spell-icon">📚</span>potions
-                <!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    
-        
-            <li>
-                <a href="/docs/potions/healing_potions/">
-                    <span class="spell-icon">📜</span>Healing Potions
-                </a>
-            </li>
-        
-    
-</ul>
-            </li>
-        
-    
-        
-            <li>
-                <span class="spell-icon">📚</span>spells
-                <!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    
-        
-            <li>
-                <a href="/docs/spells/basic_spells/">
-                    <span class="spell-icon">📜</span>Basic Spells
-                </a>
-            </li>
-        
-    
-</ul>
-            </li>
-        
-    
-        
-            <li>
-                <a href="/docs/introduction/">
-                    <span class="spell-icon">📜</span>Welcome to Your Grimoire
-                </a>
-            </li>
-        
-    
-        
-            <li>
-                <span class="spell-icon">📚</span>silly
-                <!-- docs/templates/docs/grimoire_nav.html -->
-<ul class="spell-list">
-    
-        
-            <li>
-                <a href="/docs/silly/Sillyness/">
-                    <span class="spell-icon">📜</span>Sillyness
-                </a>
-            </li>
-        
-    
-</ul>
-            </li>
-        
-    
-</ul>
-        </div>
-    </aside>
-    <div class="content">
-        
-<div>
-    <h1>Sillyness</h1>
-<p>This is the silliest thing ni the world</p>
-    <span style="text-align: right; text-size: small; opacity: 0.5">
-    July 9, 2024, 11:53 p.m.</span>
-</div>
-
-    </div>
-</div>
-
+            <div class="docs-container">
+                <aside class="sidebar">
+                    <div class="grimoire">
+                        <h3>Spellbook Navigation</h3>
+                        <!-- Debug output -->
+                        <!-- docs/templates/docs/grimoire_nav.html -->
+                        <ul class="spell-list">
+                            <li>
+                                <span class="spell-icon">📚</span>About
+                                <!-- docs/templates/docs/grimoire_nav.html -->
+                                <ul class="spell-list">
+                                    <li>
+                                        <a href="/docs/About/What_is_Django-Spellbook%3F/">
+                                            <span class="spell-icon">📜</span>What is Django-Spellbook?
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="spell-icon">📚</span>potions
+                                <!-- docs/templates/docs/grimoire_nav.html -->
+                                <ul class="spell-list">
+                                    <li>
+                                        <a href="/docs/potions/healing_potions/">
+                                            <span class="spell-icon">📜</span>Healing Potions
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="spell-icon">📚</span>spells
+                                <!-- docs/templates/docs/grimoire_nav.html -->
+                                <ul class="spell-list">
+                                    <li>
+                                        <a href="/docs/spells/basic_spells/">
+                                            <span class="spell-icon">📜</span>Basic Spells
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/docs/introduction/">
+                                    <span class="spell-icon">📜</span>Welcome to Your Grimoire
+                                </a>
+                            </li>
+                            <li>
+                                <span class="spell-icon">📚</span>silly
+                                <!-- docs/templates/docs/grimoire_nav.html -->
+                                <ul class="spell-list">
+                                    <li>
+                                        <a href="/docs/silly/Sillyness/">
+                                            <span class="spell-icon">📜</span>Sillyness
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="content">
+                    <div>
+                        <h1>Sillyness</h1>
+                        <p>This is the silliest thing ni the world</p>
+                        <span style="text-align: right; text-size: small; opacity: 0.5">July 9, 2024, 11:53 p.m.</span>
+                    </div>
+                </div>
+            </div>
         </main>
-        
     </body>
 </html>

@@ -1,0 +1,414 @@
+<!-- docs/templates/docs/base.html -->
+<!-- core/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Django-Spellbook
+        </title>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/utils.css">
+        
+<link rel="stylesheet" href="/static/css/code_block.css">
+    <link rel="stylesheet" href="/static/css/docs.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <h1 class="website-title">
+                    <a href="/">Django-Spellbook</a>
+                </h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/docs/">Docs</a>
+                        </li>
+                        <li>
+                            <a href="#">Examples</a>
+                        </li>
+                        <li>
+                            <a href="#">Download</a>
+                        </li>
+                        <li>
+                            <a href="#">Community</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="container">
+            
+    <div class="docs-container">
+        <aside class="sidebar">
+            <div class="grimoire">
+                <h3>Spellbook Navigation</h3>
+                
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            About
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Changelog/">Changelog</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Compatibility/">Compatibility</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Configuration/">Settings</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Installation/">Installation</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Quick_Start_Guide/">Quick Start Guide</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/What_is_Django-Spellbook%3F/">What is Django-Spellbook?</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            Modules
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            ActionInvoker
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Introduction/">Introduction</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Settings/">Settings</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Usage/">Usage</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            ToggledContentHandler
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ToggledContentHandler/Introduction/">Introduction</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            Extensions
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            Grimoire Generator
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/--Introduction/">Introduction</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/-Starting%20Guide/">-Starting Guide</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/API%20Reference/">API Reference</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/Custom%20Blocks/">Custom Blocks</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/Settings/">Settings</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+            </div>
+        </aside>
+        <div class="content">
+            
+    <div>
+        {% verbatim %}<h1>API Reference</h1>
+<h2>generate_grimoire Command</h2>
+<h3>Usage</h3>
+<p>The <span class="inline-code">generate_grimoire</span> command is the main component of Grimoire_Generator, designed to automate the process of converting Markdown files into HTML templates. This command is particularly useful for maintaining and updating documentation or content that is written in Markdown but needs to be served as HTML in your Django application.</p>
+<p>The <span class="inline-code">generate_grimoire</span> command is typically run from the command line in your Django project directory:</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-7a113b72-bc14-4599-a22d-332450e56051">Copy</button>
+    
+    <pre id="sb-code-7a113b72-bc14-4599-a22d-332450e56051" class="code-block" data-language="bash"><div>python manage.py generate_grimoire [options]</div></pre>
+</div>
+<h3>Options</h3>
+<ul>
+    <li><span class="inline-code">--force</span>: Forces overwrite of existing template files.</li>
+    <li><span class="inline-code">--verbose</span>: Prints verbose output during the generation process.</li>
+</ul>
+<h3>Configuration</h3>
+<p>Before using the command, ensure you have the following settings in your Django <span class="inline-code">settings.py</span>:</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-60b84c3f-d3dd-4352-8ae7-73c49cd6bb19">Copy</button>
+    
+    <pre id="sb-code-60b84c3f-d3dd-4352-8ae7-73c49cd6bb19" class="code-block" data-language="settings.py"><div>GRIMOIRE_CONTENT_APP = &#x27;your_app_name&#x27;
+GRIMOIRE_CONTENT_DIR = &#x27;/path/to/your/markdown/files&#x27;</div></pre>
+</div>
+<p>Also, within your CONTENT_APP's templates folder, include a grimoire_base.html to render all of your content to.</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-e04cd859-12c4-4db3-8192-d6f7bc375e83">Copy</button>
+    
+    <pre id="sb-code-e04cd859-12c4-4db3-8192-d6f7bc375e83" class="code-block" data-language="app/templates/app/grimoire_base.html"><div>{% extends &#x27;docs/base.html&#x27; %}
+{% block docs_content %}
+    &lt;div&gt;
+    &lt;!-- Just put in grimoire_content --&gt; and whatever else!
+        {{ grimoire_content }}
+        &lt;span style=&quot;text-align: right; text-size: small; opacity: 0.5&quot;&gt;{{ grimoire_last_modified }}&lt;/span&gt;
+    &lt;/div&gt;
+{% endblock %}</div></pre>
+</div>
+<ul>
+    <li><span class="inline-code">grimoire_title</span></li>
+    <li><span class="inline-code">grimoire_content</span></li>
+    <li><span class="inline-code">grimoire_last_modified</span></li>
+    <li><span class="inline-code">grimoire_url_path</span></li>
+    <li><span class="inline-code">grimoire_structure</span></li>
+</ul>
+<p>There are some pre-defined context variables to be used in your grimoire_base.html:</p>
+<h3>Process</h3>
+<p>These context variables are given to the templates on command run, and then the templates are each fully rendered. If you one of these context variables changes, you will have to run the command again to fully update.</p>
+<ol>
+    <li><strong>Initialization</strong>: The command checks for required settings and loads any custom blocks from your Django apps.</li>
+    <li><strong>Directory Setup</strong>: It constructs the paths for the source Markdown files and the destination HTML templates.</li>
+    <li><strong>Template Generation</strong>: For each Markdown file, it:<ul>
+    <li>Parses the content</li>
+    <li>Applies the base template (<span class="inline-code">grimoire_base.html</span>)</li>
+    <li>Generates an HTML file in the corresponding location in the templates directory</li>
+</ul></li>
+</ol>
+<h3>Example</h3>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-534243b9-69af-42c7-9e0e-16da44c5071e">Copy</button>
+    
+    <pre id="sb-code-534243b9-69af-42c7-9e0e-16da44c5071e" class="code-block" data-language="folders"><div>your_project/
+    your_app/
+        content/
+            intro.md
+            advanced/
+                topic1.md</div></pre>
+</div>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-cca479c9-7100-4c01-854c-be69131d0c51">Copy</button>
+    
+    <pre id="sb-code-cca479c9-7100-4c01-854c-be69131d0c51" class="code-block" data-language="bash"><div>python manage.py generate_grimoire --verbose</div></pre>
+</div>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-99ca84d5-5c0a-4ac4-bcc1-592ebd0e15f0">Copy</button>
+    
+    <pre id="sb-code-99ca84d5-5c0a-4ac4-bcc1-592ebd0e15f0" class="code-block" data-language="folders"><div>your_project/
+    your_app/
+        templates/
+            your_app/
+                grimoire/
+                    intro.html
+                    advanced/
+                        topic1.html</div></pre>
+</div>
+<h3>Best Practices</h3>
+<ol>
+    <li><strong>Version Control</strong>: Keep your Markdown files under version control.</li>
+    <li><strong>Regular Updates</strong>: Run this command as part of your deployment process to ensure your HTML templates are always up-to-date.</li>
+    <li><strong>Custom Base Template</strong>: Create a custom <span class="inline-code">grimoire_base.html</span> in your app's templates directory for consistent styling and layout.</li>
+</ol>
+<h3>Troubleshooting</h3>
+<ul>
+    <li>If templates are not generating, check your <span class="inline-code">GRIMOIRE_CONTENT_DIR</span> setting.</li>
+    <li>For issues with custom blocks, ensure they are properly registered in your app's <span class="inline-code">grimoire_blocks.py</span> file.</li>
+    <li>Use the <span class="inline-code">--verbose</span> option for detailed logs to identify any issues in the generation process.</li>
+</ul>
+<h2>Grimoire_Parser</h2>
+<h3>Key Features</h3>
+<ul>
+    <li><strong>Custom</strong> element parsing</li>
+    <li><strong>Markdown</strong>-to-HTML conversion</li>
+    <li><strong>Support</strong> for code blocks, lists, and inline styles</li>
+    <li><strong>Integration</strong> with Django template system</li>
+    <li><strong>Extensible</strong> architecture for custom blocks</li>
+</ul>
+<h3>Usage</h3>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-bdf07a72-719b-49d6-a6cc-401d1ad47459">Copy</button>
+    
+    <pre id="sb-code-bdf07a72-719b-49d6-a6cc-401d1ad47459" class="code-block" data-language="Python"><div>from django_spellbook.grimoire_generator.parser import GrimoireParser
+
+parser = GrimoireParser()
+html_content = parser.parse(markdown_content)</div></pre>
+</div>
+<p>Assuming you have the following structure: Running the command: Will generate: The Grimoire_Parser is a crucial component of Django-Spellbook, designed to parse and transform custom markdown-like syntax into HTML. It serves as the backbone for creating dynamic, interactive web applications with minimal custom JavaScript in Django projects. The Grimoire_Parser is typically used internally by the Django-Spellbook system. However, you can also use it directly in your Django views or templates if needed. Initializes a new instance of the <span class="inline-code">GrimoireParser</span>. The constructor sets up the custom elements dictionary, which includes default HTML elements and any additional elements registered in the <span class="inline-code">block_registry</span>.</p>
+<h3>Extending GrimoireParser</h3>
+<p>To add custom parsing behavior, you can subclass <span class="inline-code">GrimoireParser</span> and override or add methods as needed. You can also extend the <span class="inline-code">custom_elements</span> dictionary in the constructor to add support for new custom elements.</p>
+<h2>GrimoireGenerator</h2>
+<p>The GrimoireGenerator is a powerful tool within Django-Spellbook that creates a structured representation of documentation files. It's designed to walk through a specified directory, identify markdown files, and generate a hierarchical structure of your documentation.</p>
+<h3>Key Features</h3>
+<ul>
+    <li><strong>Directory Traversal</strong>: Recursively walks through documentation directories.</li>
+    <li><strong>Markdown Parsing</strong>: Extracts metadata and content from markdown files.</li>
+    <li><strong>Structure Generation</strong>: Creates a nested dictionary representing the documentation structure.</li>
+    <li><strong>File Metadata Extraction</strong>: Retrieves title, URL path, and last modified date for each file.</li>
+    <li><strong>Search Functionality</strong>: Allows searching through the generated documentation structure.</li>
+    <li><strong>Sorting Options</strong>: Provides customizable sorting of the generated structure.</li>
+</ul>
+<h3>Usage</h3>
+<p>The GrimoireGenerator is typically used to create a structured representation of your documentation, which can then be used to generate navigation menus, search indices, or other documentation-related features.</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-30eb764c-1765-4638-8dad-bbc7dd21a705">Copy</button>
+    
+    <pre id="sb-code-30eb764c-1765-4638-8dad-bbc7dd21a705" class="code-block" data-language="Python"><div>from django_spellbook.grimoire_generator.generator import GrimoireGenerator
+
+# Initialize the generator
+generator = GrimoireGenerator(&#x27;/path/to/docs&#x27;, sort_key=&#x27;name&#x27;, reverse=False)
+
+# Generate the structure
+structure = generator.generate_structure()
+
+# Retrieve a specific file
+file_info = generator.get_file_by_path(&#x27;/introduction&#x27;)
+
+# Search the documentation
+results = generator.search_grimoire(&#x27;django&#x27;)</div></pre>
+</div>
+<p>The structure is an important part of the generator, and is often passed into view's context to help create navigation menu!</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-69237f72-be95-4463-8b03-c3bed13faefc">Copy</button>
+    
+    <pre id="sb-code-69237f72-be95-4463-8b03-c3bed13faefc" class="code-block" data-language="structure example"><div>{
+	&#x27;introduction.md&#x27;: {
+		&#x27;title&#x27;: &#x27;Introduction to Documentation&#x27;,
+		&#x27;url_path&#x27;: &#x27;/introduction&#x27;,
+		&#x27;last_modified&#x27;: datetime.datetime(2023, 5, 10, 15, 30),
+		&#x27;children&#x27;: {}
+	},
+	&#x27;topics&#x27;: {
+		&#x27;children&#x27;: {
+			&#x27;advanced.md&#x27;: {
+				&#x27;title&#x27;: &#x27;Advanced Topics&#x27;,
+				&#x27;url_path&#x27;: &#x27;/topics/advanced&#x27;,
+				&#x27;last_modified&#x27;: datetime.datetime(2023, 5, 11, 9, 45),
+				&#x27;children&#x27;: {}
+			}
+		}
+	}
+}</div></pre>
+</div>{% endverbatim %}
+        <span style="text-align: right; text-size: small; opacity: 0.5">July 13, 2024, 4:58 a.m.</span>
+    </div>
+
+        </div>
+    </div>
+
+        </main>
+        
+    </body>
+</html>

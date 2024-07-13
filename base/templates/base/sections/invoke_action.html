@@ -1,0 +1,14 @@
+{% load init_content_toggle %}
+<div id="home-invoke-action-toggle-container"
+     data-trigger-event="hover"
+     data-close-event="mouseleave"
+     data-active-class-for-button="active"
+     data-delayed-active-class-for-content="sb-rounded-md sb-border-x-4 sb-bg-black/10 sb-opacity-100 sb-px-4 sb-mb-1"
+     data-animation-delay="500">
+    <li id="home-invoke-action-toggle-trigger">🔮 Action Invoker - Cast actions with a mere whisper</li>
+    <div id="home-invoke-action-toggle-content"
+         class="sb-opacity-0 sb-hidden sb-gap-4 sb-border-brown/60 sb-transition sb-duration-500 sb-ease-in">
+        {% include "examples/spell_cast_game.html" %}
+    </div>
+</div>
+{% init_content_toggle "home-invoke-action" %}

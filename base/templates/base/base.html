@@ -9,19 +9,32 @@
             {% block title %}Django-Spellbook{% endblock %}
         </title>
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/utils.css' %}">
         {% block extra_style %}{% endblock %}
     </head>
     <body>
         <header>
             <div class="header-content">
-                <h1 class="website-title"><a href="{% url 'base:home' %}">Django-Spellbook</a></h1>
+                <h1 class="website-title">
+                    <a href="{% url 'base:home' %}">Django-Spellbook</a>
+                </h1>
                 <nav>
                     <ul>
-                        <li><a href="{% url 'base:home' %}">Home</a></li>
-                        <li><a href="{% url 'docs:home' %}">Docs</a></li>
-                        <li><a href="#">Examples</a></li>
-                        <li><a href="#">Download</a></li>
-                        <li><a href="#">Community</a></li>
+                        <li>
+                            <a href="{% url 'base:home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'docs:home' %}">Docs</a>
+                        </li>
+                        <li>
+                            <a href="#">Examples</a>
+                        </li>
+                        <li>
+                            <a href="#">Download</a>
+                        </li>
+                        <li>
+                            <a href="#">Community</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

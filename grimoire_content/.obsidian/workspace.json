@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Glossary/Key Terms and Definitions.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "193115654e1fa0ce",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Modules/ActionInvoker/Introduction.md",
+                "file": "Extensions/Grimoire Generator/API Reference.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Modules/ActionInvoker/Introduction.md",
+                "file": "Extensions/Grimoire Generator/API Reference.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Modules/ActionInvoker/Introduction.md",
+                "file": "Extensions/Grimoire Generator/API Reference.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Modules/ActionInvoker/Introduction.md"
+                "file": "Extensions/Grimoire Generator/API Reference.md"
               }
             }
           }
@@ -159,43 +146,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "193115654e1fa0ce",
+  "active": "739c709fb153946b",
   "lastOpenFiles": [
-    "About/What_is_Django-Spellbook?.md",
-    "Modules/ActionInvoker/Introduction.md",
+    "Extensions/Grimoire Generator/-Starting Guide.md",
+    "Extensions/Grimoire Generator/--Introduction.md",
+    "Extensions/Grimoire Generator/Custom Blocks.md",
+    "Extensions/Grimoire Generator/API Reference.md",
+    "---About/What_is_Django-Spellbook?.md",
+    "Extensions/Grimoire Generator Extension/Usage Example.md",
+    "Extensions/Grimoire Generator/Settings.md",
+    "---About/Changelog.md",
+    "--Modules/ActionInvoker/Introduction.md",
+    "--Modules/ActionInvoker/Usage 1.md",
+    "--Modules/ActionInvoker/Troubleshooting.md",
+    "--Modules/ActionInvoker/Usage.md",
+    "Glossary/Key Terms and Definitions.md",
+    "--Modules/ActionInvoker/Usage_Examples 1.md",
+    "--Modules/ActionInvoker/Usage_Examples.md",
+    "--Modules/ActionInvoker/Usage_Examples 3.md",
+    "--Modules/ActionInvoker/Usage_Examples 2.md",
+    "--Modules/ActionInvoker/Settings.md",
+    "--Modules/ActionInvoker/API Reference/JavaScript Class.md",
+    "--Modules/ActionInvoker/API Reference/Template Tag.md",
+    "--Modules/ToggledContentHandler/Introduction.md",
+    "--Modules/ActionInvoker/Advanced Usage.md",
+    "--Modules/ActionInvoker/API Reference",
+    "---Modules/API Reference.md",
     "FAQ/Frequently Asked Questions.md",
     "Tutorials/Creating a Dynamic Navigation Menu.md",
     "Tutorials/Building a Simple Interactive Form.md",
-    "Advanced/Performance_Optimisation.md",
-    "Advanced/Custom_Module_Development.md",
     "Advanced",
-    "Extensions/Grimoire Generator Extension/Introduction.md",
-    "Extensions/Grimoire Generator Extension/Usage Example.md",
-    "Extensions/Grimoire Generator Extension/API Reference.md",
     "Tutorials",
-    "Glossary/Key Terms and Definitions.md",
     "Glossary",
-    "Extensions/Grimoire Generator Extension/Configuration.md",
     "FAQ",
-    "Concepts/Integration with Django.md",
-    "Concepts/How Django-Spellbook Works.md",
-    "Concepts/Best Practices.md",
-    "About/Changelog.md",
     "Concepts",
-    "About/Quick_Start_Guide.md",
-    "About/Installation.md",
-    "About/Configuration.md",
-    "About/Compatibility.md",
-    "introduction.md",
     "Extensions",
-    "Modules/ToggledContentHandler/Introduction.md",
-    "Modules/ToggledContentHandler",
-    "Modules/ActionInvoker",
-    "Grimoire Generator Extension/Untitled 1.md",
-    "Extensions/Grimoire Generator Extension",
-    "Deep Dive",
-    "spells/basic_spells.md",
-    "silly/Sillyness.md",
-    "potions/healing_potions.md"
+    "--Modules/ToggledContentHandler",
+    "--Modules/ActionInvoker",
+    "Extensions/Grimoire Generator"
   ]
 }

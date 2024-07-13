@@ -4,6 +4,9 @@ from datetime import datetime
 from typing import Dict, List, Tuple
 
 from grimoire_generator.parser import GrimoireParser
+from grimoire_generator.utils import sort_structure
+
+# TODO: Debug the new paragraph parsing
 
 
 class GrimoireGenerator:
@@ -14,14 +17,9 @@ class GrimoireGenerator:
     and creating a structured representation of your documentation. It handles
     various edge cases and provides detailed information about each file.
 
-    example:
-    >>> generator = GrimoireGenerator('/test_content')
-    >>> structure = generator.generate_structure()
-    >>> print(structure)
-    {'introduction.md': {'title': 'Introduction to Documentation', 'url_path': '/introduction', 'last_modified': datetime.datetime(2023, 5, 10, 15, 30), 'children': {}}, 'topics': {'children': {'advanced.md': {'title': 'Advanced Topics', 'url_path': '/topics/advanced', 'last_modified': datetime.datetime(2023, 5, 11, 9, 45), 'children': {}}}}}
     """
 
-    def __init__(self, root_dir: str):
+    def __init__(self, root_dir: str, sort_key: str = 'name', reverse: bool = False):
         """
         Initialize the GrimoireGenerator.
 
@@ -37,6 +35,8 @@ class GrimoireGenerator:
         self.root_dir = root_dir
         self.file_structure = {}
         self.parser = GrimoireParser()
+        self.sort_key = sort_key
+        self.reverse = reverse
 
     def generate_structure(self) -> Dict[str, Dict]:
         """
@@ -66,7 +66,7 @@ class GrimoireGenerator:
             }
         """
         self.file_structure = self._walk_directory(self.root_dir)
-        return self.file_structure
+        return sort_structure(self.file_structure, self.sort_key, self.reverse)
 
     def _walk_directory(self, current_dir: str, relative_path: str = '') -> Dict[str, Dict]:
         """

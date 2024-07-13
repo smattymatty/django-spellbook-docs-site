@@ -1,0 +1,102 @@
+.code-block-container {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: -1.7rem;
+  right: 0.7em;
+  z-index: 10;
+  /* Button styling */
+  background-color: #f1f1f1dd;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.copy-button:hover {
+  background-color: #e1e1e1;
+  opacity: 1;
+}
+
+.copy-button:active {
+  background-color: #d1d1d1;
+  transform: scale(0.92);
+}
+
+.code-block-container:hover .copy-button {
+  right: 1rem;
+}
+
+.code-block-container pre {
+  background-color: #111111;
+  color: #f0f0f0;
+  border-radius: 0px 0px 5px 5px;
+  margin-top: 3rem; /* Make room for the top bar */
+  position: relative; /* Establish positioning context */
+  font-family: "Courier New", Courier, monospace;
+  transition: all 0.3s ease;
+}
+
+.code-block-container pre::before {
+  content: attr(
+    data-language
+  ); /* We'll use a data attribute for the language */
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #f0f0f0;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  z-index: 1;
+}
+
+.code-block-container pre div {
+  background-color: #ffffff00;
+  padding: 1.4rem;
+  border-radius: 5px;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: scroll;
+}
+
+.code-block-container pre div::selection {
+  background-color: #ffeeeacf;
+  color: #393939;
+}
+
+.code-block-container pre:nth-of-type(odd) {
+  border-bottom: 0.2rem solid rgba(0, 255, 234, 0.5);
+  border-right: 0.1rem solid rgba(0, 255, 234, 0.5);
+  box-shadow: 0 0 15px rgba(0, 255, 234, 0.5);
+}
+
+.code-block-container pre:nth-of-type(odd):hover {
+  border-bottom: 0.3rem solid rgba(0, 255, 234, 0.5);
+  border-radius: 0 0.5rem 1rem 0.5rem;
+  border-right: 0.4rem solid rgba(0, 255, 234, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 234, 0.8);
+}
+
+.code-block-container pre:nth-of-type(even) {
+  border-bottom: 0.2rem solid rgba(132, 0, 255, 0.5);
+  border-right: 0.1rem solid rgba(132, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(132, 0, 255, 0.5);
+}
+
+.code-block-container pre:nth-of-type(even):hover {
+  border-bottom: 0.3rem solid rgba(132, 0, 255, 0.5);
+  border-right: 0.4rem solid rgba(132, 0, 255, 0.5);
+  border-radius: 0 0.5rem 1rem 0.5rem;
+
+  box-shadow: 0 0 20px rgba(132, 0, 255, 0.8);
+}

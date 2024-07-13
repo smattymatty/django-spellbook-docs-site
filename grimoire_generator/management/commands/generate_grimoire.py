@@ -3,10 +3,11 @@ from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
-
+from django.apps import apps
 from django.utils.safestring import mark_safe
 
 from grimoire_generator.generator import GrimoireGenerator
+from grimoire_generator.registry import block_registry
 
 
 class Command(BaseCommand):
@@ -36,6 +37,14 @@ class Command(BaseCommand):
         content_dir = settings.GRIMOIRE_CONTENT_DIR
         app_name = settings.GRIMOIRE_CONTENT_APP
 
+        for app_config in apps.get_app_configs():
+            try:
+                __import__(f"{app_config.name}.grimoire_blocks.py")
+            except ImportError:
+                pass  # No custom_elements module in this app
+        if block_registry.blocks:
+            self.stdout.write(self.style.SUCCESS(
+                f"Loaded {len(block_registry.blocks)} custom blocks from apps."))
         # Construct the path for the grimoire templates
         template_dir = os.path.join(
             settings.BASE_DIR, app_name, 'templates', app_name, 'grimoire')

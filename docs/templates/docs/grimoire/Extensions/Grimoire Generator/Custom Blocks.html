@@ -1,0 +1,327 @@
+<!-- docs/templates/docs/base.html -->
+<!-- core/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Django-Spellbook
+        </title>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/utils.css">
+        
+<link rel="stylesheet" href="/static/css/code_block.css">
+    <link rel="stylesheet" href="/static/css/docs.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <h1 class="website-title">
+                    <a href="/">Django-Spellbook</a>
+                </h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/docs/">Docs</a>
+                        </li>
+                        <li>
+                            <a href="#">Examples</a>
+                        </li>
+                        <li>
+                            <a href="#">Download</a>
+                        </li>
+                        <li>
+                            <a href="#">Community</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="container">
+            
+    <div class="docs-container">
+        <aside class="sidebar">
+            <div class="grimoire">
+                <h3>Spellbook Navigation</h3>
+                
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            About
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Changelog/">Changelog</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Compatibility/">Compatibility</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Configuration/">Settings</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Installation/">Installation</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/Quick_Start_Guide/">Quick Start Guide</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/---About/What_is_Django-Spellbook%3F/">What is Django-Spellbook?</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            Modules
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            ActionInvoker
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Introduction/">Introduction</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Settings/">Settings</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ActionInvoker/Usage/">Usage</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            ToggledContentHandler
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/--Modules/ToggledContentHandler/Introduction/">Introduction</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+    
+        <li class="nav-dir">
+            Extensions
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-dir">
+            Grimoire Generator
+            
+<!-- docs/templates/docs/parts/grimoire_nav.html -->
+<ul class="spell-list nav-list ">
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/--Introduction/">Introduction</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/-Starting%20Guide/">-Starting Guide</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/API%20Reference/">API Reference</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/Custom%20Blocks/">Custom Blocks</a>
+        </li>
+    
+
+    
+        <li class="nav-item">
+            <a href="/docs/Extensions/Grimoire%20Generator/Settings/">Settings</a>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+        </li>
+    
+
+</ul>
+            </div>
+        </aside>
+        <div class="content">
+            
+    <div>
+        {% verbatim %}<h1>Custom Blocks</h1>
+<h2>Parsing Custom Blocks</h2>
+<p>Custom blocks are a powerful feature of the Grimoire Generator that allow users to define and use specialized content elements within their markdown files. These blocks can be used to create complex, reusable components with custom rendering logic.</p>
+<ol>
+    <li>Custom blocks are identified by the pattern <span class="inline-code">{% block_name attributes %}</span>.</li>
+    <li>The <span class="inline-code">parse_custom_block</span> method is called when a custom block is encountered.</li>
+    <li>It extracts the block content and attributes, then calls the appropriate registered function.</li>
+</ol>
+<h3>Registering a Custom Block</h3>
+<p><strong>The</strong> <span class="inline-code">GrimoireParser</span> class handles the parsing of custom blocks:</p>
+<p>To register a custom block, use the <span class="inline-code">@block_registry.register</span> decorator:</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-a1ae420d-d0d1-4559-9110-f44673d2479d">Copy</button>
+    
+    <pre id="sb-code-a1ae420d-d0d1-4559-9110-f44673d2479d" class="code-block" data-language="app/grimoire_blocks.py"><div>from typing import Dict
+from django.template.loader import render_to_string
+from grimoire_generator.registry import block_registry
+
+@block_registry.register(&#x27;code_block&#x27;)
+def code_block(content: str, **kwargs: Dict[str, str]) -&gt; str:
+    # Implementation here</div></pre>
+</div>
+<h2>Custom Block Implementation</h2>
+<p><strong>Note</strong> that this code must reside inside a <span class="inline-code">grimoire_blocks.py</span> in any of your apps.</p>
+<p>A custom block function should:</p>
+<ol>
+    <li>Accept a <span class="inline-code">content</span> parameter (the block's content) and <span class="inline-code"><em></em>kwargs</span>, a Dictionary of str:str pair values..</li>
+    <li>Return a string of rendered HTML.</li>
+</ol>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-69ec7ecd-26f4-4492-98df-a687215d1c14">Copy</button>
+    
+    <pre id="sb-code-69ec7ecd-26f4-4492-98df-a687215d1c14" class="code-block" data-language="app/grimoire_blocks.py"><div># ... previous imports
+from django.utils.safestring import mark_safe
+
+@block_registry.register(&#x27;code_block&#x27;)
+def code_block(content: str, **kwargs: Dict[str, str]) -&gt; str:
+    &quot;&quot;&quot;
+    Render an enhanced code block with a copy button.
+
+    Args:
+        content (str): The content of the code block.
+        **kwargs: Additional keyword arguments.
+            - language (str): The programming language of the code.
+
+    Returns:
+        str: The rendered code block with copy functionality.
+    &quot;&quot;&quot;
+    print(f&quot;\nRendering code block:{kwargs}\n&quot;)
+    context = {
+        &#x27;content&#x27;: content,
+        &#x27;language&#x27;: kwargs.get(&#x27;language&#x27;, &#x27;&#x27;),
+        # has a copy button unless explicitly disabled
+        &#x27;has_copy_button&#x27;: kwargs.get(&#x27;has_copy_button&#x27;, &#x27;True&#x27;),
+        # notice how &#x27;True&#x27; is a String.
+    }
+
+    template = &#x27;docs/blocks/code_block.html&#x27;
+    rendered_block = render_to_string(template, context)
+
+    return mark_safe(rendered_block)</div></pre>
+</div>
+<p>Now that you have the function created, you can create your HTML template. It doesn't matter what this HTML file named, or where it is located, but keeping it in a 'blocks' folder is good practice.</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-b9b67a3a-c1c6-4823-9271-2dc8429c4197">Copy</button>
+    
+    <pre id="sb-code-b9b67a3a-c1c6-4823-9271-2dc8429c4197" class="code-block" data-language="docs/templates/docs/blocks/code_block.html"><div>&lt;div class=&quot;code-block-container&quot;&gt;
+    {% if has_copy_button %}
+    &lt;button class=&quot;copy-button&quot;&gt;Copy&lt;/button&gt;
+    {% endif %}
+    &lt;pre class=&quot;code-block&quot;{% if language %} data-language=&quot;{{ language }}&quot;{% endif %}&gt;&lt;div&gt;{{ content|safe }}&lt;/div&gt;&lt;/pre&gt;
+&lt;/div&gt;</div></pre>
+</div>
+<h2>Usage in Markdown</h2>
+<p>Custom blocks can be used in markdown files like this:</p>
+
+<div class="code-block-container">
+    
+    <button class="copy-button" data-clipboard-target="#sb-code-a4f60e9c-2812-4665-b614-d6d569b424f4">Copy</button>
+    
+    <pre id="sb-code-a4f60e9c-2812-4665-b614-d6d569b424f4" class="code-block" data-language="Markdown"><div>{% blockname arg_1=&quot;xyz&quot; arg_2=&quot;can only be strings&quot; %}
+This is the content for the block!
+{% endblockname %}</div></pre>
+</div>
+<h2>Troubleshooting</h2>
+<ol>
+    <li><strong>Block Not Recognized</strong>: Ensure the block is properly registered inside the <span class="inline-code">grimoire_blocks.py</span> of any app's directory.</li>
+    <li><strong>Attribute Parsing Errors</strong>: Check that all attributes are properly <em>quoted</em> in the markdown. <span class="inline-code">{% blockname arg_1="xyz" arg_2="can only be strings" %}</span></li>
+    <li><strong>Rendering Errors</strong>: Verify that the block function is returning valid <strong>HTML</strong>. Use browser developer tools to inspect. <em>e.g.,</em> <span class="inline-code">&lt;div class="my-class" &lt;p&gt;Unclosed paragraph&lt;/div&gt;</span>.</li>
+</ol>
+<p><span class="inline-code">hey</span> hi <span class="inline-code">howru</span> im fine <span class="inline-code">lol</span> wtf? <span class="inline-code">u think so</span> yeah bro <span class="inline-code">ok</span></p>
+<ul>
+    <li>lol! <span class="inline-code">gumby </span>gumby <span class="inline-code">gumby</span></li>
+</ul>{% endverbatim %}
+        <span style="text-align: right; text-size: small; opacity: 0.5">July 13, 2024, 4:20 a.m.</span>
+    </div>
+
+        </div>
+    </div>
+
+        </main>
+        
+    </body>
+</html>

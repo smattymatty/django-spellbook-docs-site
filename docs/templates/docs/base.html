@@ -1,22 +1,20 @@
 <!-- docs/templates/docs/base.html -->
 {% extends 'base/base.html' %}
 {% load static %}
-
 {% block extra_style %}
-<link rel="stylesheet" href="{% static 'css/docs.css' %}">
+<link rel="stylesheet" href="{% static 'css/code_block.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
 {% endblock %}
-
 {% block content %}
-<div class="docs-container">
-    <aside class="sidebar">
-        <div class="grimoire">
-            <h3>Spellbook Navigation</h3>
-            <!-- Debug output -->
-            {% include 'docs/parts/grimoire_nav.html' with structure=grimoire_structure only %}
+    <div class="docs-container">
+        <aside class="sidebar">
+            <div class="grimoire">
+                <h3>Spellbook Navigation</h3>
+                {% include 'docs/parts/grimoire_nav.html' with structure=grimoire_structure only %}
+            </div>
+        </aside>
+        <div class="content">
+            {% block docs_content %}{% endblock %}
         </div>
-    </aside>
-    <div class="content">
-        {% block docs_content %}{% endblock %}
     </div>
-</div>
 {% endblock %}
