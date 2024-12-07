@@ -28,7 +28,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://django-spellbook.org',
+    "spellbook-docs-lbnkp.ondigitalocean.app",
+    "django-spellbook.org",
+]
 
 
 # Application definition
