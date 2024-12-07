@@ -1,0 +1,117 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Typography Utilities</h1>
+<p><strong>Control the appearance and formatting of text.</strong></p>
+<h2>Font Family</h2>
+<p><strong>Set the font family of text.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-font-sans</code>: System UI sans-serif</li>
+<li><code>sb-font-serif</code>: Serif fonts</li>
+<li><code>sb-font-mono</code>: Monospace fonts</li>
+</ul>
+<h2>Font Size</h2>
+<p><strong>Control text size.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-text-xs</code>: 0.75rem</li>
+<li><code>sb-text-sm</code>: 0.875rem</li>
+<li><code>sb-text-base</code>: 1rem</li>
+<li><code>sb-text-lg</code>: 1.125rem</li>
+<li><code>sb-text-xl</code>: 1.25rem</li>
+<li><code>sb-text-2xl</code>: 1.5rem</li>
+<li><code>sb-text-3xl</code>: 1.875rem</li>
+<li><code>sb-text-4xl</code>: 2.25rem</li>
+</ul>
+<h2>Font Style</h2>
+<p><strong>Control the style of text.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-italic</code>: Italic text</li>
+<li><code>sb-bold</code>: Bold text</li>
+</ul>
+<h2>Line Height</h2>
+<p><strong>Control leading (line height).</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-leading-none</code>: 1</li>
+<li><code>sb-leading-tight</code>: 1.25</li>
+<li><code>sb-leading-snug</code>: 1.375</li>
+<li><code>sb-leading-normal</code>: 1.5</li>
+<li><code>sb-leading-relaxed</code>: 1.625</li>
+<li><code>sb-leading-loose</code>: 2</li>
+</ul>
+<h2>Letter Spacing</h2>
+<p><strong>Control tracking (letter spacing).</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-tracking-tighter</code>: -0.05em</li>
+<li><code>sb-tracking-tight</code>: -0.025em</li>
+<li><code>sb-tracking-normal</code>: 0</li>
+<li><code>sb-tracking-wide</code>: 0.025em</li>
+<li><code>sb-tracking-wider</code>: 0.05em</li>
+<li><code>sb-tracking-widest</code>: 0.1em</li>
+</ul>
+<h2>Text Alignment</h2>
+<p><strong>Control text alignment.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-text-left</code>: Left align</li>
+<li><code>sb-text-center</code>: Center align</li>
+<li><code>sb-text-right</code>: Right align</li>
+<li><code>sb-text-justify</code>: Justify text</li>
+</ul>
+<h2>Text Decoration</h2>
+<p><strong>Control text decoration.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-underline</code>: Underlined text</li>
+<li><code>sb-line-through</code>: Strikethrough</li>
+<li><code>sb-no-underline</code>: Remove decorations</li>
+<li><code>sb-decoration-dotted</code>: Dotted underline</li>
+<li><code>sb-decoration-dashed</code>: Dashed underline</li>
+<li><code>sb-decoration-wavy</code>: Wavy underline</li>
+</ul>
+<h2>Text Transform</h2>
+<p><strong>Control text casing and capitalization.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-uppercase</code>: ALL CAPS</li>
+<li><code>sb-lowercase</code>: all lowercase</li>
+<li><code>sb-capitalize</code>: First Letter Cap</li>
+<li><code>sb-normal-case</code>: Normal text</li>
+</ul>
+<h2>Word Break</h2>
+<p><strong>Control word wrapping and breaks.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-break-normal</code>: Break at normal points</li>
+<li><code>sb-break-words</code>: Break within words</li>
+<li><code>sb-break-all</code>: Break at any character</li>
+<li><code>sb-whitespace-normal</code>: Normal whitespace</li>
+<li><code>sb-whitespace-nowrap</code>: Prevent wrapping</li>
+<li><code>sb-whitespace-pre</code>: Preserve whitespace</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Common Pattern: Article Heading</strong></p>
+    </span>
+</div>
+
+<pre><code class="language-django">&lt;h1 class=&quot;sb-font-sans sb-text-3xl sb-tracking-tight sb-leading-tight sb-text-center sb-capitalize&quot;&gt;
+    Your Article Title Here
+&lt;/h1&gt;
+</code></pre>
+<div class="sb-font-sans sb-text-3xl sb-tracking-tight sb-leading-tight sb-text-center sb-capitalize">
+<p>Your Article Title Here<br />
+</p>
+</div>
+<a class="super-link" href="/docs/Styles/effects"><p>Continue to Effects Utilities<br />
+</p></a>
+{% endblock %}

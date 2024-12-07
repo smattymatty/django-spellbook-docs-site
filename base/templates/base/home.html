@@ -1,29 +1,90 @@
 <!-- core/templates/home.html -->
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}Django-Spellbook - Enchant Your Django Templates{% endblock %}
+{% load spellbook_tags %}
+{% block title %}Django Spellbook - Documentation{% endblock %}
 {% block extra_style %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 {% block content %}
     <div class="padded-x-content">
         <div class="magical-border">
-            <h2>Welcome, Apprentice Django Mage!</h2>
+            <h2>Django Content Management Magic</h2>
+            <strong>Welcome, Apprentice Django Mage!</strong>
             <p>
-                Discover the arcane art of enchanting your Django templates with Django-Spellbook. Harness the power of server-side magic to create interactive web experiences without writing a single line of JavaScript.
+                Improve your projects with Django Spellbook! Tools, commands, and features that seamlessly blend into Django, adding powerful capabilities to your workflow.
             </p>
         </div>
         <div class="magical-border">
-            <h3>Spells in Your Grimoire:</h3>
+            <h3>Spells at your disposal:</h3>
             <ul class="spell-list">
-                {% include "base/sections/invoke_action.html" %}
-                <li>🧙‍♂️ Toggle Content - Reveal hidden knowledge at will</li>
+                <li>
+                    <a href="{% spellbook_url 'Commands/spellbook_md' %}" class="spell-link">
+                        <div class="spell-content">
+                            <span class="spell-icon">🪶</span>
+                            <code class="spell-title">python manage.py spellbook_md</code>
+                            <ul class="border-radius-5-handler">
+                                <li>Transform markdown into dynamic HTML templates.</li>
+                                <li>Extend markdown with Django-like tags & modular custom blocks.</li>
+                                <li>Auto-generate Views, URLs, and Navigation based on your content's file structure.</li>
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+                <div style="display:none">
+                    {% verbatim %}
+                        <li>
+                            <a href="#" class="spell-link">
+                                <div class="spell-content">
+                                    <span class="spell-icon">🪄</span>
+                                    <code class="spell-title">{% invoke 'action' 'bound_element_id' 'config' %}</code>
+                                    <ul class="border-radius-5-handler">
+                                        <li>Define dynamic behavior for template elements without writing JavaScript.</li>
+                                        <li>Perform actions like toggling classes, styles, or attributes based on conditions.</li>
+                                        <li>Supports advanced configurations for events like `on-click`, `on-load`, and custom targets.</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="spell-link">
+                                <div class="spell-content">
+                                    <span class="spell-icon">⌛</span>
+                                    <code class="spell-title">{% lazy_include 'template_name' 'bound_element_id' 'config' %}</code>
+                                    <ul class="border-radius-5-handler">
+                                        <li>Load heavy or secondary templates only when visible or triggered by an event.</li>
+                                        <li>Integrates seamlessly with HTMX or custom triggers like scrolling or button clicks.</li>
+                                        <li>Improves performance by deferring content rendering until it's needed.</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </li>
+                    {% endverbatim %}
+                </div>
             </ul>
         </div>
         <div class="magical-border">
-            <h3>Begin Your Magical Journey</h3>
-            <p>Ready to weave spells into your Django templates? Embark on your quest to master Django-Spellbook!</p>
-            <a href="#" class="cta-button">Learn the Craft</a>
+            <h3>Get Started in Minutes</h3>
+            <p>Install Django Spellbook and add a touch of magic to your project:</p>
+            <pre class="home-pre">pip install django-spellbook</pre>
+            <p>Configure your settings and start casting spells:</p>
+            <code class="home-code">
+                <pre>
+INSTALLED_APPS = [
+    # ...
+    'django_spellbook',
+    # ...
+]
+
+# necessary for markdown parsing
+SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
+SPELLBOOK_CONTENT_APP = 'my_app'
+
+# optional for markdown parsing
+SPELLBOOK_MD_BASE_TEMPLATE = '<a class="in-code-link" href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">django_spellbook/bases/base_sidebar_left.html</a>'
+        </pre>
+            </code>
+            <a href="{% spellbook_url 'Markdown/quick-start' %}" class="cta-button">View Quick Start Guide</a>
         </div>
     </div>
 {% endblock %}

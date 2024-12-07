@@ -1,20 +1,15 @@
 <!-- docs/templates/docs/base.html -->
 <!-- core/templates/base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Django-Spellbook
-        </title>
+        <title>Django-Spellbook</title>
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/utils.css">
-        
-<link rel="stylesheet" href="/static/css/code_block.css">
-    <link rel="stylesheet" href="/static/css/docs.css">
-
+        <link rel="stylesheet" href="/static/css/code_block.css">
+        <link rel="stylesheet" href="/static/css/docs.css">
     </head>
     <body>
         <header>
@@ -44,227 +39,214 @@
             </div>
         </header>
         <main class="container">
-            
-    <div class="docs-container">
-        <aside class="sidebar">
-            <div class="grimoire">
-                <h3>Spellbook Navigation</h3>
-                
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-dir">
-            About
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/Changelog/">Changelog</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/Compatibility/">Compatibility</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/Configuration/">Settings</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/Installation/">Installation</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/Quick_Start_Guide/">Quick Start Guide</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/---About/What_is_Django-Spellbook%3F/">What is Django-Spellbook?</a>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-    
-        <li class="nav-dir">
-            Modules
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-dir">
-            ActionInvoker
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-item">
-            <a href="/docs/--Modules/ActionInvoker/Introduction/">Introduction</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/--Modules/ActionInvoker/Settings/">Settings</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/--Modules/ActionInvoker/Usage/">Usage</a>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-    
-        <li class="nav-dir">
-            ToggledContentHandler
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-item">
-            <a href="/docs/--Modules/ToggledContentHandler/Introduction/">Introduction</a>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-    
-        <li class="nav-dir">
-            Extensions
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-dir">
-            Grimoire Generator
-            
-<!-- docs/templates/docs/parts/grimoire_nav.html -->
-<ul class="spell-list nav-list ">
-
-    
-        <li class="nav-item">
-            <a href="/docs/Extensions/Grimoire%20Generator/--Introduction/">Introduction</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/Extensions/Grimoire%20Generator/-Starting%20Guide/">-Starting Guide</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/Extensions/Grimoire%20Generator/API%20Reference/">API Reference</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/Extensions/Grimoire%20Generator/Custom%20Blocks/">Custom Blocks</a>
-        </li>
-    
-
-    
-        <li class="nav-item">
-            <a href="/docs/Extensions/Grimoire%20Generator/Settings/">Settings</a>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-</ul>
-        </li>
-    
-
-</ul>
-            </div>
-        </aside>
-        <div class="content">
-            
-    <div>
-        {% verbatim %}<h1>What is Django-Spellbook?</h1>
-<p>Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags.</p>
-<ul>
-    <li><strong>Simplicity</strong>: Add interactive elements using familiar Django template tags.</li>
-    <li><strong>Productivity</strong>: Achieve more with less code using pre-built modules.</li>
-    <li><strong>Flexibility</strong>: Works seamlessly with HTMX and Tailwind CSS, or standalone.</li>
-    <li><strong>Maintainability</strong>: Keep front-end logic close to your HTML structure for improved readability.</li>
-    <li><strong>Gentle Learning Curve</strong>: Easy to adopt for developers familiar with Django templates.</li>
-</ul>
-<h2>How It Works</h2>
-<p>Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module:</p>
-<code class="language-code">{% load action_invoker_tags %}
+            <div class="docs-container">
+                <aside class="sidebar">
+                    <div class="grimoire">
+                        <h3>Spellbook Navigation</h3>
+                        <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                        <ul class="spell-list nav-list ">
+                            <li class="nav-dir">
+                                About
+                                <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                <ul class="spell-list nav-list ">
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/Changelog/">Changelog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/Compatibility/">Compatibility</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/Configuration/">Settings</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/Installation/">Installation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/Quick_Start_Guide/">Quick Start Guide</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/What_is_Django-Spellbook%3F/">What is Django-Spellbook?</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/docs/---About/test/">Main Header</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-dir">
+                                Modules
+                                <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                <ul class="spell-list nav-list ">
+                                    <li class="nav-dir">
+                                        ActionInvoker
+                                        <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                        <ul class="spell-list nav-list ">
+                                            <li class="nav-item">
+                                                <a href="/docs/--Modules/ActionInvoker/Introduction/">Introduction</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/--Modules/ActionInvoker/Settings/">Settings</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/--Modules/ActionInvoker/Usage/">Usage</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-dir">
+                                        ToggledContentHandler
+                                        <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                        <ul class="spell-list nav-list ">
+                                            <li class="nav-item">
+                                                <a href="/docs/--Modules/ToggledContentHandler/Introduction/">Introduction</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-dir">
+                                Extensions
+                                <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                <ul class="spell-list nav-list ">
+                                    <li class="nav-dir">
+                                        Grimoire Generator
+                                        <!-- docs/templates/docs/parts/grimoire_nav.html -->
+                                        <ul class="spell-list nav-list ">
+                                            <li class="nav-item">
+                                                <a href="/docs/Extensions/Grimoire%20Generator/--Introduction/">Introduction</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/Extensions/Grimoire%20Generator/-Starting%20Guide/">-Starting Guide</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/Extensions/Grimoire%20Generator/API%20Reference/">API Reference</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/Extensions/Grimoire%20Generator/Custom%20Blocks/">Custom Blocks</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/docs/Extensions/Grimoire%20Generator/Settings/">Settings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="content">
+                    <div>
+                        {% verbatim %}
+                            <h1>What is Django-Spellbook?</h1>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags.
+                            </p>
+                            <ul>
+                                <li>
+                                    <strong>Simplicity</strong>: Add interactive elements using familiar Django template tags.
+                                </li>
+                                <li>
+                                    <strong>Productivity</strong>: Achieve more with less code using pre-built modules.
+                                </li>
+                                <li>
+                                    <strong>Flexibility</strong>: Works seamlessly with HTMX and Tailwind CSS, or standalone.
+                                </li>
+                                <li>
+                                    <strong>Maintainability</strong>: Keep front-end logic close to your HTML structure for improved readability.
+                                </li>
+                                <li>
+                                    <strong>Gentle Learning Curve</strong>: Easy to adopt for developers familiar with Django templates.
+                                </li>
+                            </ul>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags.
+                            </p>
+                            <h2>How It Works</h2>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags.
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module:
+                            </p>
+                            <pre><code class="language-code">{% load action_invoker_tags %}
 {% invoke_action 
 	"click" "add-class" "this" "my-button" 
 	config='class:active' 
-%}</code>
-<p>This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript.</p>
-<h2>Why Choose Django-Spellbook?</h2>
-<p>Django-Spellbook solves several common pain points in web development:</p>
-<ul>
-    <li>Reduces the need for complex JavaScript setups</li>
-    <li>Bridges the gap between back-end and front-end development</li>
-    <li>Enables rapid prototyping of interactive features</li>
-    <li>Promotes consistency in front-end interactions across your project</li>
-</ul>
-<h2>Getting Started</h2>
-<p>Ready to add some magic to your Django project? Let's begin with a simple installation:</p>
-<code class="language-code">pip install django-spellbook</code>
-<p>Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py:</p>
-<code class="language-code">INSTALLED_APPS = [
+%}</code></pre>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module:
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript.
+                            </p>
+                            <h2>Why Choose Django-Spellbook?</h2>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript.
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development:
+                            </p>
+                            <ul>
+                                <li>Reduces the need for complex JavaScript setups</li>
+                                <li>Bridges the gap between back-end and front-end development</li>
+                                <li>Enables rapid prototyping of interactive features</li>
+                                <li>Promotes consistency in front-end interactions across your project</li>
+                            </ul>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development:
+                            </p>
+                            <h2>Getting Started</h2>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development:
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation:
+                            </p>
+                            <pre><code class="language-code">pip install django-spellbook</code></pre>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation:
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py:
+                            </p>
+                            <pre><code class="language-code">INSTALLED_APPS = [
     # ...
     'django_spellbook',
     # ...
-]</code>
-<p>Now you're ready to start casting spells in your templates!</p>
-<h2>Next Steps</h2>
-<p>Explore our documentation to learn more about:</p>
-<ul>
-    <li><a href="./modules.md">Available Modules</a></li>
-    <li><a href="./best-practices.md">Best Practices</a></li>
-    <li><a href="./advanced-usage.md">Advanced Usage</a></li>
-</ul>
-<p>Welcome to the world of Django-Spellbook, where crafting interactive web applications is as simple as casting a spell!</p>{% endverbatim %}
-        <span style="text-align: right; text-size: small; opacity: 0.5">July 10, 2024, 8:25 p.m.</span>
-    </div>
-
-        </div>
-    </div>
-
+]</code></pre>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py:
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py: Now you're ready to start casting spells in your templates!
+                            </p>
+                            <h2>Next Steps</h2>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py: Now you're ready to start casting spells in your templates!
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py: Now you're ready to start casting spells in your templates! Explore our documentation to learn more about:
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="./modules.md">Available Modules</a>
+                                </li>
+                                <li>
+                                    <a href="./best-practices.md">Best Practices</a>
+                                </li>
+                                <li>
+                                    <a href="./advanced-usage.md">Advanced Usage</a>
+                                </li>
+                            </ul>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py: Now you're ready to start casting spells in your templates! Explore our documentation to learn more about:
+                            </p>
+                            <p>
+                                Django-Spellbook aims to allow developers to create dynamic, interactive web applications with minimal custom JavaScript. It bridges the gap between back-end and front-end development, enabling you to implement complex front-end behaviors directly within your Django templates. In theory, you should be able to include many interactive elements such as navigation menus, hovered class changes, instant updates etc. with simple, easy to understand Django template tags. Django-Spellbook introduces a set of powerful "spells" (modules) that you can invoke in your templates. Here's a simple example using the ActionInvoker module: This spell adds the 'active' class to an element with the ID 'my-button' when it's clicked, all without writing a single line of JavaScript. Django-Spellbook solves several common pain points in web development: Ready to add some magic to your Django project? Let's begin with a simple installation: Then, add 'django_spellbook' to your INSTALLED_APPS in settings.py: Now you're ready to start casting spells in your templates! Explore our documentation to learn more about: Welcome to the world of Django-Spellbook, where crafting interactive web applications is as simple as casting a spell!
+                            </p>
+                        {% endverbatim %}
+                        <span style="text-align: right; text-size: small; opacity: 0.5">July 19, 2024, 6:37 p.m.</span>
+                    </div>
+                </div>
+            </div>
         </main>
-        
     </body>
 </html>

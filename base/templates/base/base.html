@@ -1,5 +1,6 @@
 <!-- core/templates/base.html -->
 {% load static %}
+{% load spellbook_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,16 +25,7 @@
                             <a href="{% url 'base:home' %}">Home</a>
                         </li>
                         <li>
-                            <a href="{% url 'docs:home' %}">Docs</a>
-                        </li>
-                        <li>
-                            <a href="#">Examples</a>
-                        </li>
-                        <li>
-                            <a href="#">Download</a>
-                        </li>
-                        <li>
-                            <a href="#">Community</a>
+                            <a href="{% spellbook_url 'introduction' %}">Docs</a>
                         </li>
                     </ul>
                 </nav>

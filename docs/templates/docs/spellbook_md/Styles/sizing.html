@@ -1,0 +1,113 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Sizing Utilities</h1>
+<p><strong>Control the dimensions of elements.</strong></p>
+<h2>Width</h2>
+<p><strong>Control element width.</strong></p>
+<p>Fixed widths:</p>
+<ul>
+<li><code>sb-w-0</code>: 0</li>
+<li><code>sb-w-1</code>: 0.25rem</li>
+<li><code>sb-w-2</code>: 0.5rem</li>
+<li><code>sb-w-4</code>: 1rem</li>
+<li><code>sb-w-8</code>: 2rem</li>
+<li><code>sb-w-16</code>: 4rem</li>
+<li><code>sb-w-32</code>: 8rem</li>
+<li><code>sb-w-64</code>: 16rem</li>
+</ul>
+<p>Percentage widths:</p>
+<ul>
+<li><code>sb-w-1/2</code>: 50%</li>
+<li><code>sb-w-1/3</code>: 33.333333%</li>
+<li><code>sb-w-2/3</code>: 66.666667%</li>
+<li><code>sb-w-1/4</code>: 25%</li>
+<li><code>sb-w-3/4</code>: 75%</li>
+<li><code>sb-w-full</code>: 100%</li>
+</ul>
+<p>Viewport widths:</p>
+<ul>
+<li><code>sb-w-screen</code>: 100vw</li>
+<li><code>sb-w-50vw</code>: 50vw</li>
+<li><code>sb-w-75vw</code>: 75vw</li>
+</ul>
+<h2>Height</h2>
+<p><strong>Control element height.</strong></p>
+<p>Fixed heights:</p>
+<ul>
+<li><code>sb-h-0</code> through <code>sb-h-64</code>: Same as width scale</li>
+<li><code>sb-h-auto</code>: Auto height</li>
+</ul>
+<p>Percentage heights:</p>
+<ul>
+<li><code>sb-h-1/2</code>: 50%</li>
+<li><code>sb-h-1/3</code>: 33.333333%</li>
+<li><code>sb-h-2/3</code>: 66.666667%</li>
+<li><code>sb-h-full</code>: 100%</li>
+</ul>
+<p>Viewport heights:</p>
+<ul>
+<li><code>sb-h-screen</code>: 100vh</li>
+<li><code>sb-h-50vh</code>: 50vh</li>
+<li><code>sb-h-75vh</code>: 75vh</li>
+</ul>
+<h2>Min/Max Dimensions</h2>
+<p><strong>Control minimum and maximum dimensions.</strong></p>
+<p>Min-width:</p>
+<ul>
+<li><code>sb-min-w-0</code>: 0</li>
+<li><code>sb-min-w-full</code>: 100%</li>
+<li><code>sb-min-w-screen</code>: 100vw</li>
+</ul>
+<p>Max-width:</p>
+<ul>
+<li><code>sb-max-w-xs</code>: 20rem</li>
+<li><code>sb-max-w-sm</code>: 24rem</li>
+<li><code>sb-max-w-md</code>: 28rem</li>
+<li><code>sb-max-w-lg</code>: 32rem</li>
+<li><code>sb-max-w-xl</code>: 36rem</li>
+<li><code>sb-max-w-full</code>: 100%</li>
+</ul>
+<p>Min/Max-height:</p>
+<ul>
+<li><code>sb-min-h-0</code>: 0</li>
+<li><code>sb-min-h-full</code>: 100%</li>
+<li><code>sb-min-h-screen</code>: 100vh</li>
+<li><code>sb-max-h-full</code>: 100%</li>
+<li><code>sb-max-h-screen</code>: 100vh</li>
+</ul>
+<h2>Aspect Ratio</h2>
+<p><strong>Control the aspect ratio of elements.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-aspect-square</code>: 1/1</li>
+<li><code>sb-aspect-video</code>: 16/9</li>
+<li><code>sb-aspect-portrait</code>: 3/4</li>
+<li><code>sb-aspect-wide</code>: 21/9</li>
+</ul>
+<p><strong>Available object-fit classes:</strong></p>
+<ul>
+<li><code>sb-object-contain</code>: Scale to fit</li>
+<li><code>sb-object-cover</code>: Cover area</li>
+<li><code>sb-object-fill</code>: Stretch to fill</li>
+<li><code>sb-object-none</code>: Don't resize</li>
+<li><code>sb-object-scale-down</code>: Scale down if needed</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Common Pattern: Responsive Image Container</strong></p>
+    </span>
+</div>
+
+<pre><code class="language-html">&lt;div class=&quot;sb-w-full sb-max-w-lg sb-aspect-video&quot;&gt;
+    &lt;img class=&quot;sb-w-full sb-h-full sb-object-cover&quot; src=&quot;video-thumb.jpg&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<a class="super-link" href="/docs/Styles/typography"><p>Continue to Typography Utilities<br />
+</p></a>
+{% endblock %}

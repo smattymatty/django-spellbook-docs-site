@@ -1,0 +1,97 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Flexbox &amp; Grid Utilities</h1>
+<p><strong>Control layout with powerful flexbox and grid utilities.</strong></p>
+<h2>Flex Direction</h2>
+<p><strong>Control the direction of flex items.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-flex</code>: Enable flexbox</li>
+<li><code>sb-flex-row</code>: Items in a row</li>
+<li><code>sb-flex-col</code>: Items in a column</li>
+<li><code>sb-flex-row-reverse</code>: Reversed row</li>
+<li><code>sb-flex-col-reverse</code>: Reversed column</li>
+</ul>
+<p><strong>Responsive variants:</strong></p>
+<ul>
+<li><code>sb-sm:flex-row</code>: Row on small screens and up</li>
+<li><code>sb-md:flex-row</code>: Row on medium screens and up</li>
+<li><code>sb-lg:flex-row</code>: Row on large screens and up</li>
+<li>(Same pattern for <code>-col</code> variants)</li>
+</ul>
+<h2>Justify Content</h2>
+<p><strong>Control how items are positioned along the main axis.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-justify-start</code>: Items at start</li>
+<li><code>sb-justify-end</code>: Items at end</li>
+<li><code>sb-justify-center</code>: Items at center</li>
+<li><code>sb-justify-between</code>: Space between items</li>
+<li><code>sb-justify-around</code>: Space around items</li>
+<li><code>sb-justify-evenly</code>: Space evenly distributed</li>
+</ul>
+<h2>Align Items</h2>
+<p><strong>Control how items are positioned along the cross axis.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-items-start</code>: Items at start</li>
+<li><code>sb-items-end</code>: Items at end</li>
+<li><code>sb-items-center</code>: Items at center</li>
+<li><code>sb-items-baseline</code>: Items along baseline</li>
+<li><code>sb-items-stretch</code>: Items stretch to fill</li>
+</ul>
+<h2>Gap</h2>
+<p><strong>Control space between items.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-gap-1</code>: 0.25rem gap</li>
+<li><code>sb-gap-2</code>: 0.5rem gap</li>
+<li><code>sb-gap-3</code>: 1rem gap</li>
+<li><code>sb-gap-4</code>: 1.5rem gap</li>
+<li><code>sb-gap-6</code>: 2rem gap</li>
+</ul>
+<h2>Flex Grow/Shrink</h2>
+<p><strong>Control how items grow and shrink.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-grow</code>: Allow item to grow</li>
+<li><code>sb-grow-0</code>: Prevent growing</li>
+<li><code>sb-shrink</code>: Allow item to shrink</li>
+<li><code>sb-shrink-0</code>: Prevent shrinking</li>
+</ul>
+<h2>Grid</h2>
+<p><strong>Create grid layouts.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-grid</code>: Enable grid</li>
+<li><code>sb-grid-cols-1</code>: One column</li>
+<li><code>sb-grid-cols-2</code>: Two columns</li>
+<li><code>sb-grid-cols-3</code>: Three columns</li>
+<li><code>sb-grid-cols-4</code>: Four columns</li>
+</ul>
+<p><strong>Responsive grid:</strong></p>
+<ul>
+<li><code>sb-md:grid-cols-2</code>: Two columns on medium screens</li>
+<li><code>sb-md:grid-cols-3</code>: Three columns on medium screens</li>
+<li><code>sb-md:grid-cols-4</code>: Four columns on medium screens</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Common Pattern:</strong> Making a responsive layout with a row on large screens and a column on small screens.</p>
+    </span>
+</div>
+
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-flex-col sb-md:flex-row sb-items-center sb-justify-between sb-gap-4&quot;&gt;
+    &lt;div&gt;Stacks on mobile, side by side on desktop&lt;/div&gt;
+    &lt;div&gt;With equal spacing between&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<a class="super-link" href="/docs/Styles/spacing"><p>Continue to Spacing Utilities <br />
+</p></a>
+{% endblock %}

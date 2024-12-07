@@ -1,0 +1,95 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Creating Custom SpellBlocks</h1>
+<p>Let's create a custom SpellBlock that makes a collapsible section - perfect for FAQs or long documentation. We'll go through the whole process:</p>
+<ol>
+<li>First, create your SpellBlock class:</li>
+</ol>
+<pre><code class="language-python">from django_spellbook.blocks import BasicSpellBlock
+from django_spellbook.registry import SpellBlockRegistry
+
+@SpellBlockRegistry.register()
+class CollapsibleBlock(BasicSpellBlock):
+    name = 'collapsible'
+    template = 'my_app/blocks/collapsible.html'
+
+    def get_context(self):
+        context = super().get_context()
+        context['summary'] = self.kwargs.get('summary', 'Click to expand')
+        context['open'] = self.kwargs.get('open', False)
+        return context
+</code></pre>
+<ol start="2">
+<li>Create the template at <code>my_app/templates/my_app/blocks/collapsible.html</code>:</li>
+</ol>
+<pre><code class="language-django">
+&lt;details class=&quot;spellbook-collapsible spellbook-border spellbook-border-radius-lg spellbook-p-3 spellbook-mb-3 spellbook-bg-light {% if kwargs.class %}{{ kwargs.class }}{% endif %}&quot;
+        {% if open %}open{% endif %}&gt;
+    &lt;summary class=&quot;spellbook-cursor-pointer spellbook-font-bold&quot;&gt;
+        {{ summary }}
+    &lt;/summary&gt;
+    &lt;div class=&quot;spellbook-mt-3&quot;&gt;
+        {{ content|safe }}
+    &lt;/div&gt;
+&lt;/details&gt;
+</code></pre>
+<ol start="3">
+<li>Now you can use it in your markdown:</li>
+</ol>
+<pre><code class="language-markdown">
+{~ collapsible summary=&quot;Why use SpellBlocks?&quot; open=&quot;true&quot; ~}
+SpellBlocks make your markdown more powerful by adding:
+- Custom components
+- Consistent styling
+- Reusable patterns
+{~~}
+</code></pre>
+<h2>How It Works</h2>
+<ol>
+<li>The <code>@SpellBlockRegistry.register()</code> decorator adds your block to the available blocks</li>
+<li>The <code>name</code> property sets what you'll type in markdown</li>
+<li><code>get_context()</code> processes any parameters you want to pass to your template</li>
+<li>Your template uses Spellbook's built-in classes for consistent styling</li>
+</ol>
+<h2>Best Practices</h2>
+<ol>
+<li>Include the <code>% spellbook_styles %</code> tag in your base template to use the built-in styles</li>
+<li>
+<p>Use the built-in utility classes:<br />
+   - <code>spellbook-border</code><br />
+   - <code>spellbook-border-radius-lg</code><br />
+   - <code>spellbook-p-3</code> (padding)<br />
+   - <code>spellbook-mb-3</code> (margin-bottom)<br />
+   - <code>spellbook-bg-light</code><br />
+   - <code>spellbook-shadow-sm</code><br />
+   - <code>spellbook-collapsible</code> is also included, just so this documentation can go smoothly, but feel free to make your own.</p>
+</li>
+<li>
+<p>Allow for custom classes:</p>
+</li>
+</ol>
+<pre><code class="language-django">{% verbatim %}
+{% if kwargs.class %}{{ kwargs.class }}{% endif %}
+{% endverbatim %}
+</code></pre>
+<ol start="4">
+<li>Use <code>|safe</code> filter for markdown content:</li>
+</ol>
+<pre><code class="language-django">{% verbatim %}
+{{ content|safe }}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The <code>content</code> variable is already processed as markdown when it reaches your template!</p>
+    </span>
+</div>
+
+<p>Want to see more examples? Check out the <a href="https://github.com/smattymatty/django_spellbook/tree/main/django_spellbook/blocks">built-in blocks source code</a> for inspiration!</p>
+{% endblock %}

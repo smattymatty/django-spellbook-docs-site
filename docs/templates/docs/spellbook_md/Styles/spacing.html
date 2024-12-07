@@ -1,0 +1,93 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Spacing Utilities</h1>
+<p><strong>Control margins, padding, and space between elements.</strong></p>
+<h2>Padding</h2>
+<p><strong>Control padding in all directions.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-p-0</code> through <code>sb-p-8</code>: All sides</li>
+<li><code>sb-px-0</code> through <code>sb-px-8</code>: Left and right</li>
+<li><code>sb-py-0</code> through <code>sb-py-8</code>: Top and bottom</li>
+<li><code>sb-pt-0</code> through <code>sb-pt-8</code>: Top only</li>
+<li><code>sb-pr-0</code> through <code>sb-pr-8</code>: Right only</li>
+<li><code>sb-pb-0</code> through <code>sb-pb-8</code>: Bottom only</li>
+<li><code>sb-pl-0</code> through <code>sb-pl-8</code>: Left only</li>
+</ul>
+<p><strong>Size Reference:</strong><br />
+0: 0<br />
+1: 0.25rem<br />
+2: 0.5rem<br />
+3: 1rem<br />
+4: 1.5rem<br />
+6: 2rem<br />
+8: 3rem</p>
+<h2>Margin</h2>
+<p><strong>Control margin in all directions.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-m-0</code> through <code>sb-m-8</code>: All sides</li>
+<li><code>sb-mx-0</code> through <code>sb-mx-8</code>: Left and right</li>
+<li><code>sb-my-0</code> through <code>sb-my-8</code>: Top and bottom</li>
+<li><code>sb-mt-0</code> through <code>sb-mt-8</code>: Top only</li>
+<li><code>sb-mr-0</code> through <code>sb-mr-8</code>: Right only</li>
+<li><code>sb-mb-0</code> through <code>sb-mb-8</code>: Bottom only</li>
+<li><code>sb-ml-0</code> through <code>sb-ml-8</code>: Left only</li>
+</ul>
+<h2>Negative Margins</h2>
+<p><strong>Pull elements closer together.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-m-n1</code> through <code>sb-m-n8</code>: All sides</li>
+<li><code>sb-mt-n1</code> through <code>sb-mt-n8</code>: Top</li>
+<li><code>sb-mr-n1</code> through <code>sb-mr-n8</code>: Right</li>
+<li><code>sb-mb-n1</code> through <code>sb-mb-n8</code>: Bottom</li>
+<li><code>sb-ml-n1</code> through <code>sb-ml-n8</code>: Left</li>
+</ul>
+<h2>Space Between</h2>
+<p><strong>Control space between child elements.</strong></p>
+<p>Available classes:</p>
+<ul>
+<li><code>sb-space-x-0</code> through <code>sb-space-x-8</code>: Horizontal space</li>
+<li><code>sb-space-y-0</code> through <code>sb-space-y-8</code>: Vertical space</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Common Pattern: Card Layout</strong></p>
+    </span>
+</div>
+
+<pre><code class="language-html">&lt;div class=&quot;sb-p-4 sb-mb-4&quot;&gt;
+    &lt;h2 class=&quot;sb-mb-2&quot;&gt;Title&lt;/h2&gt;
+    &lt;div class=&quot;sb-space-y-2&quot;&gt;
+        &lt;p&gt;First paragraph&lt;/p&gt;
+        &lt;p&gt;Second paragraph&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-4 sb-mb-4">
+<h2 class="sb-mb-2">
+<p>Title<br />
+</p>
+<div class="sb-space-y-2">
+<p>
+<p>First paragraph<br />
+</p>
+<p>
+<p>Second paragraph<br />
+<br />
+</p>
+</p>
+</p>
+</div>
+</h2>
+</div>
+<a class="super-link" href="/docs/Styles/sizing"><p>Continue to Sizing Utilities <br />
+</p></a>
+{% endblock %}

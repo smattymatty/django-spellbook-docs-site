@@ -23,14 +23,16 @@ h3 {
 .website-title {
   opacity: 0.8;
   text-decoration-line: overline;
-  color: #fff9e6;
+  background-color: #fff9e6;
+  text-decoration-color: #8b4513bb;
+
   transition: all 0.6s ease;
   border-radius: 12px;
   padding: 10px;
 }
 
 .website-title a {
-  color: #fff9e6;
+  color: #8b4513;
 }
 
 .website-title:hover {
@@ -39,13 +41,10 @@ h3 {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-decoration-color: #8b4513bb;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  transform: translateX(-3rem);
 }
 
 .website-title:hover a {
-  color: #8b4513;
+  color: #201c18f3;
 }
 
 .magical-border {
@@ -138,4 +137,13 @@ nav ul li a:hover {
 
 cursor-pointer {
   cursor: pointer;
+}
+
+.in-code-link {
+  color: #c4fffa;
+  font-weight: bold;
+}
+
+.in-code-link:hover {
+  color: #8bdacc;
 }

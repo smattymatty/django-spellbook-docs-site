@@ -1,0 +1,31 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Utility Classes</h1>
+<p>Spellbook includes a comprehensive set of utility classes that make it easy to style your content consistently. These styles were originally created for the built-in blocks, but they're available for you to use in your own templates and custom blocks.</p>
+<h2>Including the Styles</h2>
+<p>Add the styles to your template with the <code>spellbook_styles</code> template tag:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+&lt;head&gt;
+...
+{% spellbook_styles %}
+...
+&lt;/head&gt;
+{% endverbatim %}
+</code></pre>
+<div class="spellbook-alert spellbook-bg-warning spellbook-border-warning spellbook-text-warning spellbook-p-3 spellbook-border-radius-lg spellbook-mb-3 spellbook-shadow-sm ">
+    <span class="spellbook-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="spellbook-alert-content">
+        <p>Be sure that they are included in the head of your HTML, preferrably in your base template or a `% block extra_css %', to make sure all extended templates will benefit.</p>
+    </span>
+</div>
+
+<h2>Reference</h2>
+<a class="super-link" href="/docs/Styles/Utilities/layout"><p>Layout Utility Class Reference<br />
+</p></a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Quick Start</h1>
+<p>Install the library: <code>pip install django-spellbook</code></p>
+<p>Update your settings:</p>
+<pre><code class="language-python"># settings.py
+
+INSTALLED_APPS = [
+    ...
+    'django_spellbook',
+    'my_app', # for SPELLBOOK_CONTENT_APP
+    ...
+]
+
+# required settings
+SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
+SPELLBOOK_CONTENT_APP = &quot;my_app&quot;
+
+# recommended setting
+SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/base_sidebar_left.html'
+</code></pre>
+<p>Update your core project's urls:</p>
+<pre><code class="language-python"># urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    ...
+    path('anything/', include('django_spellbook.urls')),
+    ...
+]
+</code></pre>
+<p>Run the command: <code>python manage.py spellbook_md</code></p>
+<p>You can now navigate to <code>anything/filename</code> to see your rendered markdown content.</p>
+<p>The <code>SPELLBOOK_MD_BASE_TEMPLATE</code> setting is defaulted to <code>None</code>, which will simply show the rendered markdown content. For beginners, it's recommended to use the built-in base template, which includes a few styles, and a sidebar with a navigation menu based on your <code>SPELLBOOK_MD_PATH</code> directory structure.</p>
+<p>The source for the built in base template is available <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">here</a>.</p>
+<a class="super-link" href="/docs/Markdown/custom-base-template"><p>Read Next: Creating a Custom Base Template<br />
+</p></a>
+{% endblock %}

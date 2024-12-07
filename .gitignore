@@ -1,5 +1,6 @@
 # ignore the venv
 venv
+.env
 
 # ignore the sqlite db
 db.sqlite3

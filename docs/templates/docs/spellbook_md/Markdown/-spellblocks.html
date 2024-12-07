@@ -1,0 +1,84 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>SpellBlocks</h1>
+<p>SpellBlocks are reusable content components that you can embed directly in your markdown. Think of them as Django template tags, but for markdown. They're perfect for creating rich, interactive content while keeping your markdown clean and readable.</p>
+<h2>Creating SpellBlocks</h2>
+<p>Every SpellBlock inherits from <code>BasicSpellBlock</code>. Here's how to create one:</p>
+<pre><code class="language-python">from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
+
+@SpellBlockRegistry.register()
+class MyBlock(BasicSpellBlock):
+    name = 'my_block'  # This is what you'll use in markdown
+    template = 'my_app/blocks/my_block.html'  # Your template path
+
+    def get_context(self):
+        context = super().get_context()
+        # Add your custom context here
+        return context
+</code></pre>
+<h2>Built-in SpellBlocks</h2>
+<h3>Alert Block</h3>
+<p>Creates attention-grabbing message boxes with different styles.</p>
+<pre><code class="language-markdown">{~ alert type=&quot;warning&quot; ~}
+Hey! This is important stuff!
+{~~}
+</code></pre>
+<p>Available Types:</p>
+<ul>
+<li>info (default)</li>
+<li>warning</li>
+<li>success</li>
+<li>danger</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>If you use an invalid type, it'll default to 'info' and print a warning message telling you what went wrong.</p>
+    </span>
+</div>
+
+<h3>Card Block</h3>
+<p>Creates a card-style container for your content. Perfect for organizing related information.</p>
+<pre><code class="language-markdown">{~ card title=&quot;Optional Title&quot; footer=&quot;Optional Footer&quot; class=&quot;any-extra-classes&quot; ~}
+Your card content here.
+Supports **markdown** too!
+{~~}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-bg-light sb-p-2 sb-font-bold">
+            <h5 class="sb-card-title">This is my Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>All parameters are optional. The card will still look good without them.</p>
+    </div>
+
+        <div class="sb-card-footer sb-bg-light sb-p-2 sb-border-t">
+            This is my Footer
+        </div>
+
+</div>
+
+<h2>How SpellBlocks Work</h2>
+<ol>
+<li>They process your markdown content first</li>
+<li>Apply any custom logic you define</li>
+<li>Render through a template</li>
+<li>Return the final HTML</li>
+</ol>
+<p>The base <code>BasicSpellBlock</code> handles:</p>
+<ul>
+<li>Markdown processing with common extensions</li>
+<li>Context management</li>
+<li>Template rendering</li>
+<li>Parameter validation</li>
+</ul>
+<a class="super-link" href="/docs/Markdown/custom-spellblocks"><p>Read Next: Creating Custom SpellBlocks<br />
+</p></a>
+{% endblock %}

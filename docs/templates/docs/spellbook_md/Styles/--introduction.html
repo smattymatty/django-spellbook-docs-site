@@ -1,0 +1,106 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Introduction to Spellbook Styles</h1>
+<p>Django Spellbook includes a comprehensive set of utility and component classes that make it easy to style your content consistently. These styles were originally created for the built-in blocks, but they're available for you to use in your own templates and custom blocks.</p>
+<h2>Including the Styles</h2>
+<p>Add the styles to your template with the <code>spellbook_styles</code> template tag:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+&lt;head&gt;
+...
+{% spellbook_styles %}
+...
+&lt;/head&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Be sure that they are included in the head of your HTML, preferrably in your base template or a `% block extra_css %', to make sure all extended templates will benefit.</p>
+    </span>
+</div>
+
+<h2>Style Categories</h2>
+<p>Spellbook's styles are divided into two main categories:</p>
+<h3>1. Utility Classes</h3>
+<p>Small, single-purpose classes that handle common styling needs:</p>
+<ul>
+<li>Spacing (padding, margins)</li>
+<li>Borders and shadows</li>
+<li>Typography</li>
+<li>Colors</li>
+<li>Flexbox layouts</li>
+<li>Transitions</li>
+</ul>
+<p>These are prefixed with <code>spellbook-</code> to avoid conflicts with your existing styles:</p>
+<div class="spellbook-p-3 spellbook-mb-3 spellbook-border">
+<pre><code class="language-html">&lt;div class=&quot;spellbook-p-3 spellbook-mb-3 spellbook-border&quot;&gt;
+    Padded, with margin and border
+&lt;/div&gt;
+</code></pre>
+</div>
+<h3>2. Component Classes</h3>
+<p>Pre-styled components used by the built-in blocks:</p>
+<ul>
+<li>Alert components</li>
+<li>Card layouts</li>
+<li>Navigation elements</li>
+</ul>
+<p>These create consistent, polished UI elements:</p>
+<pre><code class="language-html">&lt;div class=&quot;sb-card&quot;&gt;
+    &lt;div class=&quot;sb-card-body&quot;&gt;
+        A nice card layout
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-card">
+<div class="sb-card-body">
+<p>A nice card layout</p>
+</div>
+</div>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>All Spellbook styles use the <code>sb-</code> prefix to prevent conflicts with your project's existing CSS. This means you can safely use them alongside other CSS frameworks.</p>
+    </span>
+</div>
+
+<p>Want to see the specific classes available? Check out:</p>
+<ul>
+<li><a href="/docs/Styles/layout">Layout Utilities</a></li>
+<li><a href="/docs/Styles/flexbox-grid">Flexbox &amp; Grid Utilities</a></li>
+<li><a href="/docs/Styles/spacing">Spacing Utilities</a></li>
+<li><a href="/docs/Styles/typography">Typography Utilities</a></li>
+<li><a href="/docs/Styles/sizing">Sizing Utilities</a></li>
+<li><a href="/docs/Styles/interactivity">Interactivity Utilities</a></li>
+<li><a href="/docs/Styles/transition-animation">Transition/Animation Utilities</a></li>
+<li><a href="/docs/Styles/effects">Effects Utilities</a></li>
+<li><a href="/docs/Styles/borders">Border Utilities</a></li>
+</ul>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-bg-light sb-p-2 sb-font-bold">
+            <h5 class="sb-card-title">Style Philosophy</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Spellbook's styles are designed to be:</p>
+<ul>
+<li><strong>Predictable</strong>: consistent naming patterns</li>
+<li><strong>Non-invasive</strong>: won't affect your existing styles</li>
+<li><strong>Composable</strong>: mix and match as needed</li>
+<li><strong>Responsive</strong>: work well on all devices</li>
+</ul>
+    </div>
+
+</div>
+{% endblock %}

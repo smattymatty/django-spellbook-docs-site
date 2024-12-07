@@ -1,0 +1,113 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Navigating your Markdown Content</h1>
+<p>The <code>spellbook_md</code> command will generate a <code>TOC</code> variable in the <code>django_spellbook/views.py</code> file. This variable is inserted into the context of every spellbook view under 'toc'.</p>
+<pre><code class="language-python"># django_spellbook/views.py
+
+TOC = {
+    &quot;title&quot;: &quot;root&quot;,
+    &quot;url&quot;: &quot;&quot;, # empty url for the root
+    &quot;children&quot;: { 
+        &quot;---introduction&quot;: {&quot;title&quot;: &quot;introduction&quot;, &quot;url&quot;: &quot;introduction&quot;},
+        &quot;Commands&quot;: { # Commands is a directory
+            &quot;title&quot;: &quot;Commands&quot;,
+            &quot;url&quot;: &quot;Commands&quot;,
+            &quot;children&quot;: { # Directories have children
+                &quot;spellbook_md&quot;: {
+                    &quot;title&quot;: &quot;spellbook_md&quot;,
+                    &quot;url&quot;: &quot;Commands/spellbook_md&quot;,
+                },
+                &quot;other_command&quot;: {
+                    &quot;title&quot;: &quot;other_command&quot;,
+                    &quot;url&quot;: &quot;Commands/other_command&quot;,
+                },
+            },
+        },
+        &quot;Markdown&quot;: {
+            &quot;title&quot;: &quot;Markdown&quot;,
+            &quot;url&quot;: &quot;Markdown&quot;,
+            &quot;children&quot;: {
+                ...
+            },
+        },
+    },
+}
+
+</code></pre>
+<p>Every markdown file that is processed by the <code>spellbook_md</code> command will be added to this <code>TOC</code>, alongside their 'title' (see <a href="#metadata">metadata</a>) and 'url'. This is used to generate the navigation menu.</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>{% verbatim %}Django Spellbook offers a built in <code>{% sidebar_toc %}</code> template tag that renders a responsive and interactive navigation menu based on the TOC structure.{% endverbatim %}</p>
+    </span>
+</div>
+
+<p>The built-in <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/tocs/sidebar_toc.html">sidebar_toc.html</a> uses a recursive approach to generate the navigation menu with <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/recursive/_toc_sidebar.html">recursive/_toc_sidebar.html</a>. It also includes styles and JavaScript to make the navigation menu interactive.</p>
+<h2>Example - Simple Custom Navigation Menu</h2>
+<pre><code class="language-django">{% verbatim %} 
+{% load spellbook_tags %}
+
+&lt;nav&gt;
+  &lt;ul&gt;
+    {% for item in toc.children.values %}
+    &lt;li&gt;
+      &lt;a href=&quot;{% spellbook_url item.url %}&quot;&gt;{{ item.title }}&lt;/a&gt;
+      {% if item.children %}
+      &lt;ul&gt;
+        {% for child in item.children.values %}
+        &lt;li&gt;
+          &lt;a href=&quot;{% spellbook_url child.url %}&quot;&gt;{{ child.title }}&lt;/a&gt;
+        &lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+      {% endif %}
+    &lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+&lt;/nav&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>{% verbatim %}The <code>{% spellbook_url %}</code> template tag will take the url (example: <code>Commands/spellbook_md</code> or <code>introduction</code>) and convert it into a valid URL.{% endverbatim %}</p>
+    </span>
+</div>
+
+<h3>Including the table of contents in your own views</h3>
+<p>If you want to include the navigation menu in one of your own views, you can simply import the <code>TOC</code> variable from <code>django_spellbook/views.py</code> and use it in your template.</p>
+<pre><code class="language-python"># my_app/views.py
+from django.shortcuts import render
+from django_spellbook.views import TOC
+
+def my_view(request):
+    context = { &quot;toc&quot;: TOC }
+    return render(
+        request, &quot;my_app/template.html&quot;, context
+     )
+</code></pre>
+<h3>Sorting the Navigation Menu</h3>
+<p>By default, the navigation menu is sorted alphabetically by the 'title' of each item. To give an item priority in the sort order, simply add a number of '-' dashes to the beginning of the title. The TOC will automatically strip these dashes from the title, but they will still be sorted as if they were there.</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The 'title' property of each item will capitalize the first letter of each word longer than 3 characters, and strip any dashes from the beginning of the title. Dashes within the title will be replaced with spaces. Underscores will remain unchanged. <code>SPELLBOOK_MD_TITLEFY</code> is set to <code>True</code> by default, but you can set it to <code>False</code> to disable this behavior.</p>
+    </span>
+</div>
+
+<a class="super-link" href="/docs/Markdown/custom-base-template"><p>Read Next: Custom Base Template<br />
+</p></a>
+{% endblock %}

@@ -223,9 +223,7 @@
 }
 
 .content p {
-  position: relative;
   z-index: 2;
-  padding: 0.2rem 0.4rem;
   font-family: "Georgia", serif;
 }
 
@@ -240,76 +238,6 @@
   background: rgba(242, 232, 201, 0.2);
   z-index: -1;
   border-radius: 5px;
-}
-
-.content p:nth-of-type(odd)::before {
-  clip-path: polygon(
-    0% 5%,
-    5% 0%,
-    95% 0%,
-    100% 5%,
-    100% 95%,
-    95% 100%,
-    5% 100%,
-    0% 95%
-  );
-}
-
-.content p:nth-of-type(even)::before {
-  clip-path: polygon(
-    2% 0%,
-    98% 0%,
-    100% 2%,
-    100% 98%,
-    98% 100%,
-    2% 100%,
-    0% 98%,
-    0% 2%
-  );
-}
-
-.content p:nth-of-type(odd)::after,
-.content p:nth-of-type(even)::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -10px;
-  right: -10px;
-  bottom: -5px;
-  z-index: -1;
-  opacity: 0.5;
-  background: radial-gradient(
-      circle at 10% 20%,
-      rgba(32, 20, 11, 0.15) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(32, 20, 11, 0.05) 0%,
-      transparent 50%
-    );
-}
-.content p :nth-of-type(odd)::after {
-  background: radial-gradient(
-      circle at 10% 20%,
-      rgba(32, 20, 11, 0.05) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(32, 20, 11, 0.15) 0%,
-      transparent 50%
-    );
-}
-
-.content p:nth-of-type(odd)::after {
-  border-left: 0.2rem solid #20140b65;
-  border-top: 0.1rem solid #20140ba5;
-}
-
-.content p:nth-of-type(even)::after {
-  border-bottom: 0.2rem solid #20140b65;
-  border-right: 0.1rem solid #20140ba5;
 }
 
 .content ol,
@@ -762,4 +690,58 @@ ul:nth-child(even) {
 /* Ensure top-level nav-dirs are always visible */
 .nav-list > .nav-dir {
   display: block;
+}
+
+.content pre {
+  padding: 0.5rem 2rem;
+  background-color: #22201cea !important;
+  border-left: 0.2rem solid #c4baa7;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  color: #f0e6d2;
+  width: auto;
+}
+
+.content pre code {
+  background-color: transparent !important;
+  color: #f0e6d2;
+}
+
+.content code {
+  padding: 0.2rem 0.4rem;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #00000099 !important;
+  border-radius: 5px;
+  color: #f0e6d2;
+}
+
+.super-link {
+  padding: 0.2rem 0.8rem;
+  display: inline-block;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px;
+  color: #477abd;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: auto;
+}
+
+.super-link:hover p {
+  color: #4bbbda;
+}
+
+.super-link ul li::marker {
+  content: "";
+}
+
+.super-link p {
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.content a {
+  color: #477abd;
+}
+
+.content a:hover {
+  color: #3c7280;
 }
