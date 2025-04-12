@@ -105,7 +105,7 @@ Available classes:
 {~~}
 
 
-```html
+```django
 <div class="sb-w-full sb-max-w-lg sb-aspect-video">
     <img class="sb-w-full sb-h-full sb-object-cover" src="video-thumb.jpg">
 </div>

@@ -91,7 +91,7 @@ Available classes:
 **Common Pattern:** Making a responsive layout with a row on large screens and a column on small screens.
 {~~}
 
-```html
+```django
 <div class="sb-flex sb-flex-col sb-md:flex-row sb-items-center sb-justify-between sb-gap-4">
     <div>Stacks on mobile, side by side on desktop</div>
     <div>With equal spacing between</div>

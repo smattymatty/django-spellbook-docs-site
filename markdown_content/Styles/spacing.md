@@ -64,7 +64,7 @@ Available classes:
 **Common Pattern: Card Layout**
 {~~}
 
-```html
+```django
 <div class="sb-p-4 sb-mb-4">
     <h2 class="sb-mb-2">Title</h2>
     <div class="sb-space-y-2">

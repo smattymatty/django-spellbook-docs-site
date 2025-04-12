@@ -73,7 +73,7 @@ Available classes:
 **Combine position utilities with z-index for complex layouts.**
 {~~}
 
-```html
+```django
 <div class="sb-relative">
     <div class="sb-absolute sb-top-0 sb-right-0 sb-z-10">
         Floating element

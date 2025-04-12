@@ -8,7 +8,7 @@ This parser goes beyond the standard markdown syntax by including Django-inspire
 
 ### Example: Add Structured HTML Elements Directly in Markdown
 
-```markdown
+```python
 {% verbatim %}
 {% div .container #main-container data-analytics="true" %}
 ## Section Title
@@ -32,7 +32,7 @@ Paired with powerful libraries like HTMX, this can create dynamic and interactiv
 
 Spellblocks are reusable content components that can be embedded directly in your markdown content. They provide a powerful way to create rich, interactive content while maintaining the simplicity of markdown syntax.
 
-```markdown
+```python
 {~ alert type="warning" ~}
 Warning: This is an important notice!
 {~~}
@@ -47,7 +47,7 @@ Be sure to include the `% spellbook_styles %` tag in your base template if you w
 {~~}
 
 
-```markdown
+```python
 {~ card title="Quick Start" footer="Updated: Today" ~}
 1. Install the package
 2. Add to `INSTALLED_APPS`
@@ -98,7 +98,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/sb_base.html'
 
 The base template must have a block named `spellbook_md` that will be used to wrap the rendered markdown content. Here is a basic example of a base template:
 
-```html
+```django
 {% verbatim %}
 <!-- my_app/sb_base.html -->
 {% extends 'base.html' %}

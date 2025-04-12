@@ -58,7 +58,8 @@ class QuoteBlock(BasicSpellBlock):
 
 ### Step 2: Create the template at `blog/templates/blog/blocks/quote.html`:
 
-```html
+```django
+{% verbatim %}
 <blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 {% if kwargs.class %}{{ kwargs.class }}{% endif %}">
     <p class="sb-italic">{{ content|safe }}</p>
     {% if author or source %}
@@ -68,11 +69,12 @@ class QuoteBlock(BasicSpellBlock):
     </footer>
     {% endif %}
 </blockquote>
+{% endverbatim %}
 ```
 
 ### Step 3: Use in your markdown:
 
-```markdown
+```python
 {~ quote author="Albert Einstein" source="Letter to Max Born, 1926" ~}
 God does not play dice with the universe.
 {~~}
@@ -85,7 +87,8 @@ God does not play dice with the universe.
 2. Make sure your templates are stored in the correct location matching your specified template path.
 
 3. Remember to include Spellbook's styles in your base template:
-```html
+```django
+{% verbatim %}
 {% load spellbook_tags %}
 <!DOCTYPE html>
 <html>
@@ -97,6 +100,7 @@ God does not play dice with the universe.
     <!-- Your content -->
 </body>
 </html>
+{% endverbatim %}
 ```
 
 4. All parameters from your markdown are available in the template via `kwargs.parameter_name`.

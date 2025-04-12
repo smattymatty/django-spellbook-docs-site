@@ -39,7 +39,7 @@ Small, single-purpose classes that handle common styling needs:
 These are prefixed with `spellbook-` to avoid conflicts with your existing styles:
 
 {% div class="spellbook-p-3 spellbook-mb-3 spellbook-border" %}
-```html
+```django
 <div class="spellbook-p-3 spellbook-mb-3 spellbook-border">
     Padded, with margin and border
 </div>
@@ -54,7 +54,7 @@ Pre-styled components used by the built-in blocks:
 - Navigation elements
 
 These create consistent, polished UI elements:
-```html
+```django
 <div class="sb-card">
     <div class="sb-card-body">
         A nice card layout

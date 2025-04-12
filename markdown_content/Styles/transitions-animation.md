@@ -72,7 +72,7 @@ Available classes:
 **Common Pattern: Hover Animation**
 {~~}
 
-```html
+```django
 <button class="sb-duration-300 sb-ease-out hover:sb-scale-105 hover:sb-translate-y-1 sb-animate-fade">
     Animated Button
 </button>

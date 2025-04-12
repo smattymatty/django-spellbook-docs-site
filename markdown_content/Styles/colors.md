@@ -50,7 +50,7 @@ Theme color opacities:
 - `-75`: 75% opacity
 
 Example:
-```html
+```django
 <div class="sb-bg-primary-50">
     50% opacity primary background
 </div>
