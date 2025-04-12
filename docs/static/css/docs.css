@@ -705,6 +705,7 @@ ul:nth-child(even) {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   color: #f0e6d2;
   width: auto;
+  overflow-x: scroll;
 }
 
 .content pre code {

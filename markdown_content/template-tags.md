@@ -48,12 +48,16 @@ Include this tag in your base template's `<head>` section to ensure consistent s
 
 ### spellbook_url
 
-Converts a TOC url path to a proper Django URL. This is useful for generating navigation links that work with Django's URL system.
+Does what Django's built-in `url` tag does, but for markdown-generated content.
+
+{~ alert type="info" ~}
+`blog/tech/first-blog-post` will be converted to `blog:tech_first-blog-post` before being passed to the `url` of the generated context of each markdown file. `/` will be replaced with `_` and all dashes will remain.
+{~~}
 
 **Syntax**:
 ```django
 {% verbatim %}
-{% spellbook_url 'path/to/page' %}
+{% spellbook_url 'docs:folder_first-page' %}
 {% endverbatim %}
 ```
 
@@ -61,7 +65,7 @@ Converts a TOC url path to a proper Django URL. This is useful for generating na
 
 ```django
 {% verbatim %}
-<a href="{% spellbook_url 'docs/getting-started' %}">Getting Started</a>
+<a href="{% spellbook_url 'tutorials:beginner_getting-started' %}">Getting Started</a> <
 {% endverbatim %}
 ```
 
@@ -101,57 +105,3 @@ Displays metadata in a formatted way. This tag is designed to present page metad
 {~ alert type="warning" ~}
 This tag's implementation is currently a placeholder. Check the documentation for updates in future releases for full functionality.
 {~~}
-
-## Customizing Template Tags
-
-If you want to customize how these template tags render, you can override their templates:
-
-1. Create a directory in your app's templates: `templates/django_spellbook/tocs/` or `templates/django_spellbook/data/`
-2. Copy the original templates from the Django Spellbook package
-3. Modify the templates to suit your needs
-
-{~ practice difficulty="Beginner" timeframe="10 minutes" focus="Template Integration" ~}
-### Practice: Add Spellbook Styles to Your Base Template
-
-1. Open your base template file
-2. Load the spellbook template tags: `{% verbatim %}{% load spellbook_tags %}{% endverbatim %}`
-3. Add the styles to your `<head>` section: `{% verbatim %}{% spellbook_styles %}{% endverbatim %}`
-4. Test your template to see the Spellbook styles applied to your markdown content
-{~~}
-
-## Example: Complete Sidebar Template
-
-Here's an example of how to use these template tags in a sidebar template:
-
-```django
-{% verbatim %}
-{% load spellbook_tags %}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ page_title }}</title>
-    {% spellbook_styles %}
-</head>
-<body>
-    <div class="sidebar">
-        {% sidebar_toc %}
-    </div>
-    <div class="content">
-        <h1>{% dash_strip page_title %}</h1>
-        {% show_metadata %}
-        
-        {% block content %}{% endblock %}
-    </div>
-</body>
-</html>
-{% endverbatim %}
-```
-
-{~ quote author="Django Documentation" source="Template Tags and Filters" ~}
-Custom template tags are a powerful way to extend Django's template language, allowing you to define your own functionality beyond what's included with the built-in tag library.
-{~~}
-
-{% a href="/docs/Templatetags/custom" .super-link %}
-Read Next: Creating Custom Template Tags
-{% enda %}
