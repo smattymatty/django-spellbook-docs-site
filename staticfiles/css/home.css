@@ -36,9 +36,25 @@
 }
 
 .padded-x-content {
+  transition: all 0.3s ease;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
+}
+
+@media (max-width: 1024px) {
+  .padded-x-content {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .padded-x-content {
+    padding: 5px;
+    max-width: 100%;
+  }
 }
 
 .spell-card span {
@@ -158,4 +174,5 @@ h6:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   color: #f0e6d2;
   width: auto;
+  overflow-x: scroll;
 }

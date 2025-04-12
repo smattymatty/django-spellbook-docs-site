@@ -1,14 +1,3 @@
-:root {
-  --primary-color: #3b82f6;
-  --secondary-color: #6b7280;
-  --accent-color: #f59e0b;
-  --neutral-color: #2563eb;
-  --error-color: #dc2626;
-  --warning-color: #f59e0b;
-  --success-color: #16a34a;
-  --info-color: #2563eb;
-}
-
 /* Background Color */
 .sb-bg-black {
   background-color: #000;
@@ -60,6 +49,438 @@
 }
 .sb-bg-transparent {
   background-color: transparent;
+}
+/* variable background colors with opacity variants */
+.sb-bg-primary-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 25%,
+    transparent
+  );
+}
+.sb-bg-primary-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 50%,
+    transparent
+  );
+}
+.sb-bg-primary-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 75%,
+    transparent
+  );
+}
+.sb-bg-secondary-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 25%,
+    transparent
+  );
+}
+.sb-bg-secondary-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 50%,
+    transparent
+  );
+}
+.sb-bg-secondary-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 75%,
+    transparent
+  );
+}
+.sb-bg-accent-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-bg-accent-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-bg-accent-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-bg-neutral-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 25%,
+    transparent
+  );
+}
+.sb-bg-neutral-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 50%,
+    transparent
+  );
+}
+.sb-bg-neutral-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 75%,
+    transparent
+  );
+}
+.sb-bg-error-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 25%,
+    transparent
+  );
+}
+.sb-bg-error-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 50%,
+    transparent
+  );
+}
+.sb-bg-error-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 75%,
+    transparent
+  );
+}
+.sb-bg-warning-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-bg-warning-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-bg-warning-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-bg-success-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 25%,
+    transparent
+  );
+}
+.sb-bg-success-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 50%,
+    transparent
+  );
+}
+.sb-bg-success-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 75%,
+    transparent
+  );
+}
+.sb-bg-info-25 {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 25%,
+    transparent
+  );
+}
+.sb-bg-info-50 {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 50%,
+    transparent
+  );
+}
+.sb-bg-info-75 {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 75%,
+    transparent
+  );
+}
+
+/* hover background colors */
+.sb-hover\:bg-black:hover {
+  background-color: #000;
+}
+.sb-hover\:bg-white:hover {
+  background-color: #fff;
+}
+.sb-hover\:bg-black-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-black-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-black-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-white-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-white-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-white-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-primary:hover {
+  background-color: var(--primary-color, #3b82f6);
+}
+.sb-hover\:bg-secondary:hover {
+  background-color: var(--secondary-color, #6b7280);
+}
+.sb-hover\:bg-accent:hover {
+  background-color: var(--accent-color, #f59e0b);
+}
+.sb-hover\:bg-neutral:hover {
+  background-color: var(--neutral-color, #2563eb);
+}
+.sb-hover\:bg-error:hover {
+  background-color: var(--error-color, #dc2626);
+}
+.sb-hover\:bg-warning:hover {
+  background-color: var(--warning-color, #f59e0b);
+}
+.sb-hover\:bg-success:hover {
+  background-color: var(--success-color, #16a34a);
+}
+.sb-hover\:bg-info:hover {
+  background-color: var(--info-color, #2563eb);
+}
+
+/* hover background colors with opacity variants */
+.sb-hover\:bg-primary-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-primary-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-primary-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-secondary-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-secondary-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-secondary-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-accent-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-accent-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-accent-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-neutral-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-neutral-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-neutral-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-error-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-error-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-error-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-warning-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-warning-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-warning-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-success-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-success-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-success-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 75%,
+    transparent
+  );
+}
+.sb-hover\:bg-info-25:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 25%,
+    transparent
+  );
+}
+.sb-hover\:bg-info-50:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 50%,
+    transparent
+  );
+}
+.sb-hover\:bg-info-75:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--info-color, #2563eb) 75%,
+    transparent
+  );
+}
+/* Rounded */
+.sb-rounded-none {
+  border-radius: 0;
+}
+.sb-rounded-sm {
+  border-radius: 0.125rem;
+}
+.sb-rounded {
+  border-radius: 0.25rem;
+}
+.sb-rounded-md {
+  border-radius: 0.375rem;
+}
+.sb-rounded-lg {
+  border-radius: 0.5rem;
+}
+.sb-rounded-full {
+  border-radius: 9999px;
 }
 
 /* Theme Background Colors with Opacity Variants */
@@ -281,6 +702,37 @@
 .sb-info {
   color: var(--info-color, #2563eb);
 }
+/* hovered colors */
+.sb-hover\:primary:hover {
+  color: var(--primary-color, #3b82f6);
+}
+.sb-hover\:secondary:hover {
+  color: var(--secondary-color, #6b7280);
+}
+.sb-hover\:accent:hover {
+  color: var(--accent-color, #f59e0b);
+}
+.sb-hover\:neutral:hover {
+  color: var(--neutral-color, #2563eb);
+}
+.sb-hover\:error:hover {
+  color: var(--error-color, #dc2626);
+}
+.sb-hover\:warning:hover {
+  color: var(--warning-color, #f59e0b);
+}
+.sb-hover\:success:hover {
+  color: var(--success-color, #16a34a);
+}
+.sb-hover\:info:hover {
+  color: var(--info-color, #2563eb);
+}
+.sb-hover\:black:hover {
+  color: #000;
+}
+.sb-hover\:white:hover {
+  color: #fff;
+}
 
 /* Theme Colors with Opacity Variants */
 .sb-primary-25 {
@@ -354,6 +806,323 @@
 }
 .sb-info-75 {
   color: color-mix(in srgb, var(--info-color, #2563eb) 75%, transparent);
+}
+
+/* hover variants with opacity for colors */
+.sb-hover\:primary-25:hover {
+  color: color-mix(in srgb, var(--primary-color, #3b82f6) 25%, transparent);
+}
+.sb-hover\:primary-50:hover {
+  color: color-mix(in srgb, var(--primary-color, #3b82f6) 50%, transparent);
+}
+.sb-hover\:primary-75:hover {
+  color: color-mix(in srgb, var(--primary-color, #3b82f6) 75%, transparent);
+}
+.sb-hover\:secondary-25:hover {
+  color: color-mix(in srgb, var(--secondary-color, #6b7280) 25%, transparent);
+}
+.sb-hover\:secondary-50:hover {
+  color: color-mix(in srgb, var(--secondary-color, #6b7280) 50%, transparent);
+}
+.sb-hover\:secondary-75:hover {
+  color: color-mix(in srgb, var(--secondary-color, #6b7280) 75%, transparent);
+}
+.sb-hover\:accent-25:hover {
+  color: color-mix(in srgb, var(--accent-color, #f59e0b) 25%, transparent);
+}
+.sb-hover\:accent-50:hover {
+  color: color-mix(in srgb, var(--accent-color, #f59e0b) 50%, transparent);
+}
+.sb-hover\:accent-75:hover {
+  color: color-mix(in srgb, var(--accent-color, #f59e0b) 75%, transparent);
+}
+.sb-hover\:neutral-25:hover {
+  color: color-mix(in srgb, var(--neutral-color, #2563eb) 25%, transparent);
+}
+.sb-hover\:neutral-50:hover {
+  color: color-mix(in srgb, var(--neutral-color, #2563eb) 50%, transparent);
+}
+.sb-hover\:neutral-75:hover {
+  color: color-mix(in srgb, var(--neutral-color, #2563eb) 75%, transparent);
+}
+.sb-hover\:error-25:hover {
+  color: color-mix(in srgb, var(--error-color, #dc2626) 25%, transparent);
+}
+.sb-hover\:error-50:hover {
+  color: color-mix(in srgb, var(--error-color, #dc2626) 50%, transparent);
+}
+.sb-hover\:error-75:hover {
+  color: color-mix(in srgb, var(--error-color, #dc2626) 75%, transparent);
+}
+.sb-hover\:warning-25:hover {
+  color: color-mix(in srgb, var(--warning-color, #f59e0b) 25%, transparent);
+}
+.sb-hover\:warning-50:hover {
+  color: color-mix(in srgb, var(--warning-color, #f59e0b) 50%, transparent);
+}
+.sb-hover\:warning-75:hover {
+  color: color-mix(in srgb, var(--warning-color, #f59e0b) 75%, transparent);
+}
+.sb-hover\:success-25:hover {
+  color: color-mix(in srgb, var(--success-color, #16a34a) 25%, transparent);
+}
+.sb-hover\:success-50:hover {
+  color: color-mix(in srgb, var(--success-color, #16a34a) 50%, transparent);
+}
+.sb-hover\:success-75:hover {
+  color: color-mix(in srgb, var(--success-color, #16a34a) 75%, transparent);
+}
+.sb-hover\:info-25:hover {
+  color: color-mix(in srgb, var(--info-color, #2563eb) 25%, transparent);
+}
+.sb-hover\:info-50:hover {
+  color: color-mix(in srgb, var(--info-color, #2563eb) 50%, transparent);
+}
+.sb-hover\:info-75:hover {
+  color: color-mix(in srgb, var(--info-color, #2563eb) 75%, transparent);
+}
+.sb-hover\:black-25:hover {
+  color: color-mix(in srgb, var(--black-color, #000000) 25%, transparent);
+}
+.sb-hover\:black-50:hover {
+  color: color-mix(in srgb, var(--black-color, #000000) 50%, transparent);
+}
+.sb-hover\:black-75:hover {
+  color: color-mix(in srgb, var(--black-color, #000000) 75%, transparent);
+}
+.sb-hover\:white-25:hover {
+  color: color-mix(in srgb, var(--white-color, #ffffff) 25%, transparent);
+}
+.sb-hover\:white-50:hover {
+  color: color-mix(in srgb, var(--white-color, #ffffff) 50%, transparent);
+}
+.sb-hover\:white-75:hover {
+  color: color-mix(in srgb, var(--white-color, #ffffff) 75%, transparent);
+}
+/* hover border variants */
+.sb-hover\:border-primary:hover {
+  border-color: var(--primary-color, #3b82f6);
+}
+.sb-hover\:border-secondary:hover {
+  border-color: var(--secondary-color, #6b7280);
+}
+.sb-hover\:border-accent:hover {
+  border-color: var(--accent-color, #f59e0b);
+}
+.sb-hover\:border-neutral:hover {
+  border-color: var(--neutral-color, #2563eb);
+}
+.sb-hover\:border-error:hover {
+  border-color: var(--error-color, #dc2626);
+}
+.sb-hover\:border-warning:hover {
+  border-color: var(--warning-color, #f59e0b);
+}
+.sb-hover\:border-success:hover {
+  border-color: var(--success-color, #16a34a);
+}
+.sb-hover\:border-info:hover {
+  border-color: var(--info-color, #2563eb);
+}
+
+/* hover variants with opacity for border colors */
+.sb-hover\:border-primary-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-primary-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-primary-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--primary-color, #3b82f6) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-secondary-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-secondary-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-secondary-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--secondary-color, #6b7280) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-accent-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-accent-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-accent-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--accent-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-neutral-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-neutral-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-neutral-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--neutral-color, #2563eb) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-error-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-error-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-error-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--error-color, #dc2626) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-warning-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-warning-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-warning-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--warning-color, #f59e0b) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-success-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-success-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-success-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--success-color, #16a34a) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-info-25:hover {
+  border-color: color-mix(in srgb, var(--info-color, #2563eb) 25%, transparent);
+}
+.sb-hover\:border-info-50:hover {
+  border-color: color-mix(in srgb, var(--info-color, #2563eb) 50%, transparent);
+}
+.sb-hover\:border-info-75:hover {
+  border-color: color-mix(in srgb, var(--info-color, #2563eb) 75%, transparent);
+}
+.sb-hover\:border-black-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-black-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-black-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--black-color, #000000) 75%,
+    transparent
+  );
+}
+.sb-hover\:border-white-25:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 25%,
+    transparent
+  );
+}
+.sb-hover\:border-white-50:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 50%,
+    transparent
+  );
+}
+.sb-hover\:border-white-75:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--white-color, #ffffff) 75%,
+    transparent
+  );
 }
 
 /* Display */
@@ -501,6 +1270,15 @@
 .sb-flex-col-reverse {
   flex-direction: column-reverse;
 }
+.sb-flex-wrap {
+  flex-wrap: wrap;
+}
+.sb-flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+.sb-flex-nowrap {
+  flex-wrap: nowrap;
+}
 
 /* Responsive Flex Direction */
 @media (min-width: 640px) {
@@ -510,6 +1288,21 @@
   .sb-sm\:flex-col {
     flex-direction: column;
   }
+  .sb-sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .sb-sm\:flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+  .sb-sm\:flex-wrap {
+    flex-wrap: wrap;
+  }
+  .sb-sm\:flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .sb-sm\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
 }
 @media (min-width: 768px) {
   .sb-md\:flex-row {
@@ -518,6 +1311,21 @@
   .sb-md\:flex-col {
     flex-direction: column;
   }
+  .sb-md\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .sb-md\:flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+  .sb-md\:flex-wrap {
+    flex-wrap: wrap;
+  }
+  .sb-md\:flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .sb-md\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
 }
 @media (min-width: 1024px) {
   .sb-lg\:flex-row {
@@ -525,6 +1333,21 @@
   }
   .sb-lg\:flex-col {
     flex-direction: column;
+  }
+  .sb-lg\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .sb-lg\:flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+  .sb-lg\:flex-wrap {
+    flex-wrap: wrap;
+  }
+  .sb-lg\:flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .sb-lg\:flex-nowrap {
+    flex-wrap: nowrap;
   }
 }
 
@@ -820,6 +1643,98 @@
   margin: 3rem;
 }
 
+/* Margin Bottom */
+.sb-mb-0 {
+  margin-bottom: 0;
+}
+.sb-mb-1 {
+  margin-bottom: 0.25rem;
+}
+.sb-mb-2 {
+  margin-bottom: 0.5rem;
+}
+.sb-mb-3 {
+  margin-bottom: 1rem;
+}
+.sb-mb-4 {
+  margin-bottom: 1.5rem;
+}
+.sb-mb-6 {
+  margin-bottom: 2rem;
+}
+.sb-mb-8 {
+  margin-bottom: 3rem;
+}
+
+/* Margin Left */
+.sb-ml-0 {
+  margin-left: 0;
+}
+.sb-ml-1 {
+  margin-left: 0.25rem;
+}
+.sb-ml-2 {
+  margin-left: 0.5rem;
+}
+.sb-ml-3 {
+  margin-left: 1rem;
+}
+.sb-ml-4 {
+  margin-left: 1.5rem;
+}
+.sb-ml-6 {
+  margin-left: 2rem;
+}
+.sb-ml-8 {
+  margin-left: 3rem;
+}
+
+/* Margin Right */
+.sb-mr-0 {
+  margin-right: 0;
+}
+.sb-mr-1 {
+  margin-right: 0.25rem;
+}
+.sb-mr-2 {
+  margin-right: 0.5rem;
+}
+.sb-mr-3 {
+  margin-right: 1rem;
+}
+.sb-mr-4 {
+  margin-right: 1.5rem;
+}
+.sb-mr-6 {
+  margin-right: 2rem;
+}
+.sb-mr-8 {
+  margin-right: 3rem;
+}
+
+/* Margin Top */
+.sb-mt-0 {
+  margin-top: 0;
+}
+.sb-mt-1 {
+  margin-top: 0.25rem;
+}
+.sb-mt-2 {
+  margin-top: 0.5rem;
+}
+.sb-mt-3 {
+  margin-top: 1rem;
+}
+.sb-mt-4 {
+  margin-top: 1.5rem;
+}
+.sb-mt-6 {
+  margin-top: 2rem;
+}
+.sb-mt-8 {
+  margin-top: 3rem;
+}
+
 /* Margin X/Y */
 .sb-mx-0 {
   margin-left: 0;
@@ -896,6 +1811,112 @@
 }
 .sb-m-n8 {
   margin: -3rem;
+}
+
+/* Negative Margin X/Y */
+.sb-mx-n1 {
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
+.sb-mx-n2 {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+.sb-mx-n3 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.sb-mx-n4 {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+}
+.sb-mx-n6 {
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+.sb-mx-n8 {
+  margin-left: -3rem;
+  margin-right: -3rem;
+}
+
+/* Negative Margin Top */
+.sb-mt-n1 {
+  margin-top: -0.25rem;
+}
+.sb-mt-n2 {
+  margin-top: -0.5rem;
+}
+.sb-mt-n3 {
+  margin-top: -1rem;
+}
+.sb-mt-n4 {
+  margin-top: -1.5rem;
+}
+.sb-mt-n6 {
+  margin-top: -2rem;
+}
+.sb-mt-n8 {
+  margin-top: -3rem;
+}
+
+/* Negative Margin Bottom */
+.sb-mb-n1 {
+  margin-bottom: -0.25rem;
+}
+.sb-mb-n2 {
+  margin-bottom: -0.5rem;
+}
+.sb-mb-n3 {
+  margin-bottom: -1rem;
+}
+.sb-mb-n4 {
+  margin-bottom: -1.5rem;
+}
+.sb-mb-n6 {
+  margin-bottom: -2rem;
+}
+.sb-mb-n8 {
+  margin-bottom: -3rem;
+}
+
+/* Negative Margin Left */
+.sb-ml-n1 {
+  margin-left: -0.25rem;
+}
+.sb-ml-n2 {
+  margin-left: -0.5rem;
+}
+.sb-ml-n3 {
+  margin-left: -1rem;
+}
+.sb-ml-n4 {
+  margin-left: -1.5rem;
+}
+.sb-ml-n6 {
+  margin-left: -2rem;
+}
+.sb-ml-n8 {
+  margin-left: -3rem;
+}
+
+/* Negative Margin Right */
+.sb-mr-n1 {
+  margin-right: -0.25rem;
+}
+.sb-mr-n2 {
+  margin-right: -0.5rem;
+}
+.sb-mr-n3 {
+  margin-right: -1rem;
+}
+.sb-mr-n4 {
+  margin-right: -1.5rem;
+}
+.sb-mr-n6 {
+  margin-right: -2rem;
+}
+.sb-mr-n8 {
+  margin-right: -3rem;
 }
 
 /* Space Between */
@@ -981,6 +2002,91 @@
 }
 .sb-w-full {
   width: 100%;
+}
+
+/* Responsive Widths */
+@media (min-width: 640px) {
+  .sb-sm\:w-1\/2 {
+    width: 50%;
+  }
+  .sb-sm\:w-1\/3 {
+    width: 33.333333%;
+  }
+  .sb-sm\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .sb-sm\:w-1\/4 {
+    width: 25%;
+  }
+  .sb-sm\:w-3\/4 {
+    width: 75%;
+  }
+  .sb-sm\:w-full {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .sb-md\:w-1\/2 {
+    width: 50%;
+  }
+  .sb-md\:w-1\/3 {
+    width: 33.333333%;
+  }
+  .sb-md\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .sb-md\:w-1\/4 {
+    width: 25%;
+  }
+  .sb-md\:w-3\/4 {
+    width: 75%;
+  }
+  .sb-md\:w-full {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sb-lg\:w-1\/2 {
+    width: 50%;
+  }
+  .sb-lg\:w-1\/3 {
+    width: 33.333333%;
+  }
+  .sb-lg\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .sb-lg\:w-1\/4 {
+    width: 25%;
+  }
+  .sb-lg\:w-3\/4 {
+    width: 75%;
+  }
+  .sb-lg\:w-full {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sb-xl\:w-1\/2 {
+    width: 50%;
+  }
+  .sb-xl\:w-1\/3 {
+    width: 33.333333%;
+  }
+  .sb-xl\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .sb-xl\:w-1\/4 {
+    width: 25%;
+  }
+  .sb-xl\:w-3\/4 {
+    width: 75%;
+  }
+  .sb-xl\:w-full {
+    width: 100%;
+  }
 }
 
 /* Viewport Widths */
@@ -1236,6 +2342,14 @@
   text-transform: none;
 }
 
+/* Font Style */
+.sb-italic {
+  font-style: italic;
+}
+.sb-bold {
+  font-weight: 700;
+}
+
 /* Word Break */
 .sb-break-normal {
   overflow-wrap: normal;
@@ -1295,29 +2409,88 @@
 }
 .sb-border {
   border-width: 1px;
+  border-style: solid;
 }
 .sb-border-2 {
   border-width: 2px;
+  border-style: solid;
 }
 .sb-border-4 {
   border-width: 4px;
+  border-style: solid;
 }
 .sb-border-8 {
   border-width: 8px;
+  border-style: solid;
 }
 
 /* Individual Borders */
 .sb-border-t {
   border-top-width: 1px;
+  border-style: solid;
 }
 .sb-border-r {
   border-right-width: 1px;
+  border-style: solid;
 }
 .sb-border-b {
   border-bottom-width: 1px;
+  border-style: solid;
 }
 .sb-border-l {
   border-left-width: 1px;
+  border-style: solid;
+}
+/* Individual Borders 2px */
+.sb-border-t-2 {
+  border-top-width: 2px;
+  border-style: solid;
+}
+.sb-border-r-2 {
+  border-right-width: 2px;
+  border-style: solid;
+}
+.sb-border-b-2 {
+  border-bottom-width: 2px;
+  border-style: solid;
+}
+.sb-border-l-2 {
+  border-left-width: 2px;
+  border-style: solid;
+}
+/* Individual Borders 4px */
+.sb-border-t-4 {
+  border-top-width: 4px;
+  border-style: solid;
+}
+.sb-border-r-4 {
+  border-right-width: 4px;
+  border-style: solid;
+}
+.sb-border-b-4 {
+  border-bottom-width: 4px;
+  border-style: solid;
+}
+.sb-border-l-4 {
+  border-left-width: 4px;
+  border-style: solid;
+}
+/* Individual Borders 8px */
+.sb-border-t-8 {
+  border-top-width: 8px;
+  border-style: solid;
+}
+.sb-border-r-8 {
+  border-right-width: 8px;
+  border-style: solid;
+}
+.sb-border-b-8 {
+  border-bottom-width: 8px;
+  border-style: solid;
+}
+.sb-border-l-8 {
+  border-left-width: 8px;
+  border-style: solid;
 }
 
 /* Border Radius */
@@ -1351,19 +2524,19 @@
 
 /* Border Style */
 .sb-border-solid {
-  border-style: solid;
+  border-style: solid !important;
 }
 .sb-border-dashed {
-  border-style: dashed;
+  border-style: dashed !important;
 }
 .sb-border-dotted {
-  border-style: dotted;
+  border-style: dotted !important;
 }
 .sb-border-double {
-  border-style: double;
+  border-style: double !important;
 }
 .sb-border-none {
-  border-style: none;
+  border-style: none !important;
 }
 
 /* Border Colors */
@@ -1716,6 +2889,16 @@
   transition-delay: 500ms;
 }
 
+.sb-transition-all {
+  transition-property: all;
+}
+.sb-transition-bg {
+  transition-property: background-color;
+}
+.sb-transition-color {
+  transition-property: color;
+}
+
 /* Animations */
 @keyframes fade {
   from {
@@ -1954,6 +3137,9 @@
 .sb-cursor-grabbing {
   cursor: grabbing;
 }
+.sb-cursor-ew-resize {
+  cursor: ew-resize;
+}
 
 /* User Select */
 .sb-select-none {
@@ -2039,6 +3225,10 @@
 /* Interactive States */
 .sb-hover\:opacity-80:hover {
   opacity: 0.8;
+}
+
+.sb-hover\:opacity-100:hover {
+  opacity: 1;
 }
 
 /* Accessibility */

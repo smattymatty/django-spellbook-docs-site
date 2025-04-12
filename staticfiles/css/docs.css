@@ -2,8 +2,15 @@
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   position: relative;
+}
+@media (max-width: 1024px) {
+  .docs-container {
+    padding: 0;
+    /* This will remove all padding */
+  }
 }
 .content {
   flex: 1;
@@ -523,17 +530,16 @@ ul:nth-child(even) {
 @media (max-width: 768px) {
   .docs-container {
     flex-direction: column;
-    padding: 10px;
+    margin-left: -1rem;
   }
   .sidebar {
-    width: 95%;
+    width: auto;
     border-right: none;
     border-bottom: 2px solid #8b4513;
     padding-bottom: 20px;
   }
   .content {
-    width: 100%;
-    padding: 20px;
+    width: auto;
   }
   .content::before {
     width: 100%;
