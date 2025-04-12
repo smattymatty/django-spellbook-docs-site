@@ -1,0 +1,8 @@
+# app.yaml
+services:
+  - name: spellbook-docs
+    http_port: 8080
+    static_sites:
+      - source_dir: staticfiles
+        strip_prefix: staticfiles
+        http_path: /static
