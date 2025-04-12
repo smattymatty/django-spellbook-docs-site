@@ -11,22 +11,22 @@
 <p><code>SPELLBOOK_CONTENT_APP</code>: The app to write all of the generated templates for.</p>
 </li>
 </ul>
+<pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
+SPELLBOOK_CONTENT_APP = &quot;my_app&quot;
+</code></pre>
 <h2>Recommended</h2>
-<verbatim><ul><li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): The base template to use for the generated markdown files. The template must include a <code>spellbook_md</code> block/endblock. You should also include a <code>load spellbook_tags</code> tag to load the template tags. <br />
-<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ✅
-
-    </span>
-    <span class="sb-alert-content">
-        <p>The <code>spellbook_styles</code> tag is optional, if you want to use the built-in blocks and styles.</p>
-    </span>
-</div>
-</li></ul></verbatim><h2>Optional</h2>
 <ul>
-<li><code>SPELLBOOK_MD_TITLEFY</code> (default: <code>True</code>): When generating the title from the file's MetaData to be included within the table of contents or other places, Django Spellbook automatically capitalizes the first letter of each word longer than 2 characters, and it also converts all dashes into spaces.</li>
+<li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): The base template to use for the generated markdown files.</li>
 </ul>
+<pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
+</code></pre>
+<p>Read more about creating a <a href="/docs/Markdown/base-template">base template</a>.</p>
+<h2>Optional</h2>
+<ul>
+<li><code>SPELLBOOK_MD_TITLEFY</code> (default: <code>True</code>): When generating the title from the file's MetaData to be included within the table of contents or other places, Django Spellbook automatically capitalizes the first letter of each word longer than 2 characters, also converts all dashes into spaces.</li>
+</ul>
+<pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True
+</code></pre>
 <a class="super-link" href="/docs/Commands/spellbook_md"><p>Continue to the Spellbook MD Command<br />
 </p></a>
 {% endblock %}

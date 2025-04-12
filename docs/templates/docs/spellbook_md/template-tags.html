@@ -1,5 +1,171 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<p>HEY</p>
+<h1>Template Tags</h1>
+<p>Django Spellbook includes several useful template tags to enhance your templates with markdown-specific features. These tags help with presenting table of contents, metadata, styling, and URL handling for your markdown-generated content.</p>
+<h2>Loading the Template Tags</h2>
+<p>To use these template tags, you need to load them at the top of your Django template:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% endverbatim %}
+</code></pre>
+<h2>Available Template Tags</h2>
+<h3>sidebar_toc</h3>
+<p>Generates a structured table of contents based on your markdown content hierarchy for display in a sidebar.</p>
+<p><strong>Syntax</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% sidebar_toc %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This tag requires a <code>toc</code> variable in the template context. The Django Spellbook views automatically provide this when using the built-in base templates.</p>
+    </span>
+</div>
+
+<p>When rendered, this tag produces a hierarchical navigation menu based on your markdown files directory structure.</p>
+<h3>spellbook_styles</h3>
+<p>Includes the Spellbook's default styles in your template. These styles ensure proper rendering of SpellBlocks, code highlighting, and other markdown-specific features.</p>
+<p><strong>Syntax</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% spellbook_styles %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Best Practice</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Include this tag in your base template's <code>&lt;head&gt;</code> section to ensure consistent styling across all your markdown-rendered pages.</p>
+    </div>
+
+</div>
+
+<h3>spellbook_url</h3>
+<p>Converts a TOC url path to a proper Django URL. This is useful for generating navigation links that work with Django's URL system.</p>
+<p><strong>Syntax</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% spellbook_url 'path/to/page' %}
+{% endverbatim %}
+</code></pre>
+<p><strong>Examples</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;a href=&quot;{% spellbook_url 'docs/getting-started' %}&quot;&gt;Getting Started&lt;/a&gt;
+{% endverbatim %}
+</code></pre>
+<p>If the URL can't be reversed, it will return the original path.</p>
+<h3>dash_strip</h3>
+<p>Removes leading dashes from a string. This is particularly useful for cleaning up file names when displaying them as titles or navigation items.</p>
+<p><strong>Syntax</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% dash_strip string %}
+{% endverbatim %}
+</code></pre>
+<p><strong>Examples</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;h1&gt;{% dash_strip &quot;---introduction&quot; %}&lt;/h1&gt;
+&lt;!-- Renders as: &lt;h1&gt;introduction&lt;/h1&gt; --&gt;
+{% endverbatim %}
+</code></pre>
+<h3>show_metadata</h3>
+<p>Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.</p>
+<p><strong>Syntax</strong>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% show_metadata %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This tag's implementation is currently a placeholder. Check the documentation for updates in future releases for full functionality.</p>
+    </span>
+</div>
+
+<h2>Customizing Template Tags</h2>
+<p>If you want to customize how these template tags render, you can override their templates:</p>
+<ol>
+<li>Create a directory in your app's templates: <code>templates/django_spellbook/tocs/</code> or <code>templates/django_spellbook/data/</code></li>
+<li>Copy the original templates from the Django Spellbook package</li>
+<li>Modify the templates to suit your needs</li>
+</ol>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Template Integration
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Practice: Add Spellbook Styles to Your Base Template</h3>
+<ol>
+<li>Open your base template file</li>
+<li>Load the spellbook template tags: `</li>
+</ol>
+<verbatim><django-tag>{% load spellbook_tags %}</django-tag><p><code>3. Add the styles to your</code><head><code>section:</code></p><verbatim><spellbook_styles><p>`<br />
+4. Test your template to see the Spellbook styles applied to your markdown content<br />
+</p></spellbook_styles></verbatim></verbatim>
+    </div>
+</div>
+
+<h2>Example: Complete Sidebar Template</h2>
+<p>Here's an example of how to use these template tags in a sidebar template:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;{{ page_title }}&lt;/title&gt;
+    {% spellbook_styles %}
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;sidebar&quot;&gt;
+        {% sidebar_toc %}
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        &lt;h1&gt;{% dash_strip page_title %}&lt;/h1&gt;
+        {% show_metadata %}
+
+        {% block content %}{% endblock %}
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Custom template tags are a powerful way to extend Django's template language, allowing you to define your own functionality beyond what's included with the built-in tag library.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Documentation</cite>
+                <span class="sb-neutral-50">, Template Tags and Filters</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<a class="super-link" href="/docs/Templatetags/custom"><p>Read Next: Creating Custom Template Tags<br />
+</p></a>
 {% endblock %}

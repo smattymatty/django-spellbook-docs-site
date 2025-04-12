@@ -3,23 +3,56 @@
 {% block spellbook_md %}
 <h2>python manage.py spellbook_md</h2>
 <p>This command will take your directory full of markdown files (or nested directories) and transform them into dynamic HTML templates. Then, it will generate views, URLs, and Navigation based on your content's file structure.</p>
-<h4><strong>These Settings are required</strong></h4>
+<h3>Basic Configuration</h3>
+<h4><strong>Required Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
-SPELLBOOK_CONTENT_APP = &quot;my_app&quot;
+SPELLBOOK_MD_APP = &quot;my_app&quot;
 </code></pre>
-<h4><strong>These Settings are recommended</strong></h4>
+<h4><strong>Recommended Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 </code></pre>
 <ul>
-<li>The default of <code>SPELLBOOK_MD_BASE_TEMPLATE</code> is <code>None</code>, which will simply just show the rendered markdown content. This built in base template includes a few styles, and a sidebar with a navigation menu based on your <code>SPELLBOOK_MD_PATH</code> directory structure.</li>
-<li>The source for the built in base template is available <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">here</a>. You can override this template by specifying a different path in your settings. You can read more about customising the base template <a href="#">here</a>.</li>
+<li>The default of <code>SPELLBOOK_MD_BASE_TEMPLATE</code> is <code>None</code>, which will simply just show the rendered markdown content. This built-in base template includes a few styles, and a sidebar with a navigation menu based on your <code>SPELLBOOK_MD_PATH</code> directory structure.</li>
+<li>The source for the built-in base template is available <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">here</a>. You can override this template by specifying a different path in your settings. You can read more about customising the base template <a href="#">here</a>.</li>
 </ul>
-<h4>These Settings are optional</h4>
+<h4><strong>Optional Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True
 </code></pre>
 <ul>
-<li>The default of <code>SPELLBOOK_MD_TITLEFY</code> is <code>True</code>. This will ensure the title of your markdown files are capitilized and converts dashes to spaces.</li>
+<li>The default of <code>SPELLBOOK_MD_TITLEFY</code> is <code>True</code>. This will ensure the title of your markdown files are capitalized and converts dashes to spaces.</li>
 </ul>
-<a class="super-link" href="/docs/Markdown/quick-start"><p>Read Next: Markdown Module Quick Start<br />
+<h3>Multi-Source Configuration</h3>
+<p>Django Spellbook supports processing multiple source directories to different destination apps. This is useful for organizing content across different sections of your site.</p>
+<h4><strong>Multiple Source-Destination Pairs</strong></h4>
+<pre><code class="language-python"># For multiple source configuration
+SPELLBOOK_MD_PATH = [
+    BASE_DIR / &quot;docs_content&quot;,
+    BASE_DIR / &quot;blog_content&quot;
+]
+SPELLBOOK_MD_APP = [
+    &quot;docs_app&quot;,
+    &quot;blog_app&quot;
+]
+</code></pre>
+<p>With this configuration:</p>
+<ul>
+<li>Markdown files from <code>docs_content</code> will be processed to the <code>docs_app</code></li>
+<li>Markdown files from <code>blog_content</code> will be processed to the <code>blog_app</code></li>
+<li>Each app will have its own independent set of templates, views, and URLs</li>
+</ul>
+<h4><strong>Accessing Multi-Source Content</strong></h4>
+<p>When using multiple source-destination pairs, include the main URLs module in your project's <code>urls.py</code>:</p>
+<pre><code class="language-python"># urls.py
+urlpatterns = [
+    path('content/', include('django_spellbook.urls')),
+]
+</code></pre>
+<p>This will make your content available at paths like:</p>
+<ul>
+<li><code>/content/docs_app/page-name/</code></li>
+<li><code>/content/blog_app/post-name/</code></li>
+</ul>
+<p>Each app's content gets its own URL namespace based on the app name, ensuring no conflicts between content from different sources.</p>
+<a class="super-link" href="/docs/Markdown/introduction"><p>Read Next: Markdown Module Introduction<br />
 </p></a>
 {% endblock %}

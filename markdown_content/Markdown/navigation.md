@@ -36,7 +36,7 @@ TOC = {
 
 ```
 
-Every markdown file that is processed by the `spellbook_md` command will be added to this `TOC`, alongside their 'title' (see [metadata](#metadata)) and 'url'. This is used to generate the navigation menu.
+Every markdown file that is processed by the `spellbook_md` command will be added to this `TOC`, alongside their 'title' (see [metadata](/docs/Markdown/metadata)) and 'url'. This is used to generate the navigation menu.
 
 {~ alert type="info" ~}
 {% verbatim %}Django Spellbook offers a built in `{% sidebar_toc %}` template tag that renders a responsive and interactive navigation menu based on the TOC structure.{% endverbatim %}
@@ -72,7 +72,7 @@ The built-in [sidebar_toc.html](https://github.com/smattymatty/django_spellbook/
 ```
 
 {~ alert type="info" ~}
-{% verbatim %}The `{% spellbook_url %}` template tag will take the url (example: `Commands/spellbook_md` or `introduction`) and convert it into a valid URL.{% endverbatim %} 
+{% verbatim %}The `{% spellbook_url %}` template tag will take the url (example: `Commands/spellbook_md` or `introduction`) and convert it into a valid Django URL.{% endverbatim %} 
 {~~}
 
 ### Including the table of contents in your own views
@@ -99,6 +99,6 @@ By default, the navigation menu is sorted alphabetically by the 'title' of each 
 The 'title' property of each item will capitalize the first letter of each word longer than 3 characters, and strip any dashes from the beginning of the title. Dashes within the title will be replaced with spaces. Underscores will remain unchanged. `SPELLBOOK_MD_TITLEFY` is set to `True` by default, but you can set it to `False` to disable this behavior.
 {~~}
 
-{% a href="/docs/Markdown/custom-base-template" .super-link %}
+{% a href="/docs/Markdown/base-template" .super-link %}
 Read Next: Custom Base Template
 {% enda %}

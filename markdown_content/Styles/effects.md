@@ -72,6 +72,6 @@ Available classes:
 - `sb-contrast-125`: 125% contrast
 - `sb-contrast-150`: 150% contrast
 
-{% a href="/docs/Styles/transitions-animation .super-link %}
-Continue to Transitions and Animations
+{% a href="/docs/Styles/flexbox-grid .super-link %}
+Continue to Flexbox and Grid Utilities
 {% enda %}

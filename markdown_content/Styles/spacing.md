@@ -82,6 +82,6 @@ Available classes:
     {% enddiv %}
 {% enddiv %}
 
-{% a href="/docs/Styles/sizing" .super-link %}
-Continue to Sizing Utilities 
+{% a href="/docs/Styles/transitions-animations" .super-link %}
+Continue to Transitions and Animations Utilities
 {% enda %}

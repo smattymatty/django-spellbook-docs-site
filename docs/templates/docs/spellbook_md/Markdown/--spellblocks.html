@@ -1,0 +1,149 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>SpellBlocks</h1>
+<p>SpellBlocks are reusable content components that you can embed directly in your markdown. Think of them as Django template tags, but for markdown. They're perfect for creating rich, interactive content while keeping your markdown clean and readable.</p>
+<h2>Built-in SpellBlocks</h2>
+<h3>Alert Block</h3>
+<p>Creates attention-grabbing message boxes with different styles.</p>
+<pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
+Hey! This is important stuff!
+{~~}
+</code></pre>
+<p>Available Types:</p>
+<ul>
+<li>info (default)</li>
+<li>warning</li>
+<li>success</li>
+<li>danger</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>If you use an invalid type, it'll default to 'info' and print a warning message telling you what went wrong.</p>
+    </span>
+</div>
+
+<h3>Card Block</h3>
+<p>Creates a card-style container for your content. Perfect for organizing related information.</p>
+<pre><code class="language-django">{~ card title=&quot;Optional Title&quot; footer=&quot;Optional Footer&quot; class=&quot;any-extra-classes&quot; ~}
+Your card content here.
+Supports **markdown** too!
+{~~}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">This is my Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>All parameters are optional. The card will still look good without them.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            This is my Footer
+        </div>
+
+</div>
+
+<h2>Quote Block</h2>
+<p>The Quote Block creates stylized quotations with optional attribution information. This block is perfect for highlighting important quotes, testimonials, or key takeaways from other sources.</p>
+<h3>Parameters</h3>
+<ul>
+<li><code>author</code> - (Optional) The person who said or wrote the quote</li>
+<li><code>source</code> - (Optional) The source of the quote (book, article, etc.)</li>
+<li><code>class</code> - (Optional) Additional CSS classes to apply to the quote block</li>
+</ul>
+<h3>Example Usage</h3>
+<pre><code class="language-markdown">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Address to the Students' Disarmament Meeting&quot; ~}
+Peace cannot be kept by force; it can only be achieved by understanding.
+{~~}
+</code></pre>
+<h3>Rendered Result</h3>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Peace cannot be kept by force; it can only be achieved by understanding.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Albert Einstein</cite>
+                <span class="sb-neutral-50">, Address to the Students&#x27; Disarmament Meeting</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<p>You can also use markdown <em>within</em> your quotes:</p>
+<pre><code class="language-markdown">{~ quote author=&quot;Ada Lovelace&quot; ~}
+The **Analytical Engine** weaves algebraic patterns, just as the *Jacquard loom* weaves flowers and leaves.
+{~~}
+</code></pre>
+<h2>Practice Block</h2>
+<p>The Practice Block provides a structured format for exercises, challenges, or practice activities. It's ideal for tutorials, educational content, or articles that include actionable tasks.</p>
+<h3>Parameters</h3>
+<ul>
+<li><code>difficulty</code> - (Optional) How challenging the practice is (default: "Moderate")</li>
+<li><code>timeframe</code> - (Optional) Estimated time to complete (default: "Varies")</li>
+<li><code>impact</code> - (Optional) The benefit level from completing the practice (default: "Medium")</li>
+<li><code>focus</code> - (Optional) The skill area this practice targets (default: "General")</li>
+<li><code>class</code> - (Optional) Additional CSS classes to apply to the practice block</li>
+</ul>
+<h3>Example Usage</h3>
+<pre><code class="language-markdown">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15-30 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
+### Template Inheritance Challenge
+
+Create a Django project with:
+1. A base template with blocks for `title`, `content`, and `footer`
+2. Two child templates that extend this base template
+3. A view that renders each child template
+
+**Bonus**: Add a navigation block that changes based on the current page.
+{~~}
+</code></pre>
+<h3>Rendered Result</h3>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15-30 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Django Templates
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Template Inheritance Challenge</h3>
+<p>Create a Django project with:<br />
+1. A base template with blocks for <code>title</code>, <code>content</code>, and <code>footer</code><br />
+2. Two child templates that extend this base template<br />
+3. A view that renders each child template</p>
+<p><strong>Bonus</strong>: Add a navigation block that changes based on the current page.</p>
+    </div>
+</div>
+
+<p>For more advanced examples:</p>
+<p>```markdown<br />
+{~ practice difficulty="Advanced" timeframe="1-2 hours" impact="Very High" focus="Performance Optimization" ~}</p>
+<h3>Database Query Optimization</h3>
+<p>Take an existing Django view that's performing slowly and:<br />
+1. Use Django Debug Toolbar to identify slow queries<br />
+2. Implement <code>select_related()</code> and <code>prefetch_related()</code> where appropriate<br />
+3. Add proper indexing to your models<br />
+4. Measure and document the performance improvement</p>
+<p><strong>Deliverable</strong>: Before and after performance metrics, and a brief explanation of your changes.<br />
+{~~}</p>
+<a class="super-link" href="/docs/Markdown/custom-spellblocks"><p>Read Next: Creating Custom SpellBlocks<br />
+</p></a>
+{% endblock %}

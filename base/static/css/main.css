@@ -14,6 +14,15 @@ body {
   padding-left: 20px;
 }
 
+@media (max-width: 1240px) {
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0; /* This will remove all padding */
+  }
+}
+
+
 h1,
 h2,
 h3 {

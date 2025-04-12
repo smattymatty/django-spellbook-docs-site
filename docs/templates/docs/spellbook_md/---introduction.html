@@ -2,18 +2,17 @@
 
 {% block spellbook_md %}
 <h1>What is Django Spellbook?</h1>
-<p>Django Spellbook is a Library of helpful tools, functions, and commands that are designed to feel like they're part of Django, with a touch of magic added to your project. It includes components that make handling tasks like markdown parsing more powerful and flexible than standard Django utilities.</p>
+<p>A magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.</p>
 <p>It's a collection of tools that I've found useful in my projects, and I hope that you will too.</p>
 <h1>Installation</h1>
 <p>Install the package with pip:<br />
 <code>pip install django-spellbook</code></p>
 <p>Then, add <code>django_spellbook</code> to your Django app's <code>INSTALLED_APPS</code> in <code>settings.py</code>:</p>
-<pre><code class="language-python">
-# settings.py
+<pre><code class="language-python"># settings.py
 INSTALLED_APPS = [
     ...,
     'django_spellbook',
-    'my_app', # another app is required to use as the SPELLBOOK_CONTENT_APP
+    'my_app', # another app is required to use as the SPELLBOOK_MD_APP
 ]
 </code></pre>
 <p>For more settings, check out the <a href="/docs/settings">settings documentation</a>.</p>
@@ -21,7 +20,7 @@ INSTALLED_APPS = [
 <p>Django Spellbook includes a number of features, within different modules that can be used in your Django projects.</p>
 <h2>Markdown</h2>
 <p>Spellbook's custom Markdown Renderer will automatically build the templates, views, urls, and much more with just one terminal command. It offers extended syntax for creating interactive elements with much more control over the HTML output, including custom elements, blocks, and more. </p>
-<p>All you need to get started is a folder of markdown files, a Django app, and a few settings.</p>
+<p>All you need to get started is a folder of markdown files, a Django app, and a few settings. Spellbook now supports multiple source directories and destination apps, allowing you to organize different types of content (like documentation, blog posts, or help articles) into separate apps with their own URL namespaces.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 

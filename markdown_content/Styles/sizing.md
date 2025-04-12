@@ -111,6 +111,6 @@ Available classes:
 </div>
 ```
 
-{% a href="/docs/Styles/typography" .super-link %}
-Continue to Typography Utilities
+{% a href="/docs/Styles/spacing" .super-link %}
+Continue to Spacing Utilities
 {% enda %}

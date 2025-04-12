@@ -81,6 +81,6 @@ Available classes:
 </div>
 ```
 
-{% a href="/docs/Styles/flexbox-grid" .super-link %}
-Continue to Flexbox & Grid Utilities 
+{% a href="/docs/Styles/sizing" .super-link %}
+Continue to Sizing Utilities 
 {% enda %}

@@ -74,15 +74,16 @@ All Spellbook styles use the `sb-` prefix to prevent conflicts with your project
 
 Want to see the specific classes available? Check out:
 
-- [Layout Utilities](/docs/Styles/layout)
-- [Flexbox & Grid Utilities](/docs/Styles/flexbox-grid)
-- [Spacing Utilities](/docs/Styles/spacing)
-- [Typography Utilities](/docs/Styles/typography)
-- [Sizing Utilities](/docs/Styles/sizing)
-- [Interactivity Utilities](/docs/Styles/interactivity)
-- [Transition/Animation Utilities](/docs/Styles/transition-animation)
-- [Effects Utilities](/docs/Styles/effects)
 - [Border Utilities](/docs/Styles/borders)
+- [Color Utilities](/docs/Styles/colors)
+- [Effects Utilities](/docs/Styles/effects)
+- [Flexbox & Grid Utilities](/docs/Styles/flexbox-grid)
+- [Interactivity Utilities](/docs/Styles/interactivity)
+- [Layout Utilities](/docs/Styles/layout)
+- [Sizing Utilities](/docs/Styles/sizing)
+- [Spacing Utilities](/docs/Styles/spacing)
+- [Transition/Animation Utilities](/docs/Styles/transition-animation)
+- [Typography Utilities](/docs/Styles/typography)
 
 {~ card title="Style Philosophy" ~}
 Spellbook's styles are designed to be:

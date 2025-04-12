@@ -123,7 +123,3 @@ Available classes:
 {% div class="sb-font-sans sb-text-3xl sb-tracking-tight sb-leading-tight sb-text-center sb-capitalize" %}
 Your Article Title Here
 {% enddiv %}
-
-{% a href="/docs/Styles/effects" .super-link %}
-Continue to Effects Utilities
-{% enda %}

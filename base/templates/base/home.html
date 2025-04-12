@@ -9,10 +9,10 @@
 {% block content %}
     <div class="padded-x-content">
         <div class="magical-border">
-            <h2>Django Content Management Magic</h2>
-            <strong>Welcome, Apprentice Django Mage!</strong>
+            <h2>Django Markdown Content Management System</h2>
+            <strong>A flexible content management extension for Django</strong>
             <p>
-                Improve your projects with Django Spellbook! Tools, commands, and features that seamlessly blend into Django, adding powerful capabilities to your workflow.
+                Django Spellbook extends Django's templating and rendering capabilities with a focus on markdown-based content. It transforms markdown files into fully-rendered Django templates with auto-generated views and URLs, eliminating boilerplate code while maintaining Django's flexibility.
             </p>
         </div>
         <div class="magical-border">
@@ -24,9 +24,9 @@
                             <span class="spell-icon">🪶</span>
                             <code class="spell-title">python manage.py spellbook_md</code>
                             <ul class="border-radius-5-handler">
-                                <li>Transform markdown into dynamic HTML templates.</li>
-                                <li>Extend markdown with Django-like tags & modular custom blocks.</li>
-                                <li>Auto-generate Views, URLs, and Navigation based on your content's file structure.</li>
+                                <li><strong>Auto-generation</strong>: Creates Django templates, views, and URL patterns from markdown files</li>
+                                <li><strong>Extended Markdown</strong>: Django-inspired tag syntax for custom HTML attributes and structures</li>
+                                <li><strong>Content Organization</strong>: Support for multiple source directories mapped to different Django apps</li>
                             </ul>
                         </div>
                     </a>
@@ -65,20 +65,19 @@
         </div>
         <div class="magical-border">
             <h3>Get Started in Minutes</h3>
-            <p>Install Django Spellbook and add a touch of magic to your project:</p>
+            <p>Django Spellbook integrates with your project by generating server-side code from markdown content:</p>
             <pre class="home-pre">pip install django-spellbook</pre>
-            <p>Configure your settings and start casting spells:</p>
+            <p>Configure with these essential settings:</p>
             <code class="home-code">
                 <pre>
 INSTALLED_APPS = [
-    # ...
     'django_spellbook',
-    # ...
+    'my_app', # for SPELLBOOK_MD_APP
 ]
 
 # necessary for markdown parsing
 SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
-SPELLBOOK_CONTENT_APP = 'my_app'
+SPELLBOOK_MD_APP = 'my_app'
 
 # optional for markdown parsing
 SPELLBOOK_MD_BASE_TEMPLATE = '<a class="in-code-link" href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">django_spellbook/bases/base_sidebar_left.html</a>'

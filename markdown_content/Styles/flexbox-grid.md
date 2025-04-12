@@ -98,6 +98,6 @@ Available classes:
 </div>
 ```
 
-{% a href="/docs/Styles/spacing" .super-link %}
-Continue to Spacing Utilities 
+{% a href="/docs/Styles/interactivity" .super-link %}
+Continue to Interactivity Utilities
 {% enda %}

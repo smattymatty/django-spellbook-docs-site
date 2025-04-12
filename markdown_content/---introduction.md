@@ -1,6 +1,6 @@
 # What is Django Spellbook?
 
-Django Spellbook is a Library of helpful tools, functions, and commands that are designed to feel like they're part of Django, with a touch of magic added to your project. It includes components that make handling tasks like markdown parsing more powerful and flexible than standard Django utilities.
+A magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.
 
 It's a collection of tools that I've found useful in my projects, and I hope that you will too.
 
@@ -12,12 +12,11 @@ Install the package with pip:
 Then, add `django_spellbook` to your Django app's `INSTALLED_APPS` in `settings.py`:
 
 ```python
-
 # settings.py
 INSTALLED_APPS = [
     ...,
     'django_spellbook',
-    'my_app', # another app is required to use as the SPELLBOOK_CONTENT_APP
+    'my_app', # another app is required to use as the SPELLBOOK_MD_APP
 ]
 ```
 
@@ -31,7 +30,7 @@ Django Spellbook includes a number of features, within different modules that ca
 
 Spellbook's custom Markdown Renderer will automatically build the templates, views, urls, and much more with just one terminal command. It offers extended syntax for creating interactive elements with much more control over the HTML output, including custom elements, blocks, and more. 
 
-All you need to get started is a folder of markdown files, a Django app, and a few settings.
+All you need to get started is a folder of markdown files, a Django app, and a few settings. Spellbook now supports multiple source directories and destination apps, allowing you to organize different types of content (like documentation, blog posts, or help articles) into separate apps with their own URL namespaces.
 
 {~ alert type="info" ~}
 Spellbook's markdown module aims to be as simple as possible, while still providing a lot of flexibility and control. It's designed to be used alongside other Django features and third-party libraries like HTMX and Tailwind CSS.

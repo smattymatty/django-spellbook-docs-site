@@ -54,16 +54,11 @@ Example:
 <div class="sb-bg-primary-50">
     50% opacity primary background
 </div>
+<p class="sb-primary-75">
+    75% opacity primary text
+</p>
 ```
 
-Black/White opacities:
-
-- `sb-bg-black-25`: 25% black
-- `sb-bg-black-50`: 50% black
-- `sb-bg-black-75`: 75% black
-- `sb-bg-white-25`: 25% white
-- `sb-bg-white-50`: 50% white
-- `sb-bg-white-75`: 75% white
 
 ## Special Values
 
@@ -72,3 +67,7 @@ Black/White opacities:
 - `sb-bg-transparent`: Transparent background
 - `sb-bg-black`: Pure black
 - `sb-bg-white`: Pure white
+
+{% a href="/docs/Styles/effects" .super-link %}
+Continue to Effects Utilities
+{% enda %}

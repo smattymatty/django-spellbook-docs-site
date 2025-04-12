@@ -74,6 +74,6 @@ Available classes:
 - `sb-focus`: Default focus styles
 - `sb-focus-none`: Remove focus styles
 
-{% a href="/docs/Styles/typography" .super-link %}
-Continue to Typography Utilities
+{% a href="/docs/Styles/layout" .super-link %}
+Continue to Layout Utilities
 {% enda %}

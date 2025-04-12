@@ -35,7 +35,7 @@ TOC = {
 }
 
 </code></pre>
-<p>Every markdown file that is processed by the <code>spellbook_md</code> command will be added to this <code>TOC</code>, alongside their 'title' (see <a href="#metadata">metadata</a>) and 'url'. This is used to generate the navigation menu.</p>
+<p>Every markdown file that is processed by the <code>spellbook_md</code> command will be added to this <code>TOC</code>, alongside their 'title' (see <a href="/docs/Markdown/metadata">metadata</a>) and 'url'. This is used to generate the navigation menu.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -43,7 +43,8 @@ TOC = {
 
     </span>
     <span class="sb-alert-content">
-        <p>{% verbatim %}Django Spellbook offers a built in <code>{% sidebar_toc %}</code> template tag that renders a responsive and interactive navigation menu based on the TOC structure.{% endverbatim %}</p>
+        <verbatim><p>Django Spellbook offers a built in `</p><sidebar_toc><p>` template tag that renders a responsive and interactive navigation menu based on the TOC structure.<br />
+</p></sidebar_toc></verbatim>
     </span>
 </div>
 
@@ -79,7 +80,8 @@ TOC = {
 
     </span>
     <span class="sb-alert-content">
-        <p>{% verbatim %}The <code>{% spellbook_url %}</code> template tag will take the url (example: <code>Commands/spellbook_md</code> or <code>introduction</code>) and convert it into a valid URL.{% endverbatim %}</p>
+        <verbatim><p>The `</p><spellbook_url><p><code>template tag will take the url (example:</code>Commands/spellbook_md<code>or</code>introduction`) and convert it into a valid Django URL.<br />
+</p></spellbook_url></verbatim>
     </span>
 </div>
 
@@ -108,6 +110,6 @@ def my_view(request):
     </span>
 </div>
 
-<a class="super-link" href="/docs/Markdown/custom-base-template"><p>Read Next: Custom Base Template<br />
+<a class="super-link" href="/docs/Markdown/base-template"><p>Read Next: Custom Base Template<br />
 </p></a>
 {% endblock %}

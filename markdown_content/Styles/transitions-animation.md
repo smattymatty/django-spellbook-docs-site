@@ -78,6 +78,6 @@ Available classes:
 </button>
 ```
 
-{% a href="/docs/Styles/interactivity .super-link %}
-Continue to Interactivity Utilities
+{% a href="/docs/Styles/typography" .super-link %}
+Continue to Typography Utilities
 {% enda %}
