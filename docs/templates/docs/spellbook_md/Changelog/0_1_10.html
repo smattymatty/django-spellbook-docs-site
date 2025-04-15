@@ -17,7 +17,7 @@
 <h1>New Features</h1>
 <h2>Two New SpellBlocks</h2>
 <p><strong>1. QuoteBlock</strong> - Create beautifully styled quotes with attribution</p>
-<pre><code class="language-markdown">{~ quote author=&quot;Django Spellbook&quot; source=&quot;Documentation&quot; ~}
+<pre><code class="language-django">{~ quote author=&quot;Django Spellbook&quot; source=&quot;Documentation&quot; ~}
 Powerful Django markdown processing with template-like features.
 {~~}
 </code></pre>
@@ -37,7 +37,7 @@ Powerful Django markdown processing with template-like features.
 </blockquote>
 
 <p><em>Also Supports Images!</em> <strong>Add an optional 'image' parameter with a link!</strong></p>
-<pre><code class="language-markdown">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Theory of Relativity&quot; image=&quot;https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg&quot; ~}
+<pre><code class="language-django">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Theory of Relativity&quot; image=&quot;https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg&quot; ~}
 The speed of light is the ultimate limit of human understanding.
 {~~}
 </code></pre>
@@ -61,7 +61,7 @@ The speed of light is the ultimate limit of human understanding.
 </blockquote>
 
 <p><strong>2. PracticeBlock</strong> - Structure exercises and challenges with metadata</p>
-<pre><code class="language-markdown">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;20 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
+<pre><code class="language-django">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;20 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
 ### Create a custom template tag
 Write a template tag that formats dates according to user preferences.
 {~~}
@@ -110,10 +110,11 @@ urlpatterns = [
     path('content/', include('django_spellbook.urls')),
 ]
 </code></pre>
-<h2>Improvements</h2>
+<h3>Coming Soon</h3>
 <ul>
-<li>Enhanced documentation with detailed explanations and examples</li>
-<li>Better error handling for SpellBlock rendering</li>
-<li>Improved performance when processing large markdown files</li>
+<li>Alternate Named prefixes for urls on multiple sources</li>
+<li>Alternate Base Templates for each source</li>
+<li>More SpellBlocks</li>
+<li>More configuration options</li>
 </ul>
 {% endblock %}

@@ -141,6 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_content'
 
-SPELLBOOK_CONTENT_APP = 'docs'
+SPELLBOOK_MD_APP = 'docs'
 
 SPELLBOOK_MD_BASE_TEMPLATE = 'docs/sb_base.html'

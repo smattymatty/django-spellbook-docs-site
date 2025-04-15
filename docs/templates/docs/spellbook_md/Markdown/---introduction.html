@@ -6,7 +6,7 @@
 <h3>Why Use Spellbook's Markdown Parser?</h3>
 <p>This parser goes beyond the standard markdown syntax by including Django-inspired tags directly in your markdown files. This allows for more structured and semantic HTML, especially useful for projects that need finer control over styling and element attributes, like setting classes or IDs directly in markdown. This means you can write markdown that integrates more seamlessly with your Django templates.</p>
 <h3>Example: Add Structured HTML Elements Directly in Markdown</h3>
-<pre><code class="language-markdown">{% verbatim %}
+<pre><code class="language-python">{% verbatim %}
 {% div .container #main-container data-analytics=&quot;true&quot; %}
 ## Section Title
 Content with *markdown* support
@@ -22,7 +22,7 @@ Content with *markdown* support
 <p>Paired with powerful libraries like HTMX, this can create dynamic and interactive interfaces that are both visually appealing and highly functional without ever having to leave your markdown files.</p>
 <h3>Example: SpellBlocks, re-usable Content Components</h3>
 <p>Spellblocks are reusable content components that can be embedded directly in your markdown content. They provide a powerful way to create rich, interactive content while maintaining the simplicity of markdown syntax.</p>
-<pre><code class="language-markdown">{~ alert type=&quot;warning&quot; ~}
+<pre><code class="language-python">{~ alert type=&quot;warning&quot; ~}
 Warning: This is an important notice!
 {~~}
 </code></pre>
@@ -48,7 +48,7 @@ Warning: This is an important notice!
     </span>
 </div>
 
-<pre><code class="language-markdown">{~ card title=&quot;Quick Start&quot; footer=&quot;Updated: Today&quot; ~}
+<pre><code class="language-python">{~ card title=&quot;Quick Start&quot; footer=&quot;Updated: Today&quot; ~}
 1. Install the package
 2. Add to `INSTALLED_APPS`
 3. Start writing magical markdown!
@@ -100,7 +100,7 @@ SPELLBOOK_MD_APP = 'my_app'
 SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/sb_base.html'
 </code></pre>
 <p>The base template must have a block named <code>spellbook_md</code> that will be used to wrap the rendered markdown content. Here is a basic example of a base template:</p>
-<pre><code class="language-html">{% verbatim %}
+<pre><code class="language-django">{% verbatim %}
 &lt;!-- my_app/sb_base.html --&gt;
 {% extends 'base.html' %}
 &lt;div class=&quot;spellbook-md&quot;&gt;{% block spellbook_md %} {% endblock %}&lt;/div&gt;

@@ -44,7 +44,8 @@ class QuoteBlock(BasicSpellBlock):
         return context
 </code></pre>
 <h3>Step 2: Create the template at <code>blog/templates/blog/blocks/quote.html</code>:</h3>
-<pre><code class="language-html">&lt;blockquote class=&quot;sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 {% if kwargs.class %}{{ kwargs.class }}{% endif %}&quot;&gt;
+<pre><code class="language-django">{% verbatim %}
+&lt;blockquote class=&quot;sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 {% if kwargs.class %}{{ kwargs.class }}{% endif %}&quot;&gt;
     &lt;p class=&quot;sb-italic&quot;&gt;{{ content|safe }}&lt;/p&gt;
     {% if author or source %}
     &lt;footer class=&quot;sb-text-sm sb-mt-2&quot;&gt;
@@ -53,9 +54,10 @@ class QuoteBlock(BasicSpellBlock):
     &lt;/footer&gt;
     {% endif %}
 &lt;/blockquote&gt;
+{% endverbatim %}
 </code></pre>
 <h3>Step 3: Use in your markdown:</h3>
-<pre><code class="language-markdown">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Letter to Max Born, 1926&quot; ~}
+<pre><code class="language-python">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Letter to Max Born, 1926&quot; ~}
 God does not play dice with the universe.
 {~~}
 </code></pre>
@@ -71,7 +73,8 @@ God does not play dice with the universe.
 <p>Remember to include Spellbook's styles in your base template:</p>
 </li>
 </ol>
-<pre><code class="language-html">{% load spellbook_tags %}
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -82,6 +85,7 @@ God does not play dice with the universe.
     &lt;!-- Your content --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+{% endverbatim %}
 </code></pre>
 <ol start="4">
 <li>
