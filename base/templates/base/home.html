@@ -19,7 +19,7 @@
             <h3>Spells at your disposal:</h3>
             <ul class="spell-list">
                 <li>
-                    <a href="{% spellbook_url 'Commands/spellbook_md' %}" class="spell-link">
+                    <a href="{% spellbook_url 'docs:Commands_spellbook_md' %}" class="spell-link">
                         <div class="spell-content">
                             <span class="spell-icon">🪶</span>
                             <code class="spell-title">python manage.py spellbook_md</code>
@@ -83,7 +83,7 @@ SPELLBOOK_MD_APP = 'my_app'
 SPELLBOOK_MD_BASE_TEMPLATE = '<a class="in-code-link" href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">django_spellbook/bases/base_sidebar_left.html</a>'
         </pre>
             </code>
-            <a href="{% spellbook_url 'Markdown/quick-start' %}" class="cta-button">View Quick Start Guide</a>
+            <a href="{% spellbook_url 'docs:Markdown_quick-start' %}" class="cta-button">View Quick Start Guide</a>
         </div>
     </div>
 {% endblock %}
