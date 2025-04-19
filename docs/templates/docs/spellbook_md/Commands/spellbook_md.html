@@ -2,7 +2,14 @@
 
 {% block spellbook_md %}
 <h2>python manage.py spellbook_md</h2>
-<p>This command will take your directory full of markdown files (or nested directories) and transform them into dynamic HTML templates. Then, it will generate views, URLs, and Navigation based on your content's file structure.</p>
+<p>This command will take your directory full of markdown files (or nested directories) and transform them into dynamic HTML templates. It then generates views, URLs, and navigation based on your content's file structure.</p>
+<h3>Command Usage</h3>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p>Options:</p>
+<ul>
+<li><code>--continue-on-error</code>: Continue processing files even if some fail</li>
+</ul>
 <h3>Basic Configuration</h3>
 <h4><strong>Required Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
@@ -12,19 +19,26 @@ SPELLBOOK_MD_APP = &quot;my_app&quot;
 <pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 </code></pre>
 <ul>
-<li>The default of <code>SPELLBOOK_MD_BASE_TEMPLATE</code> is <code>None</code>, which will simply just show the rendered markdown content. This built-in base template includes a few styles, and a sidebar with a navigation menu based on your <code>SPELLBOOK_MD_PATH</code> directory structure.</li>
-<li>The source for the built-in base template is available <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">here</a>. You can override this template by specifying a different path in your settings. You can read more about customising the base template <a href="#">here</a>.</li>
+<li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): Specifies a template that will wrap all rendered markdown content. The default <code>None</code> simply shows the rendered markdown without additional styling.</li>
+<li>The built-in <code>sidebar_left.html</code> template includes styling and a navigation menu based on your content structure. You can <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">view the source here</a>.</li>
 </ul>
 <h4><strong>Optional Settings</strong></h4>
-<pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True
+<pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True  # Default: True
 </code></pre>
 <ul>
-<li>The default of <code>SPELLBOOK_MD_TITLEFY</code> is <code>True</code>. This will ensure the title of your markdown files are capitalized and converts dashes to spaces.</li>
+<li>When <code>True</code>, capitalizes first letters of words in titles and converts dashes to spaces</li>
+</ul>
+<h3>URL Configuration</h3>
+<h4><strong>URL Prefix Setting</strong></h4>
+<pre><code class="language-python">SPELLBOOK_MD_URL_PREFIX = &quot;docs&quot;  # Content will be at /docs/
+</code></pre>
+<ul>
+<li>This setting determines the URL prefix for accessing your markdown content</li>
+<li>If not specified, content will be available at the root URL</li>
 </ul>
 <h3>Multi-Source Configuration</h3>
-<p>Django Spellbook supports processing multiple source directories to different destination apps. This is useful for organizing content across different sections of your site.</p>
-<h4><strong>Multiple Source-Destination Pairs</strong></h4>
-<pre><code class="language-python"># For multiple source configuration
+<p>Django Spellbook supports processing multiple source directories to different destination apps:</p>
+<pre><code class="language-python"># Multiple source configuration
 SPELLBOOK_MD_PATH = [
     BASE_DIR / &quot;docs_content&quot;,
     BASE_DIR / &quot;blog_content&quot;
@@ -33,26 +47,88 @@ SPELLBOOK_MD_APP = [
     &quot;docs_app&quot;,
     &quot;blog_app&quot;
 ]
+SPELLBOOK_MD_URL_PREFIX = [
+    &quot;docs&quot;,   # Content at /docs/
+    &quot;blog&quot;    # Content at /blog/
+]
 </code></pre>
 <p>With this configuration:</p>
 <ul>
-<li>Markdown files from <code>docs_content</code> will be processed to the <code>docs_app</code></li>
-<li>Markdown files from <code>blog_content</code> will be processed to the <code>blog_app</code></li>
-<li>Each app will have its own independent set of templates, views, and URLs</li>
+<li>Markdown files from <code>docs_content</code> are processed to <code>docs_app</code> and accessible at <code>/docs/</code></li>
+<li>Markdown files from <code>blog_content</code> are processed to <code>blog_app</code> and accessible at <code>/blog/</code></li>
+<li>Each app maintains its own set of templates, views, and URLs</li>
 </ul>
-<h4><strong>Accessing Multi-Source Content</strong></h4>
-<p>When using multiple source-destination pairs, include the main URLs module in your project's <code>urls.py</code>:</p>
+<p>If URL prefixes aren't specified, the default behavior is:</p>
+<ul>
+<li>First app gets empty prefix (root URL)</li>
+<li>Subsequent apps use their app name as the prefix</li>
+</ul>
+<h3>Accessing Your Content</h3>
+<p>To make your content accessible, include Django Spellbook's URLs in your project's <code>urls.py</code>:</p>
 <pre><code class="language-python"># urls.py
 urlpatterns = [
-    path('content/', include('django_spellbook.urls')),
+    # Mount at the root for best URLs
+    path('', include('django_spellbook.urls')),
+    # Or use a prefix if needed
+    # path('content/', include('django_spellbook.urls')),
 ]
 </code></pre>
-<p>This will make your content available at paths like:</p>
+<h3>Command Process</h3>
+<p>When you run the command, it:</p>
+<ol>
+<li>Discovers all markdown files in your configured directories</li>
+<li>Processes them with Spellbook's enhanced markdown parser</li>
+<li>Generates templates in each destination app</li>
+<li>Creates view functions for each processed file</li>
+<li>Sets up URL patterns based on file paths and configured prefixes</li>
+<li>Builds navigation tables of contents for each source</li>
+</ol>
+<div class="sb-p-4 sb-mb-4"><a class="super-link" href="/docs/Markdown/introduction"><p>Read Next: Markdown Module Introduction</p></a></div>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15-20 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Command Usage
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Command Practice Challenge</h3>
+<p>Try these exercises to master the <code>spellbook_md</code> command:</p>
+<ol>
+<li><strong>Basic Command Usage</strong>:</li>
+</ol>
 <ul>
-<li><code>/content/docs_app/page-name/</code></li>
-<li><code>/content/blog_app/post-name/</code></li>
+<li>Create a simple markdown file with a heading and some content</li>
+<li>Configure the required settings in your project</li>
+<li>Run the command and verify the file was processed successfully</li>
+<li>View the generated template, view function, and URL pattern</li>
 </ul>
-<p>Each app's content gets its own URL namespace based on the app name, ensuring no conflicts between content from different sources.</p>
-<a class="super-link" href="/docs/Markdown/introduction"><p>Read Next: Markdown Module Introduction<br />
-</p></a>
+<ol start="2">
+<li><strong>URL Prefix Configuration</strong>:</li>
+</ol>
+<ul>
+<li>Configure a custom URL prefix for your content</li>
+<li>Run the command again and verify your content is accessible at the new URL</li>
+<li>Try changing the URL prefix and observe how the URLs are updated</li>
+</ul>
+<ol start="3">
+<li><strong>Multi-Source Setup</strong>:</li>
+</ol>
+<ul>
+<li>Create a second directory with markdown files</li>
+<li>Configure settings for multiple source-destination pairs</li>
+<li>Run the command and verify both sources are processed correctly</li>
+<li>Check that the content is accessible at the expected URLs</li>
+</ul>
+<p><strong>Bonus</strong>: Try the <code>--continue-on-error</code> flag with some intentionally malformed markdown files to see how the command handles errors.</p>
+    </div>
+</div>
 {% endblock %}

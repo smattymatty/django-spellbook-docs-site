@@ -8,12 +8,44 @@
 <p><code>SPELLBOOK_MD_PATH</code>: The directory that contains the markdown files to be processed.</p>
 </li>
 <li>
-<p><code>SPELLBOOK_CONTENT_APP</code>: The app to write all of the generated templates for.</p>
+<p><code>SPELLBOOK_MD_APP</code>: The app to write all of the generated templates for.</p>
 </li>
 </ul>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
-SPELLBOOK_CONTENT_APP = &quot;my_app&quot;
+SPELLBOOK_MD_APP = &quot;my_app&quot;
 </code></pre>
+<h2>Advanced Configuration</h2>
+<h3>Multiple Source-Destination Pairs</h3>
+<p>Django Spellbook supports processing multiple markdown sources to different destination apps:</p>
+<pre><code class="language-python">SPELLBOOK_MD_PATH = [
+    BASE_DIR / &quot;docs_content&quot;,
+    BASE_DIR / &quot;blog_content&quot;
+]
+SPELLBOOK_MD_APP = [
+    &quot;docs_app&quot;,
+    &quot;blog_app&quot;
+]
+</code></pre>
+<h3>URL Prefixes</h3>
+<ul>
+<li><code>SPELLBOOK_MD_URL_PREFIX</code>: Customize the URL prefix for your markdown content.</li>
+</ul>
+<pre><code class="language-python"># Single source configuration
+SPELLBOOK_MD_URL_PREFIX = &quot;documentation&quot;  # Content will be at /documentation/
+
+# Multiple source configuration
+SPELLBOOK_MD_URL_PREFIX = [
+    &quot;docs&quot;,   # First source at /docs/
+    &quot;blog&quot;    # Second source at /blog/
+]
+# If no URL prefixes are specified, the default behavior applies:
+# ['', 'blog_app']
+</code></pre>
+<p>If not specified, default URL prefixes will be:</p>
+<ul>
+<li>For single app: Empty string (content at root URL)</li>
+<li>For multiple apps: First app gets empty prefix, others use their app name as prefix</li>
+</ul>
 <h2>Recommended</h2>
 <ul>
 <li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): The base template to use for the generated markdown files.</li>
@@ -27,6 +59,50 @@ SPELLBOOK_CONTENT_APP = &quot;my_app&quot;
 </ul>
 <pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True
 </code></pre>
-<a class="super-link" href="/docs/Commands/spellbook_md"><p>Continue to the Spellbook MD Command<br />
-</p></a>
+<div class="sb-p-4 sb-mb-4"><a class="super-link" href="/docs/Markdown/quick-start"><p>Read Next: Markdown Module Quick Start</p></a></div>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10-15 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Configuration
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Settings Configuration Practice</h3>
+<p>Try these exercises to master Django Spellbook settings:</p>
+<ol>
+<li><strong>Basic Configuration</strong>:</li>
+</ol>
+<ul>
+<li>Set up a Django project with Django Spellbook</li>
+<li>Configure the required settings for a single markdown source</li>
+<li>Process markdown files and verify they're accessible</li>
+</ul>
+<ol start="2">
+<li><strong>Multi-Source Setup</strong>:</li>
+</ol>
+<ul>
+<li>Modify your settings to support two different content sources</li>
+<li>Configure custom URL prefixes for each source</li>
+<li>Verify that the content is accessible at the expected URLs</li>
+</ul>
+<ol start="3">
+<li><strong>Base Template</strong>:</li>
+</ol>
+<ul>
+<li>Create a custom base template with appropriate blocks</li>
+<li>Configure Django Spellbook to use your template</li>
+<li>Process markdown files and verify they're wrapped in your template</li>
+</ul>
+<p><strong>Bonus</strong>: Configure a development setup where documentation is at the root URL (<code>/</code>) and blog posts are under <code>/blog/</code>.</p>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Security Test Document</h1>
+<h2>Code Injection Attempts</h2>
+<pre><code class="language-python"># Attempt 1: String termination
+print(''); {% debug %}; x = ('
+</code></pre>
+<p>````python</p>
+<h1>Attempt 3: Triple-backtick escape</h1>
+<p>print("\"); malicous_code() #")</p>
+<pre><code>
+
+## Context Breaking Patterns
+
+'); return render(request, 'hacked.html', {}) #
+
+```python
+# Final attempt: Multiline escape
+'''
+'''); from django.http import HttpResponse; return HttpResponse('HACKED') #'''
+</code></pre>
+<p><strong>Important Note:</strong> This file contains patterns that should be caught by proper security checks like:<br />
+1. String termination sequences (<code>'); ...</code>)<br />
+2. Template engine bypass attempts<br />
+3. Direct OS command execution patterns<br />
+4. Context-breaking return statements</p>
+<p>A secure system should either:<br />
+- Block processing of this file entirely<br />
+- Escape all dangerous patterns to text content<br />
+- Throw validation errors during view generation</p>
+<p>Always test in a sandboxed environment and remove after testing.</p>
+{% endblock %}

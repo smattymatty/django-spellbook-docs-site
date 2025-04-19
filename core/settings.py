@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'docs',
     'django_spellbook',
     'examples',
+    'changelog'
 ]
 
 MIDDLEWARE = [
@@ -139,8 +140,19 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_content'
+SPELLBOOK_MD_PATH = [
+    BASE_DIR / 'markdown_content',
+    BASE_DIR / 'changelog_content'
+    ]
 
-SPELLBOOK_MD_APP = 'docs'
+SPELLBOOK_MD_APP = [
+    'docs',
+    'changelog'
+]
 
 SPELLBOOK_MD_BASE_TEMPLATE = 'docs/sb_base.html'
+
+SPELLBOOK_MD_URL_PREFIX = [
+    'docs',
+    'changelog'
+]

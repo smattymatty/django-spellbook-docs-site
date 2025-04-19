@@ -52,7 +52,7 @@ The Quote Block creates stylized quotations with optional attribution informatio
 
 ### Example Usage
 
-```python
+```django
 {~ quote author="Albert Einstein" source="Address to the Students' Disarmament Meeting" ~}
 Peace cannot be kept by force; it can only be achieved by understanding.
 {~~}
@@ -66,7 +66,7 @@ Peace cannot be kept by force; it can only be achieved by understanding.
 
 You can also use markdown *within* your quotes:
 
-```python
+```django
 {~ quote author="Ada Lovelace" ~}
 The **Analytical Engine** weaves algebraic patterns, just as the *Jacquard loom* weaves flowers and leaves.
 {~~}
@@ -86,7 +86,7 @@ The Practice Block provides a structured format for exercises, challenges, or pr
 
 ### Example Usage
 
-```python
+```django
 {~ practice difficulty="Beginner" timeframe="15-30 minutes" impact="High" focus="Django Templates" ~}
 ### Template Inheritance Challenge
 
@@ -114,7 +114,7 @@ Create a Django project with:
 
 For more advanced examples:
 
-```python
+```django
 {~ practice difficulty="Advanced" timeframe="1-2 hours" impact="Very High" focus="Performance Optimization" ~}
 ### Database Query Optimization
 
@@ -126,7 +126,9 @@ Take an existing Django view that's performing slowly and:
 
 **Deliverable**: Before and after performance metrics, and a brief explanation of your changes.
 {~~}
+```
 
 {% a href="/docs/Markdown/custom-spellblocks" .super-link %}
 Read Next: Creating Custom SpellBlocks
 {% enda %}
+

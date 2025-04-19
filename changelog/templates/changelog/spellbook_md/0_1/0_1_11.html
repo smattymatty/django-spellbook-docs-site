@@ -1,0 +1,110 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2><strong>Version 0.1.11</strong></h2>
+<p><em>Released: June 15, 2025</em></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This release brings major architectural improvements, URL prefix customization, and enhanced error handling, making Django Spellbook more robust, flexible, and maintainable.</p>
+    </span>
+</div>
+
+<h1>New Features</h1>
+<h2>Customizable URL Prefixes</h2>
+<p>You can now customize URL prefixes for your markdown content, both for single and multiple source configurations:</p>
+<pre><code class="language-python"># Single source with custom URL prefix
+SPELLBOOK_MD_PATH = BASE_DIR / &quot;docs&quot;
+SPELLBOOK_MD_APP = &quot;docs_app&quot;
+SPELLBOOK_MD_URL_PREFIX = &quot;documentation&quot;  # Content at /documentation/
+</code></pre>
+<pre><code class="language-python"># Multiple sources with custom URL prefixes
+SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
+SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
+SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ and /articles/
+</code></pre>
+<p>If no URL prefix is specified:</p>
+<ul>
+<li>Single app configurations use an empty prefix (root URL)</li>
+<li>Multiple app configurations give the first app an empty prefix, and use app names for others</li>
+</ul>
+<h2>Enhanced Error Handling</h2>
+<p>The command now provides better error messages and diagnostic information when things go wrong:</p>
+<ul>
+<li>Clear identification of the source of errors (settings, file discovery, processing)</li>
+<li>Helpful suggestions for resolving common issues</li>
+<li>Improved logging of error details</li>
+<li>New <code>--continue-on-error</code> flag to process as many files as possible even when some fail</li>
+</ul>
+<h1>Architecture Improvements</h1>
+<h2>Modular Command Structure</h2>
+<p>The <code>spellbook_md</code> command has been refactored into a modular architecture:</p>
+<pre><code>django_spellbook/
+├── management/
+│   ├── commands/
+│   │   ├── command_utils.py          # Shared utilities
+│   │   ├── spellbook_md.py           # Main command
+│   │   └── spellbook_md_p/           # Command components
+│   │       ├── processor.py          # Markdown processing
+│   │       ├── discovery.py          # File/block discovery
+│   │       └── exceptions.py         # Specialized exceptions
+</code></pre>
+<p>Benefits of this new architecture:</p>
+<ul>
+<li>Improved maintainability with focused modules</li>
+<li>Better testability with clear component boundaries</li>
+<li>Easier extensibility for future features</li>
+<li>Enhanced error handling and reporting</li>
+</ul>
+<h2>Summary Report Generation</h2>
+<p>The command now produces a comprehensive summary after processing:</p>
+<ul>
+<li>Total files processed across all sources</li>
+<li>Success rate for each source-destination pair</li>
+<li>Detailed information about any failures</li>
+<li>Processing statistics</li>
+</ul>
+<h1>Bug Fixes &amp; Improvements</h1>
+<ul>
+<li>Fixed an issue where multi-source configurations could have URL routing conflicts</li>
+<li>Improved validation of settings to catch configuration errors earlier</li>
+<li>Enhanced source path normalization for Windows compatibility</li>
+<li>Added better progress indicators during processing</li>
+</ul>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>This release marks a significant step forward in Django Spellbook's architecture, setting the foundation for exciting features we have planned for future releases.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Spellbook Team</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h1>Coming Soon</h1>
+<ul>
+<li>Custom base templates for each source</li>
+<li>Source-specific metadata configuration</li>
+<li>Enhanced navigation options</li>
+<li>Advanced content filtering and organization</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>We're committed to continuous improvement. If you have feedback or feature requests for future versions, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
+    </span>
+</div>
+{% endblock %}
