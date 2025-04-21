@@ -297,7 +297,7 @@ ol:nth-of-type(even) {
 }
 
 .content ul:nth-of-type(odd),
-ol:nth-of-type(odd) {
+.content ol:nth-of-type(odd) {
   background: radial-gradient(
       circle at 10% 20%,
       rgba(108, 85, 67, 0.05) 0%,
@@ -698,7 +698,8 @@ ul:nth-child(even) {
   display: block;
 }
 
-.content pre {
+.content pre, 
+.changelog-content pre {
   padding: 0.5rem 2rem;
   background-color: #22201cea !important;
   border-left: 0.2rem solid #c4baa7;
@@ -708,12 +709,14 @@ ul:nth-child(even) {
   overflow-x: scroll;
 }
 
-.content pre code {
+.content pre code,
+.changelog-content pre code {
   background-color: transparent !important;
   color: #f0e6d2;
 }
 
-.content code {
+.content code,
+.changelog-content code {
   padding: 0.2rem 0.4rem;
   font-family: "Courier New", Courier, monospace;
   background-color: #00000099 !important;

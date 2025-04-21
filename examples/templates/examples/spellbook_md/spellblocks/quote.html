@@ -1,0 +1,357 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Quote SpellBlock Showcase</h1>
+<p>The Quote SpellBlock provides an elegant way to highlight quotations, testimonials, and attributable statements in your documentation. This guide demonstrates all the capabilities and variations of the Quote block.</p>
+<h2>Basic Quote Usage</h2>
+<p>At its simplest, a Quote block can be used without attribution:</p>
+<pre><code class="language-django">{~ quote ~}
+The best way to predict the future is to invent it.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The best way to predict the future is to invent it.</p></p>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Quotes with Attribution</h2>
+<p>Adding an author makes the quote more meaningful and credible.</p>
+<h3>Quote with Author</h3>
+<pre><code class="language-django">{~ quote author=&quot;Alan Kay&quot; ~}
+The best way to predict the future is to invent it.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The best way to predict the future is to invent it.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Alan Kay</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h3>Quote with Author and Source</h3>
+<p>For complete attribution, include both the author and the source:</p>
+<pre><code class="language-django">{~ quote author=&quot;Tim Berners-Lee&quot; source=&quot;Weaving the Web, 1999&quot; ~}
+The Web as I envisaged it, we have not seen it yet. The future is still so much bigger than the past.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The Web as I envisaged it, we have not seen it yet. The future is still so much bigger than the past.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Tim Berners-Lee</cite>
+                <span class="sb-neutral-50">, Weaving the Web, 1999</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Formatting Inside Quotes</h2>
+<p>Quotes support markdown formatting within their content for rich text presentation.</p>
+<h3>Text Formatting</h3>
+<pre><code class="language-django">{~ quote author=&quot;Donald Knuth&quot; ~}
+**Programming** is the art of telling another human what one wants the computer to do.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p><strong>Programming</strong> is the art of telling another human what one wants the computer to do.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Donald Knuth</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<pre><code class="language-django">{~ quote author=&quot;Ada Lovelace&quot; ~}
+The *Analytical Engine* weaves algebraic patterns, just as the Jacquard loom weaves flowers and leaves.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The <em>Analytical Engine</em> weaves algebraic patterns, just as the Jacquard loom weaves flowers and leaves.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Ada Lovelace</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h3>Multi-line Quotes</h3>
+<p>Quotes can contain multiple paragraphs for longer passages:</p>
+<pre><code class="language-django">{~ quote author=&quot;Linus Torvalds&quot; source=&quot;Email to linux-kernel mailing list, 2000&quot; ~}
+Talk is cheap. Show me the code.
+
+Given enough eyeballs, all bugs are shallow.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Talk is cheap. Show me the code.</p>
+<p>Given enough eyeballs, all bugs are shallow.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Linus Torvalds</cite>
+                <span class="sb-neutral-50">, Email to linux-kernel mailing list, 2000</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Quotes with Images</h2>
+<p>Add a visual element to your quotes with the image parameter:</p>
+<pre><code class="language-django">{~ quote author=&quot;Grace Hopper&quot; image=&quot;/static/images/grace-hopper.jpg&quot; ~}
+The most dangerous phrase in the language is, &quot;We've always done it this way.&quot;
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 sb-quote-with-image ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-image-wrapper">
+            <img src="/static/images/grace-hopper.jpg" alt="Grace Hopper" class="sb-quote-image">
+        </div>
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The most dangerous phrase in the language is, "We've always done it this way."</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Grace Hopper</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Customizing Quotes</h2>
+<h3>Custom CSS Classes</h3>
+<p>Add custom CSS classes to further style your quotes:</p>
+<pre><code class="language-django">{~ quote author=&quot;Steve Jobs&quot; class=&quot;sb-bg-light sb-p-4 sb-border-radius&quot; ~}
+Design is not just what it looks like and feels like. Design is how it works.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  sb-bg-light sb-p-4 sb-border-radius">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Design is not just what it looks like and feels like. Design is how it works.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Steve Jobs</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Quotes in Different Contexts</h2>
+<h3>Motivational Quotes</h3>
+<pre><code class="language-django">{~ quote author=&quot;Martin Fowler&quot; ~}
+Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Any fool can write code that a computer can understand. Good programmers write code that humans can understand.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Martin Fowler</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h3>Historical Context</h3>
+<pre><code class="language-django">{~ quote author=&quot;Dennis Ritchie&quot; source=&quot;Creator of C and co-creator of Unix&quot; ~}
+UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Dennis Ritchie</cite>
+                <span class="sb-neutral-50">, Creator of C and co-creator of Unix</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h3>Expert Testimonials</h3>
+<pre><code class="language-django">{~ quote author=&quot;Dr. Jane Smith&quot; source=&quot;Lead Developer at TechCorp&quot; ~}
+Django Spellbook revolutionized how we build and maintain our documentation. The markdown integration makes it incredibly easy for our entire team to contribute.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Django Spellbook revolutionized how we build and maintain our documentation. The markdown integration makes it incredibly easy for our entire team to contribute.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Dr. Jane Smith</cite>
+                <span class="sb-neutral-50">, Lead Developer at TechCorp</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<h2>Nested in Other SpellBlocks</h2>
+<p>Quotes work well inside other blocks for complex content arrangements:</p>
+<pre><code class="language-django">{~ card title=&quot;Words of Wisdom&quot; ~}
+Some thoughts on software development:
+
+{~ quote author=&quot;Kent Beck&quot; ~}
+Make it work, make it right, make it fast.
+{~~}
+
+{~ quote author=&quot;John Woods&quot; ~}
+Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+{~~}
+{~~}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Words of Wisdom</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Some thoughts on software development:</p>
+<p><blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p><br /><br />
+Make it work, make it right, make it fast.</p><br />
+    </div></p>
+</div>
+<p><blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p><br /><br />
+Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.</p></p></p>
+<pre><code>        &lt;footer class="sb-text-sm sb-mt-2"&gt;
+            &lt;cite class="sb-bold"&gt;Kent Beck&lt;/cite&gt;
+
+        &lt;/footer&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</blockquote></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">John Woods</cite>
+
+            </footer>
+
+        </div>
+<pre><code>&lt;/div&gt;
+</code></pre>
+</blockquote>
+<h2>Best Practices</h2>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <h3>When to Use Quotes</h3>
+<p>Quotes are ideal for:<br />
+* Adding credibility with expert opinions<br />
+* Breaking up long sections of text<br />
+* Emphasizing key points or philosophies<br />
+* Providing historical context<br />
+* Including testimonials from users</p>
+<p>Use quotes sparingly for maximum impact.</p>
+    </span>
+</div>
+
+<h3>Quote Formatting Guidelines</h3>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>For the best appearance:<br />
+* Keep quotes relatively short and focused<br />
+* Ensure attribution is accurate<br />
+* Use markdown formatting sparingly within quotes<br />
+* Consider the visual hierarchy when including quotes</p>
+    </span>
+</div>
+
+<hr />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 5-10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Documentation
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Quote Practice Challenge</h3>
+<p>Try creating your own quote blocks:</p>
+<ol>
+<li>Create a simple quote with just text</li>
+<li>Create a quote with an author</li>
+<li>Create a quote with both author and source</li>
+<li>Create a quote with formatted text (bold, italic, etc.)</li>
+<li>Try combining quotes with other SpellBlocks</li>
+</ol>
+<p>Find inspiring quotes related to your project or field!</p>
+    </div>
+</div>
+{% endblock %}

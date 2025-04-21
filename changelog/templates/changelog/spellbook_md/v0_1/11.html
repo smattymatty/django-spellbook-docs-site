@@ -1,4 +1,4 @@
-{% extends 'docs/sb_base.html' %}
+{% extends 'changelog/sb_base.html' %}
 
 {% block spellbook_md %}
 <h2><strong>Version 0.1.11</strong></h2>
@@ -60,6 +60,37 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 <li>Easier extensibility for future features</li>
 <li>Enhanced error handling and reporting</li>
 </ul>
+<h2>Customizable Base Templates Per Source</h2>
+<p>You can now specify different base templates for each markdown source, allowing for tailored layouts across your content:</p>
+<pre><code class="language-python"># Single source with custom base template
+SPELLBOOK_MD_PATH = BASE_DIR / &quot;docs&quot;
+SPELLBOOK_MD_APP = &quot;docs_app&quot;
+SPELLBOOK_MD_BASE_TEMPLATE = &quot;docs/base.html&quot;  # Custom base template
+</code></pre>
+<pre><code class="language-python"># Multiple sources with different base templates
+SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
+SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
+SPELLBOOK_MD_BASE_TEMPLATE = [&quot;docs/base.html&quot;, &quot;blog/base.html&quot;]  # Different templates
+</code></pre>
+<p>If a single base template is provided with multiple sources, it will be applied to all sources:</p>
+<pre><code class="language-python"># Shared base template across multiple sources
+SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
+SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
+SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared_base.html&quot;  # Same template for all sources
+</code></pre>
+<p>If no base template is specified (or set to <code>None</code>), the default behavior remains unchanged:</p>
+<pre><code class="language-python"># Default template behavior
+SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
+SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
+SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
+</code></pre>
+<h2>Enhanced Template Validation</h2>
+<p>The template system now includes improved validation:</p>
+<ul>
+<li>Verification that base template configurations match source configurations</li>
+<li>Path validation to prevent template path traversal vulnerabilities</li>
+<li>Helpful error messages for template-related configuration issues</li>
+</ul>
 <h2>Summary Report Generation</h2>
 <p>The command now produces a comprehensive summary after processing:</p>
 <ul>
@@ -92,7 +123,7 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 
 <h1>Coming Soon</h1>
 <ul>
-<li>Custom base templates for each source</li>
+<li>Visual theme customization</li>
 <li>Source-specific metadata configuration</li>
 <li>Enhanced navigation options</li>
 <li>Advanced content filtering and organization</li>

@@ -1,0 +1,188 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Welcome To the Examples of Django Spellbook!</p>
+<p>Django Spellbook is a powerful toolkit for creating and managing markdown-based content in your Django projects. It's designed to be simple, flexible, and easy to use, with a focus on maintainability and extensibility.</p>
+<p>This examples serves as a collection of real-world examples showcasing the capabilities of Django Spellbook. It's a great resource for learning how to use Django Spellbook and exploring its features.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Basic Markdown</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ol>
+<li>Install the package</li>
+<li>Add to <code>INSTALLED_APPS</code></li>
+<li>Start writing magical markdown!</li>
+</ol>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Updated: Today
+        </div>
+
+</div>
+
+<h2>What Are SpellBlocks?</h2>
+<p>SpellBlocks are reusable content components that you can embed directly in your markdown files. They work like Django template tags but are designed specifically for enhancing your documentation. With SpellBlocks, you can:</p>
+<ul>
+<li>Create visually distinct sections for different types of content</li>
+<li>Maintain consistent styling throughout your documentation</li>
+<li>Add interactive elements without writing HTML</li>
+<li>Organize complex information in a user-friendly way</li>
+</ul>
+<h2>Basic SpellBlock Syntax</h2>
+<p>All SpellBlocks follow a consistent syntax:</p>
+<pre><code class="language-django">{~ block_name parameter=&quot;value&quot; another_parameter=&quot;value&quot; ~}
+Your content goes here.
+This content can include **markdown** formatting.
+{~~}
+</code></pre>
+<h2>Available SpellBlocks</h2>
+<p>Django Spellbook comes with several built-in SpellBlocks to immediately enhance your documentation:</p>
+<h3>Alert Block</h3>
+<p>Create attention-grabbing message boxes with different severity levels.</p>
+<pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
+Be careful with this setting in production!
+{~~}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Be careful with this setting in production!</p>
+    </span>
+</div>
+
+<p><a href="/examples/spellblocks/alert">Explore the Alert Block →</a></p>
+<h3>Card Block</h3>
+<p>Organize content in visexamples/introduction/ually distinct containers with optional headers and footers.</p>
+<pre><code class="language-django">{~ card title=&quot;Installation&quot; footer=&quot;Updated June 2023&quot; ~}
+Install Django Spellbook using pip:
+
+`pip install django-spellbook`
+{~~}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Installation</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Install Django Spellbook using pip:</p>
+<p><code>pip install django-spellbook</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Updated June 2023
+        </div>
+
+</div>
+
+<p><a href="/examples/spellblocks/card">Explore the Card Block →</a></p>
+<h3>Quote Block</h3>
+<p>Add stylized quotations with attribution.</p>
+<pre><code class="language-django">{~ quote author=&quot;Django's Documentation&quot; source=&quot;Design Philosophies&quot; ~}
+Explicit is better than implicit.
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Explicit is better than implicit.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django&#x27;s Documentation</cite>
+                <span class="sb-neutral-50">, Design Philosophies</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<p><a href="/examples/spellblocks/quote">Explore the Quote Block →</a></p>
+<h3>Practice Block</h3>
+<p>Create structured practice exercises with metadata.</p>
+<pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;10 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Django Templates&quot; ~}
+### Your First Template
+Create a simple Django template that displays a greeting message.
+{~~}
+</code></pre>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Django Templates
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Your First Template</h3>
+<p>Create a simple Django template that displays a greeting message.</p>
+    </div>
+</div>
+
+<p><a href="/docs/spellblocks/practice">Explore the Practice Block →</a></p>
+<h2>Why Use SpellBlocks?</h2>
+<p>SpellBlocks offer several advantages over plain markdown:</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Consistency</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Ensure visual and structural consistency across your entire documentation.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Readability</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Improve the readability of both your source markdown and the rendered output.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Maintainability</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Update the appearance of all instances by changing the SpellBlock template.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Extensibility</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Create custom SpellBlocks for your project's specific documentation needs.</p>
+    </div>
+
+</div>
+{% endblock %}

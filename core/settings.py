@@ -142,17 +142,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SPELLBOOK_MD_PATH = [
     BASE_DIR / 'markdown_content',
-    BASE_DIR / 'changelog_content'
+    BASE_DIR / 'changelog_content',
+    BASE_DIR / 'examples_content'
     ]
 
 SPELLBOOK_MD_APP = [
     'docs',
-    'changelog'
+    'changelog',
+    'examples'
 ]
 
-SPELLBOOK_MD_BASE_TEMPLATE = 'docs/sb_base.html'
+SPELLBOOK_MD_BASE_TEMPLATE = [
+    'docs/sb_base.html',
+    'changelog/sb_base.html',
+    'changelog/sb_base.html',
+    ]
 
 SPELLBOOK_MD_URL_PREFIX = [
     'docs',
-    'changelog'
+    'changelog',
+    'examples'
 ]

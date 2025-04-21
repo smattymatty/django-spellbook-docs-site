@@ -1,0 +1,298 @@
+{% extends 'examples/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1>Django Spellbook Examples Project</h1>
+<p>Here's a structured examples project for Django Spellbook, showcasing various spellblocks and features with an astronomy/cosmic theme:</p>
+<h2>Project Structure</h2>
+<pre><code>cosmic-spellbook-examples/
+├── docs/
+│   ├── index.md
+│   ├── getting-started/
+│   │   ├── installation.md
+│   │   ├── configuration.md
+│   │   └── first-steps.md
+│   ├── spellblocks/
+│   │   ├── alerts.md
+│   │   ├── quotes.md
+│   │   ├── code-examples.md
+│   │   └── custom-blocks.md
+│   ├── advanced/
+│   │   ├── multiple-sources.md
+│   │   ├── custom-templates.md
+│   │   └── performance-tips.md
+│   └── assets/
+│       ├── css/
+│       │   └── cosmic-theme.css
+│       └── images/
+│           ├── nebula-bg.jpg
+│           ├── planet-icons/
+│           │   ├── mercury.svg
+│           │   ├── venus.svg
+│           │   └── ...
+│           └── logos/
+│               └── cosmic-spellbook-logo.svg
+├── blog/
+│   ├── index.md
+│   └── posts/
+│       ├── welcome-to-cosmic-spellbook.md
+│       ├── advanced-markdown-techniques.md
+│       └── creating-custom-spellblocks.md
+└── django_project/
+    ├── settings.py
+    ├── urls.py
+    └── ...
+</code></pre>
+<h2>Main Index File (docs/index.md)</h2>
+<pre><code class="language-markdown">---
+title: Cosmic Spellbook Examples
+description: Explore the universe of possibilities with Django Spellbook
+author: Cosmic Dev Team
+---
+
+# 🌌 Welcome to Cosmic Spellbook
+
+{~ alert type=&quot;cosmic&quot; ~}
+This is a comprehensive example project demonstrating the power and flexibility of Django Spellbook. All examples feature a cosmic theme to inspire your creativity!
+{~~}
+
+## Exploring the Cosmos
+
+Django Spellbook transforms your Markdown content into dynamic Django templates, allowing you to create rich, interactive documentation with minimal effort.
+
+{~ quote author=&quot;Carl Sagan&quot; ~}
+The cosmos is all that is or ever was or ever will be. Our contemplations of the cosmos stir us — there is a tingling in the spine, a catch in the voice, a faint sensation, as if a distant memory, of falling from a great height. We know we are approaching the greatest of mysteries.
+{~~}
+
+## Getting Started
+
+Begin your cosmic journey through these example sections:
+
+### Basic Navigation
+
+| Section | Description |
+|---------|-------------|
+| [Installation](/getting-started/installation/) | Setting up Django Spellbook in your project |
+| [Configuration](/getting-started/configuration/) | Configuring Django Spellbook for optimal use |
+| [First Steps](/getting-started/first-steps/) | Creating your first Markdown content |
+
+### SpellBlock Showcase
+
+Discover the magic of SpellBlocks:
+
+{~ tabs ~}
+[Alerts]
+Attention-grabbing alert boxes for important information.
+[Example](/spellblocks/alerts/)
+
+[Quotes]
+Beautiful quote blocks with attribution.
+[Example](/spellblocks/quotes/)
+
+[Code Examples]
+Syntax-highlighted code blocks with copy functionality.
+[Example](/spellblocks/code-examples/)
+
+[Custom Blocks]
+Creating your own custom SpellBlocks.
+[Example](/spellblocks/custom-blocks/)
+{~~}
+
+## Advanced Features
+
+{~ columns ~}
+[Advanced Configuration]
+Learn how to use multiple sources, custom templates, and advanced URL configuration.
+
+[Example Projects]
+Browse complete example projects showcasing different use cases for Django Spellbook.
+
+[Performance Optimization]
+Tips and tricks for optimizing performance with larger documentation sets.
+{~~}
+
+## Multiple Sources Configuration
+
+This example project uses multiple sources to demonstrate how to organize different types of content:
+
+```python
+# settings.py configuration for this example project
+SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
+SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
+SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;blog&quot;]
+SPELLBOOK_MD_BASE_TEMPLATE = [&quot;cosmic/docs_base.html&quot;, &quot;cosmic/blog_base.html&quot;]
+</code></pre>
+<p>{~ alert type="info" ~}<br />
+The documentation is configured to use <code>/docs/</code> as its URL prefix, while the blog uses <code>/blog/</code> as its prefix.<br />
+{~~}</p>
+<h2>Explore Further</h2>
+<p>{~ card image="/assets/images/nebula-bg.jpg" ~}</p>
+<h2>Blog Articles</h2>
+<p>Check out our <a href="/blog/">blog posts</a> for more advanced topics and use cases.</p>
+<ul>
+<li><a href="/blog/posts/welcome-to-cosmic-spellbook/">Welcome to Cosmic Spellbook</a></li>
+<li><a href="/blog/posts/advanced-markdown-techniques/">Advanced Markdown Techniques</a></li>
+<li><a href="/blog/posts/creating-custom-spellblocks/">Creating Custom SpellBlocks</a><br />
+{~~}</li>
+</ul>
+<hr />
+<p>{~ alert type="cosmic" icon="🚀" ~}<br />
+Ready to embark on your cosmic journey? Start by checking out the <a href="/getting-started/installation/">installation guide</a> to set up your own Django Spellbook project!<br />
+{~~}<br />
+```</p>
+<h2>Custom CSS for Cosmic Theme (docs/assets/css/cosmic-theme.css)</h2>
+<p>```css<br />
+:root {<br />
+  --cosmic-bg: #0a0e17;<br />
+  --cosmic-text: #f0f2f8;<br />
+  --cosmic-primary: #7e57c2;<br />
+  --cosmic-secondary: #42a5f5;<br />
+  --cosmic-accent: #ffb300;<br />
+  --cosmic-success: #66bb6a;<br />
+  --cosmic-warning: #ffa726;<br />
+  --cosmic-danger: #ef5350;<br />
+  --cosmic-info: #29b6f6;<br />
+  --cosmic-dark: #1a1f2c;<br />
+  --cosmic-light: #2c3347;<br />
+}</p>
+<p>body {<br />
+  background-color: var(--cosmic-bg);<br />
+  background-image: url('/assets/images/nebula-bg.jpg');<br />
+  background-attachment: fixed;<br />
+  background-size: cover;<br />
+  background-blend-mode: soft-light;<br />
+  color: var(--cosmic-text);<br />
+  font-family: 'Space Grotesk', sans-serif;<br />
+}</p>
+<p>.container {<br />
+  background-color: rgba(10, 14, 23, 0.85);<br />
+  backdrop-filter: blur(5px);<br />
+  border-radius: 8px;<br />
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);<br />
+  padding: 2rem;<br />
+  margin: 2rem auto;<br />
+}</p>
+<p>h1, h2, h3, h4, h5, h6 {<br />
+  color: var(--cosmic-primary);<br />
+  font-family: 'Orbitron', sans-serif;<br />
+}</p>
+<p>a {<br />
+  color: var(--cosmic-secondary);<br />
+  text-decoration: none;<br />
+  transition: all 0.3s ease;<br />
+}</p>
+<p>a:hover {<br />
+  color: var(--cosmic-accent);<br />
+  text-decoration: underline;<br />
+}</p>
+<p>code {<br />
+  background-color: var(--cosmic-dark);<br />
+  color: var(--cosmic-accent);<br />
+  padding: 0.2rem 0.4rem;<br />
+  border-radius: 4px;<br />
+}</p>
+<p>pre {<br />
+  background-color: var(--cosmic-dark);<br />
+  border-left: 4px solid var(--cosmic-primary);<br />
+  padding: 1rem;<br />
+  border-radius: 4px;<br />
+  overflow-x: auto;<br />
+}</p>
+<p>/<em> Custom Spellblock Styles </em>/</p>
+<p>.spellblock-alert {<br />
+  background-color: var(--cosmic-light);<br />
+  border-left: 4px solid var(--cosmic-primary);<br />
+  padding: 1rem;<br />
+  margin: 1.5rem 0;<br />
+  border-radius: 4px;<br />
+}</p>
+<p>.spellblock-alert.cosmic {<br />
+  background: linear-gradient(135deg, var(--cosmic-dark), var(--cosmic-light));<br />
+  border: 1px solid var(--cosmic-primary);<br />
+  border-left: 4px solid var(--cosmic-accent);<br />
+  box-shadow: 0 4px 15px rgba(126, 87, 194, 0.3);<br />
+}</p>
+<p>.spellblock-quote {<br />
+  background-color: var(--cosmic-dark);<br />
+  border-left: 4px solid var(--cosmic-secondary);<br />
+  padding: 1rem;<br />
+  margin: 1.5rem 0;<br />
+  border-radius: 4px;<br />
+  font-style: italic;<br />
+}</p>
+<p>.spellblock-quote footer {<br />
+  margin-top: 0.5rem;<br />
+  color: var(--cosmic-secondary);<br />
+  font-style: normal;<br />
+}</p>
+<p>.spellblock-tabs {<br />
+  background-color: var(--cosmic-dark);<br />
+  border-radius: 4px;<br />
+  margin: 1.5rem 0;<br />
+  overflow: hidden;<br />
+}</p>
+<p>.spellblock-tabs-header {<br />
+  display: flex;<br />
+  background-color: var(--cosmic-light);<br />
+}</p>
+<p>.spellblock-tabs-header button {<br />
+  background: transparent;<br />
+  border: none;<br />
+  color: var(--cosmic-text);<br />
+  padding: 0.75rem 1rem;<br />
+  cursor: pointer;<br />
+  transition: all 0.3s ease;<br />
+}</p>
+<p>.spellblock-tabs-header button.active {<br />
+  background-color: var(--cosmic-primary);<br />
+  color: white;<br />
+}</p>
+<p>.spellblock-tabs-content {<br />
+  padding: 1rem;<br />
+}</p>
+<p>.spellblock-columns {<br />
+  display: grid;<br />
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));<br />
+  gap: 1.5rem;<br />
+  margin: 1.5rem 0;<br />
+}</p>
+<p>.spellblock-columns &gt; div {<br />
+  background-color: var(--cosmic-dark);<br />
+  padding: 1rem;<br />
+  border-radius: 4px;<br />
+  border-top: 3px solid var(--cosmic-primary);<br />
+}</p>
+<p>.spellblock-card {<br />
+  background-color: var(--cosmic-dark);<br />
+  border-radius: 8px;<br />
+  overflow: hidden;<br />
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);<br />
+  margin: 1.5rem 0;<br />
+  transition: transform 0.3s ease;<br />
+}</p>
+<p>.spellblock-card:hover {<br />
+  transform: translateY(-5px);<br />
+}</p>
+<p>.spellblock-card img {<br />
+  width: 100%;<br />
+  height: 200px;<br />
+  object-fit: cover;<br />
+}</p>
+<p>.spellblock-card-content {<br />
+  padding: 1rem;<br />
+}</p>
+<p>/<em> Animations </em>/<br />
+@keyframes cosmic-glow {<br />
+  0% {<br />
+    box-shadow: 0 0 5px rgba(126, 87, 194, 0.5);<br />
+  }<br />
+  50% {<br />
+    box-shadow: 0 0 20px rgba(126, 87, 194, 0.8);<br />
+  }<br />
+  100% {<br />
+    box-shadow: 0 0 5px rgba(126, 87, 194, 0.5);<br />
+  }<br />
+}</p>
+<p>.cosmic-glow {<br />
+  animation: cosmic-glow 3s infinite;<br />
+}</p>
+{% endblock %}
