@@ -36,17 +36,17 @@ def analytics_context(request):
             except DailyPageViewCount.DoesNotExist:
                 today_page_views = 0
             
-            # Total site views (cached separately with longer expiration)
+            # Total site views
             total_views = cache.get("total_site_views")
             if total_views is None:
                 total_views = PageView.objects.exclude(url__in=excluded_paths).count()
-                cache.set("total_site_views", total_views, 60 * 15)  # Cache for 15 minutes
+                cache.set("total_site_views", total_views, 60 * 5)  # Cache for 5 minutes
             
-            # Total unique visitors (cached separately with longer expiration)
+            # Total unique visitors
             unique_visitors = cache.get("unique_visitors")
             if unique_visitors is None:
                 unique_visitors = UniqueVisitor.objects.count()
-                cache.set("unique_visitors", unique_visitors, 60 * 15)  # Cache for 15 minutes
+                cache.set("unique_visitors", unique_visitors, 60 * 5)  # Cache for 5 minutes
             
             # Get the most popular pages (top 5) - cached separately
             popular_pages = cache.get("popular_pages")
@@ -58,7 +58,7 @@ def analytics_context(request):
                 ).values('url').annotate(
                     total_views=models.Sum('count')
                 ).order_by('-total_views')[:5])
-                cache.set("popular_pages", popular_pages, 60 * 30)  # Cache for 30 minutes
+                cache.set("popular_pages", popular_pages, 60 * 5)  # Cache for 5 minutes
             
             context = {
                 'page_views_count': page_views_count,
