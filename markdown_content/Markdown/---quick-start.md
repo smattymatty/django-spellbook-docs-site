@@ -101,6 +101,35 @@ SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 
 The source for the built-in base template is available [here](https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html).
 
-{% a href="/docs/Markdown/spelllblocks" .super-link %}
+### Customizable Base Templates Per Source
+
+You can specify different base templates for each markdown source, allowing for tailored layouts across your content:
+
+```python
+# Multiple sources with different base templates
+SPELLBOOK_MD_PATH = [BASE_DIR / "docs", BASE_DIR / "blog"]
+SPELLBOOK_MD_APP = ["docs_app", "blog_app"]
+SPELLBOOK_MD_BASE_TEMPLATE = ["docs/base.html", "blog/base.html"]  # Different templates
+```
+
+If a single base template is provided with multiple sources, it will be applied to all sources:
+
+```python
+# Shared base template across multiple sources
+SPELLBOOK_MD_PATH = [BASE_DIR / "docs", BASE_DIR / "blog"]
+SPELLBOOK_MD_APP = ["docs_app", "blog_app"]
+SPELLBOOK_MD_BASE_TEMPLATE = "shared_base.html"  # Same template for all sources
+```
+
+If no base template is specified (or set to `None`), the default behavior remains unchanged:
+
+```python
+# Default template behavior
+SPELLBOOK_MD_PATH = [BASE_DIR / "docs", BASE_DIR / "blog"]
+SPELLBOOK_MD_APP = ["docs_app", "blog_app"]
+SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
+```
+
+{% a href="/docs/Markdown/spellblocks" .super-link %}
 Read Next: SpellBlocks
 {% enda %}

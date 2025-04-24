@@ -178,46 +178,6 @@ Click the X to dismiss this alert!
     </span>
 </div>
 
-<h2>Nested SpellBlocks</h2>
-<p>Alerts can contain other SpellBlocks for complex content arrangements:</p>
-<pre><code class="language-django">{~ alert type=&quot;info&quot; ~}
-Did you know?
-
-{~ quote author=&quot;Albert Einstein&quot; ~}
-The only source of knowledge is experience.
-{~~}
-
-This is why hands-on practice is so important!
-{~~}
-</code></pre>
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ℹ️
-
-    </span>
-    <span class="sb-alert-content">
-        <p>Did you know?</p>
-<p><blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
-    <div class="sb-quote-inner">
-
-        <div class="sb-quote-content">
-            <p class="sb-italic"><p><br /><br />
-The only source of knowledge is experience.</p><br />
-    </span><br />
-</div>
-</p>
-<p>This is why hands-on practice is so important!</p>
-</p>
-<pre><code>        &lt;footer class="sb-text-sm sb-mt-2"&gt;
-            &lt;cite class="sb-bold"&gt;Albert Einstein&lt;/cite&gt;
-
-        &lt;/footer&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</blockquote>
 <h2>Best Practices</h2>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">

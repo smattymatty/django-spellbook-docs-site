@@ -129,7 +129,7 @@ Given enough eyeballs, all bugs are shallow.
 
 <h2>Quotes with Images</h2>
 <p>Add a visual element to your quotes with the image parameter:</p>
-<pre><code class="language-django">{~ quote author=&quot;Grace Hopper&quot; image=&quot;/static/images/grace-hopper.jpg&quot; ~}
+<pre><code class="language-django">{~ quote author=&quot;Grace Hopper&quot; image=&quot;https://vcencyclopedia.vassar.edu/wp-content/uploads/2021/11/1583771839362.jpeg&quot; ~}
 The most dangerous phrase in the language is, &quot;We've always done it this way.&quot;
 {~~}
 </code></pre>
@@ -137,7 +137,7 @@ The most dangerous phrase in the language is, &quot;We've always done it this wa
     <div class="sb-quote-inner">
 
         <div class="sb-quote-image-wrapper">
-            <img src="/static/images/grace-hopper.jpg" alt="Grace Hopper" class="sb-quote-image">
+            <img src="https://vcencyclopedia.vassar.edu/wp-content/uploads/2021/11/1583771839362.jpeg" alt="Grace Hopper" class="sb-quote-image">
         </div>
 
         <div class="sb-quote-content">
@@ -235,61 +235,6 @@ Django Spellbook revolutionized how we build and maintain our documentation. The
     </div>
 </blockquote>
 
-<h2>Nested in Other SpellBlocks</h2>
-<p>Quotes work well inside other blocks for complex content arrangements:</p>
-<pre><code class="language-django">{~ card title=&quot;Words of Wisdom&quot; ~}
-Some thoughts on software development:
-
-{~ quote author=&quot;Kent Beck&quot; ~}
-Make it work, make it right, make it fast.
-{~~}
-
-{~ quote author=&quot;John Woods&quot; ~}
-Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
-{~~}
-{~~}
-</code></pre>
-<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
-
-        <div class="sb-card-header sb-p-2 sb-bold">
-            <h5 class="sb-card-title">Words of Wisdom</h5>
-        </div>
-
-    <div class="sb-card-body sb-p-3">
-        <p>Some thoughts on software development:</p>
-<p><blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
-    <div class="sb-quote-inner">
-
-        <div class="sb-quote-content">
-            <p class="sb-italic"><p><br /><br />
-Make it work, make it right, make it fast.</p><br />
-    </div></p>
-</div>
-<p><blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
-    <div class="sb-quote-inner">
-
-        <div class="sb-quote-content">
-            <p class="sb-italic"><p><br /><br />
-Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.</p></p></p>
-<pre><code>        &lt;footer class="sb-text-sm sb-mt-2"&gt;
-            &lt;cite class="sb-bold"&gt;Kent Beck&lt;/cite&gt;
-
-        &lt;/footer&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</blockquote></p>
-
-            <footer class="sb-text-sm sb-mt-2">
-                <cite class="sb-bold">John Woods</cite>
-
-            </footer>
-
-        </div>
-<pre><code>&lt;/div&gt;
-</code></pre>
-</blockquote>
 <h2>Best Practices</h2>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -299,12 +244,14 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
     </span>
     <span class="sb-alert-content">
         <h3>When to Use Quotes</h3>
-<p>Quotes are ideal for:<br />
-* Adding credibility with expert opinions<br />
-* Breaking up long sections of text<br />
-* Emphasizing key points or philosophies<br />
-* Providing historical context<br />
-* Including testimonials from users</p>
+<p>Quotes are ideal for:</p>
+<ul>
+<li>Adding credibility with expert opinions</li>
+<li>Breaking up long sections of text</li>
+<li>Emphasizing key points or philosophies</li>
+<li>Providing historical context</li>
+<li>Including testimonials from users</li>
+</ul>
 <p>Use quotes sparingly for maximum impact.</p>
     </span>
 </div>
@@ -317,11 +264,13 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
 
     </span>
     <span class="sb-alert-content">
-        <p>For the best appearance:<br />
-* Keep quotes relatively short and focused<br />
-* Ensure attribution is accurate<br />
-* Use markdown formatting sparingly within quotes<br />
-* Consider the visual hierarchy when including quotes</p>
+        <p>For the best appearance:</p>
+<ul>
+<li>Keep quotes relatively short and focused</li>
+<li>Ensure attribution is accurate</li>
+<li>Use markdown formatting sparingly within quotes</li>
+<li>Consider the visual hierarchy when including quotes</li>
+</ul>
     </span>
 </div>
 

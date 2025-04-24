@@ -102,7 +102,7 @@ Create a simple Django template that displays a greeting message.
 Create a simple Django template that displays a greeting message.
 {~~}
 
-[Explore the Practice Block →](/docs/spellblocks/practice)
+[Explore the Practice Block →](/examples//spellblocks/practice)
 
 ## Why Use SpellBlocks?
 

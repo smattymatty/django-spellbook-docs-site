@@ -26,6 +26,14 @@
   transition: all 0.5s ease; /* Add transition for smooth effect */
 }
 
+.changelog-content {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
 .content::before {
   content: "";
   position: absolute;
@@ -279,7 +287,7 @@ ul:nth-of-type(odd)::after {
 }
 
 .content ul:nth-of-type(even),
-ol:nth-of-type(even) {
+.content ol:nth-of-type(even) {
   background: radial-gradient(
       circle at 10% 20%,
       rgba(108, 85, 67, 0.15) 0%,

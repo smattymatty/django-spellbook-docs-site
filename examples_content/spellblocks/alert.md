@@ -154,32 +154,6 @@ Click the X to dismiss this alert!
 Click the X to dismiss this alert!
 {~~}
 
-## Nested SpellBlocks
-
-Alerts can contain other SpellBlocks for complex content arrangements:
-
-```django
-{~ alert type="info" ~}
-Did you know?
-
-{~ quote author="Albert Einstein" ~}
-The only source of knowledge is experience.
-{~~}
-
-This is why hands-on practice is so important!
-{~~}
-```
-
-{~ alert type="info" ~}
-Did you know?
-
-{~ quote author="Albert Einstein" ~}
-The only source of knowledge is experience.
-{~~}
-
-This is why hands-on practice is so important!
-{~~}
-
 ## Best Practices
 
 {~ alert type="success" ~}

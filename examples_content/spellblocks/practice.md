@@ -11,6 +11,7 @@ A Practice block includes metadata about the exercise and the exercise content i
 ### Create a Blog Model
 
 Create a Django model for a simple blog with the following fields:
+
 - Title (CharField)
 - Content (TextField)
 - Publication date (DateTimeField)
@@ -25,6 +26,7 @@ Implement the `__str__` method and add a Meta class with proper ordering.
 ### Create a Blog Model
 
 Create a Django model for a simple blog with the following fields:
+
 - Title (CharField)
 - Content (TextField)
 - Publication date (DateTimeField)
@@ -73,6 +75,7 @@ Create a form with custom validation logic for email and password fields.
 ### Complex Database Queries
 
 Implement a view that uses advanced ORM features:
+
 - Aggregation
 - Annotation
 - Window functions
@@ -84,6 +87,7 @@ Implement a view that uses advanced ORM features:
 ### Complex Database Queries
 
 Implement a view that uses advanced ORM features:
+
 - Aggregation
 - Annotation
 - Window functions
@@ -162,50 +166,6 @@ Implement a custom user model with additional fields and authentication methods.
 
 Practice blocks support full markdown formatting for rich content presentation.
 
-### Code Examples
-
-```django
-{~ practice difficulty="Beginner" timeframe="20 minutes" impact="Medium" focus="Django Views" ~}
-### Function-Based Views
-
-Create a function-based view that:
-
-1. Accepts both GET and POST requests
-2. Handles a form submission
-3. Returns different responses based on the request method
-
-Here's a starting point:
-
-```python
-from django.shortcuts import render, redirect
-from .forms import MyForm
-
-def my_view(request):
-    # Your code here
-```
-{~~}
-```
-
-{~ practice difficulty="Beginner" timeframe="20 minutes" impact="Medium" focus="Django Views" ~}
-### Function-Based Views
-
-Create a function-based view that:
-
-1. Accepts both GET and POST requests
-2. Handles a form submission
-3. Returns different responses based on the request method
-
-Here's a starting point:
-
-```python
-from django.shortcuts import render, redirect
-from .forms import MyForm
-
-def my_view(request):
-    # Your code here
-```
-{~~}
-
 ### Lists and Steps
 
 ```django
@@ -215,11 +175,13 @@ def my_view(request):
 Implement these class-based views:
 
 1. A ListView that:
+
    - Displays all published articles
    - Includes pagination (10 per page)
    - Has a search feature
 
 2. A DetailView that:
+
    - Shows a single article with all its details
    - Handles 404 errors gracefully
    - Includes a "related articles" section
@@ -234,11 +196,13 @@ Implement these class-based views:
 Implement these class-based views:
 
 1. A ListView that:
+
    - Displays all published articles
    - Includes pagination (10 per page)
    - Has a search feature
 
 2. A DetailView that:
+
    - Shows a single article with all its details
    - Handles 404 errors gracefully
    - Includes a "related articles" section
@@ -257,6 +221,7 @@ Add custom CSS classes to further style your practice blocks:
 ### Deploy to Production
 
 Set up a production environment with:
+
 - Gunicorn
 - Nginx
 - PostgreSQL
@@ -268,6 +233,7 @@ Set up a production environment with:
 ### Deploy to Production
 
 Set up a production environment with:
+
 - Gunicorn
 - Nginx
 - PostgreSQL
@@ -285,18 +251,21 @@ Set up a production environment with:
 In this exercise, you'll create a fully functional contact form:
 
 1. Create a Django form class with these fields:
+
    - Name
    - Email
    - Subject
    - Message
 
 2. Create a view that:
+
    - Renders the empty form on GET
    - Validates the form on POST
    - Sends an email when valid
    - Shows a success message
 
 3. Add a template with:
+
    - The form rendered with proper styling
    - Error message display
    - A success message area
@@ -311,18 +280,21 @@ In this exercise, you'll create a fully functional contact form:
 In this exercise, you'll create a fully functional contact form:
 
 1. Create a Django form class with these fields:
+
    - Name
    - Email
    - Subject
    - Message
 
 2. Create a view that:
+
    - Renders the empty form on GET
    - Validates the form on POST
    - Sends an email when valid
    - Shows a success message
 
 3. Add a template with:
+
    - The form rendered with proper styling
    - Error message display
    - A success message area
@@ -339,16 +311,19 @@ In this exercise, you'll create a fully functional contact form:
 Create a complete REST API for a blog application:
 
 1. Design and implement these models:
+
    - Post (with title, content, author, publication date)
    - Category (with name, description)
    - Comment (with content, author, post reference)
 
 2. Create serializers for each model:
+
    - Include proper validation
    - Use nested serializers where appropriate
    - Implement custom methods as needed
 
 3. Implement ViewSets with:
+
    - Proper permissions (admin can do everything, authors can edit their own content)
    - Filtering and searching
    - Pagination
@@ -367,16 +342,19 @@ Create a complete REST API for a blog application:
 Create a complete REST API for a blog application:
 
 1. Design and implement these models:
+
    - Post (with title, content, author, publication date)
    - Category (with name, description)
    - Comment (with content, author, post reference)
 
 2. Create serializers for each model:
+
    - Include proper validation
    - Use nested serializers where appropriate
    - Implement custom methods as needed
 
 3. Implement ViewSets with:
+
    - Proper permissions (admin can do everything, authors can edit their own content)
    - Filtering and searching
    - Pagination
@@ -394,6 +372,7 @@ Create a complete REST API for a blog application:
 ### When to Use Practice Blocks
 
 Practice blocks are ideal for:
+
 * Tutorials and educational content
 * Documentation that teaches concepts
 * Reinforcing theoretical concepts with practical exercises
@@ -406,6 +385,7 @@ Use practice blocks after explaining concepts to give readers a chance to apply 
 
 {~ alert type="success" ~}
 For effective practice exercises:
+
 * Clearly define the objective
 * Provide enough context and starting points
 * Make difficulty level appropriate for the target audience

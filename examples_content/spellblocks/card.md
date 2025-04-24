@@ -132,64 +132,6 @@ Before launching your Django project:
 * Use environment variables for secrets
 {~~}
 
-### Code Blocks in Cards
-
-```django
-{~ card title="Django Settings Example" ~}
-Configure your database:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-```
-
-Always use environment variables for sensitive values in production.
-{~~}
-```
-
-{~ card title="Django Settings Example" ~}
-Configure your database:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-```
-
-Always use environment variables for sensitive values in production.
-{~~}
-
-## Customizing Cards
-
-### Custom CSS Classes
-
-Add custom CSS classes to further style your cards:
-
-```django
-{~ card title="Styled Card" class="sb-border-4 sb-border-primary sb-p-4" ~}
-This card has custom styling applied.
-{~~}
-```
-
-{~ card title="Styled Card" class="sb-border-4 sb-border-primary sb-p-4" ~}
-This card has custom styling applied.
-{~~}
-
 ## Nested SpellBlocks
 
 Cards can contain other SpellBlocks for complex content arrangements:
@@ -290,6 +232,7 @@ Customization, optimization, and integration guides.
 ### When to Use Cards
 
 Cards are ideal for:
+
 * Organizing related content into discrete sections
 * Highlighting important information
 * Creating visual hierarchy on a page

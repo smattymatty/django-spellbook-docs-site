@@ -153,61 +153,6 @@ Before launching your Django project:
 
 </div>
 
-<h3>Code Blocks in Cards</h3>
-<pre><code class="language-django">{~ card title=&quot;Django Settings Example&quot; ~}
-Configure your database:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-</code></pre>
-<p>Always use environment variables for sensitive values in production.<br />
-{~~}</p>
-<pre><code>
-{~ card title=&quot;Django Settings Example&quot; ~}
-Configure your database:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-</code></pre>
-<p>Always use environment variables for sensitive values in production.<br />
-{~~}</p>
-<h2>Customizing Cards</h2>
-<h3>Custom CSS Classes</h3>
-<p>Add custom CSS classes to further style your cards:</p>
-<pre><code class="language-django">{~ card title=&quot;Styled Card&quot; class=&quot;sb-border-4 sb-border-primary sb-p-4&quot; ~}
-This card has custom styling applied.
-{~~}
-</code></pre>
-<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
-
-        <div class="sb-card-header sb-p-2 sb-bold">
-            <h5 class="sb-card-title">Styled Card</h5>
-        </div>
-
-    <div class="sb-card-body sb-p-3">
-        <p>This card has custom styling applied.</p>
-    </div>
-
-</div>
-
 <h2>Nested SpellBlocks</h2>
 <p>Cards can contain other SpellBlocks for complex content arrangements:</p>
 <pre><code class="language-django">{~ card title=&quot;Important Warnings&quot; ~}
@@ -356,11 +301,13 @@ Customization, optimization, and integration guides.</p><br />
     </span>
     <span class="sb-alert-content">
         <h3>When to Use Cards</h3>
-<p>Cards are ideal for:<br />
-* Organizing related content into discrete sections<br />
-* Highlighting important information<br />
-* Creating visual hierarchy on a page<br />
-* Presenting a collection of similar items</p>
+<p>Cards are ideal for:</p>
+<ul>
+<li>Organizing related content into discrete sections</li>
+<li>Highlighting important information</li>
+<li>Creating visual hierarchy on a page</li>
+<li>Presenting a collection of similar items</li>
+</ul>
 <p>Use cards to break up long pages of content into more digestible chunks.</p>
     </span>
 </div>

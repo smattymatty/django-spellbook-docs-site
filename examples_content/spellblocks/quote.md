@@ -95,12 +95,12 @@ Given enough eyeballs, all bugs are shallow.
 Add a visual element to your quotes with the image parameter:
 
 ```django
-{~ quote author="Grace Hopper" image="/static/images/grace-hopper.jpg" ~}
+{~ quote author="Grace Hopper" image="https://vcencyclopedia.vassar.edu/wp-content/uploads/2021/11/1583771839362.jpeg" ~}
 The most dangerous phrase in the language is, "We've always done it this way."
 {~~}
 ```
 
-{~ quote author="Grace Hopper" image="/static/images/grace-hopper.jpg" ~}
+{~ quote author="Grace Hopper" image="https://vcencyclopedia.vassar.edu/wp-content/uploads/2021/11/1583771839362.jpeg" ~}
 The most dangerous phrase in the language is, "We've always done it this way."
 {~~}
 
@@ -158,42 +158,13 @@ Django Spellbook revolutionized how we build and maintain our documentation. The
 Django Spellbook revolutionized how we build and maintain our documentation. The markdown integration makes it incredibly easy for our entire team to contribute.
 {~~}
 
-## Nested in Other SpellBlocks
-
-Quotes work well inside other blocks for complex content arrangements:
-
-```django
-{~ card title="Words of Wisdom" ~}
-Some thoughts on software development:
-
-{~ quote author="Kent Beck" ~}
-Make it work, make it right, make it fast.
-{~~}
-
-{~ quote author="John Woods" ~}
-Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
-{~~}
-{~~}
-```
-
-{~ card title="Words of Wisdom" ~}
-Some thoughts on software development:
-
-{~ quote author="Kent Beck" ~}
-Make it work, make it right, make it fast.
-{~~}
-
-{~ quote author="John Woods" ~}
-Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
-{~~}
-{~~}
-
 ## Best Practices
 
 {~ alert type="info" ~}
 ### When to Use Quotes
 
 Quotes are ideal for:
+
 * Adding credibility with expert opinions
 * Breaking up long sections of text
 * Emphasizing key points or philosophies
@@ -207,6 +178,7 @@ Use quotes sparingly for maximum impact.
 
 {~ alert type="success" ~}
 For the best appearance:
+
 * Keep quotes relatively short and focused
 * Ensure attribution is accurate
 * Use markdown formatting sparingly within quotes
