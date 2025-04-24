@@ -12,7 +12,7 @@ def analytics_context(request):
     context = {}
     
     # Define paths to exclude from analytics display
-    excluded_paths = ['/', '/favicon.ico']
+    excluded_paths = ['/', '/favicon.ico', '/sw.js']
     
     # Only process if not an admin, static, or analytics path
     if (not request.path.startswith('/admin/') and 
