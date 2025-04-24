@@ -173,3 +173,24 @@ cursor-pointer {
 .site-footer div {
   border-top: 1px solid #4a2500;
 }
+
+.popular-page-list li a {
+  color: #cfcfcfad;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.popular-page-list li a:hover {
+  color: #ffffff;
+  font-weight: 200;
+}
+
+.popular-page-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* Hide Marker */
+.popular-page-list li::marker {
+  content:' ';
+  display: none;
+  
+}
