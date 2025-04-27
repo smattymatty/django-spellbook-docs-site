@@ -9,6 +9,9 @@
 <p>Options:</p>
 <ul>
 <li><code>--continue-on-error</code>: Continue processing files even if some fail</li>
+<li><code>--report-level</code>: Level of detail in the report (<code>minimal</code>, <code>detailed</code>, or <code>debug</code>) [default: <code>detailed</code>]</li>
+<li><code>--report-format</code>: Format of the report (<code>text</code>, <code>json</code>, or <code>none</code> to suppress) [default: <code>text</code>]</li>
+<li><code>--report-output</code>: File path to save the report (default: print to stdout)</li>
 </ul>
 <h3>Basic Configuration</h3>
 <h4><strong>Required Settings</strong></h4>
@@ -109,23 +112,8 @@ urlpatterns = [
 <li>Builds navigation tables of contents for each source</li>
 </ol>
 <div class="sb-p-4 sb-mb-4"><a class="super-link" href="/docs/Markdown/introduction"><p>Read Next: Markdown Module Introduction</p></a></div>
-<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
-    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
-        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
-            <strong>Difficulty:</strong> Beginner
-        </span>
-        <span class="sb-time-commitment sb-badge">
-            <strong>Time:</strong> 15-20 minutes
-        </span>
-        <span class="sb-impact-level sb-badge" data-impact="high">
-            <strong>Impact:</strong> High
-        </span>
-        <span class="sb-focus-area sb-badge">
-            <strong>Focus:</strong> Command Usage
-        </span>
-    </div>
-    <div class="sb-practice-content">
-        <h3>Command Practice Challenge</h3>
+<p>{~ practice difficulty="Beginner" timeframe="15-20 minutes" impact="High" focus="Command Usage" ~}</p>
+<h3>Command Practice Challenge</h3>
 <p>Try these exercises to master the <code>spellbook_md</code> command:</p>
 <ol>
 <li><strong>Basic Command Usage</strong>:</li>
@@ -162,7 +150,50 @@ urlpatterns = [
 <li>Run the command and verify each source uses its assigned template</li>
 <li>Compare how the same content appears with different base templates</li>
 </ul>
+<ol start="5">
+<li><strong>Reporting Options</strong>:</li>
+</ol>
+<ul>
+<li>Run the command with <code>--report-level=minimal</code> to see the condensed output</li>
+<li>Generate a JSON report with <code>--report-format=json --report-output=report.json</code></li>
+<li>Examine the JSON structure and how it differs from the text output</li>
+<li>Try the debug level to see the additional information provided for troubleshooting</li>
+</ul>
+<h3>Reporting Options</h3>
+<p>The <code>spellbook_md</code> command includes flexible reporting options to customize the output for different use cases:</p>
+<h4>Report Levels</h4>
+<p>Control the amount of information included in the report:</p>
+<ul>
+<li><code>--report-level=minimal</code>: Only show a high-level summary of processing results</li>
+<li><code>--report-level=detailed</code>: Include detailed information about each file (default)</li>
+<li><code>--report-level=debug</code>: Include additional diagnostic information for troubleshooting</li>
+</ul>
+<h4>Report Formats</h4>
+<p>Choose how the report information is presented:</p>
+<ul>
+<li><code>--report-format=text</code>: Human-readable text output (default)</li>
+<li><code>--report-format=json</code>: Machine-readable JSON format for use in scripts or CI pipelines</li>
+<li><code>--report-format=none</code>: Suppress the report entirely</li>
+</ul>
+<h4>Report Output</h4>
+<p>Direct the report to a file instead of standard output:</p>
+<ul>
+<li><code>--report-output=path/to/file.txt</code>: Save the report to the specified file</li>
+<li><code>--report-output=path/to/file.json</code>: Useful when combined with <code>--report-format=json</code></li>
+</ul>
+<h4>Examples</h4>
+<pre><code class="language-bash"># Get minimal output for CI pipelines
+python manage.py spellbook_md --report-level=minimal
+
+# Save a detailed JSON report to a file
+python manage.py spellbook_md --report-format=json --report-output=report.json
+
+# Run quietly with no report
+python manage.py spellbook_md --report-format=none
+
+# Get maximum information for debugging
+python manage.py spellbook_md --report-level=debug
+</code></pre>
+<p>These reporting options help integrate the <code>spellbook_md</code> command into different workflows and provide the right level of information for each use case.</p>
 <p><strong>Bonus</strong>: Try the <code>--continue-on-error</code> flag with some intentionally malformed markdown files to see how the command handles errors.</p>
-    </div>
-</div>
 {% endblock %}

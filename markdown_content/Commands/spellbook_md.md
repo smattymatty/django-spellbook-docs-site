@@ -11,6 +11,9 @@ python manage.py spellbook_md
 Options:
 
 - `--continue-on-error`: Continue processing files even if some fail
+- `--report-level`: Level of detail in the report (`minimal`, `detailed`, or `debug`) [default: `detailed`]
+- `--report-format`: Format of the report (`text`, `json`, or `none` to suppress) [default: `text`]
+- `--report-output`: File path to save the report (default: print to stdout)
 
 ### Basic Configuration
 
@@ -175,5 +178,57 @@ Try these exercises to master the `spellbook_md` command:
    - Run the command and verify each source uses its assigned template
    - Compare how the same content appears with different base templates
 
+5. **Reporting Options**:
+
+   - Run the command with `--report-level=minimal` to see the condensed output
+   - Generate a JSON report with `--report-format=json --report-output=report.json`
+   - Examine the JSON structure and how it differs from the text output
+   - Try the debug level to see the additional information provided for troubleshooting
+
+
+### Reporting Options
+
+The `spellbook_md` command includes flexible reporting options to customize the output for different use cases:
+
+#### Report Levels
+
+Control the amount of information included in the report:
+
+- `--report-level=minimal`: Only show a high-level summary of processing results
+- `--report-level=detailed`: Include detailed information about each file (default)
+- `--report-level=debug`: Include additional diagnostic information for troubleshooting
+
+#### Report Formats
+
+Choose how the report information is presented:
+
+- `--report-format=text`: Human-readable text output (default)
+- `--report-format=json`: Machine-readable JSON format for use in scripts or CI pipelines
+- `--report-format=none`: Suppress the report entirely
+
+#### Report Output
+
+Direct the report to a file instead of standard output:
+
+- `--report-output=path/to/file.txt`: Save the report to the specified file
+- `--report-output=path/to/file.json`: Useful when combined with `--report-format=json`
+
+#### Examples
+
+```bash
+# Get minimal output for CI pipelines
+python manage.py spellbook_md --report-level=minimal
+
+# Save a detailed JSON report to a file
+python manage.py spellbook_md --report-format=json --report-output=report.json
+
+# Run quietly with no report
+python manage.py spellbook_md --report-format=none
+
+# Get maximum information for debugging
+python manage.py spellbook_md --report-level=debug
+```
+
+These reporting options help integrate the `spellbook_md` command into different workflows and provide the right level of information for each use case.
+
 **Bonus**: Try the `--continue-on-error` flag with some intentionally malformed markdown files to see how the command handles errors.
-{~~}

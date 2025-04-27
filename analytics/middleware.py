@@ -42,7 +42,8 @@ class PageViewMiddleware:
             '/favicon.ico', 
             '/sw.js',
             '/robots.txt',
-            '/sitemap.xml'
+            '/sitemap.xml',
+            '/wp-admin/setup-config.php'
         }
         
         # Add custom excluded paths from settings if defined
