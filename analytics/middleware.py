@@ -58,6 +58,7 @@ class PageViewMiddleware:
             '/wp-admin/'
             '/wp-includes/'
             '/wp-content/',
+            '/wordpress/',
             
         ]
         
@@ -202,6 +203,12 @@ class PageViewMiddleware:
                 ip_address=ip_address,
                 user_agent=user_agent
             )
+            # if the url starts with one of the excluded prefixes, don't record it
+            if any(url.startswith(prefix) for prefix in self.excluded_prefixes):
+                return
+            # if the url is in the excluded paths, don't record it
+            if url in self.excluded_paths:
+                return
         except Exception as e:
             logger.error(f"Failed to record page view: {str(e)}")
             raise  # Re-raise for the parent exception handler
@@ -213,6 +220,12 @@ class PageViewMiddleware:
         Args:
             url: The URL path to update counts for.
         """
+        # if the url starts with one of the excluded prefixes, don't record it
+        if any(url.startswith(prefix) for prefix in self.excluded_prefixes):
+            return
+        # if the url is in the excluded paths, don't record it
+        if url in self.excluded_paths:
+            return
         today = date.today()
         try:
             daily_count, created = DailyPageViewCount.objects.get_or_create(
