@@ -17,7 +17,11 @@ def analytics_context(request):
     # Only process if not an admin, static, or analytics path
     if (not request.path.startswith('/admin/') and 
         not request.path.startswith('/static/') and
-        not request.path.startswith('/analytics/')
+        not request.path.startswith('/analytics/') and
+        not request.path.startswith('/wp-admin/') and
+        not request.path.startswith('/wp-includes/') and
+        not request.path.startswith('/wp-content/') and
+        not request.path.startswith('/wordpress/')
         ):
         
         # Cache key specific to this page
