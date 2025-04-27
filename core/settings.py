@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',  # This is where you put the name of the db file.
+        'NAME': 'db.sqlite3',
         # If one doesn't exist, it will be created at migration time.
     }
 }

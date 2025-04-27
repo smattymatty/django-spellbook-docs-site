@@ -43,7 +43,6 @@ class PageViewMiddleware:
             '/sw.js',
             '/robots.txt',
             '/sitemap.xml',
-            '/wp-admin/setup-config.php'
         }
         
         # Add custom excluded paths from settings if defined
@@ -56,6 +55,10 @@ class PageViewMiddleware:
             '/static/', 
             '/media/',
             '/analytics/'
+            '/wp-admin/'
+            '/wp-includes/'
+            '/wp-content/',
+            
         ]
         
         # Add custom excluded prefixes from settings if defined
