@@ -51,7 +51,8 @@ class PageViewMiddleware:
         
         # Path prefixes to exclude (always skip these)
         self.excluded_prefixes: List[str] = [
-            '/admin/', 
+            '/admin/',
+            '/a-panel/',
             '/static/', 
             '/media/',
             '/analytics/'
