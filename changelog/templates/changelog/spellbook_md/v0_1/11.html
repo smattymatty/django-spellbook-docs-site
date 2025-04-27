@@ -3,7 +3,16 @@
 {% block spellbook_md %}
 <h2><strong>Version 0.1.11</strong></h2>
 <p><em>Released: April 19, 2025</em></p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This release brings major architectural improvements, URL prefix customization, and enhanced error handling, making Django Spellbook more robust, flexible, and maintainable.</p>
+    </span>
+</div>
 
 <h1>New Features</h1>
 <h2>Customizable URL Prefixes</h2>
@@ -97,7 +106,20 @@ SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
 <li>Enhanced source path normalization for Windows compatibility</li>
 <li>Added better progress indicators during processing</li>
 </ul>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>This release marks a significant step forward in Django Spellbook's architecture, setting the foundation for exciting features we have planned for future releases.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Spellbook Team</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
 
 <h1>Coming Soon</h1>
 <ul>
@@ -106,5 +128,14 @@ SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
 <li>Enhanced navigation options</li>
 <li>Advanced content filtering and organization</li>
 </ul>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>We're committed to continuous improvement. If you have feedback or feature requests for future versions, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
+    </span>
+</div>
 {% endblock %}

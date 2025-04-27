@@ -14,7 +14,16 @@
 &lt;/head&gt;
 {% endverbatim %}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Be sure that they are included in the head of your HTML, preferrably in your base template or a `% block extra_css %', to make sure all extended templates will benefit.</p>
+    </span>
+</div>
 
 <h2>Style Categories</h2>
 <p>Spellbook's styles are divided into two main categories:</p>
@@ -54,7 +63,16 @@
 <p>A nice card layout</p>
 </div>
 </div>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>All Spellbook styles use the <code>sb-</code> prefix to prevent conflicts with your project's existing CSS. This means you can safely use them alongside other CSS frameworks.</p>
+    </span>
+</div>
 
 <p>Want to see the specific classes available? Check out:</p>
 <ul>
@@ -69,5 +87,21 @@
 <li><a href="/docs/Styles/transition-animation">Transition/Animation Utilities</a></li>
 <li><a href="/docs/Styles/typography">Typography Utilities</a></li>
 </ul>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Style Philosophy</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Spellbook's styles are designed to be:</p>
+<ul>
+<li><strong>Predictable</strong>: consistent naming patterns</li>
+<li><strong>Non-invasive</strong>: won't affect your existing styles</li>
+<li><strong>Composable</strong>: mix and match as needed</li>
+<li><strong>Responsive</strong>: work well on all devices</li>
+</ul>
+    </div>
+
+</div>
 {% endblock %}

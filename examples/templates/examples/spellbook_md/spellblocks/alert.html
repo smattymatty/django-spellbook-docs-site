@@ -11,7 +11,16 @@
 This is a standard info alert without specifying a type.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This is a standard info alert without specifying a type.</p>
+    </span>
+</div>
 
 <h3>Success Alert</h3>
 <p>Success alerts highlight positive messages, accomplishments, or correct approaches.</p>
@@ -19,7 +28,16 @@ This is a standard info alert without specifying a type.
 Great job! Your operation completed successfully.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Great job! Your operation completed successfully.</p>
+    </span>
+</div>
 
 <h3>Warning Alert</h3>
 <p>Warning alerts call attention to potential issues or things to be careful about.</p>
@@ -27,7 +45,16 @@ Great job! Your operation completed successfully.
 Be careful! This action can't be undone.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Be careful! This action can't be undone.</p>
+    </span>
+</div>
 
 <h3>Danger Alert</h3>
 <p>Danger alerts highlight critical information or error conditions.</p>
@@ -35,7 +62,16 @@ Be careful! This action can't be undone.
 Fatal error! Database connection failed.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-danger sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            🚫
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Fatal error! Database connection failed.</p>
+    </span>
+</div>
 
 <h2>Formatting Inside Alerts</h2>
 <p>Alerts support full markdown formatting within their content, allowing rich text presentation.</p>
@@ -46,7 +82,17 @@ You can use **bold**, *italic*, and `code` formatting inside alerts.
 Even [links](https://example.com) work perfectly!
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>You can use <strong>bold</strong>, <em>italic</em>, and <code>code</code> formatting inside alerts.</p>
+<p>Even <a href="https://example.com">links</a> work perfectly!</p>
+    </span>
+</div>
 
 <h3>Lists in Alerts</h3>
 <pre><code class="language-django">{~ alert type=&quot;success&quot; ~}
@@ -61,7 +107,24 @@ Or alternatively:
 * Follow the prompts
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Follow these steps:</p>
+<ol>
+<li>Install the package</li>
+<li>Configure settings</li>
+<li>Run migrations</li>
+</ol>
+<p>Or alternatively:<br />
+* Use the quickstart script<br />
+* Follow the prompts</p>
+    </span>
+</div>
 
 <h2>Customizing Alerts</h2>
 <h3>TODO: Adding Custom Classes</h3>
@@ -70,7 +133,16 @@ Or alternatively:
 This alert has custom spacing.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This alert has custom spacing.</p>
+    </span>
+</div>
 
 <h3>TODO: Adding a Title</h3>
 <p>You can add a title to your alert for additional context:</p>
@@ -78,7 +150,16 @@ This alert has custom spacing.
 This feature requires Django 3.2 or higher.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This feature requires Django 3.2 or higher.</p>
+    </span>
+</div>
 
 <h3>TODO: Dismissible Alerts</h3>
 <p>Make alerts dismissible with the <code>dismissible</code> parameter:</p>
@@ -86,12 +167,47 @@ This feature requires Django 3.2 or higher.
 Click the X to dismiss this alert!
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Click the X to dismiss this alert!</p>
+    </span>
+</div>
 
 <h2>Best Practices</h2>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
 
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <h3>When to Use Alerts</h3>
+<p>Alerts are perfect for:<br />
+* Important notes and warnings<br />
+* Highlighting key information<br />
+* Providing tips and best practices<br />
+* Pointing out version-specific information</p>
+<p>Keep alerts brief and focused for maximum impact.</p>
+    </span>
+</div>
+
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <h3>Alert Overuse</h3>
+<p>Too many alerts can cause "alert fatigue" - where readers start to ignore them.</p>
+<p>Use alerts purposefully and sparingly for the most important information.</p>
+    </span>
+</div>
 
 <h2>Error Handling</h2>
 <p>If you specify an invalid alert type, it will default to the "info" type:</p>
@@ -99,8 +215,43 @@ Click the X to dismiss this alert!
 This will render as an info alert.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This will render as an info alert.</p>
+    </span>
+</div>
 
 <hr />
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 5-10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Documentation
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Alert Practice Challenge</h3>
+<p>Try creating your own alert blocks:</p>
+<ol>
+<li>Create an info alert about a feature you're working on</li>
+<li>Create a warning alert about potential pitfalls</li>
+<li>Create a success alert with a list of benefits</li>
+<li>Create a danger alert with code showing an anti-pattern</li>
+</ol>
+<p>Experiment with different formatting inside your alerts!</p>
+    </div>
+</div>
 {% endblock %}

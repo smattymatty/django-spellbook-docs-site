@@ -17,7 +17,16 @@ Hey! This is important stuff!
 <li>success</li>
 <li>danger</li>
 </ul>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>If you use an invalid type, it'll default to 'info' and print a warning message telling you what went wrong.</p>
+    </span>
+</div>
 
 <h3>Card Block</h3>
 <p>Creates a card-style container for your content. Perfect for organizing related information.</p>
@@ -26,7 +35,21 @@ Your card content here.
 Supports **markdown** too!
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">This is my Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>All parameters are optional. The card will still look good without them.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            This is my Footer
+        </div>
+
+</div>
 
 <h2>Quote Block</h2>
 <p>The Quote Block creates stylized quotations with optional attribution information. This block is perfect for highlighting important quotes, testimonials, or key takeaways from other sources.</p>
@@ -42,7 +65,20 @@ Peace cannot be kept by force; it can only be achieved by understanding.
 {~~}
 </code></pre>
 <h3>Rendered Result</h3>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Peace cannot be kept by force; it can only be achieved by understanding.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Albert Einstein</cite>
+                <span class="sb-neutral-50">, Address to the Students&#x27; Disarmament Meeting</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
 
 <p>You can also use markdown <em>within</em> your quotes:</p>
 <pre><code class="language-django">{~ quote author=&quot;Ada Lovelace&quot; ~}
@@ -72,7 +108,30 @@ Create a Django project with:
 {~~}
 </code></pre>
 <h3>Rendered Result</h3>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15-30 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Django Templates
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Template Inheritance Challenge</h3>
+<p>Create a Django project with:<br />
+1. A base template with blocks for <code>title</code>, <code>content</code>, and <code>footer</code><br />
+2. Two child templates that extend this base template<br />
+3. A view that renders each child template</p>
+<p><strong>Bonus</strong>: Add a navigation block that changes based on the current page.</p>
+    </div>
+</div>
 
 <p>For more advanced examples:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Advanced&quot; timeframe=&quot;1-2 hours&quot; impact=&quot;Very High&quot; focus=&quot;Performance Optimization&quot; ~}

@@ -22,15 +22,51 @@ Content with *markdown* support
 <p>Paired with powerful libraries like HTMX, this can create dynamic and interactive interfaces that are both visually appealing and highly functional without ever having to leave your markdown files.</p>
 <h2>Example: SpellBlocks, re-usable Content Components</h2>
 <p>Spellblocks are reusable content components that can be embedded directly in your markdown content. They provide a powerful way to create rich, interactive content while maintaining the simplicity of markdown syntax.</p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Warning: This is an important notice!</p>
+    </span>
+</div>
 
 <pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
 Warning: This is an important notice!
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
 
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <verbatim><p>Be sure to include the <code>% spellbook_styles %</code> tag in your base template if you want to use the built-in styles.</p></verbatim>
+    </span>
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Quick Start</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ol>
+<li>Install the package</li>
+<li>Add to <code>INSTALLED_APPS</code></li>
+<li>Start writing magical markdown!</li>
+</ol>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Updated: Today
+        </div>
+
+</div>
 
 <p>Those are just a few examples of built-in Spellblocks. You can also create your own custom Spellblocks by extending the <code>BasicSpellBlock</code> class and registering them with the <code>SpellBlockRegistry</code>. See the <a href="/docs/Markdown/spellblocks">documentation on Spellblocks</a> for more information.</p>
 <pre><code class="language-django">{~ card title=&quot;Quick Start&quot; footer=&quot;Updated: Today&quot; ~}
@@ -197,12 +233,86 @@ SPELLBOOK_MD_URL_PREFIX = ['documentation', 'articles']  # Optional
 <li>Using the specified URL prefixes to organize content hierarchically</li>
 </ul>
 <p>By including <code>path('', include('django_spellbook.urls'))</code> in your project's main <code>urls.py</code>, all your content becomes accessible through their respective URL prefixes.</p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
 
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>URL prefixes give you the flexibility to organize your content in a way that makes sense for your project. Whether you need separate sections for documentation, blog posts, or any other content type, Django Spellbook makes it simple to create and maintain a structured information architecture.</p></p>
 
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Spellbook Developer</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Remember: For the cleanest URLs, you can mount Django Spellbook at the root of your site with <code>path('', include('django_spellbook.urls'))</code>, letting your content shine without unnecessary path segments.</p>
+    </span>
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Need Help?</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>If you encounter any issues or have questions about URL prefixes or any other aspect of Django Spellbook, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Happy coding with Django Spellbook!
+        </div>
+
+</div>
 
 <div class="sb-p-4 sb-mb-4"><a class="super-link" href="/docs/Markdown/quick-start"><p>Read Next: Markdown Module Quick Start</p></a></div>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15-20 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> URL Configuration
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>URL Prefix Challenge</h3>
+<p>Try these exercises to practice using Django Spellbook's URL prefix functionality:</p>
+<ol>
+<li><strong>Basic Setup</strong>: </li>
+</ol>
+<ul>
+<li>Create a Django project with Django Spellbook installed</li>
+<li>Add a <code>markdown_files</code> directory with a few sample .md files</li>
+<li>Configure Spellbook to process these files and serve them at the URL prefix "docs"</li>
+<li>Run the command and verify your content is accessible at <code>/docs/your-file/</code></li>
+</ul>
+<ol start="2">
+<li><strong>Multiple Sources</strong>:</li>
+</ol>
+<ul>
+<li>Create a second markdown directory for blog content</li>
+<li>Configure Spellbook to process both sources to different apps</li>
+<li>Set up custom URL prefixes for each source</li>
+<li>Verify that both content types are accessible at their respective URLs</li>
+</ul>
+<p><strong>Bonus</strong>: Create a custom URL pattern using Django's patterns to add a "latest" URL that redirects to your most recent blog post.</p>
+    </div>
+</div>
 {% endblock %}

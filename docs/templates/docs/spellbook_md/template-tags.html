@@ -17,7 +17,16 @@
 {% sidebar_toc %}
 {% endverbatim %}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This tag requires a <code>toc</code> variable in the template context. The Django Spellbook views automatically provide this when using the built-in base templates.</p>
+    </span>
+</div>
 
 <p>When rendered, this tag produces a hierarchical navigation menu based on your markdown files directory structure.</p>
 <h3>spellbook_styles</h3>
@@ -27,11 +36,30 @@
 {% spellbook_styles %}
 {% endverbatim %}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Best Practice</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Include this tag in your base template's <code>&lt;head&gt;</code> section to ensure consistent styling across all your markdown-rendered pages.</p>
+    </div>
+
+</div>
 
 <h3>spellbook_url</h3>
 <p>Does what Django's built-in <code>url</code> tag does, but for markdown-generated content.</p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><code>blog/tech/first-blog-post</code> will be converted to <code>blog:tech_first-blog-post</code> before being passed to the <code>url</code> of the generated context of each markdown file. <code>/</code> will be replaced with <code>_</code> and all dashes will remain.</p>
+    </span>
+</div>
 
 <p><strong>Syntax</strong>:</p>
 <pre><code class="language-django">{% verbatim %}
@@ -64,5 +92,14 @@
 {% show_metadata %}
 {% endverbatim %}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This tag's implementation is currently a placeholder. Check the documentation for updates in future releases for full functionality.</p>
+    </span>
+</div>
 {% endblock %}

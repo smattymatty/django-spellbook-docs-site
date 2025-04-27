@@ -18,7 +18,16 @@
 │   └── urls.py
 └── my_app/             &lt;- Your content app
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>If you are not familiar with starting Django Projects or Apps, visit the <a href="https://docs.djangoproject.com/en/5.1/intro/tutorial01/">Django Docs</a> for a quick start.</p>
+    </span>
+</div>
 
 <h1>Quick Start</h1>
 <p>Install the library: <code>pip install django-spellbook</code></p>
@@ -67,7 +76,16 @@ SPELLBOOK_MD_APP = [
 ]
 </code></pre>
 <p>With this configuration, markdown files from <code>docs_content</code> will be processed to the <code>docs_app</code>, and files from <code>blog_content</code> will be processed to the <code>blog_app</code>. Each app will have its own independent set of templates, views, and URLs.</p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Make sure the number of entries in SPELLBOOK_MD_PATH and SPELLBOOK_MD_APP match, or the command will raise an error.</p>
+    </span>
+</div>
 
 <h2>Base Templates</h2>
 <p>The <code>SPELLBOOK_MD_BASE_TEMPLATE</code> setting is defaulted to <code>None</code>, which will simply show the rendered markdown content. For beginners, it's recommended to use the built-in base template, which includes a few styles, and a sidebar with a navigation menu based on your <code>SPELLBOOK_MD_PATH</code> directory structure.</p>

@@ -3,7 +3,16 @@
 {% block spellbook_md %}
 <h2><strong>Version 0.1.10</strong></h2>
 <p><em>Released: April 12, 2025</em></p>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This release introduces powerful new SpellBlocks and multi-source configuration support, making Django Spellbook even more versatile for creating and organizing markdown content.</p>
+    </span>
+</div>
 
 <h1>New Features</h1>
 <h2>Two New SpellBlocks</h2>
@@ -12,14 +21,44 @@
 Powerful Django markdown processing with template-like features.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Powerful Django markdown processing with template-like features.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Spellbook</cite>
+                <span class="sb-neutral-50">, Documentation</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
 
 <p><em>Also Supports Images!</em> <strong>Add an optional 'image' parameter with a link!</strong></p>
 <pre><code class="language-django">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Theory of Relativity&quot; image=&quot;https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg&quot; ~}
 The speed of light is the ultimate limit of human understanding.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 sb-quote-with-image ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-image-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg" alt="Albert Einstein" class="sb-quote-image">
+        </div>
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The speed of light is the ultimate limit of human understanding.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Albert Einstein</cite>
+                <span class="sb-neutral-50">, Theory of Relativity</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
 
 <p><strong>2. PracticeBlock</strong> - Structure exercises and challenges with metadata</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;20 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
@@ -27,7 +66,26 @@ The speed of light is the ultimate limit of human understanding.
 Write a template tag that formats dates according to user preferences.
 {~~}
 </code></pre>
-<!-- Error rendering block: 'NoneType' object has no attribute 'record_spellblock_usage' -->
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 20 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Django Templates
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Create a custom template tag</h3>
+<p>Write a template tag that formats dates according to user preferences.</p>
+    </div>
+</div>
 
 <h2>Multi-Source Configuration</h2>
 <p>Now you can process markdown from multiple directories to different Django apps, with each having its own independent templates, views, and URLs:</p>
