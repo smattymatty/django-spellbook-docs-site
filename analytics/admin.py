@@ -17,6 +17,12 @@ class DailyPageViewCountAdmin(admin.ModelAdmin):
 
 @admin.register(UniqueVisitor)
 class UniqueVisitorAdmin(admin.ModelAdmin):
-    list_display = ('ip_address', 'first_visit', 'last_visit', 'visit_count')
+    list_display = ('ip_address', 'first_visit', 'last_visit', 'visit_count', 'most_common_url')
     list_filter = ('first_visit', 'last_visit')
     search_fields = ('ip_address',)
+    
+    def most_common_url(self, obj):
+        return obj.most_common_url()
+    most_common_url.short_description = 'Most Common URL'
+    most_common_url.admin_order_field = 'visit_count'
+    most_common_url.allow_tags = True
