@@ -36,11 +36,11 @@ Small, single-purpose classes that handle common styling needs:
 - Flexbox layouts
 - Transitions
 
-These are prefixed with `spellbook-` to avoid conflicts with your existing styles:
+These are prefixed with `sb-` to avoid conflicts with your existing styles:
 
-{% div class="spellbook-p-3 spellbook-mb-3 spellbook-border" %}
+{% div class="sb-p-3 sb-mb-3 sb-border" %}
 ```django
-<div class="spellbook-p-3 spellbook-mb-3 spellbook-border">
+<div class="sb-p-3 sb-mb-3 sb-border">
     Padded, with margin and border
 </div>
 ```

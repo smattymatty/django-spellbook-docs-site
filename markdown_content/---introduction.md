@@ -1,8 +1,14 @@
 # What is Django Spellbook?
 
-A magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.
+Django Spellbook is a markdown processor that extends markdown with reusable content components for Django, generating templates, views, and URLs in a way that doesn't interfere with your existing codebase. [FAQ](/docs/FAQ).
 
-It's a collection of tools that I've found useful in my projects, and I hope that you will too.
+It's a magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.
+
+{~ accordion title="Why use Spellbook?" ~}
+If you are a developer looking to create and manage markdown-based content in your Django projects, Spellbook is the perfect tool for you.
+
+Visit the [Examples](/examples/introduction) page to see how it can be used in practice.
+{~~}
 
 # Installation
 

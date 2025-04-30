@@ -83,7 +83,11 @@ SPELLBOOK_MD_APP = [
 ]
 ```
 
+{~ accordion title="Multi-Source Configuration" ~}
+
 With this configuration, markdown files from `docs_content` will be processed to the `docs_app`, and files from `blog_content` will be processed to the `blog_app`. Each app will have its own independent set of templates, views, and URLs.
+
+{~~}
 
 {~ alert type="info" ~}
 Make sure the number of entries in SPELLBOOK_MD_PATH and SPELLBOOK_MD_APP match, or the command will raise an error.

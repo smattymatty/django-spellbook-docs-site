@@ -2,8 +2,29 @@
 
 {% block spellbook_md %}
 <h1>What is Django Spellbook?</h1>
-<p>A magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.</p>
-<p>It's a collection of tools that I've found useful in my projects, and I hope that you will too.</p>
+<p>Django Spellbook is a markdown processor that extends markdown with reusable content components for Django, generating templates, views, and URLs in a way that doesn't interfere with your existing codebase. <a href="/docs/FAQ">FAQ</a>.</p>
+<p>It's a magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Why use Spellbook?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>If you are a developer looking to create and manage markdown-based content in your Django projects, Spellbook is the perfect tool for you.</p>
+<p>Visit the <a href="/examples/introduction">Examples</a> page to see how it can be used in practice.</p>
+        </div>
+    </div>
+</div>
+
 <h1>Installation</h1>
 <p>Install the package with pip:<br />
 <code>pip install django-spellbook</code></p>

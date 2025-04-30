@@ -1,3 +1,10 @@
+---
+title: Introduction
+created: 2025-04-27
+tags:
+  - examples
+  - introduction
+---
 Welcome To the Examples of Django Spellbook!
 
 Django Spellbook is a powerful toolkit for creating and managing markdown-based content in your Django projects. It's designed to be simple, flexible, and easy to use, with a focus on maintainability and extensibility.
@@ -103,6 +110,22 @@ Create a simple Django template that displays a greeting message.
 {~~}
 
 [Explore the Practice Block →](/examples/spellblocks/practice)
+
+## Accordion Block
+
+Create collapsible content sections for FAQs, step-by-step guides, and more.
+
+```django
+{~ accordion title="What is Django Spellbook?" ~}
+A powerful markdown processor that extends Django's templating capabilities.
+{~~}
+```
+
+{~ accordion title="What is Django Spellbook?" ~}
+A powerful markdown processor that extends Django's templating capabilities.
+{~~}
+
+[Explore the Accordion Block →](/examples/spellblocks/accordion)
 
 ## Why Use SpellBlocks?
 

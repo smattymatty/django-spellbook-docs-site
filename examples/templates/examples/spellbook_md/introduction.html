@@ -136,6 +136,33 @@ Create a simple Django template that displays a greeting message.
 </div>
 
 <p><a href="/examples/spellblocks/practice">Explore the Practice Block →</a></p>
+<h2>Accordion Block</h2>
+<p>Create collapsible content sections for FAQs, step-by-step guides, and more.</p>
+<pre><code class="language-django">{~ accordion title=&quot;What is Django Spellbook?&quot; ~}
+A powerful markdown processor that extends Django's templating capabilities.
+{~~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">What is Django Spellbook?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A powerful markdown processor that extends Django's templating capabilities.</p>
+        </div>
+    </div>
+</div>
+
+<p><a href="/examples/spellblocks/accordion">Explore the Accordion Block →</a></p>
 <h2>Why Use SpellBlocks?</h2>
 <p>SpellBlocks offer several advantages over plain markdown:</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">

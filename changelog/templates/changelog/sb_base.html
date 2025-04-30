@@ -2,5 +2,9 @@
 {% load spellbook_tags %}
 {% spellbook_styles %}
 {% block changelog_content %}
+    {% show_metadata %}
+    {% if user.is_authenticated and user.is_staff %}
+        {% show_metadata 'for_dev' %}
+    {% endif %}
     {% block spellbook_md %}{% endblock %}
 {% endblock %}

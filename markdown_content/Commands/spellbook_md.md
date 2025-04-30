@@ -33,7 +33,6 @@ SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 - `SPELLBOOK_MD_BASE_TEMPLATE` (default: `None`): Specifies a template that will wrap all rendered markdown content. The default `None` simply shows the rendered markdown without additional styling.
 - The built-in `sidebar_left.html` template includes styling and a navigation menu based on your content structure. You can [view the source here](https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html).
 
-#### **Optional Settings**
 
 ```python
 SPELLBOOK_MD_TITLEFY = True  # Default: True
@@ -128,8 +127,7 @@ urlpatterns = [
 ]
 ```
 
-### Command Process
-
+{~ accordion title="Command Process" ~}
 When you run the command, it:
 
 1. Discovers all markdown files in your configured directories
@@ -138,97 +136,10 @@ When you run the command, it:
 4. Creates view functions for each processed file
 5. Sets up URL patterns based on file paths and configured prefixes
 6. Builds navigation tables of contents for each source
+{~~}
 
 {% div .sb-p-4 .sb-mb-4 %}
 {% a href="/docs/Markdown/introduction" .super-link %}
 Read Next: Markdown Module Introduction
 {% enda %}
 {% enddiv %}
-
-{~ practice difficulty="Beginner" timeframe="15-20 minutes" impact="High" focus="Command Usage" ~}
-### Command Practice Challenge
-
-Try these exercises to master the `spellbook_md` command:
-
-1. **Basic Command Usage**:
-
-   - Create a simple markdown file with a heading and some content
-   - Configure the required settings in your project
-   - Run the command and verify the file was processed successfully
-   - View the generated template, view function, and URL pattern
-
-
-2. **URL Prefix Configuration**:
-
-   - Configure a custom URL prefix for your content
-   - Run the command again and verify your content is accessible at the new URL
-   - Try changing the URL prefix and observe how the URLs are updated
-
-3. **Multi-Source Setup**:
-
-   - Create a second directory with markdown files
-   - Configure settings for multiple source-destination pairs
-   - Run the command and verify both sources are processed correctly
-   - Check that the content is accessible at the expected URLs
-
-4. **Custom Base Templates**:
-
-   - Create two different base templates with distinct layouts
-   - Configure settings to use different templates for different sources
-   - Run the command and verify each source uses its assigned template
-   - Compare how the same content appears with different base templates
-
-5. **Reporting Options**:
-
-   - Run the command with `--report-level=minimal` to see the condensed output
-   - Generate a JSON report with `--report-format=json --report-output=report.json`
-   - Examine the JSON structure and how it differs from the text output
-   - Try the debug level to see the additional information provided for troubleshooting
-
-
-### Reporting Options
-
-The `spellbook_md` command includes flexible reporting options to customize the output for different use cases:
-
-#### Report Levels
-
-Control the amount of information included in the report:
-
-- `--report-level=minimal`: Only show a high-level summary of processing results
-- `--report-level=detailed`: Include detailed information about each file (default)
-- `--report-level=debug`: Include additional diagnostic information for troubleshooting
-
-#### Report Formats
-
-Choose how the report information is presented:
-
-- `--report-format=text`: Human-readable text output (default)
-- `--report-format=json`: Machine-readable JSON format for use in scripts or CI pipelines
-- `--report-format=none`: Suppress the report entirely
-
-#### Report Output
-
-Direct the report to a file instead of standard output:
-
-- `--report-output=path/to/file.txt`: Save the report to the specified file
-- `--report-output=path/to/file.json`: Useful when combined with `--report-format=json`
-
-#### Examples
-
-```bash
-# Get minimal output for CI pipelines
-python manage.py spellbook_md --report-level=minimal
-
-# Save a detailed JSON report to a file
-python manage.py spellbook_md --report-format=json --report-output=report.json
-
-# Run quietly with no report
-python manage.py spellbook_md --report-format=none
-
-# Get maximum information for debugging
-python manage.py spellbook_md --report-level=debug
-```
-
-These reporting options help integrate the `spellbook_md` command into different workflows and provide the right level of information for each use case.
-
-**Bonus**: Try the `--continue-on-error` flag with some intentionally malformed markdown files to see how the command handles errors.

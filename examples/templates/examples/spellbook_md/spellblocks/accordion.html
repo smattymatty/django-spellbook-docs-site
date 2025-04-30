@@ -1,0 +1,120 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2>Accordion SpellBlock Showcase</h2>
+<p>The Accordion SpellBlock enables creating collapsible content sections, perfect for FAQs, step-by-step guides, and organizing complex information. This guide demonstrates all Accordion capabilities.<br />
+Basic Accordion Usage</p>
+<p><strong>Create a simple collapsible section:</strong></p>
+<pre><code class="language-django">{~ accordion title=&quot;What is Django Spellbook?&quot; ~}
+A powerful markdown processor that extends Django's templating capabilities.
+{~~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">What is Django Spellbook?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A powerful markdown processor that extends Django's templating capabilities.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong>Expanded on page load:</strong></p>
+<pre><code class="language-django">{~ accordion title=&quot;Installation Guide&quot; open=true ~}
+1. `pip install django-spellbook`  
+2. Add to `INSTALLED_APPS`  
+3. Run `migrate`
+{~~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Installation Guide</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <ol>
+<li><code>pip install django-spellbook</code>  </li>
+<li>Add to <code>INSTALLED_APPS</code>  </li>
+<li>Run <code>migrate</code></li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<h2>Rich Content Support</h2>
+<p>Accoridons can contain any valid markdown and SpellBlocks:</p>
+<pre><code class="language-django">{~ accordion title=&quot;Troubleshooting Guide&quot; ~}
+
+Common issues:
+
+1. Missing migrations
+2. Template path errors
+3. Markdown syntax issues
+
+{~ practice difficulty=&quot;Intermediate&quot; ~}
+Create a test case for migration conflicts
+{~~}
+{~~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Troubleshooting Guide</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Common issues:<br />
+1. Missing migrations<br />
+2. Template path errors<br />
+3. Markdown syntax issues</p>
+<p><div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> Varies
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> General
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+Create a test case for migration conflicts</p><br />
+        </div><br />
+    </div><br />
+</div></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-# SpellBlocks
+# Introduction to SpellBlocks
 
 SpellBlocks are reusable content components that you can embed directly in your markdown. Think of them as Django template tags, but for markdown. They're perfect for creating rich, interactive content while keeping your markdown clean and readable.
 

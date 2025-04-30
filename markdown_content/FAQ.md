@@ -1,0 +1,29 @@
+# Frequently Asked Questions
+
+{~ accordion title="What is Django Spellbook?" open=true ~}
+Django Spellbook is a powerful markdown processor that extends Django's templating capabilities.
+
+It's designed to be simple, flexible, and easy to use, with a focus on maintainability and extensibility.
+
+It leverages Django's template system to provide a seamless integration with your existing Django projects, making it a great choice for creating and managing markdown-based content.
+{~~}
+
+## Generation Process
+
+{~ accordion title="Does this alter my database?" ~}
+No, Django Spellbook does not alter your database. It processes your markdown files and generates templates that are then used by automatically generated views and URLs.
+{~~}
+
+{~ accordion title="How do I access the generated URLS?" ~}
+You can access your generated URLS by including `path('', include('django_spellbook.urls'))` in your main `urls.py` file.
+{~~}
+
+{~ accordion title="Where are the templates stored?" ~}
+The templates are stored in your app's `templates/spellbook_md/` directory.
+{~~}
+
+{~ accordion title="Does this change my app's codebase?" ~}
+No, Django Spellbook does not modify your app's codebase. The only change of code is in the `templates/spellbook_md/` directory.
+
+The `urls.py` and `views.py` files of your app are not modified. Instead, Django Spellbook generates these files automatically based on your configured settings, and stores them in it's own internal directory. `venv/lib/python3.10/site-packages/django_spellbook/templates/django_spellbook/views_app_name.py` and `venv/lib/python3.10/site-packages/django_spellbook/templates/django_spellbook/urls_app_name.py`
+{~~}

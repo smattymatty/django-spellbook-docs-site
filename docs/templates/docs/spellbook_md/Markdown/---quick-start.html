@@ -75,7 +75,26 @@ SPELLBOOK_MD_APP = [
     &quot;blog_app&quot;
 ]
 </code></pre>
-<p>With this configuration, markdown files from <code>docs_content</code> will be processed to the <code>docs_app</code>, and files from <code>blog_content</code> will be processed to the <code>blog_app</code>. Each app will have its own independent set of templates, views, and URLs.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Multi-Source Configuration</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>With this configuration, markdown files from <code>docs_content</code> will be processed to the <code>docs_app</code>, and files from <code>blog_content</code> will be processed to the <code>blog_app</code>. Each app will have its own independent set of templates, views, and URLs.</p>
+        </div>
+    </div>
+</div>
+
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 

@@ -120,44 +120,6 @@ Design is not just what it looks like and feels like. Design is how it works.
 Design is not just what it looks like and feels like. Design is how it works.
 {~~}
 
-## Quotes in Different Contexts
-
-### Motivational Quotes
-
-```django
-{~ quote author="Martin Fowler" ~}
-Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
-{~~}
-```
-
-{~ quote author="Martin Fowler" ~}
-Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
-{~~}
-
-### Historical Context
-
-```django
-{~ quote author="Dennis Ritchie" source="Creator of C and co-creator of Unix" ~}
-UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity.
-{~~}
-```
-
-{~ quote author="Dennis Ritchie" source="Creator of C and co-creator of Unix" ~}
-UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity.
-{~~}
-
-### Expert Testimonials
-
-```django
-{~ quote author="Dr. Jane Smith" source="Lead Developer at TechCorp" ~}
-Django Spellbook revolutionized how we build and maintain our documentation. The markdown integration makes it incredibly easy for our entire team to contribute.
-{~~}
-```
-
-{~ quote author="Dr. Jane Smith" source="Lead Developer at TechCorp" ~}
-Django Spellbook revolutionized how we build and maintain our documentation. The markdown integration makes it incredibly easy for our entire team to contribute.
-{~~}
-
 ## Best Practices
 
 {~ alert type="info" ~}

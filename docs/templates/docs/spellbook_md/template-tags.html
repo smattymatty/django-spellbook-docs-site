@@ -87,19 +87,58 @@
 </code></pre>
 <h3>show_metadata</h3>
 <p>Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.</p>
-<p><strong>Syntax</strong>:</p>
+<ol>
+<li>User-Facing Metadata:</li>
+</ol>
 <pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
 {% show_metadata %}
 {% endverbatim %}
 </code></pre>
-<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ⚠️
-
-    </span>
-    <span class="sb-alert-content">
-        <p>This tag's implementation is currently a placeholder. Check the documentation for updates in future releases for full functionality.</p>
-    </span>
-</div>
+<p>You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:</p>
+<ul>
+<li><strong>Title</strong> {{ metadata.title }}</li>
+<li><strong>Created</strong> At {{ metadata.created_at }}</li>
+<li><strong>Tags</strong> {{ metadata.tags }}</li>
+<li><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</li>
+<li><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</li>
+<li><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</li>
+<li><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></li>
+<li><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></li>
+</ul>
+<p>TODO: Add an author field to the metadata and update the defeault metadata template to display it.</p>
+<ol start="2">
+<li>Developer-Facing Metadata:</li>
+</ol>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% if user.is_authenticated and user.is_staff %}
+    {% show_metadata 'for_dev' %}
+{% endif %}
+{% endverbatim %}
+</code></pre>
+<p>You can include this tag in your spellbook base template to display metadata for the current page.</p>
+<p>This page contains the following metadata:</p>
+<ul>
+<li>URL {{ metadata.url_path }}</li>
+</ul>
+<p>TODO: Add more fields that developers can use to debug and troubleshoot their content.</p>
+<p>Features:</p>
+<ul>
+<li>
+<p>Automatic date tracking (created)</p>
+</li>
+<li>
+<p>Reading time estimates</p>
+</li>
+<li>
+<p>Content navigation links</p>
+</li>
+<li>
+<p>Custom key-value pairs</p>
+</li>
+<li>
+<p>Responsive grid layout</p>
+</li>
+</ul>
 {% endblock %}

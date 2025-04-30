@@ -95,13 +95,56 @@ Removes leading dashes from a string. This is particularly useful for cleaning u
 
 Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.
 
-**Syntax**:
+1. User-Facing Metadata:
+
 ```django
 {% verbatim %}
+{% load spellbook_tags %}
 {% show_metadata %}
 {% endverbatim %}
 ```
 
-{~ alert type="warning" ~}
-This tag's implementation is currently a placeholder. Check the documentation for updates in future releases for full functionality.
-{~~}
+You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:
+
+- **Title** {{ metadata.title }}
+- **Created** At {{ metadata.created_at }}
+- **Tags** {{ metadata.tags }}
+- **Custom** **Meta** {{ metadata.custom_meta }}
+- **Word** **Count** {{ metadata.word_count }}
+- **Reading** **Time** {{ metadata.reading_time_minutes }}
+- **Prev** **Page** {{ metadata.prev_page }} *(optional)*
+- **Next** **Page** {{ metadata.next_page }} *(optional)*
+
+TODO: Add an author field to the metadata and update the defeault metadata template to display it.
+
+2. Developer-Facing Metadata:
+
+```django
+{% verbatim %}
+{% load spellbook_tags %}
+{% if user.is_authenticated and user.is_staff %}
+    {% show_metadata 'for_dev' %}
+{% endif %}
+{% endverbatim %}
+```
+
+You can include this tag in your spellbook base template to display metadata for the current page.
+
+This page contains the following metadata:
+
+- URL {{ metadata.url_path }}
+
+TODO: Add more fields that developers can use to debug and troubleshoot their content.
+
+Features:
+
+- Automatic date tracking (created)
+
+- Reading time estimates
+
+- Content navigation links
+
+- Custom key-value pairs
+
+- Responsive grid layout
+
