@@ -30,27 +30,27 @@
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 46,
+      "total_uses": 53,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 23,
+      "total_uses": 24,
       "failed_uses": 0
     },
     {
       "name": "quote",
-      "total_uses": 13,
+      "total_uses": 15,
       "failed_uses": 0
     },
     {
       "name": "practice",
-      "total_uses": 22,
+      "total_uses": 23,
       "failed_uses": 0
     },
     {
       "name": "accordion",
-      "total_uses": 17,
+      "total_uses": 23,
       "failed_uses": 0
     }
   ]

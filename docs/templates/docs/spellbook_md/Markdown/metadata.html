@@ -1,7 +1,306 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<p>Hey</p>
+<h1>Understanding Metadata in Django Spellbook</h1>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This guide explains how metadata works in Django Spellbook and demonstrates how to use the new metadata display system introduced in version 0.1.12.</p>
+    </span>
+</div>
+
+<h2>What is Metadata in Django Spellbook?</h2>
+<p>Metadata in Django Spellbook refers to the information about your content that's defined at the top of your markdown files using YAML frontmatter. This structured data helps organize, categorize, and enhance your content beyond what's in the main body.</p>
+<pre><code class="language-yaml">---
+title: Working with Spellbook Metadata
+created_at: 2023-11-15
+author: Django Spellbook Team
+tags:
+  - tutorial
+  - metadata
+  - configuration
+custom_meta:
+  difficulty: beginner
+  category: documentation
+---
+# Markdown Content Title
+
+**continue** writing your content here
+</code></pre>
+<h2>Available Metadata Fields</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Standard Metadata Fields</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <p>Django Spellbook processes the following standard metadata fields:</p>
+<p>TODO: Add author field to the metadata and update the default metadata template to display it.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Document title</td>
+<td><code>"Working with Metadata"</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>Creation date</td>
+<td><code>2023-11-15</code></td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>Content author</td>
+<td><code>"Django Spellbook Team"</code></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Content categories (list)</td>
+<td><code>["tutorial", "metadata"]</code></td>
+</tr>
+<tr>
+<td><code>custom_meta</code></td>
+<td>Custom key-value pairs</td>
+<td><code>{"difficulty": "beginner"}</code></td>
+</tr>
+</tbody>
+</table>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Auto-Generated Metadata</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>In addition to the metadata you define explicitly, Django Spellbook automatically generates:</p>
+<p>TODO: Add automatic prev_page and next_page metadata</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>word_count</code></td>
+<td>Total words in the document</td>
+</tr>
+<tr>
+<td><code>reading_time_minutes</code></td>
+<td>Estimated reading time</td>
+</tr>
+<tr>
+<td><code>url_path</code></td>
+<td>URL path to the current page</td>
+</tr>
+<tr>
+<td><code>prev_page</code></td>
+<td>Link to previous page (if available)</td>
+</tr>
+<tr>
+<td><code>next_page</code></td>
+<td>Link to next page (if available)</td>
+</tr>
+</tbody>
+</table>
+        </div>
+    </div>
+</div>
+
+<h2>Displaying Metadata in Templates</h2>
+<p>Django Spellbook 0.1.12 introduces a powerful template tag that makes it easy to display metadata in your templates.</p>
+<h3>User-Facing Metadata Display</h3>
+<p>The <code>% show_metadata %</code> tag renders a clean, user-friendly view of your content's metadata:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% show_metadata %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>When included in your template, this renders metadata like title, creation date, tags, and reading time in a responsive, styled format that your readers will see.</p>
+    </span>
+</div>
+
+<h3>Developer Metadata Display</h3>
+<p>For debugging and development purposes, you can display technical metadata:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% show_metadata 'for_dev' %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>It's recommended to only show developer metadata to authenticated staff users:</p>
+    </span>
+</div>
+
+<pre><code class="language-django">{% verbatim %}
+{% if user.is_authenticated and user.is_staff %}
+    {% show_metadata 'for_dev' %}
+{% endif %}
+{% endverbatim %}
+</code></pre>
+<h2>Using Metadata in Your Content</h2>
+<p>Beyond just displaying metadata, you can leverage it throughout your templates and content.</p>
+<p>All metadata is available in your templates through the <code>metadata</code> context variable:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;h1&gt;{{ metadata.title }}&lt;/h1&gt;
+&lt;p&gt;Published on: {{ metadata.created_at }}&lt;/p&gt;
+
+{% if metadata.tags %}
+&lt;div class=&quot;tags&quot;&gt;
+    {% for tag in metadata.tags %}
+        &lt;span class=&quot;tag&quot;&gt;{{ tag }}&lt;/span&gt;
+    {% endfor %}
+&lt;/div&gt;
+{% endif %}
+
+&lt;div class=&quot;reading-info&quot;&gt;
+    {{ metadata.word_count }} words 
+    (approximately {{ metadata.reading_time_minutes }} minute read)
+&lt;/div&gt;
+{% endverbatim %}
+</code></pre>
+<p>The automatic <code>prev_page</code> and <code>next_page</code> metadata enables easy content navigation:</p>
+<p>TODO: Add prev_page and next_page metadata</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;div class=&quot;navigation&quot;&gt;
+    {% if metadata.prev_page %}
+        &lt;a href=&quot;{{ metadata.prev_page.url }}&quot; class=&quot;prev&quot;&gt;
+            &amp;larr; Previous: {{ metadata.prev_page.title }}
+        &lt;/a&gt;
+    {% endif %}
+
+    {% if metadata.next_page %}
+        &lt;a href=&quot;{{ metadata.next_page.url }}&quot; class=&quot;next&quot;&gt;
+            Next: {{ metadata.next_page.title }} &amp;rarr;
+        &lt;/a&gt;
+    {% endif %}
+&lt;/div&gt;
+{% endverbatim %}
+</code></pre>
+<h2>Custom Metadata Applications</h2>
+<p>You can use custom metadata for dynamic content features:</p>
+<pre><code class="language-django">{% verbatim %}
+{% if metadata.custom_meta.difficulty %}
+    &lt;div class=&quot;difficulty-badge 
+                difficulty-{{ metadata.custom_meta.difficulty }}&quot;&gt;
+        {{ metadata.custom_meta.difficulty|title }} Level
+    &lt;/div&gt;
+{% endif %}
+{% endverbatim %}
+</code></pre>
+<h2>Best Practices for Metadata</h2>
+<ol>
+<li><strong>Be consistent</strong> with your metadata structure across all content</li>
+<li><strong>Use clear naming conventions</strong> for custom metadata fields</li>
+<li><strong>Keep titles concise</strong> but descriptive</li>
+<li><strong>Use ISO date format</strong> (YYYY-MM-DD) for dates</li>
+<li><strong>Choose specific tags</strong> that help with content organization</li>
+</ol>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Remember that metadata isn't just for display—it can be used by search engines, content indexes, and programmatic content management.</p>
+    </span>
+</div>
+
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Content Organization
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Enhanced Metadata Exercise</h3>
+<p><strong>Steps:</strong><br />
+1. Choose an existing markdown file in your project<br />
+2. Add or expand the metadata section with:<br />
+   - A descriptive title<br />
+   - Creation date<br />
+   - At least 3 relevant tags<br />
+   - 2-3 custom metadata fields<br />
+3. Update your base template to display this metadata<br />
+4. Explore how different metadata values affect the presentation</p>
+<p><strong>Objective:</strong><br />
+Build a consistent metadata strategy for your content that improves both the user experience and your content management workflow.</p>
+    </div>
+</div>
+
+<h2>Conclusion</h2>
+<p>Effective use of metadata transforms static content into a rich, interconnected information system. With Django Spellbook's metadata features, you can create more organized, navigable, and contextual content experiences for your users while simplifying your own content management.</p>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>Good metadata doesn't just describe your content—it extends and enhances it.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">The Django Spellbook Team</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
 <a class="super-link" href="/docs/Markdown/navigation"><p>Read Next: Markdown Module Navigation<br />
 </p></a>
 {% endblock %}

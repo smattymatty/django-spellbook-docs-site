@@ -66,5 +66,19 @@ def validate_url(url: str):
     '''
     if url.endswith('.php') or "wp-admin" in url:
         return False
+    if url.endswith('.xml') or url.endswith('.json'):
+        return False
+    if url.endswith('.env') or url.endswith('.sql'):
+        return False
+    if url.endswith('.yml') or url.endswith('.yaml'):
+        return False
+    if url.endswith('.gz') or url.endswith('.key'):
+        return False
+    if url.endswith('.zip') or url.endswith('.crt'):
+        return False
+    if url.endswith('.production') or ".aws" in url:
+        return False
+    if "apple-touch-icon" in url or ".ssh" in url:
+        return False
     return True
 

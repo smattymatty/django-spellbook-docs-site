@@ -73,30 +73,3 @@ SPELLBOOK_MD_TITLEFY = True
 Read Next: Markdown Module Quick Start
 {% enda %}
 {% enddiv %}
-
-
-{~ practice difficulty="Beginner" timeframe="10-15 minutes" impact="High" focus="Configuration" ~}
-### Settings Configuration Practice
-
-Try these exercises to master Django Spellbook settings:
-
-1. **Basic Configuration**:
-
-   - Set up a Django project with Django Spellbook
-   - Configure the required settings for a single markdown source
-   - Process markdown files and verify they're accessible
-
-2. **Multi-Source Setup**:
-
-   - Modify your settings to support two different content sources
-   - Configure custom URL prefixes for each source
-   - Verify that the content is accessible at the expected URLs
-
-3. **Base Template**:
-
-   - Create a custom base template with appropriate blocks
-   - Configure Django Spellbook to use your template
-   - Process markdown files and verify they're wrapped in your template
-
-**Bonus**: Configure a development setup where documentation is at the root URL (`/`) and blog posts are under `/blog/`.
-{~~}

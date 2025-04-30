@@ -1,7 +1,368 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<p>base</p>
+<h1>Base Templates in Django Spellbook</h1>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This guide explains how to use base templates with Django Spellbook to create consistent layouts for your markdown-rendered content.</p>
+    </span>
+</div>
+
+<h2>What Are Base Templates?</h2>
+<p>Base templates in Django Spellbook allow you to wrap your markdown-rendered content within a consistent layout structure. This is especially useful for:</p>
+<ul>
+<li>Adding navigation, headers, and footers</li>
+<li>Including site-wide styles and scripts</li>
+<li>Creating a consistent look and feel across all content</li>
+<li>Integrating your markdown content with your main site design</li>
+</ul>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Key Benefit</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>With base templates, your markdown content can seamlessly integrate with the rest of your Django application's design, while maintaining the simplicity of markdown authoring.</p>
+    </div>
+
+</div>
+
+<h2>Setting Up Your Base Template</h2>
+<h3>Step 1: Create the Base Template File</h3>
+<p>First, create a template file in your app's templates directory. For example, if your app is named <code>my_app</code>, create <code>my_app/templates/my_app/sb_base.html</code>:</p>
+<pre><code class="language-django">{% verbatim %}
+{% extends 'base.html' %}
+{% load static %}
+{% load spellbook_tags %}
+
+{% block title %}{{ metadata.title|default:&quot;Documentation&quot; }} - My Site{% endblock %}
+
+{% block content %}
+  &lt;div class=&quot;documentation-layout&quot;&gt;
+    &lt;!-- Optional sidebar navigation --&gt;
+    &lt;aside class=&quot;sidebar&quot;&gt;
+      &lt;!-- Your site navigation here --&gt;
+    &lt;/aside&gt;
+
+    &lt;!-- Spellbook content will be placed inside this block --&gt;
+    &lt;main class=&quot;spellbook-content&quot;&gt;
+      {% show_metadata %}
+      &lt;div class=&quot;spellbook-md&quot;&gt;
+        {% block spellbook_md %}{% endblock %}
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+{% endblock %}
+
+{% block extra_css %}
+  {% spellbook_styles %}
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{% static 'my_app/css/documentation.css' %}&quot;&gt;
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Your base template <strong>must</strong> include a block named <code>spellbook_md</code>. This is where Django Spellbook will insert the rendered markdown content.</p>
+    </span>
+</div>
+
+<h3>Step 2: Configure Spellbook to Use Your Base Template</h3>
+<p>In your <code>settings.py</code> file, set the <code>SPELLBOOK_MD_BASE_TEMPLATE</code> setting to point to your base template:</p>
+<pre><code class="language-python"># Single source configuration
+SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
+SPELLBOOK_MD_APP = 'my_app'
+SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/sb_base.html'
+</code></pre>
+<p>If you have multiple source-destination pairs, you can specify different base templates for each:</p>
+<pre><code class="language-python"># Multiple source-destination pairs with different base templates
+SPELLBOOK_MD_PATH = [
+    BASE_DIR / &quot;docs_content&quot;,
+    BASE_DIR / &quot;blog_content&quot;
+]
+SPELLBOOK_MD_APP = [
+    &quot;docs_app&quot;,
+    &quot;blog_app&quot;
+]
+SPELLBOOK_MD_BASE_TEMPLATE = [
+    &quot;docs_app/docs_base.html&quot;,
+    &quot;blog_app/blog_base.html&quot;
+]
+</code></pre>
+<p>Alternatively, you can share a single base template across all sources:</p>
+<pre><code class="language-python"># Multiple source-destination pairs with a shared base template
+SPELLBOOK_MD_PATH = [
+    BASE_DIR / &quot;docs_content&quot;,
+    BASE_DIR / &quot;blog_content&quot;
+]
+SPELLBOOK_MD_APP = [
+    &quot;docs_app&quot;,
+    &quot;blog_app&quot;
+]
+SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all sources
+</code></pre>
+<h3>Step 3: Run the Spellbook MD Command</h3>
+<p>Process your markdown files to apply the base template:</p>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p>Your markdown content will now be wrapped within your base template when rendered.</p>
+<h2>Accessing Metadata in Base Templates</h2>
+<p>One of the powerful features of base templates is the ability to access metadata from your markdown files:</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Available Metadata</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Within your base template, you have access to:</p>
+<ul>
+<li><code>metadata.title</code> - The title from the markdown frontmatter</li>
+<li><code>metadata.created_at</code> - Creation date</li>
+<li><code>metadata.author</code> - Content author</li>
+<li><code>metadata.tags</code> - List of tags</li>
+<li><code>metadata.custom_meta</code> - Any custom metadata fields</li>
+<li><code>metadata.word_count</code> - Approximate word count</li>
+<li><code>metadata.reading_time_minutes</code> - Estimated reading time</li>
+<li><code>metadata.prev_page</code> / <code>metadata.next_page</code> - Navigation links (if available)</li>
+</ul>
+<p>This allows you to dynamically customize your template based on the content.</p>
+        </div>
+    </div>
+</div>
+
+<h3>Example: Using Metadata for SEO</h3>
+<pre><code class="language-django">{% verbatim %}
+{% block meta_tags %}
+  &lt;meta name=&quot;description&quot; content=&quot;{{ metadata.custom_meta.description|default:'Documentation page' }}&quot;&gt;
+  {% if metadata.tags %}
+    &lt;meta name=&quot;keywords&quot; content=&quot;{{ metadata.tags|join:', ' }}&quot;&gt;
+  {% endif %}
+  &lt;meta name=&quot;author&quot; content=&quot;{{ metadata.author|default:'Site Author' }}&quot;&gt;
+  {% if metadata.created_at %}
+    &lt;meta property=&quot;article:published_time&quot; content=&quot;{{ metadata.created_at|date:'c' }}&quot;&gt;
+  {% endif %}
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<h2>Including Navigational Elements</h2>
+<p>Your base template is an excellent place to add navigation based on the current content:</p>
+<p>TODO: Add prev_page and next_page metadata</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;nav class=&quot;content-navigation&quot;&gt;
+  {% if metadata.prev_page %}
+    &lt;a href=&quot;{{ metadata.prev_page.url }}&quot; class=&quot;prev-link&quot;&gt;
+      &amp;larr; {{ metadata.prev_page.title }}
+    &lt;/a&gt;
+  {% endif %}
+
+  {% if metadata.next_page %}
+    &lt;a href=&quot;{{ metadata.next_page.url }}&quot; class=&quot;next-link&quot;&gt;
+      {{ metadata.next_page.title }} &amp;rarr;
+    &lt;/a&gt;
+  {% endif %}
+&lt;/nav&gt;
+{% endverbatim %}
+</code></pre>
+<h2>Dynamic Content Based on Tags</h2>
+<p>You can conditionally show elements based on metadata:</p>
+<pre><code class="language-django">{% verbatim %}
+{% if 'advanced' in metadata.tags %}
+  &lt;div class=&quot;advanced-notice&quot;&gt;
+    This is advanced content that assumes prior knowledge.
+  &lt;/div&gt;
+{% endif %}
+
+{% if metadata.custom_meta.difficulty == 'beginner' %}
+  &lt;div class=&quot;beginner-resources&quot;&gt;
+    &lt;h3&gt;Helpful Resources for Beginners&lt;/h3&gt;
+    &lt;!-- Resources list --&gt;
+  &lt;/div&gt;
+{% endif %}
+{% endverbatim %}
+</code></pre>
+<h2>Styling Your Base Template</h2>
+<h3>Including Spellbook Styles</h3>
+<p>Always include the Spellbook styles in your base template:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% spellbook_styles %}
+{% endverbatim %}
+</code></pre>
+<p>This ensures that all SpellBlock components render correctly.</p>
+<h2>Troubleshooting Base Templates</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Template Not Applied</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>If your base template isn't being applied:</p>
+<ol>
+<li>Verify the path is correct in <code>SPELLBOOK_MD_BASE_TEMPLATE</code></li>
+<li>Ensure the template file exists at the specified location</li>
+<li>Check that your template includes the <code>% block spellbook_md % / % endblock %</code> block</li>
+<li>Run <code>python manage.py spellbook_md</code> again to reprocess the files</li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Missing Styles</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>If your SpellBlocks aren't styled correctly:</p>
+<ol>
+<li>Make sure you've included <code>% spellbook_styles %</code> in your template</li>
+<li>Check that the template is extending the correct base template</li>
+<li>Verify CSS paths are correct if you're including custom styles</li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Metadata Not Available</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>If metadata isn't available in your template:</p>
+<ol>
+<li>Verify your markdown files include proper YAML frontmatter</li>
+<li>Check that frontmatter is enclosed in triple-dashes (<code>---</code>)</li>
+<li>Ensure key names follow the expected format</li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<h2>Advanced Base Template Techniques</h2>
+<h3>Different Templates Based on Content</h3>
+<p>You can create logic to use different layouts based on content metadata:</p>
+<pre><code class="language-django">{% verbatim %}
+{% if 'landing' in metadata.tags %}
+  {% include &quot;my_app/landing_layout.html&quot; %}
+{% elif 'tutorial' in metadata.tags %}
+  {% include &quot;my_app/tutorial_layout.html&quot; %}
+{% else %}
+  {% include &quot;my_app/default_layout.html&quot; %}
+{% endif %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>With base templates, you can transform simple markdown content into fully-featured, interactive documentation pages that seamlessly integrate with your site design.</p>
+    </span>
+</div>
+
+<h2>Conclusion</h2>
+<p>Base templates are a powerful feature that bridges the simplicity of markdown authoring with the flexibility of Django's template system. By setting up a well-designed base template, you can ensure consistent presentation across all your documentation while still maintaining the ease of markdown-based content creation.</p>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The best documentation systems combine simplicity of authoring with richness of presentation. Base templates allow you to achieve both.</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Django Spellbook Team</cite>
+
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
 <a class="super-link" href="/docs/Markdown/navigation"><p>Read Next: Markdown Module Navigation<br />
-</p></a>
+</p></a><div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 30 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Template Design
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3>Base Template Exercise</h3>
+<p><strong>Steps:</strong><br />
+1. Create a simple base template with:</p>
+<ul>
+<li>A consistent header with site navigation</li>
+<li>A sidebar for documentation navigation</li>
+<li>The required <code>spellbook_md</code> block</li>
+<li>Footer with site information</li>
+</ul>
+<ol start="2">
+<li>Configure your <code>settings.py</code> to use this template</li>
+<li>Process your markdown files with <code>python manage.py spellbook_md</code></li>
+<li>View your rendered content to verify the template is applied correctly</li>
+</ol>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Learn how to structure a base template</li>
+<li>Practice integrating markdown content with site design</li>
+<li>Understand how metadata is passed to templates</li>
+</ul>
+    </div>
+</div>
 {% endblock %}
