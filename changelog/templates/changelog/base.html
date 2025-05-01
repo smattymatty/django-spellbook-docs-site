@@ -17,6 +17,10 @@
                 <h3>Changelog</h3>
                 {% sidebar_toc %}
             </div>
+            {% show_metadata %}
+            {% if user.is_authenticated and user.is_staff %}
+                {% show_metadata 'for_dev' %}
+            {% endif %}
         </aside>
         <div class="sb-ml-4 changelog-content">
             {% block changelog_content %}{% endblock %}
