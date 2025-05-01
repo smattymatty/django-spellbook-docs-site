@@ -80,5 +80,11 @@ def validate_url(url: str):
         return False
     if "apple-touch-icon" in url or ".ssh" in url:
         return False
+    if url.endswith(".ico") or url.endswith(".alfa"):
+        return False
+    if "wp-content" in url or url.endswith(".phP"):
+        return False
+    if "fileman/" in url:
+        return False
     return True
 
