@@ -62,6 +62,17 @@ Django Spellbook 0.1.12 introduces a powerful template tag that makes it easy to
 
 ### User-Facing Metadata Display
 
+- `SPELLBOOK_MD_METADATA_BASE` (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the `% show_metadata %` template tag.
+
+```python
+SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+
+# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+```
+
+[Check out the metadata templates](https://github.com/smattymatty/django_spellbook/tree/main/django_spellbook/templates/django_spellbook/metadata) to see how to customize the display of metadata.
+
+
 The `% show_metadata %` tag renders a clean, user-friendly view of your content's metadata:
 
 ```django

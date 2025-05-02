@@ -68,6 +68,17 @@ Read more about creating a [base template](/docs/Markdown/base-template).
 SPELLBOOK_MD_TITLEFY = True
 ```
 
+- `SPELLBOOK_MD_METADATA_BASE` (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the `% show_metadata %` template tag.
+
+```python
+SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+
+# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+```
+
+
+Read more about creating a [metadata template](/docs/Markdown/metadata).
+
 {% div .sb-p-4 .sb-mb-4 %}
 {% a href="/docs/Markdown/quick-start" .super-link %}
 Read Next: Markdown Module Quick Start

@@ -143,6 +143,13 @@ custom_meta:
 <h2>Displaying Metadata in Templates</h2>
 <p>Django Spellbook 0.1.12 introduces a powerful template tag that makes it easy to display metadata in your templates.</p>
 <h3>User-Facing Metadata Display</h3>
+<ul>
+<li><code>SPELLBOOK_MD_METADATA_BASE</code> (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the <code>% show_metadata %</code> template tag.</li>
+</ul>
+<pre><code class="language-python">SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+
+# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+</code></pre>
 <p>The <code>% show_metadata %</code> tag renders a clean, user-friendly view of your content's metadata:</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}

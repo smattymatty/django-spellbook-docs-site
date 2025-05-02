@@ -59,5 +59,13 @@ SPELLBOOK_MD_URL_PREFIX = [
 </ul>
 <pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True
 </code></pre>
+<ul>
+<li><code>SPELLBOOK_MD_METADATA_BASE</code> (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the <code>% show_metadata %</code> template tag.</li>
+</ul>
+<pre><code class="language-python">SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+
+# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+</code></pre>
+<p>Read more about creating a <a href="/docs/Markdown/metadata">metadata template</a>.</p>
 <div class="sb-p-4 sb-mb-4"><a class="super-link" href="/docs/Markdown/quick-start"><p>Read Next: Markdown Module Quick Start</p></a></div>
 {% endblock %}

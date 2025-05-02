@@ -123,6 +123,13 @@
 <li>URL {{ metadata.url_path }}</li>
 </ul>
 <p>TODO: Add more fields that developers can use to debug and troubleshoot their content.</p>
+<ul>
+<li><code>SPELLBOOK_MD_METADATA_BASE</code> (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the <code>% show_metadata %</code> template tag.</li>
+</ul>
+<pre><code class="language-python">SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+
+# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+</code></pre>
 <p>Features:</p>
 <ul>
 <li>

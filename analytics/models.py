@@ -84,7 +84,7 @@ def validate_url(url: str):
         return False
     if "wp-content" in url or url.endswith(".phP"):
         return False
-    if "fileman/" in url:
+    if "fileman/" in url or ".git" in url: 
         return False
     return True
 
