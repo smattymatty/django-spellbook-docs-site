@@ -98,6 +98,37 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False, # Keep Django's default loggers active
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{', # Use '{' style formatting
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG', # Capture DEBUG level and above
+            'class': 'logging.StreamHandler', # Output to console (stderr)
+            'formatter': 'simple', # Use the 'simple' formatter defined above
+        },
+    },
+    'loggers': {
+        'django': { # Configure Django's internal loggers
+            'handlers': ['console'],
+            'level': 'INFO', # Show INFO level messages from Django itself
+            'propagate': True,
+        },
+        'analytics.middleware': { # YOUR specific logger name from the middleware
+            'handlers': ['console'],
+            'level': 'INFO', # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
+            'propagate': False, # Don't pass messages up to the root logger if handled here
+        },
+    },
+    'disable_existing_loggers': False, # Disable existing loggers
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -165,4 +196,8 @@ SPELLBOOK_MD_URL_PREFIX = [
     'docs',
     'changelog',
     'examples'
+]
+
+ANALYTICS_EXCLUDED_PATHS = [
+    '/'
 ]

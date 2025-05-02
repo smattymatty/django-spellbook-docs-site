@@ -17,15 +17,14 @@
 <p>Metadata in Django Spellbook refers to the information about your content that's defined at the top of your markdown files using YAML frontmatter. This structured data helps organize, categorize, and enhance your content beyond what's in the main body.</p>
 <pre><code class="language-yaml">---
 title: Working with Spellbook Metadata
-created_at: 2023-11-15
+published: 2023-11-15
 author: Django Spellbook Team
 tags:
   - tutorial
   - metadata
   - configuration
-custom_meta:
-  difficulty: beginner
-  category: documentation
+difficulty: beginner
+category: documentation
 ---
 # Markdown Content Title
 
@@ -81,12 +80,24 @@ custom_meta:
 <tr>
 <td><code>custom_meta</code></td>
 <td>Custom key-value pairs</td>
-<td><code>{"difficulty": "beginner"}</code></td>
+<td>"difficulty": "beginner"</td>
 </tr>
 </tbody>
 </table>
         </div>
     </div>
+</div>
+
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p><code>published</code> has some aliases: <code>published_at</code>, <code>created_at</code>, <code>created</code>, <code>date</code> and <code>time</code>.</p>
+<p><code>modified</code> has some aliases: <code>modified_at</code>, <code>updated_at</code>, <code>updated</code>.</p>
+    </span>
 </div>
 
 <div class="sb-accordion ">
@@ -150,6 +161,7 @@ custom_meta:
 
 # This setting takes a tuple to apply to all sources, or a list to apply to each source individually
 </code></pre>
+<p><a href="https://github.com/smattymatty/django_spellbook/tree/main/django_spellbook/templates/django_spellbook/metadata">Check out the metadata templates</a> to see how to customize the display of metadata.</p>
 <p>The <code>% show_metadata %</code> tag renders a clean, user-friendly view of your content's metadata:</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}

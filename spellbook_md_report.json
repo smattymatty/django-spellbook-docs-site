@@ -30,7 +30,7 @@
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 53,
+      "total_uses": 54,
       "failed_uses": 0
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "name": "accordion",
-      "total_uses": 23,
+      "total_uses": 26,
       "failed_uses": 0
     }
   ]

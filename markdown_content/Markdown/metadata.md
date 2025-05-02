@@ -11,15 +11,14 @@ Metadata in Django Spellbook refers to the information about your content that's
 ```yaml
 ---
 title: Working with Spellbook Metadata
-created_at: 2023-11-15
+published: 2023-11-15
 author: Django Spellbook Team
 tags:
   - tutorial
   - metadata
   - configuration
-custom_meta:
-  difficulty: beginner
-  category: documentation
+difficulty: beginner
+category: documentation
 ---
 # Markdown Content Title
 
@@ -39,7 +38,13 @@ TODO: Add author field to the metadata and update the default metadata template 
 | `created_at` | Creation date | `2023-11-15` |
 | `author` | Content author | `"Django Spellbook Team"` |
 | `tags` | Content categories (list) | `["tutorial", "metadata"]` |
-| `custom_meta` | Custom key-value pairs | `{"difficulty": "beginner"}` |
+| `custom_meta` | Custom key-value pairs | "difficulty": "beginner" |
+{~~}
+
+{~ alert type="success" ~}
+`published` has some aliases: `published_at`, `created_at`, `created`, `date` and `time`.
+
+`modified` has some aliases: `modified_at`, `updated_at`, `updated`.
 {~~}
 
 {~ accordion title="Auto-Generated Metadata" ~}
