@@ -41,6 +41,7 @@
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>No, Django Spellbook does not alter your database. It processes your markdown files and generates templates that are then used by automatically generated views and URLs.</p>
+<p><a href="/docs/Markdown/quick-start">Quickstart</a> to learn more.</p>
         </div>
     </div>
 </div>
@@ -61,6 +62,7 @@
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>You can access your generated URLS by including <code>path('', include('django_spellbook.urls'))</code> in your main <code>urls.py</code> file.</p>
+<p><a href="/docs/Markdown/navigation">Navigation</a> to learn more.</p>
         </div>
     </div>
 </div>
@@ -80,7 +82,8 @@
     </button>
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
-            <p>The templates are stored in your app's <code>templates/spellbook_md/</code> directory.</p>
+            <p>The templates are stored in your app's <code>templates/spellbook_md/</code> directory. They can be utilized by your <code>SPELLBOOK_MD_BASE_TEMPLATE</code> setting to allow for flexible customization.</p>
+<p><a href="/docs/Markdown/base-template">Base Template</a> to learn more.</p>
         </div>
     </div>
 </div>
@@ -101,7 +104,84 @@
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>No, Django Spellbook does not modify your app's codebase. The only change of code is in the <code>templates/spellbook_md/</code> directory.</p>
-<p>The <code>urls.py</code> and <code>views.py</code> files of your app are not modified. Instead, Django Spellbook generates these files automatically based on your configured settings, and stores them in it's own internal directory. <code>venv/lib/python3.10/site-packages/django_spellbook/templates/django_spellbook/views_app_name.py</code> and <code>venv/lib/python3.10/site-packages/django_spellbook/templates/django_spellbook/urls_app_name.py</code></p>
+<p>The <code>urls.py</code> and <code>views.py</code> files of your app are not modified. Instead, Django Spellbook generates these files automatically based on your configured settings, and stores them in it's own internal directory. <code>venv/lib/python3.10/site-packages/django_spellbook/views_app_name.py</code> and <code>venv/lib/python3.10/site-packages/django_spellbook/urls_app_name.py</code></p>
+<p><a href="/docs/Commands/spellbook_md">python manage.py spellbook_md</a> to learn more.</p>
+        </div>
+    </div>
+</div>
+
+<h2>Metadata</h2>
+<pre><code class="language-yaml">---
+title: Working with Spellbook Metadata
+published: 2023-11-15
+author: Django Spellbook Team
+tags:
+  - tutorial
+  - metadata
+  - configuration
+difficulty: beginner
+category: documentation
+---
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How do I access my metadata?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The <code>% show_metadata %</code> template tag renders a clean, user-friendly view of your content's metadata. </p>
+<p><a href="/docs/template-tags">Template Tags</a> to learn more.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Can I use custom metadata?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Yes, you can include custom metadata in your markdown files. In the example above, the <code>difficulty</code> and <code>category</code> fields are custom metadata fields. They are automatically generated by Django Spellbook and can be accessed in your templates via <code>metatada.custom_meta.difficulty</code> and <code>metadata.custom_meta.category</code>.</p>
+<p><a href="/docs/markdown/metadata">Metadata</a> to learn more.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How can I change the default metadata template?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>You can change the default metadata template by setting the <code>SPELLBOOK_MD_METADATA_BASE</code> setting in your <code>settings.py</code> file.</p>
+<p><a href="/docs/settings">Settings</a> to learn more.</p>
         </div>
     </div>
 </div>
