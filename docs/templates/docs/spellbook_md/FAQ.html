@@ -110,6 +110,147 @@
     </div>
 </div>
 
+<h2>SpellBlocks</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How do I create my own custom SpellBlocks?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>You can create custom SpellBlocks by extending the <code>BasicSpellBlock</code> class and registering them using the <code>SpellBlockRegistry</code>. This allows you to define unique components tailored to your project's specific needs.</p>
+<p>See the <a href="https://django-spellbook.org/docs/Markdown/spellblocks#creating-custom-spellblocks">documentation on Custom Spellblocks</a> for a detailed guide.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Can I change the appearance of the built-in SpellBlocks?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Yes, the built-in SpellBlocks use standard HTML and CSS. You can override the default styles provided by Django Spellbook by including your own CSS rules that target the specific classes used by the SpellBlocks (e.g., <code>.sb-card</code>, <code>.sb-alert</code>, <code>.sb-accordion</code>). Make sure your custom CSS is loaded after the `</p>
+<spellbook_styles><p><code>tag if you are using it.
+Alternatively, you can avoid including</code></p><spellbook_styles><p>` altogether and define all styles yourself.</p></spellbook_styles></spellbook_styles>
+        </div>
+    </div>
+</div>
+
+<h2>Markdown Extensions &amp; Django Tags</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Can I use standard Django template tags/filters in my markdown?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Yes! Django Spellbook's <code>DjangoLikeTagProcessor</code> is designed to work alongside standard Django template logic. Tags like <code>% if %</code>, <code>% for %</code>, <code>% url %</code>, <code>{ variable }</code>, and filters are preserved during the markdown processing step. They will be correctly interpreted by Django when the final template is rendered.</p>
+<p>Notice how I have to remove the { } characters from the <code>% if %</code> tag. This is because the Django template parser will interpret them as part of the tag syntax.</p>
+<p>Custom tags like <code>% div .my-class %</code> are converted directly to HTML elements during processing, while standard Django tags are preserved for later rendering.<br />
+<a href="/docs/Markdown/Advanced/djangoliketagprocessor">Advanced Usage - DjangoLikeTagProcessor</a> to learn more.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How do I include static files like images in my markdown?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>You can use the standard markdown syntax for images (<code>![alt text](/path/to/image.jpg)</code>). For Django's static file handling, use the <code>% static %</code> template tag within your markdown, just like you would in a regular Django template. Ensure <code>% load static %</code> is present in your base template (<code>SPELLBOOK_MD_BASE_TEMPLATE</code>) or included at the top of your markdown file if not using a base template.</p>
+<p>Example:<br />
+<code>![My Image Alt](% static 'my_app/images/my_image.png' %)</code></p>
+        </div>
+    </div>
+</div>
+
+<h2>Configuration &amp; Workflow</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How often should I run `python manage.py spellbook_md`?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>You should run the <code>spellbook_md</code> command whenever you add, modify, or delete markdown files in your source directory (<code>SPELLBOOK_MD_PATH</code>).</p>
+<ul>
+<li><strong>During Development:</strong> Run it after making changes to see them reflected. You might integrate this into a file-watching workflow.</li>
+<li><strong>Before Deployment:</strong> Run it as part of your deployment process to ensure the generated templates, views, and URLs are up-to-date in your production environment.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Can I pass extra context to the generated pages?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Currently, the automatically generated views primarily pass metadata and Table of Contents information. For more complex context requirements, you might consider:</p>
+<ol>
+<li>Creating your own Django view that renders the Spellbook-generated template and adds your custom context.</li>
+<li>Using custom template tags within your markdown or base template to fetch and display dynamic data.</li>
+<li>Exploring middleware to inject context into requests (use with caution).</li>
+</ol>
+<p>Direct context injection into the auto-generated views is not a built-in feature at this time.</p>
+        </div>
+    </div>
+</div>
+
 <h2>Metadata</h2>
 <pre><code class="language-yaml">---
 title: Working with Spellbook Metadata

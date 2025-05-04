@@ -36,6 +36,57 @@ The `urls.py` and `views.py` files of your app are not modified. Instead, Django
 [python manage.py spellbook_md](/docs/Commands/spellbook_md) to learn more.
 {~~}
 
+## SpellBlocks
+
+{~ accordion title="How do I create my own custom SpellBlocks?" ~}
+You can create custom SpellBlocks by extending the `BasicSpellBlock` class and registering them using the `SpellBlockRegistry`. This allows you to define unique components tailored to your project's specific needs.
+
+See the [documentation on Custom Spellblocks](https://django-spellbook.org/docs/Markdown/spellblocks#creating-custom-spellblocks) for a detailed guide.
+{~~}
+
+{~ accordion title="Can I change the appearance of the built-in SpellBlocks?" ~}
+Yes, the built-in SpellBlocks use standard HTML and CSS. You can override the default styles provided by Django Spellbook by including your own CSS rules that target the specific classes used by the SpellBlocks (e.g., `.sb-card`, `.sb-alert`, `.sb-accordion`). Make sure your custom CSS is loaded after the `{% spellbook_styles %}` tag if you are using it.
+
+Alternatively, you can avoid including `{% spellbook_styles %}` altogether and define all styles yourself.
+{~~}
+
+## Markdown Extensions & Django Tags
+
+{~ accordion title="Can I use standard Django template tags/filters in my markdown?" ~}
+Yes! Django Spellbook's `DjangoLikeTagProcessor` is designed to work alongside standard Django template logic. Tags like `% if %`, `% for %`, `% url %`, `{ variable }`, and filters are preserved during the markdown processing step. They will be correctly interpreted by Django when the final template is rendered.
+
+Notice how I have to remove the { } characters from the `% if %` tag. This is because the Django template parser will interpret them as part of the tag syntax.
+
+Custom tags like `% div .my-class %` are converted directly to HTML elements during processing, while standard Django tags are preserved for later rendering.
+[Advanced Usage - DjangoLikeTagProcessor](/docs/Markdown/Advanced/djangoliketagprocessor) to learn more.
+{~~}
+
+{~ accordion title="How do I include static files like images in my markdown?" ~}
+You can use the standard markdown syntax for images (`![alt text](/path/to/image.jpg)`). For Django's static file handling, use the `% static %` template tag within your markdown, just like you would in a regular Django template. Ensure `% load static %` is present in your base template (`SPELLBOOK_MD_BASE_TEMPLATE`) or included at the top of your markdown file if not using a base template.
+
+Example:
+`![My Image Alt](% static 'my_app/images/my_image.png' %)`
+{~~}
+
+## Configuration & Workflow
+
+{~ accordion title="How often should I run `python manage.py spellbook_md`?" ~}
+You should run the `spellbook_md` command whenever you add, modify, or delete markdown files in your source directory (`SPELLBOOK_MD_PATH`).
+
+* **During Development:** Run it after making changes to see them reflected. You might integrate this into a file-watching workflow.
+* **Before Deployment:** Run it as part of your deployment process to ensure the generated templates, views, and URLs are up-to-date in your production environment.
+{~~}
+
+{~ accordion title="Can I pass extra context to the generated pages?" ~}
+Currently, the automatically generated views primarily pass metadata and Table of Contents information. For more complex context requirements, you might consider:
+
+1.  Creating your own Django view that renders the Spellbook-generated template and adds your custom context.
+2.  Using custom template tags within your markdown or base template to fetch and display dynamic data.
+3.  Exploring middleware to inject context into requests (use with caution).
+
+Direct context injection into the auto-generated views is not a built-in feature at this time.
+{~~}
+
 ## Metadata
 
 ```yaml

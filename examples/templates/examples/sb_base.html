@@ -1,14 +1,7 @@
-{% extends 'base/base.html' %}
+{% extends 'examples/base.html' %}
 {% load spellbook_tags %}
 
 
-{% block content %}
-<div class="sb-flex sb-flex-row sb-justify-between sb-items-center sb-p-4"></div>
-    <div class="sb-flex sb-flex-row  sb-justify-between sb-items-center sb-p-4">
-    {% sidebar_toc %}
-    </div>
-    <div class="sb-flex sb-flex-col sb-justify-between sb-items-center sb-p-4">
+{% block examples_content %}
     {% block spellbook_md %} {% endblock %}
-    </div>
-</div>
 {% endblock %}

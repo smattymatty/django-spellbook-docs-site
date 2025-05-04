@@ -189,7 +189,7 @@ SPELLBOOK_MD_APP = [
 SPELLBOOK_MD_BASE_TEMPLATE = [
     'docs/sb_base.html',
     'changelog/sb_base.html',
-    'changelog/sb_base.html',
+    'examples/sb_base.html'
     ]
 
 SPELLBOOK_MD_URL_PREFIX = [

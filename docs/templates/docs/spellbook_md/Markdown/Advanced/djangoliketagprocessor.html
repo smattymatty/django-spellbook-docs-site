@@ -1,0 +1,200 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2>DjangoLikeTagProcessor (Markdown Extensions)</h2>
+<p>Welcome to the advanced guide for the <code>DjangoLikeTagProcessor</code>. This processor is a core component of Django Spellbook's markdown rendering pipeline, enabling the powerful blend of markdown with Django template tag syntax. Understanding its inner workings can help you customize parsing behavior or debug complex rendering scenarios.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">What is DjangoLikeTagProcessor?</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>The <code>DjangoLikeTagProcessor</code> is a <code>markdown.blockprocessors.BlockProcessor</code> subclass. Its primary role is to identify and process blocks of text starting with Django-like template tags. </p>
+<p>It intelligently distinguishes between: </p>
+<ol>
+<li><strong>Custom HTML-like elements:</strong> Tags like <code>% div .my-class %</code>...<code>% enddiv %</code> are converted into actual HTML elements (<code>&lt;div class="my-class"&gt;...&lt;/div&gt;</code>) with their content recursively parsed as markdown.</li>
+<li><strong>Built-in Django template tags:</strong> Tags like <code>% if user.is_authenticated %</code>, <code>% for item in list %</code>, <code>% url 'my_view' %</code>, etc., are preserved within special <code>&lt;django-tag&gt;</code> elements, ensuring they are passed through to the final Django template rendering engine untouched.</li>
+</ol>
+<a class="super-link github io" href="https://python-markdown.github.io/extensions/api/#blockprocessors" id="blockprocessors" target="_blank"><p>See the official python-markdown docs for more information.</p></a>
+    </div>
+
+</div>
+
+<h2>How to use the DjangoLikeTagProcessor</h2>
+<p>To use the processor directly, you would typically initialize the <code>markdown.Markdown</code> class and include the processor in its extensions.</p>
+<pre><code class="language-python">{% verbatim %}
+import markdown
+from django_spellbook.markdown.extensions import DjangoLikeTagExtension
+
+# Example Markdown Input (read below for full example)
+with open('example.md', 'r') as f:
+    markdown_input = f.read()
+
+# Initialize Markdown with the extension
+md = markdown.Markdown(extensions=[DjangoLikeTagExtension()])
+
+# Convert Markdown to HTML
+html_output = md.convert(markdown_input)
+
+print(html_output)
+</code></pre>
+<h3>Example Input and Output</h3>
+<p>Given the <code>markdown_input</code> in the Python snippet above:</p>
+<p><strong>Input Markdown:</strong></p>
+<pre><code class="language-markdown">{% verbatim %}
+# Example Document
+
+{% div .content-wrapper #main %}
+This is the main content area.
+
+{% if user.is_logged_in %}
+    Welcome back, {{ user.name }}!
+    Look at this {% strong %}important{% endstrong %} message.
+{% else %}
+    Please log in.
+{% endif %}
+
+Here is a list:
+- Item 1
+- Item 2
+{% enddiv %}
+
+Regular paragraph outside the custom tag.
+{% endverbatim %}
+</code></pre>
+<p><strong>Expected HTML Output:</strong></p>
+<p>The processor converts the custom <code>% div %</code> and <code>% strong %</code> tags into standard HTML elements with the specified attributes. Crucially, it preserves the Django <code>% if %</code>, <code>% else %</code>, and <code>% endif %</code> tags by wrapping them in <code>&lt;django-tag&gt;</code> elements. This ensures they are <em>not</em> processed as literal text by the markdown parser but are passed through to be interpreted by the Django template engine later.</p>
+<pre><code class="language-html">{% verbatim %}
+&lt;h1&gt;Example Document&lt;/h1&gt;
+&lt;div class=&quot;content-wrapper&quot; id=&quot;main&quot;&gt;&lt;p&gt;This is the main content area.&lt;/p&gt;
+&lt;django-tag&gt;{% if user.is_logged_in %}&lt;/django-tag&gt;
+&lt;p&gt;Welcome back, {{ user.name }}!
+Look at this &lt;strong&gt;important&lt;/strong&gt; message.&lt;/p&gt;
+&lt;django-tag&gt;{% else %}&lt;/django-tag&gt;
+&lt;p&gt;Please log in.&lt;/p&gt;
+&lt;django-tag&gt;{% endif %}&lt;/django-tag&gt;
+&lt;p&gt;Here is a list:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Item 1&lt;/li&gt;
+&lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;p&gt;Regular paragraph outside the custom tag.&lt;/p&gt;
+{% endverbatim %}
+</code></pre>
+<p>This output HTML can then be included in a Django template. When Django renders that template, it will process the content within the <code>&lt;django-tag&gt;</code> elements as standard Django template logic, effectively merging markdown structure with dynamic Django rendering.</p>
+<h2>Core Processing Logic</h2>
+<p>The processor uses regular expressions and distinct handling logic based on the tag identified.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">1. Tag Identification (test and run methods)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The process starts in the <code>test</code> method, which uses regex to quickly check if a block begins with a potential opening tag (<code>% tag ... %</code>) that isn't an end tag.</p>
+<p>If <code>test</code> returns <code>True</code>, the <code>run</code> method takes over:</p>
+<ol>
+<li>It re-matches the <code>RE_START</code> pattern to capture the <code>tag</code> name and the <code>attrs_string</code>.</li>
+<li><strong>Crucially, it checks if the <code>tag</code> is in <code>DJANGO_INLINE_TAGS</code> (<code>{'static', 'url', 'include', 'load', 'csrf_token'}</code>).</strong> If it is, <code>run</code> immediately returns <code>False</code>. This signals to the markdown parser that this <em>block</em> processor should <em>not</em> handle this tag, allowing the <code>DjangoLikeTagInlineProcessor</code> to handle it later within the standard markdown paragraph processing.</li>
+<li>If it's <em>not</em> an inline tag, the block is popped from the list, and processing continues.</li>
+<li>It determines if the tag is a known Django built-in (<code>DJANGO_BUILT_INS</code>) or a custom element tag.</li>
+<li>It dispatches to either <code>_handle_django_tag</code> or <code>_handle_custom_element</code>.</li>
+</ol>
+<p><div class="sb-alert sb-alert-danger sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            🚫
+
+    </span>
+    <span class="sb-alert-content">
+        <p><br /><br />
+The <code>run</code> method is the most important part of the processor. It's responsible for handling the tag and extracting the content within it. If you're not familiar with the inner workings of the <code>markdown</code> library, you might want to read the </p><br />
+<a class="super-link github io" href="https://python-markdown.github.io/extensions/api/#blockprocessors" id="blockprocessors" target="_blank"><p>official python-markdown docs</p></a><br />
+        </div><br />
+    </div><br />
+</div></p>
+    </span>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">2. Handling Custom Elements (_handle_custom_element)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This method is responsible for converting tags like <code>% mytag .class #id attr="val" %</code> into HTML <code>&lt;mytag class="class" id="id" attr="val"&gt;</code>.</p>
+<ol>
+<li><strong>Element Creation:</strong> An <code>ElementTree.Element</code> is created using the <code>tag</code> name (<code>mytag</code> in the example).</li>
+<li><strong>Attribute Parsing:</strong> The <code>attrs_string</code> (<code>.class #id attr="val"</code>) is passed to the <code>_parse_attributes</code> helper.<br />
+    This helper uses the dedicated <code>parse_attributes</code> function (from <code>django_spellbook.markdown.attribute_parser</code>) which handles standard attributes, class shortcuts (<code>.class</code>), and ID shortcuts (<code>#id</code>).</li>
+<li><strong>Nested Content Processing:</strong> The core logic for finding the matching <code>% endtag %</code> and extracting the content in between happens in <code>process_nested_content</code> (from <code>django_spellbook.markdown.extensions.custom_tag_parser</code>). This function handles nested tags and spans across multiple markdown blocks. It returns a <code>NestedContentResult</code> containing the <code>inner_content</code> and any <code>remaining_blocks</code> after the end tag.</li>
+<li><strong>Recursive Markdown Parsing:</strong> This is done by splitting the <code>inner_content</code> by blank lines (creating new blocks) and feeding them back into <code>self.parser.parseBlocks(temp_parent, split_blocks)</code>. The resulting HTML children are then appended to the custom element created in step 1.</li>
+</ol>
+<p><div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><br /><br />
+The extracted <code>inner_content</code> is <em>not</em> treated as plain text. Instead, it's processed recursively by the main markdown parser to handle any standard markdown syntax (like lists, bold, italics, code spans) <em>inside</em> the custom element block.</p><br />
+        </div><br />
+    </div><br />
+</div></p>
+    </span>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">3. Handling Django Tags (_handle_django_tag)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This method deals with tags listed in <code>DJANGO_BUILT_INS</code>. It further differentiates between block tags and other built-ins.</p>
+<ol>
+<li><strong>Django Block Tags:</strong> If the <code>tag</code> is a key in <code>DJANGO_BLOCK_TAGS</code> (e.g., <code>if</code>, <code>for</code>, <code>block</code>, <code>with</code>), handling is delegated to <code>handle_django_block_tag</code> (from <code>django_spellbook.markdown.extensions.django_builtin_tag_helpers</code>). This helper function manages the preservation of the opening tag (wrapped in <code>&lt;django-tag&gt;</code>) and recursively processes the content until it finds the corresponding closing tag (e.g., <code>endif</code>, <code>endfor</code>), which is also preserved in a <code>&lt;django-tag&gt;</code>. It correctly handles nested Django block tags.</li>
+<li><strong>Other Built-in Tags:</strong> Tags like <code>else</code>, <code>elif</code>, <code>extends</code>, <code>load</code>, which don't have enclosed content in the same way as block tags or are handled inline, are simply preserved literally by wrapping the entire tag text within a <code>&lt;django-tag&gt;</code> element.</li>
+</ol>
+<p><div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><br /><br />
+Remember that tags defined in <code>DJANGO_INLINE_TAGS</code> (<code>static</code>, <code>url</code>, <code>include</code>, <code>load</code>, <code>csrf_token</code>) are explicitly <em>ignored</em> by this block processor's <code>run</code> method. They are handled later by the <code>DjangoLikeTagInlineProcessor</code>, which also wraps them in <code>&lt;django-tag&gt;</code> but operates within paragraphs.</p><br />
+        </div><br />
+    </div><br />
+</div></p>
+    </span>
+</div>
+{% endblock %}

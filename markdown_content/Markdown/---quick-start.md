@@ -134,6 +134,6 @@ SPELLBOOK_MD_APP = ["docs_app", "blog_app"]
 SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
 ```
 
-{% a href="/docs/Markdown/spellblocks" .super-link %}
+{% a href="/docs/Spellblocks/introduction/" .super-link %}
 Read Next: SpellBlocks
 {% enda %}
