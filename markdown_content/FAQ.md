@@ -41,13 +41,15 @@ The `urls.py` and `views.py` files of your app are not modified. Instead, Django
 {~ accordion title="How do I create my own custom SpellBlocks?" ~}
 You can create custom SpellBlocks by extending the `BasicSpellBlock` class and registering them using the `SpellBlockRegistry`. This allows you to define unique components tailored to your project's specific needs.
 
-See the [documentation on Custom Spellblocks](https://django-spellbook.org/docs/Markdown/spellblocks#creating-custom-spellblocks) for a detailed guide.
+See the [documentation on Custom Spellblocks](/docs/Spellblocks/custom-spellblocks/) for a detailed guide.
 {~~}
 
 {~ accordion title="Can I change the appearance of the built-in SpellBlocks?" ~}
 Yes, the built-in SpellBlocks use standard HTML and CSS. You can override the default styles provided by Django Spellbook by including your own CSS rules that target the specific classes used by the SpellBlocks (e.g., `.sb-card`, `.sb-alert`, `.sb-accordion`). Make sure your custom CSS is loaded after the `{% spellbook_styles %}` tag if you are using it.
 
-Alternatively, you can avoid including `{% spellbook_styles %}` altogether and define all styles yourself.
+Alternatively, you can avoid including `% spellbook_styles %` altogether and define all styles yourself.
+
+[Styles Introduction](https://django-spellbook.org/docs/Styles/introduction/) to learn more.
 {~~}
 
 ## Markdown Extensions & Django Tags
