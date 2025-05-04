@@ -45,6 +45,7 @@ md = markdown.Markdown(extensions=[DjangoLikeTagExtension()])
 html_output = md.convert(markdown_input)
 
 print(html_output)
+{% endverbatim %}
 ```
 
 ### Example Input and Output
