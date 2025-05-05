@@ -29,6 +29,12 @@ class UniqueVisitor(models.Model):
     first_visit = models.DateTimeField(default=timezone.now)
     last_visit = models.DateTimeField(default=timezone.now)
     visit_count = models.PositiveIntegerField(default=1)
+    is_bot = models.BooleanField(default=False)
+    
+    def save(self, *args, **kwargs):
+        if "bot" in self.user_agent.lower():
+            self.is_bot = True
+        super().save(*args, **kwargs)
     
     class Meta:
         unique_together = ('ip_address', 'user_agent')
@@ -41,6 +47,3 @@ class UniqueVisitor(models.Model):
     
     def __str__(self):
         return f"{self.ip_address} - Visits: {self.visit_count}"
-    
-    
-
