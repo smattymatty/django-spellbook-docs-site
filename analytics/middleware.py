@@ -153,10 +153,10 @@ class PageViewMiddleware:
             return False
 
         if self.validate_url:
-        # 5. Additional Check: Use the validation logic from models.py.
             from .utils import validate_url
-            if not validate_url(path):
-                logger.debug(f"Path '{path}' failed validate_url check.") # Debug log
+            path_to_validate = request.get_full_path() # Includes query string
+            if not validate_url(path_to_validate):
+                logger.debug(f"Path '{path_to_validate}' failed validate_url check.")
                 return False
 
         # If none of the above conditions are met, track the request

@@ -1,9 +1,5 @@
 # analytics/utils.py
-import re # Import regular expressions, might be useful for future complex rules
-
-# Define sets for cleaner management and checking.
-# Use lowercase for case-insensitive matching where appropriate.
-
+MAX_URL_LENGTH = 512
 # Common file extensions often targeted by bots or not useful for tracking
 # Include the leading dot.
 FORBIDDEN_EXTENSIONS = {
@@ -85,9 +81,13 @@ def validate_url(url: str) -> bool:
         return False
 
     # 3.  Very long URLs can be suspicious.
-    MAX_URL_LENGTH = 512
     if len(url) > MAX_URL_LENGTH:
         print(f"DEBUG: URL '{url}' failed length check.") # Debugging
+        return False
+    
+    # 4. Double slashes can indicate probing
+    if "//" in normalized_url:
+        print(f"DEBUG: URL '{url}' failed double slash check.") # Debugging
         return False
 
     # If all checks pass, the URL is considered valid for tracking
