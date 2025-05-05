@@ -45,8 +45,6 @@ While **SQLite** is simple and often the default for local Django development, d
 The standard solution is migrating to a managed database service (e.g., PostgreSQL, MySQL), which provides necessary persistence but comes at a significantly higher cost (typically $15-$20+/month minimum), often prohibitive for hobby projects, educational purposes, or very small applications with minimal database load.
 {~~}
 
-Developers, especially those using frameworks like Django Spellbook where SQLite might suffice for basic needs (like simple analytics tracking), need a cheaper way to achieve data persistence without the operational overhead and cost of a full managed database.
-
 ---
 
 ## 3. Solution: "Spellbook Backup" Service
@@ -57,14 +55,14 @@ Spellbook Backup offers a bridge between the simplicity of SQLite and the necess
 2.  **Persistent Storage:** The Spellbook Backup service stores these backups securely in durable, cost-effective cloud object storage (e.g., DigitalOcean Spaces, AWS S3). Multiple versions are retained based on the user's plan.
 3.  **Automated Restore:** During the user's application deployment process, a script provided by Spellbook Backup connects to the service, retrieves the latest valid backup, and restores it to the newly initialized **ephemeral** container's filesystem before the main application starts.
 
-**Key Features:**
-
+{~ card title="Key Features" footer="Simple Integration" ~}
 * **Simple Integration:** Configuration via Django `settings.py` (e.g., `SPELLBOOK_BACKUP = {'api_key': '...', 'frequency': 'daily', 'storage_target': 'service_url'}`) and potentially helper management commands (`./manage.py backup_now`, `./manage.py restore_latest`).
 * **Scheduled Backups:** Configurable backup frequencies (e.g., daily, every X hours) managed by the service or triggered by the user's application scheduler.
 * **Secure Storage:** Backups stored in isolated, secure object storage buckets.
 * **Easy Restore:** Provides clear instructions and scripts for integration into common deployment workflows (e.g., Dockerfile `RUN` command, `app.yaml` entrypoint modification).
 * **API Access:** Simple API for uploading backups and retrieving the latest backup URL/data.
 * **(Future)** Web dashboard for managing backups, viewing history, and configuring settings.
+{~~}
 
 ---
 
