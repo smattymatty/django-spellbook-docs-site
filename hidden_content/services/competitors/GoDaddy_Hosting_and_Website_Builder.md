@@ -1,3 +1,15 @@
+---
+title: GoDaddy Hosting and Website Builder
+created: 2025-05-04
+updated: 2025-05-04
+tags: 
+  - competitor
+  - godaddy
+  - hosting
+  - website builder
+  - django
+  - spellbook
+---
 # GoDaddy Hosting and Website Builder
 
 ## Competitor Analysis
