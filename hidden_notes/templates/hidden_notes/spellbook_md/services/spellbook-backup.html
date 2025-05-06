@@ -78,7 +78,6 @@
 
 </div>
 
-<p>Developers, especially those using frameworks like Django Spellbook where SQLite might suffice for basic needs (like simple analytics tracking), need a cheaper way to achieve data persistence without the operational overhead and cost of a full managed database.</p>
 <hr />
 <h2>3. Solution: "Spellbook Backup" Service</h2>
 <p>Spellbook Backup offers a bridge between the simplicity of SQLite and the necessity of data persistence on <strong>ephemeral</strong> platforms. It operates as follows:</p>
@@ -87,8 +86,14 @@
 <li><strong>Persistent Storage:</strong> The Spellbook Backup service stores these backups securely in durable, cost-effective cloud object storage (e.g., DigitalOcean Spaces, AWS S3). Multiple versions are retained based on the user's plan.</li>
 <li><strong>Automated Restore:</strong> During the user's application deployment process, a script provided by Spellbook Backup connects to the service, retrieves the latest valid backup, and restores it to the newly initialized <strong>ephemeral</strong> container's filesystem before the main application starts.</li>
 </ol>
-<p><strong>Key Features:</strong></p>
-<ul>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Key Features</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
 <li><strong>Simple Integration:</strong> Configuration via Django <code>settings.py</code> (e.g., <code>SPELLBOOK_BACKUP = {'api_key': '...', 'frequency': 'daily', 'storage_target': 'service_url'}</code>) and potentially helper management commands (<code>./manage.py backup_now</code>, <code>./manage.py restore_latest</code>).</li>
 <li><strong>Scheduled Backups:</strong> Configurable backup frequencies (e.g., daily, every X hours) managed by the service or triggered by the user's application scheduler.</li>
 <li><strong>Secure Storage:</strong> Backups stored in isolated, secure object storage buckets.</li>
@@ -96,6 +101,14 @@
 <li><strong>API Access:</strong> Simple API for uploading backups and retrieving the latest backup URL/data.</li>
 <li><strong>(Future)</strong> Web dashboard for managing backups, viewing history, and configuring settings.</li>
 </ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Simple Integration
+        </div>
+
+</div>
+
 <hr />
 <h2>4. Value Proposition</h2>
 <ul>
