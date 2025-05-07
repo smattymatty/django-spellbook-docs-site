@@ -68,9 +68,8 @@ Here lie the primary spells and constructs at your disposal, designed to make yo
 {~ matching_game title="Elemental Glyphs" left_tags=["glyph_images"] right_tags=["glyph_names"] count="10" ~}
 ```
 
-    [Learn more at the Educators Guide →](/hidden/spellbook_for_educators/educators_guide)
+[Learn more at the Educators Guide →](/hidden/spellbook_for_educators/educators_guide)
 
-{~~}
 
 {~ alert type="success" title="Your Craft, Amplified" ~}
 These tools are forged to serve you, the educator, allowing you to dedicate more of your precious energy to inspiring and guiding learners. As `Django Spellbook` continues to evolve, our solemn promise is to keep enhancing this educational arsenal, ensuring your ability to craft compelling learning experiences remains unparalleled.
