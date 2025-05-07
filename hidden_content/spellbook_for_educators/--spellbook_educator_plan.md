@@ -1,5 +1,5 @@
 ---
-title: Spellbook for Eeudcators
+title: Spellbook for Educators
 created: 2025-05-07
 updated: 2025-05-07
 tags:
