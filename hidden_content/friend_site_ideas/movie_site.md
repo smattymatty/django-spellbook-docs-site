@@ -133,6 +133,8 @@ My favorite role: Forrest Gump.
 Known for his complex narratives and large-scale filmmaking. His exploration of time is fascinating.
 Common Themes: Non-linear storytelling, identity, obsession.
 {~~}
+```
+
 
 {~ card title="3. Producer Profile Card" footer="The Architects of Cinema" ~}
 **Purpose:** To highlight the work of producers.
