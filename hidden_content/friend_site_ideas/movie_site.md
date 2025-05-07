@@ -103,14 +103,16 @@ The automatic pulling of data from IMDB would require using an IMDB API (if avai
 * **`notable_works`**: (Fetched from IMDB - list of key movies with links to their pages on this site).
 * **`frequent_collaborators`**: (Fetched from IMDB - list of directors/actors they often work with, linked).
 * **`personal_notes`**: A section for the site owner to add their commentary or favorite roles.
-**Example Usage:**
+```
+{~~}
+
+## **Example Usage:**
 ```markdown
 {~ actor_card name="Tom Hanks" imdb_id="nm0000158" image_url="/path/to/tom_hanks.jpg" ~}
 One of the most beloved actors of his generation, known for his versatility.
 My favorite role: Forrest Gump.
 {~~}
 ```
-{~~}
 
 {~ card title="2. Director Profile Card" footer="Visionaries Behind the Camera" ~}
 **Purpose:** To detail a director's career and style.
@@ -124,15 +126,13 @@ My favorite role: Forrest Gump.
     * *Dynamic data: Display most popular or recent movies prominently.*
 * **`common_themes`**: Site owner's notes on recurring themes.
 * **`frequent_actors`**: (Fetched from IMDB - actors commonly featured in their films).
+{~~}
 
-**Example Usage:**
-
+## **Example Usage:**
 ```markdown
 {~ director_card name="Christopher Nolan" imdb_id="nm0634240" image_url="/path/to/nolan.jpg" ~}
 Known for his complex narratives and large-scale filmmaking. His exploration of time is fascinating.
 Common Themes: Non-linear storytelling, identity, obsession.
-{~~}
-```
 {~~}
 
 {~ card title="3. Producer Profile Card" footer="The Architects of Cinema" ~}
@@ -146,12 +146,13 @@ Common Themes: Non-linear storytelling, identity, obsession.
     * *Dynamic data: Display most successful or critically acclaimed films.*
 * **`associated_studios`**: (If applicable, fetched or manually entered).
 * **`impact_on_industry`**: Site owner's notes on their influence.
-**Example Usage:**
+```
+{~~}
+
+## **Example Usage:**
 ```markdown
 {~ producer_card name="Kevin Feige" imdb_id="nm0270559" image_url="/path/to/feige.jpg" ~}
 The mastermind behind the Marvel Cinematic Universe's incredible success and interconnected storytelling.
-{~~}
-```
 {~~}
 
 {~ card title="4. Movie Details Card" footer="Deep Dive into Films" ~}
@@ -170,14 +171,16 @@ The mastermind behind the Marvel Cinematic Universe's incredible success and int
 * **`site_owner_rating`**: (Manual input by site owner).
 * **`site_owner_review`**: (Markdown text area for detailed review).
 * **`trailer_link`**: URL to the movie trailer.
-**Example Usage:**
+{~~}
+
+## **Example Usage:**
+
 ```markdown
 {~ movie_card title="The Dark Knight" imdb_id="tt0468569" poster_url="/path/to/dark_knight.jpg" site_owner_rating="5/5" ~}
 A masterful crime thriller that transcends the superhero genre. Heath Ledger's Joker is iconic.
 `[Write full review here...]`
 {~~}
 ```
-{~~}
 
 {~ card title="5. Musician/Composer Profile Card" footer="The Sound of Cinema" ~}
 **Purpose:** To showcase composers and musicians who score films.
@@ -190,7 +193,9 @@ A masterful crime thriller that transcends the superhero genre. Heath Ledger's J
 * **`notable_scores`**: (Fetched from IMDB - list of movies they composed for, linked).
     * *Dynamic data: Display most popular or award-winning scores.*
 * **`collaborations`**: (Fetched - directors or other musicians they frequently work with).
-**Example Usage:**
+
+## **Example Usage:**
+
 ```markdown
 {~ musician_card name="Hans Zimmer" imdb_id="nm0001877" image_url="/path/to/zimmer.jpg" ~}
 His epic and emotive scores have defined a generation of blockbuster films. The 'Inception' soundtrack is a masterpiece.
