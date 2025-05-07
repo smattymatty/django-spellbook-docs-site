@@ -1,0 +1,52 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<h2>Movie Site</h2>
+<p>This is a list of ideas for a movie site.</p>
+<h2>Idea</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Movie Website</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>A website showcasing movies, actors, producers, and directors.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Brought to you by Michael J Earwicker.
+        </div>
+
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Who is it for?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <p>This will be a <code>django-spellbook</code> template for bloggers or writers who want to showcase their favorite movies, actors, producers, and directors.</p>
+<p>This site's audience is movie lovers who want to discover new movies, actors, producers, and directors.</p>
+        </div>
+    </div>
+</div>
+
+<h3>Actor Card</h3>
+<p>A Card that showcases an actor's work. It can include a photo, a short bio, a list of movies, and a link to their page.</p>
+<h3>Producer Card</h3>
+<p>A Card that showcases an producer's work. It can include a photo, a short bio, a list of movies, and a link to their page.</p>
+<h3>Movie Card</h3>
+<p>A Card that showcases an movie. It can include a photo, a short bio, a list of movies, and a link to their page. </p>
+<h3>Director Card</h3>
+<p>A Card that showcases a director's work. It can include a photo, a short bio, a list of movies, and a link to their page.</p>
+{% endblock %}
