@@ -103,7 +103,6 @@ The automatic pulling of data from IMDB would require using an IMDB API (if avai
 * **`notable_works`**: (Fetched from IMDB - list of key movies with links to their pages on this site).
 * **`frequent_collaborators`**: (Fetched from IMDB - list of directors/actors they often work with, linked).
 * **`personal_notes`**: A section for the site owner to add their commentary or favorite roles.
-```
 {~~}
 
 ## **Example Usage:**
@@ -146,7 +145,6 @@ Common Themes: Non-linear storytelling, identity, obsession.
     * *Dynamic data: Display most successful or critically acclaimed films.*
 * **`associated_studios`**: (If applicable, fetched or manually entered).
 * **`impact_on_industry`**: Site owner's notes on their influence.
-```
 {~~}
 
 ## **Example Usage:**
@@ -194,6 +192,8 @@ A masterful crime thriller that transcends the superhero genre. Heath Ledger's J
     * *Dynamic data: Display most popular or award-winning scores.*
 * **`collaborations`**: (Fetched - directors or other musicians they frequently work with).
 
+{~~}
+
 ## **Example Usage:**
 
 ```markdown
@@ -201,6 +201,5 @@ A masterful crime thriller that transcends the superhero genre. Heath Ledger's J
 His epic and emotive scores have defined a generation of blockbuster films. The 'Inception' soundtrack is a masterpiece.
 {~~}
 ```
-{~~}
 
 ---
