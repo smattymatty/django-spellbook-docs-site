@@ -16,7 +16,7 @@ tags:
 # The Educator's Dream Lightweight Markdown Toolkit
 
 {~ alert type="info" title="Empowering the Architects of Knowledge" ~}
-At `Django Spellbook`, we hold educators in the highest esteem. You are the mages who sculpt understanding and ignite curiosity. To honor your vital craft, we've forged a suite of powerful enchantments designed to streamline your workflow, amplify your students' engagement, and bring a touch of magic to the sacred act of teaching. Your role is undeniably pivotal, and these tools are crafted with the utmost respect for your art.
+At `Django Spellbook`, we hold educators in the highest esteem. You are the ones shaping the future minds. To honor your vital craft, we plan to forge a suite of powerful enchantments designed to streamline your workflow, amplify your students' engagement, and bring a touch of magic to the sacred act of teaching. Your role is undeniably pivotal, and these tools are crafted with the utmost respect for your art. 
 {~~}
 
 This arsenal is dedicated to you, providing intuitive and potent tools to build the next generation of interactive educational content in lightweight markdown.
