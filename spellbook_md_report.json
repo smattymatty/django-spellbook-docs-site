@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 4,
     "successful_pairs": 4,
-    "total_processed_files": 40
+    "total_processed_files": 43
   },
   "pairs": [
     {
@@ -31,18 +31,18 @@
       "destination": "hidden_notes",
       "url_prefix": "hidden",
       "success": true,
-      "processed_files": 6
+      "processed_files": 9
     }
   ],
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 63,
+      "total_uses": 70,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 33,
+      "total_uses": 37,
       "failed_uses": 0
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "name": "accordion",
-      "total_uses": 45,
+      "total_uses": 50,
       "failed_uses": 0
     }
   ]

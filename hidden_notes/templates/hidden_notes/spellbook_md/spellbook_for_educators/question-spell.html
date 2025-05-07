@@ -1,0 +1,375 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<h1>Question Spell: Idea for Educational Content Creators</h1>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This document outlines the enhanced "Question Spell," a pivotal component for Django Spellbook. It empowers educational content creators to magically store, manage, and reuse questions and answers within their database. This allows for dynamic generation of tests, quizzes, and interactive learning elements across their entire digital academy or within specific modules.</p>
+    </span>
+</div>
+
+<h2>Problem Statement</h2>
+<p>Creators of magical syllabi and educational grimoires often face the challenge of efficiently crafting, managing, and reusing questions and answers. The traditional methods of creating interactive learning experiences like quizzes and tests can be a laborious, disconnected enchantment, often leading to duplicated efforts and scattered knowledge fragments. The "Question Spell" aims to transmute this process into a seamless and integrated experience.</p>
+<h2>Core Philosophy</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Guiding Principles of the Question Spell</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li><strong>Atomicity &amp; Reusability:</strong> Each question and its corresponding answer(s) are treated as distinct magical atoms, stored centrally for reuse across myriad applications.</li>
+<li><strong>Seamless Integration:</strong> Defining questions and answers should feel like a natural extension of the content creation process within markdown.</li>
+<li><strong>Dynamic Conjuration:</strong> Interactive elements like quizzes and flashcards are dynamically generated from this central repository, ensuring content is always current.</li>
+<li><strong>Extensibility:</strong> The framework should allow for future enchantments, such as new question types or interactive blocks.</li>
+</ul>
+    </div>
+
+</div>
+
+<h2>Example Usage &amp; Syntax</h2>
+<p>The fundamental incantation remains elegant:</p>
+<pre><code class="language-markdown">## Solution: &quot;Question Spell&quot;
+
+# What is Django Spellbook? {? title=&quot;What is Django Spellbook?&quot; ans=&quot;spellbook-definition-ans&quot; desc=&quot;A foundational question about Django Spellbook.&quot; ?}
+
+{? title=&quot;What is Django Spellbook?&quot; ans=&quot;spellbook-definition-ans&quot; desc=&quot;The definitive answer to the nature of Django Spellbook.&quot; ?}
+Django Spellbook is a markdown processor that extends markdown with reusable content components for Django, generating templates, views, and URLs in a way that doesn't interfere with your existing codebase. [Learn more](/docs/FAQ).
+{??}
+
+It's a magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.
+</code></pre>
+<h2>Detailed Application Runes</h2>
+<h3>1. After a Header: Inline Question Definition</h3>
+<p>The spell can be cast directly after a header, using the header's text as the question's essence.</p>
+<p><code># What is the airspeed velocity of an unladen swallow? {? ans="unladen-swallow-velocity" topic="aviary_physics" difficulty="intermediate" ?}</code></p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Considerations</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This method intuitively links a question to a specific section of your content.</p>
+<p><strong>Pros:</strong><br />
+-   <strong>Effortless Creation:</strong> Seamlessly integrates question definition into the natural flow of writing.<br />
+-   <strong>Contextual Linkage:</strong> Automatically associates the question with the preceding header's topic.</p>
+<p><strong>Considerations:</strong><br />
+-   <strong>Syntax Clarity:</strong> The <code>{? ... ?}</code> syntax must be distinct and well-documented to avoid clashes with other potential markdown extensions.<br />
+-   <strong>Scope:</strong> Best suited for questions that directly summarize or probe the content of the immediate section. For broader or standalone questions, block usage might be preferred.<br />
+-   <strong>Metadata:</strong> Encourage use of <code>topic</code>, <code>difficulty</code>, or other custom tags for better organization and retrieval.</p>
+        </div>
+    </div>
+</div>
+
+<h3>2. In a Block: Defining Questions and Answers</h3>
+<p>For standalone questions or to explicitly define answers, a block-level enchantment is used.</p>
+<p><code>{? title="Describe the First Law of Thaumaturgy." ans="first-law-thaumaturgy" tags=["laws", "thaumaturgy", "core_concepts"] ?}</code><br />
+The corresponding answer:<br />
+<code>{? ans="first-law-thaumaturgy-ans" ?}</code><br />
+The First Law of Thaumaturgy states that energy cannot be created or destroyed, only transmuted from one form to another, often with a significant loss due to mystical impedance.<br />
+<code>{??}</code></p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Considerations</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This provides a clear and structured way to manage Q&amp;A pairs, especially for answers that require more extensive markdown content.</p>
+<p><strong>Pros:</strong><br />
+-   <strong>Explicit Definition:</strong> Clearly delineates both question and answer content.<br />
+-   <strong>Rich Content:</strong> Answers can contain complex markdown, including lists, code blocks, and other formatting.<br />
+-   <strong>Decoupling:</strong> Allows questions and answers to be defined independently of specific headers if needed.</p>
+<p><strong>Considerations:</strong><br />
+-   <strong>Answer ID (<code>ans</code>):</strong> The <code>ans</code> attribute is crucial. A robust and unique ID system is paramount for reliably linking questions to their correct answers. This relational mapping forms the backbone of the system.<br />
+-   <strong>Database Schema:</strong> The underlying database schema must efficiently store questions, answers, their relationships, and associated metadata (tags, difficulty, topic, etc.).</p>
+        </div>
+    </div>
+</div>
+
+<h3>3. In a Quiz Block: Summoning Assessments</h3>
+<p>The <code>Quiz Block</code> allows you to dynamically assemble quizzes from your repository of questions.</p>
+<pre><code class="language-markdown">{~ quiz title=&quot;Chapter 1 Review&quot; count=&quot;10&quot; tags=[&quot;chapter1&quot;, &quot;beginner&quot;] show_feedback=&quot;immediate&quot; ~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Potential Enhancements</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This block transforms your static content into an interactive learning checkpoint.</p>
+<p><strong>How it Works:</strong><br />
+-   Fetches questions based on specified criteria (e.g., tags, topic, number of questions).<br />
+-   Renders them in a user-friendly format.</p>
+<p><strong>Potential Enhancements:</strong><br />
+-   <strong>Diverse Question Types:</strong> Support for multiple-choice, true/false, fill-in-the-blanks, and perhaps even short answer (manual grading might be needed for the latter).<br />
+-   <strong>Feedback Mechanisms:</strong> Options for immediate feedback per question, or a summary at the end.<br />
+-   <strong>Scoring:</strong> Automatic scoring for objective question types.<br />
+-   <strong>Randomization:</strong> Option to randomize question order and/or answer choices.<br />
+-   <strong>Question Pooling:</strong> Pull <code>X</code> questions from a larger pool tagged <code>Y</code>.</p>
+        </div>
+    </div>
+</div>
+
+<h3>4. In a Flashcard Block: Aiding Memorization</h3>
+<p>The <code>Flashcard Block</code> turns Q&amp;A pairs into a digital deck for study.</p>
+<pre><code class="language-markdown">{~ flashcards tags=[&quot;key_terms&quot;, &quot;chapter2&quot;] shuffle=&quot;true&quot; ~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Potential Enhancements</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A classic study tool, reimagined for the digital spellbook.</p>
+<p><strong>How it Works:</strong><br />
+-   Displays questions on one "side" and answers on the "other."<br />
+-   Allows users to flip cards to reveal answers.</p>
+<p><strong>Potential Enhancements:</strong><br />
+-   <strong>Shuffle Deck:</strong> Randomize card order.<br />
+-   <strong>User Progress:</strong> Allow users to mark cards as "learned" or "needs review" to focus their study.<br />
+-   <strong>Multiple Decks:</strong> Filter by various tags or topics to create specific study sets.<br />
+-   <strong>Spaced Repetition Hints:</strong> Suggest when to review cards based on learning algorithms (an advanced enchantment!).</p>
+        </div>
+    </div>
+</div>
+
+<h3>5. In a Matching Game Block: Engaging Knowledge Association</h3>
+<p>The <code>Matching Game Block</code> provides a fun, interactive way to test connections between concepts.</p>
+<pre><code>{~ matching_game title=&quot;Arcane Symbol Match&quot; left_tags=[&quot;symbols&quot;] right_tags=[&quot;symbol_meanings&quot;] count=&quot;8&quot; ~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Potential Enhancements</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Excellent for vocabulary, symbol recognition, or concept-definition pairing.</p>
+<p><strong>How it Works:</strong><br />
+-   Presents two columns of items (derived from questions and answers, or specific term/definition pairs).<br />
+-   Users drag and drop or select items to form correct pairs.</p>
+<p><strong>Potential Enhancements:</strong><br />
+-   <strong>Timed Challenges:</strong> Add an optional timer for an extra layer of engagement.<br />
+-   <strong>Scoring &amp; Leaderboards:</strong> Track scores and potentially offer simple leaderboards.<br />
+-   <strong>Difficulty Levels:</strong> Adjust the number of pairs or the similarity of distractors.<br />
+-   <strong>Image Support:</strong> Allow matching images to text or other images.</p>
+        </div>
+    </div>
+</div>
+
+<h3>6. The "Test Page": Automated Grimoire Examinations</h3>
+<p>A "Test Page" is a dedicated, automatically generated document for comprehensive assessments. This introduces "Spellbook Pages"—dynamically created pages based on <code>spellbook_md</code> settings and data from spells like the "Question Spell."</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Mechanics &amp; Advanced Considerations</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This feature elevates <code>Django Spellbook</code> into a more powerful educational platform.</p>
+<p><strong>How it Works:</strong><br />
+-   A specific URL or command generates a full test based on defined parameters (e.g., covering all topics in an app, a certain number of questions from various difficulties).</p>
+<p><strong>Key Considerations &amp; Enhancements:</strong><br />
+-   <strong>Robust Scoring &amp; Reporting:</strong><br />
+    -   Detailed results for users.<br />
+    -   Mechanisms for instructors to view and analyze results (if applicable).<br />
+    -   Storing test attempts and scores in the database.<br />
+-   <strong>Assessment Integrity:</strong><br />
+    -   For more formal tests, consider strategies to minimize cheating (e.g., question/answer randomization, server-side validation, avoiding exposure of all answers in client-side source).<br />
+-   <strong>Customization &amp; Configuration:</strong><br />
+    -   Time limits for tests.<br />
+    -   Weighting for different questions or sections.<br />
+    -   Variety of question types within a single test.<br />
+    -   Options for printing or exporting tests/results.<br />
+-   <strong>Accessibility:</strong> Ensure generated tests are accessible to users with disabilities.</p>
+        </div>
+    </div>
+</div>
+
+<h2>Future Enchantments &amp; Advanced Considerations</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Expanding the Spell&#x27;s Power</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li><strong>Advanced Question Types:</strong> Incorporate support for ordering questions, image-based questions, or interactive simulations.</li>
+<li><strong>Answer Explanations:</strong> A dedicated field for providing detailed explanations or rationales for answers, separate from the answer itself.</li>
+<li><strong>User Progression &amp; Analytics:</strong> Link question/test performance to user accounts for tracking learning progress.</li>
+<li><strong>Import/Export:</strong> Allow batch import/export of questions in common formats (e.g., CSV, GIFT, QTI).</li>
+<li><strong>Internationalization:</strong> Support for questions and answers in multiple languages.</li>
+</ul>
+    </div>
+
+</div>
+
+<p>This enhanced "Question Spell" has the potential to be a cornerstone of any <code>Django Spellbook</code> dedicated to education. By thoughtfully designing its core mechanics and planning for future growth, you can craft a truly magical tool for creators and learners alike!</p>
+<h2>How are Tags Generated?</h2>
+<p>You may have noticed that the <code>tags</code> attribute in the example above is a list of strings. The block itself only takes two required parameters: <code>title</code> and <code>ans/answer</code>. <code>desc</code> is an optional parameter.</p>
+<p><code>tags</code> is NOT a required parameter for the <code>question</code> block. In your django settings, you will define a list of tags that will be used to generate the <code>tags</code> attribute for each question as it is inserted into the database, using extremely simple and <em>lightweight</em> NLP logic. (Markov Chains, maybe?)</p>
+<p>This is a very powerful feature that allows you to define your own custom tags for each question, and then use them to filter and organize your questions in the future. This can be especially useful for creating a "learning path" or "curriculum" for your users.</p>
+<h2>Future Enhancements</h2>
+<p>As the "Question Spell" matures, several new parameters could be introduced to enhance its descriptive power and utility in crafting diverse educational experiences. Here are a few potent suggestions:</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Potential New Parameters for the Question Spell</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Here are several attributes that could significantly augment the "Question Spell":</p>
+<ul>
+<li>
+<p><strong><code>difficulty</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To categorize questions by their challenge level.</li>
+<li><strong>Example</strong>: <code>difficulty="beginner"</code>, <code>difficulty="intermediate"</code>, <code>difficulty="expert"</code>, or a numerical scale like <code>difficulty="3"</code>.</li>
+<li><strong>Benefit</strong>: Allows for tailored quizzes, adaptive learning paths, and clearer progression for students. You've already hinted at this with <code>difficulty="intermediate"</code> in your examples – solidifying it as a core parameter would be wise.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>tags</code></strong> (or refine <code>topic</code>):</p>
+<ul>
+<li><strong>Purpose</strong>: To add multiple, fine-grained keywords or topics to a question, supplementing the global <code>SPELLBOOK_MD_QUESTION_TAGS</code>.</li>
+<li><strong>Example</strong>: <code>tags=["celestial_mechanics", "newtonian_physics", "exam_prep"]</code>.</li>
+<li><strong>Benefit</strong>: Enables highly specific filtering for quizzes, study guides, or content aggregation. This could work alongside or as an enhancement to your current <code>topic</code> idea.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>question_type</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To specify the format of the question and how it should be rendered and answered.</li>
+<li><strong>Example</strong>: <code>question_type="multiple_choice"</code>, <code>question_type="true_false"</code>, <code>question_type="short_answer"</code>, <code>question_type="fill_in_the_blanks"</code>, <code>question_type="essay"</code>.</li>
+<li><strong>Benefit</strong>: Essential for building diverse assessments and interactive elements. This would also inform how answer blocks are structured or interpreted, especially for multiple-choice where options need to be defined.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>points</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To assign a numerical value or weight to a question.</li>
+<li><strong>Example</strong>: <code>points="5"</code>.</li>
+<li><strong>Benefit</strong>: Crucial for scoring quizzes and tests, allowing some questions to contribute more to the overall grade.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>hint</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To provide an optional hint that learners can reveal if they are stuck.</li>
+<li><strong>Example</strong>: <code>hint="Consider the atmospheric conditions on an Earth-like planet."</code></li>
+<li><strong>Benefit</strong>: Offers a scaffold for learners, promoting engagement and reducing frustration.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>explanation</code></strong> (for answers):</p>
+<ul>
+<li><strong>Purpose</strong>: To accompany an answer with a more detailed rationale, clarification, or further information.</li>
+<li><strong>Example (within an answer block context)</strong>: <code>{? ans="some-ans-id" explanation="This is correct because..." ?} The answer is 42. {??}</code></li>
+<li><strong>Benefit</strong>: Deepens understanding by not just providing the correct answer, but also the 'why' and 'how'.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>learning_objective_id</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To link a question to one or more specific learning objectives or competencies defined elsewhere.</li>
+<li><strong>Example</strong>: <code>learning_objective_id="LO-PHY-101.3"</code>.</li>
+<li><strong>Benefit</strong>: Facilitates curriculum mapping, progress tracking against objectives, and ensures assessments are aligned with learning goals.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>media_url</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To associate supplementary media like an image, audio clip, or short video with a question or answer.</li>
+<li><strong>Example</strong>: <code>media_url="/static/images/diagram_of_a_swallow.png"</code>.</li>
+<li><strong>Benefit</strong>: Enriches questions and answers, making them more engaging and suitable for diverse learning styles, especially in subjects requiring visual or auditory aids.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>is_variant_of</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: To link a question to another question, indicating it's a variation or rephrasing.</li>
+<li><strong>Example</strong>: <code>is_variant_of="question_id_005"</code>.</li>
+<li><strong>Benefit</strong>: Useful for creating question banks with slight variations to prevent rote memorization or for A/B testing question effectiveness.</li>
+</ul>
+</li>
+</ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Enhancing Educational Magic
+        </div>
+
+</div>
+
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Introducing these parameters would naturally require thoughtful consideration in your Django models for storing this data and in the logic for parsing and rendering the SpellBlocks. For instance, a <code>question_type="multiple_choice"</code> would necessitate a way to define the choices, perhaps within the answer block or as another parameter.</p>
+    </span>
+</div>
+
+<p>By weaving these (or similar) parameters into your "Question Spell," you will undoubtedly provide educators with an even more versatile and powerful toolkit for their noble endeavors. May your spellcraft continue to illuminate the path of learning!</p>
+{% endblock %}
