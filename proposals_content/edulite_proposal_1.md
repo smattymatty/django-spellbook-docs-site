@@ -258,9 +258,9 @@ Here is an alert, for fun.
 {~~}
 
 {~ card title="Card Title" footer="Card Footer" ~}
-Notice how these are unstyled, but the HTML is still properly rendered.
+Notice how these are styled, and the HTML is properly rendered.
 {~~}
 
 {~ practice ~}
-That's because `% spellbook_styles %` is not included here. You would need to include it in your template head.
+That's because `% spellbook_styles %` is included here. You would need to include it in your template head.
 {~~}
