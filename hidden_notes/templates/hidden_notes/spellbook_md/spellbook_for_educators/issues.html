@@ -1,0 +1,172 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<h1>Educator's Guide to the Question &amp; Answer Spells</h1>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Welcome, esteemed creator of educational enchantments! This guide illuminates the <strong><code>~ question ... ~</code></strong> and <strong><code>~ answer ... ~</code></strong> Spells—powerful components within Django Spellbook. These spells enable you to seamlessly define, store in your Django database, and reuse questions and answers directly within your markdown content. This empowers the dynamic generation of tests, quizzes, flashcards, and other interactive learning elements across your digital academy.<br />
+The <code>id</code> parameter is central to this system, linking questions to their respective answers.</p>
+    </span>
+</div>
+
+<h2>The Core Enchantment: Storing Knowledge in Your Database</h2>
+<p>The magic of these spells lies in their ability to transform your markdown into a structured, queryable database of knowledge. When you invoke the <code>python manage.py spellbook_md</code> command, Django Spellbook parses your content, identifies these spells, and populates (creates or updates) your Django database with <code>Question</code> and <code>Answer</code> model instances.</p>
+<p>This means your Q&amp;A content is:<br />
+-   <strong>Centrally Managed:</strong> Define once, reuse anywhere.<br />
+-   <strong>Database-Driven:</strong> Enables powerful querying and dynamic content generation.<br />
+-   <strong>Version Controlled:</strong> As part of your markdown files, your Q&amp;A content benefits from version control systems like Git.</p>
+<h2>Defining Questions: The <code>~ question ... ~</code> Spell</h2>
+<p>You can define questions in several ways, all using the consistent <code>~ question ... ~</code> SpellBlock syntax. Every question <strong>must</strong> have a unique <code>id</code> attribute, which serves as its primary key in the database and is crucial for linking answers.</p>
+<h3>1. Inline Question with a Header (Implicit Title)</h3>
+<p>Cast the Question Spell directly after a header (e.g., <code>##</code>). The header's text automatically becomes the question's <code>title</code> attribute. This is a self-closing SpellBlock.</p>
+<pre><code class="language-markdown">## Why did the duck cross the road? {~ question id=&quot;duck-joke-1&quot; tags=[&quot;ducks&quot;, &quot;jokes&quot;, &quot;classic-humor&quot;] difficulty=&quot;beginner&quot; ~}
+</code></pre>
+<ul>
+<li><strong><code>id</code></strong> (Required): A unique identifier for this question (e.g., "duck-joke-1").</li>
+<li><strong><code>tags</code></strong> (Optional): A comma-separated list of relevant tags (e.g., <code>tags=["ducks", "jokes"]</code>).</li>
+<li><strong><code>difficulty</code></strong> (Optional): Describe the challenge level (e.g., <code>difficulty="beginner"</code>).</li>
+<li><em>(Future parameters: <code>topic</code>, <code>question_type</code>, <code>points</code>, <code>learning_objective_id</code> etc.)</em></li>
+</ul>
+<p>The <code>spellbook_md</code> command will create/update a <code>Question</code> entry with <code>id="duck-joke-1"</code>, <code>title="Why did the duck cross the road?"</code>, and associated <code>tags</code> and <code>difficulty</code>.</p>
+<h3>2. Inline Question with a Header (Explicit <code>title</code> Override)</h3>
+<p>If the header text isn't suitable as the question title, or if you want a different phrasing for the stored question, provide an explicit <code>title</code> parameter.</p>
+<pre><code class="language-markdown">## Avian Comedy Routines {~ question id=&quot;duck-joke-2&quot; title=&quot;What makes the duck an icon of stand-up comedy?&quot; tags=[&quot;ducks&quot;, &quot;comedy&quot;, &quot;advanced-theory&quot;] ~}
+</code></pre>
+<p>The question stored will have <code>title="What makes the duck an icon of stand-up comedy?"</code>.</p>
+<h3>3. Block Question (Explicit Question Text)</h3>
+<p>For questions that don't naturally follow a header or require more detailed phrasing, use the block syntax. The content <em>within</em> the SpellBlock becomes the question's primary text or body.</p>
+<pre><code class="language-markdown">{~ question id=&quot;number-joke-1&quot; title=&quot;A Numerical Riddle&quot; tags=[&quot;numbers&quot;, &quot;jokes&quot;, &quot;math-puns&quot;] difficulty=&quot;intermediate&quot; ~}
+Why was the number 6 so terrified of the number 7?
+{~~}
+</code></pre>
+<p>This creates/updates a <code>Question</code> entry with <code>id="number-joke-1"</code>, <code>title="A Numerical Riddle"</code>, the body "Why was the number 6 so terrified of the number 7?", and associated tags.</p>
+<h2>Defining Answers: The <code>~ answer ... ~</code> Spell</h2>
+<p>Answers are defined using the <code>~ answer ... ~</code> SpellBlock. They can be explicitly linked to questions using the question's <code>id</code>, or defined as standalone true/false statements where the answer content itself forms an implicit question.</p>
+<h3>1. Linking Answers to Specific Questions</h3>
+<p>To link an answer (or multiple answer choices) to a previously defined question, use the <code>id</code> parameter within the <code>~ answer ... ~</code> block, ensuring it matches the <code>id</code> of the target question. This allows answers to be defined anywhere, even in different markdown files from their questions.</p>
+<pre><code class="language-markdown">{~ card title=&quot;Joke Punchlines&quot; ~}
+
+{~ answer id=&quot;duck-joke-1&quot; is_correct=&quot;true&quot; ~}
+To reach the other side!
+{~~}
+
+{~ answer id=&quot;duck-joke-1&quot; is_correct=&quot;false&quot; explanation=&quot;While a noble pursuit, not the canonical answer to this joke.&quot; ~}
+It was pursuing a lucrative career in artisanal breadcrumb acquisition.
+{~~}
+
+{~ answer id=&quot;number-joke-1&quot; is_correct=&quot;true&quot; tags=[&quot;puns&quot;, &quot;wordplay&quot;] ~}
+Because seven ate nine!
+{~~}
+
+{~~}
+</code></pre>
+<ul>
+<li><strong><code>id</code></strong> (Required for linked answers): Must match the <code>id</code> of the question this answer belongs to.</li>
+<li><strong><code>is_correct</code></strong> (Highly Recommended): Set to <code>"true"</code> or <code>"false"</code>. Crucial for automated grading. If multiple answers share the same <code>id</code> (linking to the same question), this distinguishes correct choices from distractors. Defaults to <code>"false"</code> if not specified.</li>
+<li><strong><code>explanation</code></strong> (Optional): Provide rationale or further details about this specific answer choice.</li>
+<li><strong><code>tags</code></strong> (Optional): Specific tags for this answer choice, if needed (e.g., to categorize types of distractors).</li>
+<li>The content within the <code>~ answer ... ~ ... ~~</code> block is the text of the answer choice.</li>
+</ul>
+<p>The <code>spellbook_md</code> command will create/update <code>Answer</code> entries in the database, linking them to the <code>Question</code> identified by the <code>id</code> parameter. A single question can have multiple <code>Answer</code> entries, forming the basis for multiple-choice or select-all-that-apply question types.</p>
+<h3>2. Standalone True/False Statements (Implicit Questions)</h3>
+<p>For quick true/false definitions, often used in flashcards or simple knowledge checks, you can define an answer with a <code>correct</code> attribute but <em>without</em> an <code>id</code> that links to a pre-defined question. In this scenario, the content of the <code>~ answer ... ~</code> block itself is treated as the statement (an implicit question).</p>
+<p>A unique internal <code>id</code> will be generated for the implicit question created by this spell, or you can provide your own <code>id</code> for more control if you wish to reference this specific true/false statement elsewhere.</p>
+<pre><code class="language-markdown">{~ card title=&quot;Walrus Facts Check&quot; ~}
+
+{~ answer correct=&quot;true&quot; tags=[&quot;walruses&quot;, &quot;mammals&quot;, &quot;biology&quot;] statement_id=&quot;walrus-is-mammal&quot; ~}
+The Walrus (Odobenus rosmarus) is a large flippered marine mammal.
+{~~}
+
+{~ answer correct=&quot;false&quot; tags=[&quot;walruses&quot;, &quot;birds&quot;, &quot;biology&quot;] statement_id=&quot;walrus-lays-eggs&quot; explanation=&quot;Walruses are mammals and give birth to live young.&quot; ~}
+A walrus typically lays two to three eggs in a clutch.
+{~~}
+
+{~~}
+</code></pre>
+<ul>
+<li><strong><code>correct</code></strong> (Required): Must be <code>"true"</code> or <code>"false"</code>.</li>
+<li><strong><code>id</code></strong> (Optional but Recommended): A unique ID for this <em>statement</em> if you wish to refer to it directly. If not provided, an ID will be auto-generated.</li>
+<li><strong><code>tags</code></strong> (Optional): Tags to categorize this statement.</li>
+<li><strong><code>explanation</code></strong> (Optional): Context for why the statement is true or false.</li>
+</ul>
+<p>When <code>id</code> (linking to a question) is absent but <code>correct</code> is present, <code>spellbook_md</code> creates:<br />
+1.  An implicit <code>Question</code> in the database. Its <code>title</code> or <code>body</code> will be the content of the answer block (e.g., "The Walrus (...) is a large flippered marine mammal."). Its <code>id</code> will be <code>statement_id</code> if provided, or an auto-generated one. This question is implicitly a "true/false" type.<br />
+2.  Two <code>Answer</code> objects linked to this implicit question: one representing "True" (which is correct if <code>correct="true"</code>) and one representing "False" (which is correct if <code>correct="false"</code>).</p>
+<p>This structure facilitates easy creation of true/false items for learning modules.</p>
+<h2>Technical Considerations for <code>spellbook_md</code></h2>
+<p>The introduction of these database-interactive spells enhances the <code>python manage.py spellbook_md</code> command:</p>
+<ul>
+<li><strong>Parsing &amp; Database Interaction:</strong> The command now parses for <code>~ question ... ~</code> and <code>~ answer ... ~</code> blocks, then connects to your Django database to create or update corresponding model instances.</li>
+<li><strong>Idempotency:</strong> Running the command multiple times is safe. It uses the <code>id</code> attributes to find existing records and update them, rather than creating duplicates. New records are created if an <code>id</code> is encountered for the first time.</li>
+<li><strong>Transactions:</strong> Database operations are wrapped in transactions to ensure atomicity. If an error occurs while processing a file, changes from that file should be rolled back to maintain database integrity.</li>
+<li><strong>Error Handling:</strong> Malformed SpellBlocks or database issues will result in clear error messages, and the command will report issues without leaving the database in an inconsistent state.</li>
+</ul>
+<h2>Utilizing Stored Knowledge: SpellBlocks for Interaction</h2>
+<p>Once your questions and answers populate your database, you can dynamically conjure interactive learning elements using other SpellBlocks:</p>
+<h3>1. The Quiz Block: <code>~ quiz ... ~</code></h3>
+<p>Dynamically assembles quizzes from your question repository.</p>
+<pre><code class="language-markdown">{~ quiz title=&quot;Chapter 1 Review&quot; count=&quot;10&quot; tags=[&quot;chapter1&quot;, &quot;beginner&quot;] difficulty=&quot;beginner&quot; show_feedback=&quot;immediate&quot; ~}
+</code></pre>
+<ul>
+<li>Fetches <code>Question</code> and associated <code>Answer</code> objects from the database based on parameters like <code>tags</code>, <code>difficulty</code>, <code>count</code>, etc.</li>
+<li>Renders them as an interactive quiz.</li>
+</ul>
+<h3>2. The Flashcard Block: <code>~ flashcards ... ~</code></h3>
+<p>Transforms Q&amp;A pairs or standalone true/false statements into a digital study deck.</p>
+<pre><code class="language-markdown">{~ flashcards tags=[&quot;key_terms&quot;, &quot;chapter2&quot;, &quot;walruses&quot;] shuffle=&quot;true&quot; ~}
+</code></pre>
+<ul>
+<li>Queries the database for questions/statements matching the criteria.</li>
+<li>Presents them in a flashcard format.</li>
+</ul>
+<h3>3. The Matching Game Block: <code>~ matching_game ... ~</code></h3>
+<p>Creates interactive association games. This block would typically require questions that have distinct, short answers or specific "term" and "definition" components.</p>
+<pre><code class="language-markdown">{~ matching_game title=&quot;Vocabulary Match&quot; terms_tags=[&quot;vocab_terms&quot;] definitions_tags=[&quot;vocab_defs&quot;] count=&quot;8&quot; ~}
+</code></pre>
+<ul>
+<li>This requires a more nuanced query to pull appropriate pairs from your <code>Question</code> and <code>Answer</code> database.</li>
+</ul>
+<h3>4. The "Test Page": Dynamic Assessment Generation</h3>
+<p>"Test Pages" are envisioned as dynamically generated, dedicated Django views/pages for comprehensive assessments. Instead of being a SpellBlock, a Test Page would be configured (e.g., in <code>settings.py</code> or a dedicated admin UI) to pull a specific set of questions from the database based on complex criteria.</p>
+<p><strong>Conceptual <code>settings.py</code> for a Test Page Definition:</strong></p>
+<pre><code class="language-python"># settings.py
+# This is a conceptual illustration; the final API may differ.
+# from django_spellbook.edu.tests import SpellbookTestConfiguration # Hypothetical import
+
+SPELLBOOK_TEST_CONFIGURATIONS = {
+    &quot;midterm-exam-physics-101&quot;: {
+        &quot;title&quot;: &quot;Physics 101 - Midterm Examination&quot;,
+        &quot;description&quot;: &quot;This exam covers all material from chapters 1-5.&quot;,
+        &quot;time_limit_minutes&quot;: 90,
+        &quot;question_sources&quot;: [
+            {&quot;tags&quot;: [&quot;physics&quot;, &quot;chapter1&quot;, &quot;chapter2&quot;], &quot;difficulty&quot;: &quot;beginner&quot;, &quot;count&quot;: 5},
+            {&quot;tags&quot;: [&quot;physics&quot;, &quot;chapter3&quot;, &quot;chapter4&quot;], &quot;difficulty&quot;: &quot;intermediate&quot;, &quot;count&quot;: 10, &quot;points_per_question&quot;: 2},
+            {&quot;tags&quot;: [&quot;physics&quot;, &quot;chapter5&quot;], &quot;question_type&quot;: &quot;essay&quot;, &quot;count&quot;: 2, &quot;points_per_question&quot;: 10},
+        ],
+        # ... other settings like pass_mark, show_results_options etc.
+    },
+}
+</code></pre>
+<p>A corresponding URL (e.g., <code>/tests/midterm-exam-physics-101/</code>) would trigger a Django view that uses this configuration to fetch questions from the database and render the test.</p>
+<h2>Future Enhancements &amp; Parameter Expansion</h2>
+<p>The <code>~ question ... ~</code> and <code>~ answer ... ~</code> spells are designed for growth. Future versions may include more parameters to refine your educational content further:</p>
+<ul>
+<li>For <code>~ question ... ~</code>: <code>question_type</code> (e.g., "multiple-choice", "essay"), <code>points</code>, <code>learning_objective_id</code>, <code>media_url</code>.</li>
+<li>For <code>~ answer ... ~</code>: More nuanced attributes for different answer types (e.g., specific fields for fill-in-the-blanks).</li>
+</ul>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>By mastering the Question and Answer Spells, you unlock a powerful, database-driven approach to creating rich, interactive educational content with Django Spellbook. Experiment, build your knowledge base, and watch your teaching materials come to life!</p>
+    </span>
+</div>
+{% endblock %}

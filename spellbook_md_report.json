@@ -1,7 +1,7 @@
 {
   "summary": {
-    "total_pairs": 4,
-    "successful_pairs": 4,
+    "total_pairs": 5,
+    "successful_pairs": 5,
     "total_processed_files": 43
   },
   "pairs": [
@@ -31,18 +31,25 @@
       "destination": "hidden_notes",
       "url_prefix": "hidden",
       "success": true,
-      "processed_files": 9
+      "processed_files": 8
+    },
+    {
+      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/proposals_content",
+      "destination": "proposals",
+      "url_prefix": "prop",
+      "success": true,
+      "processed_files": 1
     }
   ],
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 70,
+      "total_uses": 69,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 37,
+      "total_uses": 41,
       "failed_uses": 0
     },
     {
@@ -52,7 +59,7 @@
     },
     {
       "name": "practice",
-      "total_uses": 25,
+      "total_uses": 26,
       "failed_uses": 0
     },
     {

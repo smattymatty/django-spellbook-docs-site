@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'examples',
     'changelog',
     'analytics',
-    'hidden_notes'
+    'hidden_notes',
+    'proposals',
 ]
 
 MIDDLEWARE = [
@@ -180,6 +181,7 @@ SPELLBOOK_MD_PATH = [
     BASE_DIR / 'changelog_content',
     BASE_DIR / 'examples_content',
     BASE_DIR / 'hidden_content',
+    BASE_DIR / 'proposals_content',
     ]
 
 SPELLBOOK_MD_APP = [
@@ -187,6 +189,7 @@ SPELLBOOK_MD_APP = [
     'changelog',
     'examples',
     'hidden_notes',
+    'proposals',
 ]
 
 SPELLBOOK_MD_BASE_TEMPLATE = [
@@ -194,6 +197,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = [
     'changelog/sb_base.html',
     'examples/sb_base.html',
     'base/django_spellbook/bases/sidebar_left.html',
+    'examples/sb_base.html',
     
     ]
 
@@ -202,6 +206,7 @@ SPELLBOOK_MD_URL_PREFIX = [
     'changelog',
     'examples',
     'hidden',
+    'prop',
 ]
 
 ANALYTICS_EXCLUDED_PATHS = [
@@ -209,5 +214,6 @@ ANALYTICS_EXCLUDED_PATHS = [
 ]
 
 ANALYTICS_EXCLUDED_PREFIXES = [
-    '/hidden'
+    '/hidden',
+    '/prop',
 ]

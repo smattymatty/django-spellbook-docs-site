@@ -142,8 +142,14 @@ A groundbreaking thriller that masterfully blends dark comedy with social commen
     </span>
 </div>
 
-<p>{~ card title="1. Actor Profile Card" footer="Showcasing Talent" ~}<br />
-<strong>Purpose:</strong> To provide a comprehensive overview of an actor.<br />
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">1. Actor Profile Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Purpose:</strong> To provide a comprehensive overview of an actor.<br />
 <strong>Content (Manual Entry &amp; IMDB-Fetched):</strong></p>
 <ul>
 <li><strong><code>name</code></strong>: Actor's Name (e.g., Tom Hanks)</li>
@@ -153,17 +159,30 @@ A groundbreaking thriller that masterfully blends dark comedy with social commen
 <li><strong><code>birth_date</code></strong>: (Fetched from IMDB)</li>
 <li><strong><code>notable_works</code></strong>: (Fetched from IMDB - list of key movies with links to their pages on this site).</li>
 <li><strong><code>frequent_collaborators</code></strong>: (Fetched from IMDB - list of directors/actors they often work with, linked).</li>
-<li><strong><code>personal_notes</code></strong>: A section for the site owner to add their commentary or favorite roles.<br />
-<strong>Example Usage:</strong></li>
+<li><strong><code>personal_notes</code></strong>: A section for the site owner to add their commentary or favorite roles.</li>
 </ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Showcasing Talent
+        </div>
+
+</div>
+
+<h2><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ actor_card name=&quot;Tom Hanks&quot; imdb_id=&quot;nm0000158&quot; image_url=&quot;/path/to/tom_hanks.jpg&quot; ~}
 One of the most beloved actors of his generation, known for his versatility.
 My favorite role: Forrest Gump.
 {~~}
 </code></pre>
-<p>{~~}</p>
-<p>{~ card title="2. Director Profile Card" footer="Visionaries Behind the Camera" ~}<br />
-<strong>Purpose:</strong> To detail a director's career and style.<br />
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">2. Director Profile Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Purpose:</strong> To detail a director's career and style.<br />
 <strong>Content (Manual Entry &amp; IMDB-Fetched):</strong><br />
 * <strong><code>name</code></strong>: Director's Name (e.g., Christopher Nolan)<br />
 * <strong><code>imdb_id</code></strong>: (e.g., nm0634240)<br />
@@ -174,15 +193,28 @@ My favorite role: Forrest Gump.
     * <em>Dynamic data: Display most popular or recent movies prominently.</em><br />
 * <strong><code>common_themes</code></strong>: Site owner's notes on recurring themes.<br />
 * <strong><code>frequent_actors</code></strong>: (Fetched from IMDB - actors commonly featured in their films).</p>
-<p><strong>Example Usage:</strong></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Visionaries Behind the Camera
+        </div>
+
+</div>
+
+<h2><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ director_card name=&quot;Christopher Nolan&quot; imdb_id=&quot;nm0634240&quot; image_url=&quot;/path/to/nolan.jpg&quot; ~}
 Known for his complex narratives and large-scale filmmaking. His exploration of time is fascinating.
 Common Themes: Non-linear storytelling, identity, obsession.
 {~~}
 </code></pre>
-<p>{~~}</p>
-<p>{~ card title="3. Producer Profile Card" footer="The Architects of Cinema" ~}<br />
-<strong>Purpose:</strong> To highlight the work of producers.<br />
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">3. Producer Profile Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Purpose:</strong> To highlight the work of producers.<br />
 <strong>Content (Manual Entry &amp; IMDB-Fetched):</strong><br />
 * <strong><code>name</code></strong>: Producer's Name (e.g., Kevin Feige)<br />
 * <strong><code>imdb_id</code></strong>: (e.g., nm0270559)<br />
@@ -191,36 +223,43 @@ Common Themes: Non-linear storytelling, identity, obsession.
 * <strong><code>production_highlights</code></strong>: (Fetched from IMDB - list of significant movies produced).<br />
     * <em>Dynamic data: Display most successful or critically acclaimed films.</em><br />
 * <strong><code>associated_studios</code></strong>: (If applicable, fetched or manually entered).<br />
-* <strong><code>impact_on_industry</code></strong>: Site owner's notes on their influence.<br />
-<strong>Example Usage:</strong></p>
+* <strong><code>impact_on_industry</code></strong>: Site owner's notes on their influence.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            The Architects of Cinema
+        </div>
+
+</div>
+
+<h2><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ producer_card name=&quot;Kevin Feige&quot; imdb_id=&quot;nm0270559&quot; image_url=&quot;/path/to/feige.jpg&quot; ~}
 The mastermind behind the Marvel Cinematic Universe's incredible success and interconnected storytelling.
 {~~}
-</code></pre>
-<p>{~~}</p>
-<p>{~ card title="4. Movie Details Card" footer="Deep Dive into Films" ~}<br />
-<strong>Purpose:</strong> To provide a comprehensive page for each movie.<br />
-<strong>Content (Manual Entry &amp; IMDB-Fetched):</strong><br />
-* <strong><code>title</code></strong>: Movie Title (e.g., The Dark Knight)<br />
-* <strong><code>imdb_id</code></strong>: (e.g., tt0468569)<br />
-* <strong><code>poster_url</code></strong>: Path to the movie poster.<br />
-* <strong><code>release_year</code></strong>: (Fetched or manual)<br />
-* <strong><code>genre</code></strong>: (Fetched or manual)<br />
-* <strong><code>plot_summary</code></strong>: (Fetched from IMDB or manually written).<br />
-* <strong><code>director</code></strong>: (Fetched &amp; Linked to Director Profile Card on site).<br />
-* <strong><code>writers</code></strong>: (Fetched)<br />
-* <strong><code>key_actors</code></strong>: (Fetched from IMDB &amp; Linked to Actor Profile Cards on site - "Featured Actors").<br />
-* <strong><code>imdb_rating</code></strong>: (Fetched from IMDB).<br />
-* <strong><code>site_owner_rating</code></strong>: (Manual input by site owner).<br />
-* <strong><code>site_owner_review</code></strong>: (Markdown text area for detailed review).<br />
-* <strong><code>trailer_link</code></strong>: URL to the movie trailer.<br />
-<strong>Example Usage:</strong></p>
-<pre><code class="language-markdown">{~ movie_card title=&quot;The Dark Knight&quot; imdb_id=&quot;tt0468569&quot; poster_url=&quot;/path/to/dark_knight.jpg&quot; site_owner_rating=&quot;5/5&quot; ~}
-A masterful crime thriller that transcends the superhero genre. Heath Ledger's Joker is iconic.
-`[Write full review here...]`
+
+{~ card title=&quot;4. Movie Details Card&quot; footer=&quot;Deep Dive into Films&quot; ~}
+**Purpose:** To provide a comprehensive page for each movie.
+**Content (Manual Entry &amp; IMDB-Fetched):**
+* **`title`**: Movie Title (e.g., The Dark Knight)
+* **`imdb_id`**: (e.g., tt0468569)
+* **`poster_url`**: Path to the movie poster.
+* **`release_year`**: (Fetched or manual)
+* **`genre`**: (Fetched or manual)
+* **`plot_summary`**: (Fetched from IMDB or manually written).
+* **`director`**: (Fetched &amp; Linked to Director Profile Card on site).
+* **`writers`**: (Fetched)
+* **`key_actors`**: (Fetched from IMDB &amp; Linked to Actor Profile Cards on site - &quot;Featured Actors&quot;).
+* **`imdb_rating`**: (Fetched from IMDB).
+* **`site_owner_rating`**: (Manual input by site owner).
+* **`site_owner_review`**: (Markdown text area for detailed review).
+* **`trailer_link`**: URL to the movie trailer.
 {~~}
+
+## **Example Usage:**
+
+```markdown
+&lt;!-- Block 'movie_card' not found --&gt;
 </code></pre>
-<p>{~~}</p>
 <p>{~ card title="5. Musician/Composer Profile Card" footer="The Sound of Cinema" ~}<br />
 <strong>Purpose:</strong> To showcase composers and musicians who score films.<br />
 <strong>Content (Manual Entry &amp; IMDB-Fetched):</strong><br />
@@ -231,87 +270,10 @@ A masterful crime thriller that transcends the superhero genre. Heath Ledger's J
 * <strong><code>signature_style</code></strong>: Site owner's description of their musical style.<br />
 * <strong><code>notable_scores</code></strong>: (Fetched from IMDB - list of movies they composed for, linked).<br />
     * <em>Dynamic data: Display most popular or award-winning scores.</em><br />
-* <strong><code>collaborations</code></strong>: (Fetched - directors or other musicians they frequently work with).<br />
-<strong>Example Usage:</strong></p>
-<pre><code class="language-markdown">{~ musician_card name=&quot;Hans Zimmer&quot; imdb_id=&quot;nm0001877&quot; image_url=&quot;/path/to/zimmer.jpg&quot; ~}
-His epic and emotive scores have defined a generation of blockbuster films. The 'Inception' soundtrack is a masterpiece.
-{~~}
-</code></pre>
+* <strong><code>collaborations</code></strong>: (Fetched - directors or other musicians they frequently work with).</p>
 <p>{~~}</p>
-<hr />
-<h2>Data Management &amp; Structure</h2>
-<p>A clear data structure will be essential, especially if integrating with an external API like IMDB.</p>
-<p><strong>Primary Data Source:</strong><br />
-* <strong>IMDB (Internet Movie Database):</strong> For fetching dynamic data points like filmographies, ratings, cast/crew lists.<br />
-    * <div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm "><br />
-    <span class="sb-alert-icon"></p>
-<pre><code>        ⚠️
-
-&lt;/span&gt;
-&lt;span class="sb-alert-content"&gt;
-    &lt;p&gt;&lt;strong&gt;Critical Consideration:&lt;/strong&gt; Accessing IMDB data programmatically requires adhering to their terms of service. Official API access might be restricted or paid. Web scraping is an alternative but is less reliable and carries risks. This needs thorough investigation before development.&lt;/p&gt;
-&lt;/span&gt;
+<h2><strong>Example Usage:</strong></h2>
+<pre><code class="language-markdown">&lt;!-- Block 'musician_card' not found --&gt;
 </code></pre>
-</div>
-<ul>
-<li><strong>Manual Content Entry:</strong> The site owner will contribute reviews, personal notes, stylistic descriptions, and potentially override or supplement IMDB data.</li>
-</ul>
-<p><strong>Core Data Entities (Models in a Django backend):</strong><br />
-These would likely be Django models if a database is used to store local content and IMDB IDs for linking.</p>
-<ol>
-<li>
-<p><strong>Movie:</strong></p>
-<ul>
-<li><code>title</code> (CharField)</li>
-<li><code>imdb_id</code> (CharField, unique)</li>
-<li><code>poster_url</code> (ImageField or URLField)</li>
-<li><code>release_year</code> (IntegerField)</li>
-<li><code>genre</code> (CharField or ManyToManyField to a Genre model)</li>
-<li><code>plot_summary_manual</code> (TextField, for owner's summary)</li>
-<li><code>site_owner_rating</code> (DecimalField or IntegerField)</li>
-<li><code>site_owner_review</code> (TextField, markdown-enabled)</li>
-<li><code>trailer_link</code> (URLField)</li>
-<li><code>actors</code> (ManyToManyField to Actor, through an intermediary 'Role' model if character names are needed)</li>
-<li><code>directors</code> (ManyToManyField to Person)</li>
-<li><code>producers</code> (ManyToManyField to Person)</li>
-<li><code>musicians</code> (ManyToManyField to Person)</li>
-<li><em>Timestamp fields (<code>created_at</code>, <code>updated_at</code>)</em></li>
-</ul>
-</li>
-<li>
-<p><strong>Person (Unified model for Actors, Directors, Producers, Musicians):</strong></p>
-<ul>
-<li><code>name</code> (CharField)</li>
-<li><code>imdb_id</code> (CharField, unique)</li>
-<li><code>image_url</code> (ImageField or URLField)</li>
-<li><code>bio_manual</code> (TextField, for owner's bio)</li>
-<li><code>person_type</code> (CharField with choices: Actor, Director, Producer, Musician) - <em>to differentiate roles</em></li>
-<li><code>site_owner_notes</code> (TextField)</li>
-<li><em>Timestamp fields</em></li>
-</ul>
-</li>
-<li>
-<p><strong>Genre:</strong> (Optional, for categorizing movies)</p>
-<ul>
-<li><code>name</code> (CharField, unique)</li>
-</ul>
-</li>
-</ol>
-<p><strong>Relationships:</strong><br />
-* Movies will have many-to-many relationships with Persons (Actors, Directors, Producers, Musicians).<br />
-* A "Person" can have multiple roles across different movies.</p>
 <hr />
-<h2>Technical Considerations</h2>
-<ul>
-<li><strong>Backend:</strong> Django (to handle data models, API interaction, and serve the Spellbook templates).</li>
-<li><strong>Frontend:</strong> <code>django-spellbook</code> for markdown processing and SpellBlock rendering.</li>
-<li><strong>IMDB Data Fetching:</strong><ul>
-<li>Research official IMDB API options (e.g., IMDbPY library, AWS Data Exchange for IMDb).</li>
-<li>If scraping, use libraries like <code>BeautifulSoup</code> and <code>Requests</code> carefully and ethically.</li>
-<li>Implement caching for fetched IMDB data to reduce API calls/scraping load and improve performance.</li>
-</ul>
-</li>
-<li><strong>Styling:</strong> Custom CSS to style the SpellBlocks and overall site appearance.</li>
-</ul>
-<p>This expanded plan provides a more detailed roadmap for your friend's movie site. The IMDB integration is ambitious but would make the site incredibly rich and dynamic. Remember to prioritize features and tackle the technical challenges step by step!</p>
 {% endblock %}

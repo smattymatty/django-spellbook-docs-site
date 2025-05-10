@@ -26,10 +26,12 @@ Creators of magical syllabi and educational grimoires often face the challenge o
 ## Core Philosophy
 
 {~ card title="Guiding Principles of the Question Spell" ~}
+
 - **Atomicity & Reusability:** Each question and its corresponding answer(s) are treated as distinct magical atoms, stored centrally for reuse across myriad applications.
 - **Seamless Integration:** Defining questions and answers should feel like a natural extension of the content creation process within markdown.
 - **Dynamic Conjuration:** Interactive elements like quizzes and flashcards are dynamically generated from this central repository, ensuring content is always current.
 - **Extensibility:** The framework should allow for future enchantments, such as new question types or interactive blocks.
+  
 {~~}
 
 ## Example Usage & Syntax
@@ -60,13 +62,16 @@ The spell can be cast directly after a header, using the header's text as the qu
 This method intuitively links a question to a specific section of your content.
 
 **Pros:**
--   **Effortless Creation:** Seamlessly integrates question definition into the natural flow of writing.
--   **Contextual Linkage:** Automatically associates the question with the preceding header's topic.
+
+- **Effortless Creation:** Seamlessly integrates question definition into the natural flow of writing.
+- **Contextual Linkage:** Automatically associates the question with the preceding header's topic.
 
 **Considerations:**
--   **Syntax Clarity:** The ` {? ... ?} ` syntax must be distinct and well-documented to avoid clashes with other potential markdown extensions.
--   **Scope:** Best suited for questions that directly summarize or probe the content of the immediate section. For broader or standalone questions, block usage might be preferred.
--   **Metadata:** Encourage use of `topic`, `difficulty`, or other custom tags for better organization and retrieval.
+
+- **Syntax Clarity:** The ` {? ... ?} ` syntax must be distinct and well-documented to avoid clashes with other potential markdown extensions.
+- **Scope:** Best suited for questions that directly summarize or probe the content of the immediate section. For broader or standalone questions, block usage might be preferred.
+- **Metadata:** Encourage use of `topic`, `difficulty`, or other custom tags for better organization and retrieval.
+
 {~~}
 
 ### 2. In a Block: Defining Questions and Answers
@@ -83,13 +88,16 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
 This provides a clear and structured way to manage Q&A pairs, especially for answers that require more extensive markdown content.
 
 **Pros:**
--   **Explicit Definition:** Clearly delineates both question and answer content.
--   **Rich Content:** Answers can contain complex markdown, including lists, code blocks, and other formatting.
--   **Decoupling:** Allows questions and answers to be defined independently of specific headers if needed.
+
+- **Explicit Definition:** Clearly delineates both question and answer content.
+- **Rich Content:** Answers can contain complex markdown, including lists, code blocks, and other formatting.
+- **Decoupling:** Allows questions and answers to be defined independently of specific headers if needed.
 
 **Considerations:**
--   **Answer ID (`ans`):** The `ans` attribute is crucial. A robust and unique ID system is paramount for reliably linking questions to their correct answers. This relational mapping forms the backbone of the system.
--   **Database Schema:** The underlying database schema must efficiently store questions, answers, their relationships, and associated metadata (tags, difficulty, topic, etc.).
+
+- **Answer ID (`ans`):** The `ans` attribute is crucial. A robust and unique ID system is paramount for reliably linking questions to their correct answers. This relational mapping forms the backbone of the system.
+- **Database Schema:** The underlying database schema must efficiently store questions, answers, their relationships, and associated metadata (tags, difficulty, topic, etc.).
+
 {~~}
 
 ### 3. In a Quiz Block: Summoning Assessments
@@ -104,6 +112,7 @@ The `Quiz Block` allows you to dynamically assemble quizzes from your repository
 This block transforms your static content into an interactive learning checkpoint.
 
 **How it Works:**
+
 -   Fetches questions based on specified criteria (e.g., tags, topic, number of questions).
 -   Renders them in a user-friendly format.
 

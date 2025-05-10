@@ -65,13 +65,17 @@ It's a magical toolkit that enhances Django projects with powerful markdown proc
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>This method intuitively links a question to a specific section of your content.</p>
-<p><strong>Pros:</strong><br />
--   <strong>Effortless Creation:</strong> Seamlessly integrates question definition into the natural flow of writing.<br />
--   <strong>Contextual Linkage:</strong> Automatically associates the question with the preceding header's topic.</p>
-<p><strong>Considerations:</strong><br />
--   <strong>Syntax Clarity:</strong> The <code>{? ... ?}</code> syntax must be distinct and well-documented to avoid clashes with other potential markdown extensions.<br />
--   <strong>Scope:</strong> Best suited for questions that directly summarize or probe the content of the immediate section. For broader or standalone questions, block usage might be preferred.<br />
--   <strong>Metadata:</strong> Encourage use of <code>topic</code>, <code>difficulty</code>, or other custom tags for better organization and retrieval.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Effortless Creation:</strong> Seamlessly integrates question definition into the natural flow of writing.</li>
+<li><strong>Contextual Linkage:</strong> Automatically associates the question with the preceding header's topic.</li>
+</ul>
+<p><strong>Considerations:</strong></p>
+<ul>
+<li><strong>Syntax Clarity:</strong> The <code>{? ... ?}</code> syntax must be distinct and well-documented to avoid clashes with other potential markdown extensions.</li>
+<li><strong>Scope:</strong> Best suited for questions that directly summarize or probe the content of the immediate section. For broader or standalone questions, block usage might be preferred.</li>
+<li><strong>Metadata:</strong> Encourage use of <code>topic</code>, <code>difficulty</code>, or other custom tags for better organization and retrieval.</li>
+</ul>
         </div>
     </div>
 </div>
@@ -99,13 +103,17 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>This provides a clear and structured way to manage Q&amp;A pairs, especially for answers that require more extensive markdown content.</p>
-<p><strong>Pros:</strong><br />
--   <strong>Explicit Definition:</strong> Clearly delineates both question and answer content.<br />
--   <strong>Rich Content:</strong> Answers can contain complex markdown, including lists, code blocks, and other formatting.<br />
--   <strong>Decoupling:</strong> Allows questions and answers to be defined independently of specific headers if needed.</p>
-<p><strong>Considerations:</strong><br />
--   <strong>Answer ID (<code>ans</code>):</strong> The <code>ans</code> attribute is crucial. A robust and unique ID system is paramount for reliably linking questions to their correct answers. This relational mapping forms the backbone of the system.<br />
--   <strong>Database Schema:</strong> The underlying database schema must efficiently store questions, answers, their relationships, and associated metadata (tags, difficulty, topic, etc.).</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Explicit Definition:</strong> Clearly delineates both question and answer content.</li>
+<li><strong>Rich Content:</strong> Answers can contain complex markdown, including lists, code blocks, and other formatting.</li>
+<li><strong>Decoupling:</strong> Allows questions and answers to be defined independently of specific headers if needed.</li>
+</ul>
+<p><strong>Considerations:</strong></p>
+<ul>
+<li><strong>Answer ID (<code>ans</code>):</strong> The <code>ans</code> attribute is crucial. A robust and unique ID system is paramount for reliably linking questions to their correct answers. This relational mapping forms the backbone of the system.</li>
+<li><strong>Database Schema:</strong> The underlying database schema must efficiently store questions, answers, their relationships, and associated metadata (tags, difficulty, topic, etc.).</li>
+</ul>
         </div>
     </div>
 </div>
@@ -130,9 +138,11 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <p>This block transforms your static content into an interactive learning checkpoint.</p>
-<p><strong>How it Works:</strong><br />
--   Fetches questions based on specified criteria (e.g., tags, topic, number of questions).<br />
--   Renders them in a user-friendly format.</p>
+<p><strong>How it Works:</strong></p>
+<ul>
+<li>Fetches questions based on specified criteria (e.g., tags, topic, number of questions).</li>
+<li>Renders them in a user-friendly format.</li>
+</ul>
 <p><strong>Potential Enhancements:</strong><br />
 -   <strong>Diverse Question Types:</strong> Support for multiple-choice, true/false, fill-in-the-blanks, and perhaps even short answer (manual grading might be needed for the latter).<br />
 -   <strong>Feedback Mechanisms:</strong> Options for immediate feedback per question, or a summary at the end.<br />
