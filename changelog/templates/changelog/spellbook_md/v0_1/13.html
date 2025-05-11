@@ -1,0 +1,32 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2><strong>Version 0.1.13</strong></h2>
+<p><em>Released: May 11, 2025</em></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This release includes a total re-write of the spellbook processor, now under <code>django_spellbook.markdown.engine.SpellbookMarkdownEngine</code>. Also, a helpful <code>django_spellbook.parsers.render_spellbook_markdown_to_html</code> function has been added to render markdown to HTML.</p>
+    </span>
+</div>
+
+<h1>New Features</h1>
+<h2>Spellbook Markdown Engine</h2>
+<p>The <code>django_spellbook.markdown.engine.SpellbookMarkdownEngine</code> class has been completely re-written to provide a more robust and flexible implementation.</p>
+<h2>Don't worry,</h2>
+<p>The <code>python manage.py spellbook_md</code> does not use this new re-written engine (yet), so you can continue to use the old one for now.</p>
+<p>This new engine is designed for use in your own custom views or functions via helper functions:</p>
+<pre><code class="language-python">from django_spellbook.parsers import render_spellbook_markdown_to_html
+
+def my_view(request):
+    markdown_text = &quot;# Hello, World!&quot;
+    html = render_spellbook_markdown_to_html(markdown_text)
+    return HttpResponse(html)
+</code></pre>
+<h2>We also fixed a lot of bugs</h2>
+<p>There is no new 'content' in this update, but it involves a lot of refactoring and bug fixes.</p>
+{% endblock %}

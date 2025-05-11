@@ -5,7 +5,9 @@ Django Spellbook is a powerful toolkit for creating and managing markdown-based 
 This changelog serves as a record of all notable changes to Django Spellbook, including new features, bug fixes, and architectural improvements. It's a great resource for keeping track of what's new and what's changed in the latest version of the library.
 
 {~ accordion title="Changelog Navigation" open=true ~}
-- [v0.1.12](/changelog/v0_1/12) Released: Soon
+
+- [v0.1.13](/changelog/v0_1/13) Released: May 11, 2025
+- [v0.1.12](/changelog/v0_1/12) Released: April 30, 2025
 - [v0.1.11](/changelog/v0_1/11) Released: April 19, 2025
 - [v0.1.10](/changelog/v0_1/10) Released: April 12, 2025
 
