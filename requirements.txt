@@ -3,7 +3,7 @@ click==8.1.7
 colorama==0.4.6
 cssbeautifier==1.15.1
 Django==5.1b1
-django-spellbook==0.1.13b6
+django-spellbook==0.1.14b2
 djlint==1.36.1
 EditorConfig==0.12.4
 gunicorn==23.0.0
