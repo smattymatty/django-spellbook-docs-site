@@ -1,0 +1,114 @@
+{# Template for the ProgressBarBlock - Rewritten to leverage sb-* utilities #}
+<div 
+  class="sb-progress-container sb-w-full {% if class %}{{ class }}{% endif %}" {# Utility: sb-w-full #}
+  {% if id %}id="{{ id }}"{% endif %}
+>
+  {# External Label: Uses utility classes for styling #}
+  {% comment %} Condition: Show if processed_label exists AND (show_percentage is FALSE OR original label doesn't contain '{{percentage}}') {% endcomment %}
+  {% if processed_label and not show_percentage and '{{percentage}}' not in label|default:'' %}
+    <div class="sb-progress-label-external sb-mb-1 sb-text-sm"> {# Utilities: sb-mb-1, sb-text-sm #}
+      {{ processed_label }}
+    </div>
+  {% endif %}
+
+  {# Progress Track: Uses component class for base layout (flex, overflow) + utilities for bg, width, height, rounding #}
+  <div 
+    class="sb-progress sb-w-full sb-bg-{{ bg_color | default:'white-50' }} {# Utility background color based on param #}
+           {% if height == 'sm' %}sb-h-1{% elif height == 'lg' %}sb-h-4{% else %}sb-h-2{% endif %} {# Utility height classes based on param #}
+           {% if rounded %}sb-border-radius-md{% endif %} {# Utility rounding class based on param #}" 
+  >
+    {# Progress Bar Fill: Uses component class for base layout + conditional component classes for style effects + utilities for height, bg, rounding #}
+    <div 
+      class="sb-progress-bar sb-h-full {# Component: sb-progress-bar | Utility: sb-h-full #}
+             sb-bg-{{ color | default:'primary' }} {# Utility background color based on param #}
+             {% if rounded %}sb-border-radius-md{% endif %} {# Utility rounding class based on param #}
+             {% if striped %}sb-progress-bar-striped{% endif %} {# Conditional Component Class #}
+             {% if animated and striped %}sb-progress-bar-animated{% endif %} {# Conditional Component Class #}"
+      role="progressbar" 
+      style="width: {{ calculated_percentage }}%;" 
+      aria-valuenow="{{ calculated_percentage }}" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+      {# Internal Label: Uses component class + utilities for text style, layout, padding #}
+      {% comment %} Condition: Show if show_percentage is TRUE OR original label contains '{{percentage}}' {% endcomment %}
+      {% if show_percentage or '{{percentage}}' in label|default:'' %}
+          {# Further Condition: Only render span if there's a label OR show_percentage forces default % display #}
+          {% if processed_label or show_percentage %} 
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> {# Component + Utilities for text, layout, padding #}
+              {# Display processed label if it exists, otherwise default to percentage if show_percentage is true #}
+              {% if processed_label %}{{ processed_label }}{% elif show_percentage %}{{ calculated_percentage }}%{% endif %}
+            </span>
+          {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>

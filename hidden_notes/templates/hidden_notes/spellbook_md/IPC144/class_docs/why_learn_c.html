@@ -1,0 +1,1851 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<p>This document outlines the key advantages of learning the C programming language in 2024, tailored to support your studies in IPC144. It utilizes Django Spellbook components to help you track your understanding and engage with the material.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Overall Course Progress Assessment</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>This progress bar represents your overall confidence and comprehension of C language concepts covered in IPC144.<br />
+It's recommended to periodically update the <code>value</code> parameter in this block (from 0 to 100) in your local copy of this document to reflect your learning.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Update this as your understanding grows.
+        </div>
+
+</div>
+
+<div class="sb-mb-2"></div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-4 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-primary 
+             sb-border-radius-md 
+             sb-progress-bar-striped 
+             sb-progress-bar-animated "
+      role="progressbar" 
+      style="width: 5.0%;" 
+      aria-valuenow="5.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              IPC144 C Language Mastery: 5.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>1. Foundational Knowledge</h2>
+<p>Understanding C provides a solid base for comprehending computer science principles.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. Understanding Low-Level Programming</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C offers insight into computer architecture and operations at a fundamental level, including memory management (e.g., pointers) and system calls. This knowledge is pivotal for understanding software-hardware interaction.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Memory &amp;amp; Hardware Interaction
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Reflection Exercise:</strong> Prior to studying C, what were your assumptions about how programs managed system memory? Identify one concept C introduces that has clarified or changed your understanding of low-level computer operations.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-info 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Self-Assessed Grasp of Low-Level Concepts: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Strong Foundation for Other Languages</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Many contemporary programming languages (e.g., C++, Java, Python) derive concepts or syntax from C. Proficiency in C can facilitate the learning process for these languages by providing an understanding of their underlying mechanisms.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 5 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Language Interconnections
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Comparative Analysis:</strong> If you have prior experience with another programming language, identify any syntactical or conceptual similarities to C. If C is your first language, what aspects are you most curious to compare with other languages you may learn in the future?</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-info 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Understanding of C&#x27;s Influence: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>2. Performance and Efficiency</h2>
+<p>C is recognized for its capability to produce highly performant applications.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. High Performance</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C is known for its execution speed and efficiency, making it a preferred choice for performance-critical applications such as operating systems, embedded systems, and game engines.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Real-World C Applications
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Research Task:</strong> Identify a well-known software application (e.g., in gaming, system tools, or OS components) that is primarily developed in C. What are the likely reasons C was selected for this application?</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-secondary 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Comprehension of C&#x27;s Performance Characteristics: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Resource Management</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C provides programmers with direct control over system resources like memory. This capability is essential for developing highly efficient and optimized software.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Memory Control
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Critical Thinking:</strong> What are the primary advantages and potential risks associated with direct memory management (allocation and deallocation) as provided by C?</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-secondary 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Understanding of C Resource Management: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>3. System-Level Programming</h2>
+<p>C is integral to the development and understanding of core software systems.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. Operating Systems and Kernels</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C is the predominant language for operating system and kernel development. A strong understanding of C is fundamental for those interested in systems programming or contributing to open-source OS projects (e.g., Linux).<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="advanced">
+            <strong>Difficulty:</strong> Advanced
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 20 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> OS Internals
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Exploratory Task (Optional):</strong> Examine a small segment of C code from an open-source operating system (e.g., a basic system utility or a simple driver). Focus on observing the style and structure rather than complete comprehension at this stage.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-accent 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 5.0%;" 
+      aria-valuenow="5.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Familiarity with C in OS Development: 5.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Embedded Systems</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C is extensively used in programming embedded systems. It is a critical skill for developing firmware and working with microcontrollers found in numerous electronic devices.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Ubiquitous Computing
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Application Identification:</strong> List three distinct electronic devices you interact with regularly that likely incorporate firmware written in C.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-accent 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Awareness of C in Embedded Systems: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>4. Career Opportunities</h2>
+<p>Proficiency in C can lead to diverse and valuable career paths.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. Job Market Demand</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C skills remain relevant and in demand across various sectors, including systems programming, embedded systems development, telecommunications, and game engineering.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="all levels">
+            <strong>Difficulty:</strong> All Levels
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Industry Relevance
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Market Research:</strong> Conduct a brief search on a job portal for roles in your area of interest (e.g., software engineering, IoT development). Note how frequently C programming is listed as a required or desirable skill.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-success 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Understanding of C&#x27;s Job Market Relevance: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Versatility</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Knowledge of C provides a versatile skill set applicable to a wide range of careers, extending from direct software development roles to fields like cybersecurity and systems analysis.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="all levels">
+            <strong>Difficulty:</strong> All Levels
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 5 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Skill Application
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Conceptual Application:</strong> Besides roles that involve writing C code daily, how could a strong understanding of C be advantageous for a professional in cybersecurity or technical architecture?</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-success 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Recognition of C&#x27;s Versatility: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>5. Legacy Systems</h2>
+<p>Understanding C is often necessary for working with established and critical software infrastructure.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. Maintenance of Existing Codebases</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>A significant number of legacy systems and critical infrastructure software are implemented in C. Proficiency in C can be vital for the maintenance and modernization of these systems.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 5 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Software Longevity
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Consideration:</strong> Discuss the technical and business reasons why maintaining existing C codebases is often preferred over complete system rewrites.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-warning 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Appreciation of Legacy System Maintenance: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Interoperability</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C code frequently needs to interface with systems and components written in other programming languages. Knowledge of C facilitates the development of projects requiring such integration.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="intermediate">
+            <strong>Difficulty:</strong> Intermediate
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> System Integration
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Scenario Analysis:</strong> Describe a hypothetical scenario where a modern application (e.g., written in Python or Java) might need to call a C library. What would be the motivation for such an design?</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-warning 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 10.0%;" 
+      aria-valuenow="10.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Understanding of C&#x27;s Interoperability: 10.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<h2>6. Educational Value</h2>
+<p>The process of learning C inherently strengthens core programming and analytical skills.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">A. Algorithm and Data Structure Implementation</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C is an effective language for learning and implementing fundamental algorithms and data structures from first principles. This experience enhances problem-solving abilities and algorithmic thinking.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="all levels">
+            <strong>Difficulty:</strong> All Levels
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> Ongoing throughout course
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Practical Implementation
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Core Activity:</strong> As new data structures (arrays, linked lists, trees, etc.) are introduced in IPC144, aim to implement them yourself in C. This will solidify your understanding.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-neutral 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 5.0%;" 
+      aria-valuenow="5.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Proficiency in Implementing Data Structures: 5.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">B. Understanding Computer Science Concepts</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>C is commonly used in academic curricula to teach foundational computer science topics, including operating systems, compiler design, and computer networking, by providing a practical context.<br />
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="all levels">
+            <strong>Difficulty:</strong> All Levels
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> Ongoing throughout course
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Theoretical Links
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <p><br /><br />
+<strong>Conceptual Linking:</strong> For each C programming topic covered in IPC144, identify the corresponding theoretical computer science concept it illustrates or relies upon.</p><br />
+    </div></p>
+</div>
+    </div>
+</div>
+<div 
+  class="sb-progress-container sb-w-full " 
+
+>
+
+
+
+
+
+  <div 
+    class="sb-progress sb-w-full sb-bg-white-50 
+           sb-h-2 
+           sb-border-radius-md " 
+  >
+
+    <div 
+      class="sb-progress-bar sb-h-full 
+             sb-bg-neutral 
+             sb-border-radius-md 
+
+              "
+      role="progressbar" 
+      style="width: 5.0%;" 
+      aria-valuenow="5.0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+
+
+
+
+
+            <span class="sb-progress-label-internal sb-text-xs sb-black sb-font-semibold sb-flex sb-items-center sb-justify-center sb-h-full sb-px-2"> 
+
+              Ability to Link C to CS Theory: 5.0
+            </span>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .sb-progress-container {
+    width: 100%;
+  }
+
+  .sb-progress-label-external {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .sb-progress {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+  }
+
+  .sb-progress-bar {
+    display: flex;              /* Align internal label */
+    flex-direction: column;     /* Stack content vertically if needed */
+    justify-content: center;    /* Center internal label vertically */
+    align-items: center;        /* Center internal label horizontally */
+    height: 100%;               /* Fill the height of the .sb-progress track */
+    white-space: nowrap;        /* Prevent internal label from wrapping */
+    color: #ffffff;             /* Default text color for internal label (adjust as needed) */
+    text-align: center;         /* Ensure text inside is centered */
+    transition: width .6s ease; /* Smooth transition for width changes */
+  }
+
+  /* Striped Effect */
+  .sb-progress-bar-striped {
+    background-image: linear-gradient(
+      45deg, 
+      rgba(255, 255, 255, 0.15) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 1rem 1rem; /* Adjust size of stripes */
+  }
+
+  /* Animation for Striped Bars */
+.sb-progress-bar-animated {
+  animation: sb-progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes sb-progress-bar-stripes {
+  from { background-position-x: 1rem; }
+  to { background-position-x: 0; }
+}
+
+/* Internal Label Styling */
+.sb-progress-label-internal {
+  /* Example styling: adjust as needed */
+  /* font-size: 0.75rem; /* text-xs */ 
+  /* font-weight: 600; /* font-semibold */ 
+  /* color: #ffffff; /* Assuming white text on colored bar */ 
+  /* padding-left: 0.5rem; /* px-2 (partially) */ 
+  /* padding-right: 0.5rem; /* px-2 (partially) */ 
+  overflow: hidden;      /* Prevent text spilling out */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  white-space: nowrap;   /* Keep label on one line */
+}
+</style>
+
+<hr />
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Learning C is a significant undertaking that offers substantial rewards in terms of knowledge and capability. Consistent effort in understanding the concepts and applying them through coding exercises will be crucial for your success.</p>
+    </span>
+</div>
+
+<hr />
+<h3>Using This Document for IPC144</h3>
+<ol>
+<li><strong>Sequential Review:</strong> Align your review of sections in this document with the topics as they are covered in your IPC144 syllabus.</li>
+<li><strong>Engage with Practice Blocks:</strong> The <code>{~ practice ~}</code> blocks contain prompts for reflection, research, or small conceptual tasks. Completing these will reinforce your learning.</li>
+<li><strong>Update Progress Blocks:</strong> The <code>{~ progress value="..." ~}</code> blocks are for your self-assessment. As you master topics or complete exercises, manually update the <code>value</code> in your local copy of this markdown file. This will visually reflect your progress when the document is rendered by Django Spellbook.</li>
+</ol>
+<p>This structured approach should aid in your study of C programming.</p>
+{% endblock %}

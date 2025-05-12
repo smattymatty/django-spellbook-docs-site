@@ -1,0 +1,664 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<h2>Module 1: Introduction to Computers, Programs, and C</h2>
+<p>This module lays the groundwork, exploring the essential components and concepts.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">What is a Computer?</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A computer, in its essence, is a device comprising a Central Processing Unit (CPU), memory, storage (like a hard disk), input/output mechanisms, and communication channels. These components work in concert, guided by a mystical 'Bus'.</p>
+<p><strong>Key Components:</strong></p>
+<ul>
+<li><strong>CPU:</strong> The brain, executing instructions.</li>
+<li><strong>Memory:</strong> Temporary storage for active programs and data.</li>
+<li><strong>Storage Devices:</strong> Permanent repositories for your digital grimoires (e.g., Disk, CD, Tape).</li>
+<li><strong>Input Devices:</strong> How you command the machine (e.g., Keyboard, Mouse).</li>
+<li><strong>Output Devices:</strong> How the machine responds (e.g., Monitor, Printer).</li>
+<li><strong>Communication Devices:</strong> Bridges to other realms (e.g., Modem, Network Interface Card - NIC).</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">The Central Processing Unit (CPU)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The CPU is the heart of the magical construct, retrieving and executing instructions from memory. Its speed, measured in Megahertz (MHz) or Gigahertz (GHz), dictates how quickly it can process spells. Modern CPUs, like the Intel Core series, possess immense computational power.<br />
+For example, 1 MHz means 1 million pulses per second, while 1 GHz is 1000 MHz.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Memory (RAM)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Memory (Random Access Memory or RAM) is where your programs and their data reside while being actively used by the CPU. It's an ordered sequence of bytes, each a container for 8 bits of information.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Data must be loaded into memory for execution.</li>
+<li>A memory byte always holds some data, though it might be arcane gibberish initially.</li>
+<li>New information overwrites the old; memory is ephemeral in this sense.</li>
+<li>It is <strong>volatile</strong>: its contents are lost when power is removed.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">How Data is Stored</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All data—numbers, mystical characters, powerful strings—are encoded as series of bits (0s and 1s). This binary system is fundamental because digital devices have two stable states.</p>
+<ul>
+<li><strong>Encoding:</strong> The system automatically handles encoding (e.g., character 'J' as <code>01001010</code>).</li>
+<li><strong>Bytes:</strong> The smallest addressable unit of memory. A single byte can store a small number or a single character. Larger data spans multiple adjacent bytes.</li>
+<li><strong>Uniqueness:</strong> No two distinct pieces of data can share or split the same byte.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Storage Devices</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Since memory is volatile, programs and data are permanently etched onto storage devices.</p>
+<p><strong>Main Types:</strong></p>
+<ul>
+<li><strong>Disk Drives:</strong> Hard disks, and the ancient floppy disks.</li>
+<li><strong>CD Drives:</strong> CD-R (writable) and CD-RW (rewritable).</li>
+<li><strong>Tape Drives:</strong> For archiving vast libraries of spells.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Output Devices: The Monitor</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The monitor is your crystal ball, displaying text and graphical representations.</p>
+<ul>
+<li><strong>Resolution:</strong> The number of pixels (picture elements) per square inch. Higher resolution generally means sharper images. A common setting for a 15-inch monitor might be $640 \times 480$ pixels.</li>
+<li><strong>Dot Pitch:</strong> The space between pixels. Smaller dot pitch leads to a clearer display.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Communication Devices</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>These devices allow your machine to converse with others across networks.</p>
+<ul>
+<li><strong>Modem:</strong> Uses phone lines (up to 56,000 bps).</li>
+<li><strong>DSL (Digital Subscriber Line):</strong> Faster than a regular modem, also uses phone lines.</li>
+<li><strong>Cable Modem:</strong> Uses TV cable lines, comparable speed to DSL.</li>
+<li><strong>Network Interface Card (NIC):</strong> Connects to a Local Area Network (LAN), with speeds like 10 Mbps (megabits per second).</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Programs (Software)</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Programs, or software, are the sets of instructions that tell the computer what to do. Without them, a computer is but an inert collection of parts. Since computers don't understand human tongues directly, we use programming languages.</p>
+        </div>
+    </div>
+</div>
+
+<h2>Module 2: Understanding Programming Languages</h2>
+<p>This section explores the different dialects used to communicate our intentions to the machine.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">The Spectrum of Languages</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Programming languages form a hierarchy, from the raw language of the machine to more human-readable forms.</p>
+    </div>
+
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Machine Language</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This is the native tongue of the CPU, a sequence of binary codes (0s and 1s) representing primitive instructions.</p>
+<ul>
+<li><strong>Directly Understood:</strong> The only language a computer <em>truly</em> understands without translation.</li>
+<li><strong>Tedious &amp; Difficult:</strong> Writing in machine language is cumbersome and error-prone for humans. Example: <code>1101101010011010</code> might be an instruction to add two numbers.</li>
+<li><strong>Machine-Dependent:</strong> Specific to a particular computer hardware design.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Assembly Language</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Developed to make programming easier by using English-like abbreviations (mnemonics) for machine instructions.</p>
+<ul>
+<li><strong>Assembler:</strong> A special program that translates assembly language into machine code.</li>
+<li><strong>Example:</strong> <code>ADDF3 R1, R2, R3</code> could be an assembly instruction for addition.</li>
+<li><strong>Still Low-Level:</strong> Closer to the hardware than high-level languages.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">High-Level Languages</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>These languages are English-like and use familiar mathematical notations, making them easier to learn and use. C is a prime example.</p>
+<ul>
+<li><strong>Compiler/Interpreter:</strong> Translator programs (compilers or interpreters) convert high-level language source code into machine language.<br />
+<strong>Compilers:</strong> Translate the entire program at once, creating an executable file. This can take time, but the resulting program runs quickly. C uses a compiler.<br />
+<strong>Interpreters:</strong> Execute program statements directly, one by one. This avoids compilation delay but can result in slower execution. Python often uses a mix of compilation (to bytecode) and interpretation.</li>
+<li><strong>Example:</strong> <code>area = 5 * 5 * 3.1415;</code></li>
+<li><strong>Source Code:</strong> The human-readable statements written by the programmer.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Popular High-Level Languages</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A pantheon of powerful languages exists, each with its strengths:</p>
+<ul>
+<li><strong>COBOL:</strong> For business applications.</li>
+<li><strong>FORTRAN:</strong> For formula translation in scientific and engineering fields.</li>
+<li><strong>Java:</strong> "Write once, run anywhere," used for enterprise apps, web servers, consumer devices. Developed by Sun (now Oracle).</li>
+<li><strong>Python:</strong> Versatile, object-oriented, popular in data science, web development, and education. Developed by Guido van Rossum.</li>
+<li><strong>C++:</strong> An object-oriented extension of C, developed by Bjarne Stroustrup.</li>
+<li><strong>C#:</strong> Microsoft's object-oriented language, often used for web and Windows development.</li>
+<li><strong>JavaScript:</strong> The scripting language of the web, adding interactivity to pages. NodeJS allows it to run server-side.</li>
+<li><strong>Swift:</strong> Apple's language for iOS and macOS apps.</li>
+<li><strong>R:</strong> Popular for statistical applications and data visualization.</li>
+<li><strong>And many more...</strong> (BASIC, Pascal, Ada, Visual Basic, Delphi)</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<h2>Module 3: The C Programming Language</h2>
+<p>We now focus on the venerable C language.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Why Learn C?</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li>Foundation for many other languages (C++, Java, C#).</li>
+<li>Provides low-level memory manipulation capabilities.</li>
+<li>Used in system programming, embedded systems, game development, and high-performance computing.</li>
+<li>Offers a good understanding of how computers work at a deeper level.</li>
+</ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Power and Control
+        </div>
+
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">History of C</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>(The slides mention "To describe the history of C," but don't provide it. We can add a placeholder or research this if desired.)<br />
+The C language was developed at Bell Labs by Dennis Ritchie in the early 1970s, evolving from an earlier language called B, which was created by Ken Thompson. It was developed alongside the UNIX operating system, and much of UNIX was rewritten in C.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Writing and Compiling C Programs</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ol>
+<li><strong>Write:</strong> Create a source code file (e.g., <code>my_program.c</code>) using a text editor.</li>
+<li><strong>Compile:</strong> Use a C compiler (like GCC) to translate the source code into machine code, creating an executable file.<br />
+<code>gcc my_program.c -o my_program</code></li>
+<li><strong>Run:</strong> Execute the compiled program.<br />
+<code>./my_program</code></li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<p>A simple C program might look like this:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    // This is a comment
+    printf(&quot;Hello, World of C!\\n&quot;);
+    return 0;
+}
+</code></pre>
+<ul>
+<li><code>#include &lt;stdio.h&gt;</code>: Includes the standard input/output library.</li>
+<li><code>int main() { ... }</code>: The main function where execution begins.</li>
+<li><code>printf(...)</code>: A function to print output to the console.</li>
+<li><code>\\n</code>: Represents a newline character.</li>
+<li><code>return 0;</code>: Indicates successful program termination.</li>
+</ul>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Types of Errors</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><strong>Syntax Errors:</strong> Grammatical mistakes in the code that prevent compilation (e.g., missing semicolon). The compiler will usually point these out.</li>
+<li><strong>Runtime Errors:</strong> Errors that occur while the program is running (e.g., dividing by zero, trying to access invalid memory). These can crash your program.</li>
+<li><strong>Logic Errors:</strong> The program compiles and runs, but produces incorrect results because the underlying algorithm or reasoning is flawed. These are often the trickiest to find.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">C Standard Library &amp; Open-Source Libraries</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><strong>C Standard Library:</strong> A collection of pre-built functions and macros for common tasks (input/output, string manipulation, math operations, etc.). This helps avoid "reinventing the wheel." Accessed via <code>#include</code> directives (e.g., <code>stdio.h</code>, <code>stdlib.h</code>, <code>math.h</code>).</li>
+<li><strong>Open-Source Libraries:</strong> Vast collections of third-party code available for use, extending C's capabilities significantly.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<h2>Module 4: Data Hierarchy</h2>
+<p>Understanding how data is structured, from the smallest bit to vast databases.</p>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 10 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="medium">
+            <strong>Impact:</strong> Medium
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Data Concepts
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h3 id="data-organization-exercise">Data Organization Exercise</h3>
+<p>Consider a student enrollment system. Identify examples of:<br />
+1. Bits (conceptual, e.g., a flag for 'is_enrolled')<br />
+2. Characters (e.g., a student's initial)<br />
+3. Fields (e.g., 'FirstName', 'StudentID', 'GPA')<br />
+4. Records (e.g., all information for one student)<br />
+5. Files (e.g., a 'students.csv' containing all student records)<br />
+6. Databases (e.g., a relational database managing tables of students, courses, and enrollments)<br />
+Reflect on how these levels build upon each other.</p>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Bits</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The fundamental unit of data, short for "binary digit." A bit can be either a $0$ or a $1$. They form the basis of the binary number system.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Characters</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>To make data more human-friendly, bits are grouped to represent characters:<br />
+* Decimal digits ($0–9$)<br />
+* Letters (A–Z, a–z)<br />
+* Special symbols (e.g., $, @, %, &amp;, <em>)<br />
+* </em><em>Character Set:</em>* The collection of characters a computer can represent. C traditionally uses ASCII (American Standard Code for Information Interchange) by default. Unicode is also supported for broader character representation, using 1 to 4 bytes per character.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Fields</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A group of characters or bytes that conveys a specific meaning.<br />
+* Example: A person's name (a field of characters) or age (a field of digits).</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Records</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A group of related fields.<br />
+* Example: An employee record might consist of fields like Employee ID, Name, Address, Hourly Pay Rate, etc.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Files</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A group of related records. Files can contain arbitrary data in various formats. Some operating systems see a file as just a sequence of bytes, with the application programmer defining its internal structure (like records). Files can be massive, holding gigabytes or terabytes of information.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Databases</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>A collection of data organized for easy access and manipulation.<br />
+* <strong>Relational Databases:</strong> A popular model where data is stored in tables. Tables consist of records (rows) and fields (columns).<br />
+* Example: A student database might have a table for students with fields like <code>first_name</code>, <code>last_name</code>, <code>student_ID</code>, <code>major</code>, <code>GPA</code>.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Big Data</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Refers to the enormous volume of data being generated globally. Big data applications deal with processing and analyzing these massive datasets, a rapidly growing field.</p>
+<p><strong>Data Unit Hierarchy:</strong><br />
+* <strong>Kilobyte (KB):</strong> $1024$ bytes (approximately $10^3$ bytes)<br />
+* <strong>Megabyte (MB):</strong> $1024$ KB (approximately $10^6$ bytes)<br />
+* <strong>Gigabyte (GB):</strong> $1024$ MB (approximately $10^9$ bytes)<br />
+* <strong>Terabyte (TB):</strong> $1024$ GB (approximately $10^{12}$ bytes)<br />
+* <strong>Petabyte (PB):</strong> $1024$ TB (approximately $10^{15}$ bytes)<br />
+* <strong>Exabyte (EB):</strong> $1024$ PB (approximately $10^{18}$ bytes)<br />
+* <strong>Zettabyte (ZB):</strong> $1024$ EB (approximately $10^{21}$ bytes)</p>
+        </div>
+    </div>
+</div>
+
+<h2>Module 5: Typical C Development Environment</h2>
+<p>(The slides mention this but provide no details. We can elaborate based on common practices.)</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Setting up Your Workshop</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>A typical C development environment includes:<br />
+1.  <strong>Text Editor:</strong> To write your C source code (e.g., VS Code, Sublime Text, Vim, Emacs, or a full-fledged IDE).<br />
+2.  <strong>C Compiler:</strong> To translate your source code into an executable program (e.g., GCC (GNU Compiler Collection) on Linux/macOS, MinGW for Windows, or Clang).<br />
+3.  <strong>Debugger:</strong> A tool to help you find and fix errors in your code by stepping through it line by line (e.g., GDB (GNU Debugger)).<br />
+4.  <strong>Build Tools (Optional for larger projects):</strong> Tools like <code>make</code> to automate the compilation process of projects with multiple source files.<br />
+5.  <strong>Version Control System (Recommended):</strong> Tools like Git to track changes to your code and collaborate with others.</p>
+    </div>
+
+</div>
+{% endblock %}

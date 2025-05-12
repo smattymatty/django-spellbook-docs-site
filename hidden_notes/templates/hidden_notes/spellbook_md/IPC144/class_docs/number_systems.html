@@ -1,0 +1,297 @@
+{% extends 'base/django_spellbook/bases/sidebar_left.html' %}
+
+{% block spellbook_md %}
+<h2>A.1 Number Systems</h2>
+<p>A <strong>number system</strong>, or <strong>numeral system</strong>, is a sacred methodology for inscribing or naming numbers. Each system is defined by its <strong>base</strong> (or <strong>radix</strong>), denoted as $r$. A system with base $r$ employs $r$ distinct symbols, or digits. The initial digit in every system is always $0$.</p>
+<p>For instance:</p>
+<ul>
+<li>A base-2 system (binary) uses two digits: $0, 1$.</li>
+<li>A base-8 system (octal) uses eight digits: $0, 1, 2, 3, 4, 5, 6, 7$.</li>
+<li>Should the base exceed $10$, the subsequent digits are represented by letters of the alphabet, commencing with 'A'.</li>
+</ul>
+<p>Numbers are manifested as strings of these digit symbols. <strong>Table A.1</strong> illuminates some common number systems.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Table A.1: Common Number Systems</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <table>
+<thead>
+<tr>
+<th>System Name</th>
+<th>Base (Radix) $r$</th>
+<th>Digits Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binary</td>
+<td>2</td>
+<td>$0, 1$</td>
+</tr>
+<tr>
+<td>Octal</td>
+<td>8</td>
+<td>$0, 1, 2, 3, 4, 5, 6, 7$</td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td>10</td>
+<td>$0, 1, 2, 3, 4, 5, 6, 7, 8, 9$</td>
+</tr>
+<tr>
+<td>Hexadecimal</td>
+<td>16</td>
+<td>$0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F$</td>
+</tr>
+<tr>
+<td>(<em>Where A=10, B=11, C=12, D=13, E=14, F=15 in decimal</em>)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+</div>
+
+<p>Among these, four are paramount in the digital arts: <strong>binary, octal, decimal,</strong> and <strong>hexadecimal</strong>. The decimal system is our mundane companion. Computers, however, converse only in <strong>binary</strong> (0s and 1s). Octal and hexadecimal serve as compact shorthands for these binary incantations.</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Key Principles of Number Systems:</strong><br />
+1.  A number is a string of permissible digits (e.g., <code>10101</code> is valid binary; <code>1012</code> is not).<br />
+2.  The value of a number like <code>101</code> is ambiguous without its base. It could be $(101)_2$ (binary for decimal 5) or $(101)_8$ (octal for decimal 65). Thus, we denote the base as a subscript, e.g., $(101)_2$.<br />
+3.  Each digit possesses a <strong>place value</strong>. The rightmost digit has place value $0$, increasing by one for each digit to its left. In decimal $483$, '3' has place value $0$, '8' has $1$, and '4' has $2$.<br />
+4.  Number systems are <strong>weighted</strong>. For a base $r$ system, a digit at place value $p$ has a weight of $r^p$. In decimal $483$:<br />
+    * Digit 3: weight $10^0 = 1$<br />
+    * Digit 8: weight $10^1 = 10$<br />
+    * Digit 4: weight $10^2 = 100$<br />
+5.  The rightmost digit is the <strong>Least Significant Digit (LSD)</strong>; the leftmost is the <strong>Most Significant Digit (MSD)</strong>. In $483$, '3' is LSD, '4' is MSD.<br />
+6.  Numbers can be converted between systems.</p>
+    </span>
+</div>
+
+<h2>A.2 Number System Conversions: Transmuting Values</h2>
+<p>We often need to translate numbers between different systema.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Conversion Categories</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <ol>
+<li>Decimal to any other base $r$.</li>
+<li>Any other base $r$ to Decimal.</li>
+<li>Binary to Octal and Hexadecimal.</li>
+<li>Octal and Hexadecimal to Binary.</li>
+</ol>
+        </div>
+    </div>
+</div>
+
+<h3>A.2.1 Conversion from Decimal to Any Other Base $r$</h3>
+<p>The alchemical process:<br />
+1.  Divide the decimal number by the target radix $r$, noting the quotient and remainder.<br />
+2.  Repeatedly divide the quotient by $r$ until the quotient is $0$.<br />
+3.  Collect the remainders. The first remainder is the LSD, the last is the MSD. Write them in reverse order of calculation.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Table A.2: Decimal to Binary, Octal, Hexadecimal (Example: Decimal 23)</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Decimal to Binary: $(23)<em 2="2">{10} \rightarrow (?)</em>$</strong><br />
+| Division    | Quotient | Remainder (LSD first) |<br />
+|-------------|----------|-----------------------|<br />
+| $23 \div 2$ | 11       | $1$                   |<br />
+| $11 \div 2$ | 5        | $1$                   |<br />
+| $5 \div 2$  | 2        | $1$                   |<br />
+| $2 \div 2$  | 1        | $0$                   |<br />
+| $1 \div 2$  | 0        | $1$ (MSD)             |<br />
+Result: $(10111)_2$</p>
+<p><strong>Decimal to Octal: $(23)<em 8="8">{10} \rightarrow (?)</em>$</strong><br />
+| Division    | Quotient | Remainder (LSD first) |<br />
+|-------------|----------|-----------------------|<br />
+| $23 \div 8$ | 2        | $7$                   |<br />
+| $2 \div 8$  | 0        | $2$ (MSD)             |<br />
+Result: $(27)_8$</p>
+<p><strong>Decimal to Hexadecimal: $(23)<em 16="16">{10} \rightarrow (?)</em>$</strong><br />
+| Division    | Quotient | Remainder (LSD first) |<br />
+|-------------|----------|-----------------------|<br />
+| $23 \div 16$| 1        | $7$                   |<br />
+| $1 \div 16$ | 0        | $1$ (MSD)             |<br />
+Result: $(17)_{16}$</p>
+    </div>
+
+</div>
+
+<h3>A.2.2 Conversion from Any Other Base $r$ to Decimal</h3>
+<p>To convert a number from base $r$ to decimal, multiply each digit by its associated weight ($r^p$) and sum the results.</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Table A.3: Binary, Octal, Hexadecimal to Decimal Examples</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Binary to Decimal: $(1011)<em 10="10">2 \rightarrow (?)</em>$</strong><br />
+$(1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) + (1 \times 2^0)$<br />
+$= (1 \times 8) + (0 \times 4) + (1 \times 2) + (1 \times 1)$<br />
+$= 8 + 0 + 2 + 1 = 11$<br />
+Result: $(1011)<em 10="10">2 = (11)</em>$</p>
+<p><strong>Octal to Decimal: $(726)<em 10="10">8 \rightarrow (?)</em>$</strong><br />
+$(7 \times 8^2) + (2 \times 8^1) + (6 \times 8^0)$<br />
+$= (7 \times 64) + (2 \times 8) + (6 \times 1)$<br />
+$= 448 + 16 + 6 = 470$<br />
+Result: $(726)<em 10="10">8 = (470)</em>$</p>
+<p><strong>Hexadecimal to Decimal: $(AB)<em 10="10">{16} \rightarrow (?)</em>$</strong><br />
+(Remember: A=10, B=11)<br />
+$(10 \times 16^1) + (11 \times 16^0)$<br />
+$= (10 \times 16) + (11 \times 1)$<br />
+$= 160 + 11 = 171$<br />
+Result: $(AB)<em 10="10">{16} = (171)</em>$</p>
+    </div>
+
+</div>
+
+<h3>A.2.3 Conversion from Binary to Octal and Hexadecimal</h3>
+<p>These conversions are streamlined due to their direct relationship.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Binary to Octal</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ol>
+<li>Partition the binary number into groups of <strong>3 bits</strong> each, starting from the right (LSD). (Because $2^3 = 8$, so 3 bits represent all 8 octal digits).</li>
+<li>If the leftmost group is incomplete, pad it with leading zeros.</li>
+<li>Convert each 3-bit group to its octal equivalent.</li>
+<li>The resulting string of octal digits is the answer.</li>
+</ol>
+<p><strong>Example (Table A.4): $(1011101)<em 8="8">2 \rightarrow (?)</em>$</strong><br />
+Binary: <code>1 011 101</code><br />
+Padded: <code>001 011 101</code><br />
+Octal:    <code>1   3   5</code><br />
+Result: $(135)_8$</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Binary to Hexadecimal</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ol>
+<li>Partition the binary number into groups of <strong>4 bits</strong> each, starting from the right (LSD). (Because $2^4 = 16$, so 4 bits represent all 16 hexadecimal digits).</li>
+<li>If the leftmost group is incomplete, pad it with leading zeros.</li>
+<li>Convert each 4-bit group to its hexadecimal equivalent.</li>
+<li>The resulting string of hexadecimal digits is the answer.</li>
+</ol>
+<p><strong>Example (Table A.5): $(1011101)<em 16="16">2 \rightarrow (?)</em>$</strong><br />
+<em>(Note: The example in the provided text $(11101001)<em 16="16">2 \rightarrow (5D)</em>$ seems to have a typo for the input binary number if it's meant to be from the same source $1011101_2$. Let's use the original $1011101_2$ for consistency with the octal example, then do the table's example.)</em></p>
+<p><strong>Correcting for $(1011101)<em 16="16">2 \rightarrow (?)</em>$:</strong><br />
+Binary: <code>101 1101</code><br />
+Padded: <code>0101 1101</code><br />
+Hex:      <code>5    D</code><br />
+Result: $(5D)_{16}$</p>
+<p><strong>As per Table A.5's actual example: $(11101001)<em 16="16">2 \rightarrow (?)</em>$</strong><br />
+Binary: <code>1110 1001</code><br />
+Hex:      <code>E    9</code><br />
+<em>The table image actually shows $01011101_2$ which leads to $5D_{16}$. Assuming the binary number shown in the table image <code>01011101</code> was intended for the example, not the text <code>(11101001)2</code>.</em></p>
+<p>Let's use the visual from a typical Table A.5 structure for clarity:<br />
+Binary: <code>0101 1101</code> (assuming this was intended)<br />
+Hex:      <code>5    D</code><br />
+Result: $(5D)_{16}$</p>
+        </div>
+    </div>
+</div>
+
+<h3>A.2.4 Conversion from Octal and Hexadecimal to Binary</h3>
+<p>This is the reverse of the previous conversions.</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Octal to Binary</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>For each octal digit, write its 3-bit binary equivalent.</p>
+<p><strong>Example (from Table A.6): $(275)<em 2="2">8 \rightarrow (?)</em>$</strong><br />
+Octal: <code>2   7   5</code><br />
+Binary: <code>010 111 101</code><br />
+Result: $(010111101)_2$ or $(10111101)_2$ (leading zero can be omitted)</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Hexadecimal to Binary</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>For each hexadecimal digit, write its 4-bit binary equivalent.</p>
+<p><strong>Example (from Table A.6): $(9AF)<em 2="2">{16} \rightarrow (?)</em>$</strong><br />
+Hex:    <code>9    A    F</code><br />
+Binary: <code>1001 1010 1111</code><br />
+Result: $(100110101111)_2$</p>
+        </div>
+    </div>
+</div>
+
+<hr />
+{% endblock %}

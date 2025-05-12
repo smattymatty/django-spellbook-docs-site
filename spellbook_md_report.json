@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 5,
     "successful_pairs": 5,
-    "total_processed_files": 44
+    "total_processed_files": 48
   },
   "pairs": [
     {
@@ -24,14 +24,14 @@
       "destination": "examples",
       "url_prefix": "examples",
       "success": true,
-      "processed_files": 6
+      "processed_files": 7
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/hidden_content",
       "destination": "hidden_notes",
       "url_prefix": "hidden",
       "success": true,
-      "processed_files": 8
+      "processed_files": 11
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/proposals_content",
@@ -44,12 +44,12 @@
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 70,
+      "total_uses": 73,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 41,
+      "total_uses": 60,
       "failed_uses": 0
     },
     {
@@ -59,12 +59,12 @@
     },
     {
       "name": "practice",
-      "total_uses": 26,
+      "total_uses": 39,
       "failed_uses": 0
     },
     {
       "name": "accordion",
-      "total_uses": 50,
+      "total_uses": 79,
       "failed_uses": 0
     },
     {
@@ -80,6 +80,11 @@
     {
       "name": "argstest",
       "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "progress",
+      "total_uses": 22,
       "failed_uses": 0
     }
   ]
