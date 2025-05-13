@@ -49,7 +49,7 @@
     },
     {
       "name": "card",
-      "total_uses": 60,
+      "total_uses": 61,
       "failed_uses": 0
     },
     {
@@ -84,7 +84,7 @@
     },
     {
       "name": "progress",
-      "total_uses": 22,
+      "total_uses": 20,
       "failed_uses": 0
     }
   ]

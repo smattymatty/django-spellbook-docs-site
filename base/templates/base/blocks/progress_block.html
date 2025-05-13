@@ -57,6 +57,7 @@
 <div class="sb-progress-popover-content
 sb-bg-{% if content_bg_color %}{{ content_bg_color }}{% else %}white{% endif %}
 sb-{% if content_color %}{{ content_color }}{% else %}black-75{% endif %}
+{% if content_class %}{{ content_class }}{% endif %}
 " 
 id="popover-content-{% if id %}{{ id|cut:"progress-container-" }}{% else %}{{ unique_block_id_suffix }}{% endif %}"
 style="display: none;"

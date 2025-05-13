@@ -69,6 +69,7 @@ class ProgressBarBlock(BasicSpellBlock):
         context["height"] = self.kwargs.get("height", "md")
         context["class"] = self.kwargs.get("class", None) 
         context["id"] = self.kwargs.get("id", None) 
+        context["content_class"] = self.kwargs.get("content_class", None)
 
         # --- 2. Percentage Calculation ---
         percentage = 0.0

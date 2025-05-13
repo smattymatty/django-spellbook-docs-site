@@ -1,19 +1,26 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Progress SpellBlock (<code>~ progress ~</code>)</h1>
-<p>The <code>~ progress ~</code> SpellBlock is a versatile tool for visualizing progress, completion percentage, skill level, funding status, or any value relative to a maximum. It provides a clear visual indicator that can be easily customized with an optional popover for additional context.</p>
+<h1>Progress SpellBlock (<code>~ progress ~</code>): Level Up Your Content</h1>
+<p>The <code>~ progress ~</code> SpellBlock is a versatile tool for visualizing progress. Beyond simple percentages, it can be a powerful familiar in illustrating skill acquisition, academic achievements, career milestones, and personal development – a true "leveling up" visual. The integrated popover, customizable with <code>content_bg_color</code> and <code>content_color</code>, allows for rich contextual information.</p>
 <h2>Basic Usage</h2>
-<p>At its simplest, provide a <code>value</code> (which defaults to being measured against a <code>max_value</code> of 100):</p>
-<pre><code class="language-markdown">{~ progress value=&quot;65&quot; ~}
+<p>A quick refresher:</p>
+<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Overall Profile Completion&quot; ~}
+Your profile is looking good! Just a few more sections to fill out.
 {~~}
 </code></pre>
-<p>This renders a progress bar showing 65%:</p>
+<p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202871621048"
+  id="progress-container-174711349090057310"
   >
 
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Overall Profile Completion
+    </div>
 
 
 
@@ -38,12 +45,323 @@
     >
 
 
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-white
+sb-black
+
+" 
+id="popover-content-174711349090057310"
+style="display: none;"
+>
+  <p>Your profile is looking good! Just a few more sections to fill out.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<h2>Parameters for Popover Styling</h2>
+<p>In addition to the previously listed parameters, we now highlight those for theming the popover content:</p>
+<ul>
+<li><strong><code>content_bg_color</code></strong> (String, Optional): Sets the background color of the popover. Accepts theme color names (e.g., <code>primary</code>, <code>success-25</code>, <code>neutral-90</code>). If not set, it defaults to a standard popover style (e.g., white).</li>
+<li><strong><code>content_color</code></strong> (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. If not set, it defaults to a standard text color suitable for the default popover background.</li>
+</ul>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Full Parameter List</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li><strong><code>value</code></strong> (Required, Float/Int): The current value.</li>
+<li><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The maximum possible value.</li>
+<li><strong><code>label</code></strong> (String, Optional): Text for the progress bar. Supports <code>{value}</code>, <code>{max_value}</code>, <code>{percentage}</code>.</li>
+<li><strong><code>show_percentage</code></strong> (Boolean, Default: depends on <code>label</code>): Toggles percentage display in the bar.</li>
+<li><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Bar's fill color.</li>
+<li><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Bar's track color.</li>
+<li><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Bar height (<code>sm</code>, <code>md</code>, <code>lg</code>).</li>
+<li><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): Striped fill.</li>
+<li><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): Animates stripes.</li>
+<li><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): Rounded corners.</li>
+<li><strong><code>class</code></strong> (String, Optional): Custom CSS classes for the container.</li>
+<li><strong><code>id</code></strong> (String, Optional): Custom HTML <code>id</code> for the container.</li>
+<li><strong><code>content_bg_color</code></strong> (String, Optional): Popover background color.</li>
+<li><strong><code>content_color</code></strong> (String, Optional): Popover text color.</li>
+<li><strong><code>content_class</code></strong> (String, Optional): Custom CSS classes for the popover content.</li>
+<li>Content between <code>~ progress ... ~</code> and <code>~~</code> is for the popover.</li>
+</ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            The only required parameter is `value`.
+        </div>
+
+</div>
+
+<h2>Themed Examples: Education, Resume &amp; Leveling Up</h2>
+<p>Let's see how <code>content_bg_color</code> and <code>content_color</code> can make the popover an extension of the progress bar's theme.</p>
+<h3>Academic Achievements</h3>
+<p><strong>Degree Completion:</strong><br />
+Illustrating progress towards a Bachelor of Magical Arts. The popover provides details about the current year and focus.</p>
+<pre><code class="language-django">{~ progress value=&quot;3&quot; max_value=&quot;4&quot; label=&quot;Year {{value}}/{{max_value}} Completed&quot; color=&quot;info&quot; bg_color=&quot;info-25&quot; height=&quot;lg&quot; content_bg_color=&quot;info-75&quot; content_color=&quot;white&quot; ~}
+**Current Status: Year 3 of 4**
+Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on &quot;Temporal Distortions in Ley Line Magic&quot; submitted. Expected graduation: Spring 2026.
+{~~}
+</code></pre>
+<p>Renders as:</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174711349091515810"
+  >
+
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-lg
+    ">
+      Year 3.0/4.0 Completed
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-info-25 
+           sb-h-16 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-info 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 75.0%;"
+      aria-valuenow="75.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-info-75
+sb-white
+
+" 
+id="popover-content-174711349091515810"
+style="display: none;"
+>
+  <p><strong>Current Status: Year 3 of 4</strong><br />
+Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on "Temporal Distortions in Ley Line Magic" submitted. Expected graduation: Spring 2026.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<p><strong>Mastering a Difficult Subject:</strong><br />
+Showing progress in "Advanced Potion Brewing," with popover details matching the "warning" theme of a challenging subject.</p>
+<pre><code class="language-django">{~ progress value=&quot;60&quot; label=&quot;Potion Brewing Mastery: {{percentage}}&quot; color=&quot;warning&quot; bg_color=&quot;neutral-25&quot; striped=&quot;true&quot; content_bg_color=&quot;warning-75&quot; content_color=&quot;black-75&quot; ~}
+**Potion Brewing - Current Standing:**
+Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.
+{~~}
+</code></pre>
+<p>Renders as:</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174711349091701510"
+  >
+
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-neutral-25 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-warning 
+             sb-border-radius-md 
+             sb-progress-bar-striped 
+             " 
+      role="progressbar"
+      style="width: 60.0%;"
+      aria-valuenow="60.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
 
           <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
           sb-text-md
           sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
 
-            65.0%
+            Potion Brewing Mastery: 60.0
           </span>
 
 
@@ -51,36 +369,108 @@
   </div>
 </div>
 </p>
-<h2>Parameters</h2>
-<p>Customize the appearance and behavior using these parameters:</p>
-<ul>
-<li><strong><code>value</code></strong> (Required, Float/Int): The current value to display.</li>
-<li><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The maximum possible value. The bar's width is calculated as <code>(value / max_value) * 100</code>.</li>
-<li><strong><code>label</code></strong> (String, Optional): Text displayed with the progress bar, often inside it. Supports variable interpolation (see below).</li>
-<li><strong><code>show_percentage</code></strong> (Boolean, Default: <code>true</code> if <code>label</code> is not set, <code>false</code> otherwise): Determines if the percentage value is displayed inside the bar. This is overridden if <code>{{percentage}}</code> is used in the <code>label</code>.</li>
-<li><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Sets the progress bar's fill color using predefined theme colors (e.g., <code>primary</code>, <code>secondary</code>, <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code>, or even <code>white-25</code>, <code>black-75</code> for specific effects). Maps to <code>sb-bg-*</code> utility classes.</li>
-<li><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Sets the track (background) color of the progress bar itself using predefined theme colors. Maps to <code>sb-bg-*</code> utility classes.</li>
-<li><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Adjusts the bar's height. Common values: <code>"sm"</code> (small), <code>"md"</code> (medium), <code>"lg"</code> (large). These map to utility classes like <code>sb-h-4</code>, <code>sb-h-8</code>, <code>sb-h-16</code> respectively in the provided template.</li>
-<li><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): Adds a striped pattern to the bar's fill.</li>
-<li><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): Animates the stripes (requires <code>striped="true"</code>).</li>
-<li><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): Applies rounded corners to the bar and track. Maps to <code>sb-border-radius-md</code> or similar.</li>
-<li><strong><code>class</code></strong> (String, Optional): Adds custom CSS classes to the main container element (<code>.sb-progress-container</code>).</li>
-<li><strong><code>id</code></strong> (String, Optional): Adds a custom HTML <code>id</code> attribute to the main container. Useful for specific targeting with CSS or JavaScript.</li>
-<li>The content between <code>~ progress ... ~</code> and <code>~~</code> will be used for the popover when the progress bar is hovered.</li>
-</ul>
-<h2>Examples</h2>
-<h3>Using Labels &amp; Colors</h3>
-<p>Provide context and visual cues with <code>label</code> and <code>color</code>.</p>
-<p><strong>Skill Proficiency:</strong><br />
-The content between the tags will appear in a popover on hover.</p>
-<pre><code class="language-markdown">{~ progress value=&quot;85&quot; label=&quot;Python Proficiency: {{percentage}}&quot; color=&quot;success&quot; height=&quot;sm&quot; ~}
-Python is a powerful and versatile programming language. It is used in a wide range of applications, from web development to data analysis and machine learning.
+<div class="sb-progress-popover-content
+sb-bg-warning-75
+sb-black-75
+
+" 
+id="popover-content-174711349091701510"
+style="display: none;"
+>
+  <p><strong>Potion Brewing - Current Standing:</strong><br />
+Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<h3>Resume &amp; Work Experience</h3>
+<p><strong>Skill Level (from a Resume):</strong><br />
+Visualizing proficiency in "Django Web Weaving," with popover details that match the primary skill color.</p>
+<pre><code class="language-django">{~ progress value=&quot;90&quot; label=&quot;Django Web Weaving: Expert ({{percentage}})&quot; color=&quot;primary&quot; height=&quot;sm&quot; content_bg_color=&quot;primary-75&quot; content_color=&quot;white&quot; ~}
+**Expert Level:** Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning &quot;QuickQuill&quot; familiar messaging platform.
 {~~}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202871971048"
+  id="progress-container-174711349091929010"
   >
 
 
@@ -95,13 +485,13 @@ Python is a powerful and versatile programming language. It is used in a wide ra
 
     <div
       class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-success 
+             sb-bg-primary 
              sb-border-radius-md 
 
              " 
       role="progressbar"
-      style="width: 85.0%;"
-      aria-valuenow="85.0"
+      style="width: 90.0%;"
+      aria-valuenow="90.0"
       aria-valuemin="0"
       aria-valuemax="100"
     >
@@ -112,7 +502,7 @@ Python is a powerful and versatile programming language. It is used in a wide ra
           sb-text-xs
           sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
 
-            Python Proficiency: 85.0
+            Django Web Weaving: Expert (90.0)
           </span>
 
 
@@ -121,13 +511,14 @@ Python is a powerful and versatile programming language. It is used in a wide ra
 </div>
 </p>
 <div class="sb-progress-popover-content
-sb-bg-white
-sb-black
+sb-bg-primary-75
+sb-white
+
 " 
-id="popover-content-174711202871971048"
+id="popover-content-174711349091929010"
 style="display: none;"
 >
-  <p>Python is a powerful and versatile programming language. It is used in a wide range of applications, from web development to data analysis and machine learning.</p>
+  <p><strong>Expert Level:</strong> Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning "QuickQuill" familiar messaging platform.</p>
 </div>
 
 <script>
@@ -209,578 +600,31 @@ style="display: none;"
   });
   </script>
 
-<p><strong>Changing Background Color:</strong><br />
-Note how <code>color</code> affects the fill and <code>bg_color</code> affects the track.</p>
-<pre><code class="language-markdown">{~ progress value=&quot;7500&quot; max_value=&quot;10000&quot; label=&quot;Raised: ${{value}} / ${{max_value}}&quot; color=&quot;white-25&quot; bg_color=&quot;black-75&quot; ~}
-This project aims to raise $10,000 for new spellbook enchantments.
+<p><strong>Project Completion at a Previous Role:</strong><br />
+A progress bar indicating a successfully completed major project, "Phoenix Feather Archival System."</p>
+<pre><code class="language-django">{~ progress value=&quot;100&quot; label=&quot;Project Phoenix: Complete!&quot; color=&quot;success&quot; bg_color=&quot;success-25&quot; animated=&quot;false&quot; content_bg_color=&quot;success-75&quot; content_color=&quot;white&quot; ~}
+**Project Lead: Phoenix Feather Archival System**
+Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.
 {~~}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202872177748"
+  id="progress-container-174711349092076910"
   >
 
 
     <div class="sb-progress-label-external sb-mb-1 
     sb-text-md
     ">
-      Raised: $7500.0 / $10000.0
+      Project Phoenix: Complete!
     </div>
 
 
 
   <div
     class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-black-75 
-           sb-h-8 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-white-25 
-             sb-border-radius-md 
-
-             " 
-      role="progressbar"
-      style="width: 75.0%;"
-      aria-valuenow="75.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-white
-sb-black
-" 
-id="popover-content-174711202872177748"
-style="display: none;"
->
-  <p>This project aims to raise $10,000 for new spellbook enchantments.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<p><strong>Course Progress:</strong></p>
-<pre><code class="language-markdown">{~ progress value=&quot;3&quot; max_value=&quot;5&quot; label=&quot;Modules: {{value}} / {{max_value}}&quot; color=&quot;info&quot; ~}
-You've completed 3 out of 5 modules. Keep up the great work!
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202872455948"
-  >
-
-
-    <div class="sb-progress-label-external sb-mb-1 
-    sb-text-md
-    ">
-      Modules: 3.0 / 5.0
-    </div>
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-50 
-           sb-h-8 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-info 
-             sb-border-radius-md 
-
-             " 
-      role="progressbar"
-      style="width: 60.0%;"
-      aria-valuenow="60.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-white
-sb-black
-" 
-id="popover-content-174711202872455948"
-style="display: none;"
->
-  <p>You've completed 3 out of 5 modules. Keep up the great work!</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<h3>Using <code>max_value</code></h3>
-<p>Track progress towards a specific goal other than 100.</p>
-<p><strong>Fundraising Goal:</strong></p>
-<pre><code class="language-markdown">{~ progress value=&quot;7500&quot; max_value=&quot;10000&quot; label=&quot;Raised: ${{value}} / ${{max_value}} ({{percentage}})&quot; color=&quot;primary&quot; rounded=&quot;false&quot; height=&quot;lg&quot; ~}
-Current contributions for the new library wing.
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202872709748"
-  >
-
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-50 
-           sb-h-16 
-           " 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-primary 
-
-
-             " 
-      role="progressbar"
-      style="width: 75.0%;"
-      aria-valuenow="75.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-
-          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
-          sb-text-lg
-          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
-
-            Raised: $7500.0 / $10000.0 (75.0)
-          </span>
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-white
-sb-black
-" 
-id="popover-content-174711202872709748"
-style="display: none;"
->
-  <p>Current contributions for the new library wing.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<h3>Striped &amp; Animated</h3>
-<p>Add visual flair for active processes or goals.</p>
-<p><strong>Processing Data:</strong></p>
-<pre><code class="language-markdown">{~ progress value=&quot;45&quot; label=&quot;Processing... {{percentage}}&quot; color=&quot;warning&quot; striped=&quot;true&quot; animated=&quot;true&quot; ~}
-Currently analyzing ancient scrolls. This may take a moment.
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202872933848"
-  >
-
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-50 
-           sb-h-8 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-warning 
-             sb-border-radius-md 
-             sb-progress-bar-striped 
-             sb-progress-bar-animated" 
-      role="progressbar"
-      style="width: 45.0%;"
-      aria-valuenow="45.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-
-          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
-          sb-text-md
-          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
-
-            Processing... 45.0
-          </span>
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-white
-sb-black
-" 
-id="popover-content-174711202872933848"
-style="display: none;"
->
-  <p>Currently analyzing ancient scrolls. This may take a moment.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<h3>Completion State</h3>
-<p>Use <code>color="success"</code> for completed tasks.</p>
-<p><strong>Task Complete:</strong></p>
-<pre><code class="language-markdown">{~ progress value=&quot;100&quot; label=&quot;Deployment Successful!&quot; color=&quot;success&quot; ~}
-The new enchantments have been successfully deployed to the live grimoire!
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202873095748"
-  >
-
-
-    <div class="sb-progress-label-external sb-mb-1 
-    sb-text-md
-    ">
-      Deployment Successful!
-    </div>
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-50 
+           sb-bg-success-25 
            sb-h-8 
            sb-border-radius-md" 
   >
@@ -804,13 +648,15 @@ The new enchantments have been successfully deployed to the live grimoire!
 </div>
 </p>
 <div class="sb-progress-popover-content
-sb-bg-white
-sb-black
+sb-bg-success-75
+sb-white
+
 " 
-id="popover-content-174711202873095748"
+id="popover-content-174711349092076910"
 style="display: none;"
 >
-  <p>The new enchantments have been successfully deployed to the live grimoire!</p>
+  <p><strong>Project Lead: Phoenix Feather Archival System</strong><br />
+Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.</p>
 </div>
 
 <script>
@@ -892,184 +738,26 @@ style="display: none;"
   });
   </script>
 
-<h2>Label Interpolation</h2>
-<p>The <code>label</code> parameter allows dynamic text using these placeholders:</p>
-<ul>
-<li><strong><code>{{value}}</code></strong>: Replaced with the raw <code>value</code> passed to the block.</li>
-<li><strong><code>{{max_value}}</code></strong>: Replaced with the raw <code>max_value</code> passed to the block (or its default).</li>
-<li><strong><code>{{percentage}}</code></strong>: Replaced with the calculated percentage (e.g., <code>75.0%</code>).</li>
-</ul>
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ℹ️
-
-    </span>
-    <span class="sb-alert-content">
-        <p>Using <code>{{percentage}}</code> in the <code>label</code> will typically cause the percentage value to be displayed inside the bar, even if <code>show_percentage</code> would otherwise default to <code>false</code>. Literal curly braces in other contexts within the label text should render as typed.</p>
-    </span>
-</div>
-
-<h2>Height Adjustments &amp; Popover Content</h2>
-<p>The content between the <code>progress</code> tags becomes the popover detail.</p>
-<p><strong>Large Progress Bar with Details:</strong></p>
-<pre><code class="language-markdown">{~ progress value=&quot;7500&quot; max_value=&quot;10000&quot; label=&quot;Raised: ${{value}} / ${{max_value}}&quot; color=&quot;info&quot; striped=&quot;true&quot; animated=&quot;true&quot; height=&quot;lg&quot; ~}
-My content Here. It explains what this progress bar represents, providing more details on hover for the aspiring mage.
+<h3>Personal Development &amp; "Leveling Up"</h3>
+<p><strong>Learning a New Incantation (Language):</strong><br />
+Tracking progress learning "Infernal (Advanced Dialect)". The popover uses a fiery theme.</p>
+<pre><code class="language-django">{~ progress value=&quot;25&quot; max_value=&quot;100&quot; label=&quot;Infernal Study: {{percentage}}&quot; color=&quot;error&quot; bg_color=&quot;black-75&quot; striped=&quot;true&quot; animated=&quot;true&quot; height=&quot;sm&quot; content_bg_color=&quot;error-75&quot; content_color=&quot;white&quot; ~}
+**Current Progress: Novice Summoner**
+Mastered basic greetings and 3 minor binding spells. Still confusing &quot;Kazath&quot; (ally) with &quot;Kazaath&quot; (eternal doom). Weekly lessons with Archdemon Belphazor.
 {~~}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202873390548"
+  id="progress-container-174711349092235110"
   >
 
-
-    <div class="sb-progress-label-external sb-mb-1 
-    sb-text-lg
-    ">
-      Raised: $7500.0 / $10000.0
-    </div>
 
 
 
   <div
     class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-50 
-           sb-h-16 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-info 
-             sb-border-radius-md 
-             sb-progress-bar-striped 
-             sb-progress-bar-animated" 
-      role="progressbar"
-      style="width: 75.0%;"
-      aria-valuenow="75.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-white
-sb-black
-" 
-id="popover-content-174711202873390548"
-style="display: none;"
->
-  <p>My content Here. It explains what this progress bar represents, providing more details on hover for the aspiring mage.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<p><strong>Small Progress Bar with Different Popover Style (Illustrative - popover style is global):</strong><br />
-<em>Note: The popover's visual style (like background/text color) is generally global from the CSS. Specific parameters <code>content_bg_color</code> or <code>content_color</code> for the popover are not standard for this block unless you've custom-built that functionality.</em></p>
-<pre><code class="language-markdown">{~ progress value=&quot;7500&quot; max_value=&quot;10000&quot; label=&quot;Raised: ${{value}} / ${{max_value}}&quot; color=&quot;error&quot; bg_color=&quot;neutral-25&quot; striped=&quot;true&quot; height=&quot;sm&quot; ~}
-This indicates a critical funding shortfall! The popover will explain the dire consequences.
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711202873542948"
-  >
-
-
-    <div class="sb-progress-label-external sb-mb-1 
-    sb-text-xs
-    ">
-      Raised: $7500.0 / $10000.0
-    </div>
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-neutral-25 
+           sb-bg-black-75 
            sb-h-4 
            sb-border-radius-md" 
   >
@@ -1079,13 +767,22 @@ This indicates a critical funding shortfall! The popover will explain the dire c
              sb-bg-error 
              sb-border-radius-md 
              sb-progress-bar-striped 
-             " 
+             sb-progress-bar-animated" 
       role="progressbar"
-      style="width: 75.0%;"
-      aria-valuenow="75.0"
+      style="width: 25.0%;"
+      aria-valuenow="25.0"
       aria-valuemin="0"
       aria-valuemax="100"
     >
+
+
+
+          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
+          sb-text-xs
+          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
+
+            Infernal Study: 25.0
+          </span>
 
 
     </div>
@@ -1093,13 +790,15 @@ This indicates a critical funding shortfall! The popover will explain the dire c
 </div>
 </p>
 <div class="sb-progress-popover-content
-sb-bg-white
-sb-black
+sb-bg-error-75
+sb-white
+
 " 
-id="popover-content-174711202873542948"
+id="popover-content-174711349092235110"
 style="display: none;"
 >
-  <p>This indicates a critical funding shortfall! The popover will explain the dire consequences.</p>
+  <p><strong>Current Progress: Novice Summoner</strong><br />
+Mastered basic greetings and 3 minor binding spells. Still confusing "Kazath" (ally) with "Kazaath" (eternal doom). Weekly lessons with Archdemon Belphazor.</p>
 </div>
 
 <script>
@@ -1180,6 +879,168 @@ style="display: none;"
     });
   });
   </script>
+
+<p><strong>Apprentice to Journeyman:</strong><br />
+Visualizing the overall journey from an apprentice to a journeyman mage.</p>
+<pre><code class="language-django">{~ progress value=&quot;650&quot; max_value=&quot;1000&quot; label=&quot;Journeyman Rank Progress: {{percentage}}&quot; color=&quot;secondary&quot; bg_color=&quot;white-75&quot; height=&quot;lg&quot; content_bg_color=&quot;secondary-75&quot; content_color=&quot;white&quot; ~}
+**Path to Journeyman (650/1000 XP):**
+
+* Completed Herbology I &amp; II (+200 XP)
+* Assisted Master Elara in the Crystal Caves (+150 XP)
+* Successfully defended the village from GrumbleSnouts (+300 XP)
+Next Quest: Retrieve the Orb of Whispering Winds.
+{~~}
+</code></pre>
+<p>Renders as:</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174711349092404410"
+  >
+
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-75 
+           sb-h-16 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-secondary 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 65.0%;"
+      aria-valuenow="65.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+
+          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
+          sb-text-lg
+          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
+
+            Journeyman Rank Progress: 65.0
+          </span>
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-secondary-75
+sb-white
+
+" 
+id="popover-content-174711349092404410"
+style="display: none;"
+>
+  <p><strong>Path to Journeyman (650/1000 XP):</strong></p>
+<ul>
+<li>Completed Herbology I &amp; II (+200 XP)</li>
+<li>Assisted Master Elara in the Crystal Caves (+150 XP)</li>
+<li>Successfully defended the village from GrumbleSnouts (+300 XP)<br />
+Next Quest: Retrieve the Orb of Whispering Winds.</li>
+</ul>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The <code>color</code>, <code>bg_color</code>, <code>content_bg_color</code>, and <code>content_color</code> parameters typically expect theme color names (like <code>primary</code>, <code>info-50</code>, <code>black-75</code>). The actual color values are defined in your site's CSS (e.g., using CSS variables like <code>--primary-color</code>). Ensure your chosen color names have corresponding styles for both backgrounds (<code>sb-bg-*</code>) and text (<code>sb-text-*</code> or direct color application) for optimal results.<br />
+The popover's default styling will apply if <code>content_bg_color</code> and <code>content_color</code> are not specified.</p>
+    </span>
+</div>
 
 <hr />
 {% endblock %}
