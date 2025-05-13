@@ -1,25 +1,25 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Progress SpellBlock (<code>~ progress ~</code>): Level Up Your Content</h1>
-<p>The <code>~ progress ~</code> SpellBlock is a versatile tool for visualizing progress. Beyond simple percentages, it can be a powerful familiar in illustrating skill acquisition, academic achievements, career milestones, and personal development – a true "leveling up" visual. The integrated popover, customizable with <code>content_bg_color</code> and <code>content_color</code>, allows for rich contextual information.</p>
+<h1>Progress Bar SpellBlock (<code>~ progress ~</code>)</h1>
+<p>The <code>~ progress ~</code> component offers a clear and adaptable method for visually representing various metrics such as project completion, skill proficiency, academic progress, or funding status against a defined maximum. It features an optional popover, triggered on hover, to display detailed contextual information, which can be styled for thematic consistency.</p>
 <h2>Basic Usage</h2>
-<p>A quick refresher:</p>
-<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Overall Profile Completion&quot; ~}
-Your profile is looking good! Just a few more sections to fill out.
+<p>To implement a basic progress bar, specify a <code>value</code>. This value is assessed against a default <code>max_value</code> of 100 if not otherwise defined:</p>
+<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Profile Status&quot; ~}
+Profile is 65% complete. Ensure all sections are finalized for optimal visibility.
 {~~}
 </code></pre>
-<p>Renders as:</p>
+<p>This renders a progress bar indicating 65%:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349090057310"
+  id="progress-container-174714075349170733"
   >
 
 
     <div class="sb-progress-label-external sb-mb-1 
     sb-text-md
     ">
-      Overall Profile Completion
+      Profile Status
     </div>
 
 
@@ -54,10 +54,10 @@ sb-bg-white
 sb-black
 
 " 
-id="popover-content-174711349090057310"
+id="popover-content-174714075349170733"
 style="display: none;"
 >
-  <p>Your profile is looking good! Just a few more sections to fill out.</p>
+  <p>Profile is 65% complete. Ensure all sections are finalized for optimal visibility.</p>
 </div>
 
 <script>
@@ -139,12 +139,8 @@ style="display: none;"
   });
   </script>
 
-<h2>Parameters for Popover Styling</h2>
-<p>In addition to the previously listed parameters, we now highlight those for theming the popover content:</p>
-<ul>
-<li><strong><code>content_bg_color</code></strong> (String, Optional): Sets the background color of the popover. Accepts theme color names (e.g., <code>primary</code>, <code>success-25</code>, <code>neutral-90</code>). If not set, it defaults to a standard popover style (e.g., white).</li>
-<li><strong><code>content_color</code></strong> (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. If not set, it defaults to a standard text color suitable for the default popover background.</li>
-</ul>
+<h2>Parameters</h2>
+<p>The component's appearance and functionality are managed through the following parameters:</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
@@ -153,22 +149,22 @@ style="display: none;"
 
     <div class="sb-card-body sb-p-3">
         <ul>
-<li><strong><code>value</code></strong> (Required, Float/Int): The current value.</li>
-<li><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The maximum possible value.</li>
-<li><strong><code>label</code></strong> (String, Optional): Text for the progress bar. Supports <code>{value}</code>, <code>{max_value}</code>, <code>{percentage}</code>.</li>
-<li><strong><code>show_percentage</code></strong> (Boolean, Default: depends on <code>label</code>): Toggles percentage display in the bar.</li>
-<li><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Bar's fill color.</li>
-<li><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Bar's track color.</li>
-<li><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Bar height (<code>sm</code>, <code>md</code>, <code>lg</code>).</li>
-<li><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): Striped fill.</li>
-<li><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): Animates stripes.</li>
-<li><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): Rounded corners.</li>
-<li><strong><code>class</code></strong> (String, Optional): Custom CSS classes for the container.</li>
-<li><strong><code>id</code></strong> (String, Optional): Custom HTML <code>id</code> for the container.</li>
-<li><strong><code>content_bg_color</code></strong> (String, Optional): Popover background color.</li>
-<li><strong><code>content_color</code></strong> (String, Optional): Popover text color.</li>
-<li><strong><code>content_class</code></strong> (String, Optional): Custom CSS classes for the popover content.</li>
-<li>Content between <code>~ progress ... ~</code> and <code>~~</code> is for the popover.</li>
+<li><strong><code>value</code></strong> (Required, Float/Int): The current numerical value to be represented.</li>
+<li><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The endpoint value for the progress calculation. The bar's fill width is determined by the ratio <code>(value / max_value) * 100%</code>.</li>
+<li><strong><code>label</code></strong> (String, Optional): Descriptive text for the progress bar, typically shown within or alongside it. Supports dynamic interpolation using <code>{value}</code>, <code>{max_value}</code>, and <code>{percentage}</code> placeholders.</li>
+<li><strong><code>show_percentage</code></strong> (Boolean, Default: <code>true</code> if <code>label</code> is unset, <code>false</code> otherwise): Governs the display of the numerical percentage within the bar. This is superseded if <code>{percentage}</code> is used in the <code>label</code>.</li>
+<li><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Specifies the fill color of the progress bar using predefined theme color identifiers (e.g., <code>primary</code>, <code>secondary</code>, <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code>). Variants like <code>white-25</code> or <code>black-75</code> can achieve specific visual effects. These map to <code>sb-bg-*</code> CSS utility classes.</li>
+<li><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Determines the background color of the progress bar's track. Uses theme color identifiers similar to <code>color</code>.</li>
+<li><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Modifies the bar's height. Accepted values: <code>"sm"</code> (small), <code>"md"</code> (medium), <code>"lg"</code> (large), corresponding to CSS classes like <code>sb-h-4</code>, <code>sb-h-8</code>, <code>sb-h-16</code>.</li>
+<li><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): If true, a striped pattern is applied to the bar's fill.</li>
+<li><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): If true (and <code>striped</code> is true), the stripes on the bar's fill are animated.</li>
+<li><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): If true, rounded corners are applied to the track and fill. Maps to CSS classes such as <code>sb-border-radius-md</code>.</li>
+<li><strong><code>class</code></strong> (String, Optional): Appends custom CSS classes to the main container (<code>.sb-progress-container</code>) for additional styling.</li>
+<li><strong><code>id</code></strong> (String, Optional): Assigns a custom HTML <code>id</code> to the main container, useful for CSS or JavaScript targeting.</li>
+<li><strong><code>content_bg_color</code></strong> (String, Optional): Defines the background color of the popover. Accepts theme color names (e.g., <code>primary</code>, <code>neutral-90</code>). Defaults to a standard style if omitted.</li>
+<li><strong><code>content_color</code></strong> (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. Defaults to a standard style if omitted.</li>
+<li><strong><code>content_class</code></strong> (String, Optional): Appends custom CSS classes to the popover content <code>div</code> for specific styling.</li>
+<li>The content provided between <code>~ progress ... ~</code> and <code>~~</code> is rendered within the popover.</li>
 </ul>
     </div>
 
@@ -178,27 +174,29 @@ style="display: none;"
 
 </div>
 
-<h2>Themed Examples: Education, Resume &amp; Leveling Up</h2>
-<p>Let's see how <code>content_bg_color</code> and <code>content_color</code> can make the popover an extension of the progress bar's theme.</p>
-<h3>Academic Achievements</h3>
-<p><strong>Degree Completion:</strong><br />
-Illustrating progress towards a Bachelor of Magical Arts. The popover provides details about the current year and focus.</p>
-<pre><code class="language-django">{~ progress value=&quot;3&quot; max_value=&quot;4&quot; label=&quot;Year {{value}}/{{max_value}} Completed&quot; color=&quot;info&quot; bg_color=&quot;info-25&quot; height=&quot;lg&quot; content_bg_color=&quot;info-75&quot; content_color=&quot;white&quot; ~}
-**Current Status: Year 3 of 4**
-Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on &quot;Temporal Distortions in Ley Line Magic&quot; submitted. Expected graduation: Spring 2026.
+<h2>Application Examples: Professional Development &amp; Skills</h2>
+<p>The <code>content_bg_color</code> and <code>content_color</code> parameters allow the popover to visually align with the progress bar's theme, enhancing contextual information.</p>
+<h3>Academic &amp; Course Progress</h3>
+<p><strong>Degree Program Advancement:</strong><br />
+Tracking progress towards a degree, with popover details for current academic standing.</p>
+<pre><code class="language-django">{% verbatim %}
+{~ progress value=&quot;75&quot; max_value=&quot;120&quot; label=&quot;Credits Earned: {{value}}/{{max_value}}&quot; color=&quot;info&quot; bg_color=&quot;info-25&quot; height=&quot;lg&quot; content_bg_color=&quot;info-75&quot; content_color=&quot;white&quot; ~}
+**Program: B.S. Computer Science**
+Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structures and Algorithms completed. Capstone project selection underway.
 {~~}
+{% endverbatim %}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349091515810"
+  id="progress-container-174714075349957033"
   >
 
 
     <div class="sb-progress-label-external sb-mb-1 
     sb-text-lg
     ">
-      Year 3.0/4.0 Completed
+      Credits Earned: 75.0/120.0
     </div>
 
 
@@ -217,8 +215,8 @@ Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on &quot
 
              " 
       role="progressbar"
-      style="width: 75.0%;"
-      aria-valuenow="75.0"
+      style="width: 62.5%;"
+      aria-valuenow="62.5"
       aria-valuemin="0"
       aria-valuemax="100"
     >
@@ -233,11 +231,11 @@ sb-bg-info-75
 sb-white
 
 " 
-id="popover-content-174711349091515810"
+id="popover-content-174714075349957033"
 style="display: none;"
 >
-  <p><strong>Current Status: Year 3 of 4</strong><br />
-Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on "Temporal Distortions in Ley Line Magic" submitted. Expected graduation: Spring 2026.</p>
+  <p><strong>Program: B.S. Computer Science</strong><br />
+Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structures and Algorithms completed. Capstone project selection underway.</p>
 </div>
 
 <script>
@@ -319,50 +317,50 @@ Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on "Temp
   });
   </script>
 
-<p><strong>Mastering a Difficult Subject:</strong><br />
-Showing progress in "Advanced Potion Brewing," with popover details matching the "warning" theme of a challenging subject.</p>
-<pre><code class="language-django">{~ progress value=&quot;60&quot; label=&quot;Potion Brewing Mastery: {{percentage}}&quot; color=&quot;warning&quot; bg_color=&quot;neutral-25&quot; striped=&quot;true&quot; content_bg_color=&quot;warning-75&quot; content_color=&quot;black-75&quot; ~}
-**Potion Brewing - Current Standing:**
-Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.
+<p><strong>Online Course Module Completion:</strong><br />
+Visualizing completion of an online certification course.</p>
+<pre><code class="language-django">{% verbatim %}
+{~ progress value=&quot;4&quot; max_value=&quot;6&quot; label=&quot;Module {{value}} of {{max_value}}&quot; color=&quot;primary&quot; striped=&quot;true&quot; content_bg_color=&quot;primary-75&quot; content_color=&quot;white&quot; ~}
+**Course: Advanced Project Management**
+Completed modules on Risk Assessment and Stakeholder Communication. Next up: Agile Methodologies.
+Estimated completion: 2 weeks.
 {~~}
+{% endverbatim %}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349091701510"
+  id="progress-container-174714075350117833"
   >
 
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Module 4.0 of 6.0
+    </div>
 
 
 
   <div
     class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-neutral-25 
+           sb-bg-white-50 
            sb-h-8 
            sb-border-radius-md" 
   >
 
     <div
       class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-warning 
+             sb-bg-primary 
              sb-border-radius-md 
              sb-progress-bar-striped 
              " 
       role="progressbar"
-      style="width: 60.0%;"
-      aria-valuenow="60.0"
+      style="width: 66.67%;"
+      aria-valuenow="66.67"
       aria-valuemin="0"
       aria-valuemax="100"
     >
-
-
-
-          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
-          sb-text-md
-          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
-
-            Potion Brewing Mastery: 60.0
-          </span>
 
 
     </div>
@@ -370,15 +368,16 @@ Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Strugglin
 </div>
 </p>
 <div class="sb-progress-popover-content
-sb-bg-warning-75
-sb-black-75
+sb-bg-primary-75
+sb-white
 
 " 
-id="popover-content-174711349091701510"
+id="popover-content-174714075350117833"
 style="display: none;"
 >
-  <p><strong>Potion Brewing - Current Standing:</strong><br />
-Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.</p>
+  <p><strong>Course: Advanced Project Management</strong><br />
+Completed modules on Risk Assessment and Stakeholder Communication. Next up: Agile Methodologies.<br />
+Estimated completion: 2 weeks.</p>
 </div>
 
 <script>
@@ -460,17 +459,20 @@ Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Strugglin
   });
   </script>
 
-<h3>Resume &amp; Work Experience</h3>
-<p><strong>Skill Level (from a Resume):</strong><br />
-Visualizing proficiency in "Django Web Weaving," with popover details that match the primary skill color.</p>
-<pre><code class="language-django">{~ progress value=&quot;90&quot; label=&quot;Django Web Weaving: Expert ({{percentage}})&quot; color=&quot;primary&quot; height=&quot;sm&quot; content_bg_color=&quot;primary-75&quot; content_color=&quot;white&quot; ~}
-**Expert Level:** Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning &quot;QuickQuill&quot; familiar messaging platform.
+<h3>Resume &amp; Skill Representation</h3>
+<p><strong>Technical Skill Proficiency (Resume):</strong><br />
+Displaying expertise level in a specific technology, with popover for project examples.</p>
+<pre><code class="language-django">{% verbatim %}
+{~ progress value=&quot;90&quot; label=&quot;Python Development: {{percentage}}&quot; color=&quot;success&quot; height=&quot;sm&quot; content_bg_color=&quot;success-75&quot; content_color=&quot;white&quot; ~}
+**Python Expertise: Advanced**
+Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy), and machine learning frameworks (Scikit-learn). Contributed to several open-source projects.
 {~~}
+{% endverbatim %}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349091929010"
+  id="progress-container-174714075350249433"
   >
 
 
@@ -485,7 +487,7 @@ Visualizing proficiency in "Django Web Weaving," with popover details that match
 
     <div
       class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-primary 
+             sb-bg-success 
              sb-border-radius-md 
 
              " 
@@ -502,145 +504,8 @@ Visualizing proficiency in "Django Web Weaving," with popover details that match
           sb-text-xs
           sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
 
-            Django Web Weaving: Expert (90.0)
+            Python Development: 90.0
           </span>
-
-
-    </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-primary-75
-sb-white
-
-" 
-id="popover-content-174711349091929010"
-style="display: none;"
->
-  <p><strong>Expert Level:</strong> Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning "QuickQuill" familiar messaging platform.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<p><strong>Project Completion at a Previous Role:</strong><br />
-A progress bar indicating a successfully completed major project, "Phoenix Feather Archival System."</p>
-<pre><code class="language-django">{~ progress value=&quot;100&quot; label=&quot;Project Phoenix: Complete!&quot; color=&quot;success&quot; bg_color=&quot;success-25&quot; animated=&quot;false&quot; content_bg_color=&quot;success-75&quot; content_color=&quot;white&quot; ~}
-**Project Lead: Phoenix Feather Archival System**
-Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349092076910"
-  >
-
-
-    <div class="sb-progress-label-external sb-mb-1 
-    sb-text-md
-    ">
-      Project Phoenix: Complete!
-    </div>
-
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-success-25 
-           sb-h-8 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-success 
-             sb-border-radius-md 
-
-             " 
-      role="progressbar"
-      style="width: 100.0%;"
-      aria-valuenow="100.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
 
 
     </div>
@@ -652,11 +517,11 @@ sb-bg-success-75
 sb-white
 
 " 
-id="popover-content-174711349092076910"
+id="popover-content-174714075350249433"
 style="display: none;"
 >
-  <p><strong>Project Lead: Phoenix Feather Archival System</strong><br />
-Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.</p>
+  <p><strong>Python Expertise: Advanced</strong><br />
+Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy), and machine learning frameworks (Scikit-learn). Contributed to several open-source projects.</p>
 </div>
 
 <script>
@@ -738,172 +603,33 @@ Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient 
   });
   </script>
 
-<h3>Personal Development &amp; "Leveling Up"</h3>
-<p><strong>Learning a New Incantation (Language):</strong><br />
-Tracking progress learning "Infernal (Advanced Dialect)". The popover uses a fiery theme.</p>
-<pre><code class="language-django">{~ progress value=&quot;25&quot; max_value=&quot;100&quot; label=&quot;Infernal Study: {{percentage}}&quot; color=&quot;error&quot; bg_color=&quot;black-75&quot; striped=&quot;true&quot; animated=&quot;true&quot; height=&quot;sm&quot; content_bg_color=&quot;error-75&quot; content_color=&quot;white&quot; ~}
-**Current Progress: Novice Summoner**
-Mastered basic greetings and 3 minor binding spells. Still confusing &quot;Kazath&quot; (ally) with &quot;Kazaath&quot; (eternal doom). Weekly lessons with Archdemon Belphazor.
+<p><strong>Language Fluency:</strong><br />
+Indicating level of fluency in a foreign language for a resume or profile.</p>
+<pre><code class="language-django">{% verbatim %}
+{~ progress value=&quot;70&quot; label=&quot;Spanish Fluency: Professional Working Proficiency&quot; color=&quot;secondary&quot; content_bg_color=&quot;secondary-75&quot; content_color=&quot;white&quot; ~}
+**Details:** Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.
 {~~}
+{% endverbatim %}
 </code></pre>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349092235110"
+  id="progress-container-174714075350367933"
   >
 
 
-
-
-  <div
-    class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-black-75 
-           sb-h-4 
-           sb-border-radius-md" 
-  >
-
-    <div
-      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
-             sb-bg-error 
-             sb-border-radius-md 
-             sb-progress-bar-striped 
-             sb-progress-bar-animated" 
-      role="progressbar"
-      style="width: 25.0%;"
-      aria-valuenow="25.0"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-
-
-
-          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
-          sb-text-xs
-          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
-
-            Infernal Study: 25.0
-          </span>
-
-
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Spanish Fluency: Professional Working Proficiency
     </div>
-  </div>
-</div>
-</p>
-<div class="sb-progress-popover-content
-sb-bg-error-75
-sb-white
-
-" 
-id="popover-content-174711349092235110"
-style="display: none;"
->
-  <p><strong>Current Progress: Novice Summoner</strong><br />
-Mastered basic greetings and 3 minor binding spells. Still confusing "Kazath" (ally) with "Kazaath" (eternal doom). Weekly lessons with Archdemon Belphazor.</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
-    const progressContainers = document.querySelectorAll('.sb-progress-container');
-
-    progressContainers.forEach(container => {
-      const containerId = container.id; // e.g., "progress-container-1"
-      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
-      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
-      // you might need a data-attribute to link them or adjust this logic.
-      // For now, assuming the forloop.counter pattern in IDs.
-      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
-      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
-
-      if (!popover) {
-        // console.warn(`Popover not found for container ${containerId}`);
-        return; // Skip if corresponding popover isn't found
-      }
-
-      let popoverVisible = false; // Track visibility to avoid redundant style changes
-
-      container.addEventListener('mouseenter', function(event) {
-        if (!popoverVisible) {
-          popover.style.display = 'block';
-          popover.classList.add('sb-animate-fade-in');
-          popoverVisible = true;
-        }
-        // Initial position update on enter
-        updatePopoverPosition(event);
-      });
-
-      container.addEventListener('mousemove', function(event) {
-        if (popoverVisible) {
-          updatePopoverPosition(event);
-        }
-      });
-
-      container.addEventListener('mouseleave', function() {
-        if (popoverVisible) {
-          popover.style.display = 'none';
-          popoverVisible = false;
-        }
-      });
-
-      function updatePopoverPosition(mouseEvent) {
-        // Offset from the mouse cursor
-        const offsetX = 15; // pixels to the right
-        const offsetY = 15; // pixels below
-
-        let newX = mouseEvent.clientX + offsetX;
-        let newY = mouseEvent.clientY + offsetY;
-
-        // Boundary checks to keep popover within viewport
-        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
-
-        // Adjust if too far right
-        if (newX + popoverRect.width > window.innerWidth) {
-          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
-        }
-        // Adjust if too far down
-        if (newY + popoverRect.height > window.innerHeight) {
-          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
-        }
-        // Adjust if too far left (after potentially flipping)
-        if (newX < 0) {
-          newX = offsetX;
-        }
-        // Adjust if too far up (after potentially flipping)
-        if (newY < 0) {
-          newY = offsetY;
-        }
-
-        popover.style.left = newX + 'px';
-        popover.style.top = newY + 'px';
-      }
-    });
-  });
-  </script>
-
-<p><strong>Apprentice to Journeyman:</strong><br />
-Visualizing the overall journey from an apprentice to a journeyman mage.</p>
-<pre><code class="language-django">{~ progress value=&quot;650&quot; max_value=&quot;1000&quot; label=&quot;Journeyman Rank Progress: {{percentage}}&quot; color=&quot;secondary&quot; bg_color=&quot;white-75&quot; height=&quot;lg&quot; content_bg_color=&quot;secondary-75&quot; content_color=&quot;white&quot; ~}
-**Path to Journeyman (650/1000 XP):**
-
-* Completed Herbology I &amp; II (+200 XP)
-* Assisted Master Elara in the Crystal Caves (+150 XP)
-* Successfully defended the village from GrumbleSnouts (+300 XP)
-Next Quest: Retrieve the Orb of Whispering Winds.
-{~~}
-</code></pre>
-<p>Renders as:</p>
-<p><div
-  class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174711349092404410"
-  >
-
 
 
 
   <div
     class="sb-progress sb-w-full sb-overflow-hidden 
-           sb-bg-white-75 
-           sb-h-16 
+           sb-bg-white-50 
+           sb-h-8 
            sb-border-radius-md" 
   >
 
@@ -914,20 +640,11 @@ Next Quest: Retrieve the Orb of Whispering Winds.
 
              " 
       role="progressbar"
-      style="width: 65.0%;"
-      aria-valuenow="65.0"
+      style="width: 70.0%;"
+      aria-valuenow="70.0"
       aria-valuemin="0"
       aria-valuemax="100"
     >
-
-
-
-          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
-          sb-text-lg
-          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
-
-            Journeyman Rank Progress: 65.0
-          </span>
 
 
     </div>
@@ -939,16 +656,10 @@ sb-bg-secondary-75
 sb-white
 
 " 
-id="popover-content-174711349092404410"
+id="popover-content-174714075350367933"
 style="display: none;"
 >
-  <p><strong>Path to Journeyman (650/1000 XP):</strong></p>
-<ul>
-<li>Completed Herbology I &amp; II (+200 XP)</li>
-<li>Assisted Master Elara in the Crystal Caves (+150 XP)</li>
-<li>Successfully defended the village from GrumbleSnouts (+300 XP)<br />
-Next Quest: Retrieve the Orb of Whispering Winds.</li>
-</ul>
+  <p><strong>Details:</strong> Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.</p>
 </div>
 
 <script>
@@ -1030,17 +741,144 @@ Next Quest: Retrieve the Orb of Whispering Winds.</li>
   });
   </script>
 
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
+<h3>Career Progression &amp; Goal Tracking</h3>
+<p><strong>Professional Certification Training:</strong><br />
+Tracking hours logged towards a professional certification.</p>
+<pre><code class="language-django">{% verbatim %}
+{~ progress value=&quot;85&quot; max_value=&quot;120&quot; label=&quot;PMP Certification Prep: {{value}}/{{max_value}} Hours&quot; color=&quot;warning&quot; bg_color=&quot;neutral-25&quot; striped=&quot;true&quot; animated=&quot;true&quot; height=&quot;sm&quot; content_bg_color=&quot;warning-75&quot; content_color=&quot;black-75&quot; ~}
+**PMP Exam Preparation:**
+85 contact hours completed. Focus areas: Risk Management and Cost Control. Exam scheduled for next quarter.
+{~~}
+{% endverbatim %}
+</code></pre>
+<p>Renders as:</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174714075350489433"
+  >
 
-            ℹ️
 
-    </span>
-    <span class="sb-alert-content">
-        <p>The <code>color</code>, <code>bg_color</code>, <code>content_bg_color</code>, and <code>content_color</code> parameters typically expect theme color names (like <code>primary</code>, <code>info-50</code>, <code>black-75</code>). The actual color values are defined in your site's CSS (e.g., using CSS variables like <code>--primary-color</code>). Ensure your chosen color names have corresponding styles for both backgrounds (<code>sb-bg-*</code>) and text (<code>sb-text-*</code> or direct color application) for optimal results.<br />
-The popover's default styling will apply if <code>content_bg_color</code> and <code>content_color</code> are not specified.</p>
-    </span>
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-xs
+    ">
+      PMP Certification Prep: 85.0/120.0 Hours
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-neutral-25 
+           sb-h-4 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-warning 
+             sb-border-radius-md 
+             sb-progress-bar-striped 
+             sb-progress-bar-animated" 
+      role="progressbar"
+      style="width: 70.83%;"
+      aria-valuenow="70.83"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-warning-75
+sb-black-75
+
+" 
+id="popover-content-174714075350489433"
+style="display: none;"
+>
+  <p><strong>PMP Exam Preparation:</strong><br />
+85 contact hours completed. Focus areas: Risk Management and Cost Control. Exam scheduled for next quarter.</p>
 </div>
 
-<hr />
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
 {% endblock %}

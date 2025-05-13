@@ -44,7 +44,7 @@
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 73,
+      "total_uses": 72,
       "failed_uses": 0
     },
     {
@@ -84,7 +84,7 @@
     },
     {
       "name": "progress",
-      "total_uses": 20,
+      "total_uses": 19,
       "failed_uses": 0
     }
   ]

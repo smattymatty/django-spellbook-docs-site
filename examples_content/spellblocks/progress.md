@@ -1,178 +1,156 @@
 ---
-title: Progress SpellBlock
+title: Progress Bar
 created: 2025-05-13
 tags:
-  - spellblock
   - component
-  - progress
+  - progress-bar
   - ui
   - documentation
-  - education
-  - resume
-  - skills
+  - skills-visualization
+  - course-progress
+  - professional-development
 ---
 
-# Progress SpellBlock (`~ progress ~`): Level Up Your Content
+# Progress Bar SpellBlock (`~ progress ~`)
 
-The `~ progress ~` SpellBlock is a versatile tool for visualizing progress. Beyond simple percentages, it can be a powerful familiar in illustrating skill acquisition, academic achievements, career milestones, and personal development – a true "leveling up" visual. The integrated popover, customizable with `content_bg_color` and `content_color`, allows for rich contextual information.
+The `~ progress ~` component offers a clear and adaptable method for visually representing various metrics such as project completion, skill proficiency, academic progress, or funding status against a defined maximum. It features an optional popover, triggered on hover, to display detailed contextual information, which can be styled for thematic consistency.
 
 ## Basic Usage
 
-A quick refresher:
+To implement a basic progress bar, specify a `value`. This value is assessed against a default `max_value` of 100 if not otherwise defined:
 
 ```django
-{~ progress value="65" label="Overall Profile Completion" ~}
-Your profile is looking good! Just a few more sections to fill out.
+{~ progress value="65" label="Profile Status" ~}
+Profile is 65% complete. Ensure all sections are finalized for optimal visibility.
 {~~}
 ```
 
-Renders as:
-{~ progress value="65" label="Overall Profile Completion" ~}
-Your profile is looking good! Just a few more sections to fill out.
+This renders a progress bar indicating 65%:
+
+{~ progress value="65" label="Profile Status" ~}
+Profile is 65% complete. Ensure all sections are finalized for optimal visibility.
 {~~}
 
-## Parameters for Popover Styling
+## Parameters
 
-In addition to the previously listed parameters, we now highlight those for theming the popover content:
-
-* **`content_bg_color`** (String, Optional): Sets the background color of the popover. Accepts theme color names (e.g., `primary`, `success-25`, `neutral-90`). If not set, it defaults to a standard popover style (e.g., white).
-* **`content_color`** (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. If not set, it defaults to a standard text color suitable for the default popover background.
+The component's appearance and functionality are managed through the following parameters:
 
 {~ card title="Full Parameter List" footer="The only required parameter is `value`." ~}
 
-* **`value`** (Required, Float/Int): The current value.
-* **`max_value`** (Float/Int, Default: `100`): The maximum possible value.
-* **`label`** (String, Optional): Text for the progress bar. Supports `{value}`, `{max_value}`, `{percentage}`.
-* **`show_percentage`** (Boolean, Default: depends on `label`): Toggles percentage display in the bar.
-* **`color`** (String, Default: `"primary"`): Bar's fill color.
-* **`bg_color`** (String, Default: `"white-50"`): Bar's track color.
-* **`height`** (String, Default: `"md"`): Bar height (`sm`, `md`, `lg`).
-* **`striped`** (Boolean, Default: `false`): Striped fill.
-* **`animated`** (Boolean, Default: `false`): Animates stripes.
-* **`rounded`** (Boolean, Default: `true`): Rounded corners.
-* **`class`** (String, Optional): Custom CSS classes for the container.
-* **`id`** (String, Optional): Custom HTML `id` for the container.
-* **`content_bg_color`** (String, Optional): Popover background color.
-* **`content_color`** (String, Optional): Popover text color.
-* **`content_class`** (String, Optional): Custom CSS classes for the popover content.
-* Content between `~ progress ... ~` and `~~` is for the popover.
+* **`value`** (Required, Float/Int): The current numerical value to be represented.
+* **`max_value`** (Float/Int, Default: `100`): The endpoint value for the progress calculation. The bar's fill width is determined by the ratio `(value / max_value) * 100%`.
+* **`label`** (String, Optional): Descriptive text for the progress bar, typically shown within or alongside it. Supports dynamic interpolation using `{value}`, `{max_value}`, and `{percentage}` placeholders.
+* **`show_percentage`** (Boolean, Default: `true` if `label` is unset, `false` otherwise): Governs the display of the numerical percentage within the bar. This is superseded if `{percentage}` is used in the `label`.
+* **`color`** (String, Default: `"primary"`): Specifies the fill color of the progress bar using predefined theme color identifiers (e.g., `primary`, `secondary`, `success`, `info`, `warning`, `danger`). Variants like `white-25` or `black-75` can achieve specific visual effects. These map to `sb-bg-*` CSS utility classes.
+* **`bg_color`** (String, Default: `"white-50"`): Determines the background color of the progress bar's track. Uses theme color identifiers similar to `color`.
+* **`height`** (String, Default: `"md"`): Modifies the bar's height. Accepted values: `"sm"` (small), `"md"` (medium), `"lg"` (large), corresponding to CSS classes like `sb-h-4`, `sb-h-8`, `sb-h-16`.
+* **`striped`** (Boolean, Default: `false`): If true, a striped pattern is applied to the bar's fill.
+* **`animated`** (Boolean, Default: `false`): If true (and `striped` is true), the stripes on the bar's fill are animated.
+* **`rounded`** (Boolean, Default: `true`): If true, rounded corners are applied to the track and fill. Maps to CSS classes such as `sb-border-radius-md`.
+* **`class`** (String, Optional): Appends custom CSS classes to the main container (`.sb-progress-container`) for additional styling.
+* **`id`** (String, Optional): Assigns a custom HTML `id` to the main container, useful for CSS or JavaScript targeting.
+* **`content_bg_color`** (String, Optional): Defines the background color of the popover. Accepts theme color names (e.g., `primary`, `neutral-90`). Defaults to a standard style if omitted.
+* **`content_color`** (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. Defaults to a standard style if omitted.
+* **`content_class`** (String, Optional): Appends custom CSS classes to the popover content `div` for specific styling.
+* The content provided between `~ progress ... ~` and `~~` is rendered within the popover.
 {~~}
 
-## Themed Examples: Education, Resume & Leveling Up
+## Application Examples: Professional Development & Skills
 
-Let's see how `content_bg_color` and `content_color` can make the popover an extension of the progress bar's theme.
+The `content_bg_color` and `content_color` parameters allow the popover to visually align with the progress bar's theme, enhancing contextual information.
 
-### Academic Achievements
+### Academic & Course Progress
 
-**Degree Completion:**
-Illustrating progress towards a Bachelor of Magical Arts. The popover provides details about the current year and focus.
+**Degree Program Advancement:**
+Tracking progress towards a degree, with popover details for current academic standing.
 
 ```django
-{~ progress value="3" max_value="4" label="Year {{value}}/{{max_value}} Completed" color="info" bg_color="info-25" height="lg" content_bg_color="info-75" content_color="white" ~}
-**Current Status: Year 3 of 4**
-Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on "Temporal Distortions in Ley Line Magic" submitted. Expected graduation: Spring 2026.
+{% verbatim %}
+{~ progress value="75" max_value="120" label="Credits Earned: {{value}}/{{max_value}}" color="info" bg_color="info-25" height="lg" content_bg_color="info-75" content_color="white" ~}
+**Program: B.S. Computer Science**
+Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structures and Algorithms completed. Capstone project selection underway.
 {~~}
+{% endverbatim %}
 ```
 
 Renders as:
-{~ progress value="3" max_value="4" label="Year {{value}}/{{max_value}} Completed" color="info" bg_color="info-25" height="lg" content_bg_color="info-75" content_color="white" ~}
-**Current Status: Year 3 of 4**
-Focusing on Advanced Transfiguration and Ancient Runes. Thesis proposal on "Temporal Distortions in Ley Line Magic" submitted. Expected graduation: Spring 2026.
+{~ progress value="75" max_value="120" label="Credits Earned: {{value}}/{{max_value}}" color="info" bg_color="info-25" height="lg" content_bg_color="info-75" content_color="white" ~}
+**Program: B.S. Computer Science**
+Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structures and Algorithms completed. Capstone project selection underway.
 {~~}
 
-**Mastering a Difficult Subject:**
-Showing progress in "Advanced Potion Brewing," with popover details matching the "warning" theme of a challenging subject.
+**Online Course Module Completion:**
+Visualizing completion of an online certification course.
 
 ```django
-{~ progress value="60" label="Potion Brewing Mastery: {{percentage}}" color="warning" bg_color="neutral-25" striped="true" content_bg_color="warning-75" content_color="black-75" ~}
-**Potion Brewing - Current Standing:**
-Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.
+{% verbatim %}
+{~ progress value="4" max_value="6" label="Module {{value}} of {{max_value}}" color="primary" striped="true" content_bg_color="primary-75" content_color="white" ~}
+**Course: Advanced Project Management**
+Completed modules on Risk Assessment and Stakeholder Communication. Next up: Agile Methodologies.
+Estimated completion: 2 weeks.
 {~~}
+{% endverbatim %}
 ```
 
 Renders as:
-{~ progress value="60" label="Potion Brewing Mastery: {{percentage}}" color="warning" bg_color="neutral-25" striped="true" content_bg_color="warning-75" content_color="black-75" ~}
-**Potion Brewing - Current Standing:**
-Successfully brewed Elixir of Vigilance (Grade: Exceeds Expectations). Struggling with Draught of Living Death complexity. Next practical: Polyjuice Potion.
+{~ progress value="4" max_value="6" label="Module {{value}} of {{max_value}}" color="primary" striped="true" content_bg_color="primary-75" content_color="white" ~}
+**Course: Advanced Project Management**
+Completed modules on Risk Assessment and Stakeholder Communication. Next up: Agile Methodologies.
+Estimated completion: 2 weeks.
 {~~}
 
-### Resume & Work Experience
+### Resume & Skill Representation
 
-**Skill Level (from a Resume):**
-Visualizing proficiency in "Django Web Weaving," with popover details that match the primary skill color.
+**Technical Skill Proficiency (Resume):**
+Displaying expertise level in a specific technology, with popover for project examples.
 
 ```django
-{~ progress value="90" label="Django Web Weaving: Expert ({{percentage}})" color="primary" height="sm" content_bg_color="primary-75" content_color="white" ~}
-**Expert Level:** Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning "QuickQuill" familiar messaging platform.
+{% verbatim %}
+{~ progress value="90" label="Python Development: {{percentage}}" color="success" height="sm" content_bg_color="success-75" content_color="white" ~}
+**Python Expertise: Advanced**
+Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy), and machine learning frameworks (Scikit-learn). Contributed to several open-source projects.
 {~~}
+{% endverbatim %}
 ```
 
 Renders as:
-{~ progress value="90" label="Django Web Weaving: Expert ({{percentage}})" color="primary" height="sm" content_bg_color="primary-75" content_color="white" ~}
-**Expert Level:** Proficient in Django ORM, REST framework, Channels, and deploying scalable applications on enchanted servers. Developed the award-winning "QuickQuill" familiar messaging platform.
+{~ progress value="90" label="Python Development: {{percentage}}" color="success" height="sm" content_bg_color="success-75" content_color="white" ~}
+**Python Expertise: Advanced**
+Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy), and machine learning frameworks (Scikit-learn). Contributed to several open-source projects.
 {~~}
 
-**Project Completion at a Previous Role:**
-A progress bar indicating a successfully completed major project, "Phoenix Feather Archival System."
+**Language Fluency:**
+Indicating level of fluency in a foreign language for a resume or profile.
 
 ```django
-{~ progress value="100" label="Project Phoenix: Complete!" color="success" bg_color="success-25" animated="false" content_bg_color="success-75" content_color="white" ~}
-**Project Lead: Phoenix Feather Archival System**
-Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.
+{% verbatim %}
+{~ progress value="70" label="Spanish Fluency: Professional Working Proficiency" color="secondary" content_bg_color="secondary-75" content_color="white" ~}
+**Details:** Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.
 {~~}
+{% endverbatim %}
 ```
 
 Renders as:
-{~ progress value="100" label="Project Phoenix: Complete!" color="success" bg_color="success-25" animated="false" content_bg_color="success-75" content_color="white" ~}
-**Project Lead: Phoenix Feather Archival System**
-Successfully led a team of 5 junior mages to digitize and secure 10,000 ancient scrolls. Project completed on time and 15% under budget. Received a commendation from the Grand Council.
+{~ progress value="70" label="Spanish Fluency: Professional Working Proficiency" color="secondary" content_bg_color="secondary-75" content_color="white" ~}
+**Details:** Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.
 {~~}
 
-### Personal Development & "Leveling Up"
+### Career Progression & Goal Tracking
 
-**Learning a New Incantation (Language):**
-Tracking progress learning "Infernal (Advanced Dialect)". The popover uses a fiery theme.
+**Professional Certification Training:**
+Tracking hours logged towards a professional certification.
 
 ```django
-{~ progress value="25" max_value="100" label="Infernal Study: {{percentage}}" color="error" bg_color="black-75" striped="true" animated="true" height="sm" content_bg_color="error-75" content_color="white" ~}
-**Current Progress: Novice Summoner**
-Mastered basic greetings and 3 minor binding spells. Still confusing "Kazath" (ally) with "Kazaath" (eternal doom). Weekly lessons with Archdemon Belphazor.
+{% verbatim %}
+{~ progress value="85" max_value="120" label="PMP Certification Prep: {{value}}/{{max_value}} Hours" color="warning" bg_color="neutral-25" striped="true" animated="true" height="sm" content_bg_color="warning-75" content_color="black-75" ~}
+**PMP Exam Preparation:**
+85 contact hours completed. Focus areas: Risk Management and Cost Control. Exam scheduled for next quarter.
 {~~}
+{% endverbatim %}
 ```
 
 Renders as:
-{~ progress value="25" max_value="100" label="Infernal Study: {{percentage}}" color="error" bg_color="black-75" striped="true" animated="true" height="sm" content_bg_color="error-75" content_color="white" ~}
-**Current Progress: Novice Summoner**
-Mastered basic greetings and 3 minor binding spells. Still confusing "Kazath" (ally) with "Kazaath" (eternal doom). Weekly lessons with Archdemon Belphazor.
+{~ progress value="85" max_value="120" label="PMP Certification Prep: {{value}}/{{max_value}} Hours" color="warning" bg_color="neutral-25" striped="true" animated="true" height="sm" content_bg_color="warning-75" content_color="black-75" ~}
+**PMP Exam Preparation:**
+85 contact hours completed. Focus areas: Risk Management and Cost Control. Exam scheduled for next quarter.
 {~~}
-
-**Apprentice to Journeyman:**
-Visualizing the overall journey from an apprentice to a journeyman mage.
-
-```django
-{~ progress value="650" max_value="1000" label="Journeyman Rank Progress: {{percentage}}" color="secondary" bg_color="white-75" height="lg" content_bg_color="secondary-75" content_color="white" ~}
-**Path to Journeyman (650/1000 XP):**
-
-* Completed Herbology I & II (+200 XP)
-* Assisted Master Elara in the Crystal Caves (+150 XP)
-* Successfully defended the village from GrumbleSnouts (+300 XP)
-Next Quest: Retrieve the Orb of Whispering Winds.
-{~~}
-```
-
-Renders as:
-{~ progress value="650" max_value="1000" label="Journeyman Rank Progress: {{percentage}}" color="secondary" bg_color="white-75" height="lg" content_bg_color="secondary-75" content_color="white" ~}
-**Path to Journeyman (650/1000 XP):**
-
-* Completed Herbology I & II (+200 XP)
-* Assisted Master Elara in the Crystal Caves (+150 XP)
-* Successfully defended the village from GrumbleSnouts (+300 XP)
-Next Quest: Retrieve the Orb of Whispering Winds.
-{~~}
-
-{~ alert type="info" title="A Note on Colors" ~}
-The `color`, `bg_color`, `content_bg_color`, and `content_color` parameters typically expect theme color names (like `primary`, `info-50`, `black-75`). The actual color values are defined in your site's CSS (e.g., using CSS variables like `--primary-color`). Ensure your chosen color names have corresponding styles for both backgrounds (`sb-bg-*`) and text (`sb-text-*` or direct color application) for optimal results.
-The popover's default styling will apply if `content_bg_color` and `content_color` are not specified.
-{~~}
-
----
