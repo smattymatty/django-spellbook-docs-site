@@ -64,6 +64,8 @@ class ProgressBarBlock(BasicSpellBlock):
         # Standard string/optional parameters
         context["color"] = self.kwargs.get("color", "primary")
         context["bg_color"] = self.kwargs.get("bg_color", "white-50")
+        context["content_color"] = self.kwargs.get("content_color", "black")
+        context["content_bg_color"] = self.kwargs.get("content_bg_color", "white")
         context["height"] = self.kwargs.get("height", "md")
         context["class"] = self.kwargs.get("class", None) 
         context["id"] = self.kwargs.get("id", None) 
@@ -84,5 +86,5 @@ class ProgressBarBlock(BasicSpellBlock):
             processed_label = processed_label.replace("{{max_value}}", str(raw_max_value))
             processed_label = processed_label.replace("{{percentage}}", str(percentage)) # Use calculated percentage here
         context['processed_label'] = processed_label 
-
+        
         return context
