@@ -22,7 +22,7 @@ The `~ hero ~` SpellBlock provides a robust foundation for creating compelling l
 A clean, impactful hero for a consultant's homepage, using the `text_left_image_right` layout.
 
 ```django
-{~ hero layout="text_left_image_right" image_src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Professional consultant presenting a strategy" min_height="70vh" content_align_vertical="center" text_bg_color="black-50" class="hero-consultant" ~}
+{~ hero layout="text_left_image_right" image_src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Professional consultant presenting a strategy" min_height="40vh" content_align_vertical="center" text_bg_color="black-50" class="hero-consultant" ~}
 ## Strategic Business Solutions
 
 Driving growth and efficiency for your organization. I offer expert consultancy in market analysis, operational improvement, and digital transformation. Let's build your success story together.
@@ -33,7 +33,7 @@ With over 15 years of experience across multiple industries, I provide actionabl
 ```
 
 **Renders as:**
-{~ hero layout="text_left_image_right" image_src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Professional consultant presenting a strategy" min_height="70vh" content_align_vertical="center" text_bg_color="black-50" class="hero-consultant" ~}
+{~ hero layout="text_left_image_right" image_src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Professional consultant presenting a strategy" min_height="40vh" content_align_vertical="center" text_bg_color="black-50" class="hero-consultant" ~}
 ## Strategic Business Solutions
 
 Driving growth and efficiency for your organization. I offer expert consultancy in market analysis, operational improvement, and digital transformation. Let's build your success story together.

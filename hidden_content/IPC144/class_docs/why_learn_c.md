@@ -10,7 +10,13 @@ tags:
   - study-guide
 ---
 
+{~ hero layout="text_center_image_background" image_src="https://images.unsplash.com/photo-1635775017492-1eb935a082a4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " image_alt="C Programming Language" min_height="15vh" content_align_vertical="center" text_bg_color="black-50" class="hero-c-mastery" ~}
+
+# Benefits of Learning C in 2024
+
 This document outlines the key advantages of learning the C programming language in 2024, tailored to support your studies in IPC144. It utilizes Django Spellbook components to help you track your understanding and engage with the material.
+
+{~~}
 
 {~ card title="Overall Course Progress Assessment" footer="Update this as your understanding grows." ~}
 This progress bar represents your overall confidence and comprehension of C language concepts covered in IPC144.

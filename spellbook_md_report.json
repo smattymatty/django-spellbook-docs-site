@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 5,
     "successful_pairs": 5,
-    "total_processed_files": 49
+    "total_processed_files": 50
   },
   "pairs": [
     {
@@ -31,7 +31,7 @@
       "destination": "hidden_notes",
       "url_prefix": "hidden",
       "success": true,
-      "processed_files": 11
+      "processed_files": 12
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/proposals_content",
@@ -49,7 +49,7 @@
     },
     {
       "name": "card",
-      "total_uses": 61,
+      "total_uses": 65,
       "failed_uses": 0
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "name": "accordion",
-      "total_uses": 78,
+      "total_uses": 89,
       "failed_uses": 0
     },
     {
@@ -84,12 +84,12 @@
     },
     {
       "name": "progress",
-      "total_uses": 19,
+      "total_uses": 22,
       "failed_uses": 0
     },
     {
       "name": "hero",
-      "total_uses": 8,
+      "total_uses": 11,
       "failed_uses": 0
     }
   ]

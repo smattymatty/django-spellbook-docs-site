@@ -1,5 +1,5 @@
 ---
-title: "Lecture One"
+title: "One Part One: Introduction to Computers, Programs, and C"
 created: 2025-05-12
 tags:
   - c-programming
@@ -10,7 +10,16 @@ tags:
 
 ## Module 1: Introduction to Computers, Programs, and C
 
+{~ hero layout="text_left_image_right" image_src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" image_alt="Example C code" min_height="screen" content_align_vertical="center" text_bg_color="black-50" class="hero-c-intro" ~}
+
 This module lays the groundwork, exploring the essential components and concepts.
+
+1. What is a **Computer**?
+2. The Central Processing Unit (**CPU**)
+3. Memory (Random Access Memory or **RAM**)
+
+And more...
+{~~}
 
 {~ accordion title="What is a Computer?" ~}
 A computer, in its essence, is a device comprising a Central Processing Unit (CPU), memory, storage (like a hard disk), input/output mechanisms, and communication channels. These components work in concert, guided by a mystical 'Bus'.
@@ -19,14 +28,14 @@ A computer, in its essence, is a device comprising a Central Processing Unit (CP
 
 * **CPU:** The brain, executing instructions.
 * **Memory:** Temporary storage for active programs and data.
-* **Storage Devices:** Permanent repositories for your digital grimoires (e.g., Disk, CD, Tape).
+* **Storage Devices:** Permanent repositories for your digital files (e.g., Disk, CD, Tape).
 * **Input Devices:** How you command the machine (e.g., Keyboard, Mouse).
 * **Output Devices:** How the machine responds (e.g., Monitor, Printer).
-* **Communication Devices:** Bridges to other realms (e.g., Modem, Network Interface Card - NIC).
+* **Communication Devices:** Bridges to other networks (e.g., Modem, Network Interface Card - NIC).
 {~~}
 
 {~ accordion title="The Central Processing Unit (CPU)" ~}
-The CPU is the heart of the magical construct, retrieving and executing instructions from memory. Its speed, measured in Megahertz (MHz) or Gigahertz (GHz), dictates how quickly it can process spells. Modern CPUs, like the Intel Core series, possess immense computational power.
+The CPU is the heart of the computer, retrieving and executing instructions from memory. Its speed, measured in Megahertz (MHz) or Gigahertz (GHz), dictates how quickly it can process spells. Modern CPUs, like the Intel Core series, possess immense computational power.
 For example, 1 MHz means 1 million pulses per second, while 1 GHz is 1000 MHz.
 {~~}
 

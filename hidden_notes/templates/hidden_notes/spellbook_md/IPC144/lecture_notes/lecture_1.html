@@ -2,7 +2,97 @@
 
 {% block spellbook_md %}
 <h2>Module 1: Introduction to Computers, Programs, and C</h2>
-<p>This module lays the groundwork, exploring the essential components and concepts.</p>
+<p><section
+  class="sb-hero sb-hero-layout--text-left-image-right sb-items-center  sb-white hero-c-intro"
+  style="min-height: screen;"
+
+>
+
+
+<div class="sb-hero-content-wrapper sb-grid sb-grid-cols-1 md:sb-grid-cols-2 sb-gap-8">
+  <div class="sb-hero-text-column sb-bg-black-50">
+    <p>This module lays the groundwork, exploring the essential components and concepts.</p>
+<ol>
+<li>What is a <strong>Computer</strong>?</li>
+<li>The Central Processing Unit (<strong>CPU</strong>)</li>
+<li>Memory (Random Access Memory or <strong>RAM</strong>)</li>
+</ol>
+<p>And more...</p>
+  </div>
+  <div class="sb-hero-media-column">
+
+      <img src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?q=80&amp;w=1374&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Example C code" class="sb-hero-image">
+
+  </div>
+</div>
+
+</section>
+</p>
+<style>
+    .sb-hero-video {
+        display: block;
+        width: 100%; /* Or max-width: 100% depending on desired scaling */
+        height: auto;
+        border-radius: var(--sb-border-radius-md, 0.375rem);
+        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
+      }
+      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
+        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* Clips the video/image */
+        z-index: 1;
+    }
+    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
+    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translateX(-50%) translateY(-50%);
+        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+    }
+    .sb-hero-full-bleed-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+      }
+      /* The .sb-hero-layout--image-only-full would need position: relative */
+      .sb-hero-video-embed-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        /* Common aspect ratios: */
+        /* padding-top: 56.25%; 16:9 */
+        /* padding-top: 75%;    4:3 */
+      }
+      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
+          padding-top: 56.25%;
+      }
+
+      .sb-hero-video-embed-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    </style>
+
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">What is a Computer?</span>
@@ -23,10 +113,10 @@
 <ul>
 <li><strong>CPU:</strong> The brain, executing instructions.</li>
 <li><strong>Memory:</strong> Temporary storage for active programs and data.</li>
-<li><strong>Storage Devices:</strong> Permanent repositories for your digital grimoires (e.g., Disk, CD, Tape).</li>
+<li><strong>Storage Devices:</strong> Permanent repositories for your digital files (e.g., Disk, CD, Tape).</li>
 <li><strong>Input Devices:</strong> How you command the machine (e.g., Keyboard, Mouse).</li>
 <li><strong>Output Devices:</strong> How the machine responds (e.g., Monitor, Printer).</li>
-<li><strong>Communication Devices:</strong> Bridges to other realms (e.g., Modem, Network Interface Card - NIC).</li>
+<li><strong>Communication Devices:</strong> Bridges to other networks (e.g., Modem, Network Interface Card - NIC).</li>
 </ul>
         </div>
     </div>
@@ -47,7 +137,7 @@
     </button>
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
-            <p>The CPU is the heart of the magical construct, retrieving and executing instructions from memory. Its speed, measured in Megahertz (MHz) or Gigahertz (GHz), dictates how quickly it can process spells. Modern CPUs, like the Intel Core series, possess immense computational power.<br />
+            <p>The CPU is the heart of the computer, retrieving and executing instructions from memory. Its speed, measured in Megahertz (MHz) or Gigahertz (GHz), dictates how quickly it can process spells. Modern CPUs, like the Intel Core series, possess immense computational power.<br />
 For example, 1 MHz means 1 million pulses per second, while 1 GHz is 1000 MHz.</p>
         </div>
     </div>
