@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 5,
     "successful_pairs": 5,
-    "total_processed_files": 48
+    "total_processed_files": 49
   },
   "pairs": [
     {
@@ -24,7 +24,7 @@
       "destination": "examples",
       "url_prefix": "examples",
       "success": true,
-      "processed_files": 7
+      "processed_files": 8
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/hidden_content",
@@ -85,6 +85,11 @@
     {
       "name": "progress",
       "total_uses": 19,
+      "failed_uses": 0
+    },
+    {
+      "name": "hero",
+      "total_uses": 8,
       "failed_uses": 0
     }
   ]

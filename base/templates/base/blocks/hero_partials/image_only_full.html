@@ -1,0 +1,12 @@
+{% comment %} Partial: hero_partials/image_only_full.html (or media_only_full.html) {% endcomment %}
+{% if video_src %}
+  <video class="sb-hero-full-bleed-video" poster="{{ image_src|default:'' }}" {% if video_autoplay %}autoplay{% endif %} {% if video_loop %}loop{% endif %} {% if video_muted %}muted{% endif %} playsinline>
+    <source src="{{ video_src }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+{% elif image_src %}
+  <img src="{{ image_src }}" alt="{{ image_alt }}" class="sb-hero-full-bleed-image">
+{% endif %}
+<div class="sb-hero-content-overlay {% if text_bg_color %}sb-bg-{{ text_bg_color }}{% endif %} {% if text_color %}sb-text-{{ text_color }}{% endif %}">
+  {{ content|safe }}
+</div>

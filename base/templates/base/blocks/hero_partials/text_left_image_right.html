@@ -1,0 +1,38 @@
+{% comment %} Partial: hero_partials/text_left_image_right.html (with YouTube/Vimeo support) {% endcomment %}
+<div class="sb-hero-content-wrapper sb-grid sb-grid-cols-1 md:sb-grid-cols-2 sb-gap-8">
+  <div class="sb-hero-text-column {% if text_bg_color %}sb-bg-{{ text_bg_color }}{% endif %}">
+    {{ content|safe }}
+  </div>
+  <div class="sb-hero-media-column">
+    {% if video_src_raw %}
+      {% if video_type == "youtube" and youtube_video_id %}
+        <div class="sb-hero-video-embed-wrapper sb-aspect-video"> {# Aspect ratio wrapper for iframe #}
+          <iframe
+            src="{{ youtube_embed_url }}"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="YouTube video player for {{ image_alt|default:'Hero Video' }}">
+          </iframe>
+        </div>
+      {% elif video_type == "vimeo" and vimeo_video_id %}
+        <div class="sb-hero-video-embed-wrapper sb-aspect-video">
+          <iframe
+            src="{{ vimeo_embed_url }}"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            title="Vimeo video player for {{ image_alt|default:'Hero Video' }}">
+          </iframe>
+        </div>
+      {% elif video_type == "direct" %}
+        <video class="sb-hero-video" poster="{{ image_src|default:'' }}" {% if video_autoplay %}autoplay{% endif %} {% if video_loop %}loop{% endif %} {% if video_muted %}muted{% endif %} {% if video_controls %}controls{% endif %} playsinline>
+          <source src="{{ video_src_raw }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      {% endif %}
+    {% elif image_src %}
+      <img src="{{ image_src }}" alt="{{ image_alt }}" class="sb-hero-image">
+    {% endif %}
+  </div>
+</div>

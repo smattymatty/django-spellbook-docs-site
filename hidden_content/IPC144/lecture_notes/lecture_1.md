@@ -250,9 +250,152 @@ Refers to the enormous volume of data being generated globally. Big data applica
 
 {~ card title="Setting up Your Workshop" ~}
 A typical C development environment includes:
-1.  **Text Editor:** To write your C source code (e.g., VS Code, Sublime Text, Vim, Emacs, or a full-fledged IDE).
-2.  **C Compiler:** To translate your source code into an executable program (e.g., GCC (GNU Compiler Collection) on Linux/macOS, MinGW for Windows, or Clang).
-3.  **Debugger:** A tool to help you find and fix errors in your code by stepping through it line by line (e.g., GDB (GNU Debugger)).
-4.  **Build Tools (Optional for larger projects):** Tools like `make` to automate the compilation process of projects with multiple source files.
-5.  **Version Control System (Recommended):** Tools like Git to track changes to your code and collaborate with others.
+
+1. **Text Editor:** To write your C source code (e.g., VS Code, Sublime Text, Vim, Emacs, or a full-fledged IDE).
+2. **C Compiler:** To translate your source code into an executable program (e.g., GCC (GNU Compiler Collection) on Linux/macOS, MinGW for Windows, or Clang).
+3. **Debugger:** A tool to help you find and fix errors in your code by stepping through it line by line (e.g., GDB (GNU Debugger)).
+4. **Build Tools (Optional for larger projects):** Tools like `make` to automate the compilation process of projects with multiple source files.
+5. **Version Control System (Recommended):** Tools like Git to track changes to your code and collaborate with others.
 {~~}
+
+## What I wrote during Lecture 01
+
+```c
+#include <stdio.h>
+#include <stdlib.h> // For realloc, free, NULL, exit
+
+struct string {
+    char *str;
+    int len;
+};
+
+void printString(struct string s) {
+    int i;
+    for (i = 0; i < s.len; i++) {
+        printf("%c", s.str[i]);
+    }
+    // Consider if you want the newline here or after the call in main
+}
+
+int main(void) {
+    puts("Hello, my fellow gamers!");
+    char c;
+
+    struct string s;
+    s.str = NULL; // Initialize s.str to NULL
+    s.len = 0;    // Initialize s.len to 0
+
+    printf("Enter text, then press Enter:\n");
+
+    // Also good to check for EOF (End Of File)
+    while ((c = getchar()) != '\n' && c != EOF) {
+        // Calculate new size (for current characters + new one + null terminator)
+        // It's safer to allocate space for a null terminator too
+        int new_len_with_null = s.len + 1 + 1;
+        char *temp_str = (char *)realloc(s.str, sizeof(char) * new_len_with_null);
+
+        if (temp_str == NULL) {
+            // Handle realloc failure
+            perror("Failed to reallocate memory");
+            free(s.str); // Free any previously allocated memory
+            return 1;    // Exit with an error code
+        }
+        s.str = temp_str; // Update s.str only if realloc was successful
+
+        s.str[s.len] = c;    // Add the new character
+        s.len++;             // Increment the length
+        s.str[s.len] = '\0'; // Add null terminator for safety with other string functions
+
+        if (c == 'w' || c == 'W') {
+            printf("You are a winner.\n");
+        }
+        if (c == 'l' || c == 'L') {
+            printf("You are a loser.\n");
+        }
+        // printf("You typed: %c.\n", c); // This might be a bit noisy here
+    }
+
+    printf("The string is: ");
+    printString(s); // Now this is safer
+    printf("\n");   // Ensure a newline after printing the string
+
+    free(s.str); // Free the final allocated memory
+    s.str = NULL; // Good practice: set pointer to NULL after freeing
+
+    return 0; // Indicate successful execution
+}
+```
+
+In this example, we're using a `struct` to store a string. The `struct` contains two fields: `str` and `len`. The `str` field is a pointer to a character array, and the `len` field is an integer representing the length of the string.
+
+The `printString` function takes a `struct string` as an argument and prints the string to the console.
+
+## Understanding a C Program for Dynamic String Input
+
+This C program is designed to read a line of text entered by the user. A key feature is its ability to handle strings of varying lengths without a predefined size limit, by dynamically allocating memory as the user types. This approach showcases several important C programming concepts, including custom data structures, direct memory management, and robust error handling.
+
+### Core Components and Logic
+
+The program's functionality is built around these central ideas:
+
+* **Custom String Representation:**
+    * To manage the string and its properties efficiently, the program typically defines a custom data structure (using `struct` in C). This structure usually bundles together:
+        1.  A **pointer** (`char *`) that will hold the memory address of the first character of the string.
+        2.  An **integer** that tracks the current number of characters in the string (its length).
+
+* **Dynamic Memory Management – The Heart of the Program:**
+    * **Initialization:** Before any input is read, the string structure is initialized to represent an empty string. The character pointer is often set to `NULL` (a special pointer value indicating it doesn't point to any valid memory yet), and the length is set to `0`.
+    * **Growth on Demand (`realloc`):** This is where the "dynamic" aspect comes in. As each character is typed by the user:
+        * The program attempts to resize the memory block allocated for the string. The `realloc` standard library function is ideal for this, as it tries to extend the existing memory block or find a new, larger one if necessary. Memory is allocated for the current characters, the new character, and a special "null terminator" character.
+        * **Crucial Error Checking:** `realloc` can fail if the system runs out of memory. The program responsibly checks the pointer returned by `realloc`. If it's `NULL`, it signifies an allocation failure. The program should then handle this error (e.g., by printing an error message to `stderr` using `perror`, freeing any memory that was successfully allocated previously, and exiting or returning an error code).
+    * **Storing the Character:** If memory allocation is successful, the new character is added to the end of the string in the newly allocated space.
+    * **Updating Length:** The string's length counter in the custom structure is incremented.
+    * **Null Termination:** After adding the new character, a **null terminator** (`\0`) is placed at the very end of the character sequence. This is a fundamental convention in C. The null terminator marks the end of the string and is essential for many standard C string library functions to work correctly.
+    * **Memory Deallocation (`free`):** Once the program has finished using the dynamically allocated string (e.g., after printing it), the memory must be explicitly returned to the system using the `free` function. This prevents memory leaks. It's also good practice to set the pointer to `NULL` after freeing it to avoid accidental use of a "dangling pointer."
+
+* **Character-by-Character Input (`getchar`):**
+    * The program reads input from the user one character at a time, typically using the `getchar()` standard library function.
+    * This input process is usually controlled by a loop that continues until a specific condition is met – commonly, when the user presses the 'Enter' key (which generates a **newline character**, `\n`) or if an **End-Of-File (EOF)** condition is detected (e.g., if input is redirected from a file, or the user signals EOF via keyboard shortcut).
+
+* **Conditional In-Loop Processing (Example):**
+    * The example code also includes a simple demonstration of processing characters as they are input. For instance, if the user types a 'w' or 'W', a "winner" message is printed; if they type an 'l' or 'L', a "loser" message is printed. This shows how input can be reacted to immediately.
+
+* **Custom String Output Function:**
+    * A dedicated function is often created to print the contents of the custom string structure. This function would iterate from the beginning of the character array (pointed to by `str`) up to its current `len`, printing each character.
+
+### Program Flow Summary
+
+The typical execution sequence of such a program is:
+
+1. **Initialize:** Set up the custom string structure to represent an empty string (pointer to `NULL`, length to `0`).
+2. **Prompt User:** Display a message asking the user to enter text.
+3. **Input Loop:**
+    a.  Read a single character using `getchar()`.
+    b.  **Check for Termination:** If the character is a newline (`\n`) or `EOF`, exit the loop.
+    c.  **Reallocate Memory:** Call `realloc` to request memory for the current string length plus the new character, plus one for the null terminator.
+    d.  **Handle Allocation Failure:** If `realloc` returns `NULL`:
+        i.  Print an error message (e.g., using `perror`).
+        ii. Free any memory previously allocated to `s.str` to avoid leaks.
+        iii. Exit the program with an error status.
+    e.  **Store Character & Update:** If `realloc` succeeds:
+        i.  Assign the newly returned pointer to the string's character pointer.
+        ii. Add the new character to the end of the string data.
+        iii. Increment the string length.
+        iv. Place the null terminator (`\0`) after the last valid character.
+    f.  **Conditional Logic:** Perform any immediate checks based on the input character (like the 'w'/'l' example).
+4. **Output:** After the loop terminates, print the complete string that was read.
+5. **Cleanup:** Call `free` to release the dynamically allocated memory for the string. Set the pointer to `NULL`.
+6. **Terminate:** End the program, typically returning `0` to indicate success.
+
+### Key Learning Takeaways from Such Code
+
+Studying and understanding this type of program provides insights into several core C concepts:
+
+* **Dynamic Memory Management:** The necessity and techniques for allocating, resizing (`realloc`), and freeing (`free`) memory at runtime.
+* **Pointers:** Deepens understanding of how pointers are used to manage memory addresses.
+* **Custom Data Structures (`struct`):** How to define and use structures to group related data.
+* **Error Handling:** The importance of anticipating and managing potential runtime errors, especially memory allocation failures.
+* **Character-Based I/O:** Techniques for reading and processing input one character at a time.
+* **C-Style Strings:** The convention of null-terminated strings and their management.
+* **Memory Safety:** Practices like checking `realloc`'s return, freeing memory, and setting freed pointers to `NULL` to prevent common bugs like memory leaks and dangling pointers.
+* 
