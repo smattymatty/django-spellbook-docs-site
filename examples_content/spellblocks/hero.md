@@ -1,5 +1,5 @@
 ---
-title: Advanced Hero Block Applications
+title: Hero 
 created: 2025-05-14
 tags:
   - spellblock
@@ -100,7 +100,7 @@ Your financial future, secured.
 Using `text_center_image_background` with a vibrant image and clear call to action. `content_align_vertical="bottom"` pushes content down.
 
 ```django
-{~ hero layout="text_center_image_background" image_src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Dynamic workshop event" text_color="white" text_bg_color="primary-75" min_height="60vh" content_align_vertical="bottom" ~}
+{~ hero layout="text_center_image_background" image_src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Dynamic workshop event" text_color="white" text_bg_color="primary-50" content_align_vertical="bottom" min_height="75vh" ~}
 ## Upcoming Workshop: Mastering Digital Marketing
 
 **Date:** October 26th, 2025 | **Location:** Online
@@ -110,7 +110,7 @@ Join industry experts to learn the latest trends and techniques in digital marke
 ```
 
 **Renders as:**
-{~ hero layout="text_center_image_background" image_src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Dynamic workshop event" text_color="white" text_bg_color="primary-75" min_height="60vh" content_align_vertical="bottom" ~}
+{~ hero layout="text_center_image_background" image_src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" image_alt="Dynamic workshop event" text_color="white" text_bg_color="primary-50" content_align_vertical="bottom" min_height="75vh" ~}
 ## Upcoming Workshop: Mastering Digital Marketing
 
 **Date:** October 26th, 2025 | **Location:** Online

@@ -27,6 +27,7 @@ class HeroSpellBlock(BasicSpellBlock):
     DEFAULT_CONTENT_ALIGN_VERTICAL = "center"
 
     # Video defaults (even if deferred for MVP, good to have placeholders)
+    # TODO: Add video support
     DEFAULT_VIDEO_AUTOPLAY = False # Changed from true as per our discussion
     DEFAULT_VIDEO_LOOP = True
     DEFAULT_VIDEO_MUTED = True # Essential if autoplay is true
@@ -66,63 +67,6 @@ class HeroSpellBlock(BasicSpellBlock):
             "content_align_vertical", self.DEFAULT_CONTENT_ALIGN_VERTICAL
         ).lower()
         context["custom_class"] = self.kwargs.get("class", "") # User-provided custom classes
-
-        # --- Video (Deferred for MVP, but showing how params would be processed) ---
-        # For MVP, these will likely be None or their defaults but not used in MVP templates
-        context["video_src"] = self.kwargs.get("video_src")
-        context["video_autoplay"] = self.kwargs.get("video_autoplay", self.DEFAULT_VIDEO_AUTOPLAY)
-        context["video_loop"] = self.kwargs.get("video_loop", self.DEFAULT_VIDEO_LOOP)
-        context["video_muted"] = self.kwargs.get("video_muted", self.DEFAULT_VIDEO_MUTED)
-        context["video_controls"] = self.kwargs.get("video_controls", self.DEFAULT_VIDEO_CONTROLS)
-
-        # Ensure autoplay implies muted if not explicitly set otherwise by user
-        if context["video_autoplay"] and not self.kwargs.get("video_muted", False): # Check if user explicitly set muted to False
-            context["video_muted"] = True
-            
-        video_src_raw = self.kwargs.get("video_src")
-        context["video_src_raw"] = video_src_raw
-        context["video_type"] = "direct" # Default
-
-        if video_src_raw:
-            if "youtube.com/watch?v=" in video_src_raw or "youtu.be/" in video_src_raw:
-                context["video_type"] = "youtube"
-                # Extract video ID
-                video_id = None
-                if "youtube.com/watch?v=" in video_src_raw:
-                    video_id = video_src_raw.split("v=")[1].split('&')[0]
-                elif "youtu.be/" in video_src_raw:
-                    video_id = video_src_raw.split("/")[-1].split('?')[0]
-                context["youtube_video_id"] = video_id
-                # Build YouTube embed URL with parameters
-                # Example: https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID&controls=0
-                yt_params = []
-                if self.kwargs.get("video_autoplay", self.DEFAULT_VIDEO_AUTOPLAY): yt_params.append("autoplay=1")
-                if self.kwargs.get("video_muted", self.DEFAULT_VIDEO_MUTED): yt_params.append("mute=1") # Autoplay requires mute
-                if self.kwargs.get("video_loop", self.DEFAULT_VIDEO_LOOP): yt_params.append(f"loop=1&playlist={video_id}") # Loop needs playlist=VIDEO_ID
-                if not self.kwargs.get("video_controls", self.DEFAULT_VIDEO_CONTROLS): yt_params.append("controls=0")
-                # Add other YT params like modestbranding=1, rel=0 etc. if desired
-                context["youtube_embed_url"] = f"https://www.youtube.com/embed/{video_id}?{ '&'.join(yt_params) if yt_params else '' }"
-
-            elif "vimeo.com/" in video_src_raw:
-                context["video_type"] = "vimeo"
-                # Similar logic to extract Vimeo ID and build embed URL
-                # Vimeo embed URLs look like: https://player.vimeo.com/video/VIDEO_ID?autoplay=1&loop=1&muted=1
-                try:
-                    video_id = video_src_raw.split("/")[-1].split('?')[0]
-                    context["vimeo_video_id"] = video_id
-                    vm_params = []
-                    if self.kwargs.get("video_autoplay", self.DEFAULT_VIDEO_AUTOPLAY): vm_params.append("autoplay=1")
-                    if self.kwargs.get("video_loop", self.DEFAULT_VIDEO_LOOP): vm_params.append("loop=1")
-                    if self.kwargs.get("video_muted", self.DEFAULT_VIDEO_MUTED): vm_params.append("muted=1")
-                    if not self.kwargs.get("video_controls", self.DEFAULT_VIDEO_CONTROLS): vm_params.append("controls=0") # Vimeo might use 'background=1' for no controls + loop + autoplay
-                    # For background-like behavior, Vimeo often suggests ?background=1 (implies autoplay, loop, muted, no controls)
-                    # You might add a specific parameter like `video_mode="background"`
-                    context["vimeo_embed_url"] = f"https://player.vimeo.com/video/{video_id}?{ '&'.join(vm_params) if vm_params else '' }"
-
-                except IndexError:
-                    logger.warning(f"Could not parse Vimeo video ID from: {video_src_raw}")
-                    context["video_type"] = "direct" # Fallback if parsing fails
-
 
         # The 'content' variable (inner markdown processed to HTML) is already in context
         # from BasicSpellBlock's get_context.

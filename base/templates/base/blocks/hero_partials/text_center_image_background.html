@@ -1,16 +1,17 @@
-{% comment %} Partial: hero_partials/text_center_image_background.html {% endcomment %}
+{% comment %}
+  Partial: hero_partials/text_center_image_background.html
+  (Ensures content wrapper is a direct child of .sb-hero for flex alignment)
+{% endcomment %}
+
 <div class="sb-hero-background-media-wrapper">
-  {% if video_src %}
-    <video class="sb-hero-background-video" poster="{{ image_src|default:'' }}" {% if video_autoplay %}autoplay{% endif %} {% if video_loop %}loop{% endif %} {% if video_muted %}muted{% endif %} playsinline>
-      <source src="{{ video_src }}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  {% elif image_src %}
-    {# This div could get style="background-image: url(...)" if not using an img tag strategy #}
-     <div class="sb-hero-background-image-actual" style="background-image: url('{{ image_src }}');"></div>
-  {% endif %}
-  <div class="sb-hero-overlay"></div> {# Overlay for contrast #}
-  <div class="sb-hero-content-wrapper sb-text-center {% if text_bg_color %}sb-bg-{{ text_bg_color }}{% endif %}">
+    {% if image_src %}
+        <img src="{{ image_src }}"
+             alt="{{ image_alt|default:'Background image for hero section' }}"
+             class="sb-hero-background-image-actual">
+    {% endif %}
+    <div class="sb-hero-overlay"></div>
+</div>
+
+<div class="sb-hero-content-wrapper sb-text-center {% if text_bg_color %}sb-bg-{{ text_bg_color }}{% endif %} {% if text_color %}sb-{{ text_color }}{% endif %}">
     {{ content|safe }}
-  </div>
 </div>

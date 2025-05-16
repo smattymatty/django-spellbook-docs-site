@@ -37,71 +37,6 @@ With over 15 years of experience across multiple industries, I provide actionabl
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 2: Software Product Showcase with Background Image</h2>
 <p>Utilizing the <code>text_center_image_background</code> layout to highlight a software product. The <code>text_bg_color</code> with slight transparency ensures the text is legible over the image.</p>
@@ -120,85 +55,23 @@ Discover **SynergyFlow Pro** – the ultimate platform for streamlining your tea
 >
 
 
+
 <div class="sb-hero-background-media-wrapper">
 
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D&amp;auto.format&amp;fit=crop&amp;w=800&amp;q=60"
+             alt="Abstract software interface"
+             class="sb-hero-background-image-actual">
 
-     <div class="sb-hero-background-image-actual" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D&amp;auto.format&amp;fit=crop&amp;w=800&amp;q=60');"></div>
+    <div class="sb-hero-overlay"></div>
+</div>
 
-  <div class="sb-hero-overlay"></div> 
-  <div class="sb-hero-content-wrapper sb-text-center sb-bg-black-25">
+<div class="sb-hero-content-wrapper sb-text-center sb-bg-black-25 sb-white">
     <h1 id="innovate-automate-elevate">Innovate. Automate. Elevate.</h1>
 <p>Discover <strong>SynergyFlow Pro</strong> – the ultimate platform for streamlining your team's workflow and boosting productivity. Intuitive design, powerful features.</p>
-  </div>
 </div>
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 3: Minimalist Text-Only Hero for a Service Page</h2>
 <p>The <code>text_only_centered</code> layout is perfect for a direct, message-focused introduction, such as for a specialized service.</p>
@@ -228,75 +101,10 @@ Your financial future, secured.
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 4: Workshop or Event Announcement</h2>
 <p>Using <code>text_center_image_background</code> with a vibrant image and clear call to action. <code>content_align_vertical="bottom"</code> pushes content down.</p>
-<pre><code class="language-django">{~ hero layout=&quot;text_center_image_background&quot; image_src=&quot;https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Dynamic workshop event&quot; text_color=&quot;white&quot; text_bg_color=&quot;primary-75&quot; min_height=&quot;60vh&quot; content_align_vertical=&quot;bottom&quot; ~}
+<pre><code class="language-django">{~ hero layout=&quot;text_center_image_background&quot; image_src=&quot;https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Dynamic workshop event&quot; text_color=&quot;white&quot; text_bg_color=&quot;primary-50&quot; content_align_vertical=&quot;bottom&quot; min_height=&quot;75vh&quot; ~}
 ## Upcoming Workshop: Mastering Digital Marketing
 
 **Date:** October 26th, 2025 | **Location:** Online
@@ -307,91 +115,29 @@ Join industry experts to learn the latest trends and techniques in digital marke
 <p><strong>Renders as:</strong></p>
 <p><section
   class="sb-hero sb-hero-layout--text-center-image-background sb-items-end  sb-white "
-  style="min-height: 60vh;"
+  style="min-height: 75vh;"
 
 >
 
 
+
 <div class="sb-hero-background-media-wrapper">
 
+        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+             alt="Dynamic workshop event"
+             class="sb-hero-background-image-actual">
 
-     <div class="sb-hero-background-image-actual" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60');"></div>
+    <div class="sb-hero-overlay"></div>
+</div>
 
-  <div class="sb-hero-overlay"></div> 
-  <div class="sb-hero-content-wrapper sb-text-center sb-bg-primary-75">
+<div class="sb-hero-content-wrapper sb-text-center sb-bg-primary-50 sb-white">
     <h2 id="upcoming-workshop-mastering-digital-marketing">Upcoming Workshop: Mastering Digital Marketing</h2>
 <p><strong>Date:</strong> October 26th, 2025 | <strong>Location:</strong> Online<br />
 Join industry experts to learn the latest trends and techniques in digital marketing. Limited seats available!</p>
-  </div>
 </div>
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 5: Developer Skill Highlight on a Resume/Portfolio</h2>
 <p>A <code>text_left_image_right</code> layout focusing on a specific skill, with text background for clarity if image has varied colors.</p>
@@ -430,71 +176,6 @@ Designing and implementing robust, scalable, and secure RESTful APIs using Pytho
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <p>The <code>~ hero ~</code> SpellBlock can be used to create stunning, movie-themed hero sections, perfect for film reviews, fan pages, or promotional content. These examples demonstrate the new layouts: <code>text_right_image_left</code>, <code>image_top_text_bottom</code>, and <code>image_only_full</code>.</p>
 <h2>Example 1: Sci-Fi Epic - <code>text_right_image_left</code></h2>
 <p>Showcasing a movie poster on the left and review/details on the right.</p>
@@ -536,71 +217,6 @@ A breathtaking cinematic achievement, Denis Villeneuve's sequel expands on the r
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 2: Animated Feature - <code>image_top_text_bottom</code></h2>
 <p>Perfect for a family-friendly movie, with a vibrant wide image at the top and details below.</p>
@@ -636,71 +252,6 @@ Miles Morales catapults across the Multiverse, where he encounters a team of Spi
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 <h2>Example 3: Indie Film Festival - <code>image_only_full</code></h2>
 <p>A full-bleed image to set the mood for a film festival, with overlaid text announcing the event. <code>text_bg_color</code> is crucial for readability.</p>
@@ -726,7 +277,7 @@ Discover the future of cinema. Submissions now open!
 
   <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmlsbSUyMGZlc3RpdmFsfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Audience at an independent film festival" class="sb-hero-full-bleed-image">
 
-<div class="sb-hero-content-overlay sb-bg-black-75 sb-text-white">
+<div class="sb-hero-content-overlay sb-bg-black-75 sb-white">
   <h1 id="sundown-independent-film-festival">Sundown Independent Film Festival</h1>
 <p><strong>Celebrating Visionary Filmmakers</strong></p>
 <p>Join us: June 10-15, 2026</p>
@@ -736,70 +287,5 @@ Discover the future of cinema. Submissions now open!
 
 </section>
 </p>
-<style>
-    .sb-hero-video {
-        display: block;
-        width: 100%; /* Or max-width: 100% depending on desired scaling */
-        height: auto;
-        border-radius: var(--sb-border-radius-md, 0.375rem);
-        object-fit: cover; /* If you want it to fill a specific aspect ratio box */
-      }
-      .sb-hero-layout--text-center-image-background .sb-hero-background-media-wrapper {
-        position: absolute; /* Fills the parent .sb-hero which should be position:relative */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Clips the video/image */
-        z-index: 1;
-    }
-    .sb-hero-layout--text-center-image-background .sb-hero-background-video,
-    .sb-hero-layout--text-center-image-background .sb-hero-background-image-actual {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translateX(-50%) translateY(-50%);
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-    }
-    .sb-hero-full-bleed-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        z-index: 1;
-      }
-      /* The .sb-hero-layout--image-only-full would need position: relative */
-      .sb-hero-video-embed-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        /* Common aspect ratios: */
-        /* padding-top: 56.25%; 16:9 */
-        /* padding-top: 75%;    4:3 */
-      }
-      .sb-hero-video-embed-wrapper.sb-aspect-video { /* Default to 16:9 if this class is used */
-          padding-top: 56.25%;
-      }
-
-      .sb-hero-video-embed-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-    </style>
-
 <hr />
 {% endblock %}
