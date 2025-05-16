@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'analytics',
     'hidden_notes',
     'proposals',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -217,3 +218,13 @@ ANALYTICS_EXCLUDED_PREFIXES = [
     '/hidden',
     '/prop',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer', # Explicitly include this
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+}
