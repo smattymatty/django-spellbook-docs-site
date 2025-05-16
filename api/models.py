@@ -8,6 +8,7 @@ class StoredMarkdown(models.Model):
         max_length=255, blank=True, null=True, 
         help_text="An optional title for this Markdown content."
         )
+        
     markdown_content = models.TextField(help_text="The raw Markdown content.")
     html_content = models.TextField(
         blank=True, editable=False, 

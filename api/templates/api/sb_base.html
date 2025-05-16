@@ -1,0 +1,8 @@
+{% extends 'base/django_spellbook/bases/empty_base.html' %}
+{% load spellbook_tags %}
+{% spellbook_styles %}
+{% block spellbook_md %}
+    <div class="sb-ml-4 api-content">
+        {{ markdown_content|safe }}
+    </div>
+{% endblock %}

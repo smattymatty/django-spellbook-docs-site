@@ -1,0 +1,15 @@
+<!-- docs/templates/changelog/base.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% load spellbook_tags %}
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static 'css/code_block.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
+    <link rel="stylesheet" href="{% static 'highlight/styles/default.min.css' %}">
+    <script src="{% static 'highlight/highlight.min.js' %}"></script>
+    <script>hljs.highlightAll();</script>
+    {% spellbook_styles %}
+{% endblock %}
+{% block content %}
+    {% block api_content %}{% endblock %}
+{% endblock %}

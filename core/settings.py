@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docs',
+    'rest_framework',
     'django_spellbook',
     'base',
     'examples',
