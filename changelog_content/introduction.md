@@ -6,6 +6,7 @@ This changelog serves as a record of all notable changes to Django Spellbook, in
 
 {~ accordion title="Changelog Navigation" open=true ~}
 
+- [v0.1.14](/changelog/v0_1/14) Released: May 21, 2025
 - [v0.1.13](/changelog/v0_1/13) Released: May 11, 2025
 - [v0.1.12](/changelog/v0_1/12) Released: April 30, 2025
 - [v0.1.11](/changelog/v0_1/11) Released: April 19, 2025

@@ -128,7 +128,7 @@ Take an existing Django view that's performing slowly and:
 {~~}
 ```
 
-{% a href="/docs/Markdown/custom-spellblocks" .super-link %}
+{% a href="/docs/Spellblocks/custom-spellblocks/" .super-link %}
 Read Next: Creating Custom SpellBlocks
 {% enda %}
 

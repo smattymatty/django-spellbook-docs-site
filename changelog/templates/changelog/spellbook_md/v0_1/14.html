@@ -1,0 +1,487 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2><strong>Version 0.1.14</strong></h2>
+<p><section
+  class="sb-hero sb-hero-layout--text-only-centered sb-items-center sb-bg-black-50 sb-white hero-service-intro"
+  style="min-height: 400px;"
+
+>
+
+
+<div class="sb-hero-content-wrapper sb-text-center sb-bg-info-25"> 
+  <h3 id="released-may-21-2025">Released May 21, 2025</h3>
+<p>This update includes two new SpellBlocks: <code>~ hero ~</code> and <code>~ progress ~</code>. These are both very powerful and versatile components that can be used to create compelling and visually appealing content.</p>
+<p>Ideally, you would never have to leave your markdown editor to create a hero section or progress bar. These blocks are designed to be easy to use and provide a solid foundation for building more complex content.</p>
+</div>
+
+
+</section>
+</p>
+<h1>New Features</h1>
+<h2>Hero SpellBlock</h2>
+<p>The <code>~ hero ~</code> SpellBlock provides a robust foundation for creating compelling leading sections.</p>
+<pre><code class="language-django">{~ hero layout=&quot;text_left_image_right&quot; image_src=&quot;https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Professional consultant presenting a strategy&quot; min_height=&quot;40vh&quot; content_align_vertical=&quot;center&quot; text_bg_color=&quot;black-50&quot; class=&quot;hero-consultant&quot; ~}
+## Strategic Business Solutions
+
+Driving growth and efficiency for your organization. I offer expert consultancy in market analysis, operational improvement, and digital transformation. Let's build your success story together.
+
+With over 15 years of experience across multiple industries, I provide actionable insights and measurable results.
+{~~}
+</code></pre>
+<p><strong>Renders as:</strong></p>
+<p><section
+  class="sb-hero sb-hero-layout--text-left-image-right sb-items-center  sb-white hero-consultant"
+  style="min-height: 40vh;"
+
+>
+
+
+<div class="sb-hero-content-wrapper sb-grid sb-grid-cols-1 md:sb-grid-cols-2 sb-gap-8">
+  <div class="sb-hero-text-column sb-bg-black-50">
+    <h2 id="strategic-business-solutions">Strategic Business Solutions</h2>
+<p>Driving growth and efficiency for your organization. I offer expert consultancy in market analysis, operational improvement, and digital transformation. Let's build your success story together.</p>
+<p>With over 15 years of experience across multiple industries, I provide actionable insights and measurable results.</p>
+  </div>
+  <div class="sb-hero-media-column">
+
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Professional consultant presenting a strategy" class="sb-hero-image">
+
+  </div>
+</div>
+
+</section>
+</p>
+<p><section
+  class="sb-hero sb-hero-layout--text-center-image-background sb-items-center  sb-black "
+
+
+>
+
+
+
+<div class="sb-hero-background-media-wrapper">
+
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+             alt="Abstract software interface"
+             class="sb-hero-background-image-actual">
+
+    <div class="sb-hero-overlay"></div>
+</div>
+
+<div class="sb-hero-content-wrapper sb-text-center sb-bg-white-75 sb-black">
+    <h2 id="this-is-by-far-the-most-complicated-spellblock-ive-ever-created">This is by far the most complicated SpellBlock I've ever created.</h2>
+<p>Including 6 different layouts, several parameters, and several different styling options.</p>
+<p>Visit the <a href="/examples/spellblocks/hero/">Hero SpellBlock examples</a> for more details.</p>
+</div>
+
+</section>
+</p>
+<hr />
+<h2>Progress SpellBlock</h2>
+<p>The <code>~ progress ~</code> SpellBlock offers a clear and adaptable method for visually representing various metrics such as project completion, skill proficiency, academic progress, or funding status against a defined maximum.</p>
+<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Profile Status&quot; ~}
+Profile is 65% complete. Ensure all sections are finalized for optimal visibility.
+{~~}
+</code></pre>
+<p><strong>Renders as:</strong></p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174784826944379029"
+  >
+
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Profile Status
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-primary 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 65.0%;"
+      aria-valuenow="65.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-white
+sb-black
+
+" 
+id="popover-content-174784826944379029"
+style="display: none;"
+>
+  <p>Profile is 65% complete. Ensure all sections are finalized for optimal visibility.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<h3>Progress Parameters, <code>bg_color</code>, <code>color</code>, <code>content_color</code>, and <code>content_bg_color</code></h3>
+<p>The <code>bg_color</code> and <code>color</code> parameters are used to style the track and fill of the progress bar.</p>
+<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Profile Status&quot; bg_color=&quot;primary-50&quot; color=&quot;black-75&quot; ~}
+This is a sample progress bar with a custom background color and text color.
+{~~}
+</code></pre>
+<p><strong>Renders as:</strong></p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174784826944585429"
+  >
+
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Profile Status
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-primary-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-black-75 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 65.0%;"
+      aria-valuenow="65.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-white
+sb-black
+
+" 
+id="popover-content-174784826944585429"
+style="display: none;"
+>
+  <p>This is a sample progress bar with a custom background color and text color.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+
+<p>The <code>content_color</code> and <code>content_bg_color</code> parameters are used to style the popover content.</p>
+<pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Profile Status&quot; content_color=&quot;white&quot; content_bg_color=&quot;primary-50&quot; ~}
+This is a sample progress bar with a custom popover content color and background color.
+{~~}
+</code></pre>
+<p><strong>Renders as:</strong></p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-174784826944676329"
+  >
+
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      Profile Status
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-primary 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 65.0%;"
+      aria-valuenow="65.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<div class="sb-progress-popover-content
+sb-bg-primary-50
+sb-white
+
+" 
+id="popover-content-174784826944676329"
+style="display: none;"
+>
+  <p>This is a sample progress bar with a custom popover content color and background color.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle multiple progress bars on a page if `id` attribute might not be unique or forloop.counter is used
+    const progressContainers = document.querySelectorAll('.sb-progress-container');
+
+    progressContainers.forEach(container => {
+      const containerId = container.id; // e.g., "progress-container-1"
+      // Derive popoverId based on containerId. This assumes a consistent naming pattern.
+      // If your id on sb-progress-container can be arbitrary (e.g., from block kwargs),
+      // you might need a data-attribute to link them or adjust this logic.
+      // For now, assuming the forloop.counter pattern in IDs.
+      const popoverIdSuffix = containerId.split('-').pop(); // Extracts "1" from "progress-container-1"
+      const popover = document.getElementById(`popover-content-${popoverIdSuffix}`);
+
+      if (!popover) {
+        // console.warn(`Popover not found for container ${containerId}`);
+        return; // Skip if corresponding popover isn't found
+      }
+
+      let popoverVisible = false; // Track visibility to avoid redundant style changes
+
+      container.addEventListener('mouseenter', function(event) {
+        if (!popoverVisible) {
+          popover.style.display = 'block';
+          popover.classList.add('sb-animate-fade-in');
+          popoverVisible = true;
+        }
+        // Initial position update on enter
+        updatePopoverPosition(event);
+      });
+
+      container.addEventListener('mousemove', function(event) {
+        if (popoverVisible) {
+          updatePopoverPosition(event);
+        }
+      });
+
+      container.addEventListener('mouseleave', function() {
+        if (popoverVisible) {
+          popover.style.display = 'none';
+          popoverVisible = false;
+        }
+      });
+
+      function updatePopoverPosition(mouseEvent) {
+        // Offset from the mouse cursor
+        const offsetX = 15; // pixels to the right
+        const offsetY = 15; // pixels below
+
+        let newX = mouseEvent.clientX + offsetX;
+        let newY = mouseEvent.clientY + offsetY;
+
+        // Boundary checks to keep popover within viewport
+        const popoverRect = popover.getBoundingClientRect(); // Get its dimensions once visible
+
+        // Adjust if too far right
+        if (newX + popoverRect.width > window.innerWidth) {
+          newX = mouseEvent.clientX - popoverRect.width - offsetX; // Position to the left
+        }
+        // Adjust if too far down
+        if (newY + popoverRect.height > window.innerHeight) {
+          newY = mouseEvent.clientY - popoverRect.height - offsetY; // Position above
+        }
+        // Adjust if too far left (after potentially flipping)
+        if (newX < 0) {
+          newX = offsetX;
+        }
+        // Adjust if too far up (after potentially flipping)
+        if (newY < 0) {
+          newY = offsetY;
+        }
+
+        popover.style.left = newX + 'px';
+        popover.style.top = newY + 'px';
+      }
+    });
+  });
+  </script>
+{% endblock %}

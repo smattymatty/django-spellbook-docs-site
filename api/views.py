@@ -1,118 +1,108 @@
 # api/views.py
 
+from django.conf import settings
+from rest_framework.exceptions import APIException
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404 # For detail view
-from django.template.loader import render_to_string
-from django.shortcuts import render
+from django.shortcuts import render # Used in RenderedMarkdownDetailAPIView
 
 from .models import StoredMarkdown
 from .serializers import StoredMarkdownSerializer
 
-# This would be for a list/create endpoint
-class StoredMarkdownListCreateAPIView(APIView):
-    """
-    API endpoint that allows StoredMarkdown content to be viewed, created, edited, or deleted.
-    
-POST JSON format example:
-     
-        {
-            "title": "My Markdown Title",
-            "markdown_content": "# My Markdown Content"
-        }
+class PayloadTooLarge(APIException):
+    status_code = status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
+    default_detail = "Payload Too Large"
+    default_code = "payload_too_large"
 
-REQUIRED_ARGUMENTS: markdown_content
-OPTIONAL_ARGUMENTS: title
-READ_ONLY_ARGUMENTS: html_content, created_at, updated_at, id, url
-    
-    """
-    permission_classes = [permissions.AllowAny] # Example permission
+class BaseCustomAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated] # Default permissions
 
     def get_serializer_context(self):
-        # Helper to pass request to serializer
         return {'request': self.request}
 
+    def check_request_size(self, request, max_size_setting_name='MAX_API_REQUEST_SIZE', default_max_size=settings.DATA_UPLOAD_MAX_MEMORY_SIZE): # Using DATA_UPLOAD_MAX_MEMORY_SIZE as default
+        try:
+            content_length = int(request.META.get('CONTENT_LENGTH', 0))
+            print(f"[DEBUG] Content-Length: {content_length} ---- -")
+        except (ValueError, TypeError):
+            return
+        max_size = getattr(settings, max_size_setting_name, default_max_size)
+        print(f"[DEBUG] MAX_API_REQUEST_SIZE: {max_size} ---- -")
+        if content_length > max_size:
+            raise PayloadTooLarge(f"Payload size ({content_length} bytes) exceeds configured limit ({max_size} bytes).")
+        print(f"[DEBUG] Payload size ({content_length} bytes) is within limit ({max_size} bytes). -- ---")
+# --- Views that handle Markdown content ---
+
+class StoredMarkdownListCreateAPIView(BaseCustomAPIView):
+    """
+    List and create StoredMarkdown objects.
+    Inherits from BaseCustomAPIView to provide permission_classes and get_serializer_context.
+    """
     def get(self, request, *args, **kwargs):
-        """
-        Handle GET requests to list all StoredMarkdown items.
-        (Corresponds to ModelViewSet's list action)
-        """
         queryset = StoredMarkdown.objects.all().order_by('-updated_at')
         serializer = StoredMarkdownSerializer(queryset, many=True, context=self.get_serializer_context())
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        """
-        Handle POST requests to create a new StoredMarkdown item.
-        (Corresponds to ModelViewSet's create action)
-        """
+        try:
+            self.check_request_size(request, max_size_setting_name='MAX_API_REQUEST_SIZE')
+        except PayloadTooLarge as e:
+            return Response({"detail": str(e)}, status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE)
+
         serializer = StoredMarkdownSerializer(data=request.data, context=self.get_serializer_context())
         if serializer.is_valid():
-            serializer.save() # This will call serializer.create()
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# This would be for a retrieve/update/delete endpoint
-class StoredMarkdownDetailAPIView(APIView):
-    permission_classes = [permissions.AllowAny] # Example permission
+class StoredMarkdownDetailAPIView(BaseCustomAPIView):
+    # get_serializer_context is inherited
+    # permission_classes is inherited
 
-    def get_serializer_context(self):
-        return {'request': self.request}
-
+    #  define get_object here as it's specific to this detail view
     def get_object(self, pk):
+        """
+        Helper method to get the object with the given pk or raise a 404.
+        """
         return get_object_or_404(StoredMarkdown, pk=pk)
 
     def get(self, request, pk, *args, **kwargs):
-        """
-        Handle GET requests to retrieve a single StoredMarkdown item.
-        (Corresponds to ModelViewSet's retrieve action)
-        """
-        instance = self.get_object(pk)
+        instance = self.get_object(pk) # Now self.get_object exists
         serializer = StoredMarkdownSerializer(instance, context=self.get_serializer_context())
         return Response(serializer.data)
 
     def put(self, request, pk, *args, **kwargs):
-        """
-        Handle PUT requests to update a StoredMarkdown item.
-        (Corresponds to ModelViewSet's update action)
-        """
-        instance = self.get_object(pk)
+        try:
+            self.check_request_size(request, max_size_setting_name='MAX_API_REQUEST_SIZE')
+        except PayloadTooLarge as e:
+            return Response({"detail": str(e)}, status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE)
+            
+        instance = self.get_object(pk) # Now self.get_object exists
         serializer = StoredMarkdownSerializer(instance, data=request.data, context=self.get_serializer_context())
         if serializer.is_valid():
-            serializer.save() # This will call serializer.update()
+            serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, *args, **kwargs):
-        """
-        Handle DELETE requests to remove a StoredMarkdown item.
-        (Corresponds to ModelViewSet's destroy action)
-        """
-        instance = self.get_object(pk)
+        instance = self.get_object(pk) # Now self.get_object exists
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-class RenderedMarkdownDetailAPIView(APIView):
-    """
-    API endpoint that simply shows the rendered HTML for a StoredMarkdown item.
-    Uses Django's built-in render_to_string() function.
     
-    """
-    permission_classes = [permissions.AllowAny] # Example permission
+class RenderedMarkdownDetailAPIView(APIView): # This one doesn't need BaseCustomAPIView features
+    permission_classes = [permissions.IsAuthenticated]
 
-    def get_serializer_context(self):
-        return {'request': self.request}
+    # No get_serializer_context needed as it doesn't use a DRF serializer for output
+    # No check_request_size needed as it's a GET request with no body to check
 
+    # Must define get_object here as it's specific to this detail view
     def get_object(self, pk):
         return get_object_or_404(StoredMarkdown, pk=pk)
 
     def get(self, request, pk, *args, **kwargs):
-        """
-        Handle GET requests to retrieve a single StoredMarkdown item.
-        (Corresponds to ModelViewSet's retrieve action)
-        """
         instance = self.get_object(pk)
         rendered_html = instance.html_content
-        
-        return render(request, 'api/sb_base.html', {'markdown_content': rendered_html})
+        # Pass the instance to the template context so you can use instance.title etc.
+        return render(request, 'api/sb_base.html', {'markdown_content': rendered_html, 'instance': instance})

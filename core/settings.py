@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'docs',
     'rest_framework',
+    'rest_framework_simplejwt',
     'django_spellbook',
     'base',
     'examples',
@@ -221,11 +222,15 @@ ANALYTICS_EXCLUDED_PREFIXES = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer', # Explicitly include this
-    ],
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
+
+
+
+# core/settings.py
+DATA_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # 2MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # For file parts of multipart requests
+
+MAX_API_REQUEST_SIZE = 1 * 1024 * 1024
