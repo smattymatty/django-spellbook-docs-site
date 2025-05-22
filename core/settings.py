@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "spellbook-docs-lbnkp.ondigitalocean.app",
     "django-spellbook.org",
     "localhost",
+    "mathewstorm.ca"
 ]
 
 
