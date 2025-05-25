@@ -69,7 +69,7 @@
                 <p>© {% now "Y" %} Mathew Storm. All rights reserved.</p>
                 <p class="sb-mt-1">Created with ❤️ in 🇨🇦</p>
             </div>
-
+        {% comment %}
             <!-- Analytics Button for Toggle -->
              <button onclick="toggleAnalytics()" class="sb-cursor-pointer sb-text-xs sb-px-4 sb-py-2">
                  Show Analytics
@@ -102,7 +102,7 @@
                 </div>
                 {% endif %}
             </div>
-            
+        {% endcomment %}
         </footer>
         {% block extra_js %}{% endblock %}
     </body>
