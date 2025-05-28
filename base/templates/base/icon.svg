@@ -1,0 +1,17 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <title>Django Spellbook Icon Concept</title>
+  
+    <path d="M50 13 L10 23 L10 83 L50 93 Z M50 13 L90 23 L90 83 L50 93 Z" fill="#000000" opacity="0.15"/>
+  
+    <path d="M50 10 L10 20 L10 80 L50 90 Z" fill="#0C4B33"/>
+    <text x="28" y="60" font-family="Arial, sans-serif" font-size="32" fill="#2BA977" fill-opacity="0.7" text-anchor="middle" font-weight="bold">D</text>
+  
+    <path d="M50 10 L90 20 L90 80 L50 90 Z" fill="#FDF5E6"/> <text x="70" y="40" font-family="monospace" font-size="10" fill="#4A4A4A" text-anchor="middle">{~~}</text>
+    <line x1="60" y1="50" x2="80" y2="50" stroke="#A9A9A9" stroke-width="2"/>
+    <line x1="60" y1="58" x2="80" y2="58" stroke="#A9A9A9" stroke-width="2"/>
+    <line x1="60" y1="66" x2="75" y2="66" stroke="#A9A9A9" stroke-width="2"/>
+  
+    <rect x="48" y="10" width="4" height="80" fill="#795548"/> <polygon points="50,5 53,8 56,5 53,2" fill="#FFD700" opacity="0.8"/>
+    <polygon points="47,95 50,98 53,95 50,92" fill="#FFD700" opacity="0.8"/>
+  
+  </svg>

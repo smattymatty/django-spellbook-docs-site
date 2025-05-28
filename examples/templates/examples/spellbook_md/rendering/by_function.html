@@ -1,0 +1,382 @@
+{% extends 'examples/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>This guide demonstrates how to render markdown files managed by <code>django-spellbook</code> into HTML by calling its parsing function directly from within a custom Django function-based view. This approach offers maximum flexibility for integrating <code>django-spellbook</code>'s rendering capabilities into your existing Django project workflows.</p>
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="the-goal-dynamic-markdown-pages">The Goal: Dynamic Markdown Pages</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>Often, you might have markdown files stored within your project that you want to serve as HTML pages. Instead of relying solely on <code>django-spellbook</code>'s automatic view generation (if available for your use case), you might need to:</p>
+<ul>
+<li>Add custom logic before or after rendering the markdown.</li>
+<li>Pass additional, dynamic context to the template that displays the markdown.</li>
+<li>Integrate markdown rendering into an existing, complex view.</li>
+</ul>
+<p>The <code>render_spellbook_markdown_to_html</code> function allows you to do just this.</p>
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="example-django-view-viewspy">Example Django View (<code>views.py</code>)</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>Here's an example of a simple Django function-based view that reads a markdown file, processes it using <code>django-spellbook</code>, and then renders it using a standard Django template:</p>
+<pre><code class="language-python">from pathlib import Path
+from django.shortcuts import render
+from django_spellbook.parsers import render_spellbook_markdown_to_html
+
+# Define the path to your markdown content folder
+content_folder = Path(__file__).resolve().parent / 'content'
+
+def index(request):
+    # Construct the path to a specific markdown file
+    markdown_file_path = content_folder / 'home.md'
+
+    # Read the raw markdown content from the file
+    with open(markdown_file_path, 'r', encoding='utf-8') as f:
+        raw_markdown_content = f.read()
+
+    # Render the raw markdown to HTML using django-spellbook's parser
+    html_content = render_spellbook_markdown_to_html(raw_markdown_content)
+
+    # Prepare context for your Django template
+    context = {
+        'content': html_content,
+        'sidebar_header': 'Welcome to My Site!',
+        # Add any other context variables your template might need
+    }
+
+    # Specify the Django template to use
+    template_name = 'A_base/base.html' # Your base template
+
+    return render(request, template_name, context)
+</code></pre>
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="breaking-down-the-view">Breaking Down the View</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>Let's look at the key parts of this example view:</p>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">1. Imports and Setup</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><code>from pathlib import Path</code>: <code>pathlib</code> is used for robustly handling file system paths in a platform-independent way.</li>
+<li><code>from django.shortcuts import render</code>: The standard Django shortcut to render a template with a given context.</li>
+<li><code>from django_spellbook.parsers import render_spellbook_markdown_to_html</code>: This is the core function from <code>django-spellbook</code> that will convert your markdown string (with SpellBlocks) into an HTML string.</li>
+<li><code>content_folder = Path(__file__).resolve().parent / 'content'</code>: This line constructs an absolute path to a subdirectory named <code>content</code> located in the same directory as your <code>views.py</code> file. This is where your markdown files (like <code>home.md</code>) are assumed to be stored.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">2. The `index` Function</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><code>def index(request):</code>: This is a standard Django view function that takes an <code>HttpRequest</code> object.</li>
+<li><code>markdown_file_path = content_folder / 'home.md'</code>: Constructs the full path to the <code>home.md</code> file.</li>
+<li><code>with open(...) as f: raw_markdown_content = f.read()</code>: This securely opens and reads the entire content of your <code>home.md</code> file into the <code>raw_markdown_content</code> string. Using <code>encoding='utf-8'</code> is good practice.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">3. Parsing with `render_spellbook_markdown_to_html`</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><code>html_content = render_spellbook_markdown_to_html(raw_markdown_content)</code>: This is the magic step! You pass the raw markdown string (which can contain your SpellBlocks like <code>~ card ~</code>, <code>~ alert ~</code>, etc.) to this function. It processes the markdown, resolves SpellBlocks, and returns a string of HTML ready to be displayed.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">4. Building the Context</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><code>context = { ... }</code>: A standard Python dictionary that holds the data you want to make available in your Django template.<ul>
+<li><code>'content': html_content</code>: The rendered HTML from <code>django-spellbook</code> is passed to the template under the key <code>content</code>.</li>
+<li><code>'sidebar_header': 'Welcome to My Site!'</code>: An example of another piece of dynamic data you might want to pass to your template.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">5. Rendering the Template</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li><code>template_name = 'A_base/base.html'</code>: Specifies which Django template file should be used to display the content.</li>
+<li><code>return render(request, template_name, context)</code>: This function takes the request, the template name, and the context dictionary, and returns an <code>HttpResponse</code> with the rendered HTML page.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="example-markdown-content-contenthomemd">Example Markdown Content (<code>content/home.md</code>)</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>The <code>home.md</code> file referenced in the view could contain any markdown valid for <code>django-spellbook</code>, including your custom SpellBlocks. For instance, it might look something like the introduction page you showed:</p>
+<pre><code class="language-markdown">---
+title: Introduction
+tags:
+  - examples
+  - introduction
+---
+Welcome To the Examples of Django Spellbook!
+
+Django Spellbook is a powerful toolkit for creating and managing markdown-based content in your Django projects. It's designed to be simple, flexible, and easy to use, with a focus on maintainability and extensibility.
+
+This examples serves as a collection of real-world examples showcasing the capabilities of Django Spellbook. It's a great resource for learning how to use Django Spellbook and exploring its features.
+
+{~ card title=&quot;Basic Markdown&quot; footer=&quot;Updated: Today&quot; ~}
+1. Install the package
+2. Add to `INSTALLED_APPS`
+3. Start writing magical markdown!
+{~~}
+
+## What Are SpellBlocks?
+
+SpellBlocks are reusable content components that you can embed directly in your markdown files. They work like Django template tags but are designed specifically for enhancing your documentation.
+... and so on ...
+</code></pre>
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="example-django-template-a_basebasehtml">Example Django Template (<code>A_base/base.html</code>)</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>The Django template (<code>A_base/base.html</code> in this example) would then display the rendered HTML. It's crucial to use the <code>|safe</code> filter when outputting HTML content generated by <code>django-spellbook</code> to prevent Django from auto-escaping it.</p>
+<p>A very basic <code>A_base/base.html</code> might look like this:</p>
+<pre><code class="language-html">{% verbatim %}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Spellbook Site&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/spellbook-styles.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;{{ sidebar_header|default:&quot;My Page&quot; }}&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;/nav&gt;
+    &lt;main&gt;
+        {{ content|safe }}
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2025 My Awesome Site&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<p><strong>Key part:</strong> <code>{ content|safe }</code> ensures that the HTML generated by <code>render_spellbook_markdown_to_html</code> is rendered as HTML and not as escaped text.</p>
+<div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+    <div class="
+
+    sb-bg-white-75
+
+    sb-flex sb-grow sb-justify-center sb-items-center 
+    sb-border-info-50 
+    sb-border-b-2 sb-border-solid">
+    <span class="
+
+    sb-info-75
+
+    "><h2 id="key-takeaways">Key Takeaways</h2></span>
+    </div>
+    <div class="sb-flex sb-grow sb-justify-center sb-items-center sb-border-info-50 sb-border-b-2 sb-border-solid">
+
+    </div>
+</div>
+
+<p>Using <code>render_spellbook_markdown_to_html</code> directly in your views offers:</p>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Full Control</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>You have complete programmatic control over when and how markdown is read, parsed, and what context is supplied to the final Django template.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Dynamic Data Integration</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Easily mix <code>django-spellbook</code> rendered content with other dynamic data generated or fetched by your Django view.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Seamless Integration</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Integrate <code>django-spellbook</code> into any part of your Django project, leveraging Django's powerful templating system and view logic.</p>
+    </div>
+
+</div>
+{% endblock %}

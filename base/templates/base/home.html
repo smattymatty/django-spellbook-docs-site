@@ -9,7 +9,13 @@
 {% block content %}
     <div class="padded-x-content">
         <div class="magical-border">
-            <h2>Django Markdown Content Management System</h2>
+            <div class="sb-flex">
+                <h2 class="sb-flex sb-grow">Django Markdown Content Management System</h2>
+                <div class="sb-flex sb-items-center sb-gap-2 sb-bg-black-25 sb-border-radius-xl">
+                    {% include 'base/icon.svg' %}
+                </div>
+            </div>
+            
             <strong>A flexible content management extension for Django</strong>
             <p>
                 Django Spellbook extends Django's templating and rendering capabilities with a focus on markdown-based content. It transforms markdown files into fully-rendered Django templates with auto-generated views and URLs, eliminating boilerplate code while maintaining Django's flexibility.
@@ -27,6 +33,20 @@
                                 <li><strong>Auto-generation</strong>: Creates Django templates, views, and URL patterns from markdown files</li>
                                 <li><strong>Extended Markdown</strong>: Django-inspired tag syntax for custom HTML attributes and structures</li>
                                 <li><strong>Content Organization</strong>: Support for multiple source directories mapped to different Django apps</li>
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% spellbook_url 'examples:rendering_by_function' %}" class="spell-link"> 
+                        <div class="spell-content">
+                            <span class="spell-icon">🪶</span>
+                            <code class="spell-title">from django_spellbook.parsers import render_spellbook_markdown_to_html</code>
+                            <ul class="border-radius-5-handler">
+                                <li><strong>Markdown String Processing</strong>: Takes a raw Python string containing markdown text as its primary input.</li>
+                                <li><strong>SpellBlock Recognition</strong>: Intelligently parses and processes any embedded <code>{~ SpellBlock ~}</code> tags (like <code>{~ card ~}</code> or <code>{~ alert ~}</code>) and their parameters found within the markdown string.</li>
+                                <li><strong>HTML Output Generation</strong>: Converts the input markdown and fully resolved SpellBlocks into a single HTML string, ready to be injected into your Django templates.</li>
+                                <li><strong>Direct View Integration</strong>: Enables developers to leverage `django-spellbook`'s core rendering power directly within custom Django views for flexible and dynamic content presentation.</li>
                             </ul>
                         </div>
                     </a>
