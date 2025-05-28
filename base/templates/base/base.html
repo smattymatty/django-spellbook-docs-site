@@ -9,16 +9,20 @@
         <title>
             {% block title %}Django-Spellbook{% endblock %}
         </title>
+        <!-- My Styles -->
         {% spellbook_styles %}
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/utils.css' %}">
-
+        <!-- My Icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
-<link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="{% static 'icons/favicon.ico' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="icon" href="{% static 'icons/favicon.ico' %}">
+        <!-- My Scripts -->
+        <!-- Ethical Ads -->
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
         {% block extra_style %}{% endblock %}
     </head>
     <body>

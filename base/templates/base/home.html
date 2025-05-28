@@ -8,18 +8,31 @@
 {% endblock %}
 {% block content %}
     <div class="padded-x-content">
-        <div class="magical-border">
-            <div class="sb-flex">
-                <h2 class="sb-flex sb-grow">Django Markdown Content Management System</h2>
-                <div class="sb-flex sb-items-center sb-gap-2 sb-bg-black-25 sb-border-radius-xl">
-                    {% include 'base/icon.svg' %}
+        <div class="
+        sb-flex sb-md:flex-row 
+        sb-justify-center sb-items-center sb-gap-2
+        "> <!-- This div holds both the EthicalAds and the content block -->
+            <div class="magical-border">
+                <div class="sb-flex">
+                    <h2 class="sb-flex sb-grow">Django Markdown Content Management System</h2>
+                    <div class="sb-flex sb-items-center sb-gap-2 sb-bg-black-25 sb-border-radius-xl">
+                        {% include 'base/icon.svg' %}
+                    </div>
                 </div>
+                
+                <strong>A flexible content management extension for Django</strong>
+                <p>
+                    Django Spellbook extends Django's templating and rendering capabilities with a focus on markdown-based content. It transforms markdown files into fully-rendered Django templates with auto-generated views and URLs, eliminating boilerplate code while maintaining Django's flexibility.
+                </p>
             </div>
-            
-            <strong>A flexible content management extension for Django</strong>
-            <p>
-                Django Spellbook extends Django's templating and rendering capabilities with a focus on markdown-based content. It transforms markdown files into fully-rendered Django templates with auto-generated views and URLs, eliminating boilerplate code while maintaining Django's flexibility.
-            </p>
+            <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
+                <!-- EthicalAds Image -->
+                <div data-ea-publisher="django-spellbookorg" 
+                    data-ea-type="image"
+                    data-ea-keywords="django|python|cms|webdev|markdown|blog"
+                    class="sb-my-3 sb-flex sb-justify-center">
+                </div> <!-- End EthicalAds -->
+            </div>
         </div>
         <div class="magical-border">
             <h3>Spells at your disposal:</h3>
