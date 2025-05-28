@@ -13,14 +13,6 @@
 {% block content %}
     <div class="docs-container">
         <aside class="sidebar">
-            <div class="grimoire">
-                <h3>Spellbook Navigation</h3>
-                {% sidebar_toc %}
-            </div>
-            {% show_metadata %}
-            {% if user.is_authenticated and user.is_staff %}
-                {% show_metadata 'for_dev' %}
-            {% endif %}
             <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
                 <!-- EthicalAds Image -->
                 <div data-ea-publisher="django-spellbookorg" 
@@ -29,6 +21,15 @@
                     class="sb-my-3 sb-flex sb-justify-center">
                 </div> <!-- End EthicalAds -->
             </div>
+            <div class="grimoire">
+                <h3>Spellbook Navigation</h3>
+                {% sidebar_toc %}
+            </div>
+            {% show_metadata %}
+            {% if user.is_authenticated and user.is_staff %}
+                {% show_metadata 'for_dev' %}
+            {% endif %}
+        
         </aside>
         <div class="content">
             {% block docs_content %}{% endblock %}
