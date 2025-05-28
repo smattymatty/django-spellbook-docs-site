@@ -13,6 +13,15 @@
 {% block content %}
     <div class="docs-container">
         <aside class="sidebar">
+            <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
+                <!-- EthicalAds Image -->
+                <div data-ea-publisher="django-spellbookorg" 
+                    id="examples-ad"
+                    data-ea-type="image"
+                    data-ea-keywords="django|python|cms|webdev|markdown|blog"
+                    class="sb-my-3 sb-flex sb-justify-center">
+                </div> <!-- End EthicalAds -->
+            </div>
             <div class="grimoire">
                 <h3>Examples</h3>
                 {% sidebar_toc %}
@@ -21,14 +30,7 @@
             {% if user.is_authenticated and user.is_staff %}
                 {% show_metadata 'for_dev' %}
             {% endif %}
-            <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
-                <!-- EthicalAds Image -->
-                <div data-ea-publisher="django-spellbookorg" 
-                    data-ea-type="image"
-                    data-ea-keywords="django|python|cms|webdev|markdown|blog"
-                    class="sb-my-3 sb-flex sb-justify-center">
-                </div> <!-- End EthicalAds -->
-            </div>
+            
         </aside>
         <div class="sb-ml-4 changelog-content">
             {% block examples_content %}{% endblock %}
