@@ -1,8 +1,8 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Markdown Settings</h1>
-<h2>Required</h2>
+<h1 id="markdown-settings">Markdown Settings</h1>
+<h2 id="required">Required</h2>
 <ul>
 <li>
 <p><code>SPELLBOOK_MD_PATH</code>: The directory that contains the markdown files to be processed.</p>
@@ -14,8 +14,8 @@
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
 SPELLBOOK_MD_APP = &quot;my_app&quot;
 </code></pre>
-<h2>Advanced Configuration</h2>
-<h3>Multiple Source-Destination Pairs</h3>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="multiple-source-destination-pairs">Multiple Source-Destination Pairs</h3>
 <p>Django Spellbook supports processing multiple markdown sources to different destination apps:</p>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = [
     BASE_DIR / &quot;docs_content&quot;,
@@ -26,7 +26,7 @@ SPELLBOOK_MD_APP = [
     &quot;blog_app&quot;
 ]
 </code></pre>
-<h3>URL Prefixes</h3>
+<h3 id="url-prefixes">URL Prefixes</h3>
 <ul>
 <li><code>SPELLBOOK_MD_URL_PREFIX</code>: Customize the URL prefix for your markdown content.</li>
 </ul>
@@ -46,14 +46,14 @@ SPELLBOOK_MD_URL_PREFIX = [
 <li>For single app: Empty string (content at root URL)</li>
 <li>For multiple apps: First app gets empty prefix, others use their app name as prefix</li>
 </ul>
-<h2>Recommended</h2>
+<h2 id="recommended">Recommended</h2>
 <ul>
 <li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): The base template to use for the generated markdown files.</li>
 </ul>
 <pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 </code></pre>
 <p>Read more about creating a <a href="/docs/Markdown/base-template">base template</a>.</p>
-<h2>Optional</h2>
+<h2 id="optional">Optional</h2>
 <ul>
 <li><code>SPELLBOOK_MD_TITLEFY</code> (default: <code>True</code>): When generating the title from the file's MetaData to be included within the table of contents or other places, Django Spellbook automatically capitalizes the first letter of each word longer than 2 characters, also converts all dashes into spaces.</li>
 </ul>

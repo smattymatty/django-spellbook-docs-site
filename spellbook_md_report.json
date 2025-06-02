@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 5,
     "successful_pairs": 5,
-    "total_processed_files": 52
+    "total_processed_files": 54
   },
   "pairs": [
     {
@@ -24,7 +24,7 @@
       "destination": "examples",
       "url_prefix": "examples",
       "success": true,
-      "processed_files": 9
+      "processed_files": 11
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/hidden_content",
@@ -59,7 +59,7 @@
     },
     {
       "name": "practice",
-      "total_uses": 39,
+      "total_uses": 40,
       "failed_uses": 0
     },
     {
@@ -90,6 +90,16 @@
     {
       "name": "hero",
       "total_uses": 14,
+      "failed_uses": 0
+    },
+    {
+      "name": "align",
+      "total_uses": 15,
+      "failed_uses": 0
+    },
+    {
+      "name": "button",
+      "total_uses": 22,
       "failed_uses": 0
     },
     {

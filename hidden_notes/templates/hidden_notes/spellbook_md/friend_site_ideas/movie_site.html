@@ -1,9 +1,9 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h2>Movie Site</h2>
+<h2 id="movie-site">Movie Site</h2>
 <p>This is a list of ideas for a movie site.</p>
-<h2>Idea</h2>
+<h2 id="idea">Idea</h2>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
@@ -20,7 +20,7 @@
 
 </div>
 
-<h2>SpellBlock Design: Weaving the Cinematic Web</h2>
+<h2 id="spellblock-design-weaving-the-cinematic-web">SpellBlock Design: Weaving the Cinematic Web</h2>
 <p>The site's visual appeal and user experience will heavily rely on custom-designed SpellBlocks. These blocks will be categorized into stylistic elements that enhance visual presentation and functional components that handle data display and interaction, particularly with IMDB data.</p>
 <hr />
 <div class="sb-accordion ">
@@ -57,7 +57,7 @@ The audience consists of individuals passionate about movies who are looking to:
     </div>
 </div>
 
-<h3>I. Stylistic SpellBlocks (Visual Flair &amp; Engagement)</h3>
+<h3 id="i-stylistic-spellblocks-visual-flair-engagement">I. Stylistic SpellBlocks (Visual Flair &amp; Engagement)</h3>
 <p>These blocks are primarily for aesthetic presentation and drawing user attention, without complex data logic.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -114,7 +114,7 @@ The audience consists of individuals passionate about movies who are looking to:
 A groundbreaking thriller that masterfully blends dark comedy with social commentary. A must-watch!
 {~~}
 </code></pre>
-<h3>II. Functional SpellBlocks (Data-Driven Insights &amp; IMDB Integration)</h3>
+<h3 id="ii-functional-spellblocks-data-driven-insights-imdb-integration">II. Functional SpellBlocks (Data-Driven Insights &amp; IMDB Integration)</h3>
 <p>These are the workhorse blocks, designed to display detailed information, often by fetching and presenting data from IMDB or a similar database.</p>
 <blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
     <div class="sb-quote-inner">
@@ -169,7 +169,7 @@ A groundbreaking thriller that masterfully blends dark comedy with social commen
 
 </div>
 
-<h2><strong>Example Usage:</strong></h2>
+<h2 id="example-usage"><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ actor_card name=&quot;Tom Hanks&quot; imdb_id=&quot;nm0000158&quot; image_url=&quot;/path/to/tom_hanks.jpg&quot; ~}
 One of the most beloved actors of his generation, known for his versatility.
 My favorite role: Forrest Gump.
@@ -201,7 +201,7 @@ My favorite role: Forrest Gump.
 
 </div>
 
-<h2><strong>Example Usage:</strong></h2>
+<h2 id="example-usage_1"><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ director_card name=&quot;Christopher Nolan&quot; imdb_id=&quot;nm0634240&quot; image_url=&quot;/path/to/nolan.jpg&quot; ~}
 Known for his complex narratives and large-scale filmmaking. His exploration of time is fascinating.
 Common Themes: Non-linear storytelling, identity, obsession.
@@ -232,7 +232,7 @@ Common Themes: Non-linear storytelling, identity, obsession.
 
 </div>
 
-<h2><strong>Example Usage:</strong></h2>
+<h2 id="example-usage_2"><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">{~ producer_card name=&quot;Kevin Feige&quot; imdb_id=&quot;nm0270559&quot; image_url=&quot;/path/to/feige.jpg&quot; ~}
 The mastermind behind the Marvel Cinematic Universe's incredible success and interconnected storytelling.
 {~~}
@@ -272,7 +272,7 @@ The mastermind behind the Marvel Cinematic Universe's incredible success and int
     * <em>Dynamic data: Display most popular or award-winning scores.</em><br />
 * <strong><code>collaborations</code></strong>: (Fetched - directors or other musicians they frequently work with).</p>
 <p>{~~}</p>
-<h2><strong>Example Usage:</strong></h2>
+<h2 id="example-usage_3"><strong>Example Usage:</strong></h2>
 <pre><code class="language-markdown">&lt;!-- Block 'musician_card' not found --&gt;
 </code></pre>
 <hr />

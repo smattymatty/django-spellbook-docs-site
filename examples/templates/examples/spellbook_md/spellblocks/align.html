@@ -1,0 +1,346 @@
+{% extends 'examples/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="align-block-align-showcase">Align Block (<code>~ align ~</code>) Showcase</h1>
+<p>The <code>~ align ~</code> SpellBlock is a versatile utility for controlling the horizontal alignment of the block container itself, the dimensions of the block, and the text alignment of the content within it. This guide demonstrates its various parameters and use cases.</p>
+<h2 id="basic-usage-default-alignment">Basic Usage (Default Alignment)</h2>
+<p>By default, an <code>~ align ~</code> block will center itself (if its width is less than 100%) and center its internal content. The default width is 100% and height is <code>auto</code>.</p>
+<pre><code>{~ align ~}
+This is a basic align block.
+By default, the block itself takes full available width,
+and the text content within it is centered.
+If we give it a width less than 100%, the block itself will also be centered.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper " 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This is a basic align block.<br />
+By default, the block itself takes full available width,<br />
+and the text content within it is centered.<br />
+If we give it a width less than 100%, the block itself will also be centered.</p>
+        </div>
+    </div>
+</div>
+
+<p>Let's see the default centering of the block when width is constrained:</p>
+<pre><code>{~ align width=&quot;70%&quot; ~}
+This block has `width=&quot;70%&quot;`. Notice how the block itself is centered on the page.
+The text inside is also centered by default.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper " 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 70%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>width="70%"</code>. Notice how the block itself is centered on the page.<br />
+The text inside is also centered by default.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="parameters-showcase">Parameters Showcase</h2>
+<h3 id="pos-block-positioning"><code>pos</code> (Block Positioning)</h3>
+<p>The <code>pos</code> parameter controls the horizontal alignment of the <code>AlignBlock</code> container itself within its parent. It corresponds to flexbox justification values like <code>flex-start</code>, <code>center</code>, or <code>flex-end</code>. To observe its effect, the block's <code>width</code> should typically be less than 100%.</p>
+<p><strong><code>pos="start"</code></strong></p>
+<pre><code>{~ align pos=&quot;start&quot; width=&quot;60%&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `pos=&quot;start&quot;` and `width=&quot;60%&quot;`.
+It will align to the **start** (left) of the available space.
+Content inside is still centered by default.
+*(Added a border and padding for visibility)*
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: flex-start;" 
+    >
+    <div class="sb-align-inner-block" style="width: 60%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>pos="start"</code> and <code>width="60%"</code>.<br />
+It will align to the <strong>start</strong> (left) of the available space.<br />
+Content inside is still centered by default.<br />
+<em>(Added a border and padding for visibility)</em></p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>pos="center"</code></strong> (Default behavior if width &lt; 100%)</p>
+<pre><code>{~ align pos=&quot;center&quot; width=&quot;60%&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `pos=&quot;center&quot;` and `width=&quot;60%&quot;`.
+It will align to the **center** of the available space.
+Content inside is still centered by default.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 60%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>pos="center"</code> and <code>width="60%"</code>.<br />
+It will align to the <strong>center</strong> of the available space.<br />
+Content inside is still centered by default.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>pos="end"</code></strong></p>
+<pre><code>{~ align pos=&quot;end&quot; width=&quot;60%&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `pos=&quot;end&quot;` and `width=&quot;60%&quot;`.
+It will align to the **end** (right) of the available space.
+Content inside is still centered by default.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: flex-end;" 
+    >
+    <div class="sb-align-inner-block" style="width: 60%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>pos="end"</code> and <code>width="60%"</code>.<br />
+It will align to the <strong>end</strong> (right) of the available space.<br />
+Content inside is still centered by default.</p>
+        </div>
+    </div>
+</div>
+
+<h3 id="content_align-internal-content-text-alignment"><code>content_align</code> (Internal Content Text Alignment)</h3>
+<p>The <code>content_align</code> parameter controls the text alignment of the content <em>inside</em> the block. It accepts <code>start</code>, <code>center</code>, or <code>end</code>.</p>
+<p><strong><code>content_align="start"</code></strong></p>
+<pre><code>{~ align content_align=&quot;start&quot; class=&quot;sb-border sb-p-2&quot; ~}
+Content inside this block is aligned to the **start** (left).
+The block itself defaults to `pos=&quot;center&quot;` and `width=&quot;100%&quot;`.
+Line 1 of text.
+Another line for demonstration.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: left;">
+            <p>Content inside this block is aligned to the <strong>start</strong> (left).<br />
+The block itself defaults to <code>pos="center"</code> and <code>width="100%"</code>.<br />
+Line 1 of text.<br />
+Another line for demonstration.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>content_align="center"</code></strong> (Default behavior)</p>
+<pre><code>{~ align content_align=&quot;center&quot; class=&quot;sb-border sb-p-2&quot; ~}
+Content inside this block is aligned to the **center**.
+This is the default internal text alignment.
+Line 1 of text.
+Another line for demonstration.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>Content inside this block is aligned to the <strong>center</strong>.<br />
+This is the default internal text alignment.<br />
+Line 1 of text.<br />
+Another line for demonstration.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>content_align="end"</code></strong></p>
+<pre><code>{~ align content_align=&quot;end&quot; class=&quot;sb-border sb-p-2&quot; ~}
+Content inside this block is aligned to the **end** (right).
+The block itself defaults to `pos=&quot;center&quot;` and `width=&quot;100%&quot;`.
+Line 1 of text.
+Another line for demonstration.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: right;">
+            <p>Content inside this block is aligned to the <strong>end</strong> (right).<br />
+The block itself defaults to <code>pos="center"</code> and <code>width="100%"</code>.<br />
+Line 1 of text.<br />
+Another line for demonstration.</p>
+        </div>
+    </div>
+</div>
+
+<h3 id="width-and-height"><code>width</code> and <code>height</code></h3>
+<p>These parameters control the dimensions of the block.</p>
+<ul>
+<li>If a unitless number <code>&lt;= 100</code> is given (e.g., <code>width="50"</code>), it's treated as <code>%</code>.</li>
+<li>If a unitless number <code>&gt; 100</code> is given (e.g., <code>width="250"</code>), it's treated as <code>px</code>.</li>
+<li>Explicit units like <code>50%</code>, <code>120px</code>, or <code>auto</code> (e.g., <code>width="auto"</code>) are respected.</li>
+</ul>
+<p><strong><code>width</code> examples:</strong></p>
+<pre><code>{~ align width=&quot;50%&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `width=&quot;50%&quot;`.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 50%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>width="50%"</code>.</p>
+        </div>
+    </div>
+</div>
+
+<pre><code>{~ align width=&quot;250&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `width=&quot;250&quot;`, which becomes `250px`.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 250px; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>width="250"</code>, which becomes <code>250px</code>.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>height</code> examples (add a border to see the height):</strong></p>
+<pre><code>{~ align height=&quot;100px&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `height=&quot;100px&quot;`. Content may overflow if too much.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: 100px;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>height="100px"</code>. Content may overflow if too much.</p>
+        </div>
+    </div>
+</div>
+
+<pre><code>{~ align height=&quot;70&quot; class=&quot;sb-border sb-p-2&quot; ~}
+This block has `height=&quot;70&quot;`, which becomes `70%` of its parent's height.
+(Note: Percentage heights can be tricky and depend on the parent container having a defined height.)
+This content is inside.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 100%; height: 70%;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>height="70"</code>, which becomes <code>70%</code> of its parent's height.<br />
+(Note: Percentage heights can be tricky and depend on the parent container having a defined height.)<br />
+This content is inside.</p>
+        </div>
+    </div>
+</div>
+
+<p><strong><code>width="auto"</code> and <code>height="auto"</code> (Default height behavior):</strong></p>
+<pre><code>{~ align width=&quot;auto&quot; class=&quot;sb-border sb-p-2 sb-inline-block&quot; ~}
+This block has `width=&quot;auto&quot;`. It will only be as wide as its content.
+To make `width=&quot;auto&quot;` apparent, we've added a hypothetical utility class like `sb-inline-block` or you might use it within a flex parent where its auto width can be observed.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2 sb-inline-block" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: auto; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <p>This block has <code>width="auto"</code>. It will only be as wide as its content.<br />
+To make <code>width="auto"</code> apparent, we've added a hypothetical utility class like <code>sb-inline-block</code> or you might use it within a flex parent where its auto width can be observed.</p>
+        </div>
+    </div>
+</div>
+
+<h3 id="class-id-and-content_class"><code>class</code>, <code>id</code>, and <code>content_class</code></h3>
+<p>These parameters allow for custom styling and identification.</p>
+<pre><code>{~ align id=&quot;my-unique-aligner&quot; class=&quot;custom-outer-styles sb-border-primary sb-p-3&quot; content_class=&quot;custom-inner-styles&quot; width=&quot;80%&quot; ~}
+This block has:
+
+- `id=&quot;my-unique-aligner&quot;` for the outer wrapper.
+- `class=&quot;custom-outer-styles sb-border-primary sb-p-3&quot;` added to the outer wrapper.
+- `content_class=&quot;custom-inner-styles&quot;` for the inner `div` that directly wraps this text.
+You would define these custom classes in your own CSS.
+The text is centered by default internally. The block is centered due to default `pos` and `width=&quot;80%&quot;`.
+{~~}
+</code></pre>
+<div id="my-unique-aligner"
+    class="sb-align-outer-wrapper custom-outer-styles sb-border-primary sb-p-3" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 80%; height: auto;"> 
+        <div class="sb-align-content custom-inner-styles" 
+             style="text-align: center;">
+            <p>This block has:</p>
+<ul>
+<li><code>id="my-unique-aligner"</code> for the outer wrapper.</li>
+<li><code>class="custom-outer-styles sb-border-primary sb-p-3"</code> added to the outer wrapper.</li>
+<li><code>content_class="custom-inner-styles"</code> for the inner <code>div</code> that directly wraps this text.<br />
+You would define these custom classes in your own CSS.<br />
+The text is centered by default internally. The block is centered due to default <code>pos</code> and <code>width="80%"</code>.</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<h2 id="combined-example">Combined Example</h2>
+<p>Let's combine several parameters:</p>
+<pre><code>{~ align pos=&quot;end&quot; width=&quot;70%&quot; height=&quot;150px&quot; content_align=&quot;start&quot; class=&quot;sb-bg-neutral-50 sb-p-3&quot; ~}
+### Styled &amp; Aligned Section
+
+This block is aligned to the **end** (right), has a `width` of **70%**, and a fixed `height` of **150px**.
+The internal text content is aligned to the **start** (left).
+It also has custom background, padding, and shadow utility classes.
+
+- Point 1
+- Point 2
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-bg-neutral-50 sb-p-3" 
+    style="display: flex; justify-content: flex-end;" 
+    >
+    <div class="sb-align-inner-block" style="width: 70%; height: 150px;"> 
+        <div class="sb-align-content " 
+             style="text-align: left;">
+            <h3 id="styled-aligned-section">Styled &amp; Aligned Section</h3>
+<p>This block is aligned to the <strong>end</strong> (right), has a <code>width</code> of <strong>70%</strong>, and a fixed <code>height</code> of <strong>150px</strong>.<br />
+The internal text content is aligned to the <strong>start</strong> (left).<br />
+It also has custom background, padding, and shadow utility classes.</p>
+<ul>
+<li>Point 1</li>
+<li>Point 2</li>
+</ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

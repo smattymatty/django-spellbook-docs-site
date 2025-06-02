@@ -1,16 +1,16 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Template Tags</h1>
+<h1 id="template-tags">Template Tags</h1>
 <p>Django Spellbook includes several useful template tags to enhance your templates with markdown-specific features. These tags help with presenting table of contents, metadata, styling, and URL handling for your markdown-generated content.</p>
-<h2>Loading the Template Tags</h2>
+<h2 id="loading-the-template-tags">Loading the Template Tags</h2>
 <p>To use these template tags, you need to load them at the top of your Django template:</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}
 {% endverbatim %}
 </code></pre>
-<h2>Available Template Tags</h2>
-<h3>sidebar_toc</h3>
+<h2 id="available-template-tags">Available Template Tags</h2>
+<h3 id="sidebar_toc">sidebar_toc</h3>
 <p>Generates a structured table of contents based on your markdown content hierarchy for display in a sidebar.</p>
 <p><strong>Syntax</strong>:</p>
 <pre><code class="language-django">{% verbatim %}
@@ -29,7 +29,7 @@
 </div>
 
 <p>When rendered, this tag produces a hierarchical navigation menu based on your markdown files directory structure.</p>
-<h3>spellbook_styles</h3>
+<h3 id="spellbook_styles">spellbook_styles</h3>
 <p>Includes the Spellbook's default styles in your template. These styles ensure proper rendering of SpellBlocks, code highlighting, and other markdown-specific features.</p>
 <p><strong>Syntax</strong>:</p>
 <pre><code class="language-django">{% verbatim %}
@@ -48,7 +48,7 @@
 
 </div>
 
-<h3>spellbook_url</h3>
+<h3 id="spellbook_url">spellbook_url</h3>
 <p>Does what Django's built-in <code>url</code> tag does, but for markdown-generated content.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -72,7 +72,7 @@
 {% endverbatim %}
 </code></pre>
 <p>If the URL can't be reversed, it will return the original path.</p>
-<h3>dash_strip</h3>
+<h3 id="dash_strip">dash_strip</h3>
 <p>Removes leading dashes from a string. This is particularly useful for cleaning up file names when displaying them as titles or navigation items.</p>
 <p><strong>Syntax</strong>:</p>
 <pre><code class="language-django">{% verbatim %}
@@ -85,7 +85,7 @@
 &lt;!-- Renders as: &lt;h1&gt;introduction&lt;/h1&gt; --&gt;
 {% endverbatim %}
 </code></pre>
-<h3>show_metadata</h3>
+<h3 id="show_metadata">show_metadata</h3>
 <p>Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.</p>
 <ol>
 <li>User-Facing Metadata:</li>

@@ -1,9 +1,9 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Hero Block (<code>~ hero ~</code>): Professional Use Cases</h1>
+<h1 id="hero-block-hero-professional-use-cases">Hero Block (<code>~ hero ~</code>): Professional Use Cases</h1>
 <p>The <code>~ hero ~</code> SpellBlock provides a robust foundation for creating compelling leading sections. This document showcases advanced and varied examples tailored for professional contexts such as portfolios, service descriptions, and calls to action, leveraging parameters like <code>text_bg_color</code> for enhanced visual design.</p>
-<h2>Example 1: Consultant Portfolio Introduction</h2>
+<h2 id="example-1-consultant-portfolio-introduction">Example 1: Consultant Portfolio Introduction</h2>
 <p>A clean, impactful hero for a consultant's homepage, using the <code>text_left_image_right</code> layout.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_left_image_right&quot; image_src=&quot;https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Professional consultant presenting a strategy&quot; min_height=&quot;40vh&quot; content_align_vertical=&quot;center&quot; text_bg_color=&quot;black-50&quot; class=&quot;hero-consultant&quot; ~}
 ## Strategic Business Solutions
@@ -38,7 +38,7 @@ With over 15 years of experience across multiple industries, I provide actionabl
 </section>
 </p>
 <hr />
-<h2>Example 2: Software Product Showcase with Background Image</h2>
+<h2 id="example-2-software-product-showcase-with-background-image">Example 2: Software Product Showcase with Background Image</h2>
 <p>Utilizing the <code>text_center_image_background</code> layout to highlight a software product. The <code>text_bg_color</code> with slight transparency ensures the text is legible over the image.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_center_image_background&quot; image_src=&quot;https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Abstract software interface&quot; text_color=&quot;white&quot; text_bg_color=&quot;black-50&quot; min_height=&quot;screen&quot; content_align_vertical=&quot;center&quot; ~}
 # Innovate. Automate. Elevate.
@@ -73,7 +73,7 @@ Discover **SynergyFlow Pro** – the ultimate platform for streamlining your tea
 </section>
 </p>
 <hr />
-<h2>Example 3: Minimalist Text-Only Hero for a Service Page</h2>
+<h2 id="example-3-minimalist-text-only-hero-for-a-service-page">Example 3: Minimalist Text-Only Hero for a Service Page</h2>
 <p>The <code>text_only_centered</code> layout is perfect for a direct, message-focused introduction, such as for a specialized service.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_only_centered&quot; bg_color=&quot;neutral-50&quot; text_color=&quot;black&quot; min_height=&quot;400px&quot; content_align_vertical=&quot;center&quot; text_bg_color=&quot;white-75&quot; class=&quot;hero-service-intro&quot; ~}
 ### Expert Financial Advisory
@@ -102,7 +102,7 @@ Your financial future, secured.
 </section>
 </p>
 <hr />
-<h2>Example 4: Workshop or Event Announcement</h2>
+<h2 id="example-4-workshop-or-event-announcement">Example 4: Workshop or Event Announcement</h2>
 <p>Using <code>text_center_image_background</code> with a vibrant image and clear call to action. <code>content_align_vertical="bottom"</code> pushes content down.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_center_image_background&quot; image_src=&quot;https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Dynamic workshop event&quot; text_color=&quot;white&quot; text_bg_color=&quot;primary-50&quot; content_align_vertical=&quot;bottom&quot; min_height=&quot;75vh&quot; ~}
 ## Upcoming Workshop: Mastering Digital Marketing
@@ -139,7 +139,7 @@ Join industry experts to learn the latest trends and techniques in digital marke
 </section>
 </p>
 <hr />
-<h2>Example 5: Developer Skill Highlight on a Resume/Portfolio</h2>
+<h2 id="example-5-developer-skill-highlight-on-a-resumeportfolio">Example 5: Developer Skill Highlight on a Resume/Portfolio</h2>
 <p>A <code>text_left_image_right</code> layout focusing on a specific skill, with text background for clarity if image has varied colors.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_left_image_right&quot; image_src=&quot;https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGV2ZWxvcGVyfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60&quot; image_alt=&quot;Code on a screen&quot; min_height=&quot;auto&quot; content_align_vertical=&quot;center&quot; bg_color=&quot;black-25&quot; text_bg_color=&quot;black-25&quot; class=&quot;skill-highlight-hero&quot; ~}
 ### Core Competency: API Development
@@ -177,7 +177,7 @@ Designing and implementing robust, scalable, and secure RESTful APIs using Pytho
 </section>
 </p>
 <p>The <code>~ hero ~</code> SpellBlock can be used to create stunning, movie-themed hero sections, perfect for film reviews, fan pages, or promotional content. These examples demonstrate the new layouts: <code>text_right_image_left</code>, <code>image_top_text_bottom</code>, and <code>image_only_full</code>.</p>
-<h2>Example 1: Sci-Fi Epic - <code>text_right_image_left</code></h2>
+<h2 id="example-1-sci-fi-epic-text_right_image_left">Example 1: Sci-Fi Epic - <code>text_right_image_left</code></h2>
 <p>Showcasing a movie poster on the left and review/details on the right.</p>
 <pre><code class="language-django">{~ hero layout=&quot;text_right_image_left&quot; image_src=&quot;https://image.tmdb.org/t/p/w780/gKkl37BQuKTanygYQG1pyYgKzgL.jpg&quot; image_alt=&quot;Movie poster for 'Dune: Part Two'&quot; min_height=&quot;80vh&quot; content_align_vertical=&quot;center&quot; bg_color=&quot;black-90&quot; text_color=&quot;neutral-100&quot; text_bg_color=&quot;black-50&quot; class=&quot;movie-hero-dune&quot; ~}
 ## Dune: Part Two (2024)
@@ -218,7 +218,7 @@ A breathtaking cinematic achievement, Denis Villeneuve's sequel expands on the r
 </section>
 </p>
 <hr />
-<h2>Example 2: Animated Feature - <code>image_top_text_bottom</code></h2>
+<h2 id="example-2-animated-feature-image_top_text_bottom">Example 2: Animated Feature - <code>image_top_text_bottom</code></h2>
 <p>Perfect for a family-friendly movie, with a vibrant wide image at the top and details below.</p>
 <pre><code class="language-django">{~ hero layout=&quot;image_top_text_bottom&quot; image_src=&quot;https://image.tmdb.org/t/p/original/kDp1vUBnMfTfS2h6R5mDcO0yD0W.jpg&quot; image_alt=&quot;Promotional image for 'Spider-Man: Across the Spider-Verse'&quot; min_height=&quot;auto&quot; bg_color=&quot;black-25&quot; content_align_vertical=&quot;top&quot; text_bg_color=&quot;white-50&quot; text_color=&quot;black&quot; class=&quot;movie-hero-spiderman&quot; ~}
 ### Spider-Man: Across the Spider-Verse (2023)
@@ -253,7 +253,7 @@ Miles Morales catapults across the Multiverse, where he encounters a team of Spi
 </section>
 </p>
 <hr />
-<h2>Example 3: Indie Film Festival - <code>image_only_full</code></h2>
+<h2 id="example-3-indie-film-festival-image_only_full">Example 3: Indie Film Festival - <code>image_only_full</code></h2>
 <p>A full-bleed image to set the mood for a film festival, with overlaid text announcing the event. <code>text_bg_color</code> is crucial for readability.</p>
 <pre><code class="language-django">{~ hero layout=&quot;image_only_full&quot; image_src=&quot;https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmlsbSUyMGZlc3RpdmFsfGVufDB8fDB8fHww&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80&quot; image_alt=&quot;Audience at an independent film festival&quot; min_height=&quot;90vh&quot; text_color=&quot;white&quot; text_bg_color=&quot;black-75&quot; content_align_vertical=&quot;center&quot; class=&quot;filmfest-hero&quot; ~}
 # Sundown Independent Film Festival

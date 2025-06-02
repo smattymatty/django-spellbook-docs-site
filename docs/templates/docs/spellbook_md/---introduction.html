@@ -1,7 +1,7 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>What is Django Spellbook?</h1>
+<h1 id="what-is-django-spellbook">What is Django Spellbook?</h1>
 <p>Django Spellbook is a markdown processor that extends markdown with reusable content components for Django, generating templates, views, and URLs in a way that doesn't interfere with your existing codebase. <a href="/docs/FAQ">Learn more</a>.</p>
 <p>It's a magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.</p>
 <div class="sb-accordion ">
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<h1>Installation</h1>
+<h1 id="installation">Installation</h1>
 <p>Install the package with pip:<br />
 <code>pip install django-spellbook</code></p>
 <p>Then, add <code>django_spellbook</code> to your Django app's <code>INSTALLED_APPS</code> in <code>settings.py</code>:</p>
@@ -37,9 +37,9 @@ INSTALLED_APPS = [
 ]
 </code></pre>
 <p>For more settings, check out the <a href="/docs/settings">settings documentation</a>.</p>
-<h1>Features of Django Spellbook</h1>
+<h1 id="features-of-django-spellbook">Features of Django Spellbook</h1>
 <p>Django Spellbook includes a number of features, within different modules that can be used in your Django projects.</p>
-<h2>Markdown</h2>
+<h2 id="markdown">Markdown</h2>
 <p>Spellbook's custom Markdown Renderer will automatically build the templates, views, urls, and much more with just one terminal command. It offers extended syntax for creating interactive elements with much more control over the HTML output, including custom elements, blocks, and more. </p>
 <p>All you need to get started is a folder of markdown files, a Django app, and a few settings. Spellbook now supports multiple source directories and destination apps, allowing you to organize different types of content (like documentation, blog posts, or help articles) into separate apps with their own URL namespaces.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     </span>
 </div>
 
-<a class="super-link" href="/docs/Markdown/introduction"><p>Learn More about Spellbook's Markdown Module</p></a><h2>Styles</h2>
+<a class="super-link" href="/docs/Markdown/introduction"><p>Learn More about Spellbook's Markdown Module</p></a><h2 id="styles">Styles</h2>
 <p>Spellbook's built-in styles can be loaded with the template tag <code>% spellbook_styles %</code>. This includes several utility classes for common styling needs, such as '.sb-p-1' or '.sb-flex-col' and '.sb-justify-center'. There are also several built-in component classes such as '.sb-card', 'sb-card-body', 'sb-alert', and '.sb-alert-info'.</p>
 <p>These styles were originally made just for the Markdown module's built-in blocks. I'm including them in this documentation for reference, so users don't have to redefine basic utility classes.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">

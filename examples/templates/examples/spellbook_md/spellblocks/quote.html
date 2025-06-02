@@ -1,9 +1,9 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Quote SpellBlock Showcase</h1>
+<h1 id="quote-spellblock-showcase">Quote SpellBlock Showcase</h1>
 <p>The Quote SpellBlock provides an elegant way to highlight quotations, testimonials, and attributable statements in your documentation. This guide demonstrates all the capabilities and variations of the Quote block.</p>
-<h2>Basic Quote Usage</h2>
+<h2 id="basic-quote-usage">Basic Quote Usage</h2>
 <p>At its simplest, a Quote block can be used without attribution:</p>
 <pre><code class="language-django">{~ quote ~}
 The best way to predict the future is to invent it.
@@ -19,9 +19,9 @@ The best way to predict the future is to invent it.
     </div>
 </blockquote>
 
-<h2>Quotes with Attribution</h2>
+<h2 id="quotes-with-attribution">Quotes with Attribution</h2>
 <p>Adding an author makes the quote more meaningful and credible.</p>
-<h3>Quote with Author</h3>
+<h3 id="quote-with-author">Quote with Author</h3>
 <pre><code class="language-django">{~ quote author=&quot;Alan Kay&quot; ~}
 The best way to predict the future is to invent it.
 {~~}
@@ -41,7 +41,7 @@ The best way to predict the future is to invent it.
     </div>
 </blockquote>
 
-<h3>Quote with Author and Source</h3>
+<h3 id="quote-with-author-and-source">Quote with Author and Source</h3>
 <p>For complete attribution, include both the author and the source:</p>
 <pre><code class="language-django">{~ quote author=&quot;Tim Berners-Lee&quot; source=&quot;Weaving the Web, 1999&quot; ~}
 The Web as I envisaged it, we have not seen it yet. The future is still so much bigger than the past.
@@ -62,9 +62,9 @@ The Web as I envisaged it, we have not seen it yet. The future is still so much 
     </div>
 </blockquote>
 
-<h2>Formatting Inside Quotes</h2>
+<h2 id="formatting-inside-quotes">Formatting Inside Quotes</h2>
 <p>Quotes support markdown formatting within their content for rich text presentation.</p>
-<h3>Text Formatting</h3>
+<h3 id="text-formatting">Text Formatting</h3>
 <pre><code class="language-django">{~ quote author=&quot;Donald Knuth&quot; ~}
 **Programming** is the art of telling another human what one wants the computer to do.
 {~~}
@@ -103,7 +103,7 @@ The *Analytical Engine* weaves algebraic patterns, just as the Jacquard loom wea
     </div>
 </blockquote>
 
-<h3>Multi-line Quotes</h3>
+<h3 id="multi-line-quotes">Multi-line Quotes</h3>
 <p>Quotes can contain multiple paragraphs for longer passages:</p>
 <pre><code class="language-django">{~ quote author=&quot;Linus Torvalds&quot; source=&quot;Email to linux-kernel mailing list, 2000&quot; ~}
 Talk is cheap. Show me the code.
@@ -127,7 +127,7 @@ Given enough eyeballs, all bugs are shallow.
     </div>
 </blockquote>
 
-<h2>Quotes with Images</h2>
+<h2 id="quotes-with-images">Quotes with Images</h2>
 <p>Add a visual element to your quotes with the image parameter:</p>
 <pre><code class="language-django">{~ quote author=&quot;Grace Hopper&quot; image=&quot;https://vcencyclopedia.vassar.edu/wp-content/uploads/2021/11/1583771839362.jpeg&quot; ~}
 The most dangerous phrase in the language is, &quot;We've always done it this way.&quot;
@@ -152,8 +152,8 @@ The most dangerous phrase in the language is, &quot;We've always done it this wa
     </div>
 </blockquote>
 
-<h2>Customizing Quotes</h2>
-<h3>Custom CSS Classes</h3>
+<h2 id="customizing-quotes">Customizing Quotes</h2>
+<h3 id="custom-css-classes">Custom CSS Classes</h3>
 <p>Add custom CSS classes to further style your quotes:</p>
 <pre><code class="language-django">{~ quote author=&quot;Steve Jobs&quot; class=&quot;sb-bg-light sb-p-4 sb-border-radius&quot; ~}
 Design is not just what it looks like and feels like. Design is how it works.
@@ -174,7 +174,7 @@ Design is not just what it looks like and feels like. Design is how it works.
     </div>
 </blockquote>
 
-<h2>Best Practices</h2>
+<h2 id="best-practices">Best Practices</h2>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -195,7 +195,7 @@ Design is not just what it looks like and feels like. Design is how it works.
     </span>
 </div>
 
-<h3>Quote Formatting Guidelines</h3>
+<h3 id="quote-formatting-guidelines">Quote Formatting Guidelines</h3>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 

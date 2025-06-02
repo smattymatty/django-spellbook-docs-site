@@ -1,10 +1,10 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Introduction to SpellBlocks</h1>
+<h1 id="introduction-to-spellblocks">Introduction to SpellBlocks</h1>
 <p>SpellBlocks are reusable content components that you can embed directly in your markdown. Think of them as Django template tags, but for markdown. They're perfect for creating rich, interactive content while keeping your markdown clean and readable.</p>
-<h2>Built-in SpellBlocks</h2>
-<h3>Alert Block</h3>
+<h2 id="built-in-spellblocks">Built-in SpellBlocks</h2>
+<h3 id="alert-block">Alert Block</h3>
 <p>Creates attention-grabbing message boxes with different styles.</p>
 <pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
 Hey! This is important stuff!
@@ -28,7 +28,7 @@ Hey! This is important stuff!
     </span>
 </div>
 
-<h3>Card Block</h3>
+<h3 id="card-block">Card Block</h3>
 <p>Creates a card-style container for your content. Perfect for organizing related information.</p>
 <pre><code class="language-django">{~ card title=&quot;Optional Title&quot; footer=&quot;Optional Footer&quot; class=&quot;any-extra-classes&quot; ~}
 Your card content here.
@@ -51,20 +51,20 @@ Supports **markdown** too!
 
 </div>
 
-<h2>Quote Block</h2>
+<h2 id="quote-block">Quote Block</h2>
 <p>The Quote Block creates stylized quotations with optional attribution information. This block is perfect for highlighting important quotes, testimonials, or key takeaways from other sources.</p>
-<h3>Parameters</h3>
+<h3 id="parameters">Parameters</h3>
 <ul>
 <li><code>author</code> - (Optional) The person who said or wrote the quote</li>
 <li><code>source</code> - (Optional) The source of the quote (book, article, etc.)</li>
 <li><code>class</code> - (Optional) Additional CSS classes to apply to the quote block</li>
 </ul>
-<h3>Example Usage</h3>
+<h3 id="example-usage">Example Usage</h3>
 <pre><code class="language-django">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Address to the Students' Disarmament Meeting&quot; ~}
 Peace cannot be kept by force; it can only be achieved by understanding.
 {~~}
 </code></pre>
-<h3>Rendered Result</h3>
+<h3 id="rendered-result">Rendered Result</h3>
 <blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
     <div class="sb-quote-inner">
 
@@ -85,9 +85,9 @@ Peace cannot be kept by force; it can only be achieved by understanding.
 The **Analytical Engine** weaves algebraic patterns, just as the *Jacquard loom* weaves flowers and leaves.
 {~~}
 </code></pre>
-<h2>Practice Block</h2>
+<h2 id="practice-block">Practice Block</h2>
 <p>The Practice Block provides a structured format for exercises, challenges, or practice activities. It's ideal for tutorials, educational content, or articles that include actionable tasks.</p>
-<h3>Parameters</h3>
+<h3 id="parameters_1">Parameters</h3>
 <ul>
 <li><code>difficulty</code> - (Optional) How challenging the practice is (default: "Moderate")</li>
 <li><code>timeframe</code> - (Optional) Estimated time to complete (default: "Varies")</li>
@@ -95,7 +95,7 @@ The **Analytical Engine** weaves algebraic patterns, just as the *Jacquard loom*
 <li><code>focus</code> - (Optional) The skill area this practice targets (default: "General")</li>
 <li><code>class</code> - (Optional) Additional CSS classes to apply to the practice block</li>
 </ul>
-<h3>Example Usage</h3>
+<h3 id="example-usage_1">Example Usage</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15-30 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
 ### Template Inheritance Challenge
 
@@ -107,7 +107,7 @@ Create a Django project with:
 **Bonus**: Add a navigation block that changes based on the current page.
 {~~}
 </code></pre>
-<h3>Rendered Result</h3>
+<h3 id="rendered-result_1">Rendered Result</h3>
 <div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
     <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
         <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">

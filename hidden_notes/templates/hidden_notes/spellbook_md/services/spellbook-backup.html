@@ -1,7 +1,7 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h1>Business Plan: Spellbook Backup Service</h1>
+<h1 id="business-plan-spellbook-backup-service">Business Plan: Spellbook Backup Service</h1>
 <p><strong>Version:</strong> 0.1<br />
 <strong>Date:</strong> 2025-05-04</p>
 <hr />
@@ -16,7 +16,7 @@
     </span>
 </div>
 
-<h2>1. Executive Summary</h2>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
 <p>Spellbook Backup is a proposed Software-as-a-Service (SaaS) solution designed to provide a cost-effective alternative to managed databases for developers using SQLite, particularly within the Django (and specifically Django Spellbook) ecosystem deployed on platforms with <strong>ephemeral</strong> filesystems (e.g., DigitalOcean App Platform, Heroku, Google Cloud Run). </p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -59,7 +59,7 @@
 </div>
 
 <hr />
-<h2>2. Problem Statement</h2>
+<h2 id="2-problem-statement">2. Problem Statement</h2>
 <p>Modern Platform-as-a-Service (PaaS) and containerized hosting solutions often utilize <strong>ephemeral</strong> filesystems. This means any data written directly to the application container's local disk, including SQLite database files (<code>db.sqlite3</code>), is lost upon redeployment, scaling events, or container restarts.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -79,7 +79,7 @@
 </div>
 
 <hr />
-<h2>3. Solution: "Spellbook Backup" Service</h2>
+<h2 id="3-solution-spellbook-backup-service">3. Solution: "Spellbook Backup" Service</h2>
 <p>Spellbook Backup offers a bridge between the simplicity of SQLite and the necessity of data persistence on <strong>ephemeral</strong> platforms. It operates as follows:</p>
 <ol>
 <li><strong>Automated Backups:</strong> User applications (via a helper library/script or configuration within Django settings) periodically send their SQLite database backup (e.g., as a <code>.dump</code> SQL file, compressed <code>.sqlite</code> file, or potentially JSON) to the Spellbook Backup service API.</li>
@@ -110,7 +110,7 @@
 </div>
 
 <hr />
-<h2>4. Value Proposition</h2>
+<h2 id="4-value-proposition">4. Value Proposition</h2>
 <ul>
 <li><strong>Significant Cost Savings:</strong> Offers basic database persistence for a fraction of the cost ($1-$5/month) compared to managed databases ($15-$20+/month).</li>
 <li><strong>Simplicity of SQLite:</strong> Allows developers to continue using SQLite, avoiding the need to configure, manage, and potentially alter application logic for a different database system (like PostgreSQL).</li>
@@ -125,7 +125,7 @@
 <li><strong>Restore Time:</strong> Restoring large databases can significantly slow down deployment times.</li>
 </ul>
 <hr />
-<h2>5. Target Market</h2>
+<h2 id="5-target-market">5. Target Market</h2>
 <ul>
 <li><strong>Hobbyist Developers:</strong> Individuals working on personal projects where data loss between backups is acceptable and cost is a major factor.</li>
 <li><strong>Students &amp; Educators:</strong> Users learning web development or teaching, needing a low-cost deployment option.</li>
@@ -134,7 +134,7 @@
 <li><strong>Users Primarily Focused on Cost Reduction:</strong> Willing to accept the technical trade-offs for significant savings.</li>
 </ul>
 <hr />
-<h2>6. Product Features (MVP &amp; Future)</h2>
+<h2 id="6-product-features-mvp-future">6. Product Features (MVP &amp; Future)</h2>
 <p><strong>Minimum Viable Product (MVP):</strong></p>
 <ul>
 <li>Secure API endpoint for backup uploads (accepts SQL dump or compressed SQLite file).</li>
@@ -161,7 +161,7 @@
 <li>Potential support for other frameworks beyond Django.</li>
 </ul>
 <hr />
-<h2>7. Technology Stack (Proposed)</h2>
+<h2 id="7-technology-stack-proposed">7. Technology Stack (Proposed)</h2>
 <ul>
 <li><strong>Backend Service:</strong> Python/Django (leveraging existing expertise), or potentially a lighter framework like FastAPI/Flask.</li>
 <li><strong>Database (for Service State):</strong> A small, managed PostgreSQL instance (ironically!) or potentially a serverless DB like DynamoDB/FaunaDB to store user accounts, API keys, backup metadata. Avoids the chicken-and-egg problem.</li>
@@ -171,7 +171,7 @@
 <li><strong>Hosting (for Service):</strong> DigitalOcean App Platform (using a managed DB for its own state), or small Droplet/EC2 instance.</li>
 </ul>
 <hr />
-<h2>8. Business Model &amp; Pricing</h2>
+<h2 id="8-business-model-pricing">8. Business Model &amp; Pricing</h2>
 <ul>
 <li><strong>Model:</strong> Subscription-based SaaS. Freemium model could attract initial users.</li>
 <li><strong>Proposed Tiers (Example):</strong><ul>
@@ -186,7 +186,7 @@
 <li><strong>Cost Structure:</strong> Cloud storage fees, hosting fees for the service itself, payment processing fees, potential database costs for the service, development &amp; maintenance time.</li>
 </ul>
 <hr />
-<h2>9. Marketing &amp; Sales Strategy</h2>
+<h2 id="9-marketing-sales-strategy">9. Marketing &amp; Sales Strategy</h2>
 <ul>
 <li><strong>Leverage Django Spellbook:</strong> Announce the service to the existing Spellbook user base via documentation links (clearly marked as optional/paid), blog posts, community channels.</li>
 <li><strong>Content Marketing:</strong> Write articles/tutorials addressing the "SQLite on Heroku/DO App Platform" problem and positioning Spellbook Backup as a cost-effective solution.</li>
@@ -195,7 +195,7 @@
 <li><strong>Partnerships (Future):</strong> Explore potential mentions by hosting providers targeting hobbyists (if applicable).</li>
 </ul>
 <hr />
-<h2>10. Operations Plan</h2>
+<h2 id="10-operations-plan">10. Operations Plan</h2>
 <ul>
 <li><strong>Hosting:</strong> Select a reliable hosting provider for the service itself (e.g., DO App Platform with Managed DB, or a small VPS).</li>
 <li><strong>Storage:</strong> Choose a primary object storage provider. Implement lifecycle policies if needed to manage old backups.</li>
@@ -204,13 +204,13 @@
 <li><strong>Maintenance:</strong> Regular updates to dependencies, security patching, infrastructure scaling as needed.</li>
 </ul>
 <hr />
-<h2>11. Management Team</h2>
+<h2 id="11-management-team">11. Management Team</h2>
 <ul>
 <li>Initially: [Your Name/Handle] - Sole developer and operator.</li>
 <li>Future: Potential need for support or development help if the service grows significantly.</li>
 </ul>
 <hr />
-<h2>12. Financial Projections (Placeholder)</h2>
+<h2 id="12-financial-projections-placeholder">12. Financial Projections (Placeholder)</h2>
 <ul>
 <li><strong>Startup Costs:</strong> Initial development time (opportunity cost), domain name, potential initial hosting/storage costs during testing.</li>
 <li><strong>Operating Costs:</strong> Monthly hosting, storage fees (scales with usage), database fees (for service state), payment processor fees (% of revenue), potential monitoring service fees.</li>
@@ -219,7 +219,7 @@
 </ul>
 <p><em>(Detailed financial modeling required)</em></p>
 <hr />
-<h2>13. Risks &amp; Challenges</h2>
+<h2 id="13-risks-challenges">13. Risks &amp; Challenges</h2>
 <ul>
 <li><strong>Technical Limitations:</strong> The inherent drawbacks of SQLite (concurrency) and the backup/restore approach (data loss window, deployment complexity) may limit adoption. Users hitting these limits will need to migrate to a proper managed DB anyway.</li>
 <li><strong>Market Acceptance:</strong> Convincing users to adopt this workaround versus paying for a standard, more reliable managed database. Is the cost saving compelling enough given the trade-offs?</li>
@@ -229,7 +229,7 @@
 <li><strong>Scalability:</strong> Both the service infrastructure and the backup/restore process for large user databases need to scale.</li>
 </ul>
 <hr />
-<h2>14. Exit Strategy (Long-Term Consideration)</h2>
+<h2 id="14-exit-strategy-long-term-consideration">14. Exit Strategy (Long-Term Consideration)</h2>
 <ul>
 <li><strong>Lifestyle Business:</strong> Operate profitably as a small side-income stream.</li>
 <li><strong>Acquisition:</strong> Potential acquisition by a company serving the Django/Python developer tool market or a hosting provider looking to offer value-adds (less likely given the niche/workaround nature).</li>

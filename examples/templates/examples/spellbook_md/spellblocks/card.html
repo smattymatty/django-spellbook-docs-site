@@ -1,9 +1,9 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Card SpellBlock Showcase</h1>
+<h1 id="card-spellblock-showcase">Card SpellBlock Showcase</h1>
 <p>The Card SpellBlock provides a versatile container for organizing related content within a visually distinct box. This guide demonstrates all the capabilities and variations of the Card block.</p>
-<h2>Basic Card Usage</h2>
+<h2 id="basic-card-usage">Basic Card Usage</h2>
 <p>At its simplest, a Card is a container for your content with some visual structure.</p>
 <pre><code class="language-django">{~ card ~}
 This is a basic card with no title or footer.
@@ -17,9 +17,9 @@ This is a basic card with no title or footer.
 
 </div>
 
-<h2>Cards with Headers and Footers</h2>
+<h2 id="cards-with-headers-and-footers">Cards with Headers and Footers</h2>
 <p>Cards become more useful when you add titles and footers to organize your content.</p>
-<h3>Card with Title Only</h3>
+<h3 id="card-with-title-only">Card with Title Only</h3>
 <pre><code class="language-django">{~ card title=&quot;Important Information&quot; ~}
 This card has a title that helps users understand what's inside.
 {~~}
@@ -36,7 +36,7 @@ This card has a title that helps users understand what's inside.
 
 </div>
 
-<h3>Card with Footer Only</h3>
+<h3 id="card-with-footer-only">Card with Footer Only</h3>
 <pre><code class="language-django">{~ card footer=&quot;Last updated: April 2023&quot; ~}
 This card includes a footer that can contain metadata or additional context.
 {~~}
@@ -53,7 +53,7 @@ This card includes a footer that can contain metadata or additional context.
 
 </div>
 
-<h3>Card with Title and Footer</h3>
+<h3 id="card-with-title-and-footer">Card with Title and Footer</h3>
 <pre><code class="language-django">{~ card title=&quot;Django Installation&quot; footer=&quot;Compatible with Python 3.8+&quot; ~}
 To install Django, run:
 
@@ -83,9 +83,9 @@ Then verify your installation with:
 
 </div>
 
-<h2>Formatting Inside Cards</h2>
+<h2 id="formatting-inside-cards">Formatting Inside Cards</h2>
 <p>Cards support full markdown formatting within their content, allowing rich text presentation.</p>
-<h3>Text Formatting</h3>
+<h3 id="text-formatting">Text Formatting</h3>
 <pre><code class="language-django">{~ card title=&quot;Formatting Examples&quot; ~}
 Cards support all markdown formatting:
 
@@ -114,7 +114,7 @@ Cards support all markdown formatting:
 
 </div>
 
-<h3>Lists in Cards</h3>
+<h3 id="lists-in-cards">Lists in Cards</h3>
 <pre><code class="language-django">{~ card title=&quot;Project Setup Checklist&quot; ~}
 Before launching your Django project:
 
@@ -153,7 +153,7 @@ Before launching your Django project:
 
 </div>
 
-<h2>Nested SpellBlocks</h2>
+<h2 id="nested-spellblocks">Nested SpellBlocks</h2>
 <p>Cards can contain other SpellBlocks for complex content arrangements:</p>
 <pre><code class="language-django">{~ card title=&quot;Important Warnings&quot; ~}
 Please review these alerts before proceeding:
@@ -200,8 +200,8 @@ Make sure you have a backup before continuing.</p><br />
     </span>
 </div>
 
-<h2>Common Card Use Cases</h2>
-<h3>Feature Highlights</h3>
+<h2 id="common-card-use-cases">Common Card Use Cases</h2>
+<h3 id="feature-highlights">Feature Highlights</h3>
 <pre><code class="language-django">{~ card title=&quot;User Authentication&quot; ~}
 Django Spellbook includes:
 
@@ -232,7 +232,7 @@ All features follow Django security best practices.
 
 </div>
 
-<h3>Content Organization</h3>
+<h3 id="content-organization">Content Organization</h3>
 <pre><code class="language-django">{~ card title=&quot;Documentation Sections&quot; ~}
 Our documentation is organized into these main sections:
 
@@ -292,7 +292,7 @@ Customization, optimization, and integration guides.</p><br />
 <p></div><br />
     </div></p>
 </div>
-<h2>Best Practices</h2>
+<h2 id="best-practices">Best Practices</h2>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 

@@ -1,7 +1,7 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h2>DjangoLikeTagProcessor (Markdown Extensions)</h2>
+<h2 id="djangoliketagprocessor-markdown-extensions">DjangoLikeTagProcessor (Markdown Extensions)</h2>
 <p>Welcome to the advanced guide for the <code>DjangoLikeTagProcessor</code>. This processor is a core component of Django Spellbook's markdown rendering pipeline, enabling the powerful blend of markdown with Django template tag syntax. Understanding its inner workings can help you customize parsing behavior or debug complex rendering scenarios.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -21,7 +21,7 @@
 
 </div>
 
-<h2>How to use the DjangoLikeTagProcessor</h2>
+<h2 id="how-to-use-the-djangoliketagprocessor">How to use the DjangoLikeTagProcessor</h2>
 <p>To use the processor directly, you would typically initialize the <code>markdown.Markdown</code> class and include the processor in its extensions.</p>
 <pre><code class="language-python">{% verbatim %}
 import markdown
@@ -40,7 +40,7 @@ html_output = md.convert(markdown_input)
 print(html_output)
 {% endverbatim %}
 </code></pre>
-<h3>Example Input and Output</h3>
+<h3 id="example-input-and-output">Example Input and Output</h3>
 <p>Given the <code>markdown_input</code> in the Python snippet above:</p>
 <p><strong>Input Markdown:</strong></p>
 <pre><code class="language-markdown">{% verbatim %}
@@ -84,7 +84,7 @@ Look at this &lt;strong&gt;important&lt;/strong&gt; message.&lt;/p&gt;
 {% endverbatim %}
 </code></pre>
 <p>This output HTML can then be included in a Django template. When Django renders that template, it will process the content within the <code>&lt;django-tag&gt;</code> elements as standard Django template logic, effectively merging markdown structure with dynamic Django rendering.</p>
-<h2>Core Processing Logic</h2>
+<h2 id="core-processing-logic">Core Processing Logic</h2>
 <p>The processor uses regular expressions and distinct handling logic based on the tag identified.</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">

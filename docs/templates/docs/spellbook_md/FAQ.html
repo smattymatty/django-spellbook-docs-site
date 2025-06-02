@@ -1,7 +1,7 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Frequently Asked Questions</h1>
+<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">What is Django Spellbook?</span>
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<h2>Generation Process</h2>
+<h2 id="generation-process">Generation Process</h2>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">Does this alter my database?</span>
@@ -110,7 +110,7 @@
     </div>
 </div>
 
-<h2>SpellBlocks</h2>
+<h2 id="spellblocks">SpellBlocks</h2>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">How do I create my own custom SpellBlocks?</span>
@@ -155,7 +155,7 @@ Alternatively, you can avoid including</code>% spellbook_styles %` altogether an
     </div>
 </div>
 
-<h2>Markdown Extensions &amp; Django Tags</h2>
+<h2 id="markdown-extensions-django-tags">Markdown Extensions &amp; Django Tags</h2>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">Can I use standard Django template tags/filters in my markdown?</span>
@@ -201,7 +201,7 @@ Alternatively, you can avoid including</code>% spellbook_styles %` altogether an
     </div>
 </div>
 
-<h2>Configuration &amp; Workflow</h2>
+<h2 id="configuration-workflow">Configuration &amp; Workflow</h2>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">How often should I run `python manage.py spellbook_md`?</span>
@@ -252,7 +252,7 @@ Alternatively, you can avoid including</code>% spellbook_styles %` altogether an
     </div>
 </div>
 
-<h2>Metadata</h2>
+<h2 id="metadata">Metadata</h2>
 <pre><code class="language-yaml">---
 title: Working with Spellbook Metadata
 published: 2023-11-15

@@ -1,9 +1,9 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h2>python manage.py spellbook_md</h2>
+<h2 id="python-managepy-spellbook_md">python manage.py spellbook_md</h2>
 <p>This command will take your directory full of markdown files (or nested directories) and transform them into dynamic HTML templates. It then generates views, URLs, and navigation based on your content's file structure.</p>
-<h3>Command Usage</h3>
+<h3 id="command-usage">Command Usage</h3>
 <pre><code class="language-bash">python manage.py spellbook_md
 </code></pre>
 <p>Options:</p>
@@ -13,12 +13,12 @@
 <li><code>--report-format</code>: Format of the report (<code>text</code>, <code>json</code>, or <code>none</code> to suppress) [default: <code>text</code>]</li>
 <li><code>--report-output</code>: File path to save the report (default: print to stdout)</li>
 </ul>
-<h3>Basic Configuration</h3>
-<h4><strong>Required Settings</strong></h4>
+<h3 id="basic-configuration">Basic Configuration</h3>
+<h4 id="required-settings"><strong>Required Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / &quot;markdown_content&quot;
 SPELLBOOK_MD_APP = &quot;my_app&quot;
 </code></pre>
-<h4><strong>Recommended Settings</strong></h4>
+<h4 id="recommended-settings"><strong>Recommended Settings</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 </code></pre>
 <ul>
@@ -30,16 +30,16 @@ SPELLBOOK_MD_APP = &quot;my_app&quot;
 <ul>
 <li>When <code>True</code>, capitalizes first letters of words in titles and converts dashes to spaces</li>
 </ul>
-<h3>URL Configuration</h3>
-<h4><strong>URL Prefix Setting</strong></h4>
+<h3 id="url-configuration">URL Configuration</h3>
+<h4 id="url-prefix-setting"><strong>URL Prefix Setting</strong></h4>
 <pre><code class="language-python">SPELLBOOK_MD_URL_PREFIX = &quot;docs&quot;  # Content will be at /docs/
 </code></pre>
 <ul>
 <li>This setting determines the URL prefix for accessing your markdown content</li>
 <li>If not specified, content will be available at the root URL</li>
 </ul>
-<h3>Template Configuration</h3>
-<h4><strong>Base Template Setting</strong></h4>
+<h3 id="template-configuration">Template Configuration</h3>
+<h4 id="base-template-setting"><strong>Base Template Setting</strong></h4>
 <pre><code class="language-python"># Single base template for all content
 SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/custom_base.html'
 </code></pre>
@@ -47,7 +47,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/custom_base.html'
 <li>This setting determines the base template used to wrap your markdown content</li>
 <li>If not specified, content will be rendered without a wrapping template</li>
 </ul>
-<h4><strong>Multiple Base Templates</strong></h4>
+<h4 id="multiple-base-templates"><strong>Multiple Base Templates</strong></h4>
 <p>For multi-source configurations, you can specify different base templates for each source:</p>
 <pre><code class="language-python"># Different templates for different sources
 SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
@@ -59,7 +59,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = [&quot;docs/base.html&quot;, &quot;blog/base.html&q
 <li>The number of templates should match the number of sources</li>
 <li>If a single template is provided for multiple sources, it will be applied to all of them</li>
 </ul>
-<h3>Multi-Source Configuration</h3>
+<h3 id="multi-source-configuration">Multi-Source Configuration</h3>
 <p>Django Spellbook supports processing multiple source directories to different destination apps:</p>
 <pre><code class="language-python"># Multiple source configuration
 SPELLBOOK_MD_PATH = [
@@ -90,7 +90,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = [
 <li>URL Prefixes: First app gets empty prefix (root URL), subsequent apps use their app name</li>
 <li>Base Templates: If not specified, no base template is used; if a single template is provided, it's applied to all sources</li>
 </ul>
-<h3>Accessing Your Content</h3>
+<h3 id="accessing-your-content">Accessing Your Content</h3>
 <p>To make your content accessible, include Django Spellbook's URLs in your project's <code>urls.py</code>:</p>
 <pre><code class="language-python"># urls.py
 urlpatterns = [

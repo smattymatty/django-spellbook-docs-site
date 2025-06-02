@@ -1,11 +1,11 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Markdown Processing with Django Spellbook</h1>
+<h1 id="markdown-processing-with-django-spellbook">Markdown Processing with Django Spellbook</h1>
 <p>Django Spellbook's markdown processor offers a more flexible and Django-like approach to markdown parsing by extending traditional markdown syntax with Django template-like tags and 'SpellBlocks' of reusable content components.</p>
-<h2>Why Use Spellbook's Markdown Parser?</h2>
+<h2 id="why-use-spellbooks-markdown-parser">Why Use Spellbook's Markdown Parser?</h2>
 <p>This parser goes beyond the standard markdown syntax by including Django-inspired tags directly in your markdown files. This allows for more structured and semantic HTML, especially useful for projects that need finer control over styling and element attributes, like setting classes or IDs directly in markdown. This means you can write markdown that integrates more seamlessly with your Django templates.</p>
-<h2>Example: Add Structured HTML Elements Directly in Markdown</h2>
+<h2 id="example-add-structured-html-elements-directly-in-markdown">Example: Add Structured HTML Elements Directly in Markdown</h2>
 <pre><code class="language-django">{% verbatim %}
 {% div .container #main-container data-analytics=&quot;true&quot; %}
 ## Section Title
@@ -20,7 +20,7 @@ Content with *markdown* support
 &lt;/div&gt;
 </code></pre>
 <p>Paired with powerful libraries like HTMX, this can create dynamic and interactive interfaces that are both visually appealing and highly functional without ever having to leave your markdown files.</p>
-<h2>Example: SpellBlocks, re-usable Content Components</h2>
+<h2 id="example-spellblocks-re-usable-content-components">Example: SpellBlocks, re-usable Content Components</h2>
 <p>Spellblocks are reusable content components that can be embedded directly in your markdown content. They provide a powerful way to create rich, interactive content while maintaining the simplicity of markdown syntax.</p>
 <div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -75,13 +75,13 @@ Warning: This is an important notice!
 3. Start writing magical markdown!
 {~~}
 </code></pre>
-<h2>Commands</h2>
+<h2 id="commands">Commands</h2>
 <p>Render your markdown files with: <code>python manage.py spellbook_md</code></p>
 <p>This command will process markdown files in the specified directory from <code>settings.py</code>, rendering them as HTML and storing them in your app's templates directory. The rendered templates are accessible for further use in Django views, providing seamless markdown-based content management.</p>
 <p>Learn more <a href="/docs/Commands/spellbook_md">here</a>.</p>
-<h2>Settings</h2>
+<h2 id="settings">Settings</h2>
 <p>To configure the paths, templates, and URL prefixes used by Django Spellbook, add the following settings to your settings.py:</p>
-<h3>Basic Configuration</h3>
+<h3 id="basic-configuration">Basic Configuration</h3>
 <pre><code class="language-python"># settings.py
 SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
 SPELLBOOK_MD_APP = 'my_app'
@@ -103,7 +103,7 @@ SPELLBOOK_MD_URL_PREFIX = 'content'  # Will be available at /content/
 &lt;div class=&quot;spellbook-md&quot;&gt;{% block spellbook_md %} {% endblock %}&lt;/div&gt;
 {% endverbatim %}
 </code></pre>
-<h3>Multiple Source-Destination Pairs</h3>
+<h3 id="multiple-source-destination-pairs">Multiple Source-Destination Pairs</h3>
 <p>Django Spellbook supports processing multiple source directories to different destination apps in a single command:</p>
 <pre><code class="language-python"># settings.py
 
@@ -126,7 +126,7 @@ SPELLBOOK_MD_URL_PREFIX = [
 - Content from <code>docs_content</code> will be processed to the <code>docs_app</code> and available at <code>/docs/</code><br />
 - Content from <code>blog_content</code> will be processed to the <code>blog_app</code> and available at <code>/blog/</code><br />
 - Each app maintains its own set of templates, views, and URLs</p>
-<h3>Default URL Prefix Behavior</h3>
+<h3 id="default-url-prefix-behavior">Default URL Prefix Behavior</h3>
 <p>If <code>SPELLBOOK_MD_URL_PREFIX</code> is not specified:</p>
 <ul>
 <li>For single app configurations, the default URL prefix is an empty string (content is available at the root URL).</li>
@@ -145,7 +145,7 @@ SPELLBOOK_MD_APP = [
 # SPELLBOOK_MD_URL_PREFIX = ['', 'blog_app']
 </code></pre>
 <p>Learn more about settings <a href="/docs/settings">here</a>.</p>
-<h2>Accessing Your Spellbook Markdown Content</h2>
+<h2 id="accessing-your-spellbook-markdown-content">Accessing Your Spellbook Markdown Content</h2>
 <p>After running the markdown processing command, your content will be organized within your specified app's templates under <code>templates/spellbook_md/</code>. These files are created automatically in your app directory based on your <code>SPELLBOOK_MD_APP</code> setting.</p>
 <p>To make your markdown-rendered pages accessible from the browser, add a path in your main <code>urls.py</code>:</p>
 <pre><code class="language-python"># my_project/urls.py
@@ -158,9 +158,9 @@ urlpatterns = [
     # other includes...
 ]
 </code></pre>
-<h3>URL Structure</h3>
+<h3 id="url-structure">URL Structure</h3>
 <p>The URL structure for your content depends on your settings:</p>
-<h4>Single Source Configuration</h4>
+<h4 id="single-source-configuration">Single Source Configuration</h4>
 <p>For a single source configuration:</p>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = BASE_DIR / 'content'
 SPELLBOOK_MD_APP = 'my_app'
@@ -176,7 +176,7 @@ SPELLBOOK_MD_URL_PREFIX = 'docs'  # Optional
 <li><code>/page-name/</code></li>
 <li><code>/folder/sub-page/</code></li>
 </ul>
-<h4>Multiple Source Configuration</h4>
+<h4 id="multiple-source-configuration">Multiple Source Configuration</h4>
 <p>When using multiple source-destination pairs:</p>
 <pre><code class="language-python">SPELLBOOK_MD_PATH = [BASE_DIR / 'docs', BASE_DIR / 'blog']
 SPELLBOOK_MD_APP = ['docs_app', 'blog_app']
@@ -194,7 +194,7 @@ SPELLBOOK_MD_URL_PREFIX = ['documentation', 'articles']  # Optional
 <li><code>/installation/</code>  (First app gets empty root URL)</li>
 <li><code>/blog_app/first-post/</code>  (Subsequent apps use app name as prefix)</li>
 </ul>
-<h2>How Views and URLs Are Generated</h2>
+<h2 id="how-views-and-urls-are-generated">How Views and URLs Are Generated</h2>
 <p>When you run the command, Django Spellbook processes all markdown files in the configured source directories. The process involves:</p>
 <ol>
 <li><strong>Parsing Markdown Files:</strong></li>

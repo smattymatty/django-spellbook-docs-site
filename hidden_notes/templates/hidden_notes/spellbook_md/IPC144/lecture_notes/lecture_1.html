@@ -1,7 +1,7 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h2>Module 1: Introduction to Computers, Programs, and C</h2>
+<h2 id="module-1-introduction-to-computers-programs-and-c">Module 1: Introduction to Computers, Programs, and C</h2>
 <p><section
   class="sb-hero sb-hero-layout--text-left-image-right sb-items-center  sb-white hero-c-intro"
   style="min-height: screen;"
@@ -226,7 +226,7 @@ For example, 1 MHz means 1 million pulses per second, while 1 GHz is 1000 MHz.</
     </div>
 </div>
 
-<h2>Module 2: Understanding Programming Languages</h2>
+<h2 id="module-2-understanding-programming-languages">Module 2: Understanding Programming Languages</h2>
 <p>This section explores the different dialects used to communicate our intentions to the machine.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -349,7 +349,7 @@ For example, 1 MHz means 1 million pulses per second, while 1 GHz is 1000 MHz.</
     </div>
 </div>
 
-<h2>Module 3: The C Programming Language</h2>
+<h2 id="module-3-the-c-programming-language">Module 3: The C Programming Language</h2>
 <p>We now focus on the venerable C language.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -482,7 +482,7 @@ int main() {
     </div>
 </div>
 
-<h2>Module 4: Data Hierarchy</h2>
+<h2 id="module-4-data-hierarchy">Module 4: Data Hierarchy</h2>
 <p>Understanding how data is structured, from the smallest bit to vast databases.</p>
 <div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
     <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
@@ -668,7 +668,7 @@ Reflect on how these levels build upon each other.</p>
     </div>
 </div>
 
-<h2>Module 5: Typical C Development Environment</h2>
+<h2 id="module-5-typical-c-development-environment">Module 5: Typical C Development Environment</h2>
 <p>(The slides mention this but provide no details. We can elaborate based on common practices.)</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -689,7 +689,7 @@ Reflect on how these levels build upon each other.</p>
 
 </div>
 
-<h2>What I wrote during Lecture 01</h2>
+<h2 id="what-i-wrote-during-lecture-01">What I wrote during Lecture 01</h2>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt; // For realloc, free, NULL, exit
 
@@ -756,9 +756,9 @@ int main(void) {
 </code></pre>
 <p>In this example, we're using a <code>struct</code> to store a string. The <code>struct</code> contains two fields: <code>str</code> and <code>len</code>. The <code>str</code> field is a pointer to a character array, and the <code>len</code> field is an integer representing the length of the string.</p>
 <p>The <code>printString</code> function takes a <code>struct string</code> as an argument and prints the string to the console.</p>
-<h2>Understanding a C Program for Dynamic String Input</h2>
+<h2 id="understanding-a-c-program-for-dynamic-string-input">Understanding a C Program for Dynamic String Input</h2>
 <p>This C program is designed to read a line of text entered by the user. A key feature is its ability to handle strings of varying lengths without a predefined size limit, by dynamically allocating memory as the user types. This approach showcases several important C programming concepts, including custom data structures, direct memory management, and robust error handling.</p>
-<h3>Core Components and Logic</h3>
+<h3 id="core-components-and-logic">Core Components and Logic</h3>
 <p>The program's functionality is built around these central ideas:</p>
 <ul>
 <li>
@@ -806,7 +806,7 @@ int main(void) {
 </ul>
 </li>
 </ul>
-<h3>Program Flow Summary</h3>
+<h3 id="program-flow-summary">Program Flow Summary</h3>
 <p>The typical execution sequence of such a program is:</p>
 <ol>
 <li><strong>Initialize:</strong> Set up the custom string structure to represent an empty string (pointer to <code>NULL</code>, length to <code>0</code>).</li>
@@ -829,7 +829,7 @@ int main(void) {
 <li><strong>Cleanup:</strong> Call <code>free</code> to release the dynamically allocated memory for the string. Set the pointer to <code>NULL</code>.</li>
 <li><strong>Terminate:</strong> End the program, typically returning <code>0</code> to indicate success.</li>
 </ol>
-<h3>Key Learning Takeaways from Such Code</h3>
+<h3 id="key-learning-takeaways-from-such-code">Key Learning Takeaways from Such Code</h3>
 <p>Studying and understanding this type of program provides insights into several core C concepts:</p>
 <ul>
 <li><strong>Dynamic Memory Management:</strong> The necessity and techniques for allocating, resizing (<code>realloc</code>), and freeing (<code>free</code>) memory at runtime.</li>

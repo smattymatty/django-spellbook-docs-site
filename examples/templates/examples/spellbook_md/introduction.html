@@ -24,7 +24,7 @@
 
 </div>
 
-<h2>What Are SpellBlocks?</h2>
+<h2 id="what-are-spellblocks">What Are SpellBlocks?</h2>
 <p>SpellBlocks are reusable content components that you can embed directly in your markdown files. They work like Django template tags but are designed specifically for enhancing your documentation. With SpellBlocks, you can:</p>
 <ul>
 <li>Create visually distinct sections for different types of content</li>
@@ -32,16 +32,16 @@
 <li>Add interactive elements without writing HTML</li>
 <li>Organize complex information in a user-friendly way</li>
 </ul>
-<h2>Basic SpellBlock Syntax</h2>
+<h2 id="basic-spellblock-syntax">Basic SpellBlock Syntax</h2>
 <p>All SpellBlocks follow a consistent syntax:</p>
 <pre><code class="language-django">{~ block_name parameter=&quot;value&quot; another_parameter=&quot;value&quot; ~}
 Your content goes here.
 This content can include **markdown** formatting.
 {~~}
 </code></pre>
-<h2>Available SpellBlocks</h2>
+<h2 id="available-spellblocks">Available SpellBlocks</h2>
 <p>Django Spellbook comes with several built-in SpellBlocks to immediately enhance your documentation:</p>
-<h3>Alert Block</h3>
+<h3 id="alert-block">Alert Block</h3>
 <p>Create attention-grabbing message boxes with different severity levels.</p>
 <pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
 Be careful with this setting in production!
@@ -59,7 +59,7 @@ Be careful with this setting in production!
 </div>
 
 <p><a href="/examples/spellblocks/alert">Explore the Alert Block →</a></p>
-<h3>Card Block</h3>
+<h3 id="card-block">Card Block</h3>
 <p>Organize content in visexamples/introduction/ually distinct containers with optional headers and footers.</p>
 <pre><code class="language-django">{~ card title=&quot;Installation&quot; footer=&quot;Updated June 2023&quot; ~}
 Install Django Spellbook using pip:
@@ -85,7 +85,7 @@ Install Django Spellbook using pip:
 </div>
 
 <p><a href="/examples/spellblocks/card">Explore the Card Block →</a></p>
-<h3>Quote Block</h3>
+<h3 id="quote-block">Quote Block</h3>
 <p>Add stylized quotations with attribution.</p>
 <pre><code class="language-django">{~ quote author=&quot;Django's Documentation&quot; source=&quot;Design Philosophies&quot; ~}
 Explicit is better than implicit.
@@ -107,7 +107,7 @@ Explicit is better than implicit.
 </blockquote>
 
 <p><a href="/examples/spellblocks/quote">Explore the Quote Block →</a></p>
-<h3>Practice Block</h3>
+<h3 id="practice-block">Practice Block</h3>
 <p>Create structured practice exercises with metadata.</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;10 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Django Templates&quot; ~}
 ### Your First Template
@@ -136,7 +136,7 @@ Create a simple Django template that displays a greeting message.
 </div>
 
 <p><a href="/examples/spellblocks/practice">Explore the Practice Block →</a></p>
-<h2>Accordion Block</h2>
+<h2 id="accordion-block">Accordion Block</h2>
 <p>Create collapsible content sections for FAQs, step-by-step guides, and more.</p>
 <pre><code class="language-django">{~ accordion title=&quot;What is Django Spellbook?&quot; ~}
 A powerful markdown processor that extends Django's templating capabilities.
@@ -163,7 +163,7 @@ A powerful markdown processor that extends Django's templating capabilities.
 </div>
 
 <p><a href="/examples/spellblocks/accordion">Explore the Accordion Block →</a></p>
-<h2>Why Use SpellBlocks?</h2>
+<h2 id="why-use-spellblocks">Why Use SpellBlocks?</h2>
 <p>SpellBlocks offer several advantages over plain markdown:</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 

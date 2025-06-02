@@ -1,7 +1,7 @@
 {% extends 'changelog/sb_base.html' %}
 
 {% block spellbook_md %}
-<h2><strong>Version 0.1.11</strong></h2>
+<h2 id="version-0111"><strong>Version 0.1.11</strong></h2>
 <p><em>Released: April 19, 2025</em></p>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -14,8 +14,8 @@
     </span>
 </div>
 
-<h1>New Features</h1>
-<h2>Customizable URL Prefixes</h2>
+<h1 id="new-features">New Features</h1>
+<h2 id="customizable-url-prefixes">Customizable URL Prefixes</h2>
 <p>You can now customize URL prefixes for your markdown content, both for single and multiple source configurations:</p>
 <pre><code class="language-python"># Single source with custom URL prefix
 SPELLBOOK_MD_PATH = BASE_DIR / &quot;docs&quot;
@@ -32,7 +32,7 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 <li>Single app configurations use an empty prefix (root URL)</li>
 <li>Multiple app configurations give the first app an empty prefix, and use app names for others</li>
 </ul>
-<h2>Enhanced Error Handling</h2>
+<h2 id="enhanced-error-handling">Enhanced Error Handling</h2>
 <p>The command now provides better error messages and diagnostic information when things go wrong:</p>
 <ul>
 <li>Clear identification of the source of errors (settings, file discovery, processing)</li>
@@ -40,8 +40,8 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 <li>Improved logging of error details</li>
 <li>New <code>--continue-on-error</code> flag to process as many files as possible even when some fail</li>
 </ul>
-<h1>Architecture Improvements</h1>
-<h2>Modular Command Structure</h2>
+<h1 id="architecture-improvements">Architecture Improvements</h1>
+<h2 id="modular-command-structure">Modular Command Structure</h2>
 <p>The <code>spellbook_md</code> command has been refactored into a modular architecture:</p>
 <pre><code>django_spellbook/
 ├── management/
@@ -60,7 +60,7 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 <li>Easier extensibility for future features</li>
 <li>Enhanced error handling and reporting</li>
 </ul>
-<h2>Customizable Base Templates Per Source</h2>
+<h2 id="customizable-base-templates-per-source">Customizable Base Templates Per Source</h2>
 <p>You can now specify different base templates for each markdown source, allowing for tailored layouts across your content:</p>
 <pre><code class="language-python"># Single source with custom base template
 SPELLBOOK_MD_PATH = BASE_DIR / &quot;docs&quot;
@@ -84,14 +84,14 @@ SPELLBOOK_MD_PATH = [BASE_DIR / &quot;docs&quot;, BASE_DIR / &quot;blog&quot;]
 SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
 SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
 </code></pre>
-<h2>Enhanced Template Validation</h2>
+<h2 id="enhanced-template-validation">Enhanced Template Validation</h2>
 <p>The template system now includes improved validation:</p>
 <ul>
 <li>Verification that base template configurations match source configurations</li>
 <li>Path validation to prevent template path traversal vulnerabilities</li>
 <li>Helpful error messages for template-related configuration issues</li>
 </ul>
-<h2>Summary Report Generation</h2>
+<h2 id="summary-report-generation">Summary Report Generation</h2>
 <p>The command now produces a comprehensive summary after processing:</p>
 <ul>
 <li>Total files processed across all sources</li>

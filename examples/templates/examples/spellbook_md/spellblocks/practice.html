@@ -1,9 +1,9 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Practice SpellBlock Showcase</h1>
+<h1 id="practice-spellblock-showcase">Practice SpellBlock Showcase</h1>
 <p>The Practice SpellBlock provides a structured format for exercises, challenges, and hands-on activities in your documentation. This guide demonstrates all the capabilities and variations of the Practice block.</p>
-<h2>Basic Practice Block</h2>
+<h2 id="basic-practice-block">Basic Practice Block</h2>
 <p>A Practice block includes metadata about the exercise and the exercise content itself:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15-20 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Django Models&quot; ~}
 ### Create a Blog Model
@@ -48,9 +48,9 @@ Implement the `__str__` method and add a Meta class with proper ordering.
     </div>
 </div>
 
-<h2>Practice Block Metadata</h2>
+<h2 id="practice-block-metadata">Practice Block Metadata</h2>
 <p>The Practice block supports several metadata fields to help users understand the exercise.</p>
-<h3>Difficulty Levels</h3>
+<h3 id="difficulty-levels">Difficulty Levels</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;10 minutes&quot; impact=&quot;Low&quot; focus=&quot;Django Templates&quot; ~}
 ### Basic Template Inheritance
 
@@ -143,7 +143,7 @@ Implement a view that uses advanced ORM features:
     </div>
 </div>
 
-<h3>Impact Levels</h3>
+<h3 id="impact-levels">Impact Levels</h3>
 <p>Impact indicates how valuable completing the practice will be:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15 minutes&quot; impact=&quot;Very High&quot; focus=&quot;Project Structure&quot; ~}
 ### Setting Up a Django Project
@@ -172,7 +172,7 @@ Create a new Django project with a proper directory structure and initial settin
     </div>
 </div>
 
-<h3>Time Commitment</h3>
+<h3 id="time-commitment">Time Commitment</h3>
 <p>The timeframe helps users decide when to tackle the practice:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;5 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Django Admin&quot; ~}
 ### Quick Admin Customization
@@ -228,7 +228,7 @@ Profile and optimize a Django application experiencing slow database queries.
     </div>
 </div>
 
-<h3>Focus Areas</h3>
+<h3 id="focus-areas">Focus Areas</h3>
 <p>The focus area helps users find practices relevant to their learning goals:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;45 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Authentication&quot; ~}
 ### Custom User Model
@@ -257,9 +257,9 @@ Implement a custom user model with additional fields and authentication methods.
     </div>
 </div>
 
-<h2>Formatting Inside Practice Blocks</h2>
+<h2 id="formatting-inside-practice-blocks">Formatting Inside Practice Blocks</h2>
 <p>Practice blocks support full markdown formatting for rich content presentation.</p>
-<h3>Lists and Steps</h3>
+<h3 id="lists-and-steps">Lists and Steps</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Intermediate&quot; timeframe=&quot;25 minutes&quot; impact=&quot;Medium&quot; focus=&quot;Class-Based Views&quot; ~}
 ### List and Detail Views
 
@@ -318,8 +318,8 @@ Implement these class-based views:
     </div>
 </div>
 
-<h2>Customizing Practice Blocks</h2>
-<h3>Custom CSS Classes</h3>
+<h2 id="customizing-practice-blocks">Customizing Practice Blocks</h2>
+<h3 id="custom-css-classes">Custom CSS Classes</h3>
 <p>Add custom CSS classes to further style your practice blocks:</p>
 <pre><code class="language-django">{~ practice difficulty=&quot;Advanced&quot; timeframe=&quot;1 hour&quot; impact=&quot;High&quot; focus=&quot;Deployment&quot; class=&quot;sb-border-primary sb-border-2&quot; ~}
 ### Deploy to Production
@@ -359,8 +359,8 @@ Set up a production environment with:
     </div>
 </div>
 
-<h2>Practice Block Use Cases</h2>
-<h3>Tutorial Exercises</h3>
+<h2 id="practice-block-use-cases">Practice Block Use Cases</h2>
+<h3 id="tutorial-exercises">Tutorial Exercises</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;30 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Forms&quot; ~}
 ### Contact Form Implementation
 
@@ -437,7 +437,7 @@ In this exercise, you'll create a fully functional contact form:
     </div>
 </div>
 
-<h3>Project Exercises</h3>
+<h3 id="project-exercises">Project Exercises</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Advanced&quot; timeframe=&quot;2-3 hours&quot; impact=&quot;Very High&quot; focus=&quot;Full-stack Implementation&quot; ~}
 ### Building a REST API with Django Rest Framework
 
@@ -522,7 +522,7 @@ Create a complete REST API for a blog application:
     </div>
 </div>
 
-<h2>Best Practices</h2>
+<h2 id="best-practices">Best Practices</h2>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -542,7 +542,7 @@ Create a complete REST API for a blog application:
     </span>
 </div>
 
-<h3>Creating Effective Practice Exercises</h3>
+<h3 id="creating-effective-practice-exercises">Creating Effective Practice Exercises</h3>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 

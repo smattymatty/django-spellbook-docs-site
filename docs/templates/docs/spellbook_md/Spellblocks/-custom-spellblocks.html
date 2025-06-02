@@ -1,10 +1,10 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Creating Custom SpellBlocks</h1>
+<h1 id="creating-custom-spellblocks">Creating Custom SpellBlocks</h1>
 <p>This guide will walk you through creating custom SpellBlocks for your Django Spellbook application.</p>
-<h2>Setting Up Custom SpellBlocks</h2>
-<h3>Step 1: Create spellblocks.py file</h3>
+<h2 id="setting-up-custom-spellblocks">Setting Up Custom SpellBlocks</h2>
+<h3 id="step-1-create-spellblockspy-file">Step 1: Create spellblocks.py file</h3>
 <p><strong>Important:</strong> Your custom SpellBlocks must be defined in a file named <code>spellblocks.py</code> in your Django app.</p>
 <pre><code class="language-python">from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
 
@@ -18,7 +18,7 @@ class MyCustomBlock(BasicSpellBlock):
         # Add your custom context here via self.kwargs.get('name', '')
         return context
 </code></pre>
-<h3>Step 2: Create the template</h3>
+<h3 id="step-2-create-the-template">Step 2: Create the template</h3>
 <p>Create your HTML template in your app's templates directory. The path should match what you specified in your SpellBlock class.</p>
 <p>For example, if your app is named <code>blog</code> and you specified <code>template = 'blog/blocks/my_block.html'</code>, create your template at:</p>
 <pre><code>blog/
@@ -27,9 +27,9 @@ class MyCustomBlock(BasicSpellBlock):
       blocks/
         my_block.html
 </code></pre>
-<h2>Example: Creating a Quote Block</h2>
+<h2 id="example-creating-a-quote-block">Example: Creating a Quote Block</h2>
 <p>Let's create a SpellBlock for displaying formatted quotes with attribution:</p>
-<h3>Step 1: In your <code>spellblocks.py</code> file:</h3>
+<h3 id="step-1-in-your-spellblockspy-file">Step 1: In your <code>spellblocks.py</code> file:</h3>
 <pre><code class="language-python">from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
 
 @SpellBlockRegistry.register()
@@ -43,7 +43,7 @@ class QuoteBlock(BasicSpellBlock):
         context['source'] = self.kwargs.get('source', '')
         return context
 </code></pre>
-<h3>Step 2: Create the template at <code>blog/templates/blog/blocks/quote.html</code>:</h3>
+<h3 id="step-2-create-the-template-at-blogtemplatesblogblocksquotehtml">Step 2: Create the template at <code>blog/templates/blog/blocks/quote.html</code>:</h3>
 <pre><code class="language-django">{% verbatim %}
 &lt;blockquote class=&quot;sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4 {% if kwargs.class %}{{ kwargs.class }}{% endif %}&quot;&gt;
     &lt;p class=&quot;sb-italic&quot;&gt;{{ content|safe }}&lt;/p&gt;
@@ -56,12 +56,12 @@ class QuoteBlock(BasicSpellBlock):
 &lt;/blockquote&gt;
 {% endverbatim %}
 </code></pre>
-<h3>Step 3: Use in your markdown:</h3>
+<h3 id="step-3-use-in-your-markdown">Step 3: Use in your markdown:</h3>
 <pre><code class="language-python">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Letter to Max Born, 1926&quot; ~}
 God does not play dice with the universe.
 {~~}
 </code></pre>
-<h2>Important Notes</h2>
+<h2 id="important-notes">Important Notes</h2>
 <ol>
 <li>
 <p>The file <strong>must</strong> be named <code>spellblocks.py</code> for Django Spellbook to automatically discover your custom blocks.</p>

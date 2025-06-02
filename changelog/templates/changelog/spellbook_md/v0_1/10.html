@@ -1,7 +1,7 @@
 {% extends 'changelog/sb_base.html' %}
 
 {% block spellbook_md %}
-<h2><strong>Version 0.1.10</strong></h2>
+<h2 id="version-0110"><strong>Version 0.1.10</strong></h2>
 <p><em>Released: April 12, 2025</em></p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -14,8 +14,8 @@
     </span>
 </div>
 
-<h1>New Features</h1>
-<h2>Two New SpellBlocks</h2>
+<h1 id="new-features">New Features</h1>
+<h2 id="two-new-spellblocks">Two New SpellBlocks</h2>
 <p><strong>1. QuoteBlock</strong> - Create beautifully styled quotes with attribution</p>
 <pre><code class="language-django">{~ quote author=&quot;Django Spellbook&quot; source=&quot;Documentation&quot; ~}
 Powerful Django markdown processing with template-like features.
@@ -87,7 +87,7 @@ Write a template tag that formats dates according to user preferences.
     </div>
 </div>
 
-<h2>Multi-Source Configuration</h2>
+<h2 id="multi-source-configuration">Multi-Source Configuration</h2>
 <p>Now you can process markdown from multiple directories to different Django apps, with each having its own independent templates, views, and URLs:</p>
 <pre><code class="language-python"># settings.py
 SPELLBOOK_MD_PATH = [
@@ -110,7 +110,7 @@ urlpatterns = [
     path('content/', include('django_spellbook.urls')),
 ]
 </code></pre>
-<h3>Coming Soon</h3>
+<h3 id="coming-soon">Coming Soon</h3>
 <ul>
 <li>Alternate Named prefixes for urls on multiple sources</li>
 <li>Alternate Base Templates for each source</li>

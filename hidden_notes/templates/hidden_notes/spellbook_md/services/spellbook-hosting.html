@@ -1,7 +1,7 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h1>Business Plan: Spellbook Hosting Service</h1>
+<h1 id="business-plan-spellbook-hosting-service">Business Plan: Spellbook Hosting Service</h1>
 <p><strong>Version:</strong> 0.1<br />
 <strong>Date:</strong> 2025-05-06</p>
 <hr />
@@ -16,7 +16,7 @@
     </span>
 </div>
 
-<h2>1. Executive Summary</h2>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
 <p>Spellbook Hosting will be a specialized Platform-as-a-Service (PaaS) offering that simplifies the deployment and management of Django Spellbook-powered sites. Leveraging the power and flexibility of <code>django-spellbook</code> for markdown-based content generation, Spellbook Hosting will provide users with a "one-click" or "git-push-to-deploy" experience. Users will get a <code>mysitename.spell.site</code> subdomain, with options for custom domains, all built upon the free, open-source <code>django-spellbook</code> software. This service is positioned to be the WordPress.com equivalent for the Django Spellbook ecosystem.</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -65,7 +65,7 @@
 </div>
 
 <hr />
-<h2>2. Problem Statement</h2>
+<h2 id="2-problem-statement">2. Problem Statement</h2>
 <p>While <code>django-spellbook</code> is a powerful free and open-source tool for generating Django templates from markdown, users still face the typical challenges of web hosting:</p>
 <ul>
 <li><strong>Deployment Complexity:</strong> Setting up servers, configuring web servers (Nginx/Gunicorn), managing databases, and handling deployments can be time-consuming and requires technical expertise.</li>
@@ -75,7 +75,7 @@
 </ul>
 <p>Many users, especially those focused on content creation rather than infrastructure, desire a simpler, integrated solution, much like how WordPress.com offers a hosted version of the open-source WordPress software.</p>
 <hr />
-<h2>3. Solution: "Spellbook Hosting" Service</h2>
+<h2 id="3-solution-spellbook-hosting-service">3. Solution: "Spellbook Hosting" Service</h2>
 <p>Spellbook Hosting will be a platform built to host applications that use <code>django-spellbook</code>. The core idea is to provide an optimized environment where <code>django-spellbook</code> sites run efficiently and can be deployed with minimal effort.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -121,7 +121,7 @@
 </div>
 
 <hr />
-<h2>4. Value Proposition</h2>
+<h2 id="4-value-proposition">4. Value Proposition</h2>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -144,7 +144,7 @@
 <li><strong>Scalability:</strong> Grow your site from a small blog to a larger content hub with our tiered plans.</li>
 </ul>
 <hr />
-<h2>5. Target Market</h2>
+<h2 id="5-target-market">5. Target Market</h2>
 <ul>
 <li><strong>Existing <code>django-spellbook</code> Users:</strong> The primary initial adopters who already understand the value of the library.</li>
 <li><strong>Markdown Enthusiasts:</strong> Writers and developers who prefer markdown for its simplicity and want an easy way to publish.</li>
@@ -175,7 +175,7 @@ This helps in tailoring marketing messages.</p>
 </div>
 
 <hr />
-<h2>6. Product Features (MVP &amp; Future)</h2>
+<h2 id="6-product-features-mvp-future">6. Product Features (MVP &amp; Future)</h2>
 <p><strong>Minimum Viable Product (MVP):</strong></p>
 <ul>
 <li>User accounts and authentication.</li>
@@ -203,7 +203,7 @@ This helps in tailoring marketing messages.</p>
 <li><strong>CLI Tool:</strong> For managing sites and deployments from the terminal.</li>
 </ul>
 <hr />
-<h2>7. Technology Stack (Proposed)</h2>
+<h2 id="7-technology-stack-proposed">7. Technology Stack (Proposed)</h2>
 <ul>
 <li><strong>Frontend Dashboard:</strong> Modern JavaScript framework (React, Vue, or Svelte) or server-side rendered Django templates with HTMX for interactivity.</li>
 <li><strong>Backend API/Control Plane:</strong> Python/Django (leveraging existing <code>django-spellbook</code> expertise) or FastAPI.</li>
@@ -216,7 +216,7 @@ This helps in tailoring marketing messages.</p>
 <li><strong>Infrastructure:</strong> Cloud provider like DigitalOcean, Linode, AWS, or Google Cloud. Start with VPS, scale as needed.</li>
 </ul>
 <hr />
-<h2>8. Business Model &amp; Pricing</h2>
+<h2 id="8-business-model-pricing">8. Business Model &amp; Pricing</h2>
 <p>Similar to the "Spellbook Backup Service" and inspired by platforms like WordPress.com or Netlify.</p>
 <ul>
 <li><strong>Model:</strong> Freemium Subscription SaaS.</li>
@@ -276,7 +276,7 @@ Acquiring <code>spell.site</code> (if available and affordable) would be a key b
 </div>
 
 <hr />
-<h2>9. Marketing &amp; Sales Strategy</h2>
+<h2 id="9-marketing-sales-strategy">9. Marketing &amp; Sales Strategy</h2>
 <ul>
 <li><strong>Primary Channel:</strong> Leverage the <code>django-spellbook</code> open-source project.<ul>
 <li>Prominent mentions in <code>django-spellbook</code> documentation, README, and website.</li>
@@ -297,7 +297,7 @@ Acquiring <code>spell.site</code> (if available and affordable) would be a key b
 <li><strong>Early Adopter Program:</strong> Offer discounts or extra features for initial users providing feedback.</li>
 </ul>
 <hr />
-<h2>10. Operations Plan</h2>
+<h2 id="10-operations-plan">10. Operations Plan</h2>
 <ul>
 <li><strong>Platform Development:</strong> Build out the MVP features for the hosting platform.</li>
 <li><strong>Infrastructure Setup:</strong> Provision servers, configure networking, security, and deployment pipelines.</li>
@@ -308,7 +308,7 @@ Acquiring <code>spell.site</code> (if available and affordable) would be a key b
 <li><strong>Maintenance:</strong> Regular patching, updates, and scaling of the platform.</li>
 </ul>
 <hr />
-<h2>11. Risks &amp; Challenges</h2>
+<h2 id="11-risks-challenges">11. Risks &amp; Challenges</h2>
 <ul>
 <li><strong>Technical Complexity:</strong> Building and maintaining a reliable PaaS is challenging.</li>
 <li><strong>Competition:</strong><ul>
@@ -340,7 +340,7 @@ Spellbook Hosting aims to create a future where deploying <code>django-spellbook
 </blockquote>
 
 <hr />
-<h2>12. Exit Strategy (Long-Term Consideration)</h2>
+<h2 id="12-exit-strategy-long-term-consideration">12. Exit Strategy (Long-Term Consideration)</h2>
 <ul>
 <li><strong>Lifestyle Business:</strong> Operate as a sustainable, profitable service.</li>
 <li><strong>Acquisition:</strong> Potential interest from larger hosting providers or developer tool companies seeking to enter/expand in the Django/Python PaaS market.</li>

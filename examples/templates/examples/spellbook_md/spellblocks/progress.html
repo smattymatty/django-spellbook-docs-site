@@ -1,9 +1,9 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Progress Bar SpellBlock (<code>~ progress ~</code>)</h1>
+<h1 id="progress-bar-spellblock-progress">Progress Bar SpellBlock (<code>~ progress ~</code>)</h1>
 <p>The <code>~ progress ~</code> component offers a clear and adaptable method for visually representing various metrics such as project completion, skill proficiency, academic progress, or funding status against a defined maximum. It features an optional popover, triggered on hover, to display detailed contextual information, which can be styled for thematic consistency.</p>
-<h2>Basic Usage</h2>
+<h2 id="basic-usage">Basic Usage</h2>
 <p>To implement a basic progress bar, specify a <code>value</code>. This value is assessed against a default <code>max_value</code> of 100 if not otherwise defined:</p>
 <pre><code class="language-django">{~ progress value=&quot;65&quot; label=&quot;Profile Status&quot; ~}
 Profile is 65% complete. Ensure all sections are finalized for optimal visibility.
@@ -12,7 +12,7 @@ Profile is 65% complete. Ensure all sections are finalized for optimal visibilit
 <p>This renders a progress bar indicating 65%:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165083357910"
+  id="progress-container-174882748205789642"
   >
 
 
@@ -54,7 +54,7 @@ sb-bg-white
 sb-black
 
 " 
-id="popover-content-174832165083357910"
+id="popover-content-174882748205789642"
 style="display: none;"
 >
   <p>Profile is 65% complete. Ensure all sections are finalized for optimal visibility.</p>
@@ -139,7 +139,7 @@ style="display: none;"
   });
   </script>
 
-<h2>Parameters</h2>
+<h2 id="parameters">Parameters</h2>
 <p>The component's appearance and functionality are managed through the following parameters:</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -174,9 +174,9 @@ style="display: none;"
 
 </div>
 
-<h2>Application Examples: Professional Development &amp; Skills</h2>
+<h2 id="application-examples-professional-development-skills">Application Examples: Professional Development &amp; Skills</h2>
 <p>The <code>content_bg_color</code> and <code>content_color</code> parameters allow the popover to visually align with the progress bar's theme, enhancing contextual information.</p>
-<h3>Academic &amp; Course Progress</h3>
+<h3 id="academic-course-progress">Academic &amp; Course Progress</h3>
 <p><strong>Degree Program Advancement:</strong><br />
 Tracking progress towards a degree, with popover details for current academic standing.</p>
 <pre><code class="language-django">{% verbatim %}
@@ -189,7 +189,7 @@ Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structu
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165084518910"
+  id="progress-container-174882748207175442"
   >
 
 
@@ -231,7 +231,7 @@ sb-bg-info-75
 sb-white
 
 " 
-id="popover-content-174832165084518910"
+id="popover-content-174882748207175442"
 style="display: none;"
 >
   <p><strong>Program: B.S. Computer Science</strong><br />
@@ -330,7 +330,7 @@ Estimated completion: 2 weeks.
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165084696710"
+  id="progress-container-174882748207477442"
   >
 
 
@@ -372,7 +372,7 @@ sb-bg-primary-75
 sb-white
 
 " 
-id="popover-content-174832165084696710"
+id="popover-content-174882748207477442"
 style="display: none;"
 >
   <p><strong>Course: Advanced Project Management</strong><br />
@@ -459,7 +459,7 @@ Estimated completion: 2 weeks.</p>
   });
   </script>
 
-<h3>Resume &amp; Skill Representation</h3>
+<h3 id="resume-skill-representation">Resume &amp; Skill Representation</h3>
 <p><strong>Technical Skill Proficiency (Resume):</strong><br />
 Displaying expertise level in a specific technology, with popover for project examples.</p>
 <pre><code class="language-django">{% verbatim %}
@@ -472,7 +472,7 @@ Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy)
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165084869010"
+  id="progress-container-174882748207731942"
   >
 
 
@@ -517,7 +517,7 @@ sb-bg-success-75
 sb-white
 
 " 
-id="popover-content-174832165084869010"
+id="popover-content-174882748207731942"
 style="display: none;"
 >
   <p><strong>Python Expertise: Advanced</strong><br />
@@ -614,7 +614,7 @@ Indicating level of fluency in a foreign language for a resume or profile.</p>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165085115910"
+  id="progress-container-174882748207950042"
   >
 
 
@@ -656,7 +656,7 @@ sb-bg-secondary-75
 sb-white
 
 " 
-id="popover-content-174832165085115910"
+id="popover-content-174882748207950042"
 style="display: none;"
 >
   <p><strong>Details:</strong> Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.</p>
@@ -741,7 +741,7 @@ style="display: none;"
   });
   </script>
 
-<h3>Career Progression &amp; Goal Tracking</h3>
+<h3 id="career-progression-goal-tracking">Career Progression &amp; Goal Tracking</h3>
 <p><strong>Professional Certification Training:</strong><br />
 Tracking hours logged towards a professional certification.</p>
 <pre><code class="language-django">{% verbatim %}
@@ -754,7 +754,7 @@ Tracking hours logged towards a professional certification.</p>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-174832165085285810"
+  id="progress-container-174882748208118042"
   >
 
 
@@ -796,7 +796,7 @@ sb-bg-warning-75
 sb-black-75
 
 " 
-id="popover-content-174832165085285810"
+id="popover-content-174882748208118042"
 style="display: none;"
 >
   <p><strong>PMP Exam Preparation:</strong><br />

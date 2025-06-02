@@ -1,7 +1,7 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h1>Question Spell: Idea for Educational Content Creators</h1>
+<h1 id="question-spell-idea-for-educational-content-creators">Question Spell: Idea for Educational Content Creators</h1>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -13,9 +13,9 @@
     </span>
 </div>
 
-<h2>Problem Statement</h2>
+<h2 id="problem-statement">Problem Statement</h2>
 <p>Creators of magical syllabi and educational grimoires often face the challenge of efficiently crafting, managing, and reusing questions and answers. The traditional methods of creating interactive learning experiences like quizzes and tests can be a laborious, disconnected enchantment, often leading to duplicated efforts and scattered knowledge fragments. The "Question Spell" aims to transmute this process into a seamless and integrated experience.</p>
-<h2>Core Philosophy</h2>
+<h2 id="core-philosophy">Core Philosophy</h2>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
@@ -33,7 +33,7 @@
 
 </div>
 
-<h2>Example Usage &amp; Syntax</h2>
+<h2 id="example-usage-syntax">Example Usage &amp; Syntax</h2>
 <p>The fundamental incantation remains elegant:</p>
 <pre><code class="language-markdown">## Solution: &quot;Question Spell&quot;
 
@@ -45,8 +45,8 @@ Django Spellbook is a markdown processor that extends markdown with reusable con
 
 It's a magical toolkit that enhances Django projects with powerful markdown processing, styling utilities, and more.
 </code></pre>
-<h2>Detailed Application Runes</h2>
-<h3>1. After a Header: Inline Question Definition</h3>
+<h2 id="detailed-application-runes">Detailed Application Runes</h2>
+<h3 id="1-after-a-header-inline-question-definition">1. After a Header: Inline Question Definition</h3>
 <p>The spell can be cast directly after a header, using the header's text as the question's essence.</p>
 <p><code># What is the airspeed velocity of an unladen swallow? {? ans="unladen-swallow-velocity" topic="aviary_physics" difficulty="intermediate" ?}</code></p>
 <div class="sb-accordion ">
@@ -80,7 +80,7 @@ It's a magical toolkit that enhances Django projects with powerful markdown proc
     </div>
 </div>
 
-<h3>2. In a Block: Defining Questions and Answers</h3>
+<h3 id="2-in-a-block-defining-questions-and-answers">2. In a Block: Defining Questions and Answers</h3>
 <p>For standalone questions or to explicitly define answers, a block-level enchantment is used.</p>
 <p><code>{? title="Describe the First Law of Thaumaturgy." ans="first-law-thaumaturgy" tags=["laws", "thaumaturgy", "core_concepts"] ?}</code><br />
 The corresponding answer:<br />
@@ -118,7 +118,7 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     </div>
 </div>
 
-<h3>3. In a Quiz Block: Summoning Assessments</h3>
+<h3 id="3-in-a-quiz-block-summoning-assessments">3. In a Quiz Block: Summoning Assessments</h3>
 <p>The <code>Quiz Block</code> allows you to dynamically assemble quizzes from your repository of questions.</p>
 <pre><code class="language-markdown">{~ quiz title=&quot;Chapter 1 Review&quot; count=&quot;10&quot; tags=[&quot;chapter1&quot;, &quot;beginner&quot;] show_feedback=&quot;immediate&quot; ~}
 </code></pre>
@@ -153,7 +153,7 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     </div>
 </div>
 
-<h3>4. In a Flashcard Block: Aiding Memorization</h3>
+<h3 id="4-in-a-flashcard-block-aiding-memorization">4. In a Flashcard Block: Aiding Memorization</h3>
 <p>The <code>Flashcard Block</code> turns Q&amp;A pairs into a digital deck for study.</p>
 <pre><code class="language-markdown">{~ flashcards tags=[&quot;key_terms&quot;, &quot;chapter2&quot;] shuffle=&quot;true&quot; ~}
 </code></pre>
@@ -185,7 +185,7 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     </div>
 </div>
 
-<h3>5. In a Matching Game Block: Engaging Knowledge Association</h3>
+<h3 id="5-in-a-matching-game-block-engaging-knowledge-association">5. In a Matching Game Block: Engaging Knowledge Association</h3>
 <p>The <code>Matching Game Block</code> provides a fun, interactive way to test connections between concepts.</p>
 <pre><code>{~ matching_game title=&quot;Arcane Symbol Match&quot; left_tags=[&quot;symbols&quot;] right_tags=[&quot;symbol_meanings&quot;] count=&quot;8&quot; ~}
 </code></pre>
@@ -217,7 +217,7 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     </div>
 </div>
 
-<h3>6. The "Test Page": Automated Grimoire Examinations</h3>
+<h3 id="6-the-test-page-automated-grimoire-examinations">6. The "Test Page": Automated Grimoire Examinations</h3>
 <p>A "Test Page" is a dedicated, automatically generated document for comprehensive assessments. This introduces "Spellbook Pages"—dynamically created pages based on <code>spellbook_md</code> settings and data from spells like the "Question Spell."</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -254,7 +254,7 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
     </div>
 </div>
 
-<h2>Future Enchantments &amp; Advanced Considerations</h2>
+<h2 id="future-enchantments-advanced-considerations">Future Enchantments &amp; Advanced Considerations</h2>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
@@ -274,11 +274,11 @@ The First Law of Thaumaturgy states that energy cannot be created or destroyed, 
 </div>
 
 <p>This enhanced "Question Spell" has the potential to be a cornerstone of any <code>Django Spellbook</code> dedicated to education. By thoughtfully designing its core mechanics and planning for future growth, you can craft a truly magical tool for creators and learners alike!</p>
-<h2>How are Tags Generated?</h2>
+<h2 id="how-are-tags-generated">How are Tags Generated?</h2>
 <p>You may have noticed that the <code>tags</code> attribute in the example above is a list of strings. The block itself only takes two required parameters: <code>title</code> and <code>ans/answer</code>. <code>desc</code> is an optional parameter.</p>
 <p><code>tags</code> is NOT a required parameter for the <code>question</code> block. In your django settings, you will define a list of tags that will be used to generate the <code>tags</code> attribute for each question as it is inserted into the database, using extremely simple and <em>lightweight</em> NLP logic. (Markov Chains, maybe?)</p>
 <p>This is a very powerful feature that allows you to define your own custom tags for each question, and then use them to filter and organize your questions in the future. This can be especially useful for creating a "learning path" or "curriculum" for your users.</p>
-<h2>Future Enhancements</h2>
+<h2 id="future-enhancements">Future Enhancements</h2>
 <p>As the "Question Spell" matures, several new parameters could be introduced to enhance its descriptive power and utility in crafting diverse educational experiences. Here are a few potent suggestions:</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 

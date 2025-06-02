@@ -1,7 +1,7 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Base Templates in Django Spellbook</h1>
+<h1 id="base-templates-in-django-spellbook">Base Templates in Django Spellbook</h1>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -13,7 +13,7 @@
     </span>
 </div>
 
-<h2>What Are Base Templates?</h2>
+<h2 id="what-are-base-templates">What Are Base Templates?</h2>
 <p>Base templates in Django Spellbook allow you to wrap your markdown-rendered content within a consistent layout structure. This is especially useful for:</p>
 <ul>
 <li>Adding navigation, headers, and footers</li>
@@ -33,8 +33,8 @@
 
 </div>
 
-<h2>Setting Up Your Base Template</h2>
-<h3>Step 1: Create the Base Template File</h3>
+<h2 id="setting-up-your-base-template">Setting Up Your Base Template</h2>
+<h3 id="step-1-create-the-base-template-file">Step 1: Create the Base Template File</h3>
 <p>First, create a template file in your app's templates directory. For example, if your app is named <code>my_app</code>, create <code>my_app/templates/my_app/sb_base.html</code>:</p>
 <pre><code class="language-django">{% verbatim %}
 {% extends 'base.html' %}
@@ -77,7 +77,7 @@
     </span>
 </div>
 
-<h3>Step 2: Configure Spellbook to Use Your Base Template</h3>
+<h3 id="step-2-configure-spellbook-to-use-your-base-template">Step 2: Configure Spellbook to Use Your Base Template</h3>
 <p>In your <code>settings.py</code> file, set the <code>SPELLBOOK_MD_BASE_TEMPLATE</code> setting to point to your base template:</p>
 <pre><code class="language-python"># Single source configuration
 SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
@@ -111,12 +111,12 @@ SPELLBOOK_MD_APP = [
 ]
 SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all sources
 </code></pre>
-<h3>Step 3: Run the Spellbook MD Command</h3>
+<h3 id="step-3-run-the-spellbook-md-command">Step 3: Run the Spellbook MD Command</h3>
 <p>Process your markdown files to apply the base template:</p>
 <pre><code class="language-bash">python manage.py spellbook_md
 </code></pre>
 <p>Your markdown content will now be wrapped within your base template when rendered.</p>
-<h2>Accessing Metadata in Base Templates</h2>
+<h2 id="accessing-metadata-in-base-templates">Accessing Metadata in Base Templates</h2>
 <p>One of the powerful features of base templates is the ability to access metadata from your markdown files:</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -149,7 +149,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
     </div>
 </div>
 
-<h3>Example: Using Metadata for SEO</h3>
+<h3 id="example-using-metadata-for-seo">Example: Using Metadata for SEO</h3>
 <pre><code class="language-django">{% verbatim %}
 {% block meta_tags %}
   &lt;meta name=&quot;description&quot; content=&quot;{{ metadata.custom_meta.description|default:'Documentation page' }}&quot;&gt;
@@ -163,7 +163,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
 {% endblock %}
 {% endverbatim %}
 </code></pre>
-<h2>Including Navigational Elements</h2>
+<h2 id="including-navigational-elements">Including Navigational Elements</h2>
 <p>Your base template is an excellent place to add navigation based on the current content:</p>
 <p>TODO: Add prev_page and next_page metadata</p>
 <pre><code class="language-django">{% verbatim %}
@@ -182,7 +182,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
 &lt;/nav&gt;
 {% endverbatim %}
 </code></pre>
-<h2>Dynamic Content Based on Tags</h2>
+<h2 id="dynamic-content-based-on-tags">Dynamic Content Based on Tags</h2>
 <p>You can conditionally show elements based on metadata:</p>
 <pre><code class="language-django">{% verbatim %}
 {% if 'advanced' in metadata.tags %}
@@ -199,8 +199,8 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
 {% endif %}
 {% endverbatim %}
 </code></pre>
-<h2>Styling Your Base Template</h2>
-<h3>Including Spellbook Styles</h3>
+<h2 id="styling-your-base-template">Styling Your Base Template</h2>
+<h3 id="including-spellbook-styles">Including Spellbook Styles</h3>
 <p>Always include the Spellbook styles in your base template:</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}
@@ -208,7 +208,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
 {% endverbatim %}
 </code></pre>
 <p>This ensures that all SpellBlock components render correctly.</p>
-<h2>Troubleshooting Base Templates</h2>
+<h2 id="troubleshooting-base-templates">Troubleshooting Base Templates</h2>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="sb-accordion-title">Template Not Applied</span>
@@ -285,8 +285,8 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
     </div>
 </div>
 
-<h2>Advanced Base Template Techniques</h2>
-<h3>Different Templates Based on Content</h3>
+<h2 id="advanced-base-template-techniques">Advanced Base Template Techniques</h2>
+<h3 id="different-templates-based-on-content">Different Templates Based on Content</h3>
 <p>You can create logic to use different layouts based on content metadata:</p>
 <pre><code class="language-django">{% verbatim %}
 {% if 'landing' in metadata.tags %}
@@ -309,7 +309,7 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
     </span>
 </div>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Base templates are a powerful feature that bridges the simplicity of markdown authoring with the flexibility of Django's template system. By setting up a well-designed base template, you can ensure consistent presentation across all your documentation while still maintaining the ease of markdown-based content creation.</p>
 <blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
     <div class="sb-quote-inner">

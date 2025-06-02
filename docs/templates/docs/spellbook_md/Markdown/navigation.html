@@ -1,7 +1,7 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Navigating your Markdown Content</h1>
+<h1 id="navigating-your-markdown-content">Navigating your Markdown Content</h1>
 <p>The <code>spellbook_md</code> command will generate a <code>TOC</code> variable in the <code>django_spellbook/views.py</code> file. This variable is inserted into the context of every spellbook view under 'toc'.</p>
 <pre><code class="language-python"># django_spellbook/views.py
 
@@ -48,7 +48,7 @@ TOC = {
 </div>
 
 <p>The built-in <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/tocs/sidebar_toc.html">sidebar_toc.html</a> uses a recursive approach to generate the navigation menu with <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/recursive/_toc_sidebar.html">recursive/_toc_sidebar.html</a>. It also includes styles and JavaScript to make the navigation menu interactive.</p>
-<h2>Example - Simple Custom Navigation Menu</h2>
+<h2 id="example-simple-custom-navigation-menu">Example - Simple Custom Navigation Menu</h2>
 <pre><code class="language-django">{% verbatim %} 
 {% load spellbook_tags %}
 
@@ -83,7 +83,7 @@ TOC = {
     </span>
 </div>
 
-<h3>Including the table of contents in your own views</h3>
+<h3 id="including-the-table-of-contents-in-your-own-views">Including the table of contents in your own views</h3>
 <p>If you want to include the navigation menu in one of your own views, you can simply import the <code>TOC</code> variable from <code>django_spellbook/views.py</code> and use it in your template.</p>
 <pre><code class="language-python"># my_app/views.py
 from django.shortcuts import render
@@ -95,7 +95,7 @@ def my_view(request):
         request, &quot;my_app/template.html&quot;, context
      )
 </code></pre>
-<h3>Sorting the Navigation Menu</h3>
+<h3 id="sorting-the-navigation-menu">Sorting the Navigation Menu</h3>
 <p>By default, the navigation menu is sorted alphabetically by the 'title' of each item. To give an item priority in the sort order, simply add a number of '-' dashes to the beginning of the title. The TOC will automatically strip these dashes from the title, but they will still be sorted as if they were there.</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">

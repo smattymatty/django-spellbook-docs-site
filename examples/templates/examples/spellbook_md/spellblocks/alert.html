@@ -1,11 +1,11 @@
 {% extends 'examples/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Alert SpellBlock Showcase</h1>
+<h1 id="alert-spellblock-showcase">Alert SpellBlock Showcase</h1>
 <p>The Alert SpellBlock is a versatile component for highlighting important information in your documentation. This guide demonstrates all the capabilities and variations of the Alert block.</p>
-<h2>Basic Alert Types</h2>
+<h2 id="basic-alert-types">Basic Alert Types</h2>
 <p>Alerts come in four standard types, each with its own color scheme and icon to convey different levels of importance.</p>
-<h3>Info Alert (Default)</h3>
+<h3 id="info-alert-default">Info Alert (Default)</h3>
 <p>The default alert type is "info" - used for general information and notes.</p>
 <pre><code class="language-django">{~ alert ~}
 This is a standard info alert without specifying a type.
@@ -22,7 +22,7 @@ This is a standard info alert without specifying a type.
     </span>
 </div>
 
-<h3>Success Alert</h3>
+<h3 id="success-alert">Success Alert</h3>
 <p>Success alerts highlight positive messages, accomplishments, or correct approaches.</p>
 <pre><code class="language-django">{~ alert type=&quot;success&quot; ~}
 Great job! Your operation completed successfully.
@@ -39,7 +39,7 @@ Great job! Your operation completed successfully.
     </span>
 </div>
 
-<h3>Warning Alert</h3>
+<h3 id="warning-alert">Warning Alert</h3>
 <p>Warning alerts call attention to potential issues or things to be careful about.</p>
 <pre><code class="language-django">{~ alert type=&quot;warning&quot; ~}
 Be careful! This action can't be undone.
@@ -56,7 +56,7 @@ Be careful! This action can't be undone.
     </span>
 </div>
 
-<h3>Danger Alert</h3>
+<h3 id="danger-alert">Danger Alert</h3>
 <p>Danger alerts highlight critical information or error conditions.</p>
 <pre><code class="language-django">{~ alert type=&quot;danger&quot; ~}
 Fatal error! Database connection failed.
@@ -73,9 +73,9 @@ Fatal error! Database connection failed.
     </span>
 </div>
 
-<h2>Formatting Inside Alerts</h2>
+<h2 id="formatting-inside-alerts">Formatting Inside Alerts</h2>
 <p>Alerts support full markdown formatting within their content, allowing rich text presentation.</p>
-<h3>Text Formatting</h3>
+<h3 id="text-formatting">Text Formatting</h3>
 <pre><code class="language-django">{~ alert ~}
 You can use **bold**, *italic*, and `code` formatting inside alerts.
 
@@ -94,7 +94,7 @@ Even [links](https://example.com) work perfectly!
     </span>
 </div>
 
-<h3>Lists in Alerts</h3>
+<h3 id="lists-in-alerts">Lists in Alerts</h3>
 <pre><code class="language-django">{~ alert type=&quot;success&quot; ~}
 Follow these steps:
 
@@ -126,8 +126,8 @@ Or alternatively:
     </span>
 </div>
 
-<h2>Customizing Alerts</h2>
-<h3>TODO: Adding Custom Classes</h3>
+<h2 id="customizing-alerts">Customizing Alerts</h2>
+<h3 id="todo-adding-custom-classes">TODO: Adding Custom Classes</h3>
 <p>You can add custom CSS classes to further style your alerts:</p>
 <pre><code class="language-django">{~ alert type=&quot;warning&quot; class=&quot;sb-p-4 sb-my-4&quot; ~}
 This alert has custom spacing.
@@ -144,7 +144,7 @@ This alert has custom spacing.
     </span>
 </div>
 
-<h3>TODO: Adding a Title</h3>
+<h3 id="todo-adding-a-title">TODO: Adding a Title</h3>
 <p>You can add a title to your alert for additional context:</p>
 <pre><code class="language-django">{~ alert type=&quot;info&quot; title=&quot;Installation Note&quot; ~}
 This feature requires Django 3.2 or higher.
@@ -161,7 +161,7 @@ This feature requires Django 3.2 or higher.
     </span>
 </div>
 
-<h3>TODO: Dismissible Alerts</h3>
+<h3 id="todo-dismissible-alerts">TODO: Dismissible Alerts</h3>
 <p>Make alerts dismissible with the <code>dismissible</code> parameter:</p>
 <pre><code class="language-django">{~ alert type=&quot;success&quot; dismissible=&quot;true&quot; ~}
 Click the X to dismiss this alert!
@@ -178,7 +178,7 @@ Click the X to dismiss this alert!
     </span>
 </div>
 
-<h2>Best Practices</h2>
+<h2 id="best-practices">Best Practices</h2>
 <div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -209,7 +209,7 @@ Click the X to dismiss this alert!
     </span>
 </div>
 
-<h2>Error Handling</h2>
+<h2 id="error-handling">Error Handling</h2>
 <p>If you specify an invalid alert type, it will default to the "info" type:</p>
 <pre><code class="language-django">{~ alert type=&quot;not-a-valid-type&quot; ~}
 This will render as an info alert.

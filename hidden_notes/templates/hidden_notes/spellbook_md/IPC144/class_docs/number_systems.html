@@ -1,7 +1,7 @@
 {% extends 'base/django_spellbook/bases/sidebar_left.html' %}
 
 {% block spellbook_md %}
-<h2>A.1 Number Systems</h2>
+<h2 id="a1-number-systems">A.1 Number Systems</h2>
 <p>A <strong>number system</strong>, or <strong>numeral system</strong>, is a sacred methodology for inscribing or naming numbers. Each system is defined by its <strong>base</strong> (or <strong>radix</strong>), denoted as $r$. A system with base $r$ employs $r$ distinct symbols, or digits. The initial digit in every system is always $0$.</p>
 <p>For instance:</p>
 <ul>
@@ -78,7 +78,7 @@
     </span>
 </div>
 
-<h2>A.2 Number System Conversions: Transmuting Values</h2>
+<h2 id="a2-number-system-conversions-transmuting-values">A.2 Number System Conversions: Transmuting Values</h2>
 <p>We often need to translate numbers between different systema.</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<h3>A.2.1 Conversion from Decimal to Any Other Base $r$</h3>
+<h3 id="a21-conversion-from-decimal-to-any-other-base-r">A.2.1 Conversion from Decimal to Any Other Base $r$</h3>
 <p>The alchemical process:<br />
 1.  Divide the decimal number by the target radix $r$, noting the quotient and remainder.<br />
 2.  Repeatedly divide the quotient by $r$ until the quotient is $0$.<br />
@@ -142,7 +142,7 @@ Result: $(17)_{16}$</p>
 
 </div>
 
-<h3>A.2.2 Conversion from Any Other Base $r$ to Decimal</h3>
+<h3 id="a22-conversion-from-any-other-base-r-to-decimal">A.2.2 Conversion from Any Other Base $r$ to Decimal</h3>
 <p>To convert a number from base $r$ to decimal, multiply each digit by its associated weight ($r^p$) and sum the results.</p>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -171,7 +171,7 @@ Result: $(AB)<em 10="10">{16} = (171)</em>$</p>
 
 </div>
 
-<h3>A.2.3 Conversion from Binary to Octal and Hexadecimal</h3>
+<h3 id="a23-conversion-from-binary-to-octal-and-hexadecimal">A.2.3 Conversion from Binary to Octal and Hexadecimal</h3>
 <p>These conversions are streamlined due to their direct relationship.</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
@@ -243,7 +243,7 @@ Result: $(5D)_{16}$</p>
     </div>
 </div>
 
-<h3>A.2.4 Conversion from Octal and Hexadecimal to Binary</h3>
+<h3 id="a24-conversion-from-octal-and-hexadecimal-to-binary">A.2.4 Conversion from Octal and Hexadecimal to Binary</h3>
 <p>This is the reverse of the previous conversions.</p>
 <div class="sb-accordion ">
     <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
