@@ -341,72 +341,6 @@ Remove Item
     </a>
 </div>
 
-<p><strong>Arcanum Icon:</strong><br />
-Perfect for magical actions or launching arcane spells.</p>
-<pre><code class="language-markdown">{~ button href=&quot;/cast-spell&quot; type=&quot;accent&quot; icon_left=&quot;sb-icon-arcanum&quot; ~}
-Launch Arcanum
-{~~}
-</code></pre>
-<div class="sb-button-container"> 
-    <a  href="/cast-spell" class="sb-btn sb-btn-accent sb-btn-md  "
-
-        >
-
-            <span class="sb-icon sb-icon-arcanum sb-icon-left" aria-hidden="true"></span>
-
-        <span class="sb-btn-text">
-
-                <p>Launch Arcanum</p>
-
-        </span>
-
-    </a>
-</div>
-
-<p><strong>Elven City Icon:</strong><br />
-Use this to link to fantastical locations or elven-themed content.</p>
-<pre><code class="language-markdown">{~ button href=&quot;/explore/quintarra&quot; type=&quot;info&quot; icon_left=&quot;sb-icon-elven-city&quot; ~}
-Visit Quintarra
-{~~}
-</code></pre>
-<div class="sb-button-container"> 
-    <a  href="/explore/quintarra" class="sb-btn sb-btn-info sb-btn-md  "
-
-        >
-
-            <span class="sb-icon sb-icon-elven-city sb-icon-left" aria-hidden="true"></span>
-
-        <span class="sb-btn-text">
-
-                <p>Visit Quintarra</p>
-
-        </span>
-
-    </a>
-</div>
-
-<p><strong>Glimmering Forest Icon:</strong><br />
-Ideal for navigating to enchanted woods or nature-themed areas.</p>
-<pre><code class="language-markdown">{~ button href=&quot;/discover/glimmering-forest&quot; type=&quot;success&quot; icon_left=&quot;sb-icon-glimmering-forest&quot; ~}
-Enter Glimmering Forest
-{~~}
-</code></pre>
-<div class="sb-button-container"> 
-    <a  href="/discover/glimmering-forest" class="sb-btn sb-btn-success sb-btn-md  "
-
-        >
-
-            <span class="sb-icon sb-icon-glimmering-forest sb-icon-left" aria-hidden="true"></span>
-
-        <span class="sb-btn-text">
-
-                <p>Enter Glimmering Forest</p>
-
-        </span>
-
-    </a>
-</div>
-
 <h3 id="class-and-id"><code>class</code> and <code>id</code></h3>
 <p>Apply custom CSS classes or an HTML <code>id</code> for additional styling or JavaScript targeting.</p>
 <pre><code class="language-markdown">{~ button href=&quot;/custom&quot; class=&quot;my-special-button analytics-trigger&quot; id=&quot;ctaButtonHomePage&quot; type=&quot;accent&quot; ~}
@@ -510,5 +444,148 @@ View My Profile
 <li>A default styled button with your name and a custom class <code>my-name-button</code>.</li>
 </ol>
     </div>
+</div>
+
+<hr />
+<a class="super-link" href="/docs/Styles/Utilties/colors"><p>Continue to Color Utilities</p></a><hr />
+<h2 id="bonus-color-variations">Bonus Color Variations</h2>
+<ol>
+<li>Emphasis</li>
+</ol>
+<p>Emphasis is used for elements that require strong visual prominence without necessarily indicating a status.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;emphasis&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-emphasis&quot; ~}
+Emphasis Button
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-emphasis sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-emphasis sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Emphasis Button</p>
+
+        </span>
+
+    </a>
+</div>
+
+<ol start="2">
+<li>Subtle</li>
+</ol>
+<p>Subtle is used for backgrounds of less critical sections, placeholder text, subtle borders, or UI elements that should recede visually.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;subtle&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-ellipsis-horizontal&quot; ~}
+Subtle Button
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-subtle sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-ellipsis-horizontal sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Subtle Button</p>
+
+        </span>
+
+    </a>
+</div>
+
+<ol start="3">
+<li>Distinct</li>
+</ol>
+<p>Distinct is used for an alternative branding accent, categorizing content, or adding unique visual interest where other theme colors might not be the desired fit.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;distinct&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-swirl-energy&quot; ~}
+Distinct Button
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-distinct sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-swirl-energy sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Distinct Button</p>
+
+        </span>
+
+    </a>
+</div>
+
+<h2 id="rpg-themed-buttons">RPG Themed Buttons</h2>
+<p>These abstractly named colors are tailored for use in magical RPG settings, providing thematic options for representing arcane energies, ancient artifacts, and natural environments.</p>
+<h3 id="1-aether">1. Aether</h3>
+<p>Represents raw magical energy, enchantments, psionics, or otherworldly phenomena.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;aether&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-gemcut&quot; ~}
+Launch Arcanum
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-aether sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-gemcut sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Launch Arcanum</p>
+
+        </span>
+
+    </a>
+</div>
+
+<h3 id="2-artifact">2. Artifact</h3>
+<p>Signifies ancient lore, powerful relics, hidden knowledge, or aged, valuable items.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;artifact&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-ancient-tome&quot; ~}
+Learn More
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-artifact sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-ancient-tome sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Learn More</p>
+
+        </span>
+
+    </a>
+</div>
+
+<h3 id="3-sylvan">3. Sylvan</h3>
+<p>Represents deep forests, untamed wilds, nature-based magic, or earthy elements.</p>
+<pre><code class="language-django">{~ button href=&quot;/spellblocks/button&quot; type=&quot;sylvan&quot; size=&quot;lg&quot; icon_left=&quot;sb-icon-sylvan-leaf&quot; ~}
+Explore the Forest
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/spellblocks/button" class="sb-btn sb-btn-sylvan sb-btn-lg  "
+
+        >
+
+            <span class="sb-icon sb-icon-sylvan-leaf sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Explore the Forest</p>
+
+        </span>
+
+    </a>
 </div>
 {% endblock %}

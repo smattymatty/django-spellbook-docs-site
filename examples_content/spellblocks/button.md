@@ -218,45 +218,6 @@ Remove Item
 Remove Item
 {~~}
 
-**Arcanum Icon:**
-Perfect for magical actions or launching arcane spells.
-
-```markdown
-{~ button href="/cast-spell" type="accent" icon_left="sb-icon-arcanum" ~}
-Launch Arcanum
-{~~}
-```
-
-{~ button href="/cast-spell" type="accent" icon_left="sb-icon-arcanum" ~}
-Launch Arcanum
-{~~}
-
-**Elven City Icon:**
-Use this to link to fantastical locations or elven-themed content.
-
-```markdown
-{~ button href="/explore/quintarra" type="info" icon_left="sb-icon-elven-city" ~}
-Visit Quintarra
-{~~}
-```
-
-{~ button href="/explore/quintarra" type="info" icon_left="sb-icon-elven-city" ~}
-Visit Quintarra
-{~~}
-
-**Glimmering Forest Icon:**
-Ideal for navigating to enchanted woods or nature-themed areas.
-
-```markdown
-{~ button href="/discover/glimmering-forest" type="success" icon_left="sb-icon-glimmering-forest" ~}
-Enter Glimmering Forest
-{~~}
-```
-
-{~ button href="/discover/glimmering-forest" type="success" icon_left="sb-icon-glimmering-forest" ~}
-Enter Glimmering Forest
-{~~}
-
 ### `class` and `id`
 
 Apply custom CSS classes or an HTML `id` for additional styling or JavaScript targeting.
@@ -333,4 +294,102 @@ Create the following buttons:
 2. A small, `secondary` button that says "Read Documentation", opens in a new tab, and has a book icon on the left (e.g., `icon_left="sb-icon-book"`).
 3. A `danger` button with default size that says "Delete Account" and has a warning icon on the right (e.g., `icon_right="sb-icon-warning"`). Make this button appear `disabled`.
 4. A default styled button with your name and a custom class `my-name-button`.
+{~~}
+
+---
+
+{% a href="/docs/Styles/Utilties/colors" .super-link %}
+Continue to Color Utilities
+{% enda %}
+
+---
+
+## Bonus Color Variations
+
+1. Emphasis
+
+Emphasis is used for elements that require strong visual prominence without necessarily indicating a status.
+
+```django
+{~ button href="/spellblocks/button" type="emphasis" size="lg" icon_left="sb-icon-elven-city" ~}
+Emphasis Button
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="emphasis" size="lg" icon_left="sb-icon-elven-city" ~}
+Emphasis Button
+{~~}
+
+2. Subtle
+
+Subtle is used for backgrounds of less critical sections, placeholder text, subtle borders, or UI elements that should recede visually.
+
+```django
+{~ button href="/spellblocks/button" type="subtle" size="lg" icon_left="sb-icon-ellipsis-horizontal" ~}
+Subtle Button
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="subtle" size="lg" icon_left="sb-icon-ellipsis-horizontal" ~}
+Subtle Button
+{~~}
+
+3. Distinct
+
+Distinct is used for an alternative branding accent, categorizing content, or adding unique visual interest where other theme colors might not be the desired fit.
+
+```django
+{~ button href="/spellblocks/button" type="distinct" size="lg" icon_left="sb-icon-swirl-energy" ~}
+Distinct Button
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="distinct" size="lg" icon_left="sb-icon-swirl-energy" ~}
+Distinct Button
+{~~}
+
+## RPG Themed Buttons
+
+These abstractly named colors are tailored for use in magical RPG settings, providing thematic options for representing arcane energies, ancient artifacts, and natural environments.
+
+### 1. Aether
+
+Represents raw magical energy, enchantments, psionics, or otherworldly phenomena.
+
+```django
+{~ button href="/spellblocks/button" type="aether" size="lg" icon_left="sb-icon-gemcut" ~}
+Launch Arcanum
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="aether" size="lg" icon_left="sb-icon-gemcut" ~}
+Launch Arcanum
+{~~}
+
+### 2. Artifact
+
+Signifies ancient lore, powerful relics, hidden knowledge, or aged, valuable items.
+
+```django
+{~ button href="/spellblocks/button" type="artifact" size="lg" icon_left="sb-icon-ancient-tome" ~}
+Learn More
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="artifact" size="lg" icon_left="sb-icon-ancient-tome" ~}
+Learn More
+{~~}
+
+### 3. Sylvan
+
+Represents deep forests, untamed wilds, nature-based magic, or earthy elements.
+
+```django
+{~ button href="/spellblocks/button" type="sylvan" size="lg" icon_left="sb-icon-sylvan-leaf" ~}
+Explore the Forest
+{~~}
+```
+
+{~ button href="/spellblocks/button" type="sylvan" size="lg" icon_left="sb-icon-sylvan-leaf" ~}
+Explore the Forest
 {~~}

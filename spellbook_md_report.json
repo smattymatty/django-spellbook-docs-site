@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 5,
     "successful_pairs": 5,
-    "total_processed_files": 54
+    "total_processed_files": 55
   },
   "pairs": [
     {
@@ -10,7 +10,7 @@
       "destination": "docs",
       "url_prefix": "docs",
       "success": true,
-      "processed_files": 24
+      "processed_files": 25
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/changelog_content",
@@ -99,7 +99,7 @@
     },
     {
       "name": "button",
-      "total_uses": 22,
+      "total_uses": 25,
       "failed_uses": 0
     },
     {

@@ -1,0 +1,456 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="color-utilities">Color Utilities</h1>
+<p>Django Spellbook provides a comprehensive set of utility classes to control text, background, and border colors. These utilities are designed to work with your defined theme colors and also offer direct color application, opacity variants, and hover state controls.</p>
+<p>All color utilities rely on CSS custom properties (variables) defined in your <code>base/variables.css</code> for themeable colors (e.g., <code>var(--primary-color)</code>), with sensible fallbacks.</p>
+<h2 id="theme-colors">Theme Colors</h2>
+<p>Apply core semantic colors from your application's theme to backgrounds, text, and borders.</p>
+<h3 id="1-background-colors">1. Background Colors</h3>
+<p>Use <code>sb-bg-{theme_color}</code> to apply themed background colors.</p>
+<ul>
+<li><code>sb-bg-primary</code>: Applies the primary theme background color.</li>
+<li><code>sb-bg-secondary</code>: Applies the secondary theme background color.</li>
+<li><code>sb-bg-accent</code>: Applies the accent theme background color.</li>
+<li><code>sb-bg-neutral</code>: Applies the neutral theme background color.</li>
+<li><code>sb-bg-success</code>: Used for success states.</li>
+<li><code>sb-bg-warning</code>: Used for warning states.</li>
+<li><code>sb-bg-error</code>: Used for error/danger states.</li>
+<li><code>sb-bg-info</code>: Used for informational states.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-primary sb-white&quot;&gt;Primary Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-secondary sb-white sb-mt-2&quot;&gt;Secondary Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-accent sb-black sb-mt-2&quot;&gt;Accent Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-success sb-white sb-mt-2&quot;&gt;Success Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-primary sb-white">
+<p>Primary Background</p>
+</div>
+<div class="sb-p-3 sb-bg-secondary sb-white sb-mt-2">
+<p>Secondary Background</p>
+</div>
+<div class="sb-p-3 sb-bg-accent sb-black sb-mt-2">
+<p>Accent Background</p>
+</div>
+<div class="sb-p-3 sb-bg-success sb-white sb-mt-2">
+<p>Success Background</p>
+</div>
+<h3 id="2-text-colors">2. Text Colors</h3>
+<p>Use <code>sb-{theme_color}</code> to apply themed text colors (e.g., <code>sb-primary</code> for primary text color).</p>
+<ul>
+<li><code>sb-primary</code>: Applies the primary theme text color.</li>
+<li><code>sb-secondary</code>: Applies the secondary theme text color.</li>
+<li><code>sb-accent</code>: Applies the accent theme text color.</li>
+<li><code>sb-neutral</code>: Applies the neutral theme text color.</li>
+<li><code>sb-success</code>: Text color for success states.</li>
+<li><code>sb-warning</code>: Text color for warning states.</li>
+<li><code>sb-error</code>: Text color for error/danger states.</li>
+<li><code>sb-info</code>: Text color for informational states.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-primary&quot;&gt;This text uses the primary color.&lt;/p&gt;
+&lt;p class=&quot;sb-secondary sb-mt-1&quot;&gt;This text uses the secondary color.&lt;/p&gt;
+&lt;p class=&quot;sb-accent sb-mt-1&quot;&gt;This text uses the accent color.&lt;/p&gt;
+&lt;p class=&quot;sb-error sb-mt-1&quot;&gt;This text uses the error color.&lt;/p&gt;
+</code></pre>
+<div class="sb-primary">
+<p>This text uses the primary color.</p>
+</div>
+<div class="sb-secondary sb-mt-1">
+<p>This text uses the secondary color.</p>
+</div>
+<div class="sb-accent sb-mt-1">
+<p>This text uses the accent color.</p>
+</div>
+<div class="sb-error sb-mt-1">
+<p>This text uses the error color.</p>
+</div>
+<h3 id="3-border-colors">3. Border Colors</h3>
+<p>Use <code>sb-border-{theme_color}</code> to apply themed border colors. Remember to also apply a border width utility (e.g., <code>sb-border</code> or <code>sb-border-2</code>) and <code>sb-border-solid</code> (or another border style) for the border to be visible.</p>
+<ul>
+<li><code>sb-border-primary</code>: Primary theme border color.</li>
+<li><code>sb-border-secondary</code>: Secondary theme border color.</li>
+<li><code>sb-border-accent</code>: Accent theme border color.</li>
+<li><code>sb-border-neutral</code>: Neutral theme border color.</li>
+<li><code>sb-border-success</code>: Border color for success states.</li>
+<li><code>sb-border-warning</code>: Border color for warning states.</li>
+<li><code>sb-border-error</code>: Border color for error/danger states.</li>
+<li><code>sb-border-info</code>: Border color for informational states.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-primary&quot;&gt;Primary Border&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-secondary sb-mt-2&quot;&gt;Secondary Border (2px)&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-accent sb-mt-2&quot;&gt;Accent Border&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-border-4 sb-border-solid sb-border-error sb-mt-2&quot;&gt;Error Border (4px)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-primary">
+<p>Primary Border</p>
+</div>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-secondary sb-mt-2">
+<p>Secondary Border (2px)</p>
+</div>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-accent sb-mt-2">
+<p>Accent Border</p>
+</div>
+<div class="sb-p-3 sb-border-4 sb-border-solid sb-border-error sb-mt-2">
+<p>Error Border (4px)</p>
+</div>
+<h2 id="opacity-variants">Opacity Variants</h2>
+<p>Many theme colors for backgrounds, text, and borders have opacity variants. Append <code>-25</code>, <code>-50</code>, or <code>-75</code> to the color utility class for 25%, 50%, or 75% opacity, respectively. These are generated using <code>color-mix()</code>.</p>
+<p><strong>Background Opacity Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-primary-50 sb-black&quot;&gt;50% opacity primary background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-success-25 sb-black sb-mt-2&quot;&gt;25% opacity success background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-primary-50 sb-black">
+<p>50% opacity primary background</p>
+</div>
+<div class="sb-p-3 sb-bg-success-25 sb-black sb-mt-2">
+<p>25% opacity success background</p>
+</div>
+<p><strong>Text Opacity Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-primary-75&quot;&gt;75% opacity primary text.&lt;/p&gt;
+&lt;p class=&quot;sb-error-50 sb-mt-1&quot;&gt;50% opacity error text.&lt;/p&gt;
+</code></pre>
+<div class="sb-primary-75">
+<p>75% opacity primary text.</p>
+</div>
+<div class="sb-error-50 sb-mt-1">
+<p>50% opacity error text.</p>
+</div>
+<p><strong>Border Opacity Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-accent-50&quot;&gt;50% opacity accent border (2px)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-accent-50">
+<p>50% opacity accent border (2px)</p>
+</div>
+<h2 id="hover-state-color-utilities">Hover State Color Utilities</h2>
+<p>Apply colors specifically on hover using the <code>sb-hover:</code> prefix. Combine with transition utilities like <code>sb-transition-all</code> or <code>sb-transition-colors</code> for smooth effects.</p>
+<h3 id="1-hover-background-colors">1. Hover Background Colors</h3>
+<ul>
+<li><code>sb-hover:bg-{theme_color}</code> (e.g., <code>sb-hover:bg-primary</code>)</li>
+<li><code>sb-hover:bg-{theme_color}-{opacity}</code> (e.g., <code>sb-hover:bg-primary-50</code>)</li>
+<li><code>sb-hover:bg-black</code>, <code>sb-hover:bg-white</code></li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-neutral-25 
+sb-hover:bg-primary sb-hover:white &lt;!-- Colors are applied when hovered --&gt;
+sb-transition-all sb-duration-200 sb-cursor-pointer&quot;&gt;
+  Hover for Primary Background &amp; White Text
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-neutral-25 sb-hover:bg-primary sb-hover:white sb-transition-all sb-duration-200 sb-cursor-pointer">
+<p>Hover for Primary Background &amp; White Text</p>
+</div>
+<h3 id="2-hover-text-colors">2. Hover Text Colors</h3>
+<ul>
+<li><code>sb-hover:{theme_color}</code> (e.g., <code>sb-hover:secondary</code>)</li>
+<li><code>sb-hover:{theme_color}-{opacity}</code> (e.g., <code>sb-hover:accent-75</code>)</li>
+<li><code>sb-hover:black</code>, <code>sb-hover:white</code></li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-neutral 
+sb-hover:success &lt;!-- Colors are applied when hovered --&gt;
+sb-transition-color sb-duration-200 sb-cursor-pointer&quot;&gt;
+  Hover for Success Text
+&lt;/p&gt;
+</code></pre>
+<div class="sb-neutral sb-hover:success sb-transition-color sb-duration-200 sb-cursor-pointer">
+<p>Hover for Success Text</p>
+</div>
+<h3 id="3-hover-border-colors">3. Hover Border Colors</h3>
+<ul>
+<li><code>sb-hover:border-{theme_color}</code> (e.g., <code>sb-hover:border-warning</code>)</li>
+<li><code>sb-hover:border-{theme_color}-{opacity}</code> (e.g., <code>sb-hover:border-info-50</code>)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-neutral-50 
+sb-hover:border-error &lt;!-- Colors are applied when hovered --&gt;
+sb-transition-all sb-duration-200 sb-cursor-pointer&quot;&gt;
+  Hover for Error Border
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-neutral-50 sb-hover:border-error sb-transition-all sb-duration-200 sb-cursor-pointer">
+<p>Hover for Error Border</p>
+</div>
+<h2 id="special-color-values">Special Color Values</h2>
+<p>Additional utility colors for common cases.</p>
+<h3 id="backgrounds">Backgrounds</h3>
+<ul>
+<li><code>sb-bg-transparent</code>: Transparent background.</li>
+<li><code>sb-bg-black</code>: Pure black background.</li>
+<li><code>sb-bg-white</code>: Pure white background.</li>
+<li>Opacity variants like <code>sb-bg-black-25</code>, <code>sb-bg-white-75</code> are also available.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-black sb-white&quot;&gt;Black Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-white sb-black sb-border sb-border-solid sb-border-neutral-25 sb-mt-2&quot;&gt;White Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-transparent sb-black sb-border sb-border-solid sb-border-neutral-50 sb-mt-2&quot;&gt;Transparent Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-black sb-white">
+<p>Black Background</p>
+</div>
+<div class="sb-p-3 sb-bg-white sb-black sb-border sb-border-solid sb-border-neutral-25 sb-mt-2">
+<p>White Background</p>
+</div>
+<div class="sb-p-3 sb-bg-transparent sb-black sb-border sb-border-solid sb-border-neutral-50 sb-mt-2">
+<p>Transparent Background</p>
+</div>
+<h3 id="text-colors">Text Colors</h3>
+<ul>
+<li><code>sb-black</code>: Pure black text.</li>
+<li><code>sb-white</code>: Pure white text.</li>
+<li>Opacity variants like <code>sb-black-50</code>, <code>sb-white-75</code> are also available.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-black&quot;&gt;This is black text.&lt;/p&gt;
+&lt;p class=&quot;sb-white sb-bg-neutral sb-p-1 sb-mt-1&quot;&gt;This is white text (on a neutral background).&lt;/p&gt;
+</code></pre>
+<div class="sb-black">
+<p>This is black text.</p>
+</div>
+<div class="sb-white sb-bg-neutral sb-p-1 sb-mt-1">
+<p>This is white text (on a neutral background).</p>
+</div>
+<h3 id="border-colors">Border Colors</h3>
+<ul>
+<li><code>sb-border-black</code>: Pure black border.</li>
+<li><code>sb-border-white</code>: Pure white border.</li>
+<li><code>sb-border-transparent</code>: Transparent border.</li>
+<li>Opacity variants are also available.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-black&quot;&gt;Black Border&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-white sb-bg-neutral sb-mt-2&quot;&gt;White Border (on neutral background)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-black">
+<p>Black Border</p>
+</div>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-white sb-bg-neutral sb-mt-2">
+<p>White Border (on neutral background)</p>
+</div>
+<hr />
+<a class="super-link" href="/docs/Styles/effects"><p>Continue to Effects Utilities</p></a><hr />
+<h2 id="bonus-colors">Bonus Colors</h2>
+<p>Beyond the primary theme and status colors, Django Spellbook offers several "bonus" abstract colors to provide additional design flexibility for specific highlights, subtle treatments, or distinct visual sections. Like other theme colors, these support background, text, border, opacity, and hover state utilities.</p>
+<h3 id="1-emphasis-color">1. Emphasis Color</h3>
+<p>Use the <code>emphasis</code> color utilities for elements that require strong visual prominence without necessarily indicating a status. Ideal for alternative calls-to-action or highlighting key features. (Defaults to a vibrant purple via <code>var(--emphasis-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-emphasis sb-white&quot;&gt;Emphasis Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-emphasis-50 sb-black sb-mt-2&quot;&gt;50% Opacity Emphasis Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-emphasis sb-white">
+<p>Emphasis Background</p>
+</div>
+<div class="sb-p-3 sb-bg-emphasis-50 sb-black sb-mt-2">
+<p>50% Opacity Emphasis Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-emphasis&quot;&gt;This text uses the emphasis color.&lt;/p&gt;
+&lt;p class=&quot;sb-emphasis-75 sb-mt-1&quot;&gt;75% opacity emphasis text.&lt;/p&gt;
+</code></pre>
+<div class="sb-emphasis">
+<p>This text uses the emphasis color.</p>
+</div>
+<div class="sb-emphasis-75 sb-mt-1">
+<p>75% opacity emphasis text.</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-emphasis&quot;&gt;Emphasis Border&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-emphasis">
+<p>Emphasis Border</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-neutral-25 sb-hover:bg-emphasis sb-hover:white sb-transition-all sb-cursor-pointer&quot;&gt;
+  Hover for Emphasis Background
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-neutral-25 sb-hover:bg-emphasis sb-hover:white sb-transition-all sb-cursor-pointer">
+<p>Hover for Emphasis Background</p>
+</div>
+<h3 id="2-subtle-color">2. Subtle Color</h3>
+<p>Use the <code>subtle</code> color utilities for backgrounds of less critical sections, placeholder text, subtle borders, or UI elements that should recede visually. (Defaults to a very light gray via <code>var(--subtle-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-subtle sb-black&quot;&gt;Subtle Background (Very Light Gray)&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-subtle-50 sb-black sb-mt-2&quot;&gt;50% Opacity Subtle Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-subtle sb-black">
+<p>Subtle Background (Very Light Gray)</p>
+</div>
+<div class="sb-p-3 sb-bg-subtle-50 sb-black sb-mt-2">
+<p>50% Opacity Subtle Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-subtle sb-bg-black sb-p-1&quot;&gt;This text uses the subtle color (on a dark background for visibility).&lt;/p&gt;
+&lt;p class=&quot;sb-subtle-75 sb-bg-black sb-p-1 sb-mt-1&quot;&gt;75% opacity subtle text (on a dark background for visibility).&lt;/p&gt;
+</code></pre>
+<div class="sb-subtle sb-bg-black sb-p-1">
+<p>This text uses the subtle color (on a dark background for visibility).</p>
+</div>
+<div class="sb-subtle-75 sb-bg-black sb-p-1 sb-mt-1">
+<p>75% opacity subtle text (on a dark background for visibility).</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-subtle&quot;&gt;Subtle Border&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-subtle">
+<p>Subtle Border</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-neutral sb-hover:subtle-75 sb-bg-black sb-p-1 sb-transition-color sb-cursor-pointer&quot;&gt;
+  Hover for 75% Opacity Subtle Text (on dark bg)
+&lt;/p&gt;
+</code></pre>
+<div class="sb-neutral sb-hover:subtle-75 sb-bg-black sb-p-1 sb-transition-color sb-cursor-pointer">
+<p>Hover for 75% Opacity Subtle Text (on dark bg)</p>
+</div>
+<h3 id="3-distinct-color">3. Distinct Color</h3>
+<p>Use the <code>distinct</code> color utilities for an alternative branding accent, categorizing content, or adding unique visual interest where other theme colors might not be the desired fit. (Defaults to a vibrant cyan/teal via <code>var(--distinct-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-distinct sb-white&quot;&gt;Distinct Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-distinct-25 sb-black sb-mt-2&quot;&gt;25% Opacity Distinct Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-distinct sb-white">
+<p>Distinct Background</p>
+</div>
+<div class="sb-p-3 sb-bg-distinct-25 sb-black sb-mt-2">
+<p>25% Opacity Distinct Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-distinct&quot;&gt;This text uses the distinct color.&lt;/p&gt;
+&lt;p class=&quot;sb-distinct-50 sb-mt-1&quot;&gt;50% opacity distinct text.&lt;/p&gt;
+</code></pre>
+<div class="sb-distinct">
+<p>This text uses the distinct color.</p>
+</div>
+<div class="sb-distinct-50 sb-mt-1">
+<p>50% opacity distinct text.</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-3 sb-border-solid sb-border-distinct&quot;&gt;Distinct Border (3px)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-3 sb-border-solid sb-border-distinct">
+<p>Distinct Border (3px)</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-neutral-50 sb-hover:border-distinct sb-transition-all sb-cursor-pointer&quot;&gt;
+  Hover for Distinct Border
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-neutral-50 sb-hover:border-distinct sb-transition-all sb-cursor-pointer">
+<p>Hover for Distinct Border</p>
+</div>
+<hr />
+<h2 id="rpg-themed-bonus-colors">RPG Themed Bonus Colors</h2>
+<p>These abstractly named colors are tailored for use in magical RPG settings, providing thematic options for representing arcane energies, ancient artifacts, and natural environments. Ensure you have defined <code>--aether-color</code>, <code>--artifact-color</code>, and <code>--sylvan-color</code> in your <code>base/variables.css</code> and created corresponding utility classes (e.g., <code>sb-bg-aether</code>, <code>sb-aether</code>, <code>sb-border-aether</code>, plus opacity and hover variants if desired).</p>
+<h3 id="1-aether-color">1. Aether Color</h3>
+<p>Represents raw magical energy, enchantments, psionics, or otherworldly phenomena. (Example default: vibrant fuchsia/magenta <code>var(--aether-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-aether sb-white&quot;&gt;Aetheric Glow Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-aether-50 sb-black sb-mt-2&quot;&gt;50% Opacity Aether Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-aether sb-white">
+<p>Aetheric Glow Background</p>
+</div>
+<div class="sb-p-3 sb-bg-aether-50 sb-black sb-mt-2">
+<p>50% Opacity Aether Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-aether&quot;&gt;This text shimmers with aetheric power.&lt;/p&gt;
+&lt;p class=&quot;sb-aether-75 sb-mt-1&quot;&gt;75% opacity aether text.&lt;/p&gt;
+</code></pre>
+<div class="sb-aether">
+<p>This text shimmers with aetheric power.</p>
+</div>
+<div class="sb-aether-75 sb-mt-1">
+<p>75% opacity aether text.</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-2 sb-border-solid sb-border-aether&quot;&gt;Aether-Bound Border&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-2 sb-border-solid sb-border-aether">
+<p>Aether-Bound Border</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-neutral-25 sb-hover:bg-aether sb-hover:white sb-transition-all sb-cursor-pointer&quot;&gt;
+  Hover for Aether Background
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-neutral-25 sb-hover:bg-aether sb-hover:white sb-transition-all sb-cursor-pointer">
+<p>Hover for Aether Background</p>
+</div>
+<h3 id="2-artifact-color">2. Artifact Color</h3>
+<p>Signifies ancient lore, powerful relics, hidden knowledge, or aged, valuable items. (Example default: antique gold <code>var(--artifact-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">
+&lt;div class=&quot;sb-p-3 sb-bg-artifact sb-black&quot;&gt;Ancient Artifact Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-artifact-50 sb-black sb-mt-2&quot;&gt;50% Opacity Artifact Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-artifact sb-black">
+<p>Ancient Artifact Background</p>
+</div>
+<div class="sb-p-3 sb-bg-artifact-50 sb-black sb-mt-2">
+<p>50% Opacity Artifact Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-artifact&quot;&gt;Text of ancient power.&lt;/p&gt;
+&lt;p class=&quot;sb-artifact-75 sb-bg-black sb-p-1 sb-mt-1&quot;&gt;75% opacity artifact text (on dark bg).&lt;/p&gt;
+</code></pre>
+<div class="sb-artifact">
+<p>Text of ancient power.</p>
+</div>
+<div class="sb-artifact-75 sb-bg-black sb-p-1 sb-mt-1">
+<p>75% opacity artifact text (on dark bg).</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-artifact&quot;&gt;Relic Border&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-artifact">
+<p>Relic Border</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-neutral sb-hover:artifact-75 sb-bg-black sb-p-1 sb-transition-color sb-cursor-pointer&quot;&gt;
+  Hover for 75% Opacity Artifact Text (on dark bg)
+&lt;/p&gt;
+</code></pre>
+<div class="sb-neutral sb-hover:artifact-75 sb-bg-black sb-p-1 sb-transition-color sb-cursor-pointer">
+<p>Hover for 75% Opacity Artifact Text (on dark bg)</p>
+</div>
+<h3 id="3-sylvan-color">3. Sylvan Color</h3>
+<p>Represents deep forests, untamed wilds, nature-based magic, or earthy elements. (Example default: deep mossy green <code>var(--sylvan-color)</code>).</p>
+<p><strong>Background:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-bg-sylvan sb-white&quot;&gt;Deep Forest Background&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-sylvan-25 sb-black sb-mt-2&quot;&gt;25% Opacity Sylvan Background&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-bg-sylvan sb-white">
+<p>Deep Forest Background</p>
+</div>
+<div class="sb-p-3 sb-bg-sylvan-25 sb-black sb-mt-2">
+<p>25% Opacity Sylvan Background</p>
+</div>
+<p><strong>Text:</strong></p>
+<pre><code class="language-django">&lt;p class=&quot;sb-sylvan&quot;&gt;Whispers of the sylvan woods.&lt;/p&gt;
+&lt;p class=&quot;sb-sylvan-50 sb-mt-1&quot;&gt;50% opacity sylvan text.&lt;/p&gt;
+</code></pre>
+<div class="sb-sylvan">
+<p>Whispers of the sylvan woods.</p>
+</div>
+<div class="sb-sylvan-50 sb-mt-1">
+<p>50% opacity sylvan text.</p>
+</div>
+<p><strong>Border:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border-3 sb-border-solid sb-border-sylvan&quot;&gt;Sylvan Grove Border (3px)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border-3 sb-border-solid sb-border-sylvan">
+<p>Sylvan Grove Border (3px)</p>
+</div>
+<p><strong>Hover Example:</strong></p>
+<pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-border sb-border-solid sb-border-neutral-50 sb-hover:border-sylvan sb-transition-all sb-cursor-pointer&quot;&gt;
+  Hover for Sylvan Border
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-solid sb-border-neutral-50 sb-hover:border-sylvan sb-transition-all sb-cursor-pointer">
+<p>Hover for Sylvan Border</p>
+</div>
+{% endblock %}
