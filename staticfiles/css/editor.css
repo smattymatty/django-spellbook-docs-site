@@ -9,30 +9,37 @@
 .spellbook-editor-main {
     display: flex;
     flex-direction: row;
-    height: 70vh; 
+    height: 80vh; 
     padding: 1rem; /* Equivalent to sb-p-4 */
     box-sizing: border-box;
 }
 
 /* Styling for the markdown input pane */
 .editor-pane {
-    flex: 1; /* Allows the pane to grow and shrink */
+    flex: 1 1 50%; /* Allows the pane to grow and shrink */
     padding: 0.5rem; /* Equivalent to sb-p-2 */
     box-sizing: border-box;
     height: 100%; /* Takes full height of .spellbook-editor-main */
     display: flex; /* To make the textarea fill this pane */
     flex-direction: column;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Styling for the preview placeholder pane */
 .preview-pane-placeholder {
-    flex: 1; /* Allows the pane to grow and shrink */
-    /* flex-basis: 50%; */
+    flex: 1 1 50%; /* Allows the pane to grow and shrink */
     padding: 0.5rem; /* Equivalent to sb-p-2 */
     box-sizing: border-box;
     height: 100%; /* Takes full height of .spellbook-editor-main */
     display: flex; /* To make the inner div fill this pane */
     flex-direction: column;
+    min-width: 0;
+    transition: all 0.3s ease-in-out;
+}
+/* When editor pane is focused */
+.editor-pane.editor-pane-focused {
+    flex-grow: 3; /* Editor pane takes more space */
+    flex-basis: 70%; /* Example: editor takes 70% */
 }
 
 /*
@@ -53,19 +60,45 @@
 .editor-pane textarea {
     border: 1px solid var(--secondary-color); /* Using secondary-color for a clear but not overpowering border */
     background-color: #fff; /* Assuming a white background for the textarea */
-    color: var(#0000002a); /* Or a darker color for input text if preferred */
     padding: 0.75rem; /* A bit more padding for a nicer feel, adjust as needed */
     resize: none;
     font-family: monospace;
     border-radius: var(--sb-border-radius-md); /* Applying medium border radius */
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Optional: subtle inner shadow or flat look */
+    transition: all 0.3s ease-in-out;
+    min-height:40vh;
 }
 
+@media (min-width: 768px) {
 /* Optional: Adding a focus style to the textarea */
-.editor-pane textarea:focus {
+.editor-pane textarea:focus,
+.editor-pane textarea:focus:hover {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* Using primary-color with transparency for focus ring */
+    margin-left: -2rem;
+    transform: translatey(-8.5rem);
+    min-height:97vh;
+}
+}
+@media (min-width: 1254px) {
+.editor-pane textarea:focus,
+.editor-pane textarea:focus:hover {
+    margin-left: -3rem;
+}
+}
+@media (min-width: 2012px) {
+.editor-pane textarea:focus,
+.editor-pane textarea:focus:hover {
+    margin-left: -5rem;
+}
+}
+
+@media (max-width: 768px) {
+.editor-pane textarea:focus,
+.editor-pane textarea:focus:hover {
+    min-height: 50vh;
+}
 }
 
 /* Applying Spellbooky styling to the preview placeholder content div */
@@ -76,4 +109,77 @@
     padding: 1rem;                           /* Equivalent to sb-p-4 */
     border-radius: var(--sb-border-radius-md); /* Consistent border radius */
     overflow-y: auto;                        /* In case content overflows */
+}
+
+#live-preview-area {
+    min-height: 60vh;
+    width: 100%;
+    z-index: 12;
+    max-width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--subtle-color);
+}
+
+#live-preview-area.preview-pane-squashed {
+    min-height:calc(84vh - 0.28rem);
+    min-width: calc(100% + 3rem);
+}
+
+@media (min-width: 768px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -5vw;
+    }
+}
+@media (min-width: 959px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -4vw;
+        min-width: calc(100% + 4rem);
+    }
+}
+@media (min-width: 1200px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -3vw;
+        min-width: calc(100% + 5vw);
+    }
+}
+@media (min-width: 1600px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -2vw;
+        min-width: calc(100% + 5vw);
+    }
+}
+@media (min-width: 2025px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -2vw;
+        min-width: calc(100% + 6vw);
+    }
+}
+@media (min-width: 2325px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -3vw;
+        min-width: calc(100% + 10vw);
+    }
+}
+@media (min-width: 2500px) {
+    #live-preview-area.preview-pane-squashed {
+        margin-left: -3vw;
+        min-width: calc(100% + 14.6vw);
+    }
+}
+
+
+#live-preview-area pre {
+    max-width: 100%;     /* MODIFIED: Constrain pre to its container's width */
+    overflow-x: scroll;  /* ESSENTIAL: Allows pre's content to scroll horizontally */
+    box-sizing: border-box; /* Good practice to include if you add padding/border to pre */
+}
+
+#live-preview-area pre code {
+    background-color: rgba(0, 0, 0, 0.88);
+    color: white;
+    padding: 1rem;
 }
