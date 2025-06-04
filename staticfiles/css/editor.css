@@ -1,0 +1,79 @@
+/* css/editor.css */
+
+/* Outermost container for the editor section */
+.editor-container {
+    width: 100%;
+}
+
+/* Main container for the two-pane editor layout (input and preview) */
+.spellbook-editor-main {
+    display: flex;
+    flex-direction: row;
+    height: 70vh; 
+    padding: 1rem; /* Equivalent to sb-p-4 */
+    box-sizing: border-box;
+}
+
+/* Styling for the markdown input pane */
+.editor-pane {
+    flex: 1; /* Allows the pane to grow and shrink */
+    padding: 0.5rem; /* Equivalent to sb-p-2 */
+    box-sizing: border-box;
+    height: 100%; /* Takes full height of .spellbook-editor-main */
+    display: flex; /* To make the textarea fill this pane */
+    flex-direction: column;
+}
+
+/* Styling for the preview placeholder pane */
+.preview-pane-placeholder {
+    flex: 1; /* Allows the pane to grow and shrink */
+    /* flex-basis: 50%; */
+    padding: 0.5rem; /* Equivalent to sb-p-2 */
+    box-sizing: border-box;
+    height: 100%; /* Takes full height of .spellbook-editor-main */
+    display: flex; /* To make the inner div fill this pane */
+    flex-direction: column;
+}
+
+/*
+   Optional: If you want the textarea and the inner preview div to automatically
+   fill their parent panes without needing sb-w-full and sb-h-full, you can add:
+*/
+.editor-pane textarea,
+.preview-pane-placeholder > div { /* Assuming the inner div is a direct child */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Important if they have padding/border */
+}
+
+/* UPDATED STYLES incorporating your new variables:
+*/
+
+/* Applying Spellbooky styling to the textarea */
+.editor-pane textarea {
+    border: 1px solid var(--secondary-color); /* Using secondary-color for a clear but not overpowering border */
+    background-color: #fff; /* Assuming a white background for the textarea */
+    color: var(#0000002a); /* Or a darker color for input text if preferred */
+    padding: 0.75rem; /* A bit more padding for a nicer feel, adjust as needed */
+    resize: none;
+    font-family: monospace;
+    border-radius: var(--sb-border-radius-md); /* Applying medium border radius */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Optional: subtle inner shadow or flat look */
+}
+
+/* Optional: Adding a focus style to the textarea */
+.editor-pane textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* Using primary-color with transparency for focus ring */
+}
+
+/* Applying Spellbooky styling to the preview placeholder content div */
+.preview-pane-placeholder > #html-preview-placeholder { /* More specific selector */
+    border: 1px solid var(--secondary-color); /* Consistent border with textarea */
+    background-color: var(--subtle-color);   /* Using subtle-color for the background */
+    color: var(--secondary-color);           /* Text color for the placeholder message */
+    padding: 1rem;                           /* Equivalent to sb-p-4 */
+    border-radius: var(--sb-border-radius-md); /* Consistent border radius */
+    overflow-y: auto;                        /* In case content overflows */
+}

@@ -1,0 +1,10 @@
+<button
+    id="load-random-page-button"
+    class="sb-btn sb-btn-white sb-mx-2 sb-w-1/2"
+    hx-trigger="load, click"
+    hx-get="{% url 'api:random-markdown' %}"
+    hx-target="#markdown-input"
+    hx-swap="innerHTML"
+>
+    Load Random Page
+</button>

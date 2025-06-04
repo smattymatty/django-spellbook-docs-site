@@ -7,6 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('a-panel/', admin.site.urls),
+    path('editor/', include('editor.urls')),
     path('', include('base.urls', namespace='base')),
     path('api/v1/', include('api.urls')),
     path('', include('django_spellbook.urls')),

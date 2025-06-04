@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_htmx',
     'docs',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -54,9 +55,8 @@ INSTALLED_APPS = [
     'examples',
     'changelog',
     'analytics',
-    'hidden_notes',
-    'proposals',
     'api',
+    'editor',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "django_htmx.middleware.HtmxMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -112,6 +113,7 @@ LOGGING = {
             'format': '{levelname} {asctime} {module} {message}',
             'style': '{', # Use '{' style formatting
         },
+        
     },
     'handlers': {
         'console': {
@@ -129,6 +131,12 @@ LOGGING = {
         'analytics.middleware': { # YOUR specific logger name from the middleware
             'handlers': ['console'],
             'level': 'INFO', # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
+            'propagate': False, # Don't pass messages up to the root logger if handled here
+        },
+        # For my API views
+        'api': {
+            'handlers': ['console'],
+            'level': 'DEBUG', # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
             'propagate': False, # Don't pass messages up to the root logger if handled here
         },
     },
@@ -184,33 +192,24 @@ SPELLBOOK_MD_PATH = [
     BASE_DIR / 'markdown_content',
     BASE_DIR / 'changelog_content',
     BASE_DIR / 'examples_content',
-    BASE_DIR / 'hidden_content',
-    BASE_DIR / 'proposals_content',
     ]
 
 SPELLBOOK_MD_APP = [
     'docs',
     'changelog',
     'examples',
-    'hidden_notes',
-    'proposals',
 ]
 
 SPELLBOOK_MD_BASE_TEMPLATE = [
     'docs/sb_base.html',
     'changelog/sb_base.html',
-    'examples/sb_base.html',
-    'base/django_spellbook/bases/sidebar_left.html',
-    'examples/sb_base.html',
-    
+    'examples/sb_base.html',    
     ]
 
 SPELLBOOK_MD_URL_PREFIX = [
     'docs',
     'changelog',
     'examples',
-    'hidden',
-    'prop',
 ]
 
 ANALYTICS_EXCLUDED_PATHS = [

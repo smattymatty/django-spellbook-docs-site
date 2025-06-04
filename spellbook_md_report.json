@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_pairs": 5,
-    "successful_pairs": 5,
-    "total_processed_files": 55
+    "total_pairs": 3,
+    "successful_pairs": 3,
+    "total_processed_files": 42
   },
   "pairs": [
     {
@@ -25,46 +25,32 @@
       "url_prefix": "examples",
       "success": true,
       "processed_files": 11
-    },
-    {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/hidden_content",
-      "destination": "hidden_notes",
-      "url_prefix": "hidden",
-      "success": true,
-      "processed_files": 12
-    },
-    {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/proposals_content",
-      "destination": "proposals",
-      "url_prefix": "prop",
-      "success": true,
-      "processed_files": 1
     }
   ],
   "spellblocks": [
     {
       "name": "alert",
-      "total_uses": 72,
+      "total_uses": 58,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 68,
+      "total_uses": 29,
       "failed_uses": 0
     },
     {
       "name": "quote",
-      "total_uses": 18,
+      "total_uses": 15,
       "failed_uses": 0
     },
     {
       "name": "practice",
-      "total_uses": 40,
+      "total_uses": 24,
       "failed_uses": 0
     },
     {
       "name": "accordion",
-      "total_uses": 94,
+      "total_uses": 40,
       "failed_uses": 0
     },
     {
@@ -84,12 +70,12 @@
     },
     {
       "name": "progress",
-      "total_uses": 25,
+      "total_uses": 9,
       "failed_uses": 0
     },
     {
       "name": "hero",
-      "total_uses": 14,
+      "total_uses": 11,
       "failed_uses": 0
     },
     {

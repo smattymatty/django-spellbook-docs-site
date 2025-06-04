@@ -1,0 +1,104 @@
+<!-- docs/templates/editor/base.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% load spellbook_tags %}
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static 'css/editor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
+    <link rel="stylesheet" href="{% static 'highlight/styles/default.min.css' %}">
+    <script src="{% static 'highlight/highlight.min.js' %}"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="{% static 'mjs/text_editor.mjs' %}"></script>
+    {% spellbook_styles %}
+{% endblock %}
+{% block content %}
+<div class="editor-container">
+    <div class="sb-py-1 sb-flex sb-w-full sb-mb-n4 sb-justify-evenly sb-items-center sb-gap-2">
+        {% include 'editor/partials/buttons_at_top.html' %}
+
+    </div>
+
+    <div class="spellbook-editor-main sb-flex sb-md:flex-row sb-flex-col sb-p-4">
+        <div class="editor-pane sb-w-full sb-md:sb-w-1/2 sb-p-2 sb-h-full">
+            <textarea id="markdown-input" name="markdown"
+                    hx-post="{% url 'api:markdown-preview' %}"
+                    hx-trigger="keyup changed delay:500ms, input"
+                    hx-target="#live-preview-area"
+                    hx-swap="innerHTML"
+                    class="sb-w-full sb-h-full sb-border sb-border-black-50 sb-p-2"
+                    hx-on::htmx:after-swap="this.dispatchEvent(new Event('input', { bubbles: true, cancelable: true })); console.log('Random content loaded, input event dispatched.');"
+                    placeholder="Type your Spellbook Markdown here..."></textarea>
+        </div>
+        <div class="preview-pane-placeholder sb-w-full sb-md:sb-w-1/2 sb-p-2 sb-h-full">
+            <div id="live-preview-area" class="sb-w-full sb-h-full sb-border sb-border-black-50 sb-bg-subtle-50 sb-p-4 sb-text-black-75">
+                Preview will appear here...
+            </div>
+        </div>
+    </div>
+
+    <div class="sb-py-1 sb-flex sb-w-full sb-mt-n4 sb-justify-evenly sb-items-center sb-gap-2">
+        {% include 'editor/partials/buttons_at_bottom.html' %}
+
+    </div>
+
+</div> 
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[Init] DOMContentLoaded. Setting up HTMX event listeners.');
+
+    const loadButton = document.getElementById('load-random-page-button');
+    const markdownInput = document.getElementById('markdown-input'); // Get the textarea element
+
+    if (loadButton) {
+        loadButton.addEventListener('click', function() {
+            console.log('[Button Click] "Load Random Page" button clicked.');
+        });
+    } else {
+        console.error('[Init] Could not find button with ID "load-random-page-button".');
+    }
+
+    document.body.addEventListener('htmx:beforeRequest', function(evt) {
+        if (evt.detail.elt.id === 'load-random-page-button') {
+            console.log('[HTMX Event on Button#load-random-page-button] htmx:beforeRequest - About to make GET request to:', evt.detail.requestConfig.path);
+        }
+    });
+
+    document.body.addEventListener('htmx:afterRequest', function(evt) {
+        if (evt.detail.elt.id === 'load-random-page-button') { // Check if it's our button
+            console.log('[HTMX Event on Button#load-random-page-button] htmx:afterRequest - GET request completed.');
+            if (evt.detail.successful) {
+                const rawMarkdownResponse = evt.detail.xhr.responseText;
+
+                // Programmatically set the textarea's value
+                if (markdownInput) {
+                    markdownInput.value = rawMarkdownResponse;
+                    // Manually dispatch 'input' event on the textarea to trigger its preview update
+                    markdownInput.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+                } else {
+                    console.error('[Button HTMX Event] -- Could not find #markdown-input to set value.');
+                }
+
+            } else {
+                console.error('[Button HTMX Event] -- Request FAILED.');
+            }
+        }
+    });
+
+    // This event listener is for the textarea's own preview update functionality
+    // No htmx:beforeSwap or htmx:afterSwap needed on the textarea for the button's action anymore
+
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+        // This listener is mainly for the live-preview-area itself when it gets updated
+        if (evt.detail.target.id === 'live-preview-area') {
+            console.log('[HTMX Event on Div#live-preview-area] htmx:afterSwap - Live preview area updated.');
+            if (typeof hljs !== 'undefined') {
+                evt.detail.target.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

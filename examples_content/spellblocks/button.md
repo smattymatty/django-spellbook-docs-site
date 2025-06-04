@@ -298,7 +298,7 @@ Create the following buttons:
 
 ---
 
-{% a href="/docs/Styles/Utilties/colors" .super-link %}
+{% a href="/docs/Styles/Utilities/colors/" .super-link %}
 Continue to Color Utilities
 {% enda %}
 

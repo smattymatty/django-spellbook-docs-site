@@ -1,15 +1,23 @@
 # api/views.py
+import logging
+from pathlib import Path
+import random
 
 from django.conf import settings
+from django.http import HttpResponse
 from rest_framework.exceptions import APIException
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404 # For detail view
 from django.shortcuts import render # Used in RenderedMarkdownDetailAPIView
-
+from rest_framework.decorators import api_view, permission_classes
 from .models import StoredMarkdown
 from .serializers import StoredMarkdownSerializer
+
+from django_spellbook.parsers import render_spellbook_markdown_to_html
+
+logger = logging.getLogger(__name__)
 
 class PayloadTooLarge(APIException):
     status_code = status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
@@ -106,3 +114,96 @@ class RenderedMarkdownDetailAPIView(APIView): # This one doesn't need BaseCustom
         rendered_html = instance.html_content
         # Pass the instance to the template context so you can use instance.title etc.
         return render(request, 'api/sb_base.html', {'markdown_content': rendered_html, 'instance': instance})
+    
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny]) # Allows access without authentication
+def markdown_preview_api(request):
+    raw_markdown = request.data.get('markdown', '')
+
+    html_output = render_spellbook_markdown_to_html(raw_markdown)
+
+    # Return raw HTML content directly
+    return HttpResponse(html_output, content_type="text/html", status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny]) # Or your preferred permissions
+def random_markdown_api(request):
+    logger.info("\n[Random Markdown API] --- Starting request ---")
+
+    spellbook_paths_setting = getattr(settings, 'SPELLBOOK_MD_PATH', [])
+    # The original logging for SPELLBOOK_MD_PATH was good, let's keep it clear
+    logger.info(f"[Random Markdown API] ---\n\tRaw SPELLBOOK_MD_PATH from settings: {spellbook_paths_setting}\n\t---")
+
+    if not isinstance(spellbook_paths_setting, list):
+        spellbook_paths = [spellbook_paths_setting]
+        logger.info(f"[Random Markdown API] ---\n\tSPELLBOOK_MD_PATH was not a list, converted to: {spellbook_paths}\n\t---")
+    else:
+        spellbook_paths = spellbook_paths_setting
+
+    all_markdown_files = []
+    logger.info("[Random Markdown API] --- Iterating through configured paths to find markdown files ---")
+    if not spellbook_paths:
+        logger.warning("[Random Markdown API] ---\n\tSPELLBOOK_MD_PATH is empty or not configured.\n\t---")
+
+    for i, p_str in enumerate(spellbook_paths):
+        logger.info(f"[Random Markdown API] ---\n\tProcessing Path Entry #{i+1}: '{p_str}' (type: {type(p_str)})")
+        try:
+            # Per your note: "SPELLBOOK_MD_PATH contains strings"
+            path_obj = Path(p_str)
+            logger.info(f"[Random Markdown API] \t\tSuccessfully converted to Path object: '{path_obj}'")
+
+            if not path_obj.exists():
+                logger.warning(f"[Random Markdown API] \t\tPath does not exist: '{path_obj}'. Skipping.")
+                continue
+
+            if path_obj.is_dir():
+                logger.info(f"[Random Markdown API] \t\t'{path_obj}' is a directory. Searching for '*.md' files recursively...")
+                found_in_dir = list(path_obj.rglob('*.md'))
+                if found_in_dir:
+                    all_markdown_files.extend(found_in_dir)
+                    logger.info(f"[Random Markdown API] \t\tFound {len(found_in_dir)} markdown file(s) in this directory:")
+                    for md_file_idx, md_file in enumerate(found_in_dir):
+                        logger.info(f"[Random Markdown API] \t\t\t- [{md_file_idx+1}] {md_file}")
+                else:
+                    logger.info(f"[Random Markdown API] \t\tNo markdown files found in directory '{path_obj}'.")
+            elif path_obj.is_file() and path_obj.suffix.lower() == '.md': # Use .lower() for case-insensitivity
+                logger.info(f"[Random Markdown API] \t\t'{path_obj}' is a single markdown file. Adding it.")
+                all_markdown_files.append(path_obj)
+            else:
+                logger.warning(f"[Random Markdown API] \t\t'{path_obj}' is not a directory or a .md file. Skipping.")
+        except Exception as e:
+            logger.error(f"[Random Markdown API] \t\tError processing path entry '{p_str}': {type(e).__name__} - {e}\n\t---")
+
+    logger.info("[Random Markdown API] --- File collection complete ---")
+    logger.info(f"[Random Markdown API] ---\n\tTotal unique markdown files collected: {len(all_markdown_files)}")
+    if all_markdown_files:
+        logger.info("[Random Markdown API] \tList of all collected markdown files:")
+        for f_idx, f_path in enumerate(all_markdown_files):
+            logger.info(f"[Random Markdown API] \t\t- [{f_idx+1}] {f_path}")
+    logger.info("\t---")
+
+    if not all_markdown_files:
+        logger.warning("[Random Markdown API] --- No markdown files were found in any configured SPELLBOOK_MD_PATH. Returning 404. ---")
+        return HttpResponse("No markdown files found in SPELLBOOK_MD_PATH.", status=status.HTTP_404_NOT_FOUND, content_type="text/plain")
+
+    try:
+        random_file_path = random.choice(all_markdown_files)
+        logger.info(f"[Random Markdown API] ---\n\tRandomly selected file for response: '{random_file_path}'\n\t---")
+    except IndexError:
+        logger.error("[Random Markdown API] --- CRITICAL ERROR: 'random.choice' was called on an empty list of files. This should have been caught earlier. Returning 500. ---")
+        return HttpResponse("Error selecting random file: No files available after processing paths.", status=status.HTTP_500_INTERNAL_SERVER_ERROR, content_type="text/plain")
+
+    try:
+        logger.info(f"[Random Markdown API] --- Attempting to read content from file: '{random_file_path}' ---")
+        with open(random_file_path, 'r', encoding='utf-8') as f:
+            raw_markdown_content = f.read()
+        logger.info(f"[Random Markdown API] ---\n\tSuccessfully read file. Content length: {len(raw_markdown_content)} bytes.\n\t---")
+        logger.info("[Random Markdown API] --- Request successful. Returning raw markdown content. ---")
+        return HttpResponse(raw_markdown_content, content_type="text/markdown; charset=utf-8")
+    except FileNotFoundError:
+        logger.error(f"[Random Markdown API] ---\n\tError: File not found during read attempt: '{random_file_path}'. This could happen if the file was moved/deleted after listing or if the path was incorrect.\n\t---")
+        return HttpResponse(f"Error reading markdown file: File not found '{random_file_path}'.", status=status.HTTP_500_INTERNAL_SERVER_ERROR, content_type="text/plain")
+    except Exception as e:
+        logger.error(f"[Random Markdown API] ---\n\tUnhandled error reading markdown file '{random_file_path}': {type(e).__name__} - {e}\n\t---")
+        return HttpResponse(f"Error reading markdown file: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR, content_type="text/plain")
