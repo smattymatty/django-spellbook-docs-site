@@ -217,7 +217,7 @@ ANALYTICS_EXCLUDED_PATHS = [
 ]
 
 ANALYTICS_EXCLUDED_PREFIXES = [
-    '/hidden',
+    '/api',
     '/prop',
 ]
 
