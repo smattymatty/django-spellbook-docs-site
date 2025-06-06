@@ -176,6 +176,7 @@ export class ButtonBarRenderer {
 
         const options = this.configManager.getOptions();
         
+        // Immediately remove hidden class and add visible class
         this.buttonBar.classList.remove(CSS_CLASSES.buttonBarHidden);
         this.buttonBar.classList.add('visible');
         this.buttonBar.style.opacity = '0';
@@ -197,13 +198,19 @@ export class ButtonBarRenderer {
 
         const options = this.configManager.getOptions();
         
-        // Immediately add hidden class and remove visible class for synchronous visibility check
-        this.buttonBar.classList.add(CSS_CLASSES.buttonBarHidden);
+        // Remove visible class to start fade-out animation
         this.buttonBar.classList.remove('visible');
         
         this.buttonBar.style.transition = `opacity ${options.animationDuration}ms ease-out, transform ${options.animationDuration}ms ease-out`;
         this.buttonBar.style.opacity = '0';
         this.buttonBar.style.transform = 'translateY(-10px)';
+        
+        // Add hidden class after animation completes to maintain proper visibility state
+        setTimeout(() => {
+            if (this.buttonBar && !this.buttonBar.classList.contains('visible')) {
+                this.buttonBar.classList.add(CSS_CLASSES.buttonBarHidden);
+            }
+        }, options.animationDuration);
     }
 
     /**
@@ -333,7 +340,7 @@ export class ButtonBarRenderer {
      */
     isVisible() {
         if (!this.buttonBar) return false;
-        return !this.buttonBar.classList.contains(CSS_CLASSES.buttonBarHidden);
+        return this.buttonBar.classList.contains('visible');
     }
 
     /**

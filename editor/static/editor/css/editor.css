@@ -460,14 +460,16 @@
 
 /* Button bar visible state */
 .editor-button-bar.visible {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
     opacity: 1;
     pointer-events: auto;
 }
 
 /* Button bar hidden state */
 .editor-button-bar.hidden {
-    display: none;
+    opacity: 0 !important;
+    transform: scale(0.95) !important;
+    pointer-events: none !important;
 }
 
 /* Buttons container */
