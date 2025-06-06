@@ -32,7 +32,7 @@ class ButtonBarController {
         
         try {
             // Dynamically import EditorButtonBar to avoid circular dependencies
-            const { default: EditorButtonBar } = await import('../button_bar.mjs');
+            const { EditorButtonBar } = await import('../button_bar.mjs');
             this.buttonBar = new EditorButtonBar(this.editorElement);
             this.isInitialized = true;
             
