@@ -8,6 +8,11 @@ export class ButtonStateManager {
         this.stateUpdateTimer = null;
         this.isTracking = false;
         
+        // Track last used SpellBlock for Quick Insert functionality
+        // Initialize with Card as the default
+        this.lastUsedBlockName = 'card';
+        this.lastUsedBlockDisplayName = 'Card';
+        
         // Bind methods
         this.handleCursorChange = this.handleCursorChange.bind(this);
     }
@@ -176,12 +181,6 @@ export class ButtonStateManager {
      * @private
      */
     setSpellBlockInsertMode(button) {
-        // Update button text
-        const buttonText = button.querySelector('.button-text');
-        if (buttonText) {
-            buttonText.textContent = 'Insert SpellBlock';
-        }
-
         // Update button icon to indicate insert mode
         const buttonIcon = button.querySelector('.button-icon');
         if (buttonIcon) {
@@ -192,11 +191,11 @@ export class ButtonStateManager {
         button.classList.add('spellblock-insert-mode');
         button.classList.remove('spellblock-edit-mode');
 
-        // Update tooltip
-        button.setAttribute('title', 'Insert SpellBlock (Ctrl+Shift+S)');
-
         // Remove block name data
         button.removeAttribute('data-spellblock-name');
+
+        // Update button text and tooltip based on Quick Insert state
+        this.updateSpellBlockButtonForQuickInsert();
     }
 
     /**
@@ -394,6 +393,69 @@ export class ButtonStateManager {
     }
 
     /**
+     * Set the last used SpellBlock for Quick Insert functionality
+     * @param {string} blockName - The block name identifier
+     * @param {string} displayName - The human-readable display name
+     */
+    setLastUsedSpellBlock(blockName, displayName) {
+        this.lastUsedBlockName = blockName;
+        this.lastUsedBlockDisplayName = displayName;
+        this.updateSpellBlockButtonForQuickInsert();
+    }
+
+    /**
+     * Get the last used SpellBlock information
+     * @returns {Object|null} Object with blockName and displayName, or null if none set
+     */
+    getLastUsedSpellBlock() {
+        if (!this.lastUsedBlockName) return null;
+        
+        return {
+            blockName: this.lastUsedBlockName,
+            displayName: this.lastUsedBlockDisplayName
+        };
+    }
+
+    /**
+     * Clear the last used SpellBlock
+     */
+    clearLastUsedSpellBlock() {
+        this.lastUsedBlockName = null;
+        this.lastUsedBlockDisplayName = null;
+        this.updateSpellBlockButtonForQuickInsert();
+    }
+
+    /**
+     * Update the SpellBlock button to reflect Quick Insert functionality
+     * @private
+     */
+    updateSpellBlockButtonForQuickInsert() {
+        const spellBlockBtn = this.renderer.getButtonElement('insert-spellblock-btn');
+        if (!spellBlockBtn) return;
+
+        const buttonText = spellBlockBtn.querySelector('.button-text');
+        if (!buttonText) return;
+
+        if (this.lastUsedBlockName && this.lastUsedBlockDisplayName) {
+            // Show Quick Insert mode
+            buttonText.textContent = `Insert ${this.lastUsedBlockDisplayName}`;
+            spellBlockBtn.setAttribute('title', `Insert ${this.lastUsedBlockDisplayName} SpellBlock (last used)`);
+        } else {
+            // Show default mode with Card as default
+            buttonText.textContent = 'Insert Card';
+            spellBlockBtn.setAttribute('title', 'Insert Card SpellBlock (default)');
+        }
+    }
+
+    /**
+     * Check if Quick Insert mode is active
+     * @returns {boolean} True if there's a last used SpellBlock
+     */
+    isQuickInsertMode() {
+        return this.lastUsedBlockName !== null;
+    }
+
+    /**
      * Clean up resources
      */
     destroy() {
@@ -403,6 +465,10 @@ export class ButtonStateManager {
         if (this.customCheckers) {
             this.customCheckers.clear();
         }
+        
+        // Clear Quick Insert state
+        this.lastUsedBlockName = null;
+        this.lastUsedBlockDisplayName = null;
         
         this.renderer = null;
         this.cursorTracker = null;
