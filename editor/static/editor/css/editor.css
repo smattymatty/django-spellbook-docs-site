@@ -124,7 +124,7 @@
     max-width: 100%;
     min-width: 100%;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     transition: all 0.3s ease-in-out;
     background-color: var(--subtle-color);

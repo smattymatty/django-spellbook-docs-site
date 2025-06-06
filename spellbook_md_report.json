@@ -1,97 +1,45 @@
 {
-  "summary": {
-    "total_pairs": 3,
-    "successful_pairs": 3,
-    "total_processed_files": 42
-  },
-  "pairs": [
-    {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/markdown_content",
-      "destination": "docs",
-      "url_prefix": "docs",
-      "success": true,
-      "processed_files": 25
+    "summary": {
+        "total_pairs": 3,
+        "successful_pairs": 3,
+        "total_processed_files": 42,
     },
-    {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/changelog_content",
-      "destination": "changelog",
-      "url_prefix": "changelog",
-      "success": true,
-      "processed_files": 6
-    },
-    {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/examples_content",
-      "destination": "examples",
-      "url_prefix": "examples",
-      "success": true,
-      "processed_files": 11
-    }
-  ],
-  "spellblocks": [
-    {
-      "name": "label_seperator",
-      "total_uses": 6,
-      "failed_uses": 0
-    },
-    {
-      "name": "alert",
-      "total_uses": 58,
-      "failed_uses": 0
-    },
-    {
-      "name": "card",
-      "total_uses": 29,
-      "failed_uses": 0
-    },
-    {
-      "name": "quote",
-      "total_uses": 15,
-      "failed_uses": 0
-    },
-    {
-      "name": "practice",
-      "total_uses": 24,
-      "failed_uses": 0
-    },
-    {
-      "name": "accordion",
-      "total_uses": 40,
-      "failed_uses": 0
-    },
-    {
-      "name": "simple",
-      "total_uses": 0,
-      "failed_uses": 0
-    },
-    {
-      "name": "selfclosing",
-      "total_uses": 0,
-      "failed_uses": 0
-    },
-    {
-      "name": "argstest",
-      "total_uses": 0,
-      "failed_uses": 0
-    },
-    {
-      "name": "progress",
-      "total_uses": 9,
-      "failed_uses": 0
-    },
-    {
-      "name": "hero",
-      "total_uses": 11,
-      "failed_uses": 0
-    },
-    {
-      "name": "align",
-      "total_uses": 15,
-      "failed_uses": 0
-    },
-    {
-      "name": "button",
-      "total_uses": 25,
-      "failed_uses": 0
-    }
-  ]
+    "pairs": [
+        {
+            "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/markdown_content",
+            "destination": "docs",
+            "url_prefix": "docs",
+            "success": true,
+            "processed_files": 25,
+        },
+        {
+            "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/changelog_content",
+            "destination": "changelog",
+            "url_prefix": "changelog",
+            "success": true,
+            "processed_files": 6,
+        },
+        {
+            "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/examples_content",
+            "destination": "examples",
+            "url_prefix": "examples",
+            "success": true,
+            "processed_files": 11,
+        },
+    ],
+    "spellblocks": [
+        {"name": "label_seperator", "total_uses": 6, "failed_uses": 0},
+        {"name": "alert", "total_uses": 58, "failed_uses": 0},
+        {"name": "card", "total_uses": 29, "failed_uses": 0},
+        {"name": "quote", "total_uses": 15, "failed_uses": 0},
+        {"name": "practice", "total_uses": 24, "failed_uses": 0},
+        {"name": "accordion", "total_uses": 40, "failed_uses": 0},
+        {"name": "simple", "total_uses": 0, "failed_uses": 0},
+        {"name": "selfclosing", "total_uses": 0, "failed_uses": 0},
+        {"name": "argstest", "total_uses": 0, "failed_uses": 0},
+        {"name": "progress", "total_uses": 9, "failed_uses": 0},
+        {"name": "hero", "total_uses": 11, "failed_uses": 0},
+        {"name": "align", "total_uses": 15, "failed_uses": 0},
+        {"name": "button", "total_uses": 25, "failed_uses": 0},
+    ],
 }

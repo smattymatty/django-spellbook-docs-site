@@ -9,11 +9,16 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+
 import os
 
-from pathlib import Path
+from pathlib import (
+    Path,
+)
 
-from decouple import config
+from decouple import (
+    config,
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,124 +28,130 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='beeee')
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="beeee",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=True)
+DEBUG = config(
+    "DEBUG",
+    cast=bool,
+    default=True,
+)
 
 ALLOWED_HOSTS = [
-    'https://django-spellbook.org',
+    "https://django-spellbook.org",
     "spellbook-docs-lbnkp.ondigitalocean.app",
     "django-spellbook.org",
     "localhost",
-    "mathewstorm.ca"
+    "mathewstorm.ca",
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_htmx',
-    'docs',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'django_spellbook',
-    'base',
-    'examples',
-    'changelog',
-    'analytics',
-    'api',
-    'editor',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_htmx",
+    "docs",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "django_spellbook",
+    "base",
+    "examples",
+    "changelog",
+    "analytics",
+    "api",
+    "editor",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'analytics.middleware.PageViewMiddleware',
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "analytics.middleware.PageViewMiddleware",
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'analytics.context_processors.analytics_context',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "analytics.context_processors.analytics_context",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
         # If one doesn't exist, it will be created at migration time.
     }
 }
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False, # Keep Django's default loggers active
-    'formatters': {
-        'simple': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{', # Use '{' style formatting
-        },
-
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG', # Capture DEBUG level and above
-            'class': 'logging.StreamHandler', # Output to console (stderr)
-            'formatter': 'simple', # Use the 'simple' formatter defined above
+    "version": 1,
+    "disable_existing_loggers": False,  # Keep Django's default loggers active
+    "formatters": {
+        "simple": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",  # Use '{' style formatting
         },
     },
-    'loggers': {
-        'django': { # Configure Django's internal loggers
-            'handlers': ['console'],
-            'level': 'INFO', # Show INFO level messages from Django itself
-            'propagate': True,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",  # Capture DEBUG level and above
+            "class": "logging.StreamHandler",  # Output to console (stderr)
+            "formatter": "simple",  # Use the 'simple' formatter defined above
         },
-        'analytics.middleware': { # YOUR specific logger name from the middleware
-            'handlers': ['console'],
-            'level': 'INFO', # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
-            'propagate': False, # Don't pass messages up to the root logger if handled here
+    },
+    "loggers": {
+        "django": {  # Configure Django's internal loggers
+            "handlers": ["console"],
+            "level": "INFO",  # Show INFO level messages from Django itself
+            "propagate": True,
+        },
+        "analytics.middleware": {  # YOUR specific logger name from the middleware
+            "handlers": ["console"],
+            "level": "INFO",  # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
+            "propagate": False,  # Don't pass messages up to the root logger if handled here
         },
         # For my API views
-        'api': {
-            'handlers': ['console'],
-            'level': 'DEBUG', # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
-            'propagate': False, # Don't pass messages up to the root logger if handled here
+        "api": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
+            "propagate": False,  # Don't pass messages up to the root logger if handled here
         },
     },
-    'disable_existing_loggers': False, # Disable existing loggers
+    "disable_existing_loggers": False,  # Disable existing loggers
 }
 
 # Password validation
@@ -148,16 +159,16 @@ LOGGING = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -165,9 +176,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -177,60 +188,59 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where collectstatic will put files
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Where collectstatic will put files
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Your project's static files
+    BASE_DIR / "static",  # Your project's static files
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SPELLBOOK_MD_PATH = [
-    BASE_DIR / 'markdown_content',
-    BASE_DIR / 'changelog_content',
-    BASE_DIR / 'examples_content',
-    ]
+    BASE_DIR / "markdown_content",
+    BASE_DIR / "changelog_content",
+    BASE_DIR / "examples_content",
+]
 
 SPELLBOOK_MD_APP = [
-    'docs',
-    'changelog',
-    'examples',
+    "docs",
+    "changelog",
+    "examples",
 ]
 
 SPELLBOOK_MD_BASE_TEMPLATE = [
-    'docs/sb_base.html',
-    'changelog/sb_base.html',
-    'examples/sb_base.html',
-    ]
+    "docs/sb_base.html",
+    "changelog/sb_base.html",
+    "examples/sb_base.html",
+]
 
 SPELLBOOK_MD_URL_PREFIX = [
-    'docs',
-    'changelog',
-    'examples',
+    "docs",
+    "changelog",
+    "examples",
 ]
 
-ANALYTICS_EXCLUDED_PATHS = [
-    '/'
-]
+ANALYTICS_EXCLUDED_PATHS = ["/"]
 
 ANALYTICS_EXCLUDED_PREFIXES = [
-    '/api',
-    '/prop',
+    "/api",
+    "/prop",
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
 
-
 # core/settings.py
 DATA_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # 2MB
-FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # For file parts of multipart requests
+FILE_UPLOAD_MAX_MEMORY_SIZE = (
+    2 * 1024 * 1024
+)  # For file parts of multipart requests
 
 MAX_API_REQUEST_SIZE = 1 * 1024 * 1024

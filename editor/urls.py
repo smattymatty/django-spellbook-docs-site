@@ -1,8 +1,16 @@
-from django.urls import path
-from . import views
+from django.urls import (
+    path,
+)
+from . import (
+    views,
+)
 
-app_name = 'editor'
+app_name = "editor"
 
 urlpatterns = [
-    path('', views.editor_base, name='home'),
+    path(
+        "",
+        views.editor_base,
+        name="home",
+    ),
 ]

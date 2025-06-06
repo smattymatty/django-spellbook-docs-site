@@ -1,6 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import (
+    render,
+)
 
-def editor_base(request):
-    template_name = 'editor/base.html'
+
+def editor_base(
+    request,
+):
+    template_name = "editor/base.html"
     context = {}
-    return render(request, template_name, context)
+    return render(
+        request,
+        template_name,
+        context,
+    )
