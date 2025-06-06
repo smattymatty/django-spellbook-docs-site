@@ -141,6 +141,10 @@ def spellblock_registry_api(request):
         registry_data = []
         
         for block_name, block_class in SpellBlockRegistry._registry.items():
+            # Skip certain test/internal blocks
+            if block_name.lower() in ['argstest', 'selfclosing', 'simple']:
+                continue
+                
             # Build basic block information
             block_info = {
                 'name': block_name,
