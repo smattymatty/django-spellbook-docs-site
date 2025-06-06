@@ -148,17 +148,26 @@ const editor = EditorManager.createForTesting('test-editor');
 
 ### Running Tests
 
-Tests can be run by accessing the page with `?test=editor` query parameter:
+Use the interactive test runner for easy testing:
 
-```
-http://localhost:8000/editor/?test=editor
-```
+1. Open the test runner page: `editor/static/editor/test_runner.html`
+2. Click the test buttons to run specific test suites:
+   - **Run ButtonBar Tests** - Tests the refactored button bar components
+   - **Run EditorManager Tests** - Tests the main editor orchestrator
+   - **Run All Tests** - Comprehensive test suite for all components
+
+The test runner provides:
+- Real-time console output with color coding
+- Visual status indicators for each test suite
+- Detailed test results and failure information
+- A test editor environment for manual verification
 
 ### Test Structure
 
 ```
 tests/
 ├── EditorManager.test.mjs    # Main component tests
+├── button_bar_test.mjs       # Comprehensive button bar tests
 └── (future test files)       # Additional component tests
 ```
 

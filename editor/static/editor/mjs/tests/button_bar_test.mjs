@@ -521,6 +521,9 @@ class ButtonBarTestSuite {
             'Should hide button bar'
         );
         
+        // Ensure button bar is shown before adding buttons (containers need to exist)
+        this.buttonBar.show();
+        
         // Test adding custom button
         const customButton = {
             id: 'custom-test-btn',
@@ -530,6 +533,7 @@ class ButtonBarTestSuite {
             action: 'testAction'
         };
         
+
         this.addResult('EditorButtonBar', 'addButton', 
             this.buttonBar.addButton(customButton),
             'Should add custom button'

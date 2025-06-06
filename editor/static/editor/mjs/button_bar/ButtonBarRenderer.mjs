@@ -188,13 +188,12 @@ export class ButtonBarRenderer {
 
         const options = this.configManager.getOptions();
         
+        // Immediately add hidden class for synchronous visibility check
+        this.buttonBar.classList.add(CSS_CLASSES.buttonBarHidden);
+        
         this.buttonBar.style.transition = `opacity ${options.animationDuration}ms ease-out, transform ${options.animationDuration}ms ease-out`;
         this.buttonBar.style.opacity = '0';
         this.buttonBar.style.transform = 'translateY(-10px)';
-        
-        setTimeout(() => {
-            this.buttonBar.classList.add(CSS_CLASSES.buttonBarHidden);
-        }, options.animationDuration);
     }
 
     /**
@@ -214,16 +213,16 @@ export class ButtonBarRenderer {
 
         switch (category) {
             case 'main':
-                container = this.buttonBar.querySelector(`.${CSS_CLASSES.mainButtons}`);
+                // Convert space-separated classes to proper CSS selector
+                const mainSelector = '.' + CSS_CLASSES.mainButtons.split(' ').join('.');
+                container = this.buttonBar.querySelector(mainSelector);
                 button = this.createMainButton(buttonConfig);
                 break;
             case 'markdown':
-                container = this.buttonBar.querySelector(`.${CSS_CLASSES.markdownButtons}`);
-                button = this.createMarkdownButton(buttonConfig);
-                break;
             case 'custom':
-                // For custom buttons, add to markdown container by default
-                container = this.buttonBar.querySelector(`.${CSS_CLASSES.markdownButtons}`);
+                // Convert space-separated classes to proper CSS selector
+                const markdownSelector = '.' + CSS_CLASSES.markdownButtons.split(' ').join('.');
+                container = this.buttonBar.querySelector(markdownSelector);
                 button = this.createMarkdownButton(buttonConfig);
                 break;
             default:
