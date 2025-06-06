@@ -278,6 +278,37 @@
     font-size: 11px;
 }
 
+/* Dropdown toggle button */
+.spellblock-dropdown-toggle {
+    background-color: var(--primary-color, #3b82f6) !important;
+    color: white !important;
+    border: none;
+    padding: 6px 8px;
+    margin-left: -1px;
+    border-radius: 0 4px 4px 0 !important;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px !important;
+    max-width: 32px !important;
+    height: 100%;
+    border-bottom: 3px solid var(--info-color, #e2e8f0);
+    border-right: 3px solid var(--info-color, #e2e8f0) !important;
+    border-top: 1px solid var(--info-color, #e2e8f0) !important;
+}
+
+.spellblock-dropdown-toggle:hover {
+    background: #2563eb !important;
+    transform: translateY(-1px);
+}
+
+.spellblock-dropdown-toggle:active {
+    transform: translateY(0);
+}
+
 /* Button group styling for SpellBlock insert + dropdown */
 .spellblock-button-group {
     display: flex;
