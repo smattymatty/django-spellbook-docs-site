@@ -214,8 +214,15 @@ export class EventCoordinator {
             // We're inside a SpellBlock - handle edit mode
             this.handleEditSpellBlock(context.spellBlock);
         } else {
-            // We're not inside a SpellBlock - insert new one
-            this.insertNewSpellBlock();
+            // Check if we're in Quick Insert mode (have a last used block)
+            const lastUsed = this.stateManager.getLastUsedSpellBlock();
+            if (lastUsed) {
+                // Quick Insert: insert the last used SpellBlock directly
+                this.insertLastUsedSpellBlock();
+            } else {
+                // No last used block - insert default SpellBlock
+                this.insertNewSpellBlock();
+            }
         }
     }
 
@@ -226,6 +233,34 @@ export class EventCoordinator {
     insertNewSpellBlock() {
         // Always insert default card template with hardcoded placeholders
         this.insertDefaultSpellBlock();
+    }
+
+    /**
+     * Insert the last used SpellBlock (Quick Insert functionality)
+     * @private
+     */
+    async insertLastUsedSpellBlock() {
+        const lastUsed = this.stateManager.getLastUsedSpellBlock();
+        if (!lastUsed) {
+            console.warn('[EventCoordinator] No last used SpellBlock available for Quick Insert');
+            return;
+        }
+
+        try {
+            const template = await spellBlockRegistry.generateTemplate(lastUsed.blockName);
+            
+            // Create a block object for compatibility with existing methods
+            const blockObj = {
+                name: lastUsed.blockName,
+                displayName: lastUsed.displayName
+            };
+            
+            this.insertSpellBlockTemplate(template, blockObj);
+            this.notificationService.success(`${lastUsed.displayName} SpellBlock inserted (Quick Insert)`);
+        } catch (error) {
+            console.error('[EventCoordinator] Error in Quick Insert:', error);
+            this.notificationService.error(`Failed to insert ${lastUsed.displayName}: ${error.message}`);
+        }
     }
 
     /**
@@ -292,6 +327,10 @@ export class EventCoordinator {
         try {
             const template = await spellBlockRegistry.generateTemplate(block.name);
             this.insertSpellBlockTemplate(template, block);
+            
+            // Track this block as the last used for Quick Insert functionality
+            this.stateManager.setLastUsedSpellBlock(block.name, block.displayName);
+            
             this.notificationService.success(`${block.displayName} SpellBlock inserted`);
         } catch (error) {
             console.error('[EventCoordinator] Error inserting SpellBlock:', error);
@@ -383,6 +422,9 @@ My Card Content
         
         // Trigger HTMX update for live preview
         editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+        
+        // Track the default card as the last used SpellBlock for Quick Insert
+        this.stateManager.setLastUsedSpellBlock('card', 'Card');
         
         this.notificationService.success('Card SpellBlock template inserted - content selected');
     }

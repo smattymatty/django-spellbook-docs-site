@@ -327,9 +327,10 @@ class SyntaxHighlighter {
     const filteredMatches = [];
     for (let i = 0; i < allMatches.length; i++) {
       const current = allMatches[i];
-      const isOverlapping = filteredMatches.some(existing => 
-        current.index < existing.index + existing.length &&
-        current.index + current.length > existing.index
+      const isOverlapping = filteredMatches.some(
+        (existing) =>
+          current.index < existing.index + existing.length &&
+          current.index + current.length > existing.index,
       );
       if (!isOverlapping) {
         filteredMatches.push(current);
@@ -524,6 +525,18 @@ class SyntaxHighlighter {
       minHeight: minHeight,
     });
 
+    // Calculate responsive left offset based on screen width to match editor.css media queries
+    const leftOffset = this.calculateResponsiveLeftOffset();
+
+    console.log("[SyntaxHighlighter] Positioning debug:", {
+      containerLeft: this.highlightContainer.style.left,
+      containerMarginLeft: this.highlightContainer.style.marginLeft,
+      containerTransform: this.highlightContainer.style.transform,
+      layerLeftOffset: leftOffset,
+      screenWidth: window.innerWidth,
+      isFocused: document.activeElement === this.editorElement,
+    });
+
     // Update layer to match textarea dimensions and styling
     Object.assign(this.highlightLayer.style, {
       width: "100%",
@@ -534,13 +547,54 @@ class SyntaxHighlighter {
       fontFamily: editorStyles.fontFamily,
       letterSpacing: editorStyles.letterSpacing,
       wordSpacing: editorStyles.wordSpacing,
-      // Adjust left offset: 0.3rem when unfocused, 0.5rem when focused for perfect alignment
-      left:
-        document.activeElement === this.editorElement ? "1.7rem" : "-0.3rem",
+      // Use responsive left offset to match button bar positioning
+      left: leftOffset,
     });
 
     // Re-sync scroll position after dimension changes
     setTimeout(() => this.syncScroll(), 10);
+  }
+
+  /**
+   * Calculate responsive left offset to match button bar positioning
+   * @returns {string} CSS left offset value
+   */
+  calculateResponsiveLeftOffset() {
+    const isFocused = document.activeElement === this.editorElement;
+    const width = window.innerWidth;
+
+    // Responsive breakpoints to match editor movement at different screen sizes
+    // 0px is perfect for mobile and small screens
+    if (width < 768) {
+      return "0px";
+    } else if (width >= 768 && width < 850) {
+      return isFocused ? "1.5rem" : "-0.5rem";
+    } else if (width >= 850 && width < 900) {
+      return isFocused ? "1.6rem" : "-0.5rem";
+    } else if (width >= 900 && width < 950) {
+      return isFocused ? "1.7rem" : "-0.5rem";
+    } else if (width >= 950 && width < 1000) {
+      return isFocused ? "1.8rem" : "-0.5rem";
+    } else if (width >= 1000 && width < 1075) {
+      return isFocused ? "1.9rem" : "-0.5rem";
+    } else if (width >= 1075 && width < 1150) {
+      return isFocused ? "2rem" : "-0.5rem";
+    } else if (width >= 1150 && width < 1200) {
+      return isFocused ? "2.1rem" : "-0.5rem";
+    } else if (width >= 1200 && width < 1250) {
+      return isFocused ? "2.2rem" : "-0.5rem";
+    } else if (width >= 1250 && width < 1400) {
+      return isFocused ? "2.3rem" : "-0.5rem";
+    } else if (width >= 1400 && width < 1600) {
+      return isFocused ? "2.3rem" : "-0.5rem";
+    } else if (width >= 1600 && width < 1800) {
+      return isFocused ? "2.4rem" : "-0.5rem";
+    } else if (width >= 1800 && width < 2000) {
+      return isFocused ? "2.5rem" : "-0.5rem";
+    } else {
+      // Very large screens
+      return isFocused ? "4.4rem" : "-0.5rem";
+    }
   }
 
   /**

@@ -1020,6 +1020,8 @@
     border: 1px solid var(--primary-color);
 }
 
+
+
 /* Button focus states */
 .editor-btn:focus {
     outline: none;

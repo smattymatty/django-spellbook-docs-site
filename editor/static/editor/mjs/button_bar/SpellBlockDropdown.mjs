@@ -247,7 +247,9 @@ export class SpellBlockDropdown {
         // Restore focus to previously focused element (editor)
         if (this.previouslyFocused && this.previouslyFocused.focus) {
             setTimeout(() => {
-                this.previouslyFocused.focus();
+                if (this.previouslyFocused && this.previouslyFocused.focus) {
+                    this.previouslyFocused.focus();
+                }
             }, 50);
         }
         this.previouslyFocused = null;
