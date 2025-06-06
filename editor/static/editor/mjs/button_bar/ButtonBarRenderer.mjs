@@ -315,7 +315,8 @@ export class ButtonBarRenderer {
      * @private
      */
     createTooltipText(buttonConfig) {
-        let tooltip = buttonConfig.text;
+        // Use custom tooltip if available, otherwise use button text
+        let tooltip = buttonConfig.tooltip || buttonConfig.text;
         
         if (buttonConfig.keyboardShortcut) {
             const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;

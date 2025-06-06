@@ -80,6 +80,9 @@ export class ButtonStateManager {
         
         // Update inline formatting states
         this.updateInlineStates(context);
+        
+        // Update SpellBlock context
+        this.updateSpellBlockContext(context);
     }
 
     /**
@@ -117,6 +120,83 @@ export class ButtonStateManager {
         Object.entries(inlineStates).forEach(([buttonId, isActive]) => {
             this.setButtonActive(buttonId, isActive);
         });
+    }
+
+    /**
+     * Update SpellBlock context and button appearance
+     * @param {Object} context - Formatting context
+     * @private
+     */
+    updateSpellBlockContext(context) {
+        const spellBlockBtn = this.renderer.getButtonElement('insert-spellblock-btn');
+        if (!spellBlockBtn) return;
+
+        if (context.isSpellBlock && context.spellBlock) {
+            // User is inside a SpellBlock - change to edit mode
+            this.setSpellBlockEditMode(spellBlockBtn, context.spellBlock.blockName);
+        } else {
+            // User is not inside a SpellBlock - change to insert mode
+            this.setSpellBlockInsertMode(spellBlockBtn);
+        }
+    }
+
+    /**
+     * Set SpellBlock button to edit mode
+     * @param {HTMLElement} button - Button element
+     * @param {string} blockName - Name of the SpellBlock being edited
+     * @private
+     */
+    setSpellBlockEditMode(button, blockName) {
+        // Update button text
+        const buttonText = button.querySelector('.button-text');
+        if (buttonText) {
+            buttonText.textContent = `Edit ${blockName}`;
+        }
+
+        // Update button icon to indicate edit mode
+        const buttonIcon = button.querySelector('.button-icon');
+        if (buttonIcon) {
+            buttonIcon.textContent = '✏️';
+        }
+
+        // Add edit mode class for styling
+        button.classList.add('spellblock-edit-mode');
+        button.classList.remove('spellblock-insert-mode');
+
+        // Update tooltip
+        button.setAttribute('title', `Edit SpellBlock: ${blockName}`);
+
+        // Store the block name for potential use
+        button.setAttribute('data-spellblock-name', blockName);
+    }
+
+    /**
+     * Set SpellBlock button to insert mode
+     * @param {HTMLElement} button - Button element
+     * @private
+     */
+    setSpellBlockInsertMode(button) {
+        // Update button text
+        const buttonText = button.querySelector('.button-text');
+        if (buttonText) {
+            buttonText.textContent = 'Insert SpellBlock';
+        }
+
+        // Update button icon to indicate insert mode
+        const buttonIcon = button.querySelector('.button-icon');
+        if (buttonIcon) {
+            buttonIcon.textContent = '✨';
+        }
+
+        // Add insert mode class for styling
+        button.classList.add('spellblock-insert-mode');
+        button.classList.remove('spellblock-edit-mode');
+
+        // Update tooltip
+        button.setAttribute('title', 'Insert SpellBlock (Ctrl+Shift+S)');
+
+        // Remove block name data
+        button.removeAttribute('data-spellblock-name');
     }
 
     /**

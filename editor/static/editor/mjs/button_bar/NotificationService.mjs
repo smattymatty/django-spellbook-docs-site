@@ -6,7 +6,7 @@ export class NotificationService {
   constructor(options = {}) {
     this.options = {
       duration: 3000,
-      position: "top-right",
+      position: "top-left",
       animationDuration: 300,
       maxNotifications: 5,
       ...options,
@@ -176,6 +176,12 @@ export class NotificationService {
     const backgroundColor =
       NOTIFICATION_STYLES[type] || NOTIFICATION_STYLES.info;
 
+    // Determine initial transform based on position
+    const isLeftSide = this.options.position.includes("left");
+    const initialTransform = isLeftSide
+      ? "translateX(-100%)"
+      : "translateX(100%)";
+
     return `
             background-color: ${backgroundColor};
             color: white;
@@ -186,7 +192,7 @@ export class NotificationService {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             pointer-events: auto;
             cursor: default;
-            transform: translateX(100%);
+            transform: ${initialTransform};
             opacity: 0;
             transition: all ${this.options.animationDuration}ms ease-out;
             max-width: 100%;
@@ -230,7 +236,13 @@ export class NotificationService {
    */
   animateOut(element) {
     return new Promise((resolve) => {
-      element.style.transform = "translateX(100%)";
+      // Animate out in the appropriate direction based on position
+      const isLeftSide = this.options.position.includes("left");
+      const exitTransform = isLeftSide
+        ? "translateX(-100%)"
+        : "translateX(100%)";
+
+      element.style.transform = exitTransform;
       element.style.opacity = "0";
 
       setTimeout(() => {

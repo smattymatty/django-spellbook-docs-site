@@ -476,4 +476,123 @@ The modular architecture enables easy extension:
 - **Error handling with user-friendly messages**
 - **Performance considerations documented**
 
+## SpellBlock Context-Aware Detection
+
+The editor includes sophisticated context-aware detection for SpellBlock syntax, providing users with intelligent editing capabilities based on cursor position.
+
+### SpellBlock Syntax Support
+
+The system recognizes SpellBlock syntax in the format:
+```markdown
+{~ blockname
+    attribute="value"
+    another="parameter"
+~}
+Content goes here
+{~~}
+```
+
+### Context-Aware Button Behavior
+
+The "Insert SpellBlock" button dynamically changes its behavior based on cursor context:
+
+#### **Outside SpellBlock (Insert Mode)**
+- **Button Text**: "Insert SpellBlock"
+- **Icon**: ✨ (sparkles)
+- **Action**: Inserts new card template with proper spacing
+- **Template**:
+  ```markdown
+  {~ card
+      title="My Title"
+      footer="My Footer"
+  ~}
+  My Card Content
+  {~~}
+  ```
+
+#### **Inside SpellBlock (Edit Mode)**
+- **Button Text**: "Edit [blockname]" (e.g., "Edit card")
+- **Icon**: ✏️ (pencil)
+- **Style**: Blue edit mode styling
+- **Action**: Selects content area for immediate editing
+
+### Smart Positioning Features
+
+#### **Automatic Line Spacing**
+When inserting a SpellBlock, the system ensures proper markdown spacing:
+- Moves cursor to an empty line if needed
+- Ensures the line above is also empty
+- Automatically adds newlines (`\n\n`) as required
+
+#### **Content Selection**
+- **New SpellBlocks**: Automatically selects "My Card Content" for immediate editing
+- **Existing SpellBlocks**: Selects content between `~}` and `{~~}` tags
+- **Parameter Detection**: Detects cursor within opening tag parameters and still selects content
+
+#### **HTMX Integration**
+- Automatically triggers live preview updates after insertion/editing
+- Dispatches `input` events to maintain HTMX synchronization
+- Seamless integration with existing preview functionality
+
+### Detection Logic
+
+#### **Opening Tag Detection**
+Recognizes when cursor is within SpellBlock parameters:
+```markdown
+{~ card title="My Title" |cursor here| ~}
+```
+
+#### **Content Area Detection**
+Identifies cursor within SpellBlock content:
+```markdown
+{~ card ~}
+|cursor here| - content area
+{~~}
+```
+
+#### **Multi-line Parameter Support**
+Handles complex multi-line parameter definitions:
+```markdown
+{~ card
+    title="Complex Title"
+    description="Long description"
+    |cursor here|
+~}
+```
+
+### Implementation Architecture
+
+The SpellBlock detection system consists of:
+
+1. **CursorTracker.mjs**: Advanced regex-based detection for both opening tags and content areas
+2. **ButtonStateManager.mjs**: Dynamic button appearance and text management
+3. **EventCoordinator.mjs**: Context-aware insertion and editing logic
+4. **CSS Styling**: Visual feedback for edit vs insert modes
+
+### Usage Examples
+
+```javascript
+// Get current SpellBlock context
+const context = cursorTracker.getFormattingContext();
+if (context.isSpellBlock) {
+    console.log(`Editing: ${context.spellBlock.blockName}`);
+    console.log(`Within params: ${context.spellBlock.isWithinOpeningTag}`);
+}
+
+// Programmatically trigger SpellBlock insertion
+buttonBar.triggerButton('insert-spellblock-btn');
+```
+
+### Testing SpellBlock Features
+
+Test scenarios include:
+- Insertion at various cursor positions
+- Detection within parameters vs content
+- Multi-line parameter handling
+- Proper spacing and line management
+- HTMX preview integration
+- Button state changes and notifications
+
+This context-aware system significantly enhances the user experience by providing intelligent, location-based functionality that adapts to the user's current editing context.
+
 This architecture provides a solid foundation for editor functionality while maintaining flexibility for future enhancements and excellent developer experience through comprehensive testing and clear documentation.

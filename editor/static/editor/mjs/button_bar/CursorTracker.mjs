@@ -143,6 +143,19 @@ export class CursorTracker {
     }
 
     /**
+     * Check if cursor is inside a SpellBlock
+     * @returns {Object|null} SpellBlock information if inside, null otherwise
+     */
+    isInsideSpellBlock() {
+        if (!this.editorElement) return null;
+        
+        const text = this.editorElement.value || '';
+        const cursorPosition = this.getCursorPosition();
+        
+        return this.getSpellBlockAtPosition(text, cursorPosition);
+    }
+
+    /**
      * Check if a position is inside a code block
      * @param {string} text - Text to analyze
      * @param {number} position - Position to check
@@ -173,12 +186,165 @@ export class CursorTracker {
     }
 
     /**
+     * Get SpellBlock information at cursor position
+     * @param {string} text - Text to analyze
+     * @param {number} position - Position to check
+     * @returns {Object|null} SpellBlock info if inside, null otherwise
+     * @private
+     */
+    getSpellBlockAtPosition(text, position) {
+        const textBefore = text.substring(0, position);
+        const textAfter = text.substring(position);
+        
+        // First check if cursor is within opening tag parameters
+        const withinOpeningTag = this.checkWithinOpeningTag(text, position);
+        if (withinOpeningTag) {
+            return withinOpeningTag;
+        }
+        
+        // Regex to match SpellBlock opening tags: {~ blockname ~} (supports multi-line attributes)
+        const openingRegex = /\{~\s*([^~]+?)\s*~\}/gs;
+        // Regex to match SpellBlock closing tags: {~~}
+        const closingRegex = /\{~~\}/g;
+        
+        let openings = [];
+        let closings = [];
+        let match;
+        
+        // Find all opening tags before cursor
+        while ((match = openingRegex.exec(textBefore)) !== null) {
+            // Extract block name (first word before any attributes)
+            const fullContent = match[1].trim();
+            const blockName = fullContent.split(/\s/)[0] || 'SpellBlock';
+            
+            openings.push({
+                blockName: blockName,
+                fullContent: fullContent,
+                start: match.index,
+                end: match.index + match[0].length,
+                fullMatch: match[0]
+            });
+        }
+        
+        // Find all closing tags before cursor
+        while ((match = closingRegex.exec(textBefore)) !== null) {
+            closings.push({
+                position: match.index,
+                end: match.index + match[0].length
+            });
+        }
+        
+        // Check if we have more openings than closings (cursor is inside a block)
+        if (openings.length > closings.length) {
+            const lastOpening = openings[openings.length - 1];
+            
+            // Verify there's a closing tag after cursor position
+            const hasClosingAfter = closingRegex.test(textAfter);
+            
+            if (hasClosingAfter) {
+                // Find the exact closing tag position
+                closingRegex.lastIndex = 0; // Reset regex
+                const closingMatch = closingRegex.exec(textAfter);
+                const closingPosition = position + closingMatch.index;
+                
+                return {
+                    isInside: true,
+                    blockName: lastOpening.blockName,
+                    openingTag: {
+                        start: lastOpening.start,
+                        end: lastOpening.end,
+                        text: lastOpening.fullMatch
+                    },
+                    closingTag: {
+                        start: closingPosition,
+                        end: closingPosition + closingMatch[0].length,
+                        text: closingMatch[0]
+                    },
+                    content: {
+                        start: lastOpening.end,
+                        end: closingPosition,
+                        text: text.substring(lastOpening.end, closingPosition)
+                    },
+                    cursorOffset: position - lastOpening.end
+                };
+            }
+        }
+        
+        return null;
+    }
+
+    /**
+     * Check if cursor is within SpellBlock opening tag parameters
+     * @param {string} text - Text to analyze
+     * @param {number} position - Position to check
+     * @returns {Object|null} SpellBlock info if within opening tag, null otherwise
+     * @private
+     */
+    checkWithinOpeningTag(text, position) {
+        // Look backwards and forwards to find potential opening tag boundaries
+        const textBefore = text.substring(0, position);
+        const textAfter = text.substring(position);
+        
+        // Find the most recent {~ before cursor
+        const lastOpenStart = textBefore.lastIndexOf('{~');
+        if (lastOpenStart === -1) return null;
+        
+        // Find the next ~} after the {~ (could be after cursor)
+        const remainingText = text.substring(lastOpenStart);
+        const closeMatch = remainingText.match(/~\}/);
+        if (!closeMatch) return null;
+        
+        const closeEnd = lastOpenStart + closeMatch.index + 2; // +2 for ~}
+        
+        // Check if cursor is between {~ and ~}
+        if (position >= lastOpenStart + 2 && position <= closeEnd) {
+            // Extract the content between {~ and ~}
+            const tagContent = text.substring(lastOpenStart + 2, closeEnd - 2).trim();
+            const blockName = tagContent.split(/\s/)[0] || 'SpellBlock';
+            
+            // Check if there's a corresponding closing tag after this opening tag
+            const afterClosingTag = text.substring(closeEnd);
+            const hasClosingTag = /\{~~\}/.test(afterClosingTag);
+            
+            if (hasClosingTag) {
+                const closingMatch = afterClosingTag.match(/\{~~\}/);
+                const closingPosition = closeEnd + closingMatch.index;
+                
+                return {
+                    isInside: true,
+                    isWithinOpeningTag: true,
+                    blockName: blockName,
+                    openingTag: {
+                        start: lastOpenStart,
+                        end: closeEnd,
+                        text: text.substring(lastOpenStart, closeEnd)
+                    },
+                    closingTag: {
+                        start: closingPosition,
+                        end: closingPosition + 4, // {~~} is 4 characters
+                        text: '{~~}'
+                    },
+                    content: {
+                        start: closeEnd,
+                        end: closingPosition,
+                        text: text.substring(closeEnd, closingPosition)
+                    },
+                    cursorOffset: position - lastOpenStart
+                };
+            }
+        }
+        
+        return null;
+    }
+
+    /**
      * Get formatting context at cursor position
      * @returns {Object} Formatting context information
      */
     getFormattingContext() {
         const line = this.getCurrentLine();
         const context = this.getCursorContext();
+        const spellBlock = this.isInsideSpellBlock();
         
         if (!line || !context) return null;
         
@@ -195,6 +361,10 @@ export class CursorTracker {
             isItalic: this.isPositionInsideMarkdown(context.text, context.position, '*', '**'),
             isCode: this.isPositionInsideMarkdown(context.text, context.position, '`', '```'),
             isCodeBlock: this.isInsideCodeBlock(),
+            
+            // SpellBlock formatting
+            isSpellBlock: !!spellBlock,
+            spellBlock: spellBlock,
             
             // Context information
             line: line,

@@ -468,7 +468,7 @@
 /* Button bar hidden state */
 .editor-button-bar.hidden {
     opacity: 0 !important;
-    transform: scale(0.95) !important;
+    transform: translateY(-20px) scale(0.95) !important;
     pointer-events: none !important;
 }
 
@@ -659,6 +659,32 @@
     filter: brightness(0.95);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* SpellBlock edit mode styles */
+.editor-btn.spellblock-edit-mode {
+    background-color: #f0f8ff;
+    color: #2563eb;
+    border: 2px solid #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.editor-btn.spellblock-edit-mode:hover {
+    background-color: #e0f2fe;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.editor-btn.spellblock-edit-mode .button-icon {
+    color: #3b82f6;
+    transform: scale(1.1);
+}
+
+.editor-btn.spellblock-insert-mode {
+    background-color: var(--subtle-color);
+    color: black;
+    border: 1px solid var(--primary-color);
 }
 
 /* Button focus states */

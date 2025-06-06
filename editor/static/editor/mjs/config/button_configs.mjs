@@ -22,6 +22,7 @@ export const MAIN_BUTTONS = [
       key: "Ctrl+Shift+S (or Alt+Shift+S)",
       keyMac: "⌘⇧S (or Alt+Shift+S)",
     },
+    tooltip: "Insert SpellBlock",
   },
 ];
 

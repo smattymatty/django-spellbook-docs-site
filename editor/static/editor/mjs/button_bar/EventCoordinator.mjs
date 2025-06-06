@@ -17,6 +17,10 @@ export class EventCoordinator {
         // Custom action handlers
         this.customActions = new Map();
         
+        // Track last keyboard event for modifier key detection
+        this.lastKeyEvent = null;
+        this.lastClickEvent = null;
+        
         // Initialize keyboard shortcut manager
         this.keyboardShortcutManager = new KeyboardShortcutManager(this, {
             enableShortcuts: true,
@@ -82,6 +86,9 @@ export class EventCoordinator {
     handleButtonClick(event) {
         console.log('[EventCoordinator] Button click detected:', event.target);
         
+        // Track the click event for modifier key detection
+        this.lastClickEvent = event;
+        
         // Prevent default behavior and stop propagation to avoid editor blur
         event.preventDefault();
         event.stopPropagation();
@@ -105,6 +112,9 @@ export class EventCoordinator {
         
         console.log('[EventCoordinator] Executing action:', buttonConfig.action);
         this.executeAction(buttonConfig);
+        
+        // Clear the click event tracking
+        this.lastClickEvent = null;
         
         // Refocus the editor after button action to prevent blur issues
         setTimeout(() => {
@@ -166,31 +176,183 @@ export class EventCoordinator {
     }
 
     /**
-     * Handle spell block insertion
+     * Handle insert spell block action (context-aware)
      * @private
      */
     handleInsertSpellBlock() {
         const editorElement = this.blockFormatter.editorElement;
         if (!editorElement) return;
         
-        const spellBlockTemplate = `
-{% spellblock %}
-# Spell Name
-
-**Level:** 1st-level
-**Casting Time:** 1 action
-**Range:** Touch
-**Components:** V, S
-**Duration:** Instantaneous
-
-Spell description goes here.
-{% endspellblock %}
-`;
+        // Get current cursor context to check if we're inside a SpellBlock
+        const context = this.getFormattingContext();
         
-        // Insert the spell block template
-        this.blockFormatter.insertText(spellBlockTemplate.trim(), -spellBlockTemplate.trim().length + 15);
+        if (context && context.isSpellBlock && context.spellBlock) {
+            // We're inside a SpellBlock - handle edit mode
+            this.handleEditSpellBlock(context.spellBlock);
+        } else {
+            // We're not inside a SpellBlock - insert new one
+            this.insertNewSpellBlock();
+        }
+    }
+
+    /**
+     * Insert a new SpellBlock template
+     * @private
+     */
+    insertNewSpellBlock() {
+        // Always insert default card template with hardcoded placeholders
+        this.insertDefaultSpellBlock();
+    }
+
+    /**
+     * Insert default card SpellBlock
+     * @private
+     */
+    insertDefaultSpellBlock() {
+        const editorElement = this.blockFormatter.editorElement;
+        if (!editorElement) return;
         
-        this.notificationService.success('Spell block template inserted');
+        const spellBlockTemplate = `{~ card
+    title="My Title"
+    footer="My Footer"
+~}
+My Card Content
+{~~}`;
+        
+        // Ensure proper line spacing before insertion
+        const adjustedPosition = this.ensureProperLineSpacing(editorElement);
+        
+        const textBefore = editorElement.value.substring(0, adjustedPosition);
+        const textAfter = editorElement.value.substring(adjustedPosition);
+        
+        // Insert the template
+        editorElement.value = textBefore + spellBlockTemplate + textAfter;
+        
+        // Find the opening and closing tags in the newly inserted template only
+        const insertionStart = adjustedPosition;
+        const insertedText = textBefore + spellBlockTemplate;
+        
+        // Search for ~} starting from the insertion point
+        const openingTagEnd = insertedText.indexOf('~}', insertionStart) + 2; // +2 for ~}
+        
+        // Find the start and end of the content area within the newly inserted block
+        const contentStart = insertedText.indexOf('\n', openingTagEnd) + 1; // First newline after ~}
+        const closingTagStart = insertedText.indexOf('\n{~~}', contentStart); // Line before closing tag
+        const contentEnd = closingTagStart !== -1 ? closingTagStart : insertedText.length;
+        
+        // Select the content area for easy editing
+        editorElement.setSelectionRange(contentStart, contentEnd);
+        editorElement.focus();
+        
+        // Trigger HTMX update for live preview
+        editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+        
+        this.notificationService.success('Card SpellBlock template inserted - content selected');
+    }
+
+    /**
+     * Ensure cursor is on an empty line with an empty line above
+     * @param {HTMLElement} editorElement - The textarea element
+     * @returns {number} Adjusted cursor position
+     * @private
+     */
+    ensureProperLineSpacing(editorElement) {
+        const text = editorElement.value;
+        const cursorPosition = editorElement.selectionStart;
+        
+        // Find the current line start and end
+        const textBefore = text.substring(0, cursorPosition);
+        const textAfter = text.substring(cursorPosition);
+        
+        const lastNewlineIndex = textBefore.lastIndexOf('\n');
+        const nextNewlineIndex = textAfter.indexOf('\n');
+        
+        const currentLineStart = lastNewlineIndex + 1;
+        const currentLineEnd = nextNewlineIndex === -1 ? text.length : cursorPosition + nextNewlineIndex;
+        const currentLine = text.substring(currentLineStart, currentLineEnd);
+        
+        // Check if current line is empty
+        const isCurrentLineEmpty = currentLine.trim() === '';
+        
+        // Find the previous line
+        let previousLineEmpty = false;
+        if (lastNewlineIndex > 0) {
+            const beforeLastNewline = textBefore.substring(0, lastNewlineIndex);
+            const prevLineStart = beforeLastNewline.lastIndexOf('\n') + 1;
+            const previousLine = beforeLastNewline.substring(prevLineStart);
+            previousLineEmpty = previousLine.trim() === '';
+        } else if (lastNewlineIndex === -1) {
+            // We're on the first line
+            previousLineEmpty = currentLineStart === 0;
+        }
+        
+        let adjustedPosition = cursorPosition;
+        let newContent = '';
+        
+        if (!isCurrentLineEmpty || !previousLineEmpty) {
+            // We need to add newlines to get proper spacing
+            if (!isCurrentLineEmpty) {
+                // Move to end of current line and add newlines
+                adjustedPosition = currentLineEnd;
+                newContent = '\n\n';
+            } else if (!previousLineEmpty) {
+                // Current line is empty but previous isn't, add one more newline
+                adjustedPosition = currentLineStart;
+                newContent = '\n';
+            }
+            
+            // Insert the newlines
+            if (newContent) {
+                const beforeInsert = text.substring(0, adjustedPosition);
+                const afterInsert = text.substring(adjustedPosition);
+                editorElement.value = beforeInsert + newContent + afterInsert;
+                adjustedPosition += newContent.length;
+            }
+        }
+        
+        return adjustedPosition;
+    }
+
+
+
+    /**
+     * Handle editing an existing SpellBlock
+     * @param {Object} spellBlock - SpellBlock information from cursor tracker
+     * @private
+     */
+    handleEditSpellBlock(spellBlock) {
+        const editorElement = this.blockFormatter.editorElement;
+        if (!editorElement) return;
+        
+        const blockName = spellBlock.blockName || 'SpellBlock';
+        
+        // Always select the content area for editing
+        const contentStart = spellBlock.content.start;
+        const contentEnd = spellBlock.content.end;
+        
+        // Set selection to the content area
+        editorElement.setSelectionRange(contentStart, contentEnd);
+        
+        // Focus the editor
+        editorElement.focus();
+        
+        // Trigger HTMX update for live preview
+        editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+        
+        this.notificationService.info(`Editing SpellBlock "${blockName}" - content selected`);
+    }
+
+    /**
+     * Get current formatting context
+     * @returns {Object|null} Current formatting context
+     * @private
+     */
+    getFormattingContext() {
+        // Use the cursor tracker from state manager to get current context
+        if (this.stateManager && this.stateManager.cursorTracker) {
+            return this.stateManager.cursorTracker.getFormattingContext();
+        }
+        return null;
     }
 
     /**
@@ -310,11 +472,14 @@ Spell description goes here.
     }
 
     /**
-     * Handle keyboard shortcuts (deprecated - now handled by KeyboardShortcutManager)
+     * Handle key down events
      * @param {KeyboardEvent} event - Keyboard event
      * @deprecated Use KeyboardShortcutManager instead
      */
     handleKeyDown(event) {
+        // Track last key event for modifier key detection
+        this.lastKeyEvent = event;
+        
         // Legacy keyboard shortcuts - now handled by KeyboardShortcutManager
         // This method is kept for backward compatibility
         // The KeyboardShortcutManager provides more comprehensive shortcut handling
@@ -325,6 +490,9 @@ Spell description goes here.
      * @param {KeyboardEvent} event - Keyboard event
      */
     handleKeyUp(event) {
+        // Clear last key event when key is released
+        this.lastKeyEvent = null;
+        
         // Handle enter key for list continuation
         if (event.key === 'Enter') {
             const handled = this.blockFormatter.handleEnterKey();
