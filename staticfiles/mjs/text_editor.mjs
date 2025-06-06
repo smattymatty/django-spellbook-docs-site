@@ -1,67 +1,67 @@
 // static/mjs/text-editor.mjs
+import EditorManager from './editor/EditorManager.mjs';
 
-class TextEditorFocusLogger {
-    constructor(editorId) {
-        this.editorId = editorId;
-        this.editorElement = document.getElementById(this.editorId);
-        this.previewElement = document.getElementById('live-preview-area'); // Assuming this ID is correct
+/**
+ * Main entry point for editor functionality
+ * Simplified to use the new EditorManager architecture
+ */
 
-        if (!this.editorElement) {
-            console.error(`[TextEditorFocusLogger] Error: Editor element with ID "${this.editorId}" was not found.`);
-            return;
-        }
-        if (!this.previewElement) {
-            console.warn(`[TextEditorFocusLogger] Warning: Preview element with ID "live-preview-area" was not found. Style changes on focus/blur will not apply.`);
-        }
+let editorManager = null;
 
-        console.log(`[TextEditorFocusLogger] Initialized for editor "#${this.editorId}" and preview "#${this.previewElement ? this.previewElement.id : 'null'}".`);
-        this._attachEventListeners();
-    }
-
-    _attachEventListeners() {
-        // Attach focus listener
-        this.editorElement.addEventListener('focus', (event) => this.handleFocus(event));
-        console.log(`[TextEditorFocusLogger] Attached focus listener to "#${this.editorId}".`);
-
-        // Attach blur listener
-        this.editorElement.addEventListener('blur', (event) => this.handleBlur(event));
-        console.log(`[TextEditorFocusLogger] Attached blur listener to "#${this.editorId}".`);
-    }
-
-    // --- Style Helper Methods ---
-    _applyFocusedStyles() {
-        if (!this.editorElement || !this.previewElement) return;
-        console.log(`[TextEditorFocusLogger] Applying focused styles to panes.`);
-        this.editorElement.classList.add('editor-pane-focused');
-        this.previewElement.classList.add('preview-pane-squashed');
-    }
-
-    _resetPreviewStyles() {
-        if (!this.editorElement || !this.previewElement) return;
-        console.log(`[TextEditorFocusLogger] Resetting pane styles.`);
-        this.editorElement.classList.remove('editor-pane-focused');
-        this.previewElement.classList.remove('preview-pane-squashed');
-
-    }
-
-    // --- Event Handlers ---
-    handleFocus(event) {
-        const currentTime = new Date().toLocaleTimeString();
-        console.log(`[TextEditorFocusLogger] Editor "#${this.editorElement.id}" GAINED focus at ${currentTime}.`);
-        this._applyFocusedStyles();
-    }
-
-    handleBlur(event) {
-        const currentTime = new Date().toLocaleTimeString();
-        console.log(`[TextEditorFocusLogger] Editor "#${this.editorElement.id}" LOST focus (blurred) at ${currentTime}.`);
-        this._resetPreviewStyles();
+/**
+ * Initialize editor when DOM is ready
+ */
+async function initializeEditor() {
+    try {
+        console.log('[text-editor.mjs] Initializing editor...');
+        
+        // Create and initialize EditorManager
+        editorManager = await EditorManager.create('markdown-input');
+        
+        console.log('[text-editor.mjs] Editor initialized successfully');
+        
+        // Optional: Set up global cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (editorManager) {
+                editorManager.cleanup();
+            }
+        });
+        
+    } catch (error) {
+        console.error('[text-editor.mjs] Failed to initialize editor:', error);
     }
 }
 
-// This ensures the class is instantiated only after the DOM is fully loaded.
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('[text-editor.mjs] DOMContentLoaded event fired.');
-    new TextEditorFocusLogger('markdown-input'); // Assuming your textarea still has id="markdown-input"
-});
+/**
+ * Get the current editor manager instance
+ */
+function getEditorManager() {
+    return editorManager;
+}
 
-// export default TextEditorFocusLogger; // If you plan to import this class elsewhere
+/**
+ * Reset editor to default state
+ */
+function resetEditor() {
+    if (editorManager) {
+        return editorManager.reset();
+    }
+    console.warn('[text-editor.mjs] Cannot reset: editor not initialized');
+    return false;
+}
+
+/**
+ * Get editor status
+ */
+function getEditorStatus() {
+    if (editorManager) {
+        return editorManager.getStatus();
+    }
+    return { isInitialized: false, error: 'Editor not initialized' };
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeEditor);
+
+// Export for potential external use
+export { getEditorManager, resetEditor, getEditorStatus };
