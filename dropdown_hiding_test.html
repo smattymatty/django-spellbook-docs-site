@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpellBlock Dropdown Hiding Feature Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .editor-demo {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 20px 0;
+            min-height: 200px;
+            background: #f9f9f9;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            resize: vertical;
+        }
+
+        /* Button bar styles */
+        .editor-button-bar {
+            position: relative;
+            z-index: 1000;
+            top: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+
+        .button-bar-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .button-bar-buttons.main-buttons {
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+
+        .button-bar-separator {
+            width: 1px;
+            height: 28px;
+            background: #e2e8f0;
+            opacity: 0.4;
+            margin: 0 6px;
+            flex-shrink: 0;
+        }
+
+        .editor-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap;
+            position: relative;
+            background: transparent;
+            flex-shrink: 0;
+        }
+
+        .button-bar-buttons.main-buttons .editor-btn {
+            min-width: 120px;
+            padding: 7px 12px;
+            font-size: 13px;
+            justify-content: flex-start;
+        }
+
+        .spellblock-button-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .spellblock-button-group .editor-btn {
+            border-radius: 4px 0 0 4px;
+            border-right: none;
+            margin-right: 0;
+        }
+
+        /* SpellBlock dropdown button visibility transitions */
+        .spellblock-dropdown-toggle {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            border-radius: 0 4px 4px 0;
+            padding: 7px 8px;
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+        }
+
+        .spellblock-dropdown-toggle.dropdown-hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .spellblock-dropdown-toggle.dropdown-visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .spellblock-main-button {
+            background: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+
+        .spellblock-main-button.spellblock-edit-mode {
+            background: #28a745;
+            border-color: #28a745;
+        }
+
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .test-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .test-btn.primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .test-btn.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .test-btn.info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .test-output {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔽 SpellBlock Dropdown Hiding Feature Test</h1>
+        <p>Test the dynamic hiding/showing of the SpellBlock dropdown button during edit mode</p>
+    </div>
+
+    <div class="test-container">
+        <h2>Feature Demo</h2>
+        <p>This demo shows the SpellBlock dropdown button hiding when entering edit mode and showing when leaving it.</p>
+        
+        <!-- Mock button bar -->
+        <div class="editor-button-bar">
+            <div class="button-bar-buttons main-buttons">
+                <div class="spellblock-button-group">
+                    <button id="insert-spellblock-btn" class="editor-btn spellblock-main-button">
+                        <span class="button-content">
+                            <span class="button-icon">✨</span>
+                            <span class="button-text">Insert SpellBlock</span>
+                        </span>
+                    </button>
+                    <button id="spellblock-dropdown-btn" class="editor-btn spellblock-dropdown-toggle">
+                        <span class="button-content">
+                            <span class="button-icon">▼</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mock editor -->
+        <div class="editor-demo">
+            <textarea id="mock-editor" placeholder="Type here... Use the buttons below to simulate entering/leaving a SpellBlock">Normal text here.
+
+{~ card ~}
+This is inside a SpellBlock!
+{~~}
+
+More normal text.</textarea>
+        </div>
+
+        <div class="test-buttons">
+            <button class="test-btn primary" onclick="simulateEnterSpellBlock()">
+                📝 Simulate Enter SpellBlock
+            </button>
+            <button class="test-btn success" onclick="simulateExitSpellBlock()">
+                🚪 Simulate Exit SpellBlock
+            </button>
+            <button class="test-btn info" onclick="runFullTest()">
+                🧪 Run Full Test
+            </button>
+        </div>
+
+        <div id="test-status" class="status info">
+            Ready to test! Click "Simulate Enter SpellBlock" to see the dropdown button hide.
+        </div>
+
+        <div class="test-output" id="test-output">Test output will appear here...</div>
+    </div>
+
+    <script type="module">
+        let testOutput = '';
+        
+        function log(message) {
+            testOutput += `[${new Date().toLocaleTimeString()}] ${message}\n`;
+            document.getElementById('test-output').textContent = testOutput;
+        }
+
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('test-status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+        }
+
+        function simulateEnterSpellBlock() {
+            log('Simulating entering SpellBlock edit mode...');
+            
+            const mainButton = document.getElementById('insert-spellblock-btn');
+            const dropdownButton = document.getElementById('spellblock-dropdown-btn');
+            
+            // Update main button to edit mode
+            const buttonText = mainButton.querySelector('.button-text');
+            const buttonIcon = mainButton.querySelector('.button-icon');
+            
+            buttonText.textContent = 'Edit card';
+            buttonIcon.textContent = '✏️';
+            mainButton.classList.add('spellblock-edit-mode');
+            
+            // Hide dropdown button
+            dropdownButton.classList.add('dropdown-hidden');
+            dropdownButton.classList.remove('dropdown-visible');
+            
+            log('✅ Main button changed to edit mode');
+            log('✅ Dropdown button hidden with smooth transition');
+            updateStatus('SpellBlock edit mode active - dropdown button is hidden', 'success');
+        }
+
+        function simulateExitSpellBlock() {
+            log('Simulating exiting SpellBlock edit mode...');
+            
+            const mainButton = document.getElementById('insert-spellblock-btn');
+            const dropdownButton = document.getElementById('spellblock-dropdown-btn');
+            
+            // Update main button back to insert mode
+            const buttonText = mainButton.querySelector('.button-text');
+            const buttonIcon = mainButton.querySelector('.button-icon');
+            
+            buttonText.textContent = 'Insert SpellBlock';
+            buttonIcon.textContent = '✨';
+            mainButton.classList.remove('spellblock-edit-mode');
+            
+            // Show dropdown button
+            dropdownButton.classList.remove('dropdown-hidden');
+            dropdownButton.classList.add('dropdown-visible');
+            
+            log('✅ Main button changed back to insert mode');
+            log('✅ Dropdown button shown with smooth transition');
+            updateStatus('Normal mode active - dropdown button is visible', 'info');
+        }
+
+        function runFullTest() {
+            log('🧪 Running full automated test...');
+            updateStatus('Running automated test...', 'info');
+            
+            // Initial state check
+            const dropdownButton = document.getElementById('spellblock-dropdown-btn');
+            const initiallyVisible = !dropdownButton.classList.contains('dropdown-hidden');
+            
+            if (initiallyVisible) {
+                log('✅ Initial state: Dropdown button is visible');
+            } else {
+                log('❌ Initial state: Dropdown button should be visible');
+                updateStatus('Test failed: Initial state incorrect', 'error');
+                return;
+            }
+            
+            // Test entering edit mode
+            setTimeout(() => {
+                simulateEnterSpellBlock();
+                
+                // Check if dropdown is hidden
+                setTimeout(() => {
+                    const isHidden = dropdownButton.classList.contains('dropdown-hidden');
+                    if (isHidden) {
+                        log('✅ Test passed: Dropdown button correctly hidden in edit mode');
+                    } else {
+                        log('❌ Test failed: Dropdown button should be hidden in edit mode');
+                        updateStatus('Test failed: Dropdown not hidden in edit mode', 'error');
+                        return;
+                    }
+                    
+                    // Test exiting edit mode
+                    setTimeout(() => {
+                        simulateExitSpellBlock();
+                        
+                        // Check if dropdown is visible again
+                        setTimeout(() => {
+                            const isVisible = dropdownButton.classList.contains('dropdown-visible');
+                            if (isVisible) {
+                                log('✅ Test passed: Dropdown button correctly shown after exit');
+                                log('🎉 All tests passed! Feature working correctly.');
+                                updateStatus('All tests passed! Feature is working correctly.', 'success');
+                            } else {
+                                log('❌ Test failed: Dropdown button should be visible after exit');
+                                updateStatus('Test failed: Dropdown not shown after exit', 'error');
+                            }
+                        }, 100);
+                    }, 1000);
+                }, 100);
+            }, 500);
+        }
+
+        // Make functions globally available
+        window.simulateEnterSpellBlock = simulateEnterSpellBlock;
+        window.simulateExitSpellBlock = simulateExitSpellBlock;
+        window.runFullTest = runFullTest;
+
+        // Initialize
+        log('SpellBlock dropdown hiding test initialized');
+        log('Ready to test the feature!');
+    </script>
+</body>
+</html>

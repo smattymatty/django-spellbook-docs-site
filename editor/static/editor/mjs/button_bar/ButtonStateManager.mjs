@@ -13,6 +13,9 @@ export class ButtonStateManager {
         this.lastUsedBlockName = 'card';
         this.lastUsedBlockDisplayName = 'Card';
         
+        // Track SpellBlock edit mode state for dropdown visibility
+        this.isSpellBlockEditModeActive = false;
+        
         // Bind methods
         this.handleCursorChange = this.handleCursorChange.bind(this);
     }
@@ -136,12 +139,27 @@ export class ButtonStateManager {
         const spellBlockBtn = this.renderer.getButtonElement('insert-spellblock-btn');
         if (!spellBlockBtn) return;
 
-        if (context.isSpellBlock && context.spellBlock) {
+        const wasInEditMode = this.isSpellBlockEditModeActive;
+        const isNowInEditMode = context.isSpellBlock && context.spellBlock;
+
+        if (isNowInEditMode) {
             // User is inside a SpellBlock - change to edit mode
             this.setSpellBlockEditMode(spellBlockBtn, context.spellBlock.blockName);
+            this.isSpellBlockEditModeActive = true;
+            
+            // Hide dropdown button when entering edit mode
+            if (!wasInEditMode) {
+                this.setDropdownButtonVisibility(false);
+            }
         } else {
             // User is not inside a SpellBlock - change to insert mode
             this.setSpellBlockInsertMode(spellBlockBtn);
+            this.isSpellBlockEditModeActive = false;
+            
+            // Show dropdown button when leaving edit mode
+            if (wasInEditMode) {
+                this.setDropdownButtonVisibility(true);
+            }
         }
     }
 
@@ -456,6 +474,33 @@ export class ButtonStateManager {
     }
 
     /**
+     * Set the visibility of the SpellBlock dropdown button
+     * @param {boolean} visible - Whether the dropdown button should be visible
+     */
+    setDropdownButtonVisibility(visible) {
+        if (!this.renderer) return;
+        
+        const dropdownBtn = this.renderer.getButtonElement('spellblock-dropdown-btn');
+        if (!dropdownBtn) return;
+
+        if (visible) {
+            dropdownBtn.classList.remove('dropdown-hidden');
+            dropdownBtn.classList.add('dropdown-visible');
+        } else {
+            dropdownBtn.classList.add('dropdown-hidden');
+            dropdownBtn.classList.remove('dropdown-visible');
+        }
+    }
+
+    /**
+     * Check if SpellBlock edit mode is currently active
+     * @returns {boolean} True if in edit mode
+     */
+    isInSpellBlockEditMode() {
+        return this.isSpellBlockEditModeActive;
+    }
+
+    /**
      * Clean up resources
      */
     destroy() {
@@ -469,6 +514,9 @@ export class ButtonStateManager {
         // Clear Quick Insert state
         this.lastUsedBlockName = null;
         this.lastUsedBlockDisplayName = null;
+        
+        // Clear edit mode state
+        this.isSpellBlockEditModeActive = false;
         
         this.renderer = null;
         this.cursorTracker = null;

@@ -196,6 +196,11 @@
             Run SpellBlock Dropdown Tests
         </button>
         
+        <button class="test-button btn-info" onclick="runQuickInsertTests()">
+            <span class="status-indicator status-idle" id="quickinsert-status"></span>
+            Run QuickInsert Tests
+        </button>
+        
         <button class="test-button btn-warning" onclick="runAllTests()">
             <span class="status-indicator status-idle" id="all-status"></span>
             Run All Tests
@@ -262,9 +267,10 @@ Ready to run tests... Click a button above to start.
             return new Date().toLocaleTimeString();
         }
 
-        function appendToConsole(type, message, color = '#d4d4d4') {
+        function appendToConsole(type, message, color) {
+            if (!color) color = '#d4d4d4';
             const timestamp = formatTimestamp();
-            const line = `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            const line = '[' + timestamp + '] ' + type.toUpperCase() + ': ' + message + '\n';
 
             const span = document.createElement('span');
             span.style.color = color;
@@ -275,24 +281,24 @@ Ready to run tests... Click a button above to start.
         }
 
         // Override console methods
-        console.log = (...args) => {
-            originalConsole.log(...args);
-            appendToConsole('LOG', args.join(' '), '#d4d4d4');
+        console.log = function() {
+            originalConsole.log.apply(console, arguments);
+            appendToConsole('LOG', Array.prototype.slice.call(arguments).join(' '), '#d4d4d4');
         };
 
-        console.error = (...args) => {
-            originalConsole.error(...args);
-            appendToConsole('ERROR', args.join(' '), '#f85149');
+        console.error = function() {
+            originalConsole.error.apply(console, arguments);
+            appendToConsole('ERROR', Array.prototype.slice.call(arguments).join(' '), '#f85149');
         };
 
-        console.warn = (...args) => {
-            originalConsole.warn(...args);
-            appendToConsole('WARN', args.join(' '), '#d29922');
+        console.warn = function() {
+            originalConsole.warn.apply(console, arguments);
+            appendToConsole('WARN', Array.prototype.slice.call(arguments).join(' '), '#d29922');
         };
 
-        console.info = (...args) => {
-            originalConsole.info(...args);
-            appendToConsole('INFO', args.join(' '), '#58a6ff');
+        console.info = function() {
+            originalConsole.info.apply(console, arguments);
+            appendToConsole('INFO', Array.prototype.slice.call(arguments).join(' '), '#58a6ff');
         };
 
         // Test runner functions
@@ -374,9 +380,40 @@ Ready to run tests... Click a button above to start.
                 status.className = results.failed === 0 ? 'status-indicator status-passed' : 'status-indicator status-failed';
                 
             } catch (error) {
-                console.error('Failed to run SpellBlock Dropdown tests:', error);
+                console.error('SpellBlock Dropdown test error:', error);
+                updateTestResults('SpellBlock Dropdown', { passed: 0, failed: 1, total: 1, errors: [error.message] });
                 status.className = 'status-indicator status-failed';
-                updateTestResults('SpellBlock Dropdown', { passed: 0, failed: 1, total: 1, error: error.message });
+            }
+        }
+
+        async function runQuickInsertTests() {
+            const status = document.getElementById('quickinsert-status');
+            status.className = 'status-indicator status-running';
+            
+            try {
+                console.log('⚡ Starting QuickInsert test suite...');
+                
+                const module = await import('./mjs/tests/QuickInsert.test.mjs');
+                const results = module.runQuickInsertTests();
+                
+                const passed = results.filter(r => r.passed).length;
+                const failed = results.filter(r => !r.passed).length;
+                const errors = results.filter(r => !r.passed).map(r => r.error || 'Unknown error');
+                
+                const formattedResults = {
+                    passed: passed,
+                    failed: failed,
+                    total: results.length,
+                    errors: errors
+                };
+                
+                updateTestResults('QuickInsert', formattedResults);
+                status.className = failed === 0 ? 'status-indicator status-passed' : 'status-indicator status-failed';
+                
+            } catch (error) {
+                console.error('QuickInsert test error:', error);
+                updateTestResults('QuickInsert', { passed: 0, failed: 1, total: 1, errors: [error.message] });
+                status.className = 'status-indicator status-failed';
             }
         }
         
@@ -393,43 +430,84 @@ Ready to run tests... Click a button above to start.
             try {
                 // Run ButtonBar tests
                 console.log('\n--- ButtonBar Tests ---');
-                const buttonBarModule = await import('./mjs/tests/button_bar_test.mjs');
-                const buttonBarSuite = new buttonBarModule.ButtonBarTestSuite();
-                const buttonBarResults = await buttonBarSuite.runAllTests();
+                try {
+                    const buttonBarModule = await import('./mjs/tests/button_bar_test.mjs');
+                    const buttonBarSuite = new buttonBarModule.ButtonBarTestSuite();
+                    const buttonBarResults = await buttonBarSuite.runAllTests();
 
-                totalPassed += buttonBarResults.passed || 0;
-                totalFailed += buttonBarResults.failed || 0;
-                totalTests += buttonBarResults.total || 0;
+                    totalPassed += buttonBarResults.passed || 0;
+                    totalFailed += buttonBarResults.failed || 0;
+                    totalTests += buttonBarResults.total || 0;
+                } catch (error) {
+                    console.error('ButtonBar tests failed:', error);
+                    totalFailed += 1;
+                    totalTests += 1;
+                }
 
                 // Run EditorManager tests
                 console.log('\n--- EditorManager Tests ---');
-                const editorModule = await import('./mjs/tests/EditorManager.test.mjs');
-                const editorSuite = new editorModule.default();
-                const editorResults = await editorSuite.runAllTests();
+                try {
+                    const editorModule = await import('./mjs/tests/EditorManager.test.mjs');
+                    const editorSuite = new editorModule.default();
+                    const editorResults = await editorSuite.runAllTests();
 
-                totalPassed += editorResults.passed || 0;
-                totalFailed += editorResults.failed || 0;
-                totalTests += editorResults.total || 0;
+                    totalPassed += editorResults.passed || 0;
+                    totalFailed += editorResults.failed || 0;
+                    totalTests += editorResults.total || 0;
+                } catch (error) {
+                    console.error('EditorManager tests failed:', error);
+                    totalFailed += 1;
+                    totalTests += 1;
+                }
                 
                 // Run Keyboard Shortcut tests
                 console.log('\n--- Keyboard Shortcut Tests ---');
-                const keyboardModule = await import('./mjs/tests/minimal-keyboard-test.mjs');
-                const keyboardSuite = new keyboardModule.default();
-                const keyboardResults = await keyboardSuite.runTests();
-                
-                totalPassed += keyboardResults.passed || 0;
-                totalFailed += keyboardResults.failed || 0;
-                totalTests += keyboardResults.total || 0;
+                try {
+                    const keyboardModule = await import('./mjs/tests/minimal-keyboard-test.mjs');
+                    const keyboardSuite = new keyboardModule.default();
+                    const keyboardResults = await keyboardSuite.runTests();
+                    
+                    totalPassed += keyboardResults.passed || 0;
+                    totalFailed += keyboardResults.failed || 0;
+                    totalTests += keyboardResults.total || 0;
+                } catch (error) {
+                    console.error('Keyboard Shortcut tests failed:', error);
+                    totalFailed += 1;
+                    totalTests += 1;
+                }
                 
                 // Run SpellBlock Dropdown tests
                 console.log('\n--- SpellBlock Dropdown Tests ---');
-                const dropdownModule = await import('./mjs/tests/SpellBlockDropdown.test.mjs');
-                const dropdownSuite = new dropdownModule.default();
-                const dropdownResults = await dropdownSuite.runAllTests();
-                
-                totalPassed += dropdownResults.passed || 0;
-                totalFailed += dropdownResults.failed || 0;
-                totalTests += dropdownResults.total || 0;
+                try {
+                    const dropdownModule = await import('./mjs/tests/SpellBlockDropdown.test.mjs');
+                    const dropdownSuite = new dropdownModule.default();
+                    const dropdownResults = await dropdownSuite.runAllTests();
+                    
+                    totalPassed += dropdownResults.passed || 0;
+                    totalFailed += dropdownResults.failed || 0;
+                    totalTests += dropdownResults.total || 0;
+                } catch (error) {
+                    console.error('Failed to run SpellBlock Dropdown tests:', error);
+                    totalFailed += 1;
+                    totalTests += 1;
+                }
+
+                // Run QuickInsert tests
+                try {
+                    const quickInsertModule = await import('./mjs/tests/QuickInsert.test.mjs');
+                    const quickInsertResults = quickInsertModule.runQuickInsertTests();
+                    
+                    const passed = quickInsertResults.filter(r => r.passed).length;
+                    const failed = quickInsertResults.filter(r => !r.passed).length;
+                    
+                    totalPassed += passed;
+                    totalFailed += failed;
+                    totalTests += quickInsertResults.length;
+                } catch (error) {
+                    console.error('Failed to run QuickInsert tests:', error);
+                    totalFailed += 1;
+                    totalTests += 1;
+                }
                 
                 const overallResults = {
                     passed: totalPassed,
@@ -440,7 +518,7 @@ Ready to run tests... Click a button above to start.
                 updateTestResults('All Tests', overallResults);
                 status.className = totalFailed === 0 ? 'status-indicator status-passed' : 'status-indicator status-failed';
 
-                console.log(`\n🏁 All tests completed: ${totalPassed}/${totalTests} passed`);
+                console.log('\n🏁 All tests completed: ' + totalPassed + '/' + totalTests + ' passed');
 
             } catch (error) {
                 console.error('Failed to run all tests:', error);
@@ -454,13 +532,13 @@ Ready to run tests... Click a button above to start.
 
             if (results.error) {
                 testResults.className = 'test-results results-failure';
-                resultsText.textContent = `${testType} failed: ${results.error}`;
+                resultsText.textContent = testType + ' failed: ' + results.error;
             } else if (results.failed === 0) {
                 testResults.className = 'test-results results-success';
-                resultsText.textContent = `${testType}: All ${results.total} tests passed! 🎉`;
+                resultsText.textContent = testType + ': All ' + results.total + ' tests passed! 🎉';
             } else {
                 testResults.className = 'test-results results-failure';
-                resultsText.textContent = `${testType}: ${results.passed}/${results.total} tests passed (${results.failed} failed)`;
+                resultsText.textContent = testType + ': ' + results.passed + '/' + results.total + ' tests passed (' + results.failed + ' failed)';
             }
         }
 
@@ -469,7 +547,7 @@ Ready to run tests... Click a button above to start.
             testResults.style.display = 'none';
 
             // Reset status indicators
-            document.querySelectorAll('.status-indicator').forEach(indicator => {
+            document.querySelectorAll('.status-indicator').forEach(function(indicator) {
                 indicator.className = 'status-indicator status-idle';
             });
         }
@@ -487,7 +565,7 @@ Ready to run tests... Click a button above to start.
         const testParam = urlParams.get('test');
 
         if (testParam) {
-            window.addEventListener('load', () => {
+            window.addEventListener('load', function() {
                 switch (testParam) {
                     case 'buttonbar':
                         runButtonBarTests();
@@ -509,6 +587,9 @@ Ready to run tests... Click a button above to start.
                 }
             });
         }
+
+        // Initialize
+        console.log('Test runner loaded successfully');
     </script>
 </body>
 </html>
