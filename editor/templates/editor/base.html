@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'highlight/styles/default.min.css' %}">
     <script src="{% static 'highlight/highlight.min.js' %}"></script>
     <script>hljs.highlightAll();</script>
-    <script src="{% static 'mjs/text_editor.mjs' %}"></script>
+    <script type="module" src="{% static 'mjs/text_editor.mjs' %}"></script>
     {% spellbook_styles %}
 {% endblock %}
 {% block content %}

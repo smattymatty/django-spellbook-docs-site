@@ -1,4 +1,5 @@
 // static/mjs/text-editor.mjs
+import EditorButtonBar from './button_bar.mjs';
 
 class TextEditorFocusLogger {
     constructor(editorId) {
@@ -13,6 +14,9 @@ class TextEditorFocusLogger {
         if (!this.previewElement) {
             console.warn(`[TextEditorFocusLogger] Warning: Preview element with ID "live-preview-area" was not found. Style changes on focus/blur will not apply.`);
         }
+
+        // Initialize the EditorButtonBar
+        this.buttonBar = new EditorButtonBar(this.editorElement);
 
         console.log(`[TextEditorFocusLogger] Initialized for editor "#${this.editorId}" and preview "#${this.previewElement ? this.previewElement.id : 'null'}".`);
         this._attachEventListeners();
@@ -49,12 +53,22 @@ class TextEditorFocusLogger {
         const currentTime = new Date().toLocaleTimeString();
         console.log(`[TextEditorFocusLogger] Editor "#${this.editorElement.id}" GAINED focus at ${currentTime}.`);
         this._applyFocusedStyles();
+        
+        // Show the floating button bar
+        if (this.buttonBar) {
+            this.buttonBar.show();
+        }
     }
 
     handleBlur(event) {
         const currentTime = new Date().toLocaleTimeString();
         console.log(`[TextEditorFocusLogger] Editor "#${this.editorElement.id}" LOST focus (blurred) at ${currentTime}.`);
         this._resetPreviewStyles();
+        
+        // Hide the floating button bar
+        if (this.buttonBar) {
+            this.buttonBar.hide();
+        }
     }
 }
 
