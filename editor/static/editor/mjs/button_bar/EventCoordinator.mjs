@@ -1,5 +1,7 @@
 // static/mjs/button_bar/EventCoordinator.mjs
 
+import { KeyboardShortcutManager } from './KeyboardShortcutManager.mjs';
+
 export class EventCoordinator {
     constructor(renderer, configManager, blockFormatter, inlineFormatter, stateManager, notificationService) {
         this.renderer = renderer;
@@ -14,6 +16,13 @@ export class EventCoordinator {
         
         // Custom action handlers
         this.customActions = new Map();
+        
+        // Initialize keyboard shortcut manager
+        this.keyboardShortcutManager = new KeyboardShortcutManager(this, {
+            enableShortcuts: true,
+            preventDefault: true,
+            showHelp: true
+        });
         
         // Bind methods
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -36,8 +45,13 @@ export class EventCoordinator {
         // Attach click handler using event delegation
         buttonBar.addEventListener('click', this.handleButtonClick);
         
+        // Attach mousedown handler to prevent focus loss
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        buttonBar.addEventListener('mousedown', this.handleMouseDown);
+        
         // Store reference for cleanup
         this.eventHandlers.set('click', this.handleButtonClick);
+        this.eventHandlers.set('mousedown', this.handleMouseDown);
         
         this.isAttached = true;
     }
@@ -66,20 +80,52 @@ export class EventCoordinator {
      * @private
      */
     handleButtonClick(event) {
-        // Prevent default behavior and stop propagation
+        console.log('[EventCoordinator] Button click detected:', event.target);
+        
+        // Prevent default behavior and stop propagation to avoid editor blur
         event.preventDefault();
         event.stopPropagation();
+        event.stopImmediatePropagation();
         
         const button = event.target.closest('button');
-        if (!button || !button.id) return;
+        console.log('[EventCoordinator] Found button:', button, 'ID:', button?.id);
+        
+        if (!button || !button.id) {
+            console.warn('[EventCoordinator] No button or button ID found');
+            return;
+        }
         
         const buttonConfig = this.configManager.getButtonById(button.id);
+        console.log('[EventCoordinator] Button config:', buttonConfig);
+        
         if (!buttonConfig) {
             console.warn('[EventCoordinator] Button configuration not found:', button.id);
             return;
         }
         
+        console.log('[EventCoordinator] Executing action:', buttonConfig.action);
         this.executeAction(buttonConfig);
+        
+        // Refocus the editor after button action to prevent blur issues
+        setTimeout(() => {
+            if (this.blockFormatter && this.blockFormatter.editorElement) {
+                this.blockFormatter.editorElement.focus();
+            }
+        }, 10);
+    }
+
+    /**
+     * Handle mousedown events to prevent focus loss
+     * @param {Event} event - Mousedown event
+     * @private
+     */
+    handleMouseDown(event) {
+        const button = event.target.closest('button');
+        if (button && button.id) {
+            // Prevent mousedown from causing textarea blur
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 
     /**
@@ -98,6 +144,10 @@ export class EventCoordinator {
                     
                 case 'handleMarkdownFormat':
                     this.handleMarkdownFormat(formatType, type);
+                    break;
+                    
+                case 'showKeyboardHelp':
+                    this.showKeyboardHelp();
                     break;
                     
                 default:
@@ -187,6 +237,53 @@ Spell description goes here.
     }
 
     /**
+     * Get keyboard shortcut manager
+     * @returns {KeyboardShortcutManager} The keyboard shortcut manager instance
+     */
+    getKeyboardShortcutManager() {
+        return this.keyboardShortcutManager;
+    }
+
+    /**
+     * Add custom keyboard shortcut
+     * @param {string} keyCombo - Key combination (e.g., 'ctrl+shift+x')
+     * @param {Object} config - Shortcut configuration
+     */
+    addKeyboardShortcut(keyCombo, config) {
+        if (!this.keyboardShortcutManager) {
+            console.error('[EventCoordinator] Keyboard shortcut manager not available');
+            return false;
+        }
+        
+        return this.keyboardShortcutManager.addShortcut(keyCombo, config);
+    }
+
+    /**
+     * Remove keyboard shortcut
+     * @param {string} keyCombo - Key combination to remove
+     */
+    removeKeyboardShortcut(keyCombo) {
+        if (!this.keyboardShortcutManager) {
+            console.error('[EventCoordinator] Keyboard shortcut manager not available');
+            return false;
+        }
+        
+        return this.keyboardShortcutManager.removeShortcut(keyCombo);
+    }
+
+    /**
+     * Show keyboard shortcuts help
+     */
+    showKeyboardHelp() {
+        if (!this.keyboardShortcutManager) {
+            console.error('[EventCoordinator] Keyboard shortcut manager not available');
+            return;
+        }
+        
+        this.keyboardShortcutManager.showKeyboardHelp();
+    }
+
+    /**
      * Remove custom action handler
      * @param {string} actionName - Name of the action to remove
      * @returns {boolean} True if removed successfully
@@ -213,34 +310,14 @@ Spell description goes here.
     }
 
     /**
-     * Handle keyboard shortcuts
+     * Handle keyboard shortcuts (deprecated - now handled by KeyboardShortcutManager)
      * @param {KeyboardEvent} event - Keyboard event
+     * @deprecated Use KeyboardShortcutManager instead
      */
     handleKeyDown(event) {
-        // Common keyboard shortcuts for formatting
-        if (event.ctrlKey || event.metaKey) {
-            switch (event.key.toLowerCase()) {
-                case 'b':
-                    event.preventDefault();
-                    this.handleMarkdownFormat('bold', 'inline');
-                    break;
-                    
-                case 'i':
-                    event.preventDefault();
-                    this.handleMarkdownFormat('italic', 'inline');
-                    break;
-                    
-                case '`':
-                    event.preventDefault();
-                    this.handleMarkdownFormat('code', 'inline');
-                    break;
-                    
-                case 'k':
-                    event.preventDefault();
-                    this.handleMarkdownFormat('link', 'inline');
-                    break;
-            }
-        }
+        // Legacy keyboard shortcuts - now handled by KeyboardShortcutManager
+        // This method is kept for backward compatibility
+        // The KeyboardShortcutManager provides more comprehensive shortcut handling
     }
 
     /**
@@ -263,19 +340,38 @@ Spell description goes here.
      */
     enableKeyboardShortcuts(targetElement = null) {
         const target = targetElement || this.blockFormatter.editorElement;
-        if (!target) return;
+        if (!target) {
+            console.warn('[EventCoordinator] No target element for keyboard shortcuts');
+            return false;
+        }
         
+        // Enable new comprehensive keyboard shortcut manager
+        const success = this.keyboardShortcutManager.enable(target);
+        if (!success) {
+            console.error('[EventCoordinator] Failed to enable keyboard shortcuts');
+            return false;
+        }
+        
+        // Keep legacy keyboard handlers for backward compatibility
         target.addEventListener('keydown', this.handleKeyDown);
         target.addEventListener('keyup', this.handleKeyUp);
         
         // Store for cleanup
         this.keyboardTarget = target;
+        
+        return true;
     }
 
     /**
      * Disable keyboard shortcuts
      */
     disableKeyboardShortcuts() {
+        // Disable comprehensive keyboard shortcut manager
+        if (this.keyboardShortcutManager) {
+            this.keyboardShortcutManager.disable();
+        }
+        
+        // Clean up legacy keyboard handlers
         if (this.keyboardTarget) {
             this.keyboardTarget.removeEventListener('keydown', this.handleKeyDown);
             this.keyboardTarget.removeEventListener('keyup', this.handleKeyUp);
@@ -325,7 +421,8 @@ Spell description goes here.
             isAttached: this.isAttached,
             eventHandlerCount: this.eventHandlers.size,
             customActionCount: this.customActions.size,
-            hasKeyboardShortcuts: !!this.keyboardTarget
+            hasKeyboardShortcuts: !!this.keyboardTarget,
+            keyboardShortcutManager: this.keyboardShortcutManager ? this.keyboardShortcutManager.getStatus() : null
         };
     }
 
@@ -391,6 +488,12 @@ Spell description goes here.
     destroy() {
         this.detachEventListeners();
         this.disableKeyboardShortcuts();
+        
+        // Destroy keyboard shortcut manager
+        if (this.keyboardShortcutManager) {
+            this.keyboardShortcutManager.destroy();
+            this.keyboardShortcutManager = null;
+        }
         
         // Clear custom actions
         this.customActions.clear();

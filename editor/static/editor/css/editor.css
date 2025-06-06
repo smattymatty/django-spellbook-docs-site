@@ -144,8 +144,10 @@
     }
 
     .button-bar-buttons.main-buttons {
-        flex-direction: column !important;
+        flex-direction: row !important;
         align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
 
     .button-bar-separator {
@@ -645,12 +647,13 @@
 
 /* Accent button (Insert SpellBlock) */
 .editor-btn.btn-accent {
-    background-color: var(--accent-color);
-    color: var(--primary-text-color);
+    background-color: var(--subtle-color);
+    color: black;
+    border: 1px solid var(--primary-color);
 }
 
 .editor-btn.btn-accent:hover {
-    background-color: var(--accent-color);
+    background-color: var(--subtle-color);
     filter: brightness(0.95);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -681,6 +684,9 @@
         gap: 4px;
         max-width: 260px;
         width: 100%;
+    }
+    .btn-help .button-icon {
+        margin-left: -0.05rem !important;
     }
 
     .button-bar-buttons.main-buttons .editor-btn {
@@ -752,11 +758,9 @@
 /* Animation for button bar entrance */
 @keyframes buttonBarSlideIn {
     from {
-        transform: scale(0.95);
         opacity: 0;
     }
     to {
-        transform: scale(1);
         opacity: 1;
     }
 }
@@ -764,11 +768,9 @@
 /* Animation for button bar exit */
 @keyframes buttonBarSlideOut {
     from {
-        transform: scale(1);
         opacity: 1;
     }
     to {
-        transform: scale(0.95);
         opacity: 0;
     }
 }
@@ -796,4 +798,233 @@
 
 .notification-info {
     background-color: rgba(59, 130, 246, 0.9) !important;
+}
+
+/* Help button styling */
+.btn-help {
+    background-color: #3b82f6;
+    color: white;
+    border: 2px solid #2563eb;
+    border-radius: 50%;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-help:hover {
+    background-color: #2563eb;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.btn-help:active {
+    transform: scale(0.95);
+    background-color: #1d4ed8;
+}
+
+.btn-help .button-icon {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    margin-left: -0.3rem;
+}
+
+/* Keyboard shortcuts styles */
+.keyboard-flash {
+    animation: keyboardFlash 0.2s ease-in-out;
+}
+
+@keyframes keyboardFlash {
+    0% {
+        background-color: var(--primary-color);
+        transform: scale(1);
+    }
+    50% {
+        background-color: var(--primary-color);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+    100% {
+        background-color: transparent;
+        transform: scale(1);
+    }
+}
+
+/* Keyboard shortcuts help modal */
+.keyboard-shortcuts-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard-shortcuts-modal .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.keyboard-shortcuts-modal .modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: var(--sb-border-radius-lg);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 600px;
+    max-height: 80vh;
+    width: 90%;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.keyboard-shortcuts-modal .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.keyboard-shortcuts-modal .modal-close:hover {
+    background-color: var(--subtle-color);
+    color: var(--primary-color);
+}
+
+.keyboard-shortcuts-help {
+    padding: 30px;
+}
+
+.keyboard-shortcuts-help h3 {
+    margin: 0 0 20px 0;
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: var(--subtle-color);
+    border-radius: var(--sb-border-radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.shortcut-item:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-color: var(--primary-color);
+}
+
+.shortcut-key {
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: white;
+    padding: 6px 12px;
+    border-radius: var(--sb-border-radius-sm);
+    border: 1px solid var(--primary-color);
+    min-width: 120px;
+    text-align: center;
+}
+
+.shortcut-description {
+    font-size: 14px;
+    color: var(--secondary-color);
+    margin-left: 16px;
+    flex: 1;
+}
+
+/* Responsive design for modal */
+@media (max-width: 768px) {
+    .keyboard-shortcuts-modal .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .keyboard-shortcuts-help {
+        padding: 20px;
+    }
+
+    .keyboard-shortcuts-help h3 {
+        font-size: 20px;
+    }
+
+    .shortcut-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .shortcut-key {
+        min-width: auto;
+        align-self: flex-start;
+    }
+
+    .shortcut-description {
+        margin-left: 0;
+    }
+}
+
+/* Enhanced button hover states for keyboard shortcuts */
+.editor-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.editor-btn.keyboard-active {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.02);
 }

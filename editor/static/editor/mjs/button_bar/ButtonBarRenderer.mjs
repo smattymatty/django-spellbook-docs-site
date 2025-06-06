@@ -102,7 +102,11 @@ export class ButtonBarRenderer {
         button.id = buttonConfig.id;
         button.className = `${CSS_CLASSES.editorBtn} ${buttonConfig.className}`;
         button.setAttribute('type', 'button');
-        button.setAttribute('title', buttonConfig.text);
+        button.setAttribute('tabindex', '-1');
+        
+        // Create tooltip with keyboard shortcut if available
+        const tooltipText = this.createTooltipText(buttonConfig);
+        button.setAttribute('title', tooltipText);
         
         // Create button content with icon and text
         const buttonContent = document.createElement('span');
@@ -127,7 +131,11 @@ export class ButtonBarRenderer {
         button.id = buttonConfig.id;
         button.className = `${CSS_CLASSES.editorBtn} ${buttonConfig.className}`;
         button.setAttribute('type', 'button');
-        button.setAttribute('title', buttonConfig.text);
+        button.setAttribute('tabindex', '-1');
+        
+        // Create tooltip with keyboard shortcut if available
+        const tooltipText = this.createTooltipText(buttonConfig);
+        button.setAttribute('title', tooltipText);
         button.setAttribute('data-format-type', buttonConfig.type);
         
         // Create button content with icon
@@ -169,6 +177,7 @@ export class ButtonBarRenderer {
         const options = this.configManager.getOptions();
         
         this.buttonBar.classList.remove(CSS_CLASSES.buttonBarHidden);
+        this.buttonBar.classList.add('visible');
         this.buttonBar.style.opacity = '0';
         this.buttonBar.style.transform = 'translateY(-10px)';
         
@@ -188,8 +197,9 @@ export class ButtonBarRenderer {
 
         const options = this.configManager.getOptions();
         
-        // Immediately add hidden class for synchronous visibility check
+        // Immediately add hidden class and remove visible class for synchronous visibility check
         this.buttonBar.classList.add(CSS_CLASSES.buttonBarHidden);
+        this.buttonBar.classList.remove('visible');
         
         this.buttonBar.style.transition = `opacity ${options.animationDuration}ms ease-out, transform ${options.animationDuration}ms ease-out`;
         this.buttonBar.style.opacity = '0';
@@ -289,6 +299,24 @@ export class ButtonBarRenderer {
         this.buttonElements.forEach(button => {
             button.classList.remove(CSS_CLASSES.contextActive);
         });
+    }
+
+    /**
+     * Create tooltip text with keyboard shortcut
+     * @param {Object} buttonConfig - Button configuration
+     * @returns {string} Tooltip text
+     * @private
+     */
+    createTooltipText(buttonConfig) {
+        let tooltip = buttonConfig.text;
+        
+        if (buttonConfig.keyboardShortcut) {
+            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+            const shortcut = isMac ? buttonConfig.keyboardShortcut.keyMac : buttonConfig.keyboardShortcut.key;
+            tooltip += ` (${shortcut})`;
+        }
+        
+        return tooltip;
     }
 
     /**

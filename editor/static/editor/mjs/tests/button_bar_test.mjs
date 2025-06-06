@@ -59,6 +59,15 @@ class ButtonBarTestSuite {
             console.error('❌ Test suite failed:', error);
             this.addResult('TestSuite', 'Setup/Teardown', false, error.message);
         }
+        
+        // Return results summary for test runner
+        const summary = this.exportResults();
+        return {
+            total: summary.summary.total,
+            passed: summary.summary.passed,
+            failed: summary.summary.failed,
+            results: summary.results
+        };
     }
 
     /**
