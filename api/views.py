@@ -16,6 +16,7 @@ from .models import StoredMarkdown
 from .serializers import StoredMarkdownSerializer
 
 from django_spellbook.parsers import render_spellbook_markdown_to_html
+from django_spellbook.blocks import SpellBlockRegistry
 
 logger = logging.getLogger(__name__)
 
@@ -124,6 +125,95 @@ def markdown_preview_api(request):
 
     # Return raw HTML content directly
     return HttpResponse(html_output, content_type="text/html", status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def spellblock_registry_api(request):
+    """
+    API endpoint to fetch all available SpellBlocks and their schemas.
+    Returns JSON with block definitions including parameter information.
+    """
+    logger.info("[SpellBlock Registry API] --- Starting request ---")
+    
+    try:
+        # Get all registered SpellBlocks from the registry
+        registry_data = []
+        
+        for block_name, block_class in SpellBlockRegistry._registry.items():
+            # Build basic block information
+            block_info = {
+                'name': block_name,
+                'class_name': block_class.__name__,
+                'description': getattr(block_class, '__doc__', None) or f"SpellBlock: {block_name}",
+                'parameters': {}
+            }
+            
+            # Extract parameters from DEFAULT_ attributes
+            for attr_name in dir(block_class):
+                if attr_name.startswith('DEFAULT_'):
+                    param_name = attr_name[8:].lower()  # Remove 'DEFAULT_' prefix
+                    default_value = getattr(block_class, attr_name)
+                    block_info['parameters'][param_name] = {
+                        'default': default_value,
+                        'type': type(default_value).__name__,
+                        'required': False
+                    }
+            
+            # Extract parameters from get_context method by analyzing common patterns
+            if hasattr(block_class, 'get_context'):
+                try:
+                    import inspect
+                    source = inspect.getsource(block_class.get_context)
+                    
+                    # Look for self.kwargs.get patterns
+                    import re
+                    kwargs_pattern = r"self\.kwargs\.get\(['\"]([^'\"]+)['\"](?:,\s*['\"]?([^'\"]*)['\"]?)?\)"
+                    matches = re.findall(kwargs_pattern, source)
+                    
+                    for param_name, default_value in matches:
+                        if param_name not in block_info['parameters']:
+                            # Try to infer the type from the default value
+                            param_type = 'str'  # Default to string
+                            if default_value:
+                                if default_value.lower() in ['true', 'false']:
+                                    param_type = 'bool'
+                                    default_value = default_value.lower() == 'true'
+                                elif default_value.isdigit():
+                                    param_type = 'int'
+                                    default_value = int(default_value)
+                                elif default_value.replace('.', '').isdigit():
+                                    param_type = 'float'
+                                    default_value = float(default_value)
+                            else:
+                                default_value = default_value or ""
+                            
+                            block_info['parameters'][param_name] = {
+                                'default': default_value,
+                                'type': param_type,
+                                'required': False
+                            }
+                except Exception as e:
+                    logger.warning(f"[SpellBlock Registry API] Could not parse get_context for {block_name}: {e}")
+                    pass
+            
+            registry_data.append(block_info)
+        
+        logger.info(f"[SpellBlock Registry API] Successfully collected {len(registry_data)} SpellBlocks")
+        
+        response_data = {
+            'blocks': registry_data,
+            'count': len(registry_data)
+        }
+        
+        return Response(response_data, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        logger.error(f"[SpellBlock Registry API] Error: {type(e).__name__} - {e}")
+        return Response(
+            {'error': 'Failed to retrieve SpellBlock registry', 'detail': str(e)}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @api_view(['GET'])

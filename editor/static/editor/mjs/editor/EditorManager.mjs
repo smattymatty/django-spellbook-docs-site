@@ -6,6 +6,7 @@ import ElementValidator from './ElementValidator.mjs';
 import StyleManager from './StyleManager.mjs';
 import EventManager from './EventManager.mjs';
 import ButtonBarController from './ButtonBarController.mjs';
+import SyntaxHighlighter from './SyntaxHighlighter.mjs';
 
 /**
  * Main orchestrator for editor functionality
@@ -41,6 +42,7 @@ class EditorManager {
         };
         
         this.buttonBarController = null;
+        this.syntaxHighlighter = null;
         
         this.logger.logInitialization('EditorManager', 'started');
     }
@@ -89,7 +91,21 @@ class EditorManager {
                 this.logger.warn('Button bar initialization failed, continuing without it');
             }
             
-            // Phase 3: Register event listeners
+            // Phase 3: Initialize syntax highlighter
+            if (this.config.get('syntaxHighlighting')?.enabled !== false) {
+                try {
+                    this.syntaxHighlighter = await SyntaxHighlighter.create(
+                        this.config.get('syntaxHighlighting') || {},
+                        this.logger.createChild('SyntaxHighlighter'),
+                        this.elements.editor
+                    );
+                    this.logger.debug('Syntax highlighter initialized successfully');
+                } catch (error) {
+                    this.logger.warn('Syntax highlighter initialization failed', { error: error.message });
+                }
+            }
+            
+            // Phase 4: Register event listeners
             this._registerEventListeners();
             
             // Mark as initialized
@@ -226,6 +242,13 @@ class EditorManager {
     }
     
     /**
+     * Get syntax highlighter
+     */
+    getSyntaxHighlighter() {
+        return this.syntaxHighlighter;
+    }
+    
+    /**
      * Get current configuration
      */
     getConfiguration() {
@@ -246,6 +269,11 @@ class EditorManager {
         // Update button bar config if present
         if (newConfig.buttonBar && this.buttonBarController) {
             this.buttonBarController.updateConfig(newConfig.buttonBar);
+        }
+        
+        // Update syntax highlighter config if present
+        if (newConfig.syntaxHighlighting && this.syntaxHighlighter) {
+            this.syntaxHighlighter.updateConfig(newConfig);
         }
         
         // Update logger if logging config changed
@@ -271,7 +299,8 @@ class EditorManager {
                 elementValidator: !!this.elementValidator,
                 styleManager: !!this.styleManager,
                 eventManager: !!this.eventManager && !this.eventManager.isDestroyed(),
-                buttonBarController: this.buttonBarController ? this.buttonBarController.getStatus() : null
+                buttonBarController: this.buttonBarController ? this.buttonBarController.getStatus() : null,
+                syntaxHighlighter: this.syntaxHighlighter ? this.syntaxHighlighter.getStatus() : null
             },
             events: this.eventManager ? this.eventManager.getEventListenersSummary() : null,
             styles: this.styleManager ? this.styleManager.getAppliedStylesSummary() : null
@@ -321,6 +350,11 @@ class EditorManager {
                 this.buttonBarController.forceHide();
             }
             
+            // Reset syntax highlighter
+            if (this.syntaxHighlighter) {
+                this.syntaxHighlighter.updateHighlighting();
+            }
+            
             // Clear any pending operations
             if (this.styleManager) {
                 this.styleManager.clearPendingTransitions();
@@ -352,6 +386,10 @@ class EditorManager {
         
         try {
             // Cleanup components in reverse order of initialization
+            if (this.syntaxHighlighter) {
+                this.syntaxHighlighter.cleanup();
+            }
+            
             if (this.buttonBarController) {
                 this.buttonBarController.cleanup();
             }
@@ -372,6 +410,7 @@ class EditorManager {
             this.elements.editor = null;
             this.elements.preview = null;
             this.buttonBarController = null;
+            this.syntaxHighlighter = null;
             
             // Mark as destroyed
             this.isDestroyed = true;

@@ -1,722 +1,474 @@
 // static/mjs/button_bar.mjs
 
-class EditorButtonBar {
-    constructor(editorElement, options = {}) {
-        this.editorElement = editorElement;
-        this.editorPane = editorElement.closest('.editor-pane');
-        this.isVisible = false;
-        
-        // Configuration options
-        this.options = {
-            animationDuration: 300,
-            fadeDelay: 100,
-            ...options
-        };
+import { ButtonConfigManager } from "./button_bar/ButtonConfigManager.mjs";
+import { ButtonBarRenderer } from "./button_bar/ButtonBarRenderer.mjs";
+import { CursorTracker } from "./button_bar/CursorTracker.mjs";
+import { NotificationService } from "./button_bar/NotificationService.mjs";
+import { ButtonStateManager } from "./button_bar/ButtonStateManager.mjs";
+import { EventCoordinator } from "./button_bar/EventCoordinator.mjs";
+import { BlockFormatter } from "./formatters/BlockFormatter.mjs";
+import { InlineFormatter } from "./formatters/InlineFormatter.mjs";
 
-        // Button configurations
-        this.buttons = [
-            {
-                id: 'insert-spellblock-btn',
-                text: 'Insert SpellBlock',
-                icon: '✨',
-                className: 'btn-accent',
-                action: () => this.handleInsertSpellBlock()
-            }
-        ];
+export class EditorButtonBar {
+  constructor(editorElement, options = {}) {
+    this.editorElement = editorElement;
+    this.editorPane = editorElement.closest(".editor-pane");
+    this.isVisible = false;
 
-        // Markdown formatting buttons
-        this.markdownButtons = [
-            {
-                id: 'header-1-btn',
-                text: 'H1',
-                icon: 'H₁',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '# ',
-                action: () => this.handleMarkdownFormat('header1')
-            },
-            {
-                id: 'header-2-btn',
-                text: 'H2',
-                icon: 'H₂',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '## ',
-                action: () => this.handleMarkdownFormat('header2')
-            },
-            {
-                id: 'header-3-btn',
-                text: 'H3',
-                icon: 'H₃',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '### ',
-                action: () => this.handleMarkdownFormat('header3')
-            },
-            {
-                id: 'bold-btn',
-                text: 'Bold',
-                icon: 'B',
-                className: 'btn-markdown bold',
-                type: 'inline',
-                syntax: '**',
-                action: () => this.handleMarkdownFormat('bold')
-            },
-            {
-                id: 'italic-btn',
-                text: 'Italic',
-                icon: 'I',
-                className: 'btn-markdown italic',
-                type: 'inline',
-                syntax: '*',
-                action: () => this.handleMarkdownFormat('italic')
-            },
-            {
-                id: 'ordered-list-btn',
-                text: 'Ordered List',
-                icon: '1.',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '1. ',
-                action: () => this.handleMarkdownFormat('orderedList')
-            },
-            {
-                id: 'unordered-list-btn',
-                text: 'Unordered List',
-                icon: '•',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '- ',
-                action: () => this.handleMarkdownFormat('unorderedList')
-            },
-            {
-                id: 'link-btn',
-                text: 'Link',
-                icon: '🔗',
-                className: 'btn-markdown',
-                type: 'inline',
-                syntax: '[text](url)',
-                action: () => this.handleMarkdownFormat('link')
-            },
-            {
-                id: 'image-btn',
-                text: 'Image',
-                icon: '🖼️',
-                className: 'btn-markdown',
-                type: 'inline',
-                syntax: '![alt](url)',
-                action: () => this.handleMarkdownFormat('image')
-            },
-            {
-                id: 'code-btn',
-                text: 'Code',
-                icon: '<>',
-                className: 'btn-markdown',
-                type: 'inline',
-                syntax: '`',
-                action: () => this.handleMarkdownFormat('code')
-            },
-            {
-                id: 'code-block-btn',
-                text: 'Code Block',
-                icon: '{ }',
-                className: 'btn-markdown',
-                type: 'block',
-                syntax: '```',
-                action: () => this.handleMarkdownFormat('codeBlock')
-            }
-        ];
+    // Initialize configuration manager
+    this.configManager = new ButtonConfigManager(options);
 
-        this.activeButtons = new Set();
-        this.cursorUpdateTimer = null;
+    // Initialize cursor tracker
+    this.cursorTracker = new CursorTracker(editorElement, {
+      contextRange: this.configManager.getOptions().contextRange,
+      updateThrottle: 100,
+    });
 
-        this.init();
+    // Initialize formatters
+    this.blockFormatter = new BlockFormatter(editorElement);
+    this.inlineFormatter = new InlineFormatter(editorElement);
+
+    // Initialize notification service
+    this.notificationService = new NotificationService({
+      duration: this.configManager.getOptions().notificationDuration,
+      position: "bottom-right",
+    });
+
+    // Initialize renderer
+    this.renderer = new ButtonBarRenderer(editorElement, this.configManager);
+
+    // Initialize state manager
+    this.stateManager = new ButtonStateManager(
+      this.renderer,
+      this.cursorTracker,
+    );
+
+    // Initialize event coordinator
+    this.eventCoordinator = new EventCoordinator(
+      this.renderer,
+      this.configManager,
+      this.blockFormatter,
+      this.inlineFormatter,
+      this.stateManager,
+      this.notificationService,
+    );
+
+    // Initialize the button bar
+    this.init();
+  }
+
+  /**
+   * Initialize the button bar
+   */
+  init() {
+    try {
+      // Create and insert button bar HTML
+      this.renderer.createButtonBar();
+      const success = this.renderer.insertIntoDOM();
+
+      if (!success) {
+        console.error("[EditorButtonBar] Failed to insert button bar into DOM");
+        return;
+      }
+
+      // Attach event listeners
+      this.eventCoordinator.attachEventListeners();
+      this.eventCoordinator.enableKeyboardShortcuts();
+
+      // Start cursor tracking and state management
+      this.cursorTracker.startTracking();
+      this.stateManager.startTracking();
+    } catch (error) {
+      console.error("[EditorButtonBar] Error during initialization:", error);
+      this.notificationService.error("Failed to initialize editor button bar");
+    }
+  }
+
+  /**
+   * Show the button bar
+   */
+  show() {
+    if (!this.renderer.getElement()) {
+      console.warn("[EditorButtonBar] Button bar not initialized");
+      return;
     }
 
-    init() {
-        try {
-            this.createButtonBarHTML();
-            this.attachEventListeners();
-            console.log('[EditorButtonBar] Initialized successfully');
-        } catch (error) {
-            console.error('[EditorButtonBar] Initialization error:', error);
-        }
+    this.renderer.show();
+    this.isVisible = true;
+
+    // Update button states when shown
+    this.stateManager.forceUpdate();
+  }
+
+  /**
+   * Hide the button bar
+   */
+  hide() {
+    if (!this.renderer.getElement()) return;
+
+    this.renderer.hide();
+    this.isVisible = false;
+  }
+
+  /**
+   * Check if button bar is visible
+   * @returns {boolean} True if visible
+   */
+  isButtonBarVisible() {
+    return this.isVisible && this.renderer.isVisible();
+  }
+
+  /**
+   * Get the button bar element
+   * @returns {HTMLElement|null} Button bar element
+   */
+  getElement() {
+    return this.renderer.getElement();
+  }
+
+  /**
+   * Add a custom button to the button bar
+   * @param {Object} buttonConfig - Button configuration
+   * @param {string} category - Button category ('main', 'markdown', 'custom')
+   * @returns {boolean} True if successful
+   */
+  addButton(buttonConfig, category = "custom") {
+    const configAdded = this.configManager.addButton(buttonConfig);
+    if (!configAdded) return false;
+
+    const renderAdded = this.renderer.addButton(buttonConfig, category);
+    if (!renderAdded) {
+      // Rollback config change
+      this.configManager.removeButton(buttonConfig.id);
+      return false;
     }
 
-    createButtonBarHTML() {
-        // Create the main button bar container
-        this.buttonBar = document.createElement('div');
-        this.buttonBar.id = 'editor-button-bar';
-        this.buttonBar.className = 'editor-button-bar hidden';
-        
-        // Create main buttons container
-        const mainButtonsContainer = document.createElement('div');
-        mainButtonsContainer.className = 'button-bar-buttons main-buttons';
+    // Reattach event listeners to include new button
+    this.eventCoordinator.detachEventListeners();
+    this.eventCoordinator.attachEventListeners();
 
-        // Create each main button
-        this.buttons.forEach(buttonConfig => {
-            const button = document.createElement('button');
-            button.id = buttonConfig.id;
-            button.className = `editor-btn ${buttonConfig.className}`;
-            button.setAttribute('type', 'button');
-            button.setAttribute('title', buttonConfig.text);
-            
-            // Create button content with icon and text
-            const buttonContent = document.createElement('span');
-            buttonContent.className = 'button-content';
-            buttonContent.innerHTML = `
-                <span class="button-icon">${buttonConfig.icon}</span>
-                <span class="button-text">${buttonConfig.text}</span>
-            `;
-            
-            button.appendChild(buttonContent);
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                buttonConfig.action();
-            });
-            
-            mainButtonsContainer.appendChild(button);
-        });
+    return true;
+  }
 
-        // Create separator
-        const separator = document.createElement('div');
-        separator.className = 'button-bar-separator';
+  /**
+   * Remove a button from the button bar
+   * @param {string} buttonId - Button ID to remove
+   * @returns {boolean} True if successful
+   */
+  removeButton(buttonId) {
+    const configRemoved = this.configManager.removeButton(buttonId);
+    const renderRemoved = this.renderer.removeButton(buttonId);
 
-        // Create markdown buttons container
-        const markdownButtonsContainer = document.createElement('div');
-        markdownButtonsContainer.className = 'button-bar-buttons markdown-buttons';
+    return configRemoved || renderRemoved;
+  }
 
-        // Create each markdown button
-        this.markdownButtons.forEach(buttonConfig => {
-            const button = document.createElement('button');
-            button.id = buttonConfig.id;
-            button.className = `editor-btn ${buttonConfig.className}`;
-            button.setAttribute('type', 'button');
-            button.setAttribute('title', buttonConfig.text);
-            button.setAttribute('data-format-type', buttonConfig.type);
-            
-            // Create button content with icon
-            const buttonContent = document.createElement('span');
-            buttonContent.className = 'button-content markdown-content';
-            buttonContent.innerHTML = `
-                <span class="button-icon markdown-icon">${buttonConfig.icon}</span>
-            `;
-            
-            button.appendChild(buttonContent);
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                buttonConfig.action();
-            });
-            
-            markdownButtonsContainer.appendChild(button);
-        });
+  /**
+   * Update button configuration
+   * @param {string} buttonId - Button ID
+   * @param {Object} updates - Properties to update
+   * @returns {boolean} True if successful
+   */
+  updateButton(buttonId, updates) {
+    return this.configManager.updateButton(buttonId, updates);
+  }
 
-        this.buttonBar.appendChild(mainButtonsContainer);
-        this.buttonBar.appendChild(separator);
-        this.buttonBar.appendChild(markdownButtonsContainer);
-        
-        // Insert the button bar into the editor pane
-        if (this.editorPane) {
-            this.editorPane.appendChild(this.buttonBar);
-        } else {
-            console.error('[EditorButtonBar] Could not find editor pane to attach button bar');
-            return;
-        }
+  /**
+   * Show notification
+   * @param {string} message - Notification message
+   * @param {string} type - Notification type ('success', 'error', 'warning', 'info')
+   * @param {Object} options - Additional options
+   * @returns {string} Notification ID
+   */
+  showNotification(message, type = "info", options = {}) {
+    return this.notificationService.show(message, type, options);
+  }
+
+  /**
+   * Hide notification
+   * @param {string} notificationId - Notification ID
+   */
+  hideNotification(notificationId) {
+    return this.notificationService.hide(notificationId);
+  }
+
+  /**
+   * Trigger button programmatically
+   * @param {string} buttonId - Button ID to trigger
+   */
+  triggerButton(buttonId) {
+    this.eventCoordinator.triggerButton(buttonId);
+  }
+
+  /**
+   * Execute action by name
+   * @param {string} actionName - Action name
+   * @param {Object} options - Additional options
+   */
+  executeAction(actionName, options = {}) {
+    this.eventCoordinator.executeActionByName(actionName, options);
+  }
+
+  /**
+   * Add custom action handler
+   * @param {string} actionName - Action name
+   * @param {Function} handler - Handler function
+   * @returns {boolean} True if successful
+   */
+  addCustomAction(actionName, handler) {
+    return this.eventCoordinator.addCustomAction(actionName, handler);
+  }
+
+  /**
+   * Remove custom action handler
+   * @param {string} actionName - Action name
+   * @returns {boolean} True if successful
+   */
+  removeCustomAction(actionName) {
+    return this.eventCoordinator.removeCustomAction(actionName);
+  }
+
+  /**
+   * Get button configuration
+   * @param {string} buttonId - Button ID
+   * @returns {Object|null} Button configuration
+   */
+  getButtonConfig(buttonId) {
+    return this.configManager.getButtonById(buttonId);
+  }
+
+  /**
+   * Get all button configurations
+   * @returns {Object} Grouped button configurations
+   */
+  getAllButtons() {
+    return this.configManager.getAllButtonsGrouped();
+  }
+
+  /**
+   * Check if button is active
+   * @param {string} buttonId - Button ID
+   * @returns {boolean} True if active
+   */
+  isButtonActive(buttonId) {
+    return this.stateManager.isButtonActive(buttonId);
+  }
+
+  /**
+   * Set button active state
+   * @param {string} buttonId - Button ID
+   * @param {boolean} isActive - Active state
+   */
+  setButtonActive(buttonId, isActive) {
+    this.stateManager.setButtonActive(buttonId, isActive);
+  }
+
+  /**
+   * Toggle button active state
+   * @param {string} buttonId - Button ID
+   * @returns {boolean} New active state
+   */
+  toggleActiveButton(buttonId) {
+    return this.stateManager.toggleButtonActive(buttonId);
+  }
+
+  /**
+   * Update button states
+   */
+  updateButtonStates() {
+    this.stateManager.forceUpdate();
+  }
+
+  /**
+   * Check cursor formatting context
+   * @returns {Object|null} Formatting context
+   */
+  checkCursorFormatting() {
+    return this.cursorTracker.getFormattingContext();
+  }
+
+  /**
+   * Apply markdown formatting
+   * @param {string} formatType - Format type
+   * @param {string} type - 'block' or 'inline'
+   */
+  handleMarkdownFormat(formatType, type = "inline") {
+    this.eventCoordinator.handleMarkdownFormat(formatType, type);
+  }
+
+  /**
+   * Insert spell block template
+   */
+  handleInsertSpellBlock() {
+    this.eventCoordinator.handleInsertSpellBlock();
+  }
+
+  /**
+   * Get configuration options
+   * @returns {Object} Configuration options
+   */
+  getOptions() {
+    return this.configManager.getOptions();
+  }
+
+  /**
+   * Update configuration options
+   * @param {Object} newOptions - New options
+   */
+  updateOptions(newOptions) {
+    this.configManager.updateOptions(newOptions);
+
+    // Update dependent services
+    if (newOptions.notificationDuration) {
+      this.notificationService.options.duration =
+        newOptions.notificationDuration;
     }
 
-    attachEventListeners() {
-        // Prevent button bar from disappearing when clicking on it
-        this.buttonBar.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-        });
-
-        // Handle clicks outside to ensure proper blur behavior
-        document.addEventListener('click', (e) => {
-            if (!this.editorElement.contains(e.target) && !this.buttonBar.contains(e.target)) {
-                this.hide();
-            }
-        });
-
-        // Track cursor position changes to update button states
-        this.editorElement.addEventListener('keyup', () => this.updateButtonStates());
-        this.editorElement.addEventListener('mouseup', () => this.updateButtonStates());
-        this.editorElement.addEventListener('input', () => this.updateButtonStates());
+    if (newOptions.contextRange) {
+      this.cursorTracker.options.contextRange = newOptions.contextRange;
     }
+  }
 
-    show() {
-        if (this.isVisible) return;
-        
-        console.log('[EditorButtonBar] Showing button bar');
-        this.isVisible = true;
-        
-        // Remove hidden class and add visible class
-        this.buttonBar.classList.remove('hidden');
-        
-        // Use requestAnimationFrame to ensure the transition triggers
-        requestAnimationFrame(() => {
-            this.buttonBar.classList.add('visible');
-        });
+  /**
+   * Enable or disable button bar
+   * @param {boolean} enabled - Whether to enable
+   */
+  setEnabled(enabled) {
+    if (enabled) {
+      this.cursorTracker.startTracking();
+      this.stateManager.startTracking();
+      this.eventCoordinator.attachEventListeners();
+    } else {
+      this.cursorTracker.stopTracking();
+      this.stateManager.stopTracking();
+      this.eventCoordinator.detachEventListeners();
     }
+  }
 
-    hide() {
-        if (!this.isVisible) return;
-        
-        console.log('[EditorButtonBar] Hiding button bar');
-        this.isVisible = false;
-        
-        // Remove visible class
-        this.buttonBar.classList.remove('visible');
-        
-        // Add hidden class after transition completes
-        setTimeout(() => {
-            if (!this.isVisible) { // Double-check in case show() was called during timeout
-                this.buttonBar.classList.add('hidden');
-            }
-        }, this.options.animationDuration);
+  /**
+   * Refresh the button bar
+   */
+  refresh() {
+    this.renderer.refresh();
+    this.eventCoordinator.detachEventListeners();
+    this.eventCoordinator.attachEventListeners();
+    this.stateManager.forceUpdate();
+  }
+
+  /**
+   * Reset to default configuration
+   */
+  reset() {
+    this.configManager.reset();
+    this.stateManager.reset();
+    this.refresh();
+  }
+
+  /**
+   * Get status information for debugging
+   * @returns {Object} Status information
+   */
+  getStatus() {
+    return {
+      isVisible: this.isVisible,
+      isInitialized: !!this.renderer.getElement(),
+      buttonCount: this.configManager.getButtonCounts(),
+      activeButtons: this.stateManager.getActiveButtons(),
+      isTracking: this.stateManager.isTrackingEnabled(),
+      eventStatus: this.eventCoordinator.getStatus(),
+      notifications: this.notificationService.getCount(),
+    };
+  }
+
+  /**
+   * Destroy the button bar and clean up resources
+   */
+  destroy() {
+    try {
+      // Stop tracking
+      this.cursorTracker.stopTracking();
+      this.stateManager.stopTracking();
+
+      // Detach event listeners
+      this.eventCoordinator.detachEventListeners();
+      this.eventCoordinator.disableKeyboardShortcuts();
+
+      // Destroy components
+      this.renderer.destroy();
+      this.cursorTracker.destroy();
+      this.stateManager.destroy();
+      this.eventCoordinator.destroy();
+      this.notificationService.destroy();
+      this.blockFormatter.destroy();
+      this.inlineFormatter.destroy();
+
+      // Clear references
+      this.configManager = null;
+      this.renderer = null;
+      this.cursorTracker = null;
+      this.notificationService = null;
+      this.stateManager = null;
+      this.eventCoordinator = null;
+      this.blockFormatter = null;
+      this.inlineFormatter = null;
+      this.editorElement = null;
+      this.editorPane = null;
+    } catch (error) {
+      console.error("[EditorButtonBar] Error during destruction:", error);
     }
+  }
 
-    // Button action handlers
+  // Legacy method compatibility - deprecated but maintained for backward compatibility
 
+  /**
+   * @deprecated Use addButton instead
+   */
+  attachEventListeners() {
+    console.warn("[EditorButtonBar] attachEventListeners is deprecated");
+    this.eventCoordinator.attachEventListeners();
+  }
 
-    handleInsertSpellBlock() {
-        console.log('[EditorButtonBar] Insert SpellBlock clicked');
-        
-        // Get current cursor position
-        const cursorPosition = this.editorElement.selectionStart;
-        const textBefore = this.editorElement.value.substring(0, cursorPosition);
-        const textAfter = this.editorElement.value.substring(cursorPosition);
-        
-        // Insert a basic SpellBlock template
-        const spellBlockTemplate = `
-{% spellblock %}
-# Your SpellBlock Title
+  /**
+   * @deprecated Use isInsideMarkdown method on formatters instead
+   */
+  isInsideMarkdown(text, position, marker, excludeMarker = null) {
+    console.warn("[EditorButtonBar] isInsideMarkdown is deprecated");
+    return this.cursorTracker.isPositionInsideMarkdown
+      ? this.cursorTracker.isPositionInsideMarkdown(
+          text,
+          position,
+          marker,
+          excludeMarker,
+        )
+      : false;
+  }
 
-Your content here...
+  /**
+   * @deprecated Use isInsideCodeBlock method on cursor tracker instead
+   */
+  isInsideCodeBlock(text, position) {
+    console.warn("[EditorButtonBar] isInsideCodeBlock is deprecated");
+    return this.cursorTracker.isPositionInsideCodeBlock
+      ? this.cursorTracker.isPositionInsideCodeBlock(text, position)
+      : false;
+  }
 
-{% endspellblock %}
-`;
-        
-        // Insert the template at cursor position
-        this.editorElement.value = textBefore + spellBlockTemplate + textAfter;
-        
-        // Set cursor position after the template
-        const newCursorPosition = cursorPosition + spellBlockTemplate.length;
-        this.editorElement.setSelectionRange(newCursorPosition, newCursorPosition);
-        
-        // Trigger input event to update the preview
-        this.editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-        
-        this.showNotification('SpellBlock template inserted', 'success');
-        
-        // Focus back on the editor
-        this.editorElement.focus();
+  /**
+   * @deprecated Use blockFormatter.format or inlineFormatter.format instead
+   */
+  handleBlockFormat(formatType, buttonConfig) {
+    console.warn("[EditorButtonBar] handleBlockFormat is deprecated");
+    if (this.blockFormatter && buttonConfig) {
+      this.blockFormatter.format(formatType);
     }
+  }
 
-    // Markdown formatting handler
-    handleMarkdownFormat(formatType) {
-        console.log(`[EditorButtonBar] ${formatType} formatting clicked`);
-        
-        // Get the correct button ID
-        let buttonId = formatType.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`) + '-btn';
-        if (formatType === 'orderedList') {
-            buttonId = 'ordered-list-btn';
-        } else if (formatType === 'unorderedList') {
-            buttonId = 'unordered-list-btn';
-        } else if (formatType === 'codeBlock') {
-            buttonId = 'code-block-btn';
-        }
-        
-        const buttonConfig = this.markdownButtons.find(btn => btn.action.toString().includes(formatType));
-        
-        if (buttonConfig.type === 'block') {
-            this.handleBlockFormat(formatType, buttonConfig);
-        } else {
-            this.handleInlineFormat(formatType, buttonConfig);
-        }
-        
-        // Focus back on the editor
-        this.editorElement.focus();
+  /**
+   * @deprecated Use blockFormatter.format or inlineFormatter.format instead
+   */
+  handleInlineFormat(formatType, buttonConfig) {
+    console.warn("[EditorButtonBar] handleInlineFormat is deprecated");
+    if (this.inlineFormatter && buttonConfig) {
+      this.inlineFormatter.format(formatType);
     }
-
-    handleBlockFormat(formatType, buttonConfig) {
-        if (!this.editorElement || !buttonConfig) return;
-        
-        const cursorPosition = this.editorElement.selectionStart;
-        const text = this.editorElement.value || '';
-        const textBefore = text.substring(0, cursorPosition);
-        const textAfter = text.substring(cursorPosition);
-        
-        // Find the current line
-        const lineStart = textBefore.lastIndexOf('\n') + 1;
-        const lineEnd = text.indexOf('\n', cursorPosition);
-        const currentLine = text.substring(lineStart, lineEnd === -1 ? text.length : lineEnd);
-        
-        let newText = '';
-        let newCursorPosition = cursorPosition;
-        
-        switch (formatType) {
-            case 'header1':
-            case 'header2':
-            case 'header3':
-                // Ensure we're on a new line
-                if (currentLine.trim() !== '') {
-                    newText = textBefore + '\n' + buttonConfig.syntax;
-                    newCursorPosition = textBefore.length + 1 + buttonConfig.syntax.length;
-                } else {
-                    // Replace current line with header
-                    const beforeLine = text.substring(0, lineStart);
-                    const afterLine = text.substring(lineEnd === -1 ? text.length : lineEnd);
-                    newText = beforeLine + buttonConfig.syntax + afterLine;
-                    newCursorPosition = lineStart + buttonConfig.syntax.length;
-                }
-                break;
-                
-            case 'orderedList':
-            case 'unorderedList':
-                // Ensure we're on a new line
-                if (currentLine.trim() !== '') {
-                    newText = textBefore + '\n' + buttonConfig.syntax;
-                    newCursorPosition = textBefore.length + 1 + buttonConfig.syntax.length;
-                } else {
-                    // Replace current line with list item
-                    const beforeLine = text.substring(0, lineStart);
-                    const afterLine = text.substring(lineEnd === -1 ? text.length : lineEnd);
-                    newText = beforeLine + buttonConfig.syntax + afterLine;
-                    newCursorPosition = lineStart + buttonConfig.syntax.length;
-                }
-                break;
-                
-            case 'codeBlock':
-                // Ensure we're on a new line and add code block
-                if (currentLine.trim() !== '') {
-                    newText = textBefore + '\n```\n\n```\n' + textAfter;
-                    newCursorPosition = textBefore.length + 1 + 4; // Position inside code block
-                } else {
-                    const beforeLine = text.substring(0, lineStart);
-                    const afterLine = text.substring(lineEnd === -1 ? text.length : lineEnd);
-                    newText = beforeLine + '```\n\n```\n' + afterLine;
-                    newCursorPosition = lineStart + 4; // Position inside code block
-                }
-                break;
-        }
-        
-        if (newText !== undefined) {
-            this.editorElement.value = newText;
-            this.editorElement.setSelectionRange(newCursorPosition, newCursorPosition);
-            this.editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-            
-            this.toggleActiveButton(formatType);
-        }
-    }
-
-    handleInlineFormat(formatType, buttonConfig) {
-        if (!this.editorElement || !buttonConfig) return;
-        
-        const selectionStart = this.editorElement.selectionStart;
-        const selectionEnd = this.editorElement.selectionEnd;
-        const text = this.editorElement.value || '';
-        const selectedText = text.substring(selectionStart, selectionEnd);
-        const textBefore = text.substring(0, selectionStart);
-        const textAfter = text.substring(selectionEnd);
-        
-        let newText = '';
-        let newCursorStart = selectionStart;
-        let newCursorEnd = selectionEnd;
-        
-        switch (formatType) {
-            case 'bold':
-                if (selectedText) {
-                    newText = textBefore + '**' + selectedText + '**' + textAfter;
-                    newCursorStart = selectionStart + 2;
-                    newCursorEnd = selectionEnd + 2;
-                } else {
-                    newText = textBefore + '****' + textAfter;
-                    newCursorStart = newCursorEnd = selectionStart + 2;
-                }
-                break;
-                
-            case 'italic':
-                if (selectedText) {
-                    newText = textBefore + '*' + selectedText + '*' + textAfter;
-                    newCursorStart = selectionStart + 1;
-                    newCursorEnd = selectionEnd + 1;
-                } else {
-                    newText = textBefore + '**' + textAfter;
-                    newCursorStart = newCursorEnd = selectionStart + 1;
-                }
-                break;
-                
-            case 'code':
-                if (selectedText) {
-                    newText = textBefore + '`' + selectedText + '`' + textAfter;
-                    newCursorStart = selectionStart + 1;
-                    newCursorEnd = selectionEnd + 1;
-                } else {
-                    newText = textBefore + '``' + textAfter;
-                    newCursorStart = newCursorEnd = selectionStart + 1;
-                }
-                break;
-                
-            case 'link':
-                if (selectedText) {
-                    newText = textBefore + '[' + selectedText + '](url)' + textAfter;
-                    newCursorStart = selectionStart + selectedText.length + 3;
-                    newCursorEnd = newCursorStart + 3; // Select 'url'
-                } else {
-                    newText = textBefore + '[text](url)' + textAfter;
-                    newCursorStart = selectionStart + 1;
-                    newCursorEnd = newCursorStart + 4; // Select 'text'
-                }
-                break;
-                
-            case 'image':
-                if (selectedText) {
-                    newText = textBefore + '![' + selectedText + '](url)' + textAfter;
-                    newCursorStart = selectionStart + selectedText.length + 4;
-                    newCursorEnd = newCursorStart + 3; // Select 'url'
-                } else {
-                    newText = textBefore + '![alt](url)' + textAfter;
-                    newCursorStart = selectionStart + 2;
-                    newCursorEnd = newCursorStart + 3; // Select 'alt'
-                }
-                break;
-        }
-        
-        if (newText !== undefined) {
-            this.editorElement.value = newText;
-            this.editorElement.setSelectionRange(newCursorStart, newCursorEnd);
-            this.editorElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-            
-            this.toggleActiveButton(formatType);
-        }
-    }
-
-    toggleActiveButton(formatType) {
-        let buttonId = formatType.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`) + '-btn';
-        if (formatType === 'orderedList') {
-            buttonId = 'ordered-list-btn';
-        } else if (formatType === 'unorderedList') {
-            buttonId = 'unordered-list-btn';
-        } else if (formatType === 'codeBlock') {
-            buttonId = 'code-block-btn';
-        }
-        
-        const button = document.getElementById(buttonId);
-        
-        if (button) {
-            button.classList.add('active');
-            this.activeButtons.add(formatType);
-            
-            // Auto-remove active state after a short delay
-            setTimeout(() => {
-                button.classList.remove('active');
-                this.activeButtons.delete(formatType);
-            }, 1200);
-        }
-    }
-
-    updateButtonStates() {
-        // Debounce cursor position updates
-        if (this.cursorUpdateTimer) {
-            clearTimeout(this.cursorUpdateTimer);
-        }
-        
-        this.cursorUpdateTimer = setTimeout(() => {
-            this.checkCursorFormatting();
-        }, 100);
-    }
-
-    checkCursorFormatting() {
-        if (!this.editorElement) return;
-        
-        const cursorPosition = this.editorElement.selectionStart;
-        const text = this.editorElement.value || '';
-        const textBefore = text.substring(0, cursorPosition);
-        const textAfter = text.substring(cursorPosition);
-        
-        // Find current line
-        const lineStart = textBefore.lastIndexOf('\n') + 1;
-        const lineEnd = text.indexOf('\n', cursorPosition);
-        const currentLine = text.substring(lineStart, lineEnd === -1 ? text.length : lineEnd);
-        
-        // Clear all active states first
-        this.markdownButtons.forEach(btn => {
-            const buttonId = btn.id;
-            const button = document.getElementById(buttonId);
-            if (button) {
-                button.classList.remove('context-active');
-            }
-        });
-        
-        // Check for block-level formatting
-        if (currentLine.startsWith('# ')) {
-            document.getElementById('header-1-btn')?.classList.add('context-active');
-        } else if (currentLine.startsWith('## ')) {
-            document.getElementById('header-2-btn')?.classList.add('context-active');
-        } else if (currentLine.startsWith('### ')) {
-            document.getElementById('header-3-btn')?.classList.add('context-active');
-        } else if (currentLine.match(/^\d+\. /)) {
-            document.getElementById('ordered-list-btn')?.classList.add('context-active');
-        } else if (currentLine.startsWith('- ') || currentLine.startsWith('* ')) {
-            document.getElementById('unordered-list-btn')?.classList.add('context-active');
-        }
-        
-        // Check for inline formatting around cursor
-        const contextRange = 20; // Characters to check around cursor
-        const contextStart = Math.max(0, cursorPosition - contextRange);
-        const contextEnd = Math.min(text.length, cursorPosition + contextRange);
-        const context = text.substring(contextStart, contextEnd);
-        const relativePos = cursorPosition - contextStart;
-        
-        // Check if cursor is inside bold text
-        if (this.isInsideMarkdown(context, relativePos, '**')) {
-            document.getElementById('bold-btn')?.classList.add('context-active');
-        }
-        
-        // Check if cursor is inside italic text
-        if (this.isInsideMarkdown(context, relativePos, '*', '**')) {
-            document.getElementById('italic-btn')?.classList.add('context-active');
-        }
-        
-        // Check if cursor is inside code
-        if (this.isInsideMarkdown(context, relativePos, '`', '```')) {
-            document.getElementById('code-btn')?.classList.add('context-active');
-        }
-        
-        // Check if cursor is inside code block
-        if (this.isInsideCodeBlock(text, cursorPosition)) {
-            document.getElementById('code-block-btn')?.classList.add('context-active');
-        }
-    }
-
-    isInsideMarkdown(text, position, marker, excludeMarker = null) {
-        let count = 0;
-        let i = 0;
-        
-        while (i < position) {
-            if (excludeMarker && text.substring(i, i + excludeMarker.length) === excludeMarker) {
-                i += excludeMarker.length;
-                continue;
-            }
-            
-            if (text.substring(i, i + marker.length) === marker) {
-                count++;
-                i += marker.length;
-            } else {
-                i++;
-            }
-        }
-        
-        return count % 2 === 1;
-    }
-
-    isInsideCodeBlock(text, position) {
-        // Find all code block markers before the cursor position
-        const textBefore = text.substring(0, position);
-        const lines = textBefore.split('\n');
-        
-        let insideCodeBlock = false;
-        
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i].trim();
-            
-            // Check if this line starts or ends a code block
-            if (line.startsWith('```')) {
-                insideCodeBlock = !insideCodeBlock;
-            }
-        }
-        
-        // Also check if there's a closing ``` after the cursor
-        if (insideCodeBlock) {
-            const textAfter = text.substring(position);
-            const hasClosing = textAfter.includes('```');
-            return hasClosing;
-        }
-        
-        return false;
-    }
-
-    showNotification(message, type = 'info') {
-        // Create a simple notification system
-        const notification = document.createElement('div');
-        notification.className = `editor-notification notification-${type}`;
-        notification.textContent = message;
-        
-        // Position it near the button bar
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '10000';
-        notification.style.padding = '10px 15px';
-        notification.style.borderRadius = '4px';
-        notification.style.color = 'white';
-        notification.style.fontSize = '14px';
-        notification.style.fontWeight = '500';
-        notification.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-        notification.style.transform = 'translateY(-10px)';
-        notification.style.opacity = '0';
-        notification.style.transition = 'all 0.3s ease-in-out';
-        
-        // Set background color based on type
-        const colors = {
-            success: '#10b981',
-            error: '#ef4444',
-            warning: '#f59e0b',
-            info: '#3b82f6'
-        };
-        notification.style.backgroundColor = colors[type] || colors.info;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        requestAnimationFrame(() => {
-            notification.style.transform = 'translateY(0)';
-            notification.style.opacity = '1';
-        });
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.style.transform = 'translateY(-10px)';
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        }, 3000);
-    }
-
-    // Public method to get button bar element (for external access if needed)
-    getElement() {
-        return this.buttonBar;
-    }
-
-    // Public method to check visibility state
-    isButtonBarVisible() {
-        return this.isVisible;
-    }
-
-    // Public method to add custom buttons
-    addButton(buttonConfig) {
-        this.buttons.push(buttonConfig);
-        // Recreate the button bar to include the new button
-        if (this.buttonBar) {
-            this.buttonBar.remove();
-            this.createButtonBarHTML();
-        }
-    }
-
-    // Public method to remove buttons
-    removeButton(buttonId) {
-        this.buttons = this.buttons.filter(btn => btn.id !== buttonId);
-        // Recreate the button bar without the removed button
-        if (this.buttonBar) {
-            this.buttonBar.remove();
-            this.createButtonBarHTML();
-        }
-    }
+  }
 }
-
-export default EditorButtonBar;

@@ -3,7 +3,8 @@ from django.urls import path
 
 from .views import (
     StoredMarkdownListCreateAPIView, StoredMarkdownDetailAPIView, 
-    RenderedMarkdownDetailAPIView, markdown_preview_api, random_markdown_api
+    RenderedMarkdownDetailAPIView, markdown_preview_api, random_markdown_api,
+    spellblock_registry_api
     )
 
 app_name = 'api'
@@ -14,4 +15,5 @@ urlpatterns = [
     path('rendered-markdown/<int:pk>/', RenderedMarkdownDetailAPIView.as_view(), name='renderedmarkdown-detail'),
     path('markdown-preview/', markdown_preview_api, name='markdown-preview'),
     path('random-markdown/', random_markdown_api, name='random-markdown'),
+    path('spellblock-registry/', spellblock_registry_api, name='spellblock-registry'),
 ]

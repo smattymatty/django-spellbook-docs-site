@@ -29,6 +29,11 @@
   ],
   "spellblocks": [
     {
+      "name": "label_seperator",
+      "total_uses": 6,
+      "failed_uses": 0
+    },
+    {
       "name": "alert",
       "total_uses": 58,
       "failed_uses": 0
@@ -86,11 +91,6 @@
     {
       "name": "button",
       "total_uses": 25,
-      "failed_uses": 0
-    },
-    {
-      "name": "label_seperator",
-      "total_uses": 6,
       "failed_uses": 0
     }
   ]

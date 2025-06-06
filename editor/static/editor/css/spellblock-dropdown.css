@@ -1,0 +1,347 @@
+/* static/editor/css/spellblock-dropdown.css */
+
+/* SpellBlock Dropdown Styles */
+.spellblock-dropdown {
+    position: fixed;
+    width: 320px;
+    max-height: 400px;
+    background: white;
+    border: 1px solid var(--secondary-color, #e2e8f0);
+    border-radius: var(--sb-border-radius-md, 6px);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 4px 6px rgba(0, 0, 0, 0.05);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+}
+
+.spellblock-dropdown.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.spellblock-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 400px;
+}
+
+/* Header with search and close button */
+.spellblock-dropdown-header {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--secondary-color, #e2e8f0);
+    background: #f8fafc;
+    border-radius: var(--sb-border-radius-md, 6px)
+        var(--sb-border-radius-md, 6px) 0 0;
+}
+
+.spellblock-search-input {
+    flex: 1;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.spellblock-search-input:focus {
+    border-color: var(--primary-color, #3b82f6);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.spellblock-dropdown-close {
+    margin-left: 8px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: #e2e8f0;
+    border-radius: 4px;
+    color: #64748b;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.spellblock-dropdown-close:hover {
+    background: #cbd5e1;
+    color: #374151;
+}
+
+/* Loading state */
+.spellblock-dropdown-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #64748b;
+    display: none;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid var(--primary-color, #3b82f6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Blocks list */
+.spellblock-blocks-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+    max-height: 300px;
+}
+
+.spellblock-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.spellblock-item:hover,
+.spellblock-item.selected {
+    background: #f8fafc;
+    border-left: 3px solid var(--primary-color, #3b82f6);
+    padding-left: 13px;
+}
+
+.spellblock-item:last-child {
+    border-bottom: none;
+}
+
+.spellblock-item-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.spellblock-item-name {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+.spellblock-item-code {
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+    font-size: 12px;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-item-details {
+    margin-top: 6px;
+}
+
+.spellblock-item-description {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.spellblock-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.parameter-count {
+    font-weight: 500;
+}
+
+.template-info {
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+/* No results state */
+.spellblock-no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.no-results-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.no-results-message {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #374151;
+}
+
+.no-results-suggestion {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* Error state */
+.spellblock-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #dc2626;
+}
+
+.error-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.error-message {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #374151;
+}
+
+.retry-button {
+    background: var(--primary-color, #3b82f6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+    background: #2563eb;
+}
+
+/* Footer */
+.spellblock-dropdown-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-top: 1px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 12px;
+    color: #64748b;
+    border-radius: 0 0 var(--sb-border-radius-md, 6px)
+        var(--sb-border-radius-md, 6px);
+}
+
+.spellblock-count {
+    font-weight: 500;
+}
+
+.spellbook-help {
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+    font-size: 11px;
+}
+
+/* Dropdown toggle button */
+.spellblock-dropdown-toggle {
+    background-color: var(--primary-color, #3b82f6) !important;
+    color: white !important;
+    border: none;
+    padding: 6px 8px;
+    margin-left: -1px;
+    border-radius: 0 4px 4px 0 !important;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px !important;
+    max-width: 32px !important;
+    height: 100%;
+    border-bottom: 3px solid var(--info-color, #e2e8f0);
+    border-right: 3px solid var(--info-color, #e2e8f0) !important;
+    border-top: 1px solid var(--info-color, #e2e8f0) !important;
+}
+
+.spellblock-dropdown-toggle:hover {
+    background: #2563eb !important;
+    transform: translateY(-1px);
+}
+
+.spellblock-dropdown-toggle:active {
+    transform: translateY(0);
+}
+
+/* Button group styling for SpellBlock insert + dropdown */
+.spellblock-button-group {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+}
+
+.spellblock-button-group .editor-btn {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    margin-right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .spellblock-dropdown {
+        width: calc(100vw - 20px);
+        max-width: 320px;
+        left: 10px !important;
+        right: 10px;
+    }
+
+    .spellblock-dropdown-header {
+        padding: 10px;
+    }
+
+    .spellblock-item {
+        padding: 10px 12px;
+    }
+
+    .spellblock-item-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

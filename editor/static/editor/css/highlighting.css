@@ -1,0 +1,286 @@
+/* highlighting.css - SpellBlock Syntax Highlighting Styles */
+
+/* ===== CSS Variables for Highlighting Colors ===== */
+:root {
+    /* Light theme colors - lighter backgrounds, darker text */
+    --highlight-spellblock-open-bg: rgba(99, 102, 241, 0.2);
+    --highlight-spellblock-open-text: #312e8100;
+    --highlight-spellblock-close-bg: rgba(99, 102, 241, 0.2);
+    --highlight-spellblock-close-text: #312e8100;
+    --highlight-spellblock-name-bg: rgba(16, 185, 129, 0.2);
+    --highlight-spellblock-name-text: #064e3b00;
+    --highlight-spellblock-params-bg: rgba(245, 158, 11, 0.2);
+    --highlight-spellblock-params-text: #92400e00;
+
+    /* Overlay positioning and appearance */
+    --highlight-overlay-z-index: 10;
+    --highlight-border-radius: 2px;
+    --highlight-padding: 1px 3px;
+    --highlight-font-weight: 600;
+
+    /* Animation and transition */
+    --highlight-transition: all 0.2s ease-in-out;
+}
+
+/* Dark theme colors */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --highlight-spellblock-open-bg: rgba(99, 102, 241, 0.3);
+        --highlight-spellblock-open-text: #c7d2fe00;
+        --highlight-spellblock-close-bg: rgba(99, 102, 241, 0.3);
+        --highlight-spellblock-close-text: #c7d2fe00;
+        --highlight-spellblock-name-bg: rgba(16, 185, 129, 0.3);
+        --highlight-spellblock-name-text: #a7f3d000;
+        --highlight-spellblock-params-bg: rgba(245, 158, 11, 0.3);
+        --highlight-spellblock-params-text: #fcd34e00;
+        --highlight-spellblock-params-text-shadow: 0 0 2px #fcd34e55;
+    }
+}
+
+/* ===== Syntax Highlighting Container ===== */
+.syntax-highlight-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: var(--highlight-overlay-z-index);
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+/* ===== Highlighting Layer ===== */
+/* The highlighting layer that overlays the textarea */
+.syntax-highlight-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: inherit;
+    margin: 0;
+    border: inherit;
+    border-color: transparent;
+    font: inherit;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    color: transparent;
+    background: transparent;
+    text-align: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    tab-size: inherit;
+    -moz-tab-size: inherit;
+}
+
+/* ===== SpellBlock Syntax Elements ===== */
+
+/* Opening syntax: {~ */
+.spellblock-syntax-open {
+    background-color: var(--highlight-spellblock-open-bg);
+    color: var(--highlight-spellblock-open-text);
+    font-weight: var(--highlight-font-weight);
+    border-radius: var(--highlight-border-radius) 0 0
+        var(--highlight-border-radius);
+    padding: var(--highlight-padding);
+    transition: var(--highlight-transition);
+}
+
+/* Closing syntax: ~} and {~~} */
+.spellblock-syntax-close {
+    background-color: var(--highlight-spellblock-close-bg);
+    color: var(--highlight-spellblock-close-text);
+    font-weight: var(--highlight-font-weight);
+    border-radius: 0 var(--highlight-border-radius)
+        var(--highlight-border-radius) 0;
+    padding: var(--highlight-padding);
+    transition: var(--highlight-transition);
+}
+
+/* SpellBlock name (first word after {~) */
+.spellblock-name {
+    background-color: var(--highlight-spellblock-name-bg);
+    color: var(--highlight-spellblock-name-text);
+    font-weight: var(--highlight-font-weight);
+    padding: var(--highlight-padding);
+    transition: var(--highlight-transition);
+}
+
+/* SpellBlock parameters */
+.spellblock-params {
+    background-color: var(--highlight-spellblock-params-bg);
+    color: var(--highlight-spellblock-params-text);
+    padding: var(--highlight-padding);
+    border-radius: 0 var(--highlight-border-radius)
+        var(--highlight-border-radius) 0;
+    transition: var(--highlight-transition);
+}
+
+/* ===== Focus State Fixes ===== */
+
+/* Keep textarea background normal on focus, don't make it transparent */
+.editor-pane textarea:focus {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    position: relative;
+    z-index: 5;
+}
+
+/* Ensure highlighting container has higher z-index when focused */
+.editor-pane textarea:focus + .syntax-highlight-container {
+    z-index: 15;
+}
+
+/* Add ultra-smooth fade-out animation when editor loses focus */
+.syntax-highlight-container {
+    transition:
+        opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+}
+
+/* When editor is not focused, start ultra-smooth fade-out */
+.editor-pane textarea:not(:focus) + .syntax-highlight-container {
+    opacity: 0.05;
+    transform: translateY(1rem) scale(0.98) translateZ(0);
+}
+
+/* Ultra-smooth transitions for highlighting elements */
+.spellblock-syntax-open,
+.spellblock-syntax-close,
+.spellblock-name,
+.spellblock-params {
+    transition:
+        var(--highlight-transition),
+        opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ===== High Contrast Support ===== */
+@media (prefers-contrast: high) {
+    :root {
+        --highlight-spellblock-open-bg: #1e1b4b;
+        --highlight-spellblock-open-text: #ffffff;
+        --highlight-spellblock-close-bg: #1e1b4b;
+        --highlight-spellblock-close-text: #ffffff;
+        --highlight-spellblock-name-bg: #052e16;
+        --highlight-spellblock-name-text: #ffffff;
+        --highlight-spellblock-params-bg: #78350f;
+        --highlight-spellblock-params-text: #ffffff;
+        --highlight-border-radius: 3px;
+    }
+
+    .spellblock-syntax-open,
+    .spellblock-syntax-close,
+    .spellblock-name,
+    .spellblock-params {
+        border: 1px solid currentColor;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 768px) {
+    :root {
+        --highlight-padding: 0px 2px;
+        --highlight-border-radius: 1px;
+        --highlight-font-weight: 500;
+    }
+
+    .spellblock-syntax-open,
+    .spellblock-syntax-close,
+    .spellblock-name,
+    .spellblock-params {
+        font-size: 0.95em;
+    }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --highlight-transition: none;
+    }
+
+    .syntax-highlight-container,
+    .syntax-highlight-layer {
+        transition: none;
+    }
+}
+
+/* ===== Performance Optimizations ===== */
+.syntax-highlight-layer {
+    /* Enable hardware acceleration */
+    transform: translateZ(0);
+    will-change: scroll-position;
+    /* Improve text rendering */
+    text-rendering: optimizeSpeed;
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* ===== Alternative Color Themes ===== */
+
+/* Blue theme */
+.editor-container.theme-blue {
+    --highlight-spellblock-open-bg: #1e3a8a;
+    --highlight-spellblock-open-text: #dbeafe;
+    --highlight-spellblock-close-bg: #1e3a8a;
+    --highlight-spellblock-close-text: #dbeafe;
+    --highlight-spellblock-name-bg: #0f766e;
+    --highlight-spellblock-name-text: #ccfbf1;
+    --highlight-spellblock-params-bg: #a16207;
+    --highlight-spellblock-params-text: #fef3c7;
+}
+
+/* Purple theme */
+.editor-container.theme-purple {
+    --highlight-spellblock-open-bg: #581c87;
+    --highlight-spellblock-open-text: #f3e8ff;
+    --highlight-spellblock-close-bg: #581c87;
+    --highlight-spellblock-close-text: #f3e8ff;
+    --highlight-spellblock-name-bg: #14532d;
+    --highlight-spellblock-name-text: #dcfce7;
+    --highlight-spellblock-params-bg: #9a3412;
+    --highlight-spellblock-params-text: #fed7aa;
+}
+
+/* Monochrome theme */
+.editor-container.theme-mono {
+    --highlight-spellblock-open-bg: #374151;
+    --highlight-spellblock-open-text: #f9fafb;
+    --highlight-spellblock-close-bg: #374151;
+    --highlight-spellblock-close-text: #f9fafb;
+    --highlight-spellblock-name-bg: #1f2937;
+    --highlight-spellblock-name-text: #f3f4f6;
+    --highlight-spellblock-params-bg: #4b5563;
+    --highlight-spellblock-params-text: #e5e7eb;
+}
+
+/* ===== Debug Styles (for development) ===== */
+.syntax-highlighting-debug .syntax-highlight-container {
+    border: 1px dashed #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.syntax-highlighting-debug .syntax-highlight-layer {
+    border: 1px dashed #00ff00;
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .syntax-highlight-container {
+        display: none;
+    }
+}
