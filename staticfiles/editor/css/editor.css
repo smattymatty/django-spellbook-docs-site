@@ -140,7 +140,7 @@
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 8px !important;
-        top: -13vh !important;
+        top: -14vh !important;
     }
 
     .button-bar-buttons.main-buttons {
@@ -674,7 +674,7 @@
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .editor-button-bar {
-        top: -16.2vh !important;
+        top: -17.5vh !important;
         right: 5vw;
         padding: 4px 6px;
         backdrop-filter: blur(8px);
@@ -718,22 +718,21 @@
         margin: 0 6px;
     }
 }
-@media (max-height: 750px) {
+@media (max-height: 875px) {
     .editor-button-bar {
-        top: -20vh !important;
+        top: -19vh !important;
     }
 }
 @media (max-height: 800px) {
     .editor-button-bar {
-        top: -16.5vh !important;
+        top: -20.5vh !important;
     }
 }
-@media (max-height: 875px) {
+@media (max-height: 750px) {
     .editor-button-bar {
-        top: -18vh !important;
+        top: -22vh !important;
     }
 }
-
 @media (max-height: 675px) {
     .editor-button-bar {
         top: -25vh !important;
@@ -747,6 +746,11 @@
 @media (max-height: 500px) {
     .editor-button-bar {
         top: -30vh !important;
+    }
+}
+@meda (max-width: 500px) {
+    .editor-button-bar {
+        top: 16.5 !iimportant;
     }
 }
 /* Animation for button bar entrance */
