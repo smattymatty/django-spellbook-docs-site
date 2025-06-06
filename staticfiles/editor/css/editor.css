@@ -476,6 +476,26 @@
     margin-right: 0;
 }
 
+/* SpellBlock dropdown button visibility transitions */
+.spellblock-dropdown-toggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.spellblock-dropdown-toggle.dropdown-hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.spellblock-dropdown-toggle.dropdown-visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .spellblock-dropdown {
@@ -998,7 +1018,7 @@
 .editor-btn.spellblock-edit-mode {
     background-color: #f0f8ff;
     color: #2563eb;
-    border: 2px solid #3b82f6;
+    border: 2px solid #3b82f6 !important;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
@@ -1019,8 +1039,6 @@
     color: black;
     border: 1px solid var(--primary-color);
 }
-
-
 
 /* Button focus states */
 .editor-btn:focus {
