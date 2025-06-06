@@ -242,7 +242,7 @@
 }
 @media (min-width: 1100px) {
     .editor-button-bar {
-        right: -35.5vw;
+        right: -35.5vw; /* Adjusted for smaller screens */
     }
 }
 @media (min-width: 1125px) {

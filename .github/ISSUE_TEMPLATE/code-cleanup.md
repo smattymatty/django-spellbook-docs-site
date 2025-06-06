@@ -10,9 +10,9 @@ assignees: ''
 ## **Code Location**
 
 *Specify the exact location of the code that needs cleanup:*
-- **File(s)**: 
-- **Module(s)/Classes**: 
-- **Functions/Methods**: 
+- **File(s)**:
+- **Module(s)/Classes**:
+- **Functions/Methods**:
 - **Line Range**: (if applicable)
 
 ## **Current Problems**
@@ -49,28 +49,28 @@ assignees: ''
 
 *Briefly describe how the code is currently organized:*
 
-```
+
 Example:
 Class UserManager:
   - handles authentication
-  - manages file uploads  
+  - manages file uploads
   - sends emails
   - database operations
   - logging
-```
+
 
 ## **Proposed Refactoring**
 
 *Describe the target structure after cleanup:*
 
-```
+
 Example:
 - UserAuthenticator: authentication logic
 - FileUploadService: file handling
 - EmailService: email operations
 - UserRepository: database access
 - Logger: activity logging
-```
+
 
 ## **Refactoring Strategy**
 
@@ -84,10 +84,10 @@ Example:
 ## **Files to be Altered or Created**
 
 *List specific files affected by this refactoring:*
-- **New Files**: 
-- **Modified Files**: 
-- **Deleted Files**: 
-- **Test Files**: 
+- **New Files**:
+- **Modified Files**:
+- **Deleted Files**:
+- **Test Files**:
 
 ## **Breaking Changes**
 
@@ -109,17 +109,17 @@ Example:
 ## **Implementation Plan**
 
 *Suggested phases for implementing this cleanup:*
-1. Phase 1: 
-2. Phase 2: 
-3. Phase 3: 
-4. Phase 4: 
+1. Phase 1:
+2. Phase 2:
+3. Phase 3:
+4. Phase 4:
 
 ## **Risk Assessment**
 
 *Evaluate potential risks:*
 - **Risk Level**: High/Medium/Low
-- **Primary Concerns**: 
-- **Mitigation Strategy**: 
+- **Primary Concerns**:
+- **Mitigation Strategy**:
 
 ## **Additional Context**
 
