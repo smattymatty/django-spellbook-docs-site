@@ -100,7 +100,7 @@
 @media (max-width: 768px) {
     .editor-pane textarea:focus,
     .editor-pane textarea:focus:hover {
-        min-height: 50vh;
+        min-height: 65vh;
     }
 }
 
@@ -140,7 +140,7 @@
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 8px !important;
-        top: -13vh !important;
+        top: -14vh !important;
     }
 
     .button-bar-buttons.main-buttons {
@@ -161,7 +161,6 @@
         justify-content: center !important;
     }
 }
-
 @media (min-width: 768px) {
     #live-preview-area.preview-pane-squashed {
         margin-left: -5.1vw;
@@ -435,7 +434,7 @@
 .editor-button-bar {
     position: absolute;
     z-index: 1000;
-    top: -8vh;
+    top: -9vh;
     padding-top: 2vh !important;
     padding-bottom: 2vh !important;
     padding-left: 2vw !important;
@@ -672,15 +671,16 @@
 .editor-pane {
     position: relative;
 }
-
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .editor-button-bar {
-        top: 5px;
-        right: 5px;
+        top: -17vh !important;
+        right: 12.5vw;
         padding: 4px 6px;
         backdrop-filter: blur(8px);
         gap: 4px;
+        max-width: 320px;
+        width: 100%;
     }
 
     .button-bar-buttons.main-buttons .editor-btn {
@@ -690,28 +690,27 @@
     }
 
     .editor-btn.btn-markdown {
-        min-width: 28px;
-        max-width: 28px;
-        height: 28px;
+        min-width: 32px;
+        max-width: 32px;
+        height: 32px;
         padding: 3px;
     }
 
     .button-icon {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .button-icon.markdown-icon {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .button-text {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .button-bar-buttons.markdown-buttons {
         flex-wrap: wrap;
         gap: 3px;
-        max-width: 250px;
     }
 
     .button-bar-separator {
@@ -719,7 +718,36 @@
         margin: 0 6px;
     }
 }
-
+@media (max-height: 875px) {
+    .editor-button-bar {
+        top: -19vh !important;
+    }
+}
+@media (max-height: 800px) {
+    .editor-button-bar {
+        top: -20.5vh !important;
+    }
+}
+@media (max-height: 750px) {
+    .editor-button-bar {
+        top: -22vh !important;
+    }
+}
+@media (max-height: 675px) {
+    .editor-button-bar {
+        top: -25vh !important;
+    }
+}
+@media (max-height: 600px) {
+    .editor-button-bar {
+        top: -28vh !important;
+    }
+}
+@media (max-height: 500px) {
+    .editor-button-bar {
+        top: -30vh !important;
+    }
+}
 /* Animation for button bar entrance */
 @keyframes buttonBarSlideIn {
     from {

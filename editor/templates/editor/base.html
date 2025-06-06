@@ -3,12 +3,12 @@
 {% load static %}
 {% load spellbook_tags %}
 {% block extra_style %}
-    <link rel="stylesheet" href="{% static 'css/editor.css' %}">
+    <link rel="stylesheet" href="{% static 'editor/css/editor.css' %}">
     <link rel="stylesheet" href="{% static 'css/docs.css' %}">
     <link rel="stylesheet" href="{% static 'highlight/styles/default.min.css' %}">
     <script src="{% static 'highlight/highlight.min.js' %}"></script>
     <script>hljs.highlightAll();</script>
-    <script type="module" src="{% static 'mjs/text_editor.mjs' %}"></script>
+    <script type="module" src="{% static 'editor/mjs/text_editor.mjs' %}"></script>
     {% spellbook_styles %}
 {% endblock %}
 {% block content %}
@@ -41,7 +41,7 @@
 
     </div>
 
-</div> 
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
