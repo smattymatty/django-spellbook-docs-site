@@ -41,7 +41,11 @@ urlpatterns = [
         "",
         include("django_spellbook.urls"),
     ),
-    ## JWT Tokens
+    path(
+        "rpg/",
+        include("RPG.urls"),
+    ),
+    # JWT Tokens
     path(
         "api/token/",
         TokenObtainPairView.as_view(),

@@ -1,0 +1,49 @@
+:root {
+    --rpg-white: #ede4da;
+    --rpg-light-grey: #bfb8b4;
+    --rpg-grey: #918d8d;
+    --rpg-dark-grey: #636167;
+    --rpg-black: #353540;
+    --rpg-dark-red: #a94949;
+    --rpg-red: #ca5954;
+    --rpg-dark-orange: #e56f4b;
+    --rpg-orange: #e39347;
+    --rpg-light-yellow: #eeb551;
+    --rpg-yellow: #e8c65b;
+    --rpg-dark-yellow: #bda351;
+    --rpg-green-yellow: #8b9150;
+    --rpg-light-green: #557d55;
+    --rpg-green: #446350;
+    --rpg-dark-green: #3e554c;
+    --rpg-light-blue: #8bb0ad;
+    --rpg-blue: #769fa6;
+    --rpg-dark-blue: #668da9;
+    --rpg-indigo: #5c699f;
+    --rpg-dark-purple: #5a5888;
+    --rpg-purple: #7c6da2;
+    --rpg-dark-pink: #947a9d;
+    --rpg-pink: #bc87a5;
+    --rpg-peach: #d9a6a6;
+    --rpg-light-tan: #d4c2b6;
+    --rpg-tan: #bdaa97;
+    --rpg-dark-tan: #86735b;
+    --rpg-light-brown: #7e674c;
+    --rpg-brown: #735b42;
+    --rpg-dark-brown: #604b3d;
+    --rpg-darker-brown: #4d3f38;
+}
+
+/* -- Hide The Old Website Stuff -- */
+
+#original-header {
+    display: none;
+}
+
+header {
+    background-color: #010101ee;
+}
+
+body {
+    background-color: #1f1d1cfd;
+    margin-top: -32px;
+}

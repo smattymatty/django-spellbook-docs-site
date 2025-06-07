@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'RPG/css/root.css' %}">
+<link rel="stylesheet" href="{% static 'RPG/css/animations.css' %}">
+<link rel="stylesheet" href="{% static 'RPG/css/base.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="rpg-container"
+        class="rpg-container"
+        hx-get="{% url 'RPG:welcome_screen' %}"
+        hx-target="#rpg-screen"
+        hx-trigger="load"
+    >
+        <div id="rpg-screen"
+            class="rpg-screen"
+        >
+
+        </div>
+    </div>
+    <script src="{% static 'RPG/js/animations.js' %}"></script>
+{% endblock %}

@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import os
-
 from pathlib import (
     Path,
 )
@@ -51,6 +49,7 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -69,6 +68,7 @@ INSTALLED_APPS = [
     "analytics",
     "api",
     "editor",
+    "RPG",
 ]
 
 MIDDLEWARE = [
@@ -139,16 +139,16 @@ LOGGING = {
             "level": "INFO",  # Show INFO level messages from Django itself
             "propagate": True,
         },
-        "analytics.middleware": {  # YOUR specific logger name from the middleware
+        "analytics.middleware": {
             "handlers": ["console"],
-            "level": "INFO",  # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
-            "propagate": False,  # Don't pass messages up to the root logger if handled here
+            "level": "INFO",
+            "propagate": False,
         },
         # For my API views
         "api": {
             "handlers": ["console"],
-            "level": "DEBUG",  # Capture all DEBUG, INFO, WARNING, ERROR messages from your middleware
-            "propagate": False,  # Don't pass messages up to the root logger if handled here
+            "level": "DEBUG",
+            "propagate": False,
         },
     },
     "disable_existing_loggers": False,  # Disable existing loggers
@@ -159,16 +159,25 @@ LOGGING = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.MinimumLengthValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.CommonPasswordValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.NumericPasswordValidator"
+        ),
     },
 ]
 

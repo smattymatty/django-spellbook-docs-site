@@ -28,13 +28,13 @@
     </head>
     <body>
         <header>
-            <div class="header-content">
+            <div id="original-header" class="header-content">
                 <h1 class="website-title sb-w-full sb-text-center">
                     <a href="{% url 'base:home' %}">Django-Spellbook</a>
                 </h1>
                 <nav class="sb-flex sb-flex-col sb-w-full sb-md:w-auto">
-                    <ul 
-                    class="sb-flex sb-flex-col sb-md:flex-row sb-justify-between 
+                    <ul
+                    class="sb-flex sb-flex-col sb-md:flex-row sb-justify-between
                     sb-items-center">
                         <li>
                             <a href="{% spellbook_url 'examples:introduction' %}">Examples</a>
@@ -52,43 +52,43 @@
         <main class="container">
             {% block content %}{% endblock %}
         </main>
-        <footer class="site-footer sb-flex sb-flex-col sb-justify-center sb-items-center sb-text-center 
+        <footer class="site-footer sb-flex sb-flex-col sb-justify-center sb-items-center sb-text-center
         sb-py-4">
             <p class="sb-text-sm">
                 Give us a star on
-                <a 
-                href="https://github.com/smattymatty/django_spellbook" 
-                class="in-code-link" 
+                <a
+                href="https://github.com/smattymatty/django_spellbook"
+                class="in-code-link"
                 target="_blank">
                     GitHub
                 </a>
             </p>
             <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
                 <p class="sb-mt-4 sb-text-sm">
-                    <a href="https://github.com/smattymatty/django-spellbook-docs-site" class="in-code-link" 
+                    <a href="https://github.com/smattymatty/django-spellbook-docs-site" class="in-code-link"
                     target="_blank">
                     This Website</a>
                     is powered by
-                    <a href="https://pypi.org/project/django_spellbook/" class="in-code-link" 
+                    <a href="https://pypi.org/project/django_spellbook/" class="in-code-link"
                     target="_blank">
                         Django Spellbook</a>
                 </p>
             </div>
-            
-            
+
+
             <!-- Copyright section -->
             <div class="sb-mt-2 sb-text-xs sb-text-gray-600">
                 <p>© {% now "Y" %} Mathew Storm. All rights reserved.</p>
                 <p class="sb-mt-1">Created with ❤️ in 🇨🇦</p>
             </div>
-        
+
             <!-- Analytics Button for Toggle -->
              <button onclick="toggleAnalytics()" class="sb-cursor-pointer sb-text-xs sb-px-4 sb-py-2">
                  Show Analytics
              </button>
 
             <!-- Analytics Section (hidden by default) -->
-            <div id="analytics-section" 
+            <div id="analytics-section"
             class="sb-mt-3 sb-text-sm sb-border-t sb-border-gray-200 sb-pt-3 sb-w-full sb-max-w-md"
             style="display: none;">
                 <h4 class="sb-white sb-opacity-50">Page Analytics</h4>
@@ -102,7 +102,7 @@
                         <p><span class="sb-font-sm">Unique visitors:</span> {{ unique_visitors }}</p>
                     </div>
                 </div>
-                
+
                 {% if popular_pages %}
                 <div class="sb-mt-2 sb-white sb-opacity-50">
                     <h5 class="sb-font-medium">Popular Pages:</h5>
@@ -114,7 +114,7 @@
                 </div>
                 {% endif %}
             </div>
-        
+
         </footer>
         {% block extra_js %}{% endblock %}
     </body>
@@ -122,7 +122,7 @@
         function toggleAnalytics() {
             const section = document.getElementById('analytics-section');
             const button = document.querySelector('button[onclick="toggleAnalytics()"]');
-            
+
             if (section.style.display === 'none') {
                 section.style.display = 'block';
                 // scroll down to the section
