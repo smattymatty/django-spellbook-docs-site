@@ -48,6 +48,13 @@
     z-index: var(--highlight-overlay-z-index);
     overflow: hidden;
     border-radius: inherit;
+    /* Hide scrollbars completely */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.syntax-highlight-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 /* ===== Highlighting Layer ===== */
@@ -73,6 +80,13 @@
     letter-spacing: inherit;
     tab-size: inherit;
     -moz-tab-size: inherit;
+    /* Hide scrollbars completely */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.syntax-highlight-layer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 /* ===== SpellBlock Syntax Elements ===== */

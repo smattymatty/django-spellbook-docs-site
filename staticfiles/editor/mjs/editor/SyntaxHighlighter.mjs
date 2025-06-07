@@ -210,10 +210,23 @@ class SyntaxHighlighter {
    */
   handleFocus() {
     console.log("[SyntaxHighlighter] Focus event detected");
-    // Use the same perfect method that works on resize
+    
+    // Immediately fade out for responsive feel - override CSS transition
+    if (this.highlightContainer) {
+      this.highlightContainer.style.transition = "opacity 0.15s ease-out";
+      this.highlightContainer.style.opacity = "0.05";
+    }
+    
+    // Then snap to position and fade back in
     setTimeout(() => {
       this.syncDimensions(); // This is what makes it perfect on resize!
       this.updateHighlighting();
+      
+      // Fade back in after snap with smooth transition
+      if (this.highlightContainer) {
+        this.highlightContainer.style.transition = "opacity 0.3s ease-in";
+        this.highlightContainer.style.opacity = "";
+      }
     }, 100);
   }
 
@@ -222,12 +235,25 @@ class SyntaxHighlighter {
    */
   handleBlur() {
     console.log("[SyntaxHighlighter] Blur event detected");
-    // LITERALLY trigger the same resize event that always works perfectly!
+    
+    // Immediately fade out for responsive feel - override CSS transition
+    if (this.highlightContainer) {
+      this.highlightContainer.style.transition = "opacity 0.15s ease-out";
+      this.highlightContainer.style.opacity = "0.05";
+    }
+    
+    // Then snap to position and fade back in
     setTimeout(() => {
       console.log(
         "[SyntaxHighlighter] Triggering resize event to snap into perfect position",
       );
       window.dispatchEvent(new Event("resize"));
+      
+      // Fade back in after snap with smooth transition
+      if (this.highlightContainer) {
+        this.highlightContainer.style.transition = "opacity 0.3s ease-in";
+        this.highlightContainer.style.opacity = "";
+      }
     }, 300);
   }
 

@@ -265,146 +265,42 @@ class RenderedMarkdownDetailAPIView(
 
 
 @api_view(["POST"])
-@permission_classes(
-    [permissions.AllowAny]
-)  # Allows access without authentication
-def markdown_preview_api(
-    request,
-):
-    raw_markdown = request.data.get(
-        "markdown",
-        "",
-    )
-
-    html_output = render_spellbook_markdown_to_html(raw_markdown)
-
-    # Sanitize HTML to prevent XSS attacks
-    allowed_tags = [
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6",
-        "p",
-        "br",
-        "hr",
-        "strong",
-        "b",
-        "em",
-        "i",
-        "u",
-        "strike",
-        "del",
-        "ul",
-        "ol",
-        "li",
-        "blockquote",
-        "pre",
-        "code",
-        "a",
-        "img",
-        "table",
-        "thead",
-        "tbody",
-        "tr",
-        "th",
-        "td",
-        "div",
-        "span",
-        "section",
-        "article",
-        "aside",
-        "header",
-        "footer",
-        "main",
-        "details",
-        "summary",
-    ]
-
-    allowed_attributes = {
-        "a": [
-            "href",
-            "title",
-            "target",
-            "rel",
-        ],
-        "img": [
-            "src",
-            "alt",
-            "title",
-            "width",
-            "height",
-        ],
-        "div": [
-            "class",
-            "id",
-        ],
-        "span": [
-            "class",
-            "id",
-        ],
-        "section": [
-            "class",
-            "id",
-        ],
-        "article": [
-            "class",
-            "id",
-        ],
-        "aside": [
-            "class",
-            "id",
-        ],
-        "header": [
-            "class",
-            "id",
-        ],
-        "footer": [
-            "class",
-            "id",
-        ],
-        "main": [
-            "class",
-            "id",
-        ],
-        "table": ["class"],
-        "th": ["scope"],
-        "td": [
-            "colspan",
-            "rowspan",
-        ],
-        "code": ["class"],
-        "pre": ["class"],
-    }
-
-    allowed_protocols = [
-        "http",
-        "https",
-        "mailto",
-    ]
-
-    sanitized_html = bleach.clean(
-        html_output,
-        tags=frozenset(allowed_tags),
-        attributes=allowed_attributes,
-        protocols=frozenset(allowed_protocols),
-        strip=True,
-    )
-
-    # Return sanitized HTML content
-    return HttpResponse(
-        sanitized_html,
-        content_type="text/html",
-        status=status.HTTP_200_OK,
-    )
+@permission_classes([permissions.AllowAny])
+def markdown_preview_api(request):
+    """
+    API endpoint to render markdown content to HTML with sanitization.
+    Returns HTML content for live preview functionality.
+    """
+    logger.info("[Markdown Preview API] --- Starting request ---")
+    
+    try:
+        from .logic.markdown_preview import process_markdown_preview
+        
+        raw_markdown = request.data.get("markdown", "")
+        
+        # Process markdown with sanitization enabled
+        # Set enable_sanitization=False to debug sanitization issues
+        response = process_markdown_preview(
+            raw_markdown=raw_markdown,
+            enable_sanitization=True,
+            strict_mode=False
+        )
+        
+        logger.info(f"[Markdown Preview API] Successfully processed {len(raw_markdown)} chars of markdown")
+        return response
+        
+    except Exception as e:
+        logger.error(f"[Markdown Preview API] Error: {type(e).__name__} - {e}")
+        return HttpResponse(
+            f"<div class='error'>Error processing markdown: {str(e)}</div>",
+            content_type="text/html",
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
 
 
 @api_view(["GET"])
 @permission_classes([permissions.AllowAny])
-def spellblock_registry_api(
-    request,
-):
+def spellblock_registry_api(request):
     """
     API endpoint to fetch all available SpellBlocks and their schemas.
     Returns JSON with block definitions including parameter information.
@@ -412,113 +308,9 @@ def spellblock_registry_api(
     logger.info("[SpellBlock Registry API] --- Starting request ---")
 
     try:
-        # Get all registered SpellBlocks from the registry
-        registry_data = []
-
-        for (
-            block_name,
-            block_class,
-        ) in SpellBlockRegistry._registry.items():
-            # Skip certain test/internal blocks
-            if block_name.lower() in [
-                "argstest",
-                "selfclosing",
-                "simple",
-            ]:
-                continue
-
-            # Build basic block information
-            block_info = {
-                "name": block_name,
-                "class_name": block_class.__name__,
-                "description": getattr(
-                    block_class,
-                    "__doc__",
-                    None,
-                )
-                or f"SpellBlock: {block_name}",
-                "parameters": {},
-            }
-
-            # Extract parameters from DEFAULT_ attributes
-            for attr_name in dir(block_class):
-                if attr_name.startswith("DEFAULT_"):
-                    param_name = attr_name[
-                        8:
-                    ].lower()  # Remove 'DEFAULT_' prefix
-                    default_value = getattr(
-                        block_class,
-                        attr_name,
-                    )
-                    block_info["parameters"][param_name] = {
-                        "default": default_value,
-                        "type": type(default_value).__name__,
-                        "required": False,
-                    }
-
-            # Extract parameters from get_context method by analyzing common patterns
-            if hasattr(
-                block_class,
-                "get_context",
-            ):
-                try:
-                    import inspect
-
-                    source = inspect.getsource(block_class.get_context)
-
-                    # Look for self.kwargs.get patterns
-                    import re
-
-                    kwargs_pattern = r"self\.kwargs\.get\(['\"]([^'\"]+)['\"](?:,\s*['\"]?([^'\"]*)['\"]?)?\)"
-                    matches = re.findall(
-                        kwargs_pattern,
-                        source,
-                    )
-
-                    for (
-                        param_name,
-                        default_value,
-                    ) in matches:
-                        if param_name not in block_info["parameters"]:
-                            # Try to infer the type from the default value
-                            param_type = "str"  # Default to string
-                            if default_value:
-                                if default_value.lower() in [
-                                    "true",
-                                    "false",
-                                ]:
-                                    param_type = "bool"
-                                    default_value = (
-                                        default_value.lower() == "true"
-                                    )
-                                elif default_value.isdigit():
-                                    param_type = "int"
-                                    default_value = int(default_value)
-                                elif default_value.replace(
-                                    ".",
-                                    "",
-                                ).isdigit():
-                                    param_type = "float"
-                                    default_value = float(default_value)
-                            else:
-                                default_value = default_value or ""
-
-                            block_info["parameters"][param_name] = {
-                                "default": default_value,
-                                "type": param_type,
-                                "required": False,
-                            }
-                except Exception as e:
-                    logger.warning(
-                        f"[SpellBlock Registry API] Could not parse get_context for {block_name}: {e}"
-                    )
-                    pass
-
-            registry_data.append(block_info)
-
-        logger.info(
-            f"[SpellBlock Registry API] Successfully collected {len(registry_data)} SpellBlocks"
-        )
+        from .logic.spellblock_registry import build_spellblock_registry
+        
+        registry_data = build_spellblock_registry()
 
         response_data = {
             "blocks": registry_data,
