@@ -1,0 +1,201 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-0115"><strong>Version 0.1.15</strong></h2>
+<p><em>Released: May 21, 2025</em></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This release delivers two powerful new SpellBlocks for enhanced interactivity and layout control, along with a major architectural refactor that lays the foundation for advanced features like nested blocks and database interactions.</p>
+    </span>
+</div>
+
+<h1 id="new-features">New Features</h1>
+<h2 id="button-spellblock">Button SpellBlock</h2>
+<p>The <code>~ button ~</code> SpellBlock provides a comprehensive solution for creating styled, interactive link buttons with extensive customization options:</p>
+<pre><code class="language-django">{~ button href=&quot;/features&quot; ~}
+Learn More
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/features" class="sb-btn sb-btn-default sb-btn-md  "
+
+        >
+
+        <span class="sb-btn-text">
+
+                <p>Learn More</p>
+
+        </span>
+
+    </a>
+</div>
+
+<p><strong>Renders as a styled button linking to <code>/features</code></strong></p>
+<h3 id="button-features">Button Features</h3>
+<p><strong>Button with Visual Styling:</strong></p>
+<pre><code class="language-django">{~ button href=&quot;/download-report&quot; type=&quot;success&quot; size=&quot;lg&quot; ~}
+Download Report
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/download-report" class="sb-btn sb-btn-success sb-btn-lg  "
+
+        >
+
+        <span class="sb-btn-text">
+
+                <p>Download Report</p>
+
+        </span>
+
+    </a>
+</div>
+
+<p><strong>Button with Icons:</strong></p>
+<pre><code class="language-django">{~ button href=&quot;/settings&quot; type=&quot;secondary&quot; icon_left=&quot;sb-icon-settings&quot; ~}
+Manage Settings
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="/settings" class="sb-btn sb-btn-secondary sb-btn-md  "
+
+        >
+
+            <span class="sb-icon sb-icon-settings sb-icon-left" aria-hidden="true"></span>
+
+        <span class="sb-btn-text">
+
+                <p>Manage Settings</p>
+
+        </span>
+
+    </a>
+</div>
+
+<p><strong>Disabled Button:</strong></p>
+<pre><code class="language-django">{~ button href=&quot;/restricted&quot; type=&quot;primary&quot; disabled=&quot;true&quot; ~}
+Access Restricted
+{~~}
+</code></pre>
+<div class="sb-button-container"> 
+    <a  href="#" class="sb-btn sb-btn-primary sb-btn-md sb-disabled "
+
+
+            aria-disabled="true"
+            role="link"
+            tabindex="-1"
+        >
+
+        <span class="sb-btn-text">
+
+                <p>Access Restricted</p>
+
+        </span>
+
+    </a>
+</div>
+
+<h3 id="button-parameters">Button Parameters</h3>
+<ul>
+<li><strong><code>href</code></strong>: URL for link buttons (creates <code>&lt;a&gt;</code> tag)</li>
+<li><strong><code>type</code></strong>: Visual style (<code>"default"</code>, <code>"primary"</code>, <code>"secondary"</code>, <code>"success"</code>, <code>"warning"</code>, <code>"danger"</code>, <code>"info"</code>, <code>"accent"</code>, <code>"black"</code>, <code>"white"</code>, <code>"emphasis"</code>, <code>"subtle"</code>, <code>"distinct"</code>, <code>"aether"</code>, <code>"artifact"</code>, <code>"sylvan"</code>)</li>
+<li><strong><code>size</code></strong>: Button size (<code>"sm"</code>, <code>"md"</code>, <code>"lg"</code>)</li>
+<li><strong><code>target</code></strong>: Link target (e.g., <code>"_blank"</code>)</li>
+<li><strong><code>disabled</code></strong>: Disabled state (<code>true</code>/<code>false</code>)</li>
+<li><strong><code>icon_left</code></strong>/<strong><code>icon_right</code></strong>: Icon classes for button decoration</li>
+<li><strong><code>class</code></strong>: Custom CSS classes</li>
+<li><strong><code>id</code></strong>: HTML id attribute</li>
+</ul>
+<h2 id="align-spellblock">Align SpellBlock</h2>
+<p>The <code>~ align ~</code> SpellBlock offers precise control over content positioning and layout with intelligent dimension handling:</p>
+<pre><code class="language-django">{~ align pos=&quot;center&quot; width=&quot;80%&quot; class=&quot;sb-border sb-p-2&quot; ~}
+### Centered Content
+This content is perfectly centered with specific dimensions.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: center;" 
+    >
+    <div class="sb-align-inner-block" style="width: 80%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: center;">
+            <h3 id="centered-content">Centered Content</h3>
+<p>This content is perfectly centered with specific dimensions.</p>
+        </div>
+    </div>
+</div>
+
+<h3 id="smart-dimension-processing">Smart Dimension Processing</h3>
+<p>The Align SpellBlock intelligently processes width and height values:</p>
+<ul>
+<li><strong>"auto"</strong> remains as CSS auto</li>
+<li><strong>Numbers ≤ 100</strong> become percentages: <code>50</code> → <code>50%</code></li>
+<li><strong>Numbers &gt; 100</strong> become pixels: <code>300</code> → <code>300px</code></li>
+<li><strong>Explicit units preserved</strong>: <code>"75%"</code>, <code>"150px"</code></li>
+</ul>
+<pre><code class="language-django">{~ align pos=&quot;end&quot; width=&quot;60&quot; content_align=&quot;start&quot; class=&quot;sb-border sb-p-2&quot; ~}
+### Right-Aligned Container
+This content is positioned at the end (right) with 60% width.
+Text content is aligned to the start (left) within the container.
+{~~}
+</code></pre>
+<div 
+    class="sb-align-outer-wrapper sb-border sb-p-2" 
+    style="display: flex; justify-content: flex-end;" 
+    >
+    <div class="sb-align-inner-block" style="width: 60%; height: auto;"> 
+        <div class="sb-align-content " 
+             style="text-align: left;">
+            <h3 id="right-aligned-container">Right-Aligned Container</h3>
+<p>This content is positioned at the end (right) with 60% width.<br />
+Text content is aligned to the start (left) within the container.</p>
+        </div>
+    </div>
+</div>
+
+<h3 id="align-parameters">Align Parameters</h3>
+<ul>
+<li><strong><code>pos</code></strong>: Container position (<code>"start"</code>, <code>"center"</code>, <code>"end"</code>)</li>
+<li><strong><code>width</code></strong>: Container width (auto, percentage, pixels)</li>
+<li><strong><code>height</code></strong>: Container height (auto, percentage, pixels)</li>
+<li><strong><code>content_align</code></strong>: Text alignment within container (<code>"start"</code>, <code>"center"</code>, <code>"end"</code>)</li>
+<li><strong><code>class</code></strong>: Custom CSS classes for container</li>
+<li><strong><code>content_class</code></strong>: Custom CSS classes for inner content</li>
+<li><strong><code>id</code></strong>: HTML id attribute</li>
+</ul>
+<h1 id="architecture-improvements">Architecture Improvements</h1>
+<h2 id="css-architecture-modernization">CSS Architecture Modernization</h2>
+<h3 id="color-utilities-module">Color Utilities Module</h3>
+<p>All color-related utilities are now organized in a dedicated module:</p>
+<ul>
+<li><strong>Background Colors</strong>: <code>sb-bg-primary</code>, <code>sb-bg-success</code>, opacity variants</li>
+<li><strong>Text Colors</strong>: <code>sb-primary</code>, <code>sb-secondary</code>, <code>sb-accent</code> with opacity support</li>
+<li><strong>Border Colors</strong>: <code>sb-border-primary</code>, <code>sb-border-neutral</code> with variants</li>
+<li><strong>Hover States</strong>: <code>sb-hover:bg-primary</code>, <code>sb-hover:text-accent-75</code></li>
+</ul>
+<h1 id="future-roadmap">Future Roadmap</h1>
+<p>This architectural foundation enables exciting upcoming features:</p>
+<ul>
+<li><strong>Nested SpellBlocks</strong>: Complex layouts with parent-child relationships</li>
+<li><strong>Database-Connected Blocks</strong>: Q&amp;A systems, dynamic content blocks</li>
+<li><strong>Advanced Form Components</strong>: Complete form building with validation</li>
+<li><strong>Grid and Layout Systems</strong>: Sophisticated responsive layouts</li>
+<li><strong>Performance Optimizations</strong>: Caching and incremental processing</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>We're committed to continuous improvement and building the most powerful markdown processing toolkit for Django. If you have feedback or feature requests, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
+    </span>
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 3,
     "successful_pairs": 3,
-    "total_processed_files": 42
+    "total_processed_files": 43
   },
   "pairs": [
     {
@@ -17,7 +17,7 @@
       "destination": "changelog",
       "url_prefix": "changelog",
       "success": true,
-      "processed_files": 6
+      "processed_files": 7
     },
     {
       "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/examples_content",
@@ -35,7 +35,7 @@
     },
     {
       "name": "alert",
-      "total_uses": 58,
+      "total_uses": 60,
       "failed_uses": 0
     },
     {
@@ -85,12 +85,12 @@
     },
     {
       "name": "align",
-      "total_uses": 15,
+      "total_uses": 17,
       "failed_uses": 0
     },
     {
       "name": "button",
-      "total_uses": 25,
+      "total_uses": 29,
       "failed_uses": 0
     }
   ]

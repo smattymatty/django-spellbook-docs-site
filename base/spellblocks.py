@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)  # Or a more specific logger
 @SpellBlockRegistry.register()
 class LabelSeperatorSpellBlock(BasicSpellBlock):
     name = "label_seperator"
-    template = "base/blocks/label_seperator.html"  # Main template for the label_seperator block
+    template = "base/blocks/label_seperator.html"
 
     DEFAULT_ALIGN = "center"
     DEFAULT_TEXT_COLOR = "info-75"
