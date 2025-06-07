@@ -20,7 +20,7 @@ class StoredMarkdown(models.Model):
     html_content = models.TextField(
         blank=True,
         editable=False,
-        help_text="The HTML rendered from the Markdown content by django-spellbook.",
+        help_text="HTML rendered from the Markdown by django-spellbook.",
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,18 +35,7 @@ class StoredMarkdown(models.Model):
         *args,
         **kwargs,
     ):
-        # Step 1: Attempt to sanitize the raw Markdown input to remove dangerous HTML tags
-        # This applies bleach directly to the markdown_content string.
-        # Note: This is an unconventional use of Bleach. Bleach is an HTML sanitizer.
-        # Applying it to Markdown might strip legitimate Markdown constructs if they resemble HTML
-        # or if you want to allow some HTML within your Markdown that Bleach might strip.
-
-        # For this pre-sanitization of Markdown, you are deciding what HTML-like constructs
-        # are "bad" within the Markdown itself. If your goal is primarily to remove <script> tags
-        # from the Markdown before it's even processed by the Markdown parser:
-
         markdown_allowed_tags = [
-            # Basic formatting often allowed in Markdown contexts if not using pure Markdown syntax
             "p",
             "br",
             "strong",
@@ -95,9 +84,6 @@ class StoredMarkdown(models.Model):
             strip_comments=True,
         )
 
-        # Step 2: Render the (potentially) "bleached" Markdown to HTML using django-spellbook
-        # Now, render_spellbook_markdown_to_html processes a version of the markdown
-        # that has had certain HTML tags pre-emptively removed.
         self.html_content = render_spellbook_markdown_to_html(
             markdown_string=str(bleached_markdown),  # Use the bleached version
         )

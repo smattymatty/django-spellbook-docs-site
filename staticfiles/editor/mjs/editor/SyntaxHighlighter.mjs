@@ -210,21 +210,21 @@ class SyntaxHighlighter {
    */
   handleFocus() {
     console.log("[SyntaxHighlighter] Focus event detected");
-    
+
     // Immediately fade out for responsive feel - override CSS transition
     if (this.highlightContainer) {
-      this.highlightContainer.style.transition = "opacity 0.15s ease-out";
+      this.highlightContainer.style.transition = "opacity 0.1s ease-out";
       this.highlightContainer.style.opacity = "0.05";
     }
-    
+
     // Then snap to position and fade back in
     setTimeout(() => {
       this.syncDimensions(); // This is what makes it perfect on resize!
       this.updateHighlighting();
-      
+
       // Fade back in after snap with smooth transition
       if (this.highlightContainer) {
-        this.highlightContainer.style.transition = "opacity 0.3s ease-in";
+        this.highlightContainer.style.transition = "opacity 0.45s ease-in";
         this.highlightContainer.style.opacity = "";
       }
     }, 100);
@@ -235,23 +235,23 @@ class SyntaxHighlighter {
    */
   handleBlur() {
     console.log("[SyntaxHighlighter] Blur event detected");
-    
+
     // Immediately fade out for responsive feel - override CSS transition
     if (this.highlightContainer) {
-      this.highlightContainer.style.transition = "opacity 0.15s ease-out";
-      this.highlightContainer.style.opacity = "0.05";
+      this.highlightContainer.style.transition = "opacity 0.022s ease-out";
+      this.highlightContainer.style.opacity = "0.00";
     }
-    
+
     // Then snap to position and fade back in
     setTimeout(() => {
       console.log(
         "[SyntaxHighlighter] Triggering resize event to snap into perfect position",
       );
       window.dispatchEvent(new Event("resize"));
-      
+
       // Fade back in after snap with smooth transition
       if (this.highlightContainer) {
-        this.highlightContainer.style.transition = "opacity 0.3s ease-in";
+        this.highlightContainer.style.transition = "opacity 0.22s ease-in";
         this.highlightContainer.style.opacity = "";
       }
     }, 300);
@@ -588,38 +588,38 @@ class SyntaxHighlighter {
   calculateResponsiveLeftOffset() {
     const isFocused = document.activeElement === this.editorElement;
     const width = window.innerWidth;
-
+    const unFocusedMovement = "-0.52rem";
     // Responsive breakpoints to match editor movement at different screen sizes
     // 0px is perfect for mobile and small screens
     if (width < 768) {
-      return "0px";
+      return "-0.22rem";
     } else if (width >= 768 && width < 850) {
-      return isFocused ? "1.5rem" : "-0.5rem";
+      return isFocused ? "1.5rem" : unFocusedMovement;
     } else if (width >= 850 && width < 900) {
-      return isFocused ? "1.6rem" : "-0.5rem";
+      return isFocused ? "1.53rem" : unFocusedMovement;
     } else if (width >= 900 && width < 950) {
-      return isFocused ? "1.7rem" : "-0.5rem";
+      return isFocused ? "1.5rem" : unFocusedMovement;
     } else if (width >= 950 && width < 1000) {
-      return isFocused ? "1.8rem" : "-0.5rem";
+      return isFocused ? "1.48rem" : unFocusedMovement;
     } else if (width >= 1000 && width < 1075) {
-      return isFocused ? "1.9rem" : "-0.5rem";
+      return isFocused ? "1.46rem" : unFocusedMovement;
     } else if (width >= 1075 && width < 1150) {
-      return isFocused ? "2rem" : "-0.5rem";
+      return isFocused ? "1.44rem" : unFocusedMovement;
     } else if (width >= 1150 && width < 1200) {
-      return isFocused ? "2.1rem" : "-0.5rem";
+      return isFocused ? "1.42rem" : unFocusedMovement;
     } else if (width >= 1200 && width < 1250) {
-      return isFocused ? "2.2rem" : "-0.5rem";
+      return isFocused ? "1.4rem" : unFocusedMovement;
     } else if (width >= 1250 && width < 1400) {
-      return isFocused ? "2.3rem" : "-0.5rem";
+      return isFocused ? "2.58rem" : unFocusedMovement;
     } else if (width >= 1400 && width < 1600) {
-      return isFocused ? "2.3rem" : "-0.5rem";
+      return isFocused ? "2.58rem" : unFocusedMovement;
     } else if (width >= 1600 && width < 1800) {
-      return isFocused ? "2.4rem" : "-0.5rem";
+      return isFocused ? "2.58rem" : unFocusedMovement;
     } else if (width >= 1800 && width < 2000) {
-      return isFocused ? "2.5rem" : "-0.5rem";
+      return isFocused ? "2.58rem" : unFocusedMovement;
     } else {
       // Very large screens
-      return isFocused ? "4.4rem" : "-0.5rem";
+      return isFocused ? "4.5rem" : unFocusedMovement;
     }
   }
 
