@@ -9,7 +9,7 @@ cssbeautifier==1.15.1
 dill==0.4.0
 Django==5.1b1
 django-htmx==1.23.0
-django-spellbook==0.1.15
+django-spellbook==0.1.16b3
 django-stubs==5.2.0
 django-stubs-ext==5.2.0
 djangorestframework==3.16.0
