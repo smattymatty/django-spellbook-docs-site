@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 def index(request):
     template = "RPG/base.html"
-    context = {}
+    context = {"hide_editor_button_from_banner": True}
     return render(request, template, context)
 
 

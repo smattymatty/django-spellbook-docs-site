@@ -202,7 +202,7 @@ const editor = await EditorManager.create('markdown-input', {
 // All shortcuts work automatically once editor is initialized
 // Focus the editor and use:
 // Ctrl/⌘ + B: Bold text
-// Ctrl/⌘ + I: Italic text  
+// Ctrl/⌘ + I: Italic text
 // Ctrl/⌘ + K: Insert link
 // Ctrl/⌘ + Shift + C: Inline code
 // Ctrl/⌘ + Shift + K: Code block
@@ -241,7 +241,7 @@ buttonBar.addButton({
 
 // Register custom action
 buttonBar.addCustomAction('myCustomAction', (config) => {
-    console.log('Custom action executed!');
+    //console.log('Custom action executed!');
 });
 
 // Trigger formatting programmatically
@@ -256,7 +256,7 @@ class CustomFormatter extends MarkdownFormatter {
     getSupportedFormats() {
         return ['spoiler', 'highlight'];
     }
-    
+
     format(formatType, options = {}) {
         if (formatType === 'spoiler') {
             this.wrapSelection('||', '||', 'spoiler text');
@@ -308,12 +308,12 @@ Performance Tests        ✅ 100% (8 tests)
 async testNewFeature() {
     // Setup
     const component = new SomeComponent();
-    
+
     // Test
     const result = component.doSomething();
-    
+
     // Assert
-    this.addResult('ComponentName', 'testName', 
+    this.addResult('ComponentName', 'testName',
         result === expectedValue,
         'Should do something correctly'
     );
@@ -417,15 +417,15 @@ const editor = await EditorManager.create('markdown-input', {
 ```javascript
 // Get comprehensive status
 const status = editor.getStatus();
-console.log('Editor Status:', status);
+//console.log('Editor Status:', status);
 
 // Get button bar status
 const buttonBarStatus = buttonBar.getStatus();
-console.log('Button Bar Status:', buttonBarStatus);
+//console.log('Button Bar Status:', buttonBarStatus);
 
 // Get keyboard shortcut status
 const shortcutManager = buttonBar.eventCoordinator.getKeyboardShortcutManager();
-console.log('Keyboard Shortcuts:', shortcutManager.getStatus());
+//console.log('Keyboard Shortcuts:', shortcutManager.getStatus());
 ```
 
 ### Testing Keyboard Shortcuts
@@ -436,7 +436,7 @@ console.log('Keyboard Shortcuts:', shortcutManager.getStatus());
 // Or run automated tests
 import('./mjs/tests/KeyboardShortcutManager.test.mjs')
     .then(module => new module.default().runAllTests())
-    .then(results => console.log(results));
+    .then(results => //console.log(results));
 ```
 
 ### Performance Monitoring
@@ -575,8 +575,8 @@ The SpellBlock detection system consists of:
 // Get current SpellBlock context
 const context = cursorTracker.getFormattingContext();
 if (context.isSpellBlock) {
-    console.log(`Editing: ${context.spellBlock.blockName}`);
-    console.log(`Within params: ${context.spellBlock.isWithinOpeningTag}`);
+    //console.log(`Editing: ${context.spellBlock.blockName}`);
+    //console.log(`Within params: ${context.spellBlock.isWithinOpeningTag}`);
 }
 
 // Programmatically trigger SpellBlock insertion

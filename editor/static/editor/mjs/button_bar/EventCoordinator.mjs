@@ -89,7 +89,7 @@ export class EventCoordinator {
      * @private
      */
     handleButtonClick(event) {
-        console.log('[EventCoordinator] Button click detected:', event.target);
+        //console.log('[EventCoordinator] Button click detected:', event.target);
         
         // Track the click event for modifier key detection
         this.lastClickEvent = event;
@@ -100,7 +100,7 @@ export class EventCoordinator {
         event.stopImmediatePropagation();
         
         const button = event.target.closest('button');
-        console.log('[EventCoordinator] Found button:', button, 'ID:', button?.id);
+        //console.log('[EventCoordinator] Found button:', button, 'ID:', button?.id);
         
         if (!button || !button.id) {
             console.warn('[EventCoordinator] No button or button ID found');
@@ -109,7 +109,7 @@ export class EventCoordinator {
         
         // Handle dropdown button specially since it's not in main configs
         if (button.id === 'spellblock-dropdown-btn') {
-            console.log('[EventCoordinator] Handling dropdown button directly');
+            //console.log('[EventCoordinator] Handling dropdown button directly');
             this.handleSpellBlockDropdown();
             
             // Clear the click event tracking
@@ -120,14 +120,14 @@ export class EventCoordinator {
         }
         
         const buttonConfig = this.configManager.getButtonById(button.id);
-        console.log('[EventCoordinator] Button config:', buttonConfig);
+        //console.log('[EventCoordinator] Button config:', buttonConfig);
         
         if (!buttonConfig) {
             console.warn('[EventCoordinator] Button configuration not found:', button.id);
             return;
         }
         
-        console.log('[EventCoordinator] Executing action:', buttonConfig.action);
+        //console.log('[EventCoordinator] Executing action:', buttonConfig.action);
         this.executeAction(buttonConfig);
         
         // Clear the click event tracking

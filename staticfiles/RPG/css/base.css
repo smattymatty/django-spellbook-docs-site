@@ -61,7 +61,8 @@
     left: -22px;
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
-    color: var(--rpg-black);
+    color: var(--rpg-tan);
+    opacity: 0.5;
     font-size: 0.9rem;
     line-height: 1.8;
     text-shadow:

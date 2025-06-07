@@ -209,8 +209,6 @@ class SyntaxHighlighter {
    * Handle focus event
    */
   handleFocus() {
-    console.log("[SyntaxHighlighter] Focus event detected");
-
     // Immediately fade out for responsive feel - override CSS transition
     if (this.highlightContainer) {
       this.highlightContainer.style.transition = "opacity 0.1s ease-out";
@@ -234,8 +232,6 @@ class SyntaxHighlighter {
    * Handle blur event
    */
   handleBlur() {
-    console.log("[SyntaxHighlighter] Blur event detected");
-
     // Immediately fade out for responsive feel - override CSS transition
     if (this.highlightContainer) {
       this.highlightContainer.style.transition = "opacity 0.022s ease-out";
@@ -244,9 +240,6 @@ class SyntaxHighlighter {
 
     // Then snap to position and fade back in
     setTimeout(() => {
-      console.log(
-        "[SyntaxHighlighter] Triggering resize event to snap into perfect position",
-      );
       window.dispatchEvent(new Event("resize"));
 
       // Fade back in after snap with smooth transition
@@ -490,10 +483,6 @@ class SyntaxHighlighter {
    * This ensures the highlighting snaps to exactly the right position
    */
   forceSync() {
-    console.log(
-      "[SyntaxHighlighter] Force sync - mimicking window resize behavior",
-    );
-
     // Step 1: Clear any existing transforms to reset state
     if (this.highlightContainer) {
       Object.assign(this.highlightContainer.style, {
@@ -506,9 +495,6 @@ class SyntaxHighlighter {
     // Step 2: Wait for CSS to settle, then sync like window resize does
     setTimeout(() => {
       this.syncDimensions();
-      console.log(
-        "[SyntaxHighlighter] Force sync completed - should be perfectly positioned now",
-      );
     }, 50);
   }
 
@@ -531,13 +517,6 @@ class SyntaxHighlighter {
     const transform = editorStyles.transform;
     const minHeight = editorStyles.minHeight;
 
-    console.log("[SyntaxHighlighter] Copying textarea transforms:", {
-      marginLeft,
-      transform,
-      minHeight,
-      isFocused: document.activeElement === this.editorElement,
-    });
-
     // Update container position and size to match textarea exactly
     Object.assign(this.highlightContainer.style, {
       top: `${this.editorElement.offsetTop}px`,
@@ -553,15 +532,6 @@ class SyntaxHighlighter {
 
     // Calculate responsive left offset based on screen width to match editor.css media queries
     const leftOffset = this.calculateResponsiveLeftOffset();
-
-    console.log("[SyntaxHighlighter] Positioning debug:", {
-      containerLeft: this.highlightContainer.style.left,
-      containerMarginLeft: this.highlightContainer.style.marginLeft,
-      containerTransform: this.highlightContainer.style.transform,
-      layerLeftOffset: leftOffset,
-      screenWidth: window.innerWidth,
-      isFocused: document.activeElement === this.editorElement,
-    });
 
     // Update layer to match textarea dimensions and styling
     Object.assign(this.highlightLayer.style, {

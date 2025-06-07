@@ -49,6 +49,15 @@
                 </nav>
             </div>
         </header>
+        {% if not hide_editor_button_from_banner %}
+        <div class="sb-flex sb-justify-between sb-items-center sb-text-center sb-gap-4">
+            <a href="{% url 'editor:home' %}"
+                class="top-banner-button sb-bg-accent-75 sb-text-center sb-hover:bg-accent sb-grow
+                sb-transition-all sb-duration-300 sb-ease-in-out sb-cursor-pointer sb-hover:black">
+                Try the New Markdown Editor!
+            </a>
+        </div>
+        {% endif %}
         <main class="container">
             {% block content %}{% endblock %}
         </main>

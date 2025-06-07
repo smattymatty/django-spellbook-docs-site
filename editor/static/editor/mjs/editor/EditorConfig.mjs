@@ -37,8 +37,8 @@ class EditorConfig {
       // Event configuration
       events: {
         debounceDelay: 100,
-        enableFocusLogging: true,
-        enableBlurLogging: true,
+        enableFocusLogging: false,
+        enableBlurLogging: false,
       },
 
       // Performance settings
