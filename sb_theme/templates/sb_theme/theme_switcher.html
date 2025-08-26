@@ -1,0 +1,419 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Theme Switcher - Django Spellbook{% endblock %}
+
+{% block extra_style %}
+<style>
+    .theme-option {
+        transition: all 0.3s ease;
+    }
+    
+    .theme-option:hover {
+        transform: translateY(-2px);
+    }
+    
+    .theme-option.active {
+        animation: pulse 0.5s ease;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    .component-demo {
+        transition: all 0.3s ease;
+    }
+    
+    /* Mode Toggle Styles */
+    .mode-toggle-wrapper {
+        position: relative;
+        display: flex;
+        background: var(--surface-color, #f5f5f5);
+        border-radius: 25px;
+        padding: 4px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mode-option {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: transparent;
+        border: none;
+        border-radius: 20px;
+        color: var(--text-secondary, #666);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .mode-option:hover {
+        color: var(--text-color, #333);
+    }
+    
+    .mode-option.active {
+        color: var(--background-color, #fff);
+    }
+    
+    .mode-icon {
+        font-size: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .mode-indicator {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        height: calc(100% - 8px);
+        background: var(--primary-color, #3b82f6);
+        border-radius: 20px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mode-indicator.dark {
+        transform: translateX(100%);
+        background: var(--secondary-color, #1e293b);
+    }
+    
+    /* Animation for mode switch */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .mode-toggle-container {
+        animation: slideIn 0.3s ease-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="sb-max-w-7xl sb-mx-auto sb-p-4" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <!-- Header Section -->
+    <div class="sb-text-center sb-mb-8">
+        <h1 class="sb-text-5xl sb-font-bold sb-text-primary sb-mb-4">
+            Theme Gallery
+        </h1>
+        <p class="sb-text-xl sb-text-text-secondary">
+            Choose your visual adventure - instantly preview themes with HTMX magic
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="sb-grid sb-grid-cols-1 sb-lg:grid-cols-3 sb-gap-6">
+        
+        <!-- Theme Selector Panel -->
+        <div class="sb-lg:col-span-1">
+            <div class="sb-card sb-sticky sb-top-4">
+                <div class="sb-card-header sb-bg-primary sb-text-text">
+                    <h2 class="sb-text-xl sb-font-bold">Select Theme</h2>
+                </div>
+                <div class="sb-card-body sb-p-4">
+                    <div class="sb-space-y-3">
+                        {% for theme in themes %}
+                        <button 
+                            hx-post="{% url 'sb_theme:set-theme' %}"
+                            hx-vals='{"theme": "{{ theme }}"}'
+                            hx-target="#color-preview"
+                            hx-swap="innerHTML"
+                            hx-trigger="click"
+                            class="theme-option sb-w-full sb-p-3 sb-text-left sb-rounded-lg sb-transition-all
+                                   {% if theme == current_theme %}
+                                   sb-bg-primary sb-text-white sb-shadow-lg active
+                                   {% else %}
+                                   sb-bg-surface sb-text-text sb-hover:bg-primary-25 sb-border sb-border-neutral-50
+                                   {% endif %}">
+                            <span class="sb-font-semibold sb-text-lg">{{ theme|title }}</span>
+                            {% if theme == 'magical' %}
+                            <span class="sb-block sb-text-sm sb-mt-1 sb-opacity-75">Site Default</span>
+                            {% endif %}
+                            {% if theme == current_theme %}
+                            <span class="sb-block sb-text-sm sb-mt-1">✓ Currently Active</span>
+                            {% endif %}
+                        </button>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Mode Toggle -->
+                    <div class="sb-mt-6">
+                        <div class="mode-toggle-container">
+                            <div class="mode-toggle-wrapper">
+                                <button 
+                                    id="light-mode-btn"
+                                    hx-post="{% url 'sb_theme:set-theme' %}"
+                                    hx-vals='{"theme": "{{ current_theme }}", "mode": "light"}'
+                                    hx-target="#color-preview"
+                                    hx-swap="innerHTML"
+                                    hx-trigger="click"
+                                    class="mode-option {% if current_mode == 'light' %}active{% endif %}">
+                                    <span class="mode-icon">☀️</span>
+                                    <span class="mode-label">Light</span>
+                                </button>
+                                <button 
+                                    id="dark-mode-btn"
+                                    hx-post="{% url 'sb_theme:set-theme' %}"
+                                    hx-vals='{"theme": "{{ current_theme }}", "mode": "dark"}'
+                                    hx-target="#color-preview"
+                                    hx-swap="innerHTML"
+                                    hx-trigger="click"
+                                    class="mode-option {% if current_mode == 'dark' %}active{% endif %}">
+                                    <span class="mode-icon">🌙</span>
+                                    <span class="mode-label">Dark</span>
+                                </button>
+                                <div class="mode-indicator {% if current_mode == 'dark' %}dark{% endif %}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reset Button -->
+                    <div class="sb-mt-6">
+                        <button 
+                            hx-post="{% url 'sb_theme:reset-theme' %}"
+                            hx-target="#color-preview"
+                            hx-swap="innerHTML"
+                            hx-trigger="click"
+                            class="sb-btn sb-btn-outline sb-w-full">
+                            Reset to Default
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Preview Panel -->
+        <div class="sb-lg:col-span-2">
+            <div class="sb-card">
+                <div class="sb-card-header sb-bg-surface sb-border-b sb-border-neutral-50">
+                    <h2 class="sb-text-xl sb-font-bold sb-text-primary">Color Palette</h2>
+                </div>
+                <div class="sb-card-body sb-p-6">
+                    {% include 'sb_theme/partials/color_preview.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Components Showcase -->
+    <div class="sb-mt-8">
+        <h2 class="sb-text-3xl sb-font-bold sb-text-primary sb-mb-6 sb-text-center">
+            Components Preview
+        </h2>
+        
+        <!-- Buttons Demo -->
+        <div class="sb-card sb-mb-6">
+            <div class="sb-card-header">
+                <h3 class="sb-text-xl sb-font-semibold sb-text-secondary">Buttons</h3>
+            </div>
+            <div class="sb-card-body sb-p-6">
+                <div class="sb-flex sb-gap-3 sb-flex-wrap">
+                    <button class="sb-btn sb-btn-primary">Primary Action</button>
+                    <button class="sb-btn sb-btn-secondary">Secondary</button>
+                    <button class="sb-btn sb-btn-accent">Accent CTA</button>
+                    <button class="sb-btn sb-btn-outline">Outline</button>
+                    <button class="sb-btn sb-btn-ghost">Ghost</button>
+                    <button class="sb-btn sb-btn-primary" disabled>Disabled</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts Demo -->
+        <div class="sb-card sb-mb-6">
+            <div class="sb-card-header">
+                <h3 class="sb-text-xl sb-font-semibold sb-text-secondary">Alert Messages</h3>
+            </div>
+            <div class="sb-card-body sb-p-6 sb-space-y-3">
+                <div class="sb-alert sb-alert-info">
+                    <strong>Pro Tip:</strong> Themes automatically adapt to your content structure
+                </div>
+                <div class="sb-alert sb-alert-success">
+                    <strong>Success!</strong> Your theme has been applied successfully
+                </div>
+                <div class="sb-alert sb-alert-warning">
+                    <strong>Notice:</strong> Theme changes are saved in your session
+                </div>
+                <div class="sb-alert sb-alert-error">
+                    <strong>Oops!</strong> This is what errors look like in this theme
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Variations -->
+        <div class="sb-grid sb-grid-cols-1 sb-md:grid-cols-3 sb-gap-4 sb-mb-6">
+            <div class="sb-card sb-shadow-lg sb-hover:shadow-xl sb-transition-shadow">
+                <div class="sb-card-header sb-bg-primary sb-text-text">
+                    <h4 class="sb-font-bold">Featured Card</h4>
+                </div>
+                <div class="sb-card-body">
+                    <p class="sb-text-text-secondary">This card style draws attention with primary colors.</p>
+                    <div class="sb-mt-4">
+                        <button class="sb-btn sb-btn-primary sb-btn-sm sb-w-full">Explore</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sb-card sb-bg-accent-25 sb-border-2 sb-border-accent">
+                <div class="sb-card-header sb-bg-accent sb-text-text">
+                    <h4 class="sb-font-bold">Accent Card</h4>
+                </div>
+                <div class="sb-card-body">
+                    <div class="sb-w-full sb-h-1 sb-bg-accent"></div>
+                    <p class="sb-text-text">Perfect for calls-to-action and special content.</p>
+                    <div class="sb-mt-4 sb-flex sb-gap-2">
+                        <span class="sb-badge sb-bg-accent sb-text-text">New</span>
+                        <span class="sb-badge sb-bg-primary sb-text-text">Hot</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sb-card sb-border sb-border-neutral-50">
+                <div class="sb-card-header">
+                    <h4 class="sb-font-bold sb-text-primary">Standard Card</h4>
+                </div>
+                <div class="sb-card-body">
+                    <p class="sb-text-text-secondary">Clean and simple for regular content.</p>
+                    <div class="sb-mt-4">
+                        <a href="#" class="sb-text-primary sb-hover:text-primary-75">Learn more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Elements -->
+        <div class="sb-card sb-mb-6">
+            <div class="sb-card-header">
+                <h3 class="sb-text-xl sb-font-semibold sb-text-secondary">Form Elements</h3>
+            </div>
+            <div class="sb-card-body sb-p-6">
+                <div class="sb-grid sb-grid-cols-1 sb-md:grid-cols-2 sb-gap-4">
+                    <div>
+                        <label class="sb-block sb-text-sm sb-font-medium sb-text-text sb-mb-2">
+                            Text Input
+                        </label>
+                        <input type="text" placeholder="Enter some text..." 
+                               class="sb-w-full sb-px-3 sb-py-2 sb-border sb-border-neutral-50 sb-rounded-lg sb-bg-surface sb-text-text sb-focus:border-primary sb-focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="sb-block sb-text-sm sb-font-medium sb-text-text sb-mb-2">
+                            Select Dropdown
+                        </label>
+                        <select class="sb-w-full sb-px-3 sb-py-2 sb-border sb-border-neutral-50 sb-rounded-lg sb-bg-surface sb-text-text sb-focus:border-primary sb-focus:outline-none">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Badges Collection -->
+        <div class="sb-card">
+            <div class="sb-card-header">
+                <h3 class="sb-text-xl sb-font-semibold sb-text-secondary">Badge Varieties</h3>
+            </div>
+            <div class="sb-card-body sb-p-6">
+                <div class="sb-flex sb-gap-2 sb-flex-wrap">
+                    <span class="sb-badge sb-bg-primary sb-text-white">Primary</span>
+                    <span class="sb-badge sb-bg-secondary sb-text-white">Secondary</span>
+                    <span class="sb-badge sb-bg-accent sb-text-white">Accent</span>
+                    <span class="sb-badge sb-bg-success sb-text-white">Success</span>
+                    <span class="sb-badge sb-bg-warning sb-text-white">Warning</span>
+                    <span class="sb-badge sb-bg-error sb-text-white">Error</span>
+                    <span class="sb-badge sb-bg-info sb-text-white">Info</span>
+                    <span class="sb-badge sb-bg-neutral sb-text-white">Neutral</span>
+                    <span class="sb-badge sb-bg-emphasis sb-text-white">Emphasis</span>
+                    <span class="sb-badge sb-bg-distinct sb-text-white">Distinct</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="sb-mt-12 sb-mb-8">
+        <div class="sb-card sb-bg-gradient-to-r sb-from-primary-25 sb-to-accent-25 sb-border-2 sb-border-primary">
+            <div class="sb-card-body sb-p-8 sb-text-center">
+                <h3 class="sb-text-3xl sb-font-bold sb-text-primary sb-mb-4">
+                    Want Your Own Custom Theme?
+                </h3>
+                <p class="sb-text-lg sb-text-text sb-mb-6">
+                    Design your perfect color scheme with our visual Theme Builder Wizard
+                </p>
+                <div class="sb-flex sb-justify-center sb-gap-4">
+                    <a href="{% url 'sb_theme:theme-builder' %}" 
+                       class="sb-btn sb-btn-primary sb-btn-lg">
+                        Launch Theme Builder
+                    </a>
+                    <a href="{% url 'docs:introduction' %}" 
+                       class="sb-btn sb-btn-outline sb-btn-lg">
+                        Read Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Add smooth theme switching feedback
+document.addEventListener('htmx:afterRequest', function(evt) {
+    if (evt.detail.successful) {
+        // Visual feedback for successful theme change
+        const preview = document.getElementById('color-preview');
+        if (preview) {
+            preview.style.opacity = '0';
+            setTimeout(() => {
+                preview.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Update mode toggle state if it was a mode change
+        if (evt.detail.elt && (evt.detail.elt.id === 'light-mode-btn' || evt.detail.elt.id === 'dark-mode-btn')) {
+            const lightBtn = document.getElementById('light-mode-btn');
+            const darkBtn = document.getElementById('dark-mode-btn');
+            const indicator = document.querySelector('.mode-indicator');
+            
+            if (evt.detail.elt.id === 'light-mode-btn') {
+                lightBtn.classList.add('active');
+                darkBtn.classList.remove('active');
+                indicator.classList.remove('dark');
+            } else {
+                darkBtn.classList.add('active');
+                lightBtn.classList.remove('active');
+                indicator.classList.add('dark');
+            }
+        }
+    }
+});
+
+// Initialize mode toggle on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click feedback animation
+    document.querySelectorAll('.mode-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+    });
+});
+</script>
+{% endblock %}

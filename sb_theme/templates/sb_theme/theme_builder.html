@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Theme Builder - Django Spellbook{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'sb_theme/css/theme-builder.css' %}">
+<style>
+    /* Set CSS variables from Django theme colors */
+    :root {
+        /* Django Spellbook theme colors as CSS variables - Light Mode by default */
+        --sb-primary: {{ light_colors.primary|default:"#3b82f6" }};
+        --sb-secondary: {{ light_colors.secondary|default:"#64748b" }};
+        --sb-accent: {{ light_colors.accent|default:"#f59e0b" }};
+        --sb-neutral: {{ light_colors.neutral|default:"#6b7280" }};
+        --sb-success: {{ light_colors.success|default:"#10b981" }};
+        --sb-warning: {{ light_colors.warning|default:"#f59e0b" }};
+        --sb-error: {{ light_colors.error|default:"#ef4444" }};
+        --sb-info: {{ light_colors.info|default:"#3b82f6" }};
+        --sb-background: {{ light_colors.background|default:"#ffffff" }};
+        --sb-surface: {{ light_colors.surface|default:"#f8fafc" }};
+        --sb-text: {{ light_colors.text|default:"#1e293b" }};
+        --sb-text-secondary: #64748b; /* Set via JS due to hyphen in key */
+        --sb-emphasis: {{ light_colors.emphasis|default:"#7c3aed" }};
+        --sb-subtle: {{ light_colors.subtle|default:"#f1f5f9" }};
+        --sb-distinct: {{ light_colors.distinct|default:"#ec4899" }};
+        --sb-danger: {{ light_colors.danger|default:"#dc2626" }};
+    }
+    
+    /* Dark mode colors stored as data attributes */
+    [data-theme-mode="dark"] {
+        --sb-primary: {{ dark_colors.primary|default:"#60a5fa" }};
+        --sb-secondary: {{ dark_colors.secondary|default:"#94a3b8" }};
+        --sb-accent: {{ dark_colors.accent|default:"#fbbf24" }};
+        --sb-neutral: {{ dark_colors.neutral|default:"#9ca3af" }};
+        --sb-success: {{ dark_colors.success|default:"#34d399" }};
+        --sb-warning: {{ dark_colors.warning|default:"#fbbf24" }};
+        --sb-error: {{ dark_colors.error|default:"#f87171" }};
+        --sb-info: {{ dark_colors.info|default:"#60a5fa" }};
+        --sb-background: {{ dark_colors.background|default:"#0f172a" }};
+        --sb-surface: {{ dark_colors.surface|default:"#1e293b" }};
+        --sb-text: {{ dark_colors.text|default:"#f1f5f9" }};
+        --sb-text-secondary: #94a3b8; /* Set via JS due to hyphen in key */
+        --sb-emphasis: {{ dark_colors.emphasis|default:"#a78bfa" }};
+        --sb-subtle: {{ dark_colors.subtle|default:"#1e293b" }};
+        --sb-distinct: {{ dark_colors.distinct|default:"#f472b6" }};
+        --sb-danger: {{ dark_colors.danger|default:"#ef4444" }};
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="theme-builder-container">
+    <!-- Hero Section -->
+    <div class="sb-container sb-mx-auto">
+        <div class="theme-builder-hero sb-text-center sb-py-12 sb-px-6 sb-bg-gradient-to-r sb-from-primary-10 sb-via-accent-10 sb-to-primary-10 sb-rounded-2xl sb-mb-8 sb-shadow-lg">
+            <h1 class="hero-title sb-text-4xl sb-font-extrabold sb-mb-3 sb-bg-gradient-to-r sb-from-primary sb-to-accent sb-bg-clip-text sb-text-transparent">🎨 Theme Builder Wizard</h1>
+            <p class="hero-subtitle sb-text-lg sb-text-text-secondary sb-mb-6">Create perfect light & dark mode themes for Django Spellbook</p>
+            
+            <!-- Preset Themes -->
+            <div class="preset-themes sb-flex sb-gap-2 sb-justify-center sb-flex-wrap">
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="arcane">🔮 Arcane</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="celestial">✨ Celestial</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="phoenix">🔥 Phoenix</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="forest">🌲 Forest</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="ocean">🌊 Ocean</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="sunset">🌅 Sunset</button>
+                <button class="preset-btn sb-btn sb-btn-outline sb-btn-sm" data-preset="midnight">🌙 Midnight</button>
+                <button class="preset-btn" data-preset="custom">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Builder Grid -->
+    <div class="theme-builder-grid sb-grid sb-grid-cols-1 lg:sb-grid-cols-2 sb-gap-6 sb-max-w-7xl sb-mx-auto sb-px-4">
+        <!-- Color Configuration with Mode Support -->
+        <div class="mode-tabs-container sb-bg-surface sb-rounded-lg sb-shadow-lg sb-p-6">
+            <!-- Mode Tabs -->
+            <div class="mode-tabs sb-bg-neutral-10 sb-p-1 sb-rounded-lg sb-flex sb-gap-2">
+                <button class="mode-tab active sb-flex-1 sb-py-2 sb-px-4 sb-rounded-md sb-font-semibold sb-transition-all" data-mode="light">
+                    <span class="mode-icon">☀️</span>
+                    <span>Light Mode</span>
+                </button>
+                <button class="mode-tab sb-flex-1 sb-py-2 sb-px-4 sb-rounded-md sb-font-semibold sb-transition-all" data-mode="dark">
+                    <span class="mode-icon">🌙</span>
+                    <span>Dark Mode</span>
+                </button>
+            </div>
+
+            <!-- Mode Panels -->
+            <div class="mode-panels">
+                <!-- Light Mode Panel -->
+                <div id="light-mode-panel" class="mode-panel active">
+                    <div class="mode-actions sb-flex sb-gap-3 sb-mb-4 sb-p-3 sb-bg-primary-10 sb-rounded-lg sb-border sb-border-primary-20">
+                        <button class="mode-action-btn sb-btn sb-btn-outline sb-btn-sm" id="copy-to-dark">
+                            <span>→</span>
+                            <span>Copy to Dark</span>
+                        </button>
+                        <button class="mode-action-btn sb-btn sb-btn-outline sb-btn-sm" id="auto-dark">
+                            <span>✨</span>
+                            <span>Auto-Generate Dark</span>
+                        </button>
+                        <span class="auto-suggest-badge sb-ml-auto sb-badge sb-bg-success sb-text-white sb-px-3 sb-py-1 sb-rounded-full sb-text-xs">Smart Suggestions</span>
+                    </div>
+                    
+                    <div id="light-color-picker-container">
+                        <!-- Light mode color pickers will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Dark Mode Panel -->
+                <div id="dark-mode-panel" class="mode-panel">
+                    <div class="mode-actions sb-flex sb-gap-3 sb-mb-4 sb-p-3 sb-bg-primary-10 sb-rounded-lg sb-border sb-border-primary-20">
+                        <button class="mode-action-btn sb-btn sb-btn-outline sb-btn-sm" id="copy-to-light">
+                            <span>←</span>
+                            <span>Copy to Light</span>
+                        </button>
+                        <button class="mode-action-btn sb-btn sb-btn-outline sb-btn-sm" id="optimize-contrast">
+                            <span>🎯</span>
+                            <span>Optimize Contrast</span>
+                        </button>
+                        <span class="auto-suggest-badge sb-ml-auto sb-badge sb-bg-info sb-text-white sb-px-3 sb-py-1 sb-rounded-full sb-text-xs">WCAG AA Compliant</span>
+                    </div>
+                    
+                    <div id="dark-color-picker-container">
+                        <!-- Dark mode color pickers will be generated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Generated Config Output -->
+            <div class="config-output sb-mt-6 sb-rounded-lg sb-overflow-hidden sb-border sb-border-neutral-20 sb-shadow-md">
+                <div class="config-header sb-bg-gradient-to-r sb-from-gray-800 sb-to-gray-700 sb-text-white sb-p-3 sb-flex sb-items-center sb-justify-between">
+                    <div class="config-title">
+                        <span>📄</span>
+                        <span>settings.py</span>
+                    </div>
+                    <div class="terminal-dots">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                    </div>
+                </div>
+                <textarea id="config-textarea" class="config-textarea sb-bg-gray-900 sb-text-gray-100 sb-p-4 sb-font-mono sb-text-sm" readonly placeholder="Your SPELLBOOK_THEME configuration will appear here..."></textarea>
+                <div class="config-actions sb-bg-gray-800 sb-p-3 sb-flex sb-gap-2 sb-border-t sb-border-gray-700">
+                    <button id="copy-config-btn" class="config-btn copy sb-btn sb-btn-primary sb-btn-sm">
+                        <span>📋</span>
+                        <span>Copy</span>
+                    </button>
+                    <button id="download-config-btn" class="config-btn download sb-btn sb-btn-accent sb-btn-sm">
+                        <span>💾</span>
+                        <span>Download</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Preview Panel -->
+        <div class="preview-panel sb-bg-surface sb-rounded-lg sb-shadow-lg sb-p-6 sb-sticky sb-top-4">
+            <div class="preview-header sb-flex sb-items-center sb-justify-between sb-mb-4 sb-pb-4 sb-border-b sb-border-neutral-10">
+                <h2 class="preview-title sb-text-xl sb-font-bold sb-text-primary sb-flex sb-items-center sb-gap-2">
+                    <span>👁️</span>
+                    <span>Live Preview</span>
+                </h2>
+                <div class="preview-mode-toggle sb-flex sb-items-center sb-gap-2 sb-p-1 sb-bg-neutral-10 sb-rounded-full">
+                    <button class="preview-mode-btn active" data-preview-mode="light">
+                        <span>☀️</span>
+                        <span>Light</span>
+                    </button>
+                    <button class="preview-mode-btn" data-preview-mode="dark">
+                        <span>🌙</span>
+                        <span>Dark</span>
+                    </button>
+                </div>
+                <div class="live-indicator sb-flex sb-items-center sb-gap-2 sb-px-3 sb-py-1 sb-bg-success-20 sb-border sb-border-success sb-rounded-full sb-text-sm sb-font-medium sb-text-success">
+                    <span class="live-dot sb-w-2 sb-h-2 sb-bg-success sb-rounded-full sb-animate-pulse"></span>
+                    <span>Live</span>
+                </div>
+            </div>
+            
+            <!-- Preview Tabs -->
+            <div class="preview-tabs sb-flex sb-gap-2 sb-p-2 sb-bg-neutral-10 sb-rounded-lg sb-mb-4 sb-overflow-x-auto">
+                <button class="preview-tab active sb-px-4 sb-py-2 sb-rounded-md sb-font-medium sb-text-sm sb-transition-all" data-section="components">Components</button>
+                <button class="preview-tab sb-px-4 sb-py-2 sb-rounded-md sb-font-medium sb-text-sm sb-transition-all" data-section="cards">Cards</button>
+                <button class="preview-tab sb-px-4 sb-py-2 sb-rounded-md sb-font-medium sb-text-sm sb-transition-all" data-section="forms">Forms</button>
+                <button class="preview-tab sb-px-4 sb-py-2 sb-rounded-md sb-font-medium sb-text-sm sb-transition-all" data-section="alerts">Alerts</button>
+            </div>
+            
+            <!-- Preview Content -->
+            <div class="preview-content sb-bg-background sb-rounded-lg sb-p-6 sb-border sb-border-neutral-15" id="preview-content">
+                <!-- Components Section -->
+                <div id="preview-components" class="preview-section active">
+                    <div class="component-group">
+                        <h3 class="component-title sb-text-lg sb-font-semibold sb-mb-3 sb-pb-2 sb-border-b sb-border-neutral-20">Buttons</h3>
+                        <div class="sb-flex sb-flex-wrap sb-gap-2">
+                            <button class="sb-btn sb-btn-primary">Primary</button>
+                            <button class="sb-btn sb-btn-secondary">Secondary</button>
+                            <button class="sb-btn sb-btn-accent">Accent</button>
+                            <button class="sb-btn sb-btn-success">Success</button>
+                            <button class="sb-btn sb-btn-warning">Warning</button>
+                            <button class="sb-btn sb-btn-error">Error</button>
+                        </div>
+                    </div>
+                    
+                    <div class="component-group">
+                        <h3 class="component-title sb-text-lg sb-font-semibold sb-mb-3 sb-pb-2 sb-border-b sb-border-neutral-20">Badges</h3>
+                        <div class="sb-flex sb-flex-wrap sb-gap-2">
+                            <span class="sb-badge sb-bg-primary sb-text-white sb-px-3 sb-py-1 sb-rounded-full">Primary</span>
+                            <span class="sb-badge sb-bg-secondary sb-text-white sb-px-3 sb-py-1 sb-rounded-full">Secondary</span>
+                            <span class="sb-badge sb-bg-accent sb-text-white sb-px-3 sb-py-1 sb-rounded-full">Accent</span>
+                            <span class="sb-badge sb-bg-success sb-text-white sb-px-3 sb-py-1 sb-rounded-full">Success</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cards Section -->
+                <div id="preview-cards" class="preview-section">
+                    <div class="component-group">
+                        <div class="sb-card">
+                            <div class="sb-card-header sb-bg-primary-25">
+                                <h4 class="sb-card-title sb-text-primary">Feature Card</h4>
+                            </div>
+                            <div class="sb-card-body">
+                                <p class="sb-text-text">Your theme colors in action.</p>
+                                <button class="sb-btn sb-btn-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forms Section -->
+                <div id="preview-forms" class="preview-section">
+                    <div class="component-group">
+                        <div class="sb-space-y-3">
+                            <div>
+                                <label class="sb-block sb-text-text sb-font-semibold sb-mb-1">Input Field</label>
+                                <input type="text" 
+                                       class="sb-w-full sb-px-3 sb-py-2 sb-border sb-border-neutral sb-rounded-lg sb-bg-surface sb-text-text" 
+                                       placeholder="Enter text..." 
+                                       value="Sample text">
+                            </div>
+                            
+                            <div class="sb-flex sb-gap-2">
+                                <button class="sb-btn sb-btn-primary">Submit</button>
+                                <button class="sb-btn sb-btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alerts Section -->
+                <div id="preview-alerts" class="preview-section">
+                    <div class="component-group">
+                        <div class="sb-space-y-3">
+                            <div class="sb-alert sb-alert-success">
+                                <strong>Success!</strong> Theme saved.
+                            </div>
+                            <div class="sb-alert sb-alert-info">
+                                <strong>Info:</strong> Colors update live.
+                            </div>
+                            <div class="sb-alert sb-alert-warning">
+                                <strong>Warning:</strong> Check contrast.
+                            </div>
+                            <div class="sb-alert sb-alert-danger">
+                                <strong>Error:</strong> Invalid color.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden data for JavaScript -->
+<script type="application/json" id="light-colors">{{ light_colors_json|safe }}</script>
+<script type="application/json" id="dark-colors">{{ dark_colors_json|safe }}</script>
+<script type="application/json" id="color-properties">{{ color_properties_json|safe }}</script>
+
+<!-- Theme Builder JavaScript -->
+<script src="{% static 'sb_theme/js/theme-builder.js' %}"></script>
+<script>
+    // Set the text-secondary colors from the theme data
+    document.addEventListener('DOMContentLoaded', function() {
+        const lightColors = JSON.parse(document.getElementById('light-colors').textContent);
+        const darkColors = JSON.parse(document.getElementById('dark-colors').textContent);
+        
+        // Create a style element for text-secondary colors
+        const style = document.createElement('style');
+        style.textContent = `
+            :root {
+                --sb-text-secondary: ${lightColors['text-secondary'] || '#64748b'};
+            }
+            [data-theme-mode="dark"] {
+                --sb-text-secondary: ${darkColors['text-secondary'] || '#94a3b8'};
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
+{% endblock %}

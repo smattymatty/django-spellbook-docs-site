@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "analytics",
     "api",
     "editor",
+    "sb_theme",
     "RPG",
 ]
 
@@ -82,6 +83,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "analytics.middleware.PageViewMiddleware",
+    'sb_theme.middleware.ThemeMiddleware',  # Add theme middleware
+
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -253,3 +256,76 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = (
 )  # For file parts of multipart requests
 
 MAX_API_REQUEST_SIZE = 1 * 1024 * 1024
+
+# Django Spellbook Theme Configuration
+# Custom "magical" theme with brown/tan aesthetic - supports both light and dark modes
+MAGICAL_THEME_CONFIG = {
+    'name': 'magical',
+    'modes': {
+        'light': {
+            'colors': {
+                # Core semantic colors
+                'primary': '#8b4513',      # Saddle brown - main brand color
+                'secondary': '#4a2500',    # Dark brown - supporting color
+                'accent': '#f59e0b',       # Amber - call-to-action
+                'neutral': '#d4c4a8',      # Tan - borders and dividers
+                
+                # Status colors
+                'error': '#dc2626',
+                'warning': '#f59e0b',
+                'success': '#16a34a',
+                'info': '#6ae9ff',         # Light cyan - info messages
+                
+                # Extended colors
+                'emphasis': '#8b5cf6',
+                'subtle': '#f3f4f6',
+                'distinct': '#06b6d4',
+                'aether': '#c026d3',
+                'artifact': '#ffd700',     # Gold
+                'sylvan': '#3f6212',
+                'danger': '#a80000',
+                
+                # System colors for light mode
+                'background': '#f0e6d2',   # Light tan - page background
+                'surface': '#fff9e6',      # Cream - card backgrounds
+                'text': '#2c2c2c',         # Dark gray - primary text
+                'text-secondary': '#6b7280', # Medium gray - secondary text
+            },
+            'generate_variants': True  # Creates 25%, 50%, 75% opacity versions
+        },
+        'dark': {
+            'colors': {
+                # Core semantic colors (adjusted for dark mode)
+                'primary': '#cd853f',      # Peru - lighter brown for dark mode
+                'secondary': '#daa520',    # Goldenrod - warmer for dark
+                'accent': '#ffc947',       # Brighter amber for dark
+                'neutral': '#8b7355',      # Darker tan
+                
+                # Status colors
+                'error': '#ff6b6b',
+                'warning': '#ffc947',
+                'success': '#4ade80',
+                'info': '#87ceeb',         # Sky blue for dark mode
+                
+                # Extended colors
+                'emphasis': '#a78bfa',
+                'subtle': '#1a1410',       # Very dark brown
+                'distinct': '#22d3ee',
+                'aether': '#d946ef',
+                'artifact': '#ffd700',     # Gold stays bright
+                'sylvan': '#86efac',
+                'danger': '#ef4444',
+                
+                # System colors for dark mode
+                'background': '#1a1410',   # Very dark brown - page background
+                'surface': '#2c241c',      # Dark brown - card backgrounds
+                'text': '#f0e6d2',         # Light tan - primary text (inverted)
+                'text-secondary': '#d4c4a8', # Tan - secondary text
+            },
+            'generate_variants': True
+        }
+    }
+}
+
+# Default to light mode of magical theme
+SPELLBOOK_THEME = MAGICAL_THEME_CONFIG['modes']['light']

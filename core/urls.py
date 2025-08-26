@@ -33,6 +33,7 @@ urlpatterns = [
             namespace="base",
         ),
     ),
+    path("", include("sb_theme.urls")),
     path(
         "api/v1/",
         include("api.urls"),

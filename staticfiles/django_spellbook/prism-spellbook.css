@@ -1,0 +1,298 @@
+/**
+ * Prism.js Django Spellbook Theme - Dark Terminal Style
+ * Professional terminal-like syntax highlighting for both light and dark modes
+ */
+
+/* Base styling for all code - Terminal aesthetic */
+code[class*="language-"],
+pre[class*="language-"] {
+    /* Softer terminal text color */
+    color: #d4d4d4;
+    background: transparent;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 0.95em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+/* Code blocks - Dark terminal style */
+pre[class*="language-"] {
+    padding: 1rem;
+    margin: 0.5em 0;
+    overflow: auto;
+    /* Slightly lighter dark for light mode */
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Darker background in dark mode */
+@media (prefers-color-scheme: dark) {
+    pre[class*="language-"] {
+        background: #0a0a0a;
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Inline code - Match terminal style */
+:not(pre) > code[class*="language-"] {
+    padding: 0.15em 0.3em;
+    border-radius: 3px;
+    white-space: normal;
+    background: #2d2d2d;
+    color: #d4d4d4;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+    :not(pre) > code[class*="language-"] {
+        background: #1a1a1a;
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Selection */
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+}
+
+/* Muted terminal color palette for syntax highlighting */
+
+/* Comments - Muted gray */
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6a9955 !important;
+    font-style: italic;
+}
+
+/* Punctuation - Light gray */
+.token.punctuation {
+    color: #cccccc !important;
+}
+
+/* Tags and attributes - Muted red */
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+    color: #ce9178 !important;
+}
+
+/* Function names - Soft yellow */
+.token.function-name,
+.token.function {
+    color: #dcdcaa !important;
+}
+
+/* Numbers and booleans - Muted cyan */
+.token.boolean,
+.token.number {
+    color: #b5cea8 !important;
+}
+
+/* Properties and classes - Light blue */
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+    color: #9cdcfe !important;
+}
+
+/* Keywords - Muted blue */
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+    color: #569cd6 !important;
+    font-weight: normal;
+}
+
+/* Strings - Soft orange/peach */
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+    color: #ce9178 !important;
+}
+
+/* Operators - Light gray */
+.token.operator,
+.token.entity,
+.token.url {
+    color: #d4d4d4 !important;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+/* Git diff colors - Subtle */
+.token.inserted {
+    color: #b5cea8 !important;
+    background: rgba(181, 206, 168, 0.1);
+}
+
+.token.deleted {
+    color: #ce9178 !important;
+    background: rgba(206, 145, 120, 0.1);
+}
+
+/* Line Numbers Plugin Support */
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #858585;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+
+/* Line Highlight Plugin Support */
+pre[data-line] {
+    position: relative;
+}
+
+.line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit 0;
+    margin-top: 1em;
+    background: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre;
+}
+
+/* Custom scrollbar for code blocks - Subtle terminal style */
+pre[class*="language-"]::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Toolbar Plugin Support (for copy button etc) */
+div.code-toolbar {
+    position: relative;
+}
+
+div.code-toolbar > .toolbar {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+div.code-toolbar:hover > .toolbar {
+    opacity: 1;
+}
+
+div.code-toolbar > .toolbar .toolbar-item {
+    display: inline-block;
+}
+
+div.code-toolbar > .toolbar a,
+div.code-toolbar > .toolbar button {
+    color: #d4d4d4;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+div.code-toolbar > .toolbar a:hover,
+div.code-toolbar > .toolbar button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Language label */
+.code-toolbar .toolbar-item span {
+    color: #858585;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}

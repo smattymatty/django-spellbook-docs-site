@@ -5,6 +5,13 @@
 {% block title %}Django Spellbook - Documentation{% endblock %}
 {% block extra_style %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'highlight/styles/default.min.css' %}">
+    <script src="{% static 'highlight/highlight.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+    </script>
 {% endblock %}
 {% block content %}
     <div class="padded-x-content">
@@ -97,27 +104,9 @@
                 </div>
             </ul>
         </div>
-        <div class="magical-border">
-            <h3>Get Started in Minutes</h3>
-            <p>Django Spellbook integrates with your project by generating server-side code from markdown content:</p>
-            <pre class="home-pre">pip install django-spellbook</pre>
-            <p>Configure with these essential settings:</p>
-            <code class="home-code">
-                <pre>
-INSTALLED_APPS = [
-    'django_spellbook',
-    'my_app', # for SPELLBOOK_MD_APP
-]
-
-# necessary for markdown parsing
-SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
-SPELLBOOK_MD_APP = 'my_app'
-
-# optional for markdown parsing
-SPELLBOOK_MD_BASE_TEMPLATE = '<a class="in-code-link" href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">django_spellbook/bases/base_sidebar_left.html</a>'
-        </pre>
-            </code>
-            <a href="{% spellbook_url 'docs:Markdown_quick-start' %}" class="cta-button">View Quick Start Guide</a>
+        <div class="magical-border get-started-section">
+            {{ get_started_content|safe }}
+            <a href="{% spellbook_url 'docs:Markdown_quick-start' %}" class="cta-button">View Full Quick Start Guide</a>
         </div>
     </div>
 {% endblock %}

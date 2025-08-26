@@ -134,12 +134,11 @@
 
 /* ===== Focus State Fixes ===== */
 
-/* Keep textarea background normal on focus, don't make it transparent */
+/* Keep textarea positioning on focus for proper layering */
 .editor-pane textarea:focus {
-    background-color: #ffffff !important;
-    color: #000000 !important;
     position: relative;
     z-index: 5;
+    /* Background and color are handled in editor.css with theme variables */
 }
 
 /* Ensure highlighting container has higher z-index when focused */
@@ -181,14 +180,14 @@
 /* ===== High Contrast Support ===== */
 @media (prefers-contrast: high) {
     :root {
-        --highlight-spellblock-open-bg: #1e1b4b;
-        --highlight-spellblock-open-text: #ffffff;
-        --highlight-spellblock-close-bg: #1e1b4b;
-        --highlight-spellblock-close-text: #ffffff;
-        --highlight-spellblock-name-bg: #052e16;
-        --highlight-spellblock-name-text: #ffffff;
-        --highlight-spellblock-params-bg: #78350f;
-        --highlight-spellblock-params-text: #ffffff;
+        --highlight-spellblock-open-bg: var(--primary-color);
+        --highlight-spellblock-open-text: var(--background-color);
+        --highlight-spellblock-close-bg: var(--primary-color);
+        --highlight-spellblock-close-text: var(--background-color);
+        --highlight-spellblock-name-bg: var(--success-color, #052e16);
+        --highlight-spellblock-name-text: var(--background-color);
+        --highlight-spellblock-params-bg: var(--warning-color, #78350f);
+        --highlight-spellblock-params-text: var(--background-color);
         --highlight-border-radius: 3px;
     }
 
@@ -197,7 +196,7 @@
     .spellblock-name,
     .spellblock-params {
         border: 1px solid currentColor;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--background-color) 30%, transparent);
     }
 }
 

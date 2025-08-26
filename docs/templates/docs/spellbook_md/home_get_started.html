@@ -1,0 +1,41 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="get-started-in-minutes">Get Started in Minutes</h2>
+<p>Django Spellbook integrates with your project by generating server-side code from markdown content:</p>
+<pre><code class="language-bash">pip install django-spellbook
+</code></pre>
+<p>Configure with these essential settings:</p>
+<pre><code class="language-python">INSTALLED_APPS = [
+    'django_spellbook',
+    'my_app',  # for SPELLBOOK_MD_APP
+]
+
+# Necessary for markdown parsing
+SPELLBOOK_MD_PATH = BASE_DIR / 'markdown_files'
+SPELLBOOK_MD_APP = 'my_app'
+
+# Optional for markdown parsing - customize your base template
+SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/base_sidebar_left.html'
+</code></pre>
+<h3 id="quick-setup-steps">Quick Setup Steps</h3>
+<ol>
+<li><strong>Install the package</strong> using pip</li>
+<li><strong>Add to INSTALLED_APPS</strong> in your Django settings</li>
+<li><strong>Configure paths</strong> for your markdown content</li>
+<li><strong>Run the command</strong> to generate views and templates:<br />
+<code>bash
+   python manage.py spellbook_md</code></li>
+<li><strong>Start writing</strong> magical markdown with SpellBlocks!</li>
+</ol>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Pro Tip:</strong> Check out our <a href="/docs/Markdown/quick-start/">Quick Start Guide</a> for a complete walkthrough with examples!</p>
+    </span>
+</div>
+{% endblock %}

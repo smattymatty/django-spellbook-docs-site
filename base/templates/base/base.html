@@ -45,17 +45,31 @@
                         <li>
                             <a href="{% spellbook_url 'changelog:introduction' %}">Changelog</a>
                         </li>
+                        <li class="sb-ml-4">
+                            <button id="mode-toggle" class="mode-toggle-btn" aria-label="Toggle theme mode" title="Toggle dark/light mode">
+                                <span class="mode-icon">🌙</span>
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </header>
-        {% if not hide_editor_button_from_banner %}
-        <div class="sb-flex sb-justify-between sb-items-center sb-text-center sb-gap-4">
+        {% if not hide_editor_button_from_banner or not hide_themes_button_from_banner %}
+        <div class="sb-flex sb-justify-between sb-items-center sb-text-center">
+            {% if not hide_editor_button_from_banner %}
             <a href="{% url 'editor:home' %}"
                 class="top-banner-button sb-bg-accent-75 sb-text-center sb-hover:bg-accent sb-grow
-                sb-transition-all sb-duration-300 sb-ease-in-out sb-cursor-pointer sb-hover:black">
+                sb-transition-all sb-duration-300 sb-ease-in-out sb-cursor-pointer sb-hover:text-white">
                 Try the New Markdown Editor!
             </a>
+            {% endif %}
+            {% if not hide_themes_button_from_banner %}
+            <a href="{% url 'sb_theme:theme-switcher' %}"
+                class="top-banner-button sb-bg-primary-75 sb-text-center sb-hover:bg-primary sb-grow
+                sb-transition-all sb-duration-300 sb-ease-in-out sb-cursor-pointer sb-hover:text-white">
+                Explore Themes
+            </a>
+            {% endif %}
         </div>
         {% endif %}
         <main class="container">
@@ -86,7 +100,7 @@
 
 
             <!-- Copyright section -->
-            <div class="sb-mt-2 sb-text-xs sb-text-gray-600">
+            <div class="sb-mt-2 sb-text-xs sb-text-text-secondary">
                 <p>© {% now "Y" %} Mathew Storm. All rights reserved.</p>
                 <p class="sb-mt-1">Created with ❤️ in 🇨🇦</p>
             </div>
@@ -98,9 +112,9 @@
 
             <!-- Analytics Section (hidden by default) -->
             <div id="analytics-section"
-            class="sb-mt-3 sb-text-sm sb-border-t sb-border-gray-200 sb-pt-3 sb-w-full sb-max-w-md"
+            class="sb-mt-3 sb-text-sm sb-border-t sb-border-neutral-50 sb-pt-3 sb-w-full sb-max-w-md"
             style="display: none;">
-                <h4 class="sb-white sb-opacity-50">Page Analytics</h4>
+                <h4 class="sb-text-white sb-opacity-50">Page Analytics</h4>
                 <div class="sb-grid sb-grid-cols-2 sb-gap-2 sb-mt-2 sb-opacity-50">
                     <div>
                         <p><span class="sb-font-sm">This page:</span> {{ page_views_count }} views</p>
@@ -113,7 +127,7 @@
                 </div>
 
                 {% if popular_pages %}
-                <div class="sb-mt-2 sb-white sb-opacity-50">
+                <div class="sb-mt-2 sb-text-white sb-opacity-50">
                     <h5 class="sb-font-medium">Popular Pages:</h5>
                     <ul class="sb-mt-1 sb-text-xs sb-list-disc sb-list-inside popular-page-list">
                         {% for page in popular_pages %}
@@ -142,5 +156,35 @@
                 button.textContent = 'Show Analytics';
             }
         }
+
+        // Mode toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modeToggle = document.getElementById('mode-toggle');
+            const modeIcon = modeToggle.querySelector('.mode-icon');
+            
+            // Set initial icon based on current mode
+            const currentMode = '{{ request.theme_mode|default:"light" }}';
+            modeIcon.textContent = currentMode === 'dark' ? '☀️' : '🌙';
+            
+            modeToggle.addEventListener('click', function() {
+                fetch('/api/toggle-mode/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Update icon
+                        modeIcon.textContent = data.icon;
+                        // Reload page to apply new mode
+                        setTimeout(() => location.reload(), 300);
+                    }
+                })
+                .catch(error => console.error('Error toggling mode:', error));
+            });
+        });
     </script>
 </html>

@@ -6,16 +6,16 @@
 }
 .spell-list li {
   padding: 10px;
-  background-color: #e6d8c0;
+  background-color: var(--surface-color, #e6d8c0);
   transition: transform 0.3s ease;
   transition: all 0.3s ease;
 }
 .spell-title {
   font-weight: bold;
-  color: #4a2500;
+  color: var(--secondary-color, #4a2500);
   font-size: 1rem;
   padding: 0.4rem 1.2rem;
-  background-color: #f2e8c9;
+  background-color: color-mix(in srgb, var(--surface-color, #f2e8c9) 90%, white);
   border-radius: 5px;
   text-decoration: none;
   font-family: monospace;
@@ -25,14 +25,14 @@
 .cta-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #8b4513;
-  color: #f0e6d2;
+  background-color: var(--primary-color, #8b4513);
+  color: var(--background-color, #f0e6d2);
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 .cta-button:hover {
-  background-color: #a0522d;
+  background-color: var(--secondary-color, #a0522d);
 }
 
 .padded-x-content {
@@ -77,25 +77,25 @@
   transition: all 0.3s ease;
   border-radius: 5px;
   padding: 0.5rem;
-  background-color: #d4cfc6af;
-  border-right: 0.2rem solid #101a1b4d;
+  background-color: color-mix(in srgb, var(--neutral-color, #d4cfc6) 70%, transparent);
+  border-right: 0.2rem solid color-mix(in srgb, black 30%, transparent);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
 }
 
 .spell-content:hover {
-  background-color: #6ae9ff7a;
+  background-color: color-mix(in srgb, var(--info-color, #6ae9ff) 48%, transparent);
   padding: 0.6rem;
 }
 
 .spell-content:hover .spell-title {
-  background-color: #6ae9ff00;
+  background-color: transparent;
   padding: 0.6rem 0.6rem !important;
   font-size: 1.1rem;
 }
 
 .spell-content:hover ul li {
-  background-color: #6ae9ff00;
+  background-color: transparent;
   opacity: 0.9;
   margin-left: -0.3rem !important;
 }
@@ -105,7 +105,7 @@
 }
 
 .spell-content:hover .border-radius-5-handler {
-  border-right: 0.2rem solid #6ae9ff00;
+  border-right: 0.2rem solid transparent;
 }
 
 .spell-content ul {
@@ -159,20 +159,20 @@ h6:hover {
 }
 
 .home-pre {
-  background-color: #22201cea;
-  border-left: 0.2rem solid #c4baa7;
+  background-color: color-mix(in srgb, black 92%, var(--primary-color, #22201c));
+  border-left: 0.2rem solid var(--neutral-color, #c4baa7);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  color: #f0e6d2;
+  color: var(--background-color, #f0e6d2);
   width: fit-content;
   padding: 0.5rem 1rem;
 }
 
 .home-code pre {
   padding: 0.5rem 2rem;
-  background-color: #22201cea;
-  border-left: 0.2rem solid #c4baa7;
+  background-color: color-mix(in srgb, black 92%, var(--primary-color, #22201c));
+  border-left: 0.2rem solid var(--neutral-color, #c4baa7);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  color: #f0e6d2;
+  color: var(--background-color, #f0e6d2);
   width: auto;
   overflow-x: scroll;
 }

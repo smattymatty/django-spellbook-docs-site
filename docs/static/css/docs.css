@@ -15,13 +15,13 @@
 .content {
   flex: 1;
   padding: 40px;
-  background-color: #f2e8c9;
+  background-color: var(--surface-color, #f2e8c9);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
   z-index: 1;
   font-family: "Georgia", serif;
-  color: #000000;
+  color: var(--text-color, #000000);
   line-height: 1.6;
   transition: all 0.5s ease; /* Add transition for smooth effect */
 }
@@ -63,7 +63,7 @@
 .content h1,
 .content h2 {
   font-family: "Cinzel", serif;
-  color: #000000;
+  color: var(--text-color, #000000);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -331,7 +331,7 @@ ol:nth-of-type(odd) {
 .content ol li::marker {
   font-size: 1.2em;
   font-weight: bold;
-  color: #20140b;
+  color: var(--text-color);
 }
 
 .content ol li {
@@ -345,12 +345,12 @@ ol:nth-of-type(odd) {
   margin-left: -0.4rem;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
-  border-left: 0.2rem dashed #20140b28;
+  border-left: 0.2rem dashed var(--text-color);
 }
 
 .content ul li::marker {
   content: "•";
-  color: #20140b98;
+  color: var(--text-color);
   font-size: 1.4em;
 }
 
@@ -374,17 +374,17 @@ ul:nth-child(even) {
   font-family: "Cinzel", serif;
   background: radial-gradient(
       circle at 10% 20%,
-      rgba(108, 85, 67, 0.05) 0%,
+      color-mix(in srgb, var(--primary-color, #6c5543) 5%, transparent) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 90% 80%,
-      rgba(108, 85, 67, 0.15) 0%,
+      color-mix(in srgb, var(--primary-color, #6c5543) 15%, transparent) 0%,
       transparent 50%
     );
-  color: #000000;
+  color: var(--text-color, #000000);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff65 !important;
+  background-color: color-mix(in srgb, var(--surface-color, #ffffff) 65%, transparent) !important;
   width: fit-content;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -412,7 +412,7 @@ ul:nth-child(even) {
 .content h5 + p::first-letter,
 .content h6 + p::first-letter {
   font-size: 1.4em;
-  color: #20140b;
+  color: var(--text-color);
   float: left;
   margin-right: 0.1rem;
   border-left: 0.1rem solid #20140b65;
@@ -429,7 +429,7 @@ ul:nth-child(even) {
 .content h5 + p,
 .content h6 + p {
   margin-top: 0;
-  background-color: #ffffff65 !important;
+  background-color: var(--surface-color);
   border-bottom: 0.1rem solid #20140b65;
   border-right: 0.1rem solid #20140b65;
   padding: 1rem;
@@ -448,20 +448,20 @@ ul:nth-child(even) {
 .content h4 + ol,
 .content h5 + ol,
 .content h6 + ol {
-  background-color: #ffffff65 !important;
+  background-color: var(--surface-color) !important;
 }
 
 .sidebar {
   width: 280px;
   padding: 20px;
-  background-color: #f0e6d2;
-  border-right: 2px solid #8b4513;
+  background-color: var(--background-color, #f0e6d2);
+  border-right: 2px solid var(--primary-color, #8b4513);
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: background-color 0.5s ease;
 }
 
 .sidebar:hover {
-  background-color: #e6d8c0;
+  background-color: var(--surface-color, #e6d8c0);
 }
 
 .sidebar:hover ~ .content::before {
@@ -469,8 +469,8 @@ ul:nth-child(even) {
 }
 
 .grimoire {
-  background-color: #d4c4a8;
-  border: 2px solid #8b4513;
+  background-color: var(--surface-color, #d4c4a8);
+  border: 2px solid var(--primary-color, #8b4513);
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 20px;
@@ -478,20 +478,20 @@ ul:nth-child(even) {
 }
 
 .grimoire:hover {
-  box-shadow: 0 0 15px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--primary-color, #8b4513) 30%, transparent);
 }
 
 .grimoire h3 {
   font-family: "Georgia", serif;
-  color: #4a3500;
+  color: var(--secondary-color, #4a3500);
   margin-top: 0;
-  border-bottom: 1px solid #8b4513;
+  border-bottom: 1px solid var(--primary-color, #8b4513);
   padding-bottom: 10px;
   transition: color 0.3s ease;
 }
 
 .grimoire:hover h3 {
-  color: #8b4513;
+  color: var(--primary-color, #8b4513);
 }
 
 .spell-list {
@@ -502,7 +502,7 @@ ul:nth-child(even) {
 .spell-list li {
   margin-bottom: 15px;
   padding: 10px;
-  background-color: #e6d8c0;
+  background-color: var(--surface-color, #e6d8c0);
   border-radius: 5px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -510,20 +510,20 @@ ul:nth-child(even) {
 
 .spell-list li:hover {
   transform: translateX(5px);
-  background-color: #f2e8c9;
+  background-color: color-mix(in srgb, var(--surface-color, #f2e8c9) 90%, var(--primary-color, #8b4513));
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .spell-list a {
   text-decoration: none;
-  color: #4a3500;
+  color: var(--secondary-color, #4a3500);
   font-weight: bold;
   display: block;
   transition: color 0.3s ease;
 }
 
 .spell-list li:hover a {
-  color: #8b4513;
+  color: var(--primary-color, #8b4513);
 }
 
 .spell-icon {
@@ -558,9 +558,6 @@ ul:nth-child(even) {
       rgba(139, 69, 19, 0)
     );
   }
-  .grimoire {
-    margin-bottom: 15px;
-  }
   .spell-list {
     display: flex;
     flex-wrap: wrap;
@@ -582,54 +579,41 @@ ul:nth-child(even) {
 }
 
 .content .inline-code {
-  background-color: #000000b6;
-  color: var(--text-color, #ffffffcc);
-  padding: 0.4rem 0.6rem;
-  border-radius: 5px;
-  font-family: "Courier New", Courier, monospace;
+  /* Dark terminal style for inline code */
+  background-color: #2d2d2d;
+  color: #d4d4d4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 0.9em;
   user-select: all;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .content .inline-code {
+    background-color: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .content .inline-code::selection {
-  background-color: #ffeeeacf;
-  color: #393939;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
 }
 
+/* Remove decorative elements for clean terminal look */
 .content .inline-code::before,
 .content .inline-code::after {
-  content: "";
-  position: absolute;
-  background-color: var(--rune-color);
-  opacity: 0.6;
+  display: none;
 }
 
-.content .inline-code::before {
-  width: 1em;
-  height: 1em;
-  top: -0.2em;
-  left: -0.2em;
-  border-radius: 50%;
-  box-shadow: 0 0 0.2em var(--rune-color);
-}
-
-.content .inline-code::after {
-  width: 0.8em;
-  height: 0.8em;
-  bottom: -0.2em;
-  right: -0.2em;
-  transform: rotate(45deg);
-  box-shadow: 0 0 0.2em var(--rune-color);
-}
-
-.content .inline-code:nth-child(5n + 1) {
-  transform: rotate(-0.45deg);
-  --text-color: var(--color-1);
-}
-
+/* Remove rotation effects for professional look */
+.content .inline-code:nth-child(5n + 1),
 .content .inline-code:nth-child(5n + 2) {
-  transform: rotate(0.45deg);
+  transform: none;
   --text-color: var(--color-2);
 }
 
@@ -708,28 +692,51 @@ ul:nth-child(even) {
 
 .content pre, 
 .changelog-content pre {
-  padding: 0.5rem 2rem;
-  background-color: #22201cea !important;
-  border-left: 0.2rem solid #c4baa7;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  color: #f0e6d2;
+  /* Dark terminal style for code blocks */
+  padding: 1rem 1.5rem;
+  background-color: #1e1e1e !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #d4d4d4;
   width: auto;
-  overflow-x: scroll;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  .content pre,
+  .changelog-content pre {
+    background-color: #0a0a0a !important;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .content pre code,
 .changelog-content pre code {
   background-color: transparent !important;
-  color: #f0e6d2;
+  color: #d4d4d4;
+  font-family: inherit;
 }
 
 .content code,
 .changelog-content code {
-  padding: 0.2rem 0.4rem;
-  font-family: "Courier New", Courier, monospace;
-  background-color: #00000099 !important;
-  border-radius: 5px;
-  color: #f0e6d2;
+  /* Inline code terminal style */
+  padding: 0.15rem 0.3rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  background-color: #2d2d2d !important;
+  border-radius: 3px;
+  color: #d4d4d4;
+  font-size: 0.9em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .content code,
+  .changelog-content code {
+    background-color: #1a1a1a !important;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .super-link {
@@ -757,9 +764,9 @@ ul:nth-child(even) {
 }
 
 .content a {
-  color: #477abd;
+  color: var(--info-color, #477abd);
 }
 
 .content a:hover {
-  color: #3c7280;
+  color: var(--primary-color, #3c7280);
 }

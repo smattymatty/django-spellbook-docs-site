@@ -2,6 +2,10 @@
 
 **Control text and background colors with our semantic color system.**
 
+{~ alert type="info" ~}
+**Theme Support:** All color utilities automatically use your theme's colors! Learn how to customize your entire color scheme with the [Theme System](/docs/Styles/themes).
+{~~}
+
 ## Theme Colors
 
 **Core semantic colors for your application.**

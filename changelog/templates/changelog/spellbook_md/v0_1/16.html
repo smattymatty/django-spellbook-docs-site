@@ -1,0 +1,136 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-0116"><strong>Version 0.1.16</strong></h2>
+<p><em>Released: August 26, 2025</em></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Major theme system enhancements! This release introduces a custom "magical" theme, full dark mode support, HTMX-powered theme switching, and comprehensive theme-aware styling across all components.</p>
+    </span>
+</div>
+
+<h1 id="theme-system-enhancements">Theme System Enhancements</h1>
+<h2 id="custom-magical-theme-with-dark-mode">Custom "Magical" Theme with Dark Mode</h2>
+<p>Added a beautiful custom theme that captures the essence of Django Spellbook with warm, earthy tones:</p>
+<h3 id="light-mode">Light Mode</h3>
+<ul>
+<li><strong>Primary</strong>: Saddle brown (#8b4513) - rich, warm brown</li>
+<li><strong>Background</strong>: Light tan (#f0e6d2) - soft parchment color</li>
+<li><strong>Surface</strong>: Cream (#fff9e6) - elevated content areas</li>
+<li><strong>Accent</strong>: Amber (#f59e0b) - calls to action</li>
+</ul>
+<h3 id="dark-mode">Dark Mode</h3>
+<ul>
+<li><strong>Primary</strong>: Peru (#cd853f) - lighter brown for visibility</li>
+<li><strong>Background</strong>: Very dark brown (#1a1410) - deep, rich darkness</li>
+<li><strong>Surface</strong>: Dark brown (#2c241c) - card backgrounds</li>
+<li><strong>Text</strong>: Light tan (#f0e6d2) - inverted for readability</li>
+</ul>
+<pre><code class="language-python"># settings.py
+MAGICAL_THEME_CONFIG = {
+    'name': 'magical',
+    'modes': {
+        'light': {
+            'colors': {
+                'primary': '#8b4513',
+                'background': '#f0e6d2',
+                # ... full color palette
+            }
+        },
+        'dark': {
+            'colors': {
+                'primary': '#cd853f',
+                'background': '#1a1410',
+                # ... dark mode colors
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="htmx-powered-theme-switcher">HTMX-Powered Theme Switcher</h2>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The theme switcher now uses HTMX for smooth, no-refresh theme changes with instant visual feedback!</p>
+    </span>
+</div>
+
+<h3 id="features">Features</h3>
+<ul>
+<li><strong>Instant preview</strong> of color palettes without page reload</li>
+<li><strong>Session persistence</strong> - themes are saved per user session</li>
+<li><strong>Mode toggle</strong> - switch between light and dark modes</li>
+<li><strong>Visual feedback</strong> - smooth animations and transitions</li>
+<li><strong>Reset to default</strong> - one-click return to magical theme</li>
+</ul>
+<h3 id="technical-implementation">Technical Implementation</h3>
+<pre><code class="language-python"># views.py
+@csrf_exempt
+@require_http_methods([&quot;POST&quot;])
+def set_theme(request):
+    theme = request.POST.get('theme', 'magical')
+    mode = request.POST.get('mode', 'light')
+    request.session['theme'] = theme
+    request.session['mode'] = mode
+    # Return partial template with HX-Refresh header
+</code></pre>
+<h2 id="theme-aware-component-styling">Theme-Aware Component Styling</h2>
+<h3 id="updated-components">Updated Components</h3>
+<p>All site components now properly use CSS variables for theming:</p>
+<ol>
+<li>
+<p><strong>Navigation &amp; Headers</strong><br />
+   - Mode toggle button with sun/moon icons<br />
+   - Theme-aware header colors<br />
+   - Proper hover states</p>
+</li>
+<li>
+<p><strong>Sidebar &amp; TOC</strong><br />
+   - Background uses <code>var(--background-color)</code><br />
+   - Borders use <code>var(--primary-color)</code><br />
+   - Active items use opacity variants<br />
+   - Hover states adapt to theme</p>
+</li>
+<li>
+<p><strong>Code Blocks</strong><br />
+   - Dark backgrounds with theme text colors<br />
+   - Syntax highlighting that adapts to theme<br />
+   - Proper contrast in both light and dark modes</p>
+</li>
+<li>
+<p><strong>Content Areas</strong><br />
+   - Surface colors for cards and elevated content<br />
+   - Text colors that ensure readability<br />
+   - Link colors that stand out appropriately</p>
+</li>
+</ol>
+<h2 id="home-page-improvements">Home Page Improvements</h2>
+<h3 id="markdown-based-content">Markdown-Based Content</h3>
+<p>The "Get Started" section now uses Django Spellbook's own markdown rendering:</p>
+<pre><code class="language-python"># views.py
+from django_spellbook.parsers import render_spellbook_markdown_to_html
+
+def home(request):
+    with open(markdown_path, 'r') as f:
+        markdown_content = f.read()
+    get_started_html = render_spellbook_markdown_to_html(markdown_content)
+</code></pre>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>Proper syntax highlighting with theme colors</li>
+<li>Consistent styling across all pages</li>
+<li>Easy content updates via markdown</li>
+<li>Automatic theme adaptation</li>
+</ul>
+<hr />
+<p><em>Full documentation available at <a href="https://django-spellbook.org">Django Spellbook Docs</a></em></p>
+{% endblock %}

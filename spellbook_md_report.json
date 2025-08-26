@@ -2,25 +2,25 @@
   "summary": {
     "total_pairs": 3,
     "successful_pairs": 3,
-    "total_processed_files": 43
+    "total_processed_files": 46
   },
   "pairs": [
     {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/markdown_content",
+      "source": "/home/mathew/my_sites/django-spellbook-docs-site/markdown_content",
       "destination": "docs",
       "url_prefix": "docs",
       "success": true,
-      "processed_files": 25
+      "processed_files": 27
     },
     {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/changelog_content",
+      "source": "/home/mathew/my_sites/django-spellbook-docs-site/changelog_content",
       "destination": "changelog",
       "url_prefix": "changelog",
       "success": true,
-      "processed_files": 7
+      "processed_files": 8
     },
     {
-      "source": "/home/mathew/python-3.10.12-Projects/django-spellbook-docs-site/examples_content",
+      "source": "/home/mathew/my_sites/django-spellbook-docs-site/examples_content",
       "destination": "examples",
       "url_prefix": "examples",
       "success": true,
@@ -35,12 +35,12 @@
     },
     {
       "name": "alert",
-      "total_uses": 60,
+      "total_uses": 70,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 29,
+      "total_uses": 30,
       "failed_uses": 0
     },
     {

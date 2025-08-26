@@ -1,0 +1,129 @@
+<!-- Color palette preview - updates via HTMX -->
+<div id="color-preview" class="sb-animate-fadeIn">
+    <!-- Theme Info Banner -->
+    <div class="sb-p-4 sb-bg-primary sb-rounded-lg sb-mb-6 sb-text-white">
+        <p class="sb-font-semibold sb-text-lg">
+            Active Theme: <span class="sb-text-accent">{{ current_theme|title }}</span>
+            {% if current_mode %} | Mode: <span>{{ current_mode|title }}</span>{% endif %}
+        </p>
+    </div>
+
+    <!-- Primary Colors Grid -->
+    <h3 class="sb-text-xl sb-font-bold sb-text-primary sb-mb-4">Core Palette</h3>
+    <div class="sb-grid sb-grid-cols-2 sb-md:grid-cols-4 sb-gap-3 sb-mb-6">
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-primary sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Primary</p>
+            {% if colors.primary %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.primary }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-secondary sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Secondary</p>
+            {% if colors.secondary %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.secondary }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-accent sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Accent</p>
+            {% if colors.accent %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.accent }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-neutral sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Neutral</p>
+            {% if colors.neutral %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.neutral }}</p>{% endif %}
+        </div>
+    </div>
+
+    <!-- Status Colors -->
+    <h3 class="sb-text-xl sb-font-bold sb-text-primary sb-mb-4">Status Colors</h3>
+    <div class="sb-grid sb-grid-cols-2 sb-md:grid-cols-4 sb-gap-3 sb-mb-6">
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-success sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Success</p>
+            {% if colors.success %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.success }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-warning sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Warning</p>
+            {% if colors.warning %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.warning }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-error sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Error</p>
+            {% if colors.error %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.error }}</p>{% endif %}
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-info sb-h-20 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-font-semibold sb-text-sm">Info</p>
+            {% if colors.info %}<p class="sb-text-center sb-text-xs sb-text-text-secondary">{{ colors.info }}</p>{% endif %}
+        </div>
+    </div>
+
+    <!-- Extended Palette -->
+    <h3 class="sb-text-xl sb-font-bold sb-text-primary sb-mb-4">Extended Palette</h3>
+    <div class="sb-grid sb-grid-cols-3 sb-md:grid-cols-6 sb-gap-3 sb-mb-6">
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-emphasis sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Emphasis</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-subtle sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Subtle</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-distinct sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Distinct</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-aether sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Aether</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-artifact sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Artifact</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-sylvan sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Sylvan</p>
+        </div>
+    </div>
+
+    <!-- System Colors -->
+    <h3 class="sb-text-xl sb-font-bold sb-text-primary sb-mb-4">System Colors</h3>
+    <div class="sb-grid sb-grid-cols-2 sb-md:grid-cols-4 sb-gap-3">
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-background sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-border sb-border-neutral-50 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Background</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-surface sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-border sb-border-neutral-50 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Surface</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-neutral sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-flex sb-items-center sb-justify-center sb-transition-transform sb-group-hover:scale-105">
+                <span class="sb-text-white sb-text-xs">Text</span>
+            </div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Text Color</p>
+        </div>
+        <div class="sb-group sb-cursor-pointer">
+            <div class="sb-bg-danger sb-h-16 sb-rounded-lg sb-shadow-md sb-mb-2 sb-transition-transform sb-group-hover:scale-105"></div>
+            <p class="sb-text-center sb-text-xs sb-font-semibold">Danger</p>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sb-animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+}
+</style>

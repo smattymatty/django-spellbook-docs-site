@@ -1,8 +1,8 @@
 /* core/static/css/main.css */
 body {
     font-family: "Courier New", monospace;
-    background-color: #f0e6d2;
-    color: #2c2c2c;
+    background-color: var(--background-color, #f0e6d2);
+    color: var(--text-color, #2c2c2c);
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -31,9 +31,8 @@ h3 {
 .website-title {
     opacity: 0.8;
     text-decoration-line: overline;
-    background-color: #fff9e6;
-    text-decoration-color: #8b4513bb;
-
+    background-color: var(--surface-color, #fff9e6);
+    text-decoration-color: color-mix(in srgb, var(--primary-color, #8b4513) 75%, transparent);
     transition: all 0.6s ease;
     border-radius: 12px;
     padding: 10px;
@@ -41,37 +40,37 @@ h3 {
 }
 
 .website-title a {
-    color: #8b4513;
+    color: var(--primary-color, #8b4513);
     transition: all 0.3s ease;
 }
 
 .website-title:hover {
-    background-color: #3333332a;
+    background-color: color-mix(in srgb, var(--neutral-color, #333333) 20%, transparent);
     opacity: 1;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-decoration-color: #cacacadc;
+    text-decoration-color: color-mix(in srgb, var(--neutral-color, #cacaca) 85%, transparent);
 }
 
 .website-title:hover a {
-    color: #ffffff;
+    color: var(--background-color, #ffffff);
     font-size: 1.75rem;
 }
 
 .magical-border {
-    border: 2px solid #8b4513;
+    border: 2px solid var(--primary-color, #8b4513);
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
-    background-color: #fff9e6;
+    background-color: var(--surface-color, #fff9e6);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 header {
-    background-color: #8b4513;
-    color: #f0e6d2;
+    background-color: var(--primary-color, #8b4513);
+    color: var(--background-color, #f0e6d2);
     padding: 0.5rem 0;
-    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
-    border-bottom: 2px solid #d4c4a8;
+    box-shadow: 0 2px 4px color-mix(in srgb, var(--primary-color, #8b4513) 30%, transparent);
+    border-bottom: 2px solid var(--neutral-color, #d4c4a8);
 }
 
 .header-content {
@@ -104,7 +103,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #f0e6d2;
+    color: var(--background-color, #f0e6d2);
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -115,9 +114,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #8b4513;
-    background-color: #f0e6d2;
-    box-shadow: 0 0 5px rgba(240, 230, 210, 0.5);
+    color: var(--primary-color, #8b4513);
+    background-color: var(--background-color, #f0e6d2);
+    box-shadow: 0 0 5px color-mix(in srgb, var(--background-color, #f0e6d2) 50%, transparent);
     font-size: 1.4rem;
 }
 
@@ -153,33 +152,33 @@ cursor-pointer {
 }
 
 .in-code-link {
-    color: #c4fffa;
+    color: var(--info-color, #c4fffa);
     font-weight: bold;
 }
 
 .in-code-link:hover {
-    color: #8bdacc;
+    color: color-mix(in srgb, var(--info-color, #c4fffa) 70%, var(--primary-color, #8bdacc));
 }
 
 .site-footer {
-    background-color: #1f1d1cfd;
+    background-color: color-mix(in srgb, black 95%, var(--primary-color, #1f1d1c));
 }
 
 .site-footer p {
-    color: #f0e6d2;
+    color: var(--background-color, #f0e6d2);
 }
 
 .site-footer div {
-    border-top: 1px solid #4a2500;
+    border-top: 1px solid var(--secondary-color, #4a2500);
 }
 
 .popular-page-list li a {
-    color: #cfcfcfad;
+    color: color-mix(in srgb, var(--neutral-color, #cfcfcf) 70%, transparent);
     font-size: 0.8rem;
     font-weight: bold;
 }
 .popular-page-list li a:hover {
-    color: #ffffff;
+    color: var(--background-color, #ffffff);
     font-weight: 200;
 }
 
@@ -196,5 +195,35 @@ cursor-pointer {
 .top-banner-button {
     margin-top: -2px;
     text-decoration: none;
-    color: #00000099;
+    color: color-mix(in srgb, black 60%, transparent);
+}
+
+/* Mode toggle button styles */
+.mode-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--background-color, #f0e6d2);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-toggle-btn:hover {
+    background-color: var(--background-color, #f0e6d2);
+    color: var(--primary-color, #8b4513);
+    box-shadow: 0 0 5px color-mix(in srgb, var(--background-color, #f0e6d2) 50%, transparent);
+}
+
+.mode-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.mode-icon {
+    display: inline-block;
+    line-height: 1;
 }

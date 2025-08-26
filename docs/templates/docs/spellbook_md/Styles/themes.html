@@ -1,0 +1,340 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="theme-system">Theme System</h1>
+<p><strong>Transform your site's entire color scheme with Django Spellbook's powerful Python-based theme system.</strong></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>New in 0.1.16!</strong> The theme system lets you define your entire site's color palette in Python, with automatic CSS variable generation, opacity variants, and 9 beautiful presets ready to use.</p>
+    </span>
+</div>
+
+<h2 id="what-are-themes">What Are Themes?</h2>
+<p>Themes are complete color schemes that automatically style every component in Django Spellbook. Instead of managing CSS files, you define colors in your Django settings and the system handles everything else.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Python Configuration</strong>: Define themes in <code>settings.py</code>, not CSS</li>
+<li><strong>Automatic Variants</strong>: Every color gets 25%, 50%, and 75% opacity versions</li>
+<li><strong>No Build Process</strong>: CSS variables generated at runtime</li>
+<li><strong>Session-Based Switching</strong>: Users can switch themes dynamically</li>
+<li><strong>Dark Mode Ready</strong>: Built-in support for light/dark modes</li>
+<li><strong>100% Compatible</strong>: Works with all existing Spellbook components</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="using-a-preset-theme">Using a Preset Theme</h3>
+<p>Add to your <code>settings.py</code>:</p>
+<pre><code class="language-python">from django_spellbook.theme import THEMES_WITH_MODES
+
+# Use the 'arcane' preset
+SPELLBOOK_THEME = THEMES_WITH_MODES['arcane']['modes']['light']
+</code></pre>
+<p>That's it! Your entire site now uses the Arcane theme.</p>
+<h3 id="creating-a-custom-theme">Creating a Custom Theme</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#FF6B35',      # Your brand color
+        'secondary': '#F77B71',    # Supporting color
+        'accent': '#FFD700',       # Call-to-action color
+        'neutral': '#A8716A',      # Borders, dividers
+
+        # Status colors
+        'error': '#DC2626',
+        'warning': '#FFAA00',
+        'success': '#16A34A',
+        'info': '#3B82F6',
+
+        # System colors
+        'background': '#FFFFFF',
+        'surface': '#F9FAFB',
+        'text': '#1F2937',
+        'text-secondary': '#6B7280',
+    },
+    'generate_variants': True  # Creates opacity versions
+}
+</code></pre>
+<h2 id="available-presets">Available Presets</h2>
+<p>Django Spellbook includes 9 carefully crafted themes, each with light and dark modes:</p>
+<h3 id="default">🔷 Default</h3>
+<p>The classic blue theme - professional and clean. Perfect for documentation sites and dashboards.</p>
+<h3 id="arcane">🔮 Arcane</h3>
+<p>Deep purple mysteries with golden spell glows. Ideal for magical or creative projects.</p>
+<h3 id="celestial">⭐ Celestial</h3>
+<p>Divine light magic with sky blues and gold. Great for spiritual or inspirational content.</p>
+<h3 id="forest">🌲 Forest</h3>
+<p>Woodland greens and earth tones. Natural and calming for eco-friendly sites.</p>
+<h3 id="ocean">🌊 Ocean</h3>
+<p>Deep sea blues and aquatic enchantments. Perfect for marine or water-related projects.</p>
+<h3 id="phoenix">🔥 Phoenix</h3>
+<p>Fire colors with oranges and reds. Dynamic and energetic for bold brands.</p>
+<h3 id="shadow">🌑 Shadow</h3>
+<p>Monochrome shadow magic. Minimalist and sophisticated.</p>
+<h3 id="enchanted">✨ Enchanted</h3>
+<p>Bright magical pinks and fairy gold. Fun and whimsical for creative projects.</p>
+<h3 id="pastel">🌸 Pastel</h3>
+<p>Soft, gentle enchantment colors. Soothing and friendly.</p>
+<h2 id="how-themes-work">How Themes Work</h2>
+<h3 id="1-css-variable-generation">1. CSS Variable Generation</h3>
+<p>When you define a theme, Django Spellbook automatically generates CSS variables:</p>
+<pre><code class="language-css">:root {
+  --primary-color: #FF6B35;
+  --primary-color-25: color-mix(in srgb, #FF6B35 25%, transparent);
+  --primary-color-50: color-mix(in srgb, #FF6B35 50%, transparent);
+  --primary-color-75: color-mix(in srgb, #FF6B35 75%, transparent);
+  /* ... and more for each color */
+}
+</code></pre>
+<h3 id="2-utility-classes">2. Utility Classes</h3>
+<p>All color utilities automatically use theme variables:</p>
+<pre><code class="language-django">&lt;!-- These classes use your theme colors --&gt;
+&lt;div class=&quot;sb-bg-primary&quot;&gt;Primary background&lt;/div&gt;
+&lt;div class=&quot;sb-text-accent&quot;&gt;Accent text&lt;/div&gt;
+&lt;div class=&quot;sb-border-secondary&quot;&gt;Secondary border&lt;/div&gt;
+
+&lt;!-- Opacity variants work too --&gt;
+&lt;div class=&quot;sb-bg-primary-50&quot;&gt;50% opacity primary&lt;/div&gt;
+</code></pre>
+<h3 id="3-component-styling">3. Component Styling</h3>
+<p>Every Spellbook component adapts to your theme:</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This alert uses your theme's info color!</p>
+    </span>
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Themed Card</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Cards automatically use surface colors and proper text colors from your theme.</p>
+    </div>
+
+</div>
+
+<h2 id="theme-colors-explained">Theme Colors Explained</h2>
+<h3 id="core-semantic-colors">Core Semantic Colors</h3>
+<ul>
+<li><strong>primary</strong>: Main brand color for buttons, links, and emphasis</li>
+<li><strong>secondary</strong>: Supporting color for less prominent elements</li>
+<li><strong>accent</strong>: High-contrast color for CTAs and highlights</li>
+<li><strong>neutral</strong>: Subtle color for borders and dividers</li>
+</ul>
+<h3 id="status-colors">Status Colors</h3>
+<ul>
+<li><strong>success</strong>: Positive feedback and success states</li>
+<li><strong>warning</strong>: Caution messages and warnings</li>
+<li><strong>error</strong>: Error states and destructive actions</li>
+<li><strong>info</strong>: Informational messages and tips</li>
+</ul>
+<h3 id="extended-colors">Extended Colors</h3>
+<ul>
+<li><strong>emphasis</strong>: Content that needs special attention</li>
+<li><strong>subtle</strong>: Very light backgrounds for quiet sections</li>
+<li><strong>distinct</strong>: Unique elements that stand apart</li>
+<li><strong>aether</strong>: Mystical purple for magical elements</li>
+<li><strong>artifact</strong>: Golden color for special items</li>
+<li><strong>sylvan</strong>: Nature green for organic elements</li>
+<li><strong>danger</strong>: High-alert color for critical actions</li>
+</ul>
+<h3 id="system-colors">System Colors</h3>
+<ul>
+<li><strong>background</strong>: Main page background</li>
+<li><strong>surface</strong>: Card and elevated element backgrounds</li>
+<li><strong>text</strong>: Primary text color</li>
+<li><strong>text-secondary</strong>: Less prominent text</li>
+</ul>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="custom-color-names">Custom Color Names</h3>
+<p>Add your own semantic colors:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # ... standard colors ...
+    },
+    'custom_colors': {
+        'brand': '#FF00FF',     # Use as sb-bg-brand
+        'special': '#00FF00',   # Use as sb-text-special
+        'highlight': '#FFFF00', # Use as sb-border-highlight
+    }
+}
+</code></pre>
+<h3 id="disabling-opacity-variants">Disabling Opacity Variants</h3>
+<p>For smaller CSS output:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': { ... },
+    'generate_variants': False  # No opacity versions
+}
+</code></pre>
+<h3 id="using-rgbrgba-colors">Using RGB/RGBA Colors</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        'primary': 'rgb(255, 107, 53)',
+        'secondary': 'rgba(247, 123, 113, 0.9)',
+        # CSS named colors work too
+        'accent': 'goldenrod',
+    }
+}
+</code></pre>
+<h2 id="theme-middleware">Theme Middleware</h2>
+<p>The theme system includes middleware that:</p>
+<ol>
+<li><strong>Checks for theme in session</strong>: Allows per-user theme preferences</li>
+<li><strong>Applies theme configuration</strong>: Generates CSS variables on each request</li>
+<li><strong>Handles theme switching</strong>: Via the <code>/themes/</code> interface</li>
+</ol>
+<p>To enable session-based theme switching, ensure the middleware is in your settings:</p>
+<pre><code class="language-python">MIDDLEWARE = [
+    # ... other middleware ...
+    'sb_theme.middleware.ThemeMiddleware',
+]
+</code></pre>
+<h2 id="theme-switcher-interface">Theme Switcher Interface</h2>
+<p>Visit <code>/themes/</code> on your site to:<br />
+- Preview all available themes<br />
+- See complete color palettes<br />
+- Test components with different themes<br />
+- Switch themes with one click</p>
+<p>The Theme Builder at <code>/theme-builder/</code> lets you:<br />
+- Visually create custom themes<br />
+- Export Python configuration<br />
+- Preview on real layouts<br />
+- Fine-tune every color</p>
+<h2 id="using-themes-in-templates">Using Themes in Templates</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="language-django">&lt;!-- Background colors --&gt;
+&lt;div class=&quot;sb-bg-primary&quot;&gt;Primary background&lt;/div&gt;
+&lt;div class=&quot;sb-bg-accent-50&quot;&gt;50% accent background&lt;/div&gt;
+
+&lt;!-- Text colors --&gt;
+&lt;p class=&quot;sb-text-secondary&quot;&gt;Secondary text&lt;/p&gt;
+&lt;span class=&quot;sb-text-error&quot;&gt;Error message&lt;/span&gt;
+
+&lt;!-- Borders --&gt;
+&lt;div class=&quot;sb-border sb-border-primary&quot;&gt;Primary border&lt;/div&gt;
+</code></pre>
+<h3 id="dynamic-theme-colors">Dynamic Theme Colors</h3>
+<p>Get current theme colors in views:</p>
+<pre><code class="language-python">from django_spellbook.theme import SpellbookTheme
+
+def my_view(request):
+    # Get current theme from session or settings
+    theme = SpellbookTheme(settings.SPELLBOOK_THEME)
+    primary_color = theme.get_color('primary').value
+    # Use color value as needed
+</code></pre>
+<h2 id="migration-guide">Migration Guide</h2>
+<h3 id="from-css-to-theme-system">From CSS to Theme System</h3>
+<p>Before (CSS):</p>
+<pre><code class="language-css">.my-button {
+    background-color: #3b82f6;
+    color: white;
+}
+</code></pre>
+<p>After (using theme):</p>
+<pre><code class="language-django">&lt;button class=&quot;sb-bg-primary sb-text-white&quot;&gt;
+    Click me
+&lt;/button&gt;
+</code></pre>
+<h3 id="compatibility">Compatibility</h3>
+<p>The theme system is 100% backward compatible:<br />
+- Existing sites work without changes<br />
+- You can gradually adopt themes<br />
+- Mix themed and non-themed styles freely</p>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-choose-semantic-names">1. Choose Semantic Names</h3>
+<p>Use color names that describe purpose, not appearance:<br />
+- ✅ <code>primary</code>, <code>accent</code>, <code>warning</code><br />
+- ❌ <code>blue</code>, <code>yellow</code>, <code>red</code></p>
+<h3 id="2-test-contrast">2. Test Contrast</h3>
+<p>Ensure text is readable on backgrounds:</p>
+<pre><code class="language-django">&lt;!-- Good contrast --&gt;
+&lt;div class=&quot;sb-bg-primary sb-text-white&quot;&gt;
+
+&lt;!-- May have poor contrast --&gt;
+&lt;div class=&quot;sb-bg-warning sb-text-accent&quot;&gt;
+</code></pre>
+<h3 id="3-use-opacity-variants">3. Use Opacity Variants</h3>
+<p>For subtle effects without new colors:</p>
+<pre><code class="language-django">&lt;div class=&quot;sb-bg-primary-25 sb-border sb-border-primary&quot;&gt;
+    Subtle primary container
+&lt;/div&gt;
+</code></pre>
+<h3 id="4-consistent-status-colors">4. Consistent Status Colors</h3>
+<p>Keep status colors predictable:<br />
+- Green = Success<br />
+- Yellow/Orange = Warning<br />
+- Red = Error<br />
+- Blue = Info</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="theme-not-applying">Theme Not Applying</h3>
+<ol>
+<li>Check <code>SPELLBOOK_THEME</code> is set in settings</li>
+<li>Verify middleware is installed</li>
+<li>Clear browser cache</li>
+<li>Check template has `</li>
+</ol>
+<spellbook_styles><p>`</p><h3 id="colors-look-wrong">Colors Look Wrong</h3><ol><li>Validate color format (hex, rgb, or CSS name)</li><li>Check for typos in color values</li><li>Ensure proper contrast ratios</li><li>Test in different browsers</li></ol><h3 id="performance">Performance</h3><p>Themes are lightweight:</p><ul><li>CSS generated once per request</li><li>Variables cached in browser</li><li>No JavaScript required</li><li>Minimal overhead (~1ms)</li></ul><h2 id="examples-in-action">Examples in Action</h2><h3 id="status-messages">Status Messages</h3><div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Success!</strong> Your theme is working perfectly.</p>
+    </span>
+</div>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Warning:</strong> Themes may cause excessive creativity.</p>
+    </span>
+</div>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Error:</strong> Unable to return to boring colors.</p>
+    </span>
+</div>
+<h3 id="color-palette-display">Color Palette Display</h3><div class="sb-grid sb-grid-cols-4 sb-gap-2 sb-mb-4">
+    <div class="sb-p-4 sb-bg-primary sb-text-white sb-text-center sb-rounded">Primary</div>
+    <div class="sb-p-4 sb-bg-secondary sb-text-white sb-text-center sb-rounded">Secondary</div>
+    <div class="sb-p-4 sb-bg-accent sb-text-white sb-text-center sb-rounded">Accent</div>
+    <div class="sb-p-4 sb-bg-neutral sb-text-white sb-text-center sb-rounded">Neutral</div>
+</div>
+<h3 id="opacity-demonstration">Opacity Demonstration</h3><div class="sb-space-y-2 sb-mb-4">
+    <div class="sb-p-3 sb-bg-primary-25 sb-border sb-border-primary">25% Primary</div>
+    <div class="sb-p-3 sb-bg-primary-50 sb-border sb-border-primary">50% Primary</div>
+    <div class="sb-p-3 sb-bg-primary-75 sb-border sb-border-primary">75% Primary</div>
+    <div class="sb-p-3 sb-bg-primary sb-text-white">100% Primary</div>
+</div>
+<h2 id="next-steps">Next Steps</h2><p>Ready to theme your site?</p><ol><li><strong>Try a preset</strong>: Add <code>SPELLBOOK_THEME</code> to settings</li><li><strong>Visit <code>/themes/</code></strong>: See all themes in action</li><li><strong>Customize colors</strong>: Create your perfect palette</li><li><strong>Use the builder</strong>: <code>/theme-builder/</code> for visual editing</li></ol><div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Pro Tip:</strong> Start with a preset theme close to your vision, then customize individual colors as needed. The theme builder makes this process visual and fun!</p>
+    </span>
+</div>
+<a class="sb-btn sb-btn-primary" href="/themes/"><p>Explore Themes Live →</p></a><a class="super-link" href="/docs/Styles/colors"><p>Learn About Color Utilities</p></a></spellbook_styles>
+{% endblock %}

@@ -60,7 +60,8 @@
 /* Applying Spellbooky styling to the textarea */
 .editor-pane textarea {
     border: 1px solid var(--secondary-color); /* Using secondary-color for a clear but not overpowering border */
-    background-color: #fff; /* Assuming a white background for the textarea */
+    background-color: var(--background-color, #fff); /* Theme-aware background */
+    color: var(--text-color, #000); /* Theme-aware text color */
     padding: 0.75rem; /* A bit more padding for a nicer feel, adjust as needed */
     resize: none;
     font-family: monospace;
@@ -78,10 +79,12 @@
     .editor-pane textarea:focus:hover {
         outline: none;
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* Using primary-color with transparency for focus ring */
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 30%, transparent); /* Theme-aware focus ring */
         margin-left: -2rem;
         transform: translatey(-8.5rem);
         min-height: 97vh;
+        background-color: var(--background-color, #fff) !important; /* Keep theme background on focus */
+        color: var(--text-color, #000) !important; /* Keep theme text color on focus */
     }
 }
 @media (min-width: 1254px) {
@@ -108,10 +111,8 @@
 .preview-pane-placeholder > #html-preview-placeholder {
     /* More specific selector */
     border: 1px solid var(--secondary-color); /* Consistent border with textarea */
-    background-color: var(
-        --subtle-color
-    ); /* Using subtle-color for the background */
-    color: var(--secondary-color); /* Text color for the placeholder message */
+    background-color: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%); /* Subtle theme-aware background */
+    color: var(--text-secondary, var(--secondary-color)); /* Text color for the placeholder message */
     padding: 1rem; /* Equivalent to sb-p-4 */
     border-radius: var(--sb-border-radius-md); /* Consistent border radius */
     overflow-y: auto; /* In case content overflows */
@@ -127,7 +128,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     transition: all 0.3s ease-in-out;
-    background-color: var(--subtle-color);
+    background-color: color-mix(in srgb, var(--background-color) 98%, var(--primary-color) 2%);
+    color: var(--text-color, #000);
 }
 
 #live-preview-area.preview-pane-squashed {
@@ -190,7 +192,7 @@
     position: fixed;
     width: 320px;
     max-height: 400px;
-    background: white;
+    background: var(--background-color, white);
     border: 1px solid var(--secondary-color, #e2e8f0);
     border-radius: var(--sb-border-radius-md, 6px);
     box-shadow:
@@ -204,6 +206,7 @@
     font-family:
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 14px;
+    color: var(--text-color, #000);
 }
 
 .spellblock-dropdown.visible {
@@ -225,25 +228,26 @@
     align-items: center;
     padding: 12px;
     border-bottom: 1px solid var(--secondary-color, #e2e8f0);
-    background: #f8fafc;
+    background: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%);
     border-radius: var(--sb-border-radius-md, 6px)
         var(--sb-border-radius-md, 6px) 0 0;
 }
 
 .spellblock-search-input {
     flex: 1;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--secondary-color, #d1d5db);
     border-radius: 4px;
     padding: 8px 12px;
     font-size: 14px;
-    background: white;
+    background: var(--background-color, white);
+    color: var(--text-color, #000);
     outline: none;
     transition: border-color 0.2s ease;
 }
 
 .spellblock-search-input:focus {
     border-color: var(--primary-color, #3b82f6);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 10%, transparent);
 }
 
 .spellblock-dropdown-close {
@@ -251,9 +255,9 @@
     width: 28px;
     height: 28px;
     border: none;
-    background: #e2e8f0;
+    background: color-mix(in srgb, var(--secondary-color) 20%, transparent);
     border-radius: 4px;
-    color: #64748b;
+    color: var(--text-secondary, #64748b);
     font-size: 18px;
     line-height: 1;
     cursor: pointer;
@@ -264,8 +268,8 @@
 }
 
 .spellblock-dropdown-close:hover {
-    background: #cbd5e1;
-    color: #374151;
+    background: color-mix(in srgb, var(--secondary-color) 30%, transparent);
+    color: var(--text-color, #374151);
 }
 
 /* Loading state */
@@ -275,14 +279,14 @@
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
-    color: #64748b;
+    color: var(--text-secondary, #64748b);
     display: none;
 }
 
 .loading-spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--secondary-color, #e2e8f0);
     border-top: 2px solid var(--primary-color, #3b82f6);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -309,14 +313,14 @@
 .spellblock-item {
     padding: 12px 16px;
     cursor: pointer;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid color-mix(in srgb, var(--secondary-color) 10%, transparent);
     transition: all 0.15s ease;
     position: relative;
 }
 
 .spellblock-item:hover,
 .spellblock-item.selected {
-    background: #f8fafc;
+    background: color-mix(in srgb, var(--primary-color) 5%, var(--background-color) 95%);
     border-left: 3px solid var(--primary-color, #3b82f6);
     padding-left: 13px;
 }
@@ -334,15 +338,15 @@
 
 .spellblock-item-name {
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-color, #1e293b);
     font-size: 14px;
 }
 
 .spellblock-item-code {
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
     font-size: 12px;
-    color: #64748b;
-    background: #f1f5f9;
+    color: var(--text-secondary, #64748b);
+    background: color-mix(in srgb, var(--secondary-color) 10%, transparent);
     padding: 2px 6px;
     border-radius: 3px;
 }
@@ -352,7 +356,7 @@
 }
 
 .spellblock-item-description {
-    color: #64748b;
+    color: var(--text-secondary, #64748b);
     font-size: 13px;
     line-height: 1.4;
     margin-bottom: 4px;
@@ -363,7 +367,7 @@
     align-items: center;
     gap: 12px;
     font-size: 12px;
-    color: #94a3b8;
+    color: var(--text-secondary, #94a3b8);
 }
 
 .parameter-count {
@@ -382,7 +386,7 @@
     justify-content: center;
     padding: 40px 20px;
     text-align: center;
-    color: #64748b;
+    color: var(--text-secondary, #64748b);
 }
 
 .no-results-icon {
@@ -394,12 +398,12 @@
 .no-results-message {
     font-weight: 600;
     margin-bottom: 4px;
-    color: #374151;
+    color: var(--text-color, #374151);
 }
 
 .no-results-suggestion {
     font-size: 13px;
-    color: #9ca3af;
+    color: var(--text-secondary, #9ca3af);
 }
 
 /* Error state */
@@ -410,7 +414,7 @@
     justify-content: center;
     padding: 40px 20px;
     text-align: center;
-    color: #dc2626;
+    color: var(--danger-color, #dc2626);
 }
 
 .error-icon {
@@ -421,12 +425,12 @@
 .error-message {
     font-weight: 600;
     margin-bottom: 16px;
-    color: #374151;
+    color: var(--text-color, #374151);
 }
 
 .retry-button {
     background: var(--primary-color, #3b82f6);
-    color: white;
+    color: var(--background-color, white);
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -437,7 +441,7 @@
 }
 
 .retry-button:hover {
-    background: #2563eb;
+    background: color-mix(in srgb, var(--primary-color) 85%, black);
 }
 
 /* Footer */
@@ -446,10 +450,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px 16px;
-    border-top: 1px solid #e2e8f0;
-    background: #f8fafc;
+    border-top: 1px solid var(--secondary-color, #e2e8f0);
+    background: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%);
     font-size: 12px;
-    color: #64748b;
+    color: var(--text-secondary, #64748b);
     border-radius: 0 0 var(--sb-border-radius-md, 6px)
         var(--sb-border-radius-md, 6px);
 }
@@ -526,16 +530,16 @@
 }
 
 .spellblock-blocks-list::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: color-mix(in srgb, var(--secondary-color) 10%, transparent);
 }
 
 .spellblock-blocks-list::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: color-mix(in srgb, var(--secondary-color) 30%, transparent);
     border-radius: 3px;
 }
 
 .spellblock-blocks-list::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: color-mix(in srgb, var(--secondary-color) 50%, transparent);
 }
 @media (min-width: 850px) {
     .editor-button-bar {
@@ -778,8 +782,8 @@
 }
 
 #live-preview-area pre code {
-    background-color: rgba(0, 0, 0, 0.88);
-    color: white;
+    background-color: color-mix(in srgb, var(--text-color, #000) 88%, transparent);
+    color: var(--background-color, white);
     padding: 1rem;
 }
 
@@ -798,7 +802,7 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.95);
+    background: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--secondary-color);
     border-radius: var(--sb-border-radius-md);
@@ -891,13 +895,14 @@
     height: 32px;
     padding: 4px;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: color-mix(in srgb, var(--background-color) 80%, transparent);
     border: 1px solid var(--secondary-color);
     border-radius: var(--sb-border-radius-sm);
+    color: var(--text-color, #000);
 }
 
 .editor-btn.btn-markdown:hover {
-    background: rgba(255, 255, 255, 1);
+    background: var(--background-color);
     border-color: var(--primary-color);
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -906,18 +911,18 @@
 /* Markdown button active state */
 .editor-btn.btn-markdown.active {
     background: var(--primary-color);
-    color: white;
+    color: var(--background-color);
     border-color: var(--primary-color);
     transform: translateY(0);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 /* Markdown button context-active state (when cursor is in formatted text) */
 .editor-btn.btn-markdown.context-active {
-    background: var(--accent-color);
-    color: var(--primary-text-color);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.3);
+    background: var(--accent-color, var(--primary-color));
+    color: var(--background-color);
+    border-color: var(--accent-color, var(--primary-color));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color, var(--primary-color)) 30%, transparent);
 }
 
 /* Special styling for bold and italic buttons */
@@ -977,73 +982,70 @@
 /* Primary button (Save Draft) */
 .editor-btn.btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--background-color);
 }
 
 .editor-btn.btn-primary:hover {
-    background-color: var(--primary-color);
-    filter: brightness(1.1);
+    background-color: color-mix(in srgb, var(--primary-color) 85%, black);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 /* Secondary button (Clear) */
 .editor-btn.btn-secondary {
     background-color: var(--secondary-color);
-    color: white;
+    color: var(--background-color);
 }
 
 .editor-btn.btn-secondary:hover {
-    background-color: var(--secondary-color);
-    filter: brightness(1.1);
+    background-color: color-mix(in srgb, var(--secondary-color) 85%, black);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Accent button (Insert SpellBlock) */
 .editor-btn.btn-accent {
-    background-color: var(--subtle-color);
-    color: black;
+    background-color: color-mix(in srgb, var(--background-color) 90%, var(--primary-color) 10%);
+    color: var(--text-color);
     border: 1px solid var(--primary-color);
 }
 
 .editor-btn.btn-accent:hover {
-    background-color: var(--subtle-color);
-    filter: brightness(0.95);
+    background-color: color-mix(in srgb, var(--background-color) 85%, var(--primary-color) 15%);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* SpellBlock edit mode styles */
 .editor-btn.spellblock-edit-mode {
-    background-color: #f0f8ff;
-    color: #2563eb;
-    border: 2px solid #3b82f6 !important;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    background-color: color-mix(in srgb, var(--primary-color) 10%, var(--background-color) 90%);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 .editor-btn.spellblock-edit-mode:hover {
-    background-color: #e0f2fe;
-    border-color: #1d4ed8;
+    background-color: color-mix(in srgb, var(--primary-color) 15%, var(--background-color) 85%);
+    border-color: var(--primary-color);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .editor-btn.spellblock-edit-mode .button-icon {
-    color: #3b82f6;
+    color: var(--primary-color);
     transform: scale(1.1);
 }
 
 .editor-btn.spellblock-insert-mode {
-    background-color: var(--subtle-color);
-    color: black;
+    background-color: color-mix(in srgb, var(--background-color) 90%, var(--primary-color) 10%);
+    color: var(--text-color);
     border: 1px solid var(--primary-color);
 }
 
 /* Button focus states */
 .editor-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 50%, transparent);
 }
 
 /* Button active states */
@@ -1183,9 +1185,9 @@
 
 /* Help button styling */
 .btn-help {
-    background-color: #3b82f6;
-    color: white;
-    border: 2px solid #2563eb;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     width: 28px !important;
     height: 28px !important;
@@ -1203,14 +1205,14 @@
 }
 
 .btn-help:hover {
-    background-color: #2563eb;
+    background-color: color-mix(in srgb, var(--primary-color) 85%, black);
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 8px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .btn-help:active {
     transform: scale(0.95);
-    background-color: #1d4ed8;
+    background-color: color-mix(in srgb, var(--primary-color) 70%, black);
 }
 
 .btn-help .button-icon {
@@ -1233,7 +1235,7 @@
     50% {
         background-color: var(--primary-color);
         transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 50%, transparent);
     }
     100% {
         background-color: transparent;
@@ -1260,13 +1262,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: color-mix(in srgb, var(--text-color, #000) 50%, transparent);
     backdrop-filter: blur(3px);
 }
 
 .keyboard-shortcuts-modal .modal-content {
     position: relative;
-    background-color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border-radius: var(--sb-border-radius-lg);
     box-shadow:
         0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -1309,7 +1312,7 @@
 }
 
 .keyboard-shortcuts-modal .modal-close:hover {
-    background-color: var(--subtle-color);
+    background-color: color-mix(in srgb, var(--primary-color) 10%, var(--background-color) 90%);
     color: var(--primary-color);
 }
 
@@ -1336,14 +1339,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    background-color: var(--subtle-color);
+    background-color: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%);
     border-radius: var(--sb-border-radius-md);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid color-mix(in srgb, var(--text-color) 5%, transparent);
     transition: all 0.2s ease;
 }
 
 .shortcut-item:hover {
-    background-color: rgba(59, 130, 246, 0.05);
+    background-color: color-mix(in srgb, var(--primary-color) 5%, var(--background-color) 95%);
     border-color: var(--primary-color);
 }
 
@@ -1352,7 +1355,7 @@
     font-size: 14px;
     font-weight: 600;
     color: var(--primary-color);
-    background-color: white;
+    background-color: var(--background-color);
     padding: 6px 12px;
     border-radius: var(--sb-border-radius-sm);
     border: 1px solid var(--primary-color);
@@ -1362,7 +1365,7 @@
 
 .shortcut-description {
     font-size: 14px;
-    color: var(--secondary-color);
+    color: var(--text-secondary, var(--secondary-color));
     margin-left: 16px;
     flex: 1;
 }

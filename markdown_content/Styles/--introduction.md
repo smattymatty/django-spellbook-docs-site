@@ -74,6 +74,7 @@ All Spellbook styles use the `sb-` prefix to prevent conflicts with your project
 
 Want to see the specific classes available? Check out:
 
+- [Theme System](/docs/Styles/themes) **New!** - Complete color theming
 - [Border Utilities](/docs/Styles/borders)
 - [Color Utilities](/docs/Styles/colors)
 - [Effects Utilities](/docs/Styles/effects)
