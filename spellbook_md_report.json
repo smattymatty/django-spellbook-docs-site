@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 3,
     "successful_pairs": 3,
-    "total_processed_files": 46
+    "total_processed_files": 47
   },
   "pairs": [
     {
@@ -10,7 +10,7 @@
       "destination": "docs",
       "url_prefix": "docs",
       "success": true,
-      "processed_files": 27
+      "processed_files": 28
     },
     {
       "source": "/home/mathew/my_sites/django-spellbook-docs-site/changelog_content",
@@ -35,12 +35,12 @@
     },
     {
       "name": "alert",
-      "total_uses": 70,
+      "total_uses": 72,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 30,
+      "total_uses": 31,
       "failed_uses": 0
     },
     {

@@ -1,0 +1,451 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="creating-custom-themes">Creating Custom Themes</h1>
+<p><strong>Build beautiful, customizable color schemes using just Python dictionaries - no CSS required!</strong></p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The Django Spellbook theme system lets you define your entire site's color palette in <code>settings.py</code> using simple Python dictionaries. Change colors site-wide without touching a single CSS file!</p>
+    </span>
+</div>
+
+<h2 id="the-magic-of-python-based-themes">The Magic of Python-Based Themes</h2>
+<p>Instead of managing scattered CSS files, you define your theme as a Python dictionary in your Django settings. The system automatically:</p>
+<ul>
+<li>Generates all CSS variables at runtime</li>
+<li>Creates opacity variants (25%, 50%, 75%) for every color</li>
+<li>Applies themes per-session or site-wide</li>
+<li>Works with all existing Spellbook components</li>
+</ul>
+<h2 id="your-first-custom-theme">Your First Custom Theme</h2>
+<p>Add this to your <code>settings.py</code>:</p>
+<pre><code class="language-python"># settings.py
+
+SPELLBOOK_THEME = {
+    'colors': {
+        # Your brand colors
+        'primary': '#FF6B35',      # Main brand color
+        'secondary': '#F77B71',    # Supporting color
+        'accent': '#FFD700',       # Call-to-action color
+        'neutral': '#A8716A',      # Borders, dividers
+
+        # Status colors (keep these semantic)
+        'error': '#DC2626',        # Red for errors
+        'warning': '#FFAA00',      # Orange for warnings
+        'success': '#16A34A',      # Green for success
+        'info': '#3B82F6',         # Blue for information
+
+        # UI colors
+        'background': '#FFFFFF',   # Main background
+        'surface': '#F9FAFB',      # Cards, elevated elements
+        'text': '#1F2937',         # Primary text
+        'text-secondary': '#6B7280', # Muted text
+    },
+    'generate_variants': True  # Creates opacity versions (recommended)
+}
+</code></pre>
+<p>That's it! Your entire site now uses your custom colors. Every Spellbook component automatically adapts.</p>
+<h2 id="understanding-theme-colors">Understanding Theme Colors</h2>
+<h3 id="core-semantic-colors">Core Semantic Colors</h3>
+<p>These are your main brand colors:</p>
+<pre><code class="language-python">'colors': {
+    'primary': '#8B4513',    # Main brand identity
+    'secondary': '#D2691E',  # Supporting brand color
+    'accent': '#FFD700',     # High-contrast CTAs
+    'neutral': '#A0826D',    # Subtle elements
+}
+</code></pre>
+<h3 id="status-colors">Status Colors</h3>
+<p>Keep these predictable for good UX:</p>
+<pre><code class="language-python">'colors': {
+    'success': '#10B981',    # Always greenish
+    'warning': '#F59E0B',    # Always yellow/orange
+    'error': '#EF4444',      # Always reddish
+    'info': '#3B82F6',       # Always blueish
+}
+</code></pre>
+<h3 id="system-colors">System Colors</h3>
+<p>Control the overall look and feel:</p>
+<pre><code class="language-python">'colors': {
+    'background': '#FFFFFF',     # Page background
+    'surface': '#F9FAFB',        # Card backgrounds
+    'text': '#111827',           # Main text color
+    'text-secondary': '#6B7280', # Muted text
+}
+</code></pre>
+<h2 id="real-world-theme-examples">Real-World Theme Examples</h2>
+<h3 id="corporate-professional">Corporate Professional</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # Navy and gold corporate palette
+        'primary': '#003366',
+        'secondary': '#004080',
+        'accent': '#FFB800',
+        'neutral': '#657786',
+
+        # Standard status colors
+        'error': '#CC0000',
+        'warning': '#FF9900',
+        'success': '#007700',
+        'info': '#0066CC',
+
+        # Clean, professional backgrounds
+        'background': '#FFFFFF',
+        'surface': '#F7F9FA',
+        'text': '#14171A',
+        'text-secondary': '#657786',
+    }
+}
+</code></pre>
+<h3 id="startup-modern">Startup Modern</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # Gradient-friendly purple to pink
+        'primary': '#7C3AED',
+        'secondary': '#EC4899',
+        'accent': '#06B6D4',
+        'neutral': '#94A3B8',
+
+        # Friendly status colors
+        'error': '#F87171',
+        'warning': '#FBBF24',
+        'success': '#34D399',
+        'info': '#60A5FA',
+
+        # Light, airy feel
+        'background': '#FAFAFA',
+        'surface': '#FFFFFF',
+        'text': '#1E293B',
+        'text-secondary': '#64748B',
+    }
+}
+</code></pre>
+<h3 id="dark-mode-theme">Dark Mode Theme</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # Brighter colors for dark backgrounds
+        'primary': '#60A5FA',
+        'secondary': '#A78BFA',
+        'accent': '#FBBF24',
+        'neutral': '#4B5563',
+
+        # Lighter status colors for visibility
+        'error': '#F87171',
+        'warning': '#FCD34D',
+        'success': '#6EE7B7',
+        'info': '#93C5FD',
+
+        # Dark backgrounds
+        'background': '#0F172A',
+        'surface': '#1E293B',
+        'text': '#F1F5F9',
+        'text-secondary': '#CBD5E1',
+    }
+}
+</code></pre>
+<h2 id="advanced-theme-with-modes">Advanced: Theme with Modes</h2>
+<p>Create a theme that supports both light and dark modes:</p>
+<pre><code class="language-python"># Custom theme with light/dark modes
+MY_CUSTOM_THEME = {
+    'name': 'my_brand',
+    'modes': {
+        'light': {
+            'colors': {
+                'primary': '#5B21B6',
+                'secondary': '#7C3AED',
+                'accent': '#FCD34D',
+                'neutral': '#9CA3AF',
+                'error': '#DC2626',
+                'warning': '#F59E0B',
+                'success': '#10B981',
+                'info': '#3B82F6',
+                'background': '#FFFFFF',
+                'surface': '#FAFAFA',
+                'text': '#111827',
+                'text-secondary': '#6B7280',
+            }
+        },
+        'dark': {
+            'colors': {
+                'primary': '#A78BFA',
+                'secondary': '#C4B5FD',
+                'accent': '#FDE047',
+                'neutral': '#6B7280',
+                'error': '#F87171',
+                'warning': '#FBBF24',
+                'success': '#6EE7B7',
+                'info': '#93C5FD',
+                'background': '#111827',
+                'surface': '#1F2937',
+                'text': '#F9FAFB',
+                'text-secondary': '#D1D5DB',
+            }
+        }
+    }
+}
+
+# Use based on user preference or time of day
+import datetime
+
+current_hour = datetime.datetime.now().hour
+mode = 'dark' if current_hour &gt;= 18 or current_hour &lt; 6 else 'light'
+
+SPELLBOOK_THEME = MY_CUSTOM_THEME['modes'][mode]
+</code></pre>
+<h2 id="setting-up-theme-middleware">Setting Up Theme Middleware</h2>
+<p>To enable dynamic theme switching (like we have on this site), add the middleware:</p>
+<pre><code class="language-python"># settings.py
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # ... other middleware ...
+    'sb_theme.middleware.ThemeMiddleware',  # Add this
+]
+
+# Make sure sessions are enabled
+INSTALLED_APPS = [
+    'django.contrib.sessions',
+    # ... other apps ...
+    'sb_theme',  # Your theme app
+]
+</code></pre>
+<h3 id="creating-the-middleware">Creating the Middleware</h3>
+<p>Here's our battle-tested middleware with all bug fixes applied:</p>
+<pre><code class="language-python"># sb_theme/middleware.py
+
+from django.conf import settings
+from django.utils.deprecation import MiddlewareMixin
+from django_spellbook.theme import SpellbookTheme
+
+class ThemeMiddleware(MiddlewareMixin):
+    &quot;&quot;&quot;Apply theme configuration on each request.&quot;&quot;&quot;
+
+    def process_request(self, request):
+        &quot;&quot;&quot;Apply theme from session or settings.&quot;&quot;&quot;
+        # Get theme from session
+        theme_name = request.session.get('theme', 'default')
+        mode = request.session.get('mode', 'light')
+
+        # Important: Handle special themes like 'magical'
+        if theme_name == 'magical':
+            # Load from your custom configuration
+            from core.settings import MAGICAL_THEME_CONFIG
+            if mode in MAGICAL_THEME_CONFIG.get('modes', {}):
+                theme_config = MAGICAL_THEME_CONFIG['modes'][mode].copy()
+                settings.SPELLBOOK_THEME = theme_config
+        else:
+            # Load from presets
+            from django_spellbook.theme import get_theme_with_mode
+            theme_config = get_theme_with_mode(theme_name, mode)
+            if theme_config:
+                settings.SPELLBOOK_THEME = theme_config
+
+        # Create theme object for templates
+        request.theme = SpellbookTheme(settings.SPELLBOOK_THEME)
+</code></pre>
+<h2 id="custom-colors-and-extensions">Custom Colors and Extensions</h2>
+<h3 id="adding-your-own-semantic-colors">Adding Your Own Semantic Colors</h3>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # Standard colors...
+        'primary': '#FF6B35',
+
+        # Add custom semantic colors
+        'premium': '#FFD700',      # Gold for premium features
+        'featured': '#FF1493',     # Hot pink for featured items
+        'discount': '#00CED1',     # Turquoise for sales
+        'archived': '#708090',     # Gray for old content
+    }
+}
+
+# Use in templates:
+# &lt;div class=&quot;sb-bg-premium&quot;&gt;Premium Feature&lt;/div&gt;
+# &lt;span class=&quot;sb-text-discount&quot;&gt;50% OFF&lt;/span&gt;
+</code></pre>
+<h3 id="brand-specific-palettes">Brand-Specific Palettes</h3>
+<pre><code class="language-python"># Example: E-commerce site with product categories
+SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#FF6B35',
+        'secondary': '#4ECDC4',
+
+        # Product category colors
+        'electronics': '#4A90E2',
+        'fashion': '#E91E63',
+        'home': '#8BC34A',
+        'sports': '#FF5722',
+        'books': '#795548',
+    }
+}
+</code></pre>
+<h2 id="theme-switcher-view">Theme Switcher View</h2>
+<p>Here's a complete theme switcher implementation:</p>
+<pre><code class="language-python"># sb_theme/views.py
+
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from django_spellbook.theme import THEMES_WITH_MODES
+
+def theme_switcher(request):
+    &quot;&quot;&quot;Display theme switcher interface.&quot;&quot;&quot;
+    current_theme = request.session.get('theme', 'default')
+    current_mode = request.session.get('mode', 'light')
+
+    # Get all available themes
+    themes = []
+    for name, config in THEMES_WITH_MODES.items():
+        themes.append({
+            'name': name,
+            'display_name': name.title(),
+            'has_dark': 'dark' in config.get('modes', {}),
+            'colors': config['modes']['light']['colors']
+        })
+
+    return render(request, 'sb_theme/theme_switcher.html', {
+        'themes': themes,
+        'current_theme': current_theme,
+        'current_mode': current_mode,
+    })
+
+@require_POST
+def set_theme(request):
+    &quot;&quot;&quot;Set theme in session.&quot;&quot;&quot;
+    theme = request.POST.get('theme', 'default')
+    mode = request.POST.get('mode', 'light')
+
+    # Important: Save to session
+    request.session['theme'] = theme
+    request.session['mode'] = mode
+    request.session.save()  # Ensure it's saved!
+
+    # Return HTMX response or redirect
+    if request.headers.get('HX-Request'):
+        return render(request, 'sb_theme/theme_applied.html', {
+            'theme': theme,
+            'mode': mode
+        })
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+</code></pre>
+<h2 id="using-themes-in-templates">Using Themes in Templates</h2>
+<h3 id="basic-color-classes">Basic Color Classes</h3>
+<pre><code class="language-django">&lt;!-- Backgrounds --&gt;
+&lt;div class=&quot;sb-bg-primary&quot;&gt;Primary background&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface&quot;&gt;Surface background&lt;/div&gt;
+
+&lt;!-- With opacity variants --&gt;
+&lt;div class=&quot;sb-bg-primary-50&quot;&gt;50% opacity primary&lt;/div&gt;
+&lt;div class=&quot;sb-bg-accent-25&quot;&gt;25% opacity accent&lt;/div&gt;
+
+&lt;!-- Text colors --&gt;
+&lt;p class=&quot;sb-text-primary&quot;&gt;Primary text&lt;/p&gt;
+&lt;span class=&quot;sb-text-error&quot;&gt;Error message&lt;/span&gt;
+
+&lt;!-- Borders --&gt;
+&lt;div class=&quot;sb-border sb-border-neutral&quot;&gt;Neutral border&lt;/div&gt;
+</code></pre>
+<h3 id="dynamic-theme-values-in-templates">Dynamic Theme Values in Templates</h3>
+<pre><code class="language-django">&lt;!-- Access current theme colors --&gt;
+&lt;style&gt;
+    .my-custom-gradient {
+        background: linear-gradient(
+            to right,
+            var(--primary-color),
+            var(--secondary-color)
+        );
+    }
+&lt;/style&gt;
+</code></pre>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<h3 id="theme-not-applying">Theme Not Applying?</h3>
+<p>Based on bugs we've fixed, check these:</p>
+<ol>
+<li><strong>Middleware Order</strong>: SessionMiddleware must come before ThemeMiddleware</li>
+<li><strong>Session Not Saving</strong>: Always call <code>request.session.save()</code></li>
+<li><strong>Settings Override</strong>: Check that nothing is overwriting <code>SPELLBOOK_THEME</code> later</li>
+<li><strong>Template Loading</strong>: Ensure `</li>
+</ol>
+<spellbook_styles><p>` is in your base template</p><h3 id="custom-theme-not-recognized">Custom Theme Not Recognized?</h3><pre><code class="language-python"># Problem: Custom theme like 'magical' not working
+# Solution: Handle it explicitly in middleware
+
+if theme_name == 'magical':
+    from myapp.settings import MY_CUSTOM_THEME
+    theme_config = MY_CUSTOM_THEME
+else:
+    # Use presets
+    theme_config = get_theme_with_mode(theme_name, mode)
+</code></pre><h3 id="colors-look-wrong">Colors Look Wrong?</h3><pre><code class="language-python"># Ensure valid color formats
+SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#FF6B35',     # ✅ Hex
+        'secondary': 'rgb(247, 123, 113)',  # ✅ RGB
+        'accent': 'goldenrod',    # ✅ CSS named color
+        # 'bad': 'FF6B35',        # ❌ Missing #
+        # 'invalid': '#GGGGGG',   # ❌ Invalid hex
+    }
+}
+</code></pre><h3 id="opacity-variants-not-working">Opacity Variants Not Working?</h3><pre><code class="language-python"># Make sure variants are enabled
+SPELLBOOK_THEME = {
+    'colors': { ... },
+    'generate_variants': True  # Must be True!
+}
+</code></pre><h2 id="performance-considerations">Performance Considerations</h2><p>The theme system is incredibly lightweight:</p><ul><li><strong>No build process</strong>: CSS generated at runtime</li><li><strong>Cached efficiently</strong>: Variables generated once per request</li><li><strong>No JavaScript</strong>: Pure CSS variables</li><li><strong>Small footprint</strong>: ~2KB of CSS for complete theme</li></ul><h2 id="quick-recipes">Quick Recipes</h2><h3 id="seasonal-themes">Seasonal Themes</h3><pre><code class="language-python">import datetime
+
+def get_seasonal_theme():
+    month = datetime.datetime.now().month
+
+    if month in [12, 1, 2]:  # Winter
+        return {
+            'colors': {
+                'primary': '#0EA5E9',  # Ice blue
+                'accent': '#E0F2FE',   # Snow white
+                # ...
+            }
+        }
+    elif month in [3, 4, 5]:  # Spring
+        return {
+            'colors': {
+                'primary': '#84CC16',  # Fresh green
+                'accent': '#FDE047',   # Sunshine yellow
+                # ...
+            }
+        }
+    # ... etc
+
+SPELLBOOK_THEME = get_seasonal_theme()
+</code></pre><h3 id="user-preference-themes">User Preference Themes</h3><pre><code class="language-python"># In your user profile model
+class UserProfile(models.Model):
+    theme_colors = models.JSONField(default=dict)
+
+# In middleware or view
+user_theme = request.user.profile.theme_colors
+if user_theme:
+    SPELLBOOK_THEME = {'colors': user_theme}
+</code></pre><h3 id="ab-testing-themes">A/B Testing Themes</h3><pre><code class="language-python">import random
+
+# Test two different color schemes
+THEME_A = {'colors': {'primary': '#FF6B35', ...}}
+THEME_B = {'colors': {'primary': '#4ECDC4', ...}}
+
+# Randomly assign (or use more sophisticated logic)
+SPELLBOOK_THEME = random.choice([THEME_A, THEME_B])
+</code></pre><h2 id="the-power-of-python-dictionaries">The Power of Python Dictionaries</h2><p>Remember: <strong>Your entire site's color scheme is just a Python dictionary!</strong><br />
+No more:</p><ul><li>Searching through CSS files</li><li>Compiling SASS/LESS</li><li>Managing CSS variables manually</li><li>Worrying about specificity wars</li></ul><p>Just update your dictionary, and every component adapts instantly. It's that simple!</p><div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>Pro Tip</strong>: Start with one of the 9 built-in presets, then customize just the colors you want to change. You don't need to define every color from scratch!</p>
+    </span>
+</div>
+<h2 id="next-steps">Next Steps</h2><ol><li><strong>Copy a starter theme</strong> from the examples above</li><li><strong>Paste into your <code>settings.py</code></strong></li><li><strong>Tweak the colors</strong> to match your brand</li><li><strong>See instant results</strong> across your entire site!</li></ol><p>Visit <code>/themes/</code> on your site to preview how your theme looks with real components.</p><a class="sb-btn sb-btn-primary" href="/themes/"><p>Try Theme Switcher →</p></a><a class="super-link" href="/docs/Styles/themes"><p>Learn About Built-in Themes</p></a></spellbook_styles>
+{% endblock %}

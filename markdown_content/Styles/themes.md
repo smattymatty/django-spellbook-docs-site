@@ -404,8 +404,18 @@ Ready to theme your site?
 **Pro Tip:** Start with a preset theme close to your vision, then customize individual colors as needed. The theme builder makes this process visual and fun!
 {~~}
 
-{% a href="/themes/" .sb-btn .sb-btn-primary %}
-Explore Themes Live →
+## Learn More
+
+{~ card title="Create Custom Themes" ~}
+Learn how to build your own custom themes using just Python dictionaries - no CSS required! Includes real-world examples, middleware setup, and troubleshooting.
+{~~}
+
+{% a href="/docs/Styles/custom_themes" .sb-btn .sb-btn-primary .sb-btn-lg %}
+📖 Custom Theme Guide →
+{% enda %}
+
+{% a href="/themes/" .sb-btn .sb-btn-secondary %}
+🎨 Explore Themes Live →
 {% enda %}
 
 {% a href="/docs/Styles/colors" .super-link %}
