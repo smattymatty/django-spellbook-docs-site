@@ -10,14 +10,14 @@
       "destination": "docs",
       "url_prefix": "docs",
       "success": true,
-      "processed_files": 28
+      "processed_files": 27
     },
     {
       "source": "/home/mathew/my_sites/django-spellbook-docs-site/changelog_content",
       "destination": "changelog",
       "url_prefix": "changelog",
       "success": true,
-      "processed_files": 8
+      "processed_files": 9
     },
     {
       "source": "/home/mathew/my_sites/django-spellbook-docs-site/examples_content",
@@ -35,12 +35,12 @@
     },
     {
       "name": "alert",
-      "total_uses": 72,
+      "total_uses": 69,
       "failed_uses": 0
     },
     {
       "name": "card",
-      "total_uses": 31,
+      "total_uses": 30,
       "failed_uses": 0
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "name": "accordion",
-      "total_uses": 40,
+      "total_uses": 37,
       "failed_uses": 0
     },
     {

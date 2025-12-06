@@ -1,0 +1,47 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-0117"><strong>Version 0.1.17</strong></h2>
+<h3 id="changed">Changed</h3>
+<h4 id="beautiful-documentation-out-of-the-box">Beautiful Documentation Out of the Box</h4>
+<p>Running <code>python manage.py spellbook_md</code> now gives you a gorgeous, professional documentation site <strong>automatically</strong> - no configuration needed!</p>
+<p><strong>What you get instantly:</strong><br />
+- <strong>Sidebar table of contents</strong> that's always visible<br />
+- <strong>Full theme support</strong> - all 9 built-in themes work immediately<br />
+- <strong>Responsive design</strong> - looks great on mobile and desktop<br />
+- <strong>Metadata display</strong> - frontmatter data beautifully presented</p>
+<p><strong>Before:</strong> Raw HTML with no styling<br />
+<strong>Now:</strong> Production-ready documentation site</p>
+<p><strong>Want to customize?</strong> You still can! Set <code>SPELLBOOK_MD_BASE_TEMPLATE</code> in your settings to use your own template, or set it to <code>None</code> if you just want the raw HTML.</p>
+<h3 id="fixed">Fixed</h3>
+<h4 id="themes-now-work-everywhere">Themes Now Work Everywhere</h4>
+<p>Fixed a bug where <strong>only metadata boxes</strong> changed colors when switching themes. Now <strong>everything</strong> responds to your theme:<br />
+- Table of contents text and borders<br />
+- Body text and headings<br />
+- Code blocks and inline code<br />
+- All UI elements</p>
+<p><strong>Before:</strong> Switching themes only changed metadata colors, rest stayed the same<br />
+<strong>Now:</strong> Entire page transforms with your chosen theme</p>
+<h4 id="long-words-no-longer-break-layout">Long Words No Longer Break Layout</h4>
+<p>Fixed annoying horizontal scrollbar that appeared when table of contents had long words with underscores (like <code>really_long_function_name_with_underscores</code>).</p>
+<p><strong>Before:</strong> Long words caused horizontal scrolling in sidebar<br />
+<strong>Now:</strong> Long words wrap gracefully, no scrollbar</p>
+<h4 id="table-of-contents-highlights-your-location">Table of Contents Highlights Your Location</h4>
+<p>When you visit a page from a bookmark, search engine, or direct link, the table of contents now <strong>automatically expands and highlights</strong> your current location.</p>
+<p><strong>Before:</strong> TOC stayed collapsed when visiting from external links<br />
+<strong>Now:</strong> TOC opens to show exactly where you are</p>
+<h4 id="smoother-page-loading">Smoother Page Loading</h4>
+<p>Removed the jarring "expanding" animation when pages first load. TOC now appears instantly in the correct state, while clicks still animate smoothly.</p>
+<p><strong>Before:</strong> Distracting flash of animation on every page load<br />
+<strong>Now:</strong> Clean, instant page loads with smooth interactions</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>We're committed to continuous improvement and building the most powerful markdown processing toolkit for Django. If you have feedback or feature requests, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
+    </span>
+</div>
+{% endblock %}

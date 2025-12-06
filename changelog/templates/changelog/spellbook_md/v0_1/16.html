@@ -2,135 +2,75 @@
 
 {% block spellbook_md %}
 <h2 id="version-0116"><strong>Version 0.1.16</strong></h2>
-<p><em>Released: August 26, 2025</em></p>
-<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ✅
-
-    </span>
-    <span class="sb-alert-content">
-        <p>Major theme system enhancements! This release introduces a custom "magical" theme, full dark mode support, HTMX-powered theme switching, and comprehensive theme-aware styling across all components.</p>
-    </span>
-</div>
-
-<h1 id="theme-system-enhancements">Theme System Enhancements</h1>
-<h2 id="custom-magical-theme-with-dark-mode">Custom "Magical" Theme with Dark Mode</h2>
-<p>Added a beautiful custom theme that captures the essence of Django Spellbook with warm, earthy tones:</p>
-<h3 id="light-mode">Light Mode</h3>
+<h3 id="added">Added</h3>
+<h4 id="theme-system">Theme System</h4>
 <ul>
-<li><strong>Primary</strong>: Saddle brown (#8b4513) - rich, warm brown</li>
-<li><strong>Background</strong>: Light tan (#f0e6d2) - soft parchment color</li>
-<li><strong>Surface</strong>: Cream (#fff9e6) - elevated content areas</li>
-<li><strong>Accent</strong>: Amber (#f59e0b) - calls to action</li>
+<li><strong>Python-based color configuration</strong> - Define your entire site's color scheme in Django settings instead of CSS files</li>
+<li><strong>9 magical theme presets</strong> ready to use:</li>
+<li><code>default</code> - Classic blue spellbook theme</li>
+<li><code>arcane</code> - Deep purple mysteries with golden spell glows</li>
+<li><code>celestial</code> - Divine light magic with sky blues and gold</li>
+<li><code>forest</code> - Woodland greens and earth tones</li>
+<li><code>ocean</code> - Deep sea blues and aquatic enchantments</li>
+<li><code>phoenix</code> - Fire colors with oranges and reds</li>
+<li><code>shadow</code> - Monochrome shadow magic</li>
+<li><code>enchanted</code> - Bright magical pinks and fairy gold</li>
+<li>
+<p><code>pastel</code> - Soft, gentle enchantment colors</p>
+</li>
+<li>
+<p><strong>Custom color support</strong> - Define your own magical color palette:<br />
+<code>python
+  SPELLBOOK_THEME = {
+      'colors': {
+          'primary': '#8B008B',
+          'secondary': '#4B0082',
+          'accent': '#FFD700',
+      }
+  }</code></p>
+</li>
+<li>
+<p><strong>Automatic opacity variants</strong> - Every color automatically gets 25%, 50%, and 75% transparent versions using CSS color-mix</p>
+</li>
+<li><strong>Custom color names</strong> - Create your own spell colors like <code>magic</code>, <code>spell</code>, <code>potion</code> that work with all utility classes</li>
+<li><strong>Dynamic theme switching</strong> - Change themes at runtime using sessions and middleware</li>
+<li><strong>100% backward compatible</strong> - Existing sites continue working without any changes</li>
 </ul>
-<h3 id="dark-mode">Dark Mode</h3>
+<h3 id="technical-details">Technical Details</h3>
 <ul>
-<li><strong>Primary</strong>: Peru (#cd853f) - lighter brown for visibility</li>
-<li><strong>Background</strong>: Very dark brown (#1a1410) - deep, rich darkness</li>
-<li><strong>Surface</strong>: Dark brown (#2c241c) - card backgrounds</li>
-<li><strong>Text</strong>: Light tan (#f0e6d2) - inverted for readability</li>
+<li>New <code>django_spellbook.theme</code> module with validation, generation, and preset management</li>
+<li>CSS variables dynamically generated from Python configuration</li>
+<li>Comprehensive color validation supporting hex, rgb, rgba, and CSS named colors</li>
+<li>Full test coverage with 26 new tests for the theme system</li>
+<li>Template tag `</li>
 </ul>
-<pre><code class="language-python"># settings.py
-MAGICAL_THEME_CONFIG = {
-    'name': 'magical',
-    'modes': {
-        'light': {
-            'colors': {
-                'primary': '#8b4513',
-                'background': '#f0e6d2',
-                # ... full color palette
-            }
-        },
-        'dark': {
-            'colors': {
-                'primary': '#cd853f',
-                'background': '#1a1410',
-                # ... dark mode colors
-            }
-        }
+<spellbook_styles><p>` enhanced to inject theme CSS while maintaining backward compatibility</p><h3 id="usage">Usage</h3><pre><code class="language-python"># settings.py
+from django_spellbook.theme import THEMES
+
+# Use a preset theme
+SPELLBOOK_THEME = THEMES['arcane']
+
+# Or create your own
+SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#FF6B35',
+        'secondary': '#F77B71',
+        # ... your colors
+    },
+    'custom_colors': {
+        'magic': '#8B008B',  # Use as sb-bg-magic
+        'spell': '#4B0082',  # Use as sb-text-spell
     }
 }
-</code></pre>
-<h2 id="htmx-powered-theme-switcher">HTMX-Powered Theme Switcher</h2>
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+</code></pre><h3 id="developer-notes">Developer Notes</h3><ul><li>Theme CSS is generated once per request (caching can be added if needed)</li><li>No JavaScript required - pure CSS variable approach</li><li>No build step or compilation needed</li><li>Compatible with all existing SpellBlocks and utility classes</li></ul><div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
             ℹ️
 
     </span>
     <span class="sb-alert-content">
-        <p>The theme switcher now uses HTMX for smooth, no-refresh theme changes with instant visual feedback!</p>
+        <p>We're committed to continuous improvement and building the most powerful markdown processing toolkit for Django. If you have feedback or feature requests, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
     </span>
 </div>
-
-<h3 id="features">Features</h3>
-<ul>
-<li><strong>Instant preview</strong> of color palettes without page reload</li>
-<li><strong>Session persistence</strong> - themes are saved per user session</li>
-<li><strong>Mode toggle</strong> - switch between light and dark modes</li>
-<li><strong>Visual feedback</strong> - smooth animations and transitions</li>
-<li><strong>Reset to default</strong> - one-click return to magical theme</li>
-</ul>
-<h3 id="technical-implementation">Technical Implementation</h3>
-<pre><code class="language-python"># views.py
-@csrf_exempt
-@require_http_methods([&quot;POST&quot;])
-def set_theme(request):
-    theme = request.POST.get('theme', 'magical')
-    mode = request.POST.get('mode', 'light')
-    request.session['theme'] = theme
-    request.session['mode'] = mode
-    # Return partial template with HX-Refresh header
-</code></pre>
-<h2 id="theme-aware-component-styling">Theme-Aware Component Styling</h2>
-<h3 id="updated-components">Updated Components</h3>
-<p>All site components now properly use CSS variables for theming:</p>
-<ol>
-<li>
-<p><strong>Navigation &amp; Headers</strong><br />
-   - Mode toggle button with sun/moon icons<br />
-   - Theme-aware header colors<br />
-   - Proper hover states</p>
-</li>
-<li>
-<p><strong>Sidebar &amp; TOC</strong><br />
-   - Background uses <code>var(--background-color)</code><br />
-   - Borders use <code>var(--primary-color)</code><br />
-   - Active items use opacity variants<br />
-   - Hover states adapt to theme</p>
-</li>
-<li>
-<p><strong>Code Blocks</strong><br />
-   - Dark backgrounds with theme text colors<br />
-   - Syntax highlighting that adapts to theme<br />
-   - Proper contrast in both light and dark modes</p>
-</li>
-<li>
-<p><strong>Content Areas</strong><br />
-   - Surface colors for cards and elevated content<br />
-   - Text colors that ensure readability<br />
-   - Link colors that stand out appropriately</p>
-</li>
-</ol>
-<h2 id="home-page-improvements">Home Page Improvements</h2>
-<h3 id="markdown-based-content">Markdown-Based Content</h3>
-<p>The "Get Started" section now uses Django Spellbook's own markdown rendering:</p>
-<pre><code class="language-python"># views.py
-from django_spellbook.parsers import render_spellbook_markdown_to_html
-
-def home(request):
-    with open(markdown_path, 'r') as f:
-        markdown_content = f.read()
-    get_started_html = render_spellbook_markdown_to_html(markdown_content)
-</code></pre>
-<h3 id="benefits">Benefits</h3>
-<ul>
-<li>Proper syntax highlighting with theme colors</li>
-<li>Consistent styling across all pages</li>
-<li>Easy content updates via markdown</li>
-<li>Automatic theme adaptation</li>
-</ul>
-<hr />
-<p><em>Full documentation available at <a href="https://django-spellbook.org">Django Spellbook Docs</a></em></p>
+</spellbook_styles>
 {% endblock %}
