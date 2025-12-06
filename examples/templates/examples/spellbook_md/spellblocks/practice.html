@@ -11,9 +11,13 @@
 Create a Django model for a simple blog with the following fields:
 
 - Title (CharField)
+
 - Content (TextField)
+
 - Publication date (DateTimeField)
+
 - Author (ForeignKey to User)
+
 - Status (CharField with choices)
 
 Implement the `__str__` method and add a Meta class with proper ordering.
@@ -38,11 +42,21 @@ Implement the `__str__` method and add a Meta class with proper ordering.
         <h3 id="create-a-blog-model">Create a Blog Model</h3>
 <p>Create a Django model for a simple blog with the following fields:</p>
 <ul>
-<li>Title (CharField)</li>
-<li>Content (TextField)</li>
-<li>Publication date (DateTimeField)</li>
-<li>Author (ForeignKey to User)</li>
-<li>Status (CharField with choices)</li>
+<li>
+<p>Title (CharField)</p>
+</li>
+<li>
+<p>Content (TextField)</p>
+</li>
+<li>
+<p>Publication date (DateTimeField)</p>
+</li>
+<li>
+<p>Author (ForeignKey to User)</p>
+</li>
+<li>
+<p>Status (CharField with choices)</p>
+</li>
 </ul>
 <p>Implement the <code>__str__</code> method and add a Meta class with proper ordering.</p>
     </div>
@@ -111,8 +125,11 @@ Create a form with custom validation logic for email and password fields.
 Implement a view that uses advanced ORM features:
 
 - Aggregation
+
 - Annotation
+
 - Window functions
+
 - Subqueries
 {~~}
 </code></pre>
@@ -135,10 +152,18 @@ Implement a view that uses advanced ORM features:
         <h3 id="complex-database-queries">Complex Database Queries</h3>
 <p>Implement a view that uses advanced ORM features:</p>
 <ul>
-<li>Aggregation</li>
-<li>Annotation</li>
-<li>Window functions</li>
-<li>Subqueries</li>
+<li>
+<p>Aggregation</p>
+</li>
+<li>
+<p>Annotation</p>
+</li>
+<li>
+<p>Window functions</p>
+</li>
+<li>
+<p>Subqueries</p>
+</li>
 </ul>
     </div>
 </div>
@@ -268,13 +293,17 @@ Implement these class-based views:
 1. A ListView that:
 
    - Displays all published articles
+
    - Includes pagination (10 per page)
+
    - Has a search feature
 
 2. A DetailView that:
 
    - Shows a single article with all its details
+
    - Handles 404 errors gracefully
+
    - Includes a &quot;related articles&quot; section
 
 **Bonus challenge:** Add a comment form to the detail view.
@@ -299,21 +328,31 @@ Implement these class-based views:
         <h3 id="list-and-detail-views">List and Detail Views</h3>
 <p>Implement these class-based views:</p>
 <ol>
-<li>A ListView that:</li>
+<li>
+<p>A ListView that:</p>
+</li>
+<li>
+<p>Displays all published articles</p>
+</li>
+<li>
+<p>Includes pagination (10 per page)</p>
+</li>
+<li>
+<p>Has a search feature</p>
+</li>
+<li>
+<p>A DetailView that:</p>
+</li>
+<li>
+<p>Shows a single article with all its details</p>
+</li>
+<li>
+<p>Handles 404 errors gracefully</p>
+</li>
+<li>
+<p>Includes a "related articles" section</p>
+</li>
 </ol>
-<ul>
-<li>Displays all published articles</li>
-<li>Includes pagination (10 per page)</li>
-<li>Has a search feature</li>
-</ul>
-<ol start="2">
-<li>A DetailView that:</li>
-</ol>
-<ul>
-<li>Shows a single article with all its details</li>
-<li>Handles 404 errors gracefully</li>
-<li>Includes a "related articles" section</li>
-</ul>
 <p><strong>Bonus challenge:</strong> Add a comment form to the detail view.</p>
     </div>
 </div>
@@ -327,8 +366,11 @@ Implement these class-based views:
 Set up a production environment with:
 
 - Gunicorn
+
 - Nginx
+
 - PostgreSQL
+
 - Redis cache
 {~~}
 </code></pre>
@@ -351,10 +393,18 @@ Set up a production environment with:
         <h3 id="deploy-to-production">Deploy to Production</h3>
 <p>Set up a production environment with:</p>
 <ul>
-<li>Gunicorn</li>
-<li>Nginx</li>
-<li>PostgreSQL</li>
-<li>Redis cache</li>
+<li>
+<p>Gunicorn</p>
+</li>
+<li>
+<p>Nginx</p>
+</li>
+<li>
+<p>PostgreSQL</p>
+</li>
+<li>
+<p>Redis cache</p>
+</li>
 </ul>
     </div>
 </div>
@@ -369,21 +419,29 @@ In this exercise, you'll create a fully functional contact form:
 1. Create a Django form class with these fields:
 
    - Name
+
    - Email
+
    - Subject
+
    - Message
 
 2. Create a view that:
 
    - Renders the empty form on GET
+
    - Validates the form on POST
+
    - Sends an email when valid
+
    - Shows a success message
 
 3. Add a template with:
 
    - The form rendered with proper styling
+
    - Error message display
+
    - A success message area
 
 **Deliverable:** A working contact form that sends emails and validates input.
@@ -408,31 +466,49 @@ In this exercise, you'll create a fully functional contact form:
         <h3 id="contact-form-implementation">Contact Form Implementation</h3>
 <p>In this exercise, you'll create a fully functional contact form:</p>
 <ol>
-<li>Create a Django form class with these fields:</li>
+<li>
+<p>Create a Django form class with these fields:</p>
+</li>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Email</p>
+</li>
+<li>
+<p>Subject</p>
+</li>
+<li>
+<p>Message</p>
+</li>
+<li>
+<p>Create a view that:</p>
+</li>
+<li>
+<p>Renders the empty form on GET</p>
+</li>
+<li>
+<p>Validates the form on POST</p>
+</li>
+<li>
+<p>Sends an email when valid</p>
+</li>
+<li>
+<p>Shows a success message</p>
+</li>
+<li>
+<p>Add a template with:</p>
+</li>
+<li>
+<p>The form rendered with proper styling</p>
+</li>
+<li>
+<p>Error message display</p>
+</li>
+<li>
+<p>A success message area</p>
+</li>
 </ol>
-<ul>
-<li>Name</li>
-<li>Email</li>
-<li>Subject</li>
-<li>Message</li>
-</ul>
-<ol start="2">
-<li>Create a view that:</li>
-</ol>
-<ul>
-<li>Renders the empty form on GET</li>
-<li>Validates the form on POST</li>
-<li>Sends an email when valid</li>
-<li>Shows a success message</li>
-</ul>
-<ol start="3">
-<li>Add a template with:</li>
-</ol>
-<ul>
-<li>The form rendered with proper styling</li>
-<li>Error message display</li>
-<li>A success message area</li>
-</ul>
 <p><strong>Deliverable:</strong> A working contact form that sends emails and validates input.</p>
     </div>
 </div>
@@ -446,19 +522,25 @@ Create a complete REST API for a blog application:
 1. Design and implement these models:
 
    - Post (with title, content, author, publication date)
+
    - Category (with name, description)
+
    - Comment (with content, author, post reference)
 
 2. Create serializers for each model:
 
    - Include proper validation
+
    - Use nested serializers where appropriate
+
    - Implement custom methods as needed
 
 3. Implement ViewSets with:
 
    - Proper permissions (admin can do everything, authors can edit their own content)
+
    - Filtering and searching
+
    - Pagination
 
 4. Set up proper URL routing with a router
@@ -487,30 +569,42 @@ Create a complete REST API for a blog application:
         <h3 id="building-a-rest-api-with-django-rest-framework">Building a REST API with Django Rest Framework</h3>
 <p>Create a complete REST API for a blog application:</p>
 <ol>
-<li>Design and implement these models:</li>
-</ol>
-<ul>
-<li>Post (with title, content, author, publication date)</li>
-<li>Category (with name, description)</li>
-<li>Comment (with content, author, post reference)</li>
-</ul>
-<ol start="2">
-<li>Create serializers for each model:</li>
-</ol>
-<ul>
-<li>Include proper validation</li>
-<li>Use nested serializers where appropriate</li>
-<li>Implement custom methods as needed</li>
-</ul>
-<ol start="3">
-<li>Implement ViewSets with:</li>
-</ol>
-<ul>
-<li>Proper permissions (admin can do everything, authors can edit their own content)</li>
-<li>Filtering and searching</li>
-<li>Pagination</li>
-</ul>
-<ol start="4">
+<li>
+<p>Design and implement these models:</p>
+</li>
+<li>
+<p>Post (with title, content, author, publication date)</p>
+</li>
+<li>
+<p>Category (with name, description)</p>
+</li>
+<li>
+<p>Comment (with content, author, post reference)</p>
+</li>
+<li>
+<p>Create serializers for each model:</p>
+</li>
+<li>
+<p>Include proper validation</p>
+</li>
+<li>
+<p>Use nested serializers where appropriate</p>
+</li>
+<li>
+<p>Implement custom methods as needed</p>
+</li>
+<li>
+<p>Implement ViewSets with:</p>
+</li>
+<li>
+<p>Proper permissions (admin can do everything, authors can edit their own content)</p>
+</li>
+<li>
+<p>Filtering and searching</p>
+</li>
+<li>
+<p>Pagination</p>
+</li>
 <li>
 <p>Set up proper URL routing with a router</p>
 </li>
@@ -533,10 +627,18 @@ Create a complete REST API for a blog application:
         <h3 id="when-to-use-practice-blocks">When to Use Practice Blocks</h3>
 <p>Practice blocks are ideal for:</p>
 <ul>
-<li>Tutorials and educational content</li>
-<li>Documentation that teaches concepts</li>
-<li>Reinforcing theoretical concepts with practical exercises</li>
-<li>Providing hands-on challenges to solidify understanding</li>
+<li>
+<p>Tutorials and educational content</p>
+</li>
+<li>
+<p>Documentation that teaches concepts</p>
+</li>
+<li>
+<p>Reinforcing theoretical concepts with practical exercises</p>
+</li>
+<li>
+<p>Providing hands-on challenges to solidify understanding</p>
+</li>
 </ul>
 <p>Use practice blocks after explaining concepts to give readers a chance to apply what they've learned.</p>
     </span>
@@ -552,11 +654,21 @@ Create a complete REST API for a blog application:
     <span class="sb-alert-content">
         <p>For effective practice exercises:</p>
 <ul>
-<li>Clearly define the objective</li>
-<li>Provide enough context and starting points</li>
-<li>Make difficulty level appropriate for the target audience</li>
-<li>Include success criteria or expected outcomes</li>
-<li>Consider providing hints or partial solutions for more complex tasks</li>
+<li>
+<p>Clearly define the objective</p>
+</li>
+<li>
+<p>Provide enough context and starting points</p>
+</li>
+<li>
+<p>Make difficulty level appropriate for the target audience</p>
+</li>
+<li>
+<p>Include success criteria or expected outcomes</p>
+</li>
+<li>
+<p>Consider providing hints or partial solutions for more complex tasks</p>
+</li>
 </ul>
     </span>
 </div>
@@ -581,10 +693,18 @@ Create a complete REST API for a blog application:
         <h3 id="practice-block-challenge">Practice Block Challenge</h3>
 <p>Create your own practice blocks:</p>
 <ol>
-<li>Write a beginner-level practice for a simple concept</li>
-<li>Create an intermediate-level practice with code examples</li>
-<li>Design an advanced practice with multiple steps and deliverables</li>
-<li>Try customizing a practice block with additional classes</li>
+<li>
+<p>Write a beginner-level practice for a simple concept</p>
+</li>
+<li>
+<p>Create an intermediate-level practice with code examples</p>
+</li>
+<li>
+<p>Design an advanced practice with multiple steps and deliverables</p>
+</li>
+<li>
+<p>Try customizing a practice block with additional classes</p>
+</li>
 </ol>
 <p>Ensure your practice blocks include clear instructions and success criteria!</p>
     </div>

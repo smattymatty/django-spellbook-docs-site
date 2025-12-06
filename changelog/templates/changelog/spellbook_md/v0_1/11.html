@@ -29,16 +29,28 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 </code></pre>
 <p>If no URL prefix is specified:</p>
 <ul>
-<li>Single app configurations use an empty prefix (root URL)</li>
-<li>Multiple app configurations give the first app an empty prefix, and use app names for others</li>
+<li>
+<p>Single app configurations use an empty prefix (root URL)</p>
+</li>
+<li>
+<p>Multiple app configurations give the first app an empty prefix, and use app names for others</p>
+</li>
 </ul>
 <h2 id="enhanced-error-handling">Enhanced Error Handling</h2>
 <p>The command now provides better error messages and diagnostic information when things go wrong:</p>
 <ul>
-<li>Clear identification of the source of errors (settings, file discovery, processing)</li>
-<li>Helpful suggestions for resolving common issues</li>
-<li>Improved logging of error details</li>
-<li>New <code>--continue-on-error</code> flag to process as many files as possible even when some fail</li>
+<li>
+<p>Clear identification of the source of errors (settings, file discovery, processing)</p>
+</li>
+<li>
+<p>Helpful suggestions for resolving common issues</p>
+</li>
+<li>
+<p>Improved logging of error details</p>
+</li>
+<li>
+<p>New <code>--continue-on-error</code> flag to process as many files as possible even when some fail</p>
+</li>
 </ul>
 <h1 id="architecture-improvements">Architecture Improvements</h1>
 <h2 id="modular-command-structure">Modular Command Structure</h2>
@@ -55,10 +67,18 @@ SPELLBOOK_MD_URL_PREFIX = [&quot;docs&quot;, &quot;articles&quot;]  # At /docs/ 
 </code></pre>
 <p>Benefits of this new architecture:</p>
 <ul>
-<li>Improved maintainability with focused modules</li>
-<li>Better testability with clear component boundaries</li>
-<li>Easier extensibility for future features</li>
-<li>Enhanced error handling and reporting</li>
+<li>
+<p>Improved maintainability with focused modules</p>
+</li>
+<li>
+<p>Better testability with clear component boundaries</p>
+</li>
+<li>
+<p>Easier extensibility for future features</p>
+</li>
+<li>
+<p>Enhanced error handling and reporting</p>
+</li>
 </ul>
 <h2 id="customizable-base-templates-per-source">Customizable Base Templates Per Source</h2>
 <p>You can now specify different base templates for each markdown source, allowing for tailored layouts across your content:</p>
@@ -87,17 +107,31 @@ SPELLBOOK_MD_BASE_TEMPLATE = None  # Default template for all sources
 <h2 id="enhanced-template-validation">Enhanced Template Validation</h2>
 <p>The template system now includes improved validation:</p>
 <ul>
-<li>Verification that base template configurations match source configurations</li>
-<li>Path validation to prevent template path traversal vulnerabilities</li>
-<li>Helpful error messages for template-related configuration issues</li>
+<li>
+<p>Verification that base template configurations match source configurations</p>
+</li>
+<li>
+<p>Path validation to prevent template path traversal vulnerabilities</p>
+</li>
+<li>
+<p>Helpful error messages for template-related configuration issues</p>
+</li>
 </ul>
 <h2 id="summary-report-generation">Summary Report Generation</h2>
 <p>The command now produces a comprehensive summary after processing:</p>
 <ul>
-<li>Total files processed across all sources</li>
-<li>Success rate for each source-destination pair</li>
-<li>Detailed information about any failures</li>
-<li>Processing statistics</li>
+<li>
+<p>Total files processed across all sources</p>
+</li>
+<li>
+<p>Success rate for each source-destination pair</p>
+</li>
+<li>
+<p>Detailed information about any failures</p>
+</li>
+<li>
+<p>Processing statistics</p>
+</li>
 </ul>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">

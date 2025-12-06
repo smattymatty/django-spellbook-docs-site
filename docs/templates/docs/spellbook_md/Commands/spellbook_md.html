@@ -8,10 +8,18 @@
 </code></pre>
 <p>Options:</p>
 <ul>
-<li><code>--continue-on-error</code>: Continue processing files even if some fail</li>
-<li><code>--report-level</code>: Level of detail in the report (<code>minimal</code>, <code>detailed</code>, or <code>debug</code>) [default: <code>detailed</code>]</li>
-<li><code>--report-format</code>: Format of the report (<code>text</code>, <code>json</code>, or <code>none</code> to suppress) [default: <code>text</code>]</li>
-<li><code>--report-output</code>: File path to save the report (default: print to stdout)</li>
+<li>
+<p><code>--continue-on-error</code>: Continue processing files even if some fail</p>
+</li>
+<li>
+<p><code>--report-level</code>: Level of detail in the report (<code>minimal</code>, <code>detailed</code>, or <code>debug</code>) [default: <code>detailed</code>]</p>
+</li>
+<li>
+<p><code>--report-format</code>: Format of the report (<code>text</code>, <code>json</code>, or <code>none</code> to suppress) [default: <code>text</code>]</p>
+</li>
+<li>
+<p><code>--report-output</code>: File path to save the report (default: print to stdout)</p>
+</li>
 </ul>
 <h3 id="basic-configuration">Basic Configuration</h3>
 <h4 id="required-settings"><strong>Required Settings</strong></h4>
@@ -22,8 +30,12 @@ SPELLBOOK_MD_APP = &quot;my_app&quot;
 <pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'django_spellbook/bases/sidebar_left.html'
 </code></pre>
 <ul>
-<li><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): Specifies a template that will wrap all rendered markdown content. The default <code>None</code> simply shows the rendered markdown without additional styling.</li>
-<li>The built-in <code>sidebar_left.html</code> template includes styling and a navigation menu based on your content structure. You can <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">view the source here</a>.</li>
+<li>
+<p><code>SPELLBOOK_MD_BASE_TEMPLATE</code> (default: <code>None</code>): Specifies a template that will wrap all rendered markdown content. The default <code>None</code> simply shows the rendered markdown without additional styling.</p>
+</li>
+<li>
+<p>The built-in <code>sidebar_left.html</code> template includes styling and a navigation menu based on your content structure. You can <a href="https://github.com/smattymatty/django_spellbook/blob/main/django_spellbook/templates/django_spellbook/bases/sidebar_left.html">view the source here</a>.</p>
+</li>
 </ul>
 <pre><code class="language-python">SPELLBOOK_MD_TITLEFY = True  # Default: True
 </code></pre>
@@ -35,8 +47,12 @@ SPELLBOOK_MD_APP = &quot;my_app&quot;
 <pre><code class="language-python">SPELLBOOK_MD_URL_PREFIX = &quot;docs&quot;  # Content will be at /docs/
 </code></pre>
 <ul>
-<li>This setting determines the URL prefix for accessing your markdown content</li>
-<li>If not specified, content will be available at the root URL</li>
+<li>
+<p>This setting determines the URL prefix for accessing your markdown content</p>
+</li>
+<li>
+<p>If not specified, content will be available at the root URL</p>
+</li>
 </ul>
 <h3 id="template-configuration">Template Configuration</h3>
 <h4 id="base-template-setting"><strong>Base Template Setting</strong></h4>
@@ -44,8 +60,12 @@ SPELLBOOK_MD_APP = &quot;my_app&quot;
 SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/custom_base.html'
 </code></pre>
 <ul>
-<li>This setting determines the base template used to wrap your markdown content</li>
-<li>If not specified, content will be rendered without a wrapping template</li>
+<li>
+<p>This setting determines the base template used to wrap your markdown content</p>
+</li>
+<li>
+<p>If not specified, content will be rendered without a wrapping template</p>
+</li>
 </ul>
 <h4 id="multiple-base-templates"><strong>Multiple Base Templates</strong></h4>
 <p>For multi-source configurations, you can specify different base templates for each source:</p>
@@ -55,9 +75,15 @@ SPELLBOOK_MD_APP = [&quot;docs_app&quot;, &quot;blog_app&quot;]
 SPELLBOOK_MD_BASE_TEMPLATE = [&quot;docs/base.html&quot;, &quot;blog/base.html&quot;]
 </code></pre>
 <ul>
-<li>Each source will use its corresponding base template</li>
-<li>The number of templates should match the number of sources</li>
-<li>If a single template is provided for multiple sources, it will be applied to all of them</li>
+<li>
+<p>Each source will use its corresponding base template</p>
+</li>
+<li>
+<p>The number of templates should match the number of sources</p>
+</li>
+<li>
+<p>If a single template is provided for multiple sources, it will be applied to all of them</p>
+</li>
 </ul>
 <h3 id="multi-source-configuration">Multi-Source Configuration</h3>
 <p>Django Spellbook supports processing multiple source directories to different destination apps:</p>
@@ -81,14 +107,24 @@ SPELLBOOK_MD_BASE_TEMPLATE = [
 </code></pre>
 <p>With this configuration:</p>
 <ul>
-<li>Markdown files from <code>docs_content</code> are processed to <code>docs_app</code>, accessible at <code>/docs/</code>, and use <code>docs/base.html</code></li>
-<li>Markdown files from <code>blog_content</code> are processed to <code>blog_app</code>, accessible at <code>/blog/</code>, and use <code>blog/base.html</code></li>
-<li>Each app maintains its own set of templates, views, and URLs</li>
+<li>
+<p>Markdown files from <code>docs_content</code> are processed to <code>docs_app</code>, accessible at <code>/docs/</code>, and use <code>docs/base.html</code></p>
+</li>
+<li>
+<p>Markdown files from <code>blog_content</code> are processed to <code>blog_app</code>, accessible at <code>/blog/</code>, and use <code>blog/base.html</code></p>
+</li>
+<li>
+<p>Each app maintains its own set of templates, views, and URLs</p>
+</li>
 </ul>
 <p>Default behaviors for multi-source configurations:</p>
 <ul>
-<li>URL Prefixes: First app gets empty prefix (root URL), subsequent apps use their app name</li>
-<li>Base Templates: If not specified, no base template is used; if a single template is provided, it's applied to all sources</li>
+<li>
+<p>URL Prefixes: First app gets empty prefix (root URL), subsequent apps use their app name</p>
+</li>
+<li>
+<p>Base Templates: If not specified, no base template is used; if a single template is provided, it's applied to all sources</p>
+</li>
 </ul>
 <h3 id="accessing-your-content">Accessing Your Content</h3>
 <p>To make your content accessible, include Django Spellbook's URLs in your project's <code>urls.py</code>:</p>
@@ -117,12 +153,24 @@ urlpatterns = [
         <div class="sb-accordion-body">
             <p>When you run the command, it:</p>
 <ol>
-<li>Discovers all markdown files in your configured directories</li>
-<li>Processes them with Spellbook's enhanced markdown parser</li>
-<li>Generates templates in each destination app, using the specified base templates</li>
-<li>Creates view functions for each processed file</li>
-<li>Sets up URL patterns based on file paths and configured prefixes</li>
-<li>Builds navigation tables of contents for each source</li>
+<li>
+<p>Discovers all markdown files in your configured directories</p>
+</li>
+<li>
+<p>Processes them with Spellbook's enhanced markdown parser</p>
+</li>
+<li>
+<p>Generates templates in each destination app, using the specified base templates</p>
+</li>
+<li>
+<p>Creates view functions for each processed file</p>
+</li>
+<li>
+<p>Sets up URL patterns based on file paths and configured prefixes</p>
+</li>
+<li>
+<p>Builds navigation tables of contents for each source</p>
+</li>
 </ol>
         </div>
     </div>

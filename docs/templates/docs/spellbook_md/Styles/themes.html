@@ -18,12 +18,24 @@
 <p>Themes are complete color schemes that automatically style every component in Django Spellbook. Instead of managing CSS files, you define colors in your Django settings and the system handles everything else.</p>
 <h3 id="key-features">Key Features</h3>
 <ul>
-<li><strong>Python Configuration</strong>: Define themes in <code>settings.py</code>, not CSS</li>
-<li><strong>Automatic Variants</strong>: Every color gets 25%, 50%, and 75% opacity versions</li>
-<li><strong>No Build Process</strong>: CSS variables generated at runtime</li>
-<li><strong>Session-Based Switching</strong>: Users can switch themes dynamically</li>
-<li><strong>Dark Mode Ready</strong>: Built-in support for light/dark modes</li>
-<li><strong>100% Compatible</strong>: Works with all existing Spellbook components</li>
+<li>
+<p><strong>Python Configuration</strong>: Define themes in <code>settings.py</code>, not CSS</p>
+</li>
+<li>
+<p><strong>Automatic Variants</strong>: Every color gets 25%, 50%, and 75% opacity versions</p>
+</li>
+<li>
+<p><strong>No Build Process</strong>: CSS variables generated at runtime</p>
+</li>
+<li>
+<p><strong>Session-Based Switching</strong>: Users can switch themes dynamically</p>
+</li>
+<li>
+<p><strong>Dark Mode Ready</strong>: Built-in support for light/dark modes</p>
+</li>
+<li>
+<p><strong>100% Compatible</strong>: Works with all existing Spellbook components</p>
+</li>
 </ul>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="using-a-preset-theme">Using a Preset Theme</h3>
@@ -126,34 +138,72 @@ SPELLBOOK_THEME = THEMES_WITH_MODES['arcane']['modes']['light']
 <h2 id="theme-colors-explained">Theme Colors Explained</h2>
 <h3 id="core-semantic-colors">Core Semantic Colors</h3>
 <ul>
-<li><strong>primary</strong>: Main brand color for buttons, links, and emphasis</li>
-<li><strong>secondary</strong>: Supporting color for less prominent elements</li>
-<li><strong>accent</strong>: High-contrast color for CTAs and highlights</li>
-<li><strong>neutral</strong>: Subtle color for borders and dividers</li>
+<li>
+<p><strong>primary</strong>: Main brand color for buttons, links, and emphasis</p>
+</li>
+<li>
+<p><strong>secondary</strong>: Supporting color for less prominent elements</p>
+</li>
+<li>
+<p><strong>accent</strong>: High-contrast color for CTAs and highlights</p>
+</li>
+<li>
+<p><strong>neutral</strong>: Subtle color for borders and dividers</p>
+</li>
 </ul>
 <h3 id="status-colors">Status Colors</h3>
 <ul>
-<li><strong>success</strong>: Positive feedback and success states</li>
-<li><strong>warning</strong>: Caution messages and warnings</li>
-<li><strong>error</strong>: Error states and destructive actions</li>
-<li><strong>info</strong>: Informational messages and tips</li>
+<li>
+<p><strong>success</strong>: Positive feedback and success states</p>
+</li>
+<li>
+<p><strong>warning</strong>: Caution messages and warnings</p>
+</li>
+<li>
+<p><strong>error</strong>: Error states and destructive actions</p>
+</li>
+<li>
+<p><strong>info</strong>: Informational messages and tips</p>
+</li>
 </ul>
 <h3 id="extended-colors">Extended Colors</h3>
 <ul>
-<li><strong>emphasis</strong>: Content that needs special attention</li>
-<li><strong>subtle</strong>: Very light backgrounds for quiet sections</li>
-<li><strong>distinct</strong>: Unique elements that stand apart</li>
-<li><strong>aether</strong>: Mystical purple for magical elements</li>
-<li><strong>artifact</strong>: Golden color for special items</li>
-<li><strong>sylvan</strong>: Nature green for organic elements</li>
-<li><strong>danger</strong>: High-alert color for critical actions</li>
+<li>
+<p><strong>emphasis</strong>: Content that needs special attention</p>
+</li>
+<li>
+<p><strong>subtle</strong>: Very light backgrounds for quiet sections</p>
+</li>
+<li>
+<p><strong>distinct</strong>: Unique elements that stand apart</p>
+</li>
+<li>
+<p><strong>aether</strong>: Mystical purple for magical elements</p>
+</li>
+<li>
+<p><strong>artifact</strong>: Golden color for special items</p>
+</li>
+<li>
+<p><strong>sylvan</strong>: Nature green for organic elements</p>
+</li>
+<li>
+<p><strong>danger</strong>: High-alert color for critical actions</p>
+</li>
 </ul>
 <h3 id="system-colors">System Colors</h3>
 <ul>
-<li><strong>background</strong>: Main page background</li>
-<li><strong>surface</strong>: Card and elevated element backgrounds</li>
-<li><strong>text</strong>: Primary text color</li>
-<li><strong>text-secondary</strong>: Less prominent text</li>
+<li>
+<p><strong>background</strong>: Main page background</p>
+</li>
+<li>
+<p><strong>surface</strong>: Card and elevated element backgrounds</p>
+</li>
+<li>
+<p><strong>text</strong>: Primary text color</p>
+</li>
+<li>
+<p><strong>text-secondary</strong>: Less prominent text</p>
+</li>
 </ul>
 <h2 id="advanced-configuration">Advanced Configuration</h2>
 <h3 id="custom-color-names">Custom Color Names</h3>
@@ -189,9 +239,15 @@ SPELLBOOK_THEME = THEMES_WITH_MODES['arcane']['modes']['light']
 <h2 id="theme-middleware">Theme Middleware</h2>
 <p>The theme system includes middleware that:</p>
 <ol>
-<li><strong>Checks for theme in session</strong>: Allows per-user theme preferences</li>
-<li><strong>Applies theme configuration</strong>: Generates CSS variables on each request</li>
-<li><strong>Handles theme switching</strong>: Via the <code>/themes/</code> interface</li>
+<li>
+<p><strong>Checks for theme in session</strong>: Allows per-user theme preferences</p>
+</li>
+<li>
+<p><strong>Applies theme configuration</strong>: Generates CSS variables on each request</p>
+</li>
+<li>
+<p><strong>Handles theme switching</strong>: Via the <code>/themes/</code> interface</p>
+</li>
 </ol>
 <p>To enable session-based theme switching, ensure the middleware is in your settings:</p>
 <pre><code class="language-python">MIDDLEWARE = [
@@ -200,16 +256,36 @@ SPELLBOOK_THEME = THEMES_WITH_MODES['arcane']['modes']['light']
 ]
 </code></pre>
 <h2 id="theme-switcher-interface">Theme Switcher Interface</h2>
-<p>Visit <code>/themes/</code> on your site to:<br />
-- Preview all available themes<br />
-- See complete color palettes<br />
-- Test components with different themes<br />
-- Switch themes with one click</p>
-<p>The Theme Builder at <code>/theme-builder/</code> lets you:<br />
-- Visually create custom themes<br />
-- Export Python configuration<br />
-- Preview on real layouts<br />
-- Fine-tune every color</p>
+<p>Visit <code>/themes/</code> on your site to:</p>
+<ul>
+<li>
+<p>Preview all available themes</p>
+</li>
+<li>
+<p>See complete color palettes</p>
+</li>
+<li>
+<p>Test components with different themes</p>
+</li>
+<li>
+<p>Switch themes with one click</p>
+</li>
+</ul>
+<p>The Theme Builder at <code>/theme-builder/</code> lets you:</p>
+<ul>
+<li>
+<p>Visually create custom themes</p>
+</li>
+<li>
+<p>Export Python configuration</p>
+</li>
+<li>
+<p>Preview on real layouts</p>
+</li>
+<li>
+<p>Fine-tune every color</p>
+</li>
+</ul>
 <h2 id="using-themes-in-templates">Using Themes in Templates</h2>
 <h3 id="basic-usage">Basic Usage</h3>
 <pre><code class="language-django">&lt;!-- Background colors --&gt;
@@ -247,15 +323,29 @@ def my_view(request):
 &lt;/button&gt;
 </code></pre>
 <h3 id="compatibility">Compatibility</h3>
-<p>The theme system is 100% backward compatible:<br />
-- Existing sites work without changes<br />
-- You can gradually adopt themes<br />
-- Mix themed and non-themed styles freely</p>
+<p>The theme system is 100% backward compatible:</p>
+<ul>
+<li>
+<p>Existing sites work without changes</p>
+</li>
+<li>
+<p>You can gradually adopt themes</p>
+</li>
+<li>
+<p>Mix themed and non-themed styles freely</p>
+</li>
+</ul>
 <h2 id="best-practices">Best Practices</h2>
 <h3 id="1-choose-semantic-names">1. Choose Semantic Names</h3>
-<p>Use color names that describe purpose, not appearance:<br />
-- ✅ <code>primary</code>, <code>accent</code>, <code>warning</code><br />
-- ❌ <code>blue</code>, <code>yellow</code>, <code>red</code></p>
+<p>Use color names that describe purpose, not appearance:</p>
+<ul>
+<li>
+<p>✅ <code>primary</code>, <code>accent</code>, <code>warning</code></p>
+</li>
+<li>
+<p>❌ <code>blue</code>, <code>yellow</code>, <code>red</code></p>
+</li>
+</ul>
 <h3 id="2-test-contrast">2. Test Contrast</h3>
 <p>Ensure text is readable on backgrounds:</p>
 <pre><code class="language-django">&lt;!-- Good contrast --&gt;
@@ -271,18 +361,36 @@ def my_view(request):
 &lt;/div&gt;
 </code></pre>
 <h3 id="4-consistent-status-colors">4. Consistent Status Colors</h3>
-<p>Keep status colors predictable:<br />
-- Green = Success<br />
-- Yellow/Orange = Warning<br />
-- Red = Error<br />
-- Blue = Info</p>
+<p>Keep status colors predictable:</p>
+<ul>
+<li>
+<p>Green = Success</p>
+</li>
+<li>
+<p>Yellow/Orange = Warning</p>
+</li>
+<li>
+<p>Red = Error</p>
+</li>
+<li>
+<p>Blue = Info</p>
+</li>
+</ul>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="theme-not-applying">Theme Not Applying</h3>
 <ol>
-<li>Check <code>SPELLBOOK_THEME</code> is set in settings</li>
-<li>Verify middleware is installed</li>
-<li>Clear browser cache</li>
-<li>Check template has `</li>
+<li>
+<p>Check <code>SPELLBOOK_THEME</code> is set in settings</p>
+</li>
+<li>
+<p>Verify middleware is installed</p>
+</li>
+<li>
+<p>Clear browser cache</p>
+</li>
+<li>
+<p>Check template has `</p>
+</li>
 </ol>
 <spellbook_styles><p>`</p><h3 id="colors-look-wrong">Colors Look Wrong</h3><ol><li>Validate color format (hex, rgb, or CSS name)</li><li>Check for typos in color values</li><li>Ensure proper contrast ratios</li><li>Test in different browsers</li></ol><h3 id="performance">Performance</h3><p>Themes are lightweight:</p><ul><li>CSS generated once per request</li><li>Variables cached in browser</li><li>No JavaScript required</li><li>Minimal overhead (~1ms)</li></ul><h2 id="examples-in-action">Examples in Action</h2><h3 id="status-messages">Status Messages</h3><div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">

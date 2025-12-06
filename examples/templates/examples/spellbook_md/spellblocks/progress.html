@@ -12,7 +12,7 @@ Profile is 65% complete. Ensure all sections are finalized for optimal visibilit
 <p>This renders a progress bar indicating 65%:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979475926514"
+  id="progress-container-176506485040447230"
   >
 
 
@@ -54,7 +54,7 @@ sb-bg-white
 sb-black
 
 " 
-id="popover-content-176505979475926514"
+id="popover-content-176506485040447230"
 style="display: none;"
 >
   <p>Profile is 65% complete. Ensure all sections are finalized for optimal visibility.</p>
@@ -149,22 +149,54 @@ style="display: none;"
 
     <div class="sb-card-body sb-p-3">
         <ul>
-<li><strong><code>value</code></strong> (Required, Float/Int): The current numerical value to be represented.</li>
-<li><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The endpoint value for the progress calculation. The bar's fill width is determined by the ratio <code>(value / max_value) * 100%</code>.</li>
-<li><strong><code>label</code></strong> (String, Optional): Descriptive text for the progress bar, typically shown within or alongside it. Supports dynamic interpolation using <code>{value}</code>, <code>{max_value}</code>, and <code>{percentage}</code> placeholders.</li>
-<li><strong><code>show_percentage</code></strong> (Boolean, Default: <code>true</code> if <code>label</code> is unset, <code>false</code> otherwise): Governs the display of the numerical percentage within the bar. This is superseded if <code>{percentage}</code> is used in the <code>label</code>.</li>
-<li><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Specifies the fill color of the progress bar using predefined theme color identifiers (e.g., <code>primary</code>, <code>secondary</code>, <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code>). Variants like <code>white-25</code> or <code>black-75</code> can achieve specific visual effects. These map to <code>sb-bg-*</code> CSS utility classes.</li>
-<li><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Determines the background color of the progress bar's track. Uses theme color identifiers similar to <code>color</code>.</li>
-<li><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Modifies the bar's height. Accepted values: <code>"sm"</code> (small), <code>"md"</code> (medium), <code>"lg"</code> (large), corresponding to CSS classes like <code>sb-h-4</code>, <code>sb-h-8</code>, <code>sb-h-16</code>.</li>
-<li><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): If true, a striped pattern is applied to the bar's fill.</li>
-<li><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): If true (and <code>striped</code> is true), the stripes on the bar's fill are animated.</li>
-<li><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): If true, rounded corners are applied to the track and fill. Maps to CSS classes such as <code>sb-border-radius-md</code>.</li>
-<li><strong><code>class</code></strong> (String, Optional): Appends custom CSS classes to the main container (<code>.sb-progress-container</code>) for additional styling.</li>
-<li><strong><code>id</code></strong> (String, Optional): Assigns a custom HTML <code>id</code> to the main container, useful for CSS or JavaScript targeting.</li>
-<li><strong><code>content_bg_color</code></strong> (String, Optional): Defines the background color of the popover. Accepts theme color names (e.g., <code>primary</code>, <code>neutral-90</code>). Defaults to a standard style if omitted.</li>
-<li><strong><code>content_color</code></strong> (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. Defaults to a standard style if omitted.</li>
-<li><strong><code>content_class</code></strong> (String, Optional): Appends custom CSS classes to the popover content <code>div</code> for specific styling.</li>
-<li>The content provided between <code>~ progress ... ~</code> and <code>~~</code> is rendered within the popover.</li>
+<li>
+<p><strong><code>value</code></strong> (Required, Float/Int): The current numerical value to be represented.</p>
+</li>
+<li>
+<p><strong><code>max_value</code></strong> (Float/Int, Default: <code>100</code>): The endpoint value for the progress calculation. The bar's fill width is determined by the ratio <code>(value / max_value) * 100%</code>.</p>
+</li>
+<li>
+<p><strong><code>label</code></strong> (String, Optional): Descriptive text for the progress bar, typically shown within or alongside it. Supports dynamic interpolation using <code>{value}</code>, <code>{max_value}</code>, and <code>{percentage}</code> placeholders.</p>
+</li>
+<li>
+<p><strong><code>show_percentage</code></strong> (Boolean, Default: <code>true</code> if <code>label</code> is unset, <code>false</code> otherwise): Governs the display of the numerical percentage within the bar. This is superseded if <code>{percentage}</code> is used in the <code>label</code>.</p>
+</li>
+<li>
+<p><strong><code>color</code></strong> (String, Default: <code>"primary"</code>): Specifies the fill color of the progress bar using predefined theme color identifiers (e.g., <code>primary</code>, <code>secondary</code>, <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code>). Variants like <code>white-25</code> or <code>black-75</code> can achieve specific visual effects. These map to <code>sb-bg-*</code> CSS utility classes.</p>
+</li>
+<li>
+<p><strong><code>bg_color</code></strong> (String, Default: <code>"white-50"</code>): Determines the background color of the progress bar's track. Uses theme color identifiers similar to <code>color</code>.</p>
+</li>
+<li>
+<p><strong><code>height</code></strong> (String, Default: <code>"md"</code>): Modifies the bar's height. Accepted values: <code>"sm"</code> (small), <code>"md"</code> (medium), <code>"lg"</code> (large), corresponding to CSS classes like <code>sb-h-4</code>, <code>sb-h-8</code>, <code>sb-h-16</code>.</p>
+</li>
+<li>
+<p><strong><code>striped</code></strong> (Boolean, Default: <code>false</code>): If true, a striped pattern is applied to the bar's fill.</p>
+</li>
+<li>
+<p><strong><code>animated</code></strong> (Boolean, Default: <code>false</code>): If true (and <code>striped</code> is true), the stripes on the bar's fill are animated.</p>
+</li>
+<li>
+<p><strong><code>rounded</code></strong> (Boolean, Default: <code>true</code>): If true, rounded corners are applied to the track and fill. Maps to CSS classes such as <code>sb-border-radius-md</code>.</p>
+</li>
+<li>
+<p><strong><code>class</code></strong> (String, Optional): Appends custom CSS classes to the main container (<code>.sb-progress-container</code>) for additional styling.</p>
+</li>
+<li>
+<p><strong><code>id</code></strong> (String, Optional): Assigns a custom HTML <code>id</code> to the main container, useful for CSS or JavaScript targeting.</p>
+</li>
+<li>
+<p><strong><code>content_bg_color</code></strong> (String, Optional): Defines the background color of the popover. Accepts theme color names (e.g., <code>primary</code>, <code>neutral-90</code>). Defaults to a standard style if omitted.</p>
+</li>
+<li>
+<p><strong><code>content_color</code></strong> (String, Optional): Sets the text color within the popover. Accepts theme color names or standard CSS color values. Defaults to a standard style if omitted.</p>
+</li>
+<li>
+<p><strong><code>content_class</code></strong> (String, Optional): Appends custom CSS classes to the popover content <code>div</code> for specific styling.</p>
+</li>
+<li>
+<p>The content provided between <code>~ progress ... ~</code> and <code>~~</code> is rendered within the popover.</p>
+</li>
 </ul>
     </div>
 
@@ -189,7 +221,7 @@ Currently in Junior year, maintaining a 3.8 GPA. Core coursework in Data Structu
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979476429514"
+  id="progress-container-176506485040993730"
   >
 
 
@@ -231,7 +263,7 @@ sb-bg-info-75
 sb-white
 
 " 
-id="popover-content-176505979476429514"
+id="popover-content-176506485040993730"
 style="display: none;"
 >
   <p><strong>Program: B.S. Computer Science</strong><br />
@@ -330,7 +362,7 @@ Estimated completion: 2 weeks.
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979476568214"
+  id="progress-container-176506485041069030"
   >
 
 
@@ -372,7 +404,7 @@ sb-bg-primary-75
 sb-white
 
 " 
-id="popover-content-176505979476568214"
+id="popover-content-176506485041069030"
 style="display: none;"
 >
   <p><strong>Course: Advanced Project Management</strong><br />
@@ -472,7 +504,7 @@ Extensive experience with Django, Flask, data analysis libraries (Pandas, NumPy)
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979476709014"
+  id="progress-container-176506485041144430"
   >
 
 
@@ -517,7 +549,7 @@ sb-bg-success-75
 sb-white
 
 " 
-id="popover-content-176505979476709014"
+id="popover-content-176506485041144430"
 style="display: none;"
 >
   <p><strong>Python Expertise: Advanced</strong><br />
@@ -614,7 +646,7 @@ Indicating level of fluency in a foreign language for a resume or profile.</p>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979476821714"
+  id="progress-container-176506485041222530"
   >
 
 
@@ -656,7 +688,7 @@ sb-bg-secondary-75
 sb-white
 
 " 
-id="popover-content-176505979476821714"
+id="popover-content-176506485041222530"
 style="display: none;"
 >
   <p><strong>Details:</strong> Can conduct business meetings, deliver presentations, and draft complex documents in Spanish. Certified DELE C1.</p>
@@ -754,7 +786,7 @@ Tracking hours logged towards a professional certification.</p>
 <p>Renders as:</p>
 <p><div
   class="sb-progress-container sb-shadow-md sb-w-full "
-  id="progress-container-176505979476952614"
+  id="progress-container-176506485041287130"
   >
 
 
@@ -796,7 +828,7 @@ sb-bg-warning-75
 sb-black-75
 
 " 
-id="popover-content-176505979476952614"
+id="popover-content-176506485041287130"
 style="display: none;"
 >
   <p><strong>PMP Exam Preparation:</strong><br />

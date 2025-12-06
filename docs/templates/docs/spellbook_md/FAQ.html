@@ -219,8 +219,12 @@ Alternatively, you can avoid including</code>% spellbook_styles %` altogether an
         <div class="sb-accordion-body">
             <p>You should run the <code>spellbook_md</code> command whenever you add, modify, or delete markdown files in your source directory (<code>SPELLBOOK_MD_PATH</code>).</p>
 <ul>
-<li><strong>During Development:</strong> Run it after making changes to see them reflected. You might integrate this into a file-watching workflow.</li>
-<li><strong>Before Deployment:</strong> Run it as part of your deployment process to ensure the generated templates, views, and URLs are up-to-date in your production environment.</li>
+<li>
+<p><strong>During Development:</strong> Run it after making changes to see them reflected. You might integrate this into a file-watching workflow.</p>
+</li>
+<li>
+<p><strong>Before Deployment:</strong> Run it as part of your deployment process to ensure the generated templates, views, and URLs are up-to-date in your production environment.</p>
+</li>
 </ul>
         </div>
     </div>
@@ -243,9 +247,15 @@ Alternatively, you can avoid including</code>% spellbook_styles %` altogether an
         <div class="sb-accordion-body">
             <p>Currently, the automatically generated views primarily pass metadata and Table of Contents information. For more complex context requirements, you might consider:</p>
 <ol>
-<li>Creating your own Django view that renders the Spellbook-generated template and adds your custom context.</li>
-<li>Using custom template tags within your markdown or base template to fetch and display dynamic data.</li>
-<li>Exploring middleware to inject context into requests (use with caution).</li>
+<li>
+<p>Creating your own Django view that renders the Spellbook-generated template and adds your custom context.</p>
+</li>
+<li>
+<p>Using custom template tags within your markdown or base template to fetch and display dynamic data.</p>
+</li>
+<li>
+<p>Exploring middleware to inject context into requests (use with caution).</p>
+</li>
 </ol>
 <p>Direct context injection into the auto-generated views is not a built-in feature at this time.</p>
         </div>
@@ -258,8 +268,11 @@ title: Working with Spellbook Metadata
 published: 2023-11-15
 author: Django Spellbook Team
 tags:
+
   - tutorial
+
   - metadata
+
   - configuration
 difficulty: beginner
 category: documentation

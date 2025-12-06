@@ -5,16 +5,36 @@
 <h3 id="added">Added</h3>
 <h4 id="theme-system">Theme System</h4>
 <ul>
-<li><strong>Python-based color configuration</strong> - Define your entire site's color scheme in Django settings instead of CSS files</li>
-<li><strong>9 magical theme presets</strong> ready to use:</li>
-<li><code>default</code> - Classic blue spellbook theme</li>
-<li><code>arcane</code> - Deep purple mysteries with golden spell glows</li>
-<li><code>celestial</code> - Divine light magic with sky blues and gold</li>
-<li><code>forest</code> - Woodland greens and earth tones</li>
-<li><code>ocean</code> - Deep sea blues and aquatic enchantments</li>
-<li><code>phoenix</code> - Fire colors with oranges and reds</li>
-<li><code>shadow</code> - Monochrome shadow magic</li>
-<li><code>enchanted</code> - Bright magical pinks and fairy gold</li>
+<li>
+<p><strong>Python-based color configuration</strong> - Define your entire site's color scheme in Django settings instead of CSS files</p>
+</li>
+<li>
+<p><strong>9 magical theme presets</strong> ready to use:</p>
+</li>
+<li>
+<p><code>default</code> - Classic blue spellbook theme</p>
+</li>
+<li>
+<p><code>arcane</code> - Deep purple mysteries with golden spell glows</p>
+</li>
+<li>
+<p><code>celestial</code> - Divine light magic with sky blues and gold</p>
+</li>
+<li>
+<p><code>forest</code> - Woodland greens and earth tones</p>
+</li>
+<li>
+<p><code>ocean</code> - Deep sea blues and aquatic enchantments</p>
+</li>
+<li>
+<p><code>phoenix</code> - Fire colors with oranges and reds</p>
+</li>
+<li>
+<p><code>shadow</code> - Monochrome shadow magic</p>
+</li>
+<li>
+<p><code>enchanted</code> - Bright magical pinks and fairy gold</p>
+</li>
 <li>
 <p><code>pastel</code> - Soft, gentle enchantment colors</p>
 </li>
@@ -32,17 +52,33 @@
 <li>
 <p><strong>Automatic opacity variants</strong> - Every color automatically gets 25%, 50%, and 75% transparent versions using CSS color-mix</p>
 </li>
-<li><strong>Custom color names</strong> - Create your own spell colors like <code>magic</code>, <code>spell</code>, <code>potion</code> that work with all utility classes</li>
-<li><strong>Dynamic theme switching</strong> - Change themes at runtime using sessions and middleware</li>
-<li><strong>100% backward compatible</strong> - Existing sites continue working without any changes</li>
+<li>
+<p><strong>Custom color names</strong> - Create your own spell colors like <code>magic</code>, <code>spell</code>, <code>potion</code> that work with all utility classes</p>
+</li>
+<li>
+<p><strong>Dynamic theme switching</strong> - Change themes at runtime using sessions and middleware</p>
+</li>
+<li>
+<p><strong>100% backward compatible</strong> - Existing sites continue working without any changes</p>
+</li>
 </ul>
 <h3 id="technical-details">Technical Details</h3>
 <ul>
-<li>New <code>django_spellbook.theme</code> module with validation, generation, and preset management</li>
-<li>CSS variables dynamically generated from Python configuration</li>
-<li>Comprehensive color validation supporting hex, rgb, rgba, and CSS named colors</li>
-<li>Full test coverage with 26 new tests for the theme system</li>
-<li>Template tag `</li>
+<li>
+<p>New <code>django_spellbook.theme</code> module with validation, generation, and preset management</p>
+</li>
+<li>
+<p>CSS variables dynamically generated from Python configuration</p>
+</li>
+<li>
+<p>Comprehensive color validation supporting hex, rgb, rgba, and CSS named colors</p>
+</li>
+<li>
+<p>Full test coverage with 26 new tests for the theme system</p>
+</li>
+<li>
+<p>Template tag `</p>
+</li>
 </ul>
 <spellbook_styles><p>` enhanced to inject theme CSS while maintaining backward compatibility</p><h3 id="usage">Usage</h3><pre><code class="language-python"># settings.py
 from django_spellbook.theme import THEMES

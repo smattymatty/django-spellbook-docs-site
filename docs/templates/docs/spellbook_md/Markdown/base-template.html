@@ -16,10 +16,18 @@
 <h2 id="what-are-base-templates">What Are Base Templates?</h2>
 <p>Base templates in Django Spellbook allow you to wrap your markdown-rendered content within a consistent layout structure. This is especially useful for:</p>
 <ul>
-<li>Adding navigation, headers, and footers</li>
-<li>Including site-wide styles and scripts</li>
-<li>Creating a consistent look and feel across all content</li>
-<li>Integrating your markdown content with your main site design</li>
+<li>
+<p>Adding navigation, headers, and footers</p>
+</li>
+<li>
+<p>Including site-wide styles and scripts</p>
+</li>
+<li>
+<p>Creating a consistent look and feel across all content</p>
+</li>
+<li>
+<p>Integrating your markdown content with your main site design</p>
+</li>
 </ul>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
@@ -135,14 +143,30 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
         <div class="sb-accordion-body">
             <p>Within your base template, you have access to:</p>
 <ul>
-<li><code>metadata.title</code> - The title from the markdown frontmatter</li>
-<li><code>metadata.created_at</code> - Creation date</li>
-<li><code>metadata.author</code> - Content author</li>
-<li><code>metadata.tags</code> - List of tags</li>
-<li><code>metadata.custom_meta</code> - Any custom metadata fields</li>
-<li><code>metadata.word_count</code> - Approximate word count</li>
-<li><code>metadata.reading_time_minutes</code> - Estimated reading time</li>
-<li><code>metadata.prev_page</code> / <code>metadata.next_page</code> - Navigation links (if available)</li>
+<li>
+<p><code>metadata.title</code> - The title from the markdown frontmatter</p>
+</li>
+<li>
+<p><code>metadata.created_at</code> - Creation date</p>
+</li>
+<li>
+<p><code>metadata.author</code> - Content author</p>
+</li>
+<li>
+<p><code>metadata.tags</code> - List of tags</p>
+</li>
+<li>
+<p><code>metadata.custom_meta</code> - Any custom metadata fields</p>
+</li>
+<li>
+<p><code>metadata.word_count</code> - Approximate word count</p>
+</li>
+<li>
+<p><code>metadata.reading_time_minutes</code> - Estimated reading time</p>
+</li>
+<li>
+<p><code>metadata.prev_page</code> / <code>metadata.next_page</code> - Navigation links (if available)</p>
+</li>
 </ul>
 <p>This allows you to dynamically customize your template based on the content.</p>
         </div>
@@ -226,10 +250,18 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
         <div class="sb-accordion-body">
             <p>If your base template isn't being applied:</p>
 <ol>
-<li>Verify the path is correct in <code>SPELLBOOK_MD_BASE_TEMPLATE</code></li>
-<li>Ensure the template file exists at the specified location</li>
-<li>Check that your template includes the <code>% block spellbook_md % / % endblock %</code> block</li>
-<li>Run <code>python manage.py spellbook_md</code> again to reprocess the files</li>
+<li>
+<p>Verify the path is correct in <code>SPELLBOOK_MD_BASE_TEMPLATE</code></p>
+</li>
+<li>
+<p>Ensure the template file exists at the specified location</p>
+</li>
+<li>
+<p>Check that your template includes the <code>% block spellbook_md % / % endblock %</code> block</p>
+</li>
+<li>
+<p>Run <code>python manage.py spellbook_md</code> again to reprocess the files</p>
+</li>
 </ol>
         </div>
     </div>
@@ -252,9 +284,15 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
         <div class="sb-accordion-body">
             <p>If your SpellBlocks aren't styled correctly:</p>
 <ol>
-<li>Make sure you've included <code>% spellbook_styles %</code> in your template</li>
-<li>Check that the template is extending the correct base template</li>
-<li>Verify CSS paths are correct if you're including custom styles</li>
+<li>
+<p>Make sure you've included <code>% spellbook_styles %</code> in your template</p>
+</li>
+<li>
+<p>Check that the template is extending the correct base template</p>
+</li>
+<li>
+<p>Verify CSS paths are correct if you're including custom styles</p>
+</li>
 </ol>
         </div>
     </div>
@@ -277,9 +315,15 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
         <div class="sb-accordion-body">
             <p>If metadata isn't available in your template:</p>
 <ol>
-<li>Verify your markdown files include proper YAML frontmatter</li>
-<li>Check that frontmatter is enclosed in triple-dashes (<code>---</code>)</li>
-<li>Ensure key names follow the expected format</li>
+<li>
+<p>Verify your markdown files include proper YAML frontmatter</p>
+</li>
+<li>
+<p>Check that frontmatter is enclosed in triple-dashes (<code>---</code>)</p>
+</li>
+<li>
+<p>Ensure key names follow the expected format</p>
+</li>
 </ol>
         </div>
     </div>
@@ -343,24 +387,44 @@ SPELLBOOK_MD_BASE_TEMPLATE = &quot;shared/common_base.html&quot;  # Used for all
     </div>
     <div class="sb-practice-content">
         <h3 id="base-template-exercise">Base Template Exercise</h3>
-<p><strong>Steps:</strong><br />
-1. Create a simple base template with:</p>
-<ul>
-<li>A consistent header with site navigation</li>
-<li>A sidebar for documentation navigation</li>
-<li>The required <code>spellbook_md</code> block</li>
-<li>Footer with site information</li>
-</ul>
-<ol start="2">
-<li>Configure your <code>settings.py</code> to use this template</li>
-<li>Process your markdown files with <code>python manage.py spellbook_md</code></li>
-<li>View your rendered content to verify the template is applied correctly</li>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>
+<p>Create a simple base template with:</p>
+</li>
+<li>
+<p>A consistent header with site navigation</p>
+</li>
+<li>
+<p>A sidebar for documentation navigation</p>
+</li>
+<li>
+<p>The required <code>spellbook_md</code> block</p>
+</li>
+<li>
+<p>Footer with site information</p>
+</li>
+<li>
+<p>Configure your <code>settings.py</code> to use this template</p>
+</li>
+<li>
+<p>Process your markdown files with <code>python manage.py spellbook_md</code></p>
+</li>
+<li>
+<p>View your rendered content to verify the template is applied correctly</p>
+</li>
 </ol>
 <p><strong>Benefits:</strong></p>
 <ul>
-<li>Learn how to structure a base template</li>
-<li>Practice integrating markdown content with site design</li>
-<li>Understand how metadata is passed to templates</li>
+<li>
+<p>Learn how to structure a base template</p>
+</li>
+<li>
+<p>Practice integrating markdown content with site design</p>
+</li>
+<li>
+<p>Understand how metadata is passed to templates</p>
+</li>
 </ul>
     </div>
 </div>

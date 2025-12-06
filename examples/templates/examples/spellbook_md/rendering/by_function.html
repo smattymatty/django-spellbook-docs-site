@@ -26,9 +26,15 @@
 
 <p>Often, you might have markdown files stored within your project that you want to serve as HTML pages. Instead of relying solely on <code>django-spellbook</code>'s automatic view generation (if available for your use case), you might need to:</p>
 <ul>
-<li>Add custom logic before or after rendering the markdown.</li>
-<li>Pass additional, dynamic context to the template that displays the markdown.</li>
-<li>Integrate markdown rendering into an existing, complex view.</li>
+<li>
+<p>Add custom logic before or after rendering the markdown.</p>
+</li>
+<li>
+<p>Pass additional, dynamic context to the template that displays the markdown.</p>
+</li>
+<li>
+<p>Integrate markdown rendering into an existing, complex view.</p>
+</li>
 </ul>
 <p>The <code>render_spellbook_markdown_to_html</code> function allows you to do just this.</p>
 <div class="sb-mb-4 sb-mt-4 sb-flex sb-justify-center sb-items-center sb-gap-2 sb-text-center">
@@ -123,10 +129,18 @@ def index(request):
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <ul>
-<li><code>from pathlib import Path</code>: <code>pathlib</code> is used for robustly handling file system paths in a platform-independent way.</li>
-<li><code>from django.shortcuts import render</code>: The standard Django shortcut to render a template with a given context.</li>
-<li><code>from django_spellbook.parsers import render_spellbook_markdown_to_html</code>: This is the core function from <code>django-spellbook</code> that will convert your markdown string (with SpellBlocks) into an HTML string.</li>
-<li><code>content_folder = Path(__file__).resolve().parent / 'content'</code>: This line constructs an absolute path to a subdirectory named <code>content</code> located in the same directory as your <code>views.py</code> file. This is where your markdown files (like <code>home.md</code>) are assumed to be stored.</li>
+<li>
+<p><code>from pathlib import Path</code>: <code>pathlib</code> is used for robustly handling file system paths in a platform-independent way.</p>
+</li>
+<li>
+<p><code>from django.shortcuts import render</code>: The standard Django shortcut to render a template with a given context.</p>
+</li>
+<li>
+<p><code>from django_spellbook.parsers import render_spellbook_markdown_to_html</code>: This is the core function from <code>django-spellbook</code> that will convert your markdown string (with SpellBlocks) into an HTML string.</p>
+</li>
+<li>
+<p><code>content_folder = Path(__file__).resolve().parent / 'content'</code>: This line constructs an absolute path to a subdirectory named <code>content</code> located in the same directory as your <code>views.py</code> file. This is where your markdown files (like <code>home.md</code>) are assumed to be stored.</p>
+</li>
 </ul>
         </div>
     </div>
@@ -148,9 +162,15 @@ def index(request):
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <ul>
-<li><code>def index(request):</code>: This is a standard Django view function that takes an <code>HttpRequest</code> object.</li>
-<li><code>markdown_file_path = content_folder / 'home.md'</code>: Constructs the full path to the <code>home.md</code> file.</li>
-<li><code>with open(...) as f: raw_markdown_content = f.read()</code>: This securely opens and reads the entire content of your <code>home.md</code> file into the <code>raw_markdown_content</code> string. Using <code>encoding='utf-8'</code> is good practice.</li>
+<li>
+<p><code>def index(request):</code>: This is a standard Django view function that takes an <code>HttpRequest</code> object.</p>
+</li>
+<li>
+<p><code>markdown_file_path = content_folder / 'home.md'</code>: Constructs the full path to the <code>home.md</code> file.</p>
+</li>
+<li>
+<p><code>with open(...) as f: raw_markdown_content = f.read()</code>: This securely opens and reads the entire content of your <code>home.md</code> file into the <code>raw_markdown_content</code> string. Using <code>encoding='utf-8'</code> is good practice.</p>
+</li>
 </ul>
         </div>
     </div>
@@ -194,9 +214,15 @@ def index(request):
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <ul>
-<li><code>context = { ... }</code>: A standard Python dictionary that holds the data you want to make available in your Django template.<ul>
-<li><code>'content': html_content</code>: The rendered HTML from <code>django-spellbook</code> is passed to the template under the key <code>content</code>.</li>
-<li><code>'sidebar_header': 'Welcome to My Site!'</code>: An example of another piece of dynamic data you might want to pass to your template.</li>
+<li>
+<p><code>context = { ... }</code>: A standard Python dictionary that holds the data you want to make available in your Django template.</p>
+<ul>
+<li>
+<p><code>'content': html_content</code>: The rendered HTML from <code>django-spellbook</code> is passed to the template under the key <code>content</code>.</p>
+</li>
+<li>
+<p><code>'sidebar_header': 'Welcome to My Site!'</code>: An example of another piece of dynamic data you might want to pass to your template.</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -220,8 +246,12 @@ def index(request):
     <div class="sb-accordion-content" aria-hidden="true">
         <div class="sb-accordion-body">
             <ul>
-<li><code>template_name = 'A_base/base.html'</code>: Specifies which Django template file should be used to display the content.</li>
-<li><code>return render(request, template_name, context)</code>: This function takes the request, the template name, and the context dictionary, and returns an <code>HttpResponse</code> with the rendered HTML page.</li>
+<li>
+<p><code>template_name = 'A_base/base.html'</code>: Specifies which Django template file should be used to display the content.</p>
+</li>
+<li>
+<p><code>return render(request, template_name, context)</code>: This function takes the request, the template name, and the context dictionary, and returns an <code>HttpResponse</code> with the rendered HTML page.</p>
+</li>
 </ul>
         </div>
     </div>
@@ -253,7 +283,9 @@ def index(request):
 <pre><code class="language-markdown">---
 title: Introduction
 tags:
+
   - examples
+
   - introduction
 ---
 Welcome To the Examples of Django Spellbook!
@@ -263,8 +295,11 @@ Django Spellbook is a powerful toolkit for creating and managing markdown-based 
 This examples serves as a collection of real-world examples showcasing the capabilities of Django Spellbook. It's a great resource for learning how to use Django Spellbook and exploring its features.
 
 {~ card title=&quot;Basic Markdown&quot; footer=&quot;Updated: Today&quot; ~}
+
 1. Install the package
+
 2. Add to `INSTALLED_APPS`
+
 3. Start writing magical markdown!
 {~~}
 

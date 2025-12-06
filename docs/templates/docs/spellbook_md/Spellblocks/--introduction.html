@@ -12,10 +12,18 @@ Hey! This is important stuff!
 </code></pre>
 <p>Available Types:</p>
 <ul>
-<li>info (default)</li>
-<li>warning</li>
-<li>success</li>
-<li>danger</li>
+<li>
+<p>info (default)</p>
+</li>
+<li>
+<p>warning</p>
+</li>
+<li>
+<p>success</p>
+</li>
+<li>
+<p>danger</p>
+</li>
 </ul>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
@@ -55,9 +63,15 @@ Supports **markdown** too!
 <p>The Quote Block creates stylized quotations with optional attribution information. This block is perfect for highlighting important quotes, testimonials, or key takeaways from other sources.</p>
 <h3 id="parameters">Parameters</h3>
 <ul>
-<li><code>author</code> - (Optional) The person who said or wrote the quote</li>
-<li><code>source</code> - (Optional) The source of the quote (book, article, etc.)</li>
-<li><code>class</code> - (Optional) Additional CSS classes to apply to the quote block</li>
+<li>
+<p><code>author</code> - (Optional) The person who said or wrote the quote</p>
+</li>
+<li>
+<p><code>source</code> - (Optional) The source of the quote (book, article, etc.)</p>
+</li>
+<li>
+<p><code>class</code> - (Optional) Additional CSS classes to apply to the quote block</p>
+</li>
 </ul>
 <h3 id="example-usage">Example Usage</h3>
 <pre><code class="language-django">{~ quote author=&quot;Albert Einstein&quot; source=&quot;Address to the Students' Disarmament Meeting&quot; ~}
@@ -89,19 +103,32 @@ The **Analytical Engine** weaves algebraic patterns, just as the *Jacquard loom*
 <p>The Practice Block provides a structured format for exercises, challenges, or practice activities. It's ideal for tutorials, educational content, or articles that include actionable tasks.</p>
 <h3 id="parameters_1">Parameters</h3>
 <ul>
-<li><code>difficulty</code> - (Optional) How challenging the practice is (default: "Moderate")</li>
-<li><code>timeframe</code> - (Optional) Estimated time to complete (default: "Varies")</li>
-<li><code>impact</code> - (Optional) The benefit level from completing the practice (default: "Medium")</li>
-<li><code>focus</code> - (Optional) The skill area this practice targets (default: "General")</li>
-<li><code>class</code> - (Optional) Additional CSS classes to apply to the practice block</li>
+<li>
+<p><code>difficulty</code> - (Optional) How challenging the practice is (default: "Moderate")</p>
+</li>
+<li>
+<p><code>timeframe</code> - (Optional) Estimated time to complete (default: "Varies")</p>
+</li>
+<li>
+<p><code>impact</code> - (Optional) The benefit level from completing the practice (default: "Medium")</p>
+</li>
+<li>
+<p><code>focus</code> - (Optional) The skill area this practice targets (default: "General")</p>
+</li>
+<li>
+<p><code>class</code> - (Optional) Additional CSS classes to apply to the practice block</p>
+</li>
 </ul>
 <h3 id="example-usage_1">Example Usage</h3>
 <pre><code class="language-django">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15-30 minutes&quot; impact=&quot;High&quot; focus=&quot;Django Templates&quot; ~}
 ### Template Inheritance Challenge
 
 Create a Django project with:
+
 1. A base template with blocks for `title`, `content`, and `footer`
+
 2. Two child templates that extend this base template
+
 3. A view that renders each child template
 
 **Bonus**: Add a navigation block that changes based on the current page.
@@ -125,10 +152,18 @@ Create a Django project with:
     </div>
     <div class="sb-practice-content">
         <h3 id="template-inheritance-challenge">Template Inheritance Challenge</h3>
-<p>Create a Django project with:<br />
-1. A base template with blocks for <code>title</code>, <code>content</code>, and <code>footer</code><br />
-2. Two child templates that extend this base template<br />
-3. A view that renders each child template</p>
+<p>Create a Django project with:</p>
+<ol>
+<li>
+<p>A base template with blocks for <code>title</code>, <code>content</code>, and <code>footer</code></p>
+</li>
+<li>
+<p>Two child templates that extend this base template</p>
+</li>
+<li>
+<p>A view that renders each child template</p>
+</li>
+</ol>
 <p><strong>Bonus</strong>: Add a navigation block that changes based on the current page.</p>
     </div>
 </div>
@@ -138,9 +173,13 @@ Create a Django project with:
 ### Database Query Optimization
 
 Take an existing Django view that's performing slowly and:
+
 1. Use Django Debug Toolbar to identify slow queries
+
 2. Implement `select_related()` and `prefetch_related()` where appropriate
+
 3. Add proper indexing to your models
+
 4. Measure and document the performance improvement
 
 **Deliverable**: Before and after performance metrics, and a brief explanation of your changes.

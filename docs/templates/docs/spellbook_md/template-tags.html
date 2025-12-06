@@ -97,17 +97,33 @@
 </code></pre>
 <p>You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:</p>
 <ul>
-<li><strong>Title</strong> {{ metadata.title }}</li>
-<li><strong>Created</strong> At {{ metadata.created_at }}</li>
-<li><strong>Tags</strong> {{ metadata.tags }}</li>
-<li><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</li>
-<li><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</li>
-<li><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</li>
-<li><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></li>
-<li><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></li>
+<li>
+<p><strong>Title</strong> {{ metadata.title }}</p>
+</li>
+<li>
+<p><strong>Created</strong> At {{ metadata.created_at }}</p>
+</li>
+<li>
+<p><strong>Tags</strong> {{ metadata.tags }}</p>
+</li>
+<li>
+<p><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</p>
+</li>
+<li>
+<p><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</p>
+</li>
+<li>
+<p><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</p>
+</li>
+<li>
+<p><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></p>
+</li>
+<li>
+<p><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></p>
+</li>
 </ul>
 <p>TODO: Add an author field to the metadata and update the defeault metadata template to display it.</p>
-<ol start="2">
+<ol>
 <li>Developer-Facing Metadata:</li>
 </ol>
 <pre><code class="language-django">{% verbatim %}

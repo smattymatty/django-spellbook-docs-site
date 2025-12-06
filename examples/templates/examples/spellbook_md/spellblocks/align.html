@@ -188,9 +188,15 @@ Another line for demonstration.</p>
 <h3 id="width-and-height"><code>width</code> and <code>height</code></h3>
 <p>These parameters control the dimensions of the block.</p>
 <ul>
-<li>If a unitless number <code>&lt;= 100</code> is given (e.g., <code>width="50"</code>), it's treated as <code>%</code>.</li>
-<li>If a unitless number <code>&gt; 100</code> is given (e.g., <code>width="250"</code>), it's treated as <code>px</code>.</li>
-<li>Explicit units like <code>50%</code>, <code>120px</code>, or <code>auto</code> (e.g., <code>width="auto"</code>) are respected.</li>
+<li>
+<p>If a unitless number <code>&lt;= 100</code> is given (e.g., <code>width="50"</code>), it's treated as <code>%</code>.</p>
+</li>
+<li>
+<p>If a unitless number <code>&gt; 100</code> is given (e.g., <code>width="250"</code>), it's treated as <code>px</code>.</p>
+</li>
+<li>
+<p>Explicit units like <code>50%</code>, <code>120px</code>, or <code>auto</code> (e.g., <code>width="auto"</code>) are respected.</p>
+</li>
 </ul>
 <p><strong><code>width</code> examples:</strong></p>
 <pre><code>{~ align width=&quot;50%&quot; class=&quot;sb-border sb-p-2&quot; ~}
@@ -287,7 +293,9 @@ To make <code>width="auto"</code> apparent, we've added a hypothetical utility c
 This block has:
 
 - `id=&quot;my-unique-aligner&quot;` for the outer wrapper.
+
 - `class=&quot;custom-outer-styles sb-border-primary sb-p-3&quot;` added to the outer wrapper.
+
 - `content_class=&quot;custom-inner-styles&quot;` for the inner `div` that directly wraps this text.
 You would define these custom classes in your own CSS.
 The text is centered by default internally. The block is centered due to default `pos` and `width=&quot;80%&quot;`.
@@ -302,11 +310,17 @@ The text is centered by default internally. The block is centered due to default
              style="text-align: center;">
             <p>This block has:</p>
 <ul>
-<li><code>id="my-unique-aligner"</code> for the outer wrapper.</li>
-<li><code>class="custom-outer-styles sb-border-primary sb-p-3"</code> added to the outer wrapper.</li>
-<li><code>content_class="custom-inner-styles"</code> for the inner <code>div</code> that directly wraps this text.<br />
+<li>
+<p><code>id="my-unique-aligner"</code> for the outer wrapper.</p>
+</li>
+<li>
+<p><code>class="custom-outer-styles sb-border-primary sb-p-3"</code> added to the outer wrapper.</p>
+</li>
+<li>
+<p><code>content_class="custom-inner-styles"</code> for the inner <code>div</code> that directly wraps this text.<br />
 You would define these custom classes in your own CSS.<br />
-The text is centered by default internally. The block is centered due to default <code>pos</code> and <code>width="80%"</code>.</li>
+The text is centered by default internally. The block is centered due to default <code>pos</code> and <code>width="80%"</code>.</p>
+</li>
 </ul>
         </div>
     </div>
@@ -322,6 +336,7 @@ The internal text content is aligned to the **start** (left).
 It also has custom background, padding, and shadow utility classes.
 
 - Point 1
+
 - Point 2
 {~~}
 </code></pre>
@@ -337,8 +352,12 @@ It also has custom background, padding, and shadow utility classes.
 The internal text content is aligned to the <strong>start</strong> (left).<br />
 It also has custom background, padding, and shadow utility classes.</p>
 <ul>
-<li>Point 1</li>
-<li>Point 2</li>
+<li>
+<p>Point 1</p>
+</li>
+<li>
+<p>Point 2</p>
+</li>
 </ul>
         </div>
     </div>

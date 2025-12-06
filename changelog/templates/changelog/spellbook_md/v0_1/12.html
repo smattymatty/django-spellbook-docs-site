@@ -22,16 +22,28 @@
 <h3 id="report-levels">Report Levels</h3>
 <p>Control the verbosity of information:</p>
 <ul>
-<li><code>--report-level=minimal</code>: Only show essential summary information</li>
-<li><code>--report-level=detailed</code>: Include comprehensive processing details (default)</li>
-<li><code>--report-level=debug</code>: Provide maximum diagnostic information for troubleshooting</li>
+<li>
+<p><code>--report-level=minimal</code>: Only show essential summary information</p>
+</li>
+<li>
+<p><code>--report-level=detailed</code>: Include comprehensive processing details (default)</p>
+</li>
+<li>
+<p><code>--report-level=debug</code>: Provide maximum diagnostic information for troubleshooting</p>
+</li>
 </ul>
 <h3 id="report-formats">Report Formats</h3>
 <p>Choose the output format that best suits your workflow:</p>
 <ul>
-<li><code>--report-format=text</code>: Human-readable text output (default)</li>
-<li><code>--report-format=json</code>: Machine-readable JSON format for CI/CD integration</li>
-<li><code>--report-format=none</code>: Suppress all reporting output</li>
+<li>
+<p><code>--report-format=text</code>: Human-readable text output (default)</p>
+</li>
+<li>
+<p><code>--report-format=json</code>: Machine-readable JSON format for CI/CD integration</p>
+</li>
+<li>
+<p><code>--report-format=none</code>: Suppress all reporting output</p>
+</li>
 </ul>
 <h3 id="report-output-redirection">Report Output Redirection</h3>
 <p>Save reports to a file instead of displaying in the console:</p>
@@ -39,9 +51,15 @@
 </code></pre>
 <p>This is particularly useful for:</p>
 <ul>
-<li>Preserving processing records for reference</li>
-<li>Automated workflow integration</li>
-<li>Analyzing processing results programmatically</li>
+<li>
+<p>Preserving processing records for reference</p>
+</li>
+<li>
+<p>Automated workflow integration</p>
+</li>
+<li>
+<p>Analyzing processing results programmatically</p>
+</li>
 </ul>
 <h1 id="improvements">Improvements</h1>
 <div class="sb-accordion ">
@@ -146,17 +164,33 @@ Install with pip: `pip install django-spellbook`
 </code></pre>
 <p>You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:</p>
 <ul>
-<li><strong>Title</strong> {{ metadata.title }}</li>
-<li><strong>Created</strong> At {{ metadata.created_at }}</li>
-<li><strong>Tags</strong> {{ metadata.tags }}</li>
-<li><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</li>
-<li><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</li>
-<li><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</li>
-<li><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></li>
-<li><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></li>
+<li>
+<p><strong>Title</strong> {{ metadata.title }}</p>
+</li>
+<li>
+<p><strong>Created</strong> At {{ metadata.created_at }}</p>
+</li>
+<li>
+<p><strong>Tags</strong> {{ metadata.tags }}</p>
+</li>
+<li>
+<p><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</p>
+</li>
+<li>
+<p><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</p>
+</li>
+<li>
+<p><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</p>
+</li>
+<li>
+<p><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></p>
+</li>
+<li>
+<p><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></p>
+</li>
 </ul>
 <p>TODO: Add an author field to the metadata and update the defeault metadata template to display it.</p>
-<ol start="2">
+<ol>
 <li>Developer-Facing Metadata:</li>
 </ol>
 <pre><code class="language-django">{% verbatim %}

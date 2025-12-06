@@ -13,6 +13,7 @@
         {% spellbook_styles %}
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/utils.css' %}">
+        <link rel="stylesheet" href="{% static 'css/code-blocks.css' %}">
         <!-- My Icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
@@ -77,22 +78,24 @@
         </main>
         <footer class="site-footer sb-flex sb-flex-col sb-justify-center sb-items-center sb-text-center
         sb-py-4">
-            <p class="sb-text-sm">
+            <p class="sb-text-sm sb-text-text-secondary">
                 Give us a star on
                 <a
                 href="https://github.com/smattymatty/django_spellbook"
-                class="in-code-link"
+                class="sb-text-info sb-font-bold sb-hover:text-primary sb-transition-colors"
                 target="_blank">
                     GitHub
                 </a>
             </p>
             <div class="sb-flex sb-justify-center sb-items-center sb-gap-2">
-                <p class="sb-mt-4 sb-text-sm">
-                    <a href="https://github.com/smattymatty/django-spellbook-docs-site" class="in-code-link"
+                <p class="sb-mt-4 sb-text-sm sb-text-text-secondary">
+                    <a href="https://github.com/smattymatty/django-spellbook-docs-site"
+                    class="sb-text-info sb-font-bold sb-hover:text-primary sb-transition-colors"
                     target="_blank">
                     This Website</a>
                     is powered by
-                    <a href="https://pypi.org/project/django_spellbook/" class="in-code-link"
+                    <a href="https://pypi.org/project/django_spellbook/"
+                    class="sb-text-info sb-font-bold sb-hover:text-primary sb-transition-colors"
                     target="_blank">
                         Django Spellbook</a>
                 </p>
@@ -106,7 +109,7 @@
             </div>
 
             <!-- Analytics Button for Toggle -->
-             <button onclick="toggleAnalytics()" class="sb-cursor-pointer sb-text-xs sb-px-4 sb-py-2">
+             <button onclick="toggleAnalytics()" class="sb-cursor-pointer sb-text-xs sb-px-4 sb-py-2 sb-text-text-secondary sb-hover:text-info sb-transition-colors">
                  Show Analytics
              </button>
 
@@ -114,8 +117,8 @@
             <div id="analytics-section"
             class="sb-mt-3 sb-text-sm sb-border-t sb-border-neutral-50 sb-pt-3 sb-w-full sb-max-w-md"
             style="display: none;">
-                <h4 class="sb-text-white sb-opacity-50">Page Analytics</h4>
-                <div class="sb-grid sb-grid-cols-2 sb-gap-2 sb-mt-2 sb-opacity-50">
+                <h4 class="sb-text-text-secondary">Page Analytics</h4>
+                <div class="sb-grid sb-grid-cols-2 sb-gap-2 sb-mt-2 sb-text-text-secondary">
                     <div>
                         <p><span class="sb-font-sm">This page:</span> {{ page_views_count }} views</p>
                         <p><span class="sb-font-sm">Today:</span> {{ today_page_views }} views</p>
@@ -127,11 +130,15 @@
                 </div>
 
                 {% if popular_pages %}
-                <div class="sb-mt-2 sb-text-white sb-opacity-50">
+                <div class="sb-mt-2 sb-text-text-secondary">
                     <h5 class="sb-font-medium">Popular Pages:</h5>
-                    <ul class="sb-mt-1 sb-text-xs sb-list-disc sb-list-inside popular-page-list">
+                    <ul class="sb-mt-1 sb-text-xs sb-list-disc sb-list-inside">
                         {% for page in popular_pages %}
-                        <li><a href="{{ page.url }}">{{ page.url|truncatechars:30 }}</a> - {{ page.total_views }} views</li>
+                        <li>
+                            <a href="{{ page.url }}" class="sb-text-info sb-hover:text-primary sb-transition-colors">
+                                {{ page.url|truncatechars:30 }}
+                            </a> - {{ page.total_views }} views
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
