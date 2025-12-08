@@ -1,7 +1,6 @@
 ---
 title: Introduction
 author: Django Spellbook Team
-wumbo: true
 tags:
   - introduction
   - documentation
@@ -15,6 +14,7 @@ This changelog serves as a record of all notable changes to Django Spellbook, in
 
 {~ accordion title="Changelog Navigation" open=true ~}
 
+- [v0.1.18](/changelog/v0_1/18) Released: December 08, 2025 - **XML and Navigation**
 - [v0.1.17](/changelog/v0_1/17) Released: December 06, 2025 - **Bug Fixes & Defaults**
 - [v0.1.16](/changelog/v0_1/16) Released: August 26, 2025 - **Theme System Enhancements**
 - [v0.1.15](/changelog/v0_1/15) Released: June 7, 2025

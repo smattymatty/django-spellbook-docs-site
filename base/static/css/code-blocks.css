@@ -1,37 +1,40 @@
-/* Code block theming - ensures proper contrast in light and dark modes */
+/* Code block theming - ALWAYS DARK for that sleek terminal look */
 
-/* Base code block styling using theme colors */
+/* Base code block styling - always dark background */
 pre {
-    background-color: var(--surface-color, #f5f5f5) !important;
-    color: var(--text-color, #2c2c2c) !important;
-    padding: 1rem !important;
+    background-color: #1a1a1a !important;
+    color: #e5e5e5 !important;
+    padding: 1rem 1.5rem !important;
     border-radius: 0.375rem !important;
     overflow-x: auto !important;
-    border: 1px solid color-mix(in srgb, var(--neutral-color, #ccc) 30%, transparent) !important;
+    border-left: 0.3rem solid var(--primary-color, #8b4513) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    margin: 1.5rem 0 !important;
 }
 
 pre code {
     background-color: transparent !important;
     color: inherit !important;
     padding: 0 !important;
-    font-size: 0.875rem !important;
+    font-size: 0.95rem !important;
     line-height: 1.5 !important;
 }
 
-/* Inline code */
+/* Inline code - also dark for consistency */
 code {
-    background-color: color-mix(in srgb, var(--surface-color, #f5f5f5) 80%, transparent) !important;
-    color: var(--text-color, #2c2c2c) !important;
-    padding: 0.125rem 0.375rem !important;
+    background-color: #2a2a2a !important;
+    color: #e5e5e5 !important;
+    padding: 0.2rem 0.4rem !important;
     border-radius: 0.25rem !important;
-    font-size: 0.875em !important;
+    font-size: 0.9em !important;
     font-family: 'Courier New', Courier, monospace !important;
 }
 
 /* Override highlight.js background when it conflicts */
 .hljs {
     background: transparent !important;
-    color: inherit !important;
+    color: #e5e5e5 !important;
 }
 
 /* Syntax highlighting that works with theme colors */

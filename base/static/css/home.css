@@ -158,13 +158,13 @@ h6:hover {
   opacity: 1;
 }
 
-/* Get Started section with properly themed code blocks */
+/* Get Started section with ALWAYS DARK code blocks */
 .get-started-section pre {
   padding: 1rem 1.5rem !important;
-  background-color: var(--surface-color, #f5f5f5) !important;
+  background-color: #1a1a1a !important;
   border-left: 0.3rem solid var(--primary-color, #8b4513);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--text-color, #000) 30%, transparent);
-  color: var(--text-color, #2c2c2c) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  color: #e5e5e5 !important;
   border-radius: 5px;
   overflow-x: auto;
   margin: 1.5rem 0;
@@ -179,9 +179,9 @@ h6:hover {
   line-height: 1.5;
 }
 
-/* Syntax highlighting colors using theme variables */
+/* Syntax highlighting colors - always light colors for dark bg */
 .get-started-section .hljs {
-  color: var(--text-color, #2c2c2c) !important;
+  color: #e5e5e5 !important;
   background: transparent !important;
 }
 
@@ -211,13 +211,13 @@ h6:hover {
   color: var(--accent-color, #f59e0b) !important;
 }
 
-/* Inline code in paragraphs */
+/* Inline code in paragraphs - also dark */
 .get-started-section p code,
 .get-started-section li code {
-  background-color: color-mix(in srgb, var(--surface-color, #f5f5f5) 80%, transparent) !important;
+  background-color: #2a2a2a !important;
   padding: 0.2rem 0.4rem;
   border-radius: 3px;
-  color: var(--text-color, #2c2c2c) !important;
+  color: #e5e5e5 !important;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9rem;
 }
