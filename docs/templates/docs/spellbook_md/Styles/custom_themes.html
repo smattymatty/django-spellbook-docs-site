@@ -385,10 +385,11 @@ def set_theme(request):
 <p><strong>Settings Override</strong>: Check that nothing is overwriting <code>SPELLBOOK_THEME</code> later</p>
 </li>
 <li>
-<p><strong>Template Loading</strong>: Ensure `</p>
+<p><strong>Template Loading</strong>: Ensure <code>{% spellbook_styles %}</code> is in your base template</p>
 </li>
 </ol>
-<spellbook_styles><p>` is in your base template</p><h3 id="custom-theme-not-recognized">Custom Theme Not Recognized?</h3><pre><code class="language-python"># Problem: Custom theme like 'magical' not working
+<h3 id="custom-theme-not-recognized">Custom Theme Not Recognized?</h3>
+<pre><code class="language-python"># Problem: Custom theme like 'magical' not working
 # Solution: Handle it explicitly in middleware
 
 if theme_name == 'magical':
@@ -397,7 +398,9 @@ if theme_name == 'magical':
 else:
     # Use presets
     theme_config = get_theme_with_mode(theme_name, mode)
-</code></pre><h3 id="colors-look-wrong">Colors Look Wrong?</h3><pre><code class="language-python"># Ensure valid color formats
+</code></pre>
+<h3 id="colors-look-wrong">Colors Look Wrong?</h3>
+<pre><code class="language-python"># Ensure valid color formats
 SPELLBOOK_THEME = {
     'colors': {
         'primary': '#FF6B35',     # ✅ Hex
@@ -407,12 +410,33 @@ SPELLBOOK_THEME = {
         # 'invalid': '#GGGGGG',   # ❌ Invalid hex
     }
 }
-</code></pre><h3 id="opacity-variants-not-working">Opacity Variants Not Working?</h3><pre><code class="language-python"># Make sure variants are enabled
+</code></pre>
+<h3 id="opacity-variants-not-working">Opacity Variants Not Working?</h3>
+<pre><code class="language-python"># Make sure variants are enabled
 SPELLBOOK_THEME = {
     'colors': { ... },
     'generate_variants': True  # Must be True!
 }
-</code></pre><h2 id="performance-considerations">Performance Considerations</h2><p>The theme system is incredibly lightweight:</p><ul><li><strong>No build process</strong>: CSS generated at runtime</li><li><strong>Cached efficiently</strong>: Variables generated once per request</li><li><strong>No JavaScript</strong>: Pure CSS variables</li><li><strong>Small footprint</strong>: ~2KB of CSS for complete theme</li></ul><h2 id="quick-recipes">Quick Recipes</h2><h3 id="seasonal-themes">Seasonal Themes</h3><pre><code class="language-python">import datetime
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<p>The theme system is incredibly lightweight:</p>
+<ul>
+<li>
+<p><strong>No build process</strong>: CSS generated at runtime</p>
+</li>
+<li>
+<p><strong>Cached efficiently</strong>: Variables generated once per request</p>
+</li>
+<li>
+<p><strong>No JavaScript</strong>: Pure CSS variables</p>
+</li>
+<li>
+<p><strong>Small footprint</strong>: ~2KB of CSS for complete theme</p>
+</li>
+</ul>
+<h2 id="quick-recipes">Quick Recipes</h2>
+<h3 id="seasonal-themes">Seasonal Themes</h3>
+<pre><code class="language-python">import datetime
 
 def get_seasonal_theme():
     month = datetime.datetime.now().month
@@ -436,7 +460,9 @@ def get_seasonal_theme():
     # ... etc
 
 SPELLBOOK_THEME = get_seasonal_theme()
-</code></pre><h3 id="user-preference-themes">User Preference Themes</h3><pre><code class="language-python"># In your user profile model
+</code></pre>
+<h3 id="user-preference-themes">User Preference Themes</h3>
+<pre><code class="language-python"># In your user profile model
 class UserProfile(models.Model):
     theme_colors = models.JSONField(default=dict)
 
@@ -444,7 +470,9 @@ class UserProfile(models.Model):
 user_theme = request.user.profile.theme_colors
 if user_theme:
     SPELLBOOK_THEME = {'colors': user_theme}
-</code></pre><h3 id="ab-testing-themes">A/B Testing Themes</h3><pre><code class="language-python">import random
+</code></pre>
+<h3 id="ab-testing-themes">A/B Testing Themes</h3>
+<pre><code class="language-python">import random
 
 # Test two different color schemes
 THEME_A = {'colors': {'primary': '#FF6B35', ...}}
@@ -452,8 +480,26 @@ THEME_B = {'colors': {'primary': '#4ECDC4', ...}}
 
 # Randomly assign (or use more sophisticated logic)
 SPELLBOOK_THEME = random.choice([THEME_A, THEME_B])
-</code></pre><h2 id="the-power-of-python-dictionaries">The Power of Python Dictionaries</h2><p>Remember: <strong>Your entire site's color scheme is just a Python dictionary!</strong><br />
-No more:</p><ul><li>Searching through CSS files</li><li>Compiling SASS/LESS</li><li>Managing CSS variables manually</li><li>Worrying about specificity wars</li></ul><p>Just update your dictionary, and every component adapts instantly. It's that simple!</p><div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+</code></pre>
+<h2 id="the-power-of-python-dictionaries">The Power of Python Dictionaries</h2>
+<p>Remember: <strong>Your entire site's color scheme is just a Python dictionary!</strong></p>
+<p>No more:</p>
+<ul>
+<li>
+<p>Searching through CSS files</p>
+</li>
+<li>
+<p>Compiling SASS/LESS</p>
+</li>
+<li>
+<p>Managing CSS variables manually</p>
+</li>
+<li>
+<p>Worrying about specificity wars</p>
+</li>
+</ul>
+<p>Just update your dictionary, and every component adapts instantly. It's that simple!</p>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
             ✅
@@ -463,5 +509,27 @@ No more:</p><ul><li>Searching through CSS files</li><li>Compiling SASS/LESS</li>
         <p><strong>Pro Tip</strong>: Start with one of the 9 built-in presets, then customize just the colors you want to change. You don't need to define every color from scratch!</p>
     </span>
 </div>
-<h2 id="next-steps">Next Steps</h2><ol><li><strong>Copy a starter theme</strong> from the examples above</li><li><strong>Paste into your <code>settings.py</code></strong></li><li><strong>Tweak the colors</strong> to match your brand</li><li><strong>See instant results</strong> across your entire site!</li></ol><p>Visit <code>/themes/</code> on your site to preview how your theme looks with real components.</p><a class="sb-btn sb-btn-primary" href="/themes/"><p>Try Theme Switcher →</p></a><a class="super-link" href="/docs/Styles/themes"><p>Learn About Built-in Themes</p></a></spellbook_styles>
+
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li>
+<p><strong>Copy a starter theme</strong> from the examples above</p>
+</li>
+<li>
+<p><strong>Paste into your <code>settings.py</code></strong></p>
+</li>
+<li>
+<p><strong>Tweak the colors</strong> to match your brand</p>
+</li>
+<li>
+<p><strong>See instant results</strong> across your entire site!</p>
+</li>
+</ol>
+<p>Visit <code>/themes/</code> on your site to preview how your theme looks with real components.</p>
+<p>{% a href="/themes/" .sb-btn .sb-btn-primary %}<br />
+Try Theme Switcher →<br />
+{% enda %}</p>
+<p>{% a href="/docs/Styles/themes" .super-link %}<br />
+Learn About Built-in Themes<br />
+{% enda %}</p>
 {% endblock %}

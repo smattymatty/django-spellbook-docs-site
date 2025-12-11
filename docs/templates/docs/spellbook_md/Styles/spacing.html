@@ -113,18 +113,14 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-<div class="sb-p-4 sb-mb-4">
-<h2 class="sb-mb-2" id="title">
-<p>Title</p>
-</h2>
-<div class="sb-space-y-2">
-<p>
-<p>First paragraph</p>
-</p>
-<p>
-<p>Second paragraph</p>
-</p>
-</div>
-</div>
-<a class="super-link" href="/docs/Styles/transitions-animations"><p>Continue to Transitions and Animations Utilities</p></a>
+<p>{% div .sb-p-4 .sb-mb-4 %}<br />
+    {% h2 .sb-mb-2 %}Title{% endh2 %}<br />
+    {% div .sb-space-y-2 %}<br />
+        {% p %}First paragraph{% endp %}<br />
+        {% p %}Second paragraph{% endp %}<br />
+    {% enddiv %}<br />
+{% enddiv %}</p>
+<p>{% a href="/docs/Styles/transitions-animations" .super-link %}<br />
+Continue to Transitions and Animations Utilities<br />
+{% enda %}</p>
 {% endblock %}

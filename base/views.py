@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from pathlib import Path
-from django_spellbook.parsers import render_spellbook_markdown_to_html
+from django_spellbook.parsers import spellbook_render
 
 # Create your views here.
 
@@ -21,7 +21,7 @@ def home(request):
                 markdown_content = parts[2].strip()
         
         # Render markdown to HTML using django-spellbook
-        get_started_html = render_spellbook_markdown_to_html(markdown_content)
+        get_started_html = spellbook_render(markdown_content)
     except FileNotFoundError:
         # Fallback if file doesn't exist
         get_started_html = "<p>Content loading...</p>"

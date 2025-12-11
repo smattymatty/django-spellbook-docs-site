@@ -1,0 +1,135 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-0118"><strong>Version 0.1.18</strong></h2>
+<h3 id="added">Added</h3>
+<h4 id="automatic-sitemapxml-generation">Automatic Sitemap.xml Generation</h4>
+<p>Django Spellbook now automatically generates SEO-friendly sitemaps from your markdown content - zero configuration required!</p>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>
+<p><strong>Automatic sitemap generation</strong> - Runs during <code>python manage.py spellbook_md</code></p>
+</li>
+<li>
+<p><strong>Smart filtering</strong> - Respects <code>is_public: false</code> frontmatter</p>
+</li>
+<li>
+<p><strong>Date handling</strong> - Uses <code>modified</code> date (falls back to <code>published</code>) for <code>&lt;lastmod&gt;</code></p>
+</li>
+<li>
+<p><strong>URL prefix support</strong> - Works with multi-source configurations</p>
+</li>
+<li>
+<p><strong>Per-page control</strong> - Optional frontmatter overrides for priority and changefreq</p>
+</li>
+</ul>
+<p><strong>Quick setup:</strong></p>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_SITE_URL = &quot;https://your-site.com&quot;  # Required for sitemap generation
+</code></pre>
+<p><strong>Advanced configuration (optional):</strong></p>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_SITEMAP_ENABLED = True  # Default: True if SITE_URL is set
+SPELLBOOK_SITEMAP_OUTPUT = &quot;static/sitemap.xml&quot;  # Default: &quot;sitemap.xml&quot;
+</code></pre>
+<p><strong>Per-page frontmatter options:</strong></p>
+<pre><code class="language-yaml">---
+title: Important Page
+sitemap_priority: 0.9      # 0.0-1.0 (default: omitted)
+sitemap_changefreq: daily  # always, hourly, daily, weekly, monthly, yearly, never
+sitemap_exclude: true      # Exclude from sitemap but keep page public
+---
+</code></pre>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>
+<p>Automatically generates sitemap.xml after processing all markdown files</p>
+</li>
+<li>
+<p>Filters out pages with <code>is_public: false</code></p>
+</li>
+<li>
+<p>Respects per-page <code>sitemap_exclude</code> flag</p>
+</li>
+<li>
+<p>Uses <code>modified</code> or <code>published</code> dates for <code>&lt;lastmod&gt;</code> tag</p>
+</li>
+<li>
+<p>Supports multi-source configurations (all apps in one sitemap)</p>
+</li>
+<li>
+<p>Gracefully skips if <code>SPELLBOOK_SITE_URL</code> not configured</p>
+</li>
+</ul>
+<p><strong>XML Output:</strong></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://your-site.com/docs/intro/&lt;/loc&gt;
+    &lt;lastmod&gt;2025-12-08&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>
+<p>✅ Improves SEO - Search engines discover all your content</p>
+</li>
+<li>
+<p>✅ Zero maintenance - Updates automatically on every build</p>
+</li>
+<li>
+<p>✅ Smart defaults - Works great with no configuration</p>
+</li>
+<li>
+<p>✅ Full control - Per-page overrides when you need them</p>
+</li>
+</ul>
+<h4 id="automatic-prevnext-page-navigation">Automatic Prev/Next Page Navigation</h4>
+<p>Your documentation and blog posts now have <strong>automatic sequential navigation</strong> - zero configuration required!</p>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>
+<p><strong>Filesystem-based navigation</strong> - Files automatically link in alphabetical order within directories</p>
+</li>
+<li>
+<p><strong>Directory boundaries</strong> - Navigation respects folder structure (won't jump between different sections)</p>
+</li>
+<li>
+<p><strong>Frontmatter overrides</strong> - Manually specify prev/next in YAML when needed</p>
+</li>
+<li>
+<p><strong>Beautiful UI</strong> - Theme-aware navigation buttons with hover effects</p>
+</li>
+</ul>
+<p><strong>Example (automatic):</strong></p>
+<pre><code>docs/
+  01-intro.md     → next: 02-setup
+  02-setup.md     → prev: 01-intro, next: 03-usage
+  03-usage.md     → prev: 02-setup
+</code></pre>
+<p><strong>Example (custom frontmatter):</strong></p>
+<pre><code class="language-yaml">---
+title: Advanced Configuration
+prev: introduction              # Path format
+next: docs:troubleshooting     # Namespaced format
+---
+</code></pre>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>
+<p>Runs during <code>python manage.py spellbook_md</code></p>
+</li>
+<li>
+<p>Navigation links added to metadata display automatically</p>
+</li>
+<li>
+<p>Supports both path-based (<code>intro</code>) and namespaced (<code>blog:intro</code>) formats</p>
+</li>
+<li>
+<p>25 comprehensive tests ensuring reliability</p>
+</li>
+</ul>
+{% endblock %}

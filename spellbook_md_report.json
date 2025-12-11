@@ -2,7 +2,7 @@
   "summary": {
     "total_pairs": 3,
     "successful_pairs": 3,
-    "total_processed_files": 47
+    "total_processed_files": 48
   },
   "pairs": [
     {
@@ -17,7 +17,7 @@
       "destination": "changelog",
       "url_prefix": "changelog",
       "success": true,
-      "processed_files": 9
+      "processed_files": 10
     },
     {
       "source": "/home/mathew/my_sites/django-spellbook-docs-site/examples_content",
@@ -31,6 +31,56 @@
     {
       "name": "label_seperator",
       "total_uses": 6,
+      "failed_uses": 0
+    },
+    {
+      "name": "div",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "section",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "article",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "aside",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "header",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "footer",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "nav",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "main",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "hr",
+      "total_uses": 0,
+      "failed_uses": 0
+    },
+    {
+      "name": "br",
+      "total_uses": 0,
       "failed_uses": 0
     },
     {

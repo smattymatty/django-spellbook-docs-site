@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.utils.html import escape
 from rest_framework import status
 
-from django_spellbook.parsers import render_spellbook_markdown_to_html
+from django_spellbook.parsers import spellbook_render
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ def render_markdown_to_html(raw_markdown: str) -> str:
         return ""
 
     try:
-        html_output = render_spellbook_markdown_to_html(raw_markdown)
+        html_output = spellbook_render(raw_markdown)
         logger.debug(
             f"Successfully rendered markdown ({len(raw_markdown)} "
             f"chars -> {len(html_output)} chars)"

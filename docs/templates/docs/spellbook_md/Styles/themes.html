@@ -389,10 +389,43 @@ def my_view(request):
 <p>Clear browser cache</p>
 </li>
 <li>
-<p>Check template has `</p>
+<p>Check template has <code>{% spellbook_styles %}</code></p>
 </li>
 </ol>
-<spellbook_styles><p>`</p><h3 id="colors-look-wrong">Colors Look Wrong</h3><ol><li>Validate color format (hex, rgb, or CSS name)</li><li>Check for typos in color values</li><li>Ensure proper contrast ratios</li><li>Test in different browsers</li></ol><h3 id="performance">Performance</h3><p>Themes are lightweight:</p><ul><li>CSS generated once per request</li><li>Variables cached in browser</li><li>No JavaScript required</li><li>Minimal overhead (~1ms)</li></ul><h2 id="examples-in-action">Examples in Action</h2><h3 id="status-messages">Status Messages</h3><div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+<h3 id="colors-look-wrong">Colors Look Wrong</h3>
+<ol>
+<li>
+<p>Validate color format (hex, rgb, or CSS name)</p>
+</li>
+<li>
+<p>Check for typos in color values</p>
+</li>
+<li>
+<p>Ensure proper contrast ratios</p>
+</li>
+<li>
+<p>Test in different browsers</p>
+</li>
+</ol>
+<h3 id="performance">Performance</h3>
+<p>Themes are lightweight:</p>
+<ul>
+<li>
+<p>CSS generated once per request</p>
+</li>
+<li>
+<p>Variables cached in browser</p>
+</li>
+<li>
+<p>No JavaScript required</p>
+</li>
+<li>
+<p>Minimal overhead (~1ms)</p>
+</li>
+</ul>
+<h2 id="examples-in-action">Examples in Action</h2>
+<h3 id="status-messages">Status Messages</h3>
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
             ✅
@@ -402,6 +435,7 @@ def my_view(request):
         <p><strong>Success!</strong> Your theme is working perfectly.</p>
     </span>
 </div>
+
 <div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -412,6 +446,7 @@ def my_view(request):
         <p><strong>Warning:</strong> Themes may cause excessive creativity.</p>
     </span>
 </div>
+
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
@@ -422,19 +457,40 @@ def my_view(request):
         <p><strong>Error:</strong> Unable to return to boring colors.</p>
     </span>
 </div>
-<h3 id="color-palette-display">Color Palette Display</h3><div class="sb-grid sb-grid-cols-4 sb-gap-2 sb-mb-4">
+
+<h3 id="color-palette-display">Color Palette Display</h3>
+<div class="sb-grid sb-grid-cols-4 sb-gap-2 sb-mb-4">
     <div class="sb-p-4 sb-bg-primary sb-text-white sb-text-center sb-rounded">Primary</div>
     <div class="sb-p-4 sb-bg-secondary sb-text-white sb-text-center sb-rounded">Secondary</div>
     <div class="sb-p-4 sb-bg-accent sb-text-white sb-text-center sb-rounded">Accent</div>
     <div class="sb-p-4 sb-bg-neutral sb-text-white sb-text-center sb-rounded">Neutral</div>
 </div>
-<h3 id="opacity-demonstration">Opacity Demonstration</h3><div class="sb-space-y-2 sb-mb-4">
+
+<h3 id="opacity-demonstration">Opacity Demonstration</h3>
+<div class="sb-space-y-2 sb-mb-4">
     <div class="sb-p-3 sb-bg-primary-25 sb-border sb-border-primary">25% Primary</div>
     <div class="sb-p-3 sb-bg-primary-50 sb-border sb-border-primary">50% Primary</div>
     <div class="sb-p-3 sb-bg-primary-75 sb-border sb-border-primary">75% Primary</div>
     <div class="sb-p-3 sb-bg-primary sb-text-white">100% Primary</div>
 </div>
-<h2 id="next-steps">Next Steps</h2><p>Ready to theme your site?</p><ol><li><strong>Try a preset</strong>: Add <code>SPELLBOOK_THEME</code> to settings</li><li><strong>Visit <code>/themes/</code></strong>: See all themes in action</li><li><strong>Customize colors</strong>: Create your perfect palette</li><li><strong>Use the builder</strong>: <code>/theme-builder/</code> for visual editing</li></ol><div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+
+<h2 id="next-steps">Next Steps</h2>
+<p>Ready to theme your site?</p>
+<ol>
+<li>
+<p><strong>Try a preset</strong>: Add <code>SPELLBOOK_THEME</code> to settings</p>
+</li>
+<li>
+<p><strong>Visit <code>/themes/</code></strong>: See all themes in action</p>
+</li>
+<li>
+<p><strong>Customize colors</strong>: Create your perfect palette</p>
+</li>
+<li>
+<p><strong>Use the builder</strong>: <code>/theme-builder/</code> for visual editing</p>
+</li>
+</ol>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
             ℹ️
@@ -444,7 +500,9 @@ def my_view(request):
         <p><strong>Pro Tip:</strong> Start with a preset theme close to your vision, then customize individual colors as needed. The theme builder makes this process visual and fun!</p>
     </span>
 </div>
-<h2 id="learn-more">Learn More</h2><div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+<h2 id="learn-more">Learn More</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
             <h5 class="sb-card-title">Create Custom Themes</h5>
@@ -455,5 +513,14 @@ def my_view(request):
     </div>
 
 </div>
-<a class="sb-btn sb-btn-primary sb-btn-lg" href="/docs/Styles/custom_themes"><p>📖 Custom Theme Guide →</p></a><a class="sb-btn sb-btn-secondary" href="/themes/"><p>🎨 Explore Themes Live →</p></a><a class="super-link" href="/docs/Styles/colors"><p>Learn About Color Utilities</p></a></spellbook_styles>
+
+<p>{% a href="/docs/Styles/custom_themes" .sb-btn .sb-btn-primary .sb-btn-lg %}<br />
+📖 Custom Theme Guide →<br />
+{% enda %}</p>
+<p>{% a href="/themes/" .sb-btn .sb-btn-secondary %}<br />
+🎨 Explore Themes Live →<br />
+{% enda %}</p>
+<p>{% a href="/docs/Styles/colors" .super-link %}<br />
+Learn About Color Utilities<br />
+{% enda %}</p>
 {% endblock %}

@@ -59,10 +59,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% spellbook_url 'examples:rendering_by_function' %}" class="spell-link"> 
+                    <a href="{% spellbook_url 'examples:rendering_by_function' %}" class="spell-link">
                         <div class="spell-content">
                             <span class="spell-icon">🪶</span>
-                            <code class="spell-title">from django_spellbook.parsers import render_spellbook_markdown_to_html</code>
+                            <code class="spell-title">from django_spellbook.parsers import spellbook_render</code>
                             <ul class="border-radius-5-handler">
                                 <li><strong>Markdown String Processing</strong>: Takes a raw Python string containing markdown text as its primary input.</li>
                                 <li><strong>SpellBlock Recognition</strong>: Intelligently parses and processes any embedded <code>{~ SpellBlock ~}</code> tags (like <code>{~ card ~}</code> or <code>{~ alert ~}</code>) and their parameters found within the markdown string.</li>

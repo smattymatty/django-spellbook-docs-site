@@ -77,10 +77,11 @@
 <p>Full test coverage with 26 new tests for the theme system</p>
 </li>
 <li>
-<p>Template tag `</p>
+<p>Template tag <code>{% spellbook_styles %}</code> enhanced to inject theme CSS while maintaining backward compatibility</p>
 </li>
 </ul>
-<spellbook_styles><p>` enhanced to inject theme CSS while maintaining backward compatibility</p><h3 id="usage">Usage</h3><pre><code class="language-python"># settings.py
+<h3 id="usage">Usage</h3>
+<pre><code class="language-python"># settings.py
 from django_spellbook.theme import THEMES
 
 # Use a preset theme
@@ -98,7 +99,23 @@ SPELLBOOK_THEME = {
         'spell': '#4B0082',  # Use as sb-text-spell
     }
 }
-</code></pre><h3 id="developer-notes">Developer Notes</h3><ul><li>Theme CSS is generated once per request (caching can be added if needed)</li><li>No JavaScript required - pure CSS variable approach</li><li>No build step or compilation needed</li><li>Compatible with all existing SpellBlocks and utility classes</li></ul><div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+</code></pre>
+<h3 id="developer-notes">Developer Notes</h3>
+<ul>
+<li>
+<p>Theme CSS is generated once per request (caching can be added if needed)</p>
+</li>
+<li>
+<p>No JavaScript required - pure CSS variable approach</p>
+</li>
+<li>
+<p>No build step or compilation needed</p>
+</li>
+<li>
+<p>Compatible with all existing SpellBlocks and utility classes</p>
+</li>
+</ul>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
             ℹ️
@@ -108,5 +125,4 @@ SPELLBOOK_THEME = {
         <p>We're committed to continuous improvement and building the most powerful markdown processing toolkit for Django. If you have feedback or feature requests, please <a href="https://github.com/smattymatty/django_spellbook/issues">open an issue</a> on GitHub.</p>
     </span>
 </div>
-</spellbook_styles>
 {% endblock %}

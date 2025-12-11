@@ -50,12 +50,12 @@
 </li>
 </ul>
 <p>These are prefixed with <code>sb-</code> to avoid conflicts with your existing styles:</p>
-<div class="sb-p-3 sb-mb-3 sb-border">
+<p>{% div class="sb-p-3 sb-mb-3 sb-border" %}</p>
 <pre><code class="language-django">&lt;div class=&quot;sb-p-3 sb-mb-3 sb-border&quot;&gt;
     Padded, with margin and border
 &lt;/div&gt;
 </code></pre>
-</div>
+<p>{% enddiv %}</p>
 <h3 id="2-component-classes">2. Component Classes</h3>
 <p>Pre-styled components used by the built-in blocks:</p>
 <ul>
@@ -76,11 +76,11 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-<div class="sb-card">
-<div class="sb-card-body">
-<p>A nice card layout</p>
-</div>
-</div>
+<p>{% div .sb-card %}<br />
+{% div .sb-card-body %}<br />
+A nice card layout<br />
+{% enddiv %}<br />
+{% enddiv %}</p>
 <div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
     <span class="sb-alert-icon">
 
