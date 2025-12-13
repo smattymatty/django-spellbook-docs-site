@@ -1,0 +1,254 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>All color utilities are theme-aware. They reference CSS variables that change based on your <code>SPELLBOOK_THEME</code> setting.</p>
+<h2 id="background-colors">Background Colors</h2>
+<h3 id="core-colors">Core Colors</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;Primary&lt;/div&gt;
+&lt;div class=&quot;sb-bg-secondary sb-text-text sb-p-3 sb-rounded&quot;&gt;Secondary&lt;/div&gt;
+&lt;div class=&quot;sb-bg-accent sb-text-text sb-p-3 sb-rounded&quot;&gt;Accent&lt;/div&gt;
+&lt;div class=&quot;sb-bg-neutral sb-text-text sb-p-3 sb-rounded&quot;&gt;Neutral&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/bg-core/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="status-colors">Status Colors</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-success sb-text-text sb-p-3 sb-rounded&quot;&gt;Success&lt;/div&gt;
+&lt;div class=&quot;sb-bg-warning sb-text-text sb-p-3 sb-rounded&quot;&gt;Warning&lt;/div&gt;
+&lt;div class=&quot;sb-bg-error sb-text-text sb-p-3 sb-rounded&quot;&gt;Error&lt;/div&gt;
+&lt;div class=&quot;sb-bg-info sb-text-text sb-p-3 sb-rounded&quot;&gt;Info&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/bg-status/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="specialty-colors">Specialty Colors</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-emphasis sb-text-text sb-p-3 sb-rounded&quot;&gt;Emphasis&lt;/div&gt;
+&lt;div class=&quot;sb-bg-subtle sb-text-text sb-p-3 sb-rounded&quot;&gt;Subtle&lt;/div&gt;
+&lt;div class=&quot;sb-bg-distinct sb-text-text sb-p-3 sb-rounded&quot;&gt;Distinct&lt;/div&gt;
+&lt;div class=&quot;sb-bg-aether sb-text-text sb-p-3 sb-rounded&quot;&gt;Aether&lt;/div&gt;
+&lt;div class=&quot;sb-bg-artifact sb-text-text sb-p-3 sb-rounded&quot;&gt;Artifact&lt;/div&gt;
+&lt;div class=&quot;sb-bg-sylvan sb-text-text sb-p-3 sb-rounded&quot;&gt;Sylvan&lt;/div&gt;
+&lt;div class=&quot;sb-bg-danger sb-text-text sb-p-3 sb-rounded&quot;&gt;Danger&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/bg-specialty/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="system-colors">System Colors</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-background sb-text-text sb-p-3 sb-rounded&quot;&gt;Page background&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface sb-text-text sb-p-3 sb-rounded&quot;&gt;Surface (cards, panels)&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/bg-system/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="base-colors">Base Colors</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-black sb-text-white sb-p-3 sb-rounded&quot;&gt;Black&lt;/div&gt;
+&lt;div class=&quot;sb-bg-white sb-text-text sb-p-3 sb-rounded&quot;&gt;White&lt;/div&gt;
+&lt;div class=&quot;sb-bg-transparent sb-text-text sb-p-3 sb-rounded&quot;&gt;Transparent&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/bg-base/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="text-colors">Text Colors</h2>
+<pre><code class="language-html">&lt;span class=&quot;sb-text-primary sb-font-bold&quot;&gt;Primary text&lt;/span&gt;
+&lt;span class=&quot;sb-text-secondary sb-font-bold&quot;&gt;Secondary text&lt;/span&gt;
+&lt;span class=&quot;sb-text-accent sb-font-bold&quot;&gt;Accent text&lt;/span&gt;
+&lt;span class=&quot;sb-text-neutral sb-font-bold&quot;&gt;Neutral text&lt;/span&gt;
+&lt;span class=&quot;sb-text-success sb-font-bold&quot;&gt;Success text&lt;/span&gt;
+&lt;span class=&quot;sb-text-warning sb-font-bold&quot;&gt;Warning text&lt;/span&gt;
+&lt;span class=&quot;sb-text-error sb-font-bold&quot;&gt;Error text&lt;/span&gt;
+&lt;span class=&quot;sb-text-info sb-font-bold&quot;&gt;Info text&lt;/span&gt;
+&lt;span class=&quot;sb-text-text sb-font-bold&quot;&gt;Text (default)&lt;/span&gt;
+&lt;span class=&quot;sb-text-text-secondary sb-font-bold&quot;&gt;Text Secondary (muted)&lt;/span&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4 sb-bg-surface" hx-get="/api/v1/styles/preview/text-colors/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="border-colors">Border Colors</h2>
+<p>Requires a border width class (<code>sb-border</code>, <code>sb-border-2</code>, etc.):</p>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-2 sb-border-primary sb-p-3 sb-rounded&quot;&gt;Primary border&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-secondary sb-p-3 sb-rounded&quot;&gt;Secondary border&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-accent sb-p-3 sb-rounded&quot;&gt;Accent border&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-success sb-p-3 sb-rounded&quot;&gt;Success border&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/border-colors/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="opacity-variants">Opacity Variants</h2>
+<p>Every color has 25%, 50%, and 75% opacity variants. Works for backgrounds, text, and borders.</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Spellbook Color Utilities also support <code>10</code> and <code>90</code> for opacity variants!</p>
+    </span>
+</div>
+
+<h3 id="background-opacity">Background Opacity</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;100%&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-90 sb-text-text sb-p-3 sb-rounded&quot;&gt;90%&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-75 sb-text-text sb-p-3 sb-rounded&quot;&gt;75%&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-50 sb-text-text sb-p-3 sb-rounded&quot;&gt;50%&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-25 sb-text-text sb-p-3 sb-rounded&quot;&gt;25%&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-10 sb-text-text sb-p-3 sb-rounded&quot;&gt;10%&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/opacity-bg/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="text-opacity">Text Opacity</h3>
+<pre><code class="language-html">&lt;span class=&quot;sb-text-primary sb-font-bold&quot;&gt;100%&lt;/span&gt;
+&lt;span class=&quot;sb-text-primary-75 sb-font-bold&quot;&gt;75%&lt;/span&gt;
+&lt;span class=&quot;sb-text-primary-50 sb-font-bold&quot;&gt;50%&lt;/span&gt;
+&lt;span class=&quot;sb-text-primary-25 sb-font-bold&quot;&gt;25%&lt;/span&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4 sb-bg-surface" hx-get="/api/v1/styles/preview/opacity-text/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="border-opacity">Border Opacity</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-2 sb-border-primary sb-p-3 sb-rounded&quot;&gt;100%&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-primary-75 sb-p-3 sb-rounded&quot;&gt;75%&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-primary-50 sb-p-3 sb-rounded&quot;&gt;50%&lt;/div&gt;
+&lt;div class=&quot;sb-border-2 sb-border-primary-25 sb-p-3 sb-rounded&quot;&gt;25%&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/opacity-border/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="hover-states">Hover States</h2>
+<p>Prefix any color class with <code>sb-hover:</code> for hover effects.</p>
+<h3 id="background-hover">Background Hover</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-white sb-hover:bg-primary sb-hover:text-white sb-text-text sb-p-3 sb-rounded sb-transition sb-cursor-pointer&quot;&gt;
+    White → Primary on hover
+&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface sb-hover:bg-accent sb-hover:text-white sb-p-3 sb-rounded sb-transition sb-cursor-pointer&quot;&gt;
+    Surface → Accent on hover
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/hover-bg/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="text-hover">Text Hover</h3>
+<pre><code class="language-html">&lt;span class=&quot;sb-text-secondary sb-hover:text-primary sb-font-bold sb-transition sb-cursor-pointer&quot;&gt;
+    Secondary → Primary on hover
+&lt;/span&gt;
+&lt;span class=&quot;sb-text-primary sb-hover:text-accent sb-font-bold sb-transition sb-cursor-pointer&quot;&gt;
+    Primary → Accent on hover
+&lt;/span&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4 sb-bg-surface" hx-get="/api/v1/styles/preview/hover-text/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="border-hover">Border Hover</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-2 sb-border-secondary sb-hover:border-primary sb-p-3 sb-rounded sb-transition sb-cursor-pointer&quot;&gt;
+    Border changes on hover
+&lt;/div&gt;
+</code></pre>
+<div class="sb-p-3 sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/hover-border/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="color-reference">Color Reference</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">All Available Colors</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Core:</strong> primary, secondary, accent, neutral</p>
+<p><strong>Status:</strong> success, warning, error, info</p>
+<p><strong>Specialty:</strong> emphasis, subtle, distinct, aether, artifact, sylvan, danger</p>
+<p><strong>System:</strong> background, surface, text, text-secondary</p>
+<p><strong>Base:</strong> black, white, transparent</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">All Modifiers</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Opacity:</strong> -10, -25, -50, -75, -90</p>
+<p><strong>Hover:</strong> sb-hover:bg-<em>, sb-hover:text-</em>, sb-hover:border-*</p>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Themes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The presets that define what these colors actually look like. Pick one or customize your own.</p>
+<p><a href="/docs/themes/">View Themes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Spacing Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Padding, margin, and gap utilities.</p>
+<p><a href="/docs/styles/spacing/">View Spacing →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

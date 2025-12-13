@@ -1,0 +1,122 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-020"><strong>Version 0.2.0</strong></h2>
+<h3 id="breaking-changes">⚠️ Breaking Changes</h3>
+<ul>
+<li>
+<p><strong>Removed Django-like tag syntax</strong> (<code>{% div %}</code>, <code>{% enddiv %}</code>)</p>
+</li>
+<li>
+<p>All HTML elements must now use SpellBlock syntax (`<div></p>
+</li>
+</ul>
+<p><code>,</code></p>
+</div>
+<p>`)</p>
+<ul>
+<li>
+<p>Removed 3 internal markdown extension files (~484 lines)</p>
+</li>
+<li>
+<p>Removed 77 deprecated tests</p>
+</li>
+</ul>
+<h3 id="added">Added</h3>
+<ul>
+<li>
+<p><strong>10 HTML Element SpellBlocks</strong>: <code>div</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>header</code>, <code>footer</code>, <code>nav</code>, <code>main</code>, <code>hr</code>, <code>br</code></p>
+</li>
+<li>
+<p><strong>CSS-style shorthand syntax</strong>: <code>.classname</code> and <code>#id-name</code> within SpellBlock tags</p>
+</li>
+<li>
+<p><strong>Hyphenated attribute support</strong>: Full support for <code>hx-*</code>, <code>data-*</code>, <code>aria-*</code>, <code>@click</code>, <code>:bind</code>, and other special characters</p>
+</li>
+<li>
+<p><strong>HTMX integration</strong>: Seamless support for all HTMX attributes</p>
+</li>
+<li>
+<p><strong>Alpine.js integration</strong>: Native support for Alpine.js directives (<code>@click</code>, <code>x-data</code>, <code>x-show</code>, etc.)</p>
+</li>
+<li>
+<p><strong>Vue.js integration</strong>: Support for Vue.js binding syntax (<code>:bind</code>, <code>@event</code>)</p>
+</li>
+<li>
+<p><strong>Generic HTMLElementBlock base class</strong> for creating custom HTML element blocks</p>
+</li>
+<li>
+<p><strong>Comprehensive attribute parser</strong> with quote preservation and intelligent shorthand merging</p>
+</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>
+<p>Enhanced attribute parser to support CSS-style shorthand (<code>.class</code>, <code>#id</code>)</p>
+</li>
+<li>
+<p>Improved regex to handle special characters in attribute names (<code>@</code>, <code>:</code>, <code>-</code>)</p>
+</li>
+<li>
+<p>Markdown extensions reduced from 8 to 7 (removed DjangoLikeTagExtension)</p>
+</li>
+<li>
+<p>Cleaner codebase: removed 864 lines of deprecated code</p>
+</li>
+</ul>
+<h3 id="migration-from-01x">Migration from 0.1.x</h3>
+<p><strong>Regex pattern for bulk migration:</strong></p>
+<pre><code>Find:    {% (\w+) ([^%]*) %}(.*?){% end\1 %}
+Replace: {~ $1 $2 ~}$3{~~}
+</code></pre>
+<p><strong>Manual migration examples:</strong><br />
+| Old Syntax (0.1.x) | New Syntax (0.2.0) |<br />
+|--------------------|---------------------|<br />
+| <code>{% div .my-class %}</code> | `<div class="my-class"></p>
+<p><code _="%" div="div" id="my-id">|
+|</code><code _="~" div="div" id="my-id">|</code><code _="%" section="section">|
+|</code><code _="~" section="section">|</code><code _="%" enddiv="enddiv">|
+|</code><code>|</code></p>
+</div>
+<p><code>|
+|</code>{% endsection %}<code>|</code>{~~}` |</p>
+<p><strong>What still works:</strong></p>
+<ul>
+<li>
+<p>All existing SpellBlocks (<code>alert</code>, <code>card</code>, <code>hero</code>, <code>button</code>, <code>accordion</code>, <code>practice</code>, <code>quote</code>, etc.)</p>
+</li>
+<li>
+<p>SpellBlock syntax <code>&lt;!-- Block 'blockname' not found --&gt;</code></p>
+</li>
+<li>
+<p>All theme system features</p>
+</li>
+<li>
+<p>All markdown processing features</p>
+</li>
+<li>
+<p>Automatic sitemap generation</p>
+</li>
+<li>
+<p>Prev/next navigation</p>
+</li>
+</ul>
+<p><strong>Why this change:</strong></p>
+<ul>
+<li>
+<p>More consistent syntax across the entire library</p>
+</li>
+<li>
+<p>Better support for modern frameworks (HTMX, Alpine.js, Vue.js)</p>
+</li>
+<li>
+<p>Cleaner separation from actual Django template tags</p>
+</li>
+<li>
+<p>Improved attribute parsing with CSS-style shorthand</p>
+</li>
+<li>
+<p>Simplified codebase and better maintainability</p>
+</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,66 @@
+{
+  "generated_at": "2025-12-12T20:01:09.706740Z",
+  "app_name": "changelog",
+  "pages": [
+    {
+      "path": "/changelog/introduction/",
+      "title": "Introduction"
+    },
+    {
+      "path": "/changelog/v0_2/24/",
+      "title": "V0.2.4 (unreleased)"
+    },
+    {
+      "path": "/changelog/v0_2/22/",
+      "title": "V0.2.2"
+    },
+    {
+      "path": "/changelog/v0_2/20/",
+      "title": "V0.2.0"
+    },
+    {
+      "path": "/changelog/v0_2/23/",
+      "title": "V0.2.3 (unreleased)"
+    },
+    {
+      "path": "/changelog/v0_2/21/",
+      "title": "V0.2.1"
+    },
+    {
+      "path": "/changelog/v0_1/14/",
+      "title": "V0.1.14"
+    },
+    {
+      "path": "/changelog/v0_1/13/",
+      "title": "V0.1.13"
+    },
+    {
+      "path": "/changelog/v0_1/16/",
+      "title": "V0.1.16"
+    },
+    {
+      "path": "/changelog/v0_1/18/",
+      "title": "V0.1.18"
+    },
+    {
+      "path": "/changelog/v0_1/11/",
+      "title": "V0.1.11"
+    },
+    {
+      "path": "/changelog/v0_1/10/",
+      "title": "V0.1.10"
+    },
+    {
+      "path": "/changelog/v0_1/15/",
+      "title": "V0.1.15"
+    },
+    {
+      "path": "/changelog/v0_1/12/",
+      "title": "V0.1.12"
+    },
+    {
+      "path": "/changelog/v0_1/17/",
+      "title": "V0.1.17"
+    }
+  ]
+}

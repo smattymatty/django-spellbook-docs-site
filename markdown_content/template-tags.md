@@ -1,160 +1,264 @@
-# Template Tags
+---
+title: Template Tags
+published: 2025-12-12
+modified: 2025-12-12
+tags:
+  - reference
+  - templates
+  - tags
+---
 
-Django Spellbook includes several useful template tags to enhance your templates with markdown-specific features. These tags help with presenting table of contents, metadata, styling, and URL handling for your markdown-generated content.
+Template tags for use in your Django templates. Load them with `{% verbatim %}{% load spellbook_tags %}{% endverbatim %}`.
 
-## Loading the Template Tags
-
-To use these template tags, you need to load them at the top of your Django template:
-
-```django
-{% verbatim %}
-{% load spellbook_tags %}
-{% endverbatim %}
-```
-
-## Available Template Tags
-
-### sidebar_toc
-
-Generates a structured table of contents based on your markdown content hierarchy for display in a sidebar.
-
-**Syntax**:
-```django
-{% verbatim %}
-{% sidebar_toc %}
-{% endverbatim %}
-```
-
-{~ alert type="info" ~}
-This tag requires a `toc` variable in the template context. The Django Spellbook views automatically provide this when using the built-in base templates.
-{~~}
-
-When rendered, this tag produces a hierarchical navigation menu based on your markdown files directory structure.
+## Styles & Theming
 
 ### spellbook_styles
 
-Includes the Spellbook's default styles in your template. These styles ensure proper rendering of SpellBlocks, code highlighting, and other markdown-specific features.
-
-**Syntax**:
-```django
-{% verbatim %}
-{% spellbook_styles %}
-{% endverbatim %}
-```
-
-{~ card title="Best Practice" ~}
-Include this tag in your base template's `<head>` section to ensure consistent styling across all your markdown-rendered pages.
-{~~}
-
-### spellbook_url
-
-Does what Django's built-in `url` tag does, but for markdown-generated content.
-
-{~ alert type="info" ~}
-`blog/tech/first-blog-post` will be converted to `blog:tech_first-blog-post` before being passed to the `url` of the generated context of each markdown file. `/` will be replaced with `_` and all dashes will remain.
-{~~}
-
-**Syntax**:
-```django
-{% verbatim %}
-{% spellbook_url 'docs:folder_first-page' %}
-{% endverbatim %}
-```
-
-**Examples**:
-
-```django
-{% verbatim %}
-<a href="{% spellbook_url 'tutorials:beginner_getting-started' %}">Getting Started</a> <
-{% endverbatim %}
-```
-
-If the URL can't be reversed, it will return the original path.
-
-### dash_strip
-
-Removes leading dashes from a string. This is particularly useful for cleaning up file names when displaying them as titles or navigation items.
-
-**Syntax**:
-```django
-{% verbatim %}
-{% dash_strip string %}
-{% endverbatim %}
-```
-
-**Examples**:
-
-```django
-{% verbatim %}
-<h1>{% dash_strip "---introduction" %}</h1>
-<!-- Renders as: <h1>introduction</h1> -->
-{% endverbatim %}
-```
-
-### show_metadata
-
-Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.
-
-1. User-Facing Metadata:
-
+Injects CSS variables and theme styles into your page. Required if you're using a custom base template.
 ```django
 {% verbatim %}
 {% load spellbook_tags %}
+
+<head>
+    {% spellbook_styles %}
+</head>
+{% endverbatim %}
+```
+
+{~ card title="spellbook_styles" footer="No arguments" ~}
+Generates a `<style>` tag with CSS custom properties based on your `SPELLBOOK_THEME` setting. Place it in your `<head>` before any Spellbook CSS files.
+{~~}
+
+---
+
+## Metadata Display
+
+### show_metadata / page_metadata
+
+Displays page metadata (published date, reading time, tags, word count).
+```django
+{% verbatim %}
+{% load spellbook_tags %}
+
+{# User-facing metadata #}
 {% show_metadata %}
+
+{# Developer metadata (URL paths, namespaces) #}
+{% show_metadata 'for_dev' %}
+
+{# Alias - same as show_metadata #}
+{% page_metadata %}
+{% page_metadata 'for_dev' %}
 {% endverbatim %}
 ```
 
-You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:
+{~ card title="show_metadata" footer="Arguments: display_type (optional)" ~}
+**display_type:** `'for_user'` (default) or `'for_dev'`
 
-- **Title** {{ metadata.title }}
-- **Created** At {{ metadata.created_at }}
-- **Tags** {{ metadata.tags }}
-- **Custom** **Meta** {{ metadata.custom_meta }}
-- **Word** **Count** {{ metadata.word_count }}
-- **Reading** **Time** {{ metadata.reading_time_minutes }}
-- **Prev** **Page** {{ metadata.prev_page }} *(optional)*
-- **Next** **Page** {{ metadata.next_page }} *(optional)*
+User view shows: title, published date, reading time, tags, word count.
 
-TODO: Add an author field to the metadata and update the defeault metadata template to display it.
+Dev view shows: URL path, namespace, namespaced URL. Useful for debugging.
+{~~}
 
-2. Developer-Facing Metadata:
-
+{~ accordion title="Restrict dev metadata to staff users" ~}
 ```django
 {% verbatim %}
-{% load spellbook_tags %}
-{% if user.is_authenticated and user.is_staff %}
+{% if user.is_staff %}
     {% show_metadata 'for_dev' %}
 {% endif %}
 {% endverbatim %}
 ```
+{~~}
 
-You can include this tag in your spellbook base template to display metadata for the current page.
+### directory_metadata
 
-This page contains the following metadata:
+Displays metadata for directory index pages (total pages, subdirectories).
+```django
+{% verbatim %}
+{% load spellbook_tags %}
 
-- URL {{ metadata.url_path }}
-
-TODO: Add more fields that developers can use to debug and troubleshoot their content.
-
-- `SPELLBOOK_MD_METADATA_BASE` (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the `% show_metadata %` template tag.
-
-```python
-SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
-
-# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+{% directory_metadata %}
+{% directory_metadata 'for_dev' %}
+{% endverbatim %}
 ```
 
-[Check out the metadata templates](https://github.com/smattymatty/django_spellbook/tree/main/django_spellbook/templates/django_spellbook/metadata) to see how to customize the display of metadata.
+{~ card title="directory_metadata" footer="Arguments: display_type (optional)" ~}
+**display_type:** `'for_user'` (default) or `'for_dev'`
 
-Features:
+Only renders on directory index pages. Returns empty string on regular content pages.
+{~~}
 
-- Automatic date tracking (created)
+---
 
-- Reading time estimates
+## Navigation
 
-- Content navigation links
+### sidebar_toc
 
-- Custom key-value pairs
+Renders the table of contents in the sidebar.
+```django
+{% verbatim %}
+{% load spellbook_tags %}
 
-- Responsive grid layout
+<nav class="spellbook-toc">
+    {% sidebar_toc %}
+</nav>
+{% endverbatim %}
+```
 
+{~ card title="sidebar_toc" footer="No arguments | Requires 'toc' in context" ~}
+Renders a nested list of all pages in your content directory. Highlights the current page. Requires the `toc` variable in template context (automatically provided by Spellbook views).
+{~~}
+
+### page_header
+
+Renders the page title, author, and prev/next navigation.
+```django
+{% verbatim %}
+{% load spellbook_tags %}
+
+<main>
+    {% page_header %}
+    {% block spellbook_md %}{% endblock %}
+</main>
+{% endverbatim %}
+```
+
+{~ card title="page_header" footer="No arguments" ~}
+Displays: back link to parent directory, page title from frontmatter, author (if set), and previous/next page links.
+{~~}
+
+---
+
+## SpellBlocks in Templates
+
+### spellblock
+
+Render SpellBlocks directly in Django templates without writing markdown.
+```django
+{% verbatim %}
+{% load spellbook_tags %}
+
+{% spellblock 'alert' type='warning' %}
+    <p>This is a warning message.</p>
+{% endspellblock %}
+
+{% spellblock 'card' title='Welcome' footer='Updated today' %}
+    <p>Card content with {{ template_variable }}</p>
+{% endspellblock %}
+{% endverbatim %}
+```
+
+{~ card title="spellblock" footer="Arguments: block_name, **kwargs" ~}
+**block_name:** Name of the SpellBlock (`'alert'`, `'card'`, `'accordion'`, etc.)
+
+**kwargs:** Block-specific parameters (same as markdown syntax)
+
+Content between tags is passed to the block. Supports template variables and nested tags.
+{~~}
+
+{~ accordion title="All available blocks" ~}
+- `alert` - type: info, success, warning, error
+- `card` - title, footer
+- `accordion` - title, open
+- `hero` - layout, image_src, image_alt, min_height, bg_color
+- `progress` - value, max, label
+- `quote` - author, source
+- `div`, `span`, `section`, `article`, `nav`, `aside`, `header`, `footer` - any HTML attributes
+{~~}
+
+---
+
+## Utility Tags
+
+### spellbook_url
+
+Convert a TOC URL path to a Django URL.
+```django
+{% verbatim %}
+{% load spellbook_tags %}
+
+<a href="{% spellbook_url 'docs:getting-started' %}">Getting Started</a>
+{% endverbatim %}
+```
+
+{~ card title="spellbook_url" footer="Arguments: url_path" ~}
+**url_path:** Namespaced URL path (e.g., `'myapp:page-name'`)
+
+Returns the reversed URL. Returns `'# Not Found'` if the path doesn't exist.
+{~~}
+
+### dash_strip
+
+Remove leading dashes from a string. Useful for cleaning up auto-generated names.
+```django
+{% verbatim %}
+{{ "-my-page-name"|dash_strip }}
+{# Output: my-page-name #}
+{% endverbatim %}
+```
+
+{~ card title="dash_strip" footer="Filter" ~}
+Strips leading dashes from strings. Used internally for TOC display names.
+{~~}
+
+---
+
+## Complete Example
+
+Custom base template using all the tags:
+```django
+{% verbatim %}
+<!-- my_app/spellbook_base.html -->
+{% extends 'base.html' %}
+{% load spellbook_tags %}
+{% load static %}
+
+{% block extra_head %}
+    {% spellbook_styles %}
+    <link rel="stylesheet" href="{% static 'django_spellbook/css_modules/sidebar_left.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="spellbook-layout">
+    <nav class="spellbook-toc">
+        {% if is_directory_index %}
+            {% directory_metadata %}
+        {% else %}
+            {% page_metadata %}
+        {% endif %}
+        
+        {% sidebar_toc %}
+        
+        {% if user.is_staff %}
+            {% if is_directory_index %}
+                {% directory_metadata 'for_dev' %}
+            {% else %}
+                {% page_metadata 'for_dev' %}
+            {% endif %}
+        {% endif %}
+    </nav>
+    
+    <main class="spellbook-content">
+        {% page_header %}
+        {% block spellbook_md %}{% endblock %}
+    </main>
+</div>
+{% endblock %}
+{% endverbatim %}
+```
+
+---
+
+## Next Steps
+
+{~ accordion title="Configuration" ~}
+All the settings that control how Spellbook processes your markdown and generates templates.
+
+[View Configuration →](/docs/configuration/)
+{~~}
+
+{~ accordion title="SpellBlocks" ~}
+The component library you'll use in your markdown. Alerts, cards, accordions, heroes, and more.
+
+[Browse SpellBlocks →](/docs/spellblocks/introduction/)
+{~~}

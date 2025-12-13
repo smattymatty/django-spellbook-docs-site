@@ -1,0 +1,81 @@
+{
+  "generated_at": "2025-12-12T20:01:09.706161Z",
+  "app_name": "docs",
+  "pages": [
+    {
+      "path": "/docs/introduction/",
+      "title": "Introduction",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/quick-start/",
+      "title": "Quick Start",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/template-tags/",
+      "title": "Template Tags",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/themes/",
+      "title": "Themes",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/spellblocks/",
+      "title": "Spellblocks Reference",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/configuration/",
+      "title": "Configuration",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/commands/spellbook_md/",
+      "title": "Spellbook_md",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/commands/spellbook_wizard/",
+      "title": "Spellbook Wizard",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/styles/introduction/",
+      "title": "Intro to Styles",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/styles/spacing/",
+      "title": "Spacing Classes",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/styles/colors/",
+      "title": "Color Classes",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/customization/custom-themes/",
+      "title": "Custom Themes",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/customization/custom-base/",
+      "title": "Custom Base Templates",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/customization/custom-spellblocks/",
+      "title": "Custom Spellblocks",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/functions/spellbook_render/",
+      "title": "Spellbook_render",
+      "lastmod": "2025-12-12"
+    }
+  ]
+}

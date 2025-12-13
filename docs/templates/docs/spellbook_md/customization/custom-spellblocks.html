@@ -1,0 +1,387 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Create your own SpellBlocks to extend Spellbook with custom components. Three steps: define the class, create the template, use it.</p>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="1-create-spellblockspy">1. Create spellblocks.py</h3>
+<p>In any Django app, create a <code>spellblocks.py</code> file. Spellbook auto-discovers it.</p>
+<pre><code class="language-python"># my_app/spellblocks.py
+from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
+
+@SpellBlockRegistry.register()
+class WarningBoxBlock(BasicSpellBlock):
+    name = 'warningbox'
+    template = 'my_app/blocks/warningbox.html'
+</code></pre>
+<h3 id="2-create-the-template">2. Create the Template</h3>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- my_app/templates/my_app/blocks/warningbox.html --&gt;
+&lt;div class=&quot;warning-box&quot;&gt;
+    &lt;strong&gt;⚠️ Warning&lt;/strong&gt;
+    {{ content|safe }}
+&lt;/div&gt;
+{% endverbatim %}
+</code></pre>
+<h3 id="3-use-it">3. Use It</h3>
+<pre><code class="language-markdown">{~ warningbox ~}
+This action cannot be undone.
+{~~}
+</code></pre>
+<p>That's it. Your block is now available in all markdown files and Django templates.</p>
+<hr />
+<h2 id="how-it-works">How It Works</h2>
+<h3 id="auto-discovery">Auto-Discovery</h3>
+<p>When Spellbook processes markdown, it imports <code>spellblocks.py</code> from every installed Django app. The <code>@SpellBlockRegistry.register()</code> decorator registers your block automatically.</p>
+<pre><code>my_project/
+├── my_app/
+│   ├── spellblocks.py      ← Auto-discovered
+│   └── templates/
+│       └── my_app/
+│           └── blocks/
+│               └── warningbox.html
+</code></pre>
+<h3 id="the-basicspellblock-class">The BasicSpellBlock Class</h3>
+<p>Every SpellBlock inherits from <code>BasicSpellBlock</code>:</p>
+<pre><code class="language-python">from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
+
+@SpellBlockRegistry.register()
+class MyBlock(BasicSpellBlock):
+    name = 'myblock'           # Required: block name in markdown
+    template = 'path/to.html'  # Required: Django template path
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>The name used in markdown: <code>&lt;!-- Block 'name' not found --&gt;</code></td>
+</tr>
+<tr>
+<td><code>self.kwargs</code></td>
+<td>Dictionary of parameters passed to the block</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="adding-parameters">Adding Parameters</h2>
+<p>Override <code>get_context()</code> to handle parameters:</p>
+<pre><code class="language-python">@SpellBlockRegistry.register()
+class PricingBlock(BasicSpellBlock):
+    name = 'pricing'
+    template = 'my_app/blocks/pricing.html'
+
+    def get_context(self):
+        context = super().get_context()  # Gets 'content' automatically
+
+        # Extract parameters with defaults
+        context['plan'] = self.kwargs.get('plan', 'Basic')
+        context['price'] = self.kwargs.get('price', '$0')
+        context['period'] = self.kwargs.get('period', 'month')
+        context['featured'] = self.kwargs.get('featured', False)
+
+        return context
+</code></pre>
+<p>Template:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- my_app/templates/my_app/blocks/pricing.html --&gt;
+&lt;div class=&quot;pricing-card {% if featured %}featured{% endif %}&quot;&gt;
+    &lt;h3&gt;{{ plan }}&lt;/h3&gt;
+    &lt;div class=&quot;price&quot;&gt;{{ price }}&lt;span&gt;/{{ period }}&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;features&quot;&gt;
+        {{ content|safe }}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endverbatim %}
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-markdown">{~ pricing plan=&quot;Pro&quot; price=&quot;$29&quot; period=&quot;month&quot; featured=&quot;true&quot; ~}
+
+- Unlimited projects
+
+- Priority support
+
+- Custom domain
+{~~}
+</code></pre>
+<hr />
+<h2 id="parameter-validation">Parameter Validation</h2>
+<p>Add validation in <code>get_context()</code>:</p>
+<pre><code class="language-python">@SpellBlockRegistry.register()
+class StatusBlock(BasicSpellBlock):
+    name = 'status'
+    template = 'my_app/blocks/status.html'
+
+    VALID_STATUSES = {'online', 'offline', 'maintenance', 'unknown'}
+
+    def get_context(self):
+        context = super().get_context()
+
+        status = self.kwargs.get('status', 'unknown').lower()
+
+        if status not in self.VALID_STATUSES:
+            # Log warning and fall back to default
+            print(f&quot;Invalid status '{status}'. Using 'unknown'.&quot;)
+            status = 'unknown'
+
+        context['status'] = status
+        context['label'] = self.kwargs.get('label', status.title())
+
+        return context
+</code></pre>
+<hr />
+<h2 id="processing-content">Processing Content</h2>
+<p><code>super().get_context()</code> calls <code>process_content()</code> which converts markdown to HTML. You can customize this:</p>
+<pre><code class="language-python">@SpellBlockRegistry.register()
+class CodeExampleBlock(BasicSpellBlock):
+    name = 'codeexample'
+    template = 'my_app/blocks/codeexample.html'
+
+    def get_context(self):
+        context = super().get_context()
+
+        # 'content' is already processed markdown → HTML
+        # Access raw content via self.content
+        context['raw'] = self.content
+        context['language'] = self.kwargs.get('language', 'python')
+        context['title'] = self.kwargs.get('title', '')
+
+        return context
+</code></pre>
+<p>For blocks that shouldn't process markdown (like raw code), skip <code>super()</code>:</p>
+<pre><code class="language-python">def get_context(self):
+    return {
+        'content': self.content,  # Raw, unprocessed
+        'language': self.kwargs.get('language', 'text'),
+    }
+</code></pre>
+<hr />
+<h2 id="type-conversion-helpers">Type Conversion Helpers</h2>
+<p>Parameters from markdown are always strings. Convert them:</p>
+<pre><code class="language-python">@SpellBlockRegistry.register()
+class RatingBlock(BasicSpellBlock):
+    name = 'rating'
+    template = 'my_app/blocks/rating.html'
+
+    def _to_bool(self, value, default=False):
+        &quot;&quot;&quot;Convert string to boolean.&quot;&quot;&quot;
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            return value.lower() in ['true', '1', 'yes', 'y']
+        return default
+
+    def _to_int(self, value, default=0):
+        &quot;&quot;&quot;Convert string to integer.&quot;&quot;&quot;
+        try:
+            return int(value)
+        except (ValueError, TypeError):
+            return default
+
+    def get_context(self):
+        context = super().get_context()
+
+        context['stars'] = self._to_int(self.kwargs.get('stars'), 5)
+        context['max_stars'] = self._to_int(self.kwargs.get('max'), 5)
+        context['show_count'] = self._to_bool(self.kwargs.get('show_count'), True)
+
+        return context
+</code></pre>
+<hr />
+<h2 id="complete-example-testimonial-block">Complete Example: Testimonial Block</h2>
+<p>Here's a full example with validation, type conversion, and styling:</p>
+<p><strong>spellblocks.py:</strong></p>
+<pre><code class="language-python"># my_app/spellblocks.py
+from django_spellbook.blocks import BasicSpellBlock, SpellBlockRegistry
+
+@SpellBlockRegistry.register()
+class TestimonialBlock(BasicSpellBlock):
+    name = 'testimonial'
+    template = 'my_app/blocks/testimonial.html'
+
+    VALID_STYLES = {'default', 'minimal', 'featured'}
+
+    def get_context(self):
+        context = super().get_context()
+
+        # Required fields
+        context['author'] = self.kwargs.get('author', 'Anonymous')
+
+        # Optional fields with defaults
+        context['role'] = self.kwargs.get('role', '')
+        context['company'] = self.kwargs.get('company', '')
+        context['image'] = self.kwargs.get('image', '')
+        context['rating'] = self._parse_rating(self.kwargs.get('rating'))
+
+        # Validated style
+        style = self.kwargs.get('style', 'default').lower()
+        context['style'] = style if style in self.VALID_STYLES else 'default'
+
+        return context
+
+    def _parse_rating(self, value):
+        &quot;&quot;&quot;Parse rating as integer 1-5, or None.&quot;&quot;&quot;
+        if not value:
+            return None
+        try:
+            rating = int(value)
+            return max(1, min(5, rating))  # Clamp to 1-5
+        except (ValueError, TypeError):
+            return None
+</code></pre>
+<p><strong>Template:</strong></p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- my_app/templates/my_app/blocks/testimonial.html --&gt;
+&lt;blockquote class=&quot;testimonial testimonial--{{ style }}&quot;&gt;
+    {% if image %}
+    &lt;img src=&quot;{{ image }}&quot; alt=&quot;{{ author }}&quot; class=&quot;testimonial__avatar&quot;&gt;
+    {% endif %}
+
+    &lt;div class=&quot;testimonial__content&quot;&gt;
+        {{ content|safe }}
+    &lt;/div&gt;
+
+    {% if rating %}
+    &lt;div class=&quot;testimonial__rating&quot;&gt;
+        {% for i in &quot;12345&quot; %}
+            {% if forloop.counter &lt;= rating %}★{% else %}☆{% endif %}
+        {% endfor %}
+    &lt;/div&gt;
+    {% endif %}
+
+    &lt;footer class=&quot;testimonial__author&quot;&gt;
+        &lt;cite&gt;{{ author }}&lt;/cite&gt;
+        {% if role or company %}
+        &lt;span class=&quot;testimonial__meta&quot;&gt;
+            {% if role %}{{ role }}{% endif %}
+            {% if role and company %}, {% endif %}
+            {% if company %}{{ company }}{% endif %}
+        &lt;/span&gt;
+        {% endif %}
+    &lt;/footer&gt;
+&lt;/blockquote&gt;
+{% endverbatim %}
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-markdown">{~ testimonial author=&quot;Sarah Chen&quot; role=&quot;CTO&quot; company=&quot;TechCorp&quot; rating=&quot;5&quot; style=&quot;featured&quot; image=&quot;/static/images/sarah.jpg&quot; ~}
+Django Spellbook transformed how we manage documentation. What used to take days now takes hours.
+{~~}
+</code></pre>
+<hr />
+<h2 id="using-spellbook-styles">Using Spellbook Styles</h2>
+<p>Your templates can use Spellbook's utility classes:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;div class=&quot;sb-card sb-p-4 sb-border sb-border-radius-lg sb-shadow-sm sb-mb-3&quot;&gt;
+    &lt;div class=&quot;sb-text-primary sb-bold&quot;&gt;{{ title }}&lt;/div&gt;
+    &lt;div class=&quot;sb-text-secondary sb-mt-2&quot;&gt;{{ content|safe }}&lt;/div&gt;
+&lt;/div&gt;
+{% endverbatim %}
+</code></pre>
+<p>This gives your custom blocks the same look and feel as built-in blocks.</p>
+<hr />
+<h2 id="debugging">Debugging</h2>
+<h3 id="block-not-found">Block Not Found</h3>
+<p>If your block isn't discovered:</p>
+<ol>
+<li>
+<p>Check the file is named <code>spellblocks.py</code> (not <code>spellblock.py</code>)</p>
+</li>
+<li>
+<p>Check your app is in <code>INSTALLED_APPS</code></p>
+</li>
+<li>
+<p>Check for import errors—run <code>python manage.py shell</code> and try <code>from my_app.spellblocks import *</code></p>
+</li>
+</ol>
+<h3 id="template-not-found">Template Not Found</h3>
+<p>If the template isn't found:</p>
+<ol>
+<li>
+<p>Check the path matches your <code>template</code> attribute</p>
+</li>
+<li>
+<p>Verify the template exists in <code>my_app/templates/...</code></p>
+</li>
+<li>
+<p>Run <code>python manage.py findstatic</code> to debug template discovery</p>
+</li>
+</ol>
+<h3 id="view-registered-blocks">View Registered Blocks</h3>
+<pre><code class="language-python">from django_spellbook.blocks import SpellBlockRegistry
+
+# List all registered blocks
+print(SpellBlockRegistry._registry.keys())
+
+# Check if your block is registered
+print(SpellBlockRegistry.get_block('myblock'))
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">SpellBlocks Reference</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>See all built-in SpellBlocks for inspiration.</p>
+<p><a href="/docs/spellblocks/">View SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Style Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Use Spellbook's utility classes in your templates.</p>
+<p><a href="/docs/styles/introduction/">View Styles →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Themes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Make your blocks theme-aware with CSS variables.</p>
+<p><a href="/docs/themes/">View Themes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

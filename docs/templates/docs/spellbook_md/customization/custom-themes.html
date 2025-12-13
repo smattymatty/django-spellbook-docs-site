@@ -1,0 +1,371 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Build your own theme from scratch, extend a preset, or add custom brand colors.</p>
+<h2 id="building-from-scratch">Building From Scratch</h2>
+<p>Define all your colors in a single dictionary:</p>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_THEME = {
+    'name': 'corporate',
+    'colors': {
+        # Core
+        'primary': '#1E40AF',
+        'secondary': '#64748B',
+        'accent': '#F59E0B',
+        'neutral': '#6B7280',
+
+        # Status
+        'success': '#059669',
+        'warning': '#D97706',
+        'error': '#DC2626',
+        'info': '#0284C7',
+
+        # Specialty
+        'emphasis': '#7C3AED',
+        'subtle': '#F8FAFC',
+        'distinct': '#0891B2',
+        'aether': '#C026D3',
+        'artifact': '#CA8A04',
+        'sylvan': '#16A34A',
+        'danger': '#991B1B',
+
+        # System
+        'background': '#FFFFFF',
+        'surface': '#F8FAFC',
+        'text': '#1F2937',
+        'text-secondary': '#6B7280',
+    }
+}
+</code></pre>
+<p>Any color you don't define falls back to the default theme value.</p>
+<hr />
+<h2 id="color-reference">Color Reference</h2>
+<h3 id="core-colors">Core Colors</h3>
+<p>Your brand identity.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>primary</code></td>
+<td>Main action color. Buttons, links, active states.</td>
+</tr>
+<tr>
+<td><code>secondary</code></td>
+<td>Supporting color. Borders, muted elements.</td>
+</tr>
+<tr>
+<td><code>accent</code></td>
+<td>Highlight color. Calls to action, badges.</td>
+</tr>
+<tr>
+<td><code>neutral</code></td>
+<td>Background elements. Dividers, disabled states.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-colors">Status Colors</h3>
+<p>User feedback.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>success</code></td>
+<td>Positive outcomes. Confirmations, completed actions.</td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td>Caution states. Alerts, pending items.</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Problems. Validation errors, failures.</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Informational. Tips, notices, help text.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specialty-colors">Specialty Colors</h3>
+<p>Extended palette for complex interfaces.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emphasis</code></td>
+<td>Strong highlights. Important callouts.</td>
+</tr>
+<tr>
+<td><code>subtle</code></td>
+<td>Soft backgrounds. Secondary containers.</td>
+</tr>
+<tr>
+<td><code>distinct</code></td>
+<td>Differentiation. Categories, tags.</td>
+</tr>
+<tr>
+<td><code>aether</code></td>
+<td>Theme accent. Ethereal, magical elements.</td>
+</tr>
+<tr>
+<td><code>artifact</code></td>
+<td>Theme accent. Historic, valuable elements.</td>
+</tr>
+<tr>
+<td><code>sylvan</code></td>
+<td>Theme accent. Natural, organic elements.</td>
+</tr>
+<tr>
+<td><code>danger</code></td>
+<td>High-contrast warning. Destructive actions.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system-colors">System Colors</h3>
+<p>Page structure.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>background</code></td>
+<td>Page background.</td>
+</tr>
+<tr>
+<td><code>surface</code></td>
+<td>Card and panel backgrounds.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>Primary text color.</td>
+</tr>
+<tr>
+<td><code>text-secondary</code></td>
+<td>Muted text. Captions, hints.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="custom-color-names">Custom Color Names</h2>
+<p>Add your own color names that work with all utility classes:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#1E40AF',
+        # ... other standard colors
+    },
+    'custom_colors': {
+        'brand': '#FF6600',
+        'brand-dark': '#CC5200',
+        'highlight': '#FFFF00',
+    }
+}
+</code></pre>
+<p>Custom colors become:</p>
+<ul>
+<li>
+<p>CSS variables: <code>--brand-color</code>, <code>--highlight-color</code></p>
+</li>
+<li>
+<p>Background classes: <code>sb-bg-brand</code>, <code>sb-bg-highlight</code></p>
+</li>
+<li>
+<p>Text classes: <code>sb-text-brand</code>, <code>sb-text-highlight</code></p>
+</li>
+<li>
+<p>Border classes: <code>sb-border-brand</code>, <code>sb-border-highlight</code></p>
+</li>
+<li>
+<p>Opacity variants: <code>sb-bg-brand-25</code>, <code>sb-bg-brand-50</code>, <code>sb-bg-brand-75</code></p>
+</li>
+</ul>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-brand sb-text-white sb-p-4&quot;&gt;
+    On-brand container
+&lt;/div&gt;
+
+&lt;span class=&quot;sb-text-brand-75&quot;&gt;Slightly faded brand text&lt;/span&gt;
+</code></pre>
+<hr />
+<h2 id="extending-presets">Extending Presets</h2>
+<h3 id="dictionary-syntax">Dictionary Syntax</h3>
+<p>Override specific colors while keeping the rest:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'preset': 'arcane',
+    'colors': {
+        'primary': '#9D4EDD',
+        'accent': '#FFD700',
+    }
+}
+</code></pre>
+<h3 id="using-extend_preset">Using extend_preset()</h3>
+<p>For more control:</p>
+<pre><code class="language-python">from django_spellbook.theme import extend_preset
+
+SPELLBOOK_THEME = extend_preset('ocean', {
+    'name': 'deep-ocean',
+    'colors': {
+        'primary': '#0077B6',
+        'surface': '#CAF0F8',
+    }
+})
+</code></pre>
+<p>This deep-merges the colors, so you only specify what changes.</p>
+<hr />
+<h2 id="dark-mode">Dark Mode</h2>
+<p>Every preset has a dark variant. Use <code>get_theme_with_mode()</code>:</p>
+<pre><code class="language-python">from django_spellbook.theme import get_theme_with_mode
+
+# Light mode (default)
+SPELLBOOK_THEME = get_theme_with_mode('arcane', 'light')
+
+# Dark mode
+SPELLBOOK_THEME = get_theme_with_mode('arcane', 'dark')
+</code></pre>
+<p>The dark variants have:</p>
+<ul>
+<li>
+<p>Lighter primary/accent colors for visibility on dark backgrounds</p>
+</li>
+<li>
+<p>Dark <code>background</code> and <code>surface</code> colors</p>
+</li>
+<li>
+<p>Light <code>text</code> and <code>text-secondary</code> colors</p>
+</li>
+<li>
+<p>Adjusted alert, card, and code block colors</p>
+</li>
+</ul>
+<h3 id="building-a-dark-theme-from-scratch">Building a Dark Theme From Scratch</h3>
+<p>Set dark system colors and the generator auto-adapts:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'name': 'midnight',
+    'colors': {
+        # Lighter colors for dark backgrounds
+        'primary': '#60A5FA',
+        'secondary': '#9CA3AF',
+        'accent': '#FBBF24',
+
+        # Status colors (brighter for dark mode)
+        'success': '#22C55E',
+        'warning': '#FBBF24',
+        'error': '#EF4444',
+        'info': '#3B82F6',
+
+        # Dark system colors
+        'background': '#0F0F0F',
+        'surface': '#1A1A1A',
+        'text': '#F3F4F6',
+        'text-secondary': '#9CA3AF',
+    }
+}
+</code></pre>
+<p>The generator detects dark mode from the <code>background</code> color luminance and adjusts alert backgrounds, card shadows, and code highlighting automatically.</p>
+<hr />
+<h2 id="supported-color-formats">Supported Color Formats</h2>
+<p>All standard CSS color formats work:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {
+        # 6-digit hex
+        'primary': '#3B82F6',
+
+        # 3-digit hex (expanded to 6)
+        'secondary': '#68A',
+
+        # RGB
+        'accent': 'rgb(245, 158, 11)',
+
+        # RGBA
+        'subtle': 'rgba(243, 244, 246, 0.5)',
+
+        # CSS named colors
+        'error': 'crimson',
+    }
+}
+</code></pre>
+<p>Invalid colors raise a <code>ValueError</code> with a helpful message:</p>
+<pre><code>ValueError: Invalid color format: #gg. 
+Supported formats: hex (#RGB or #RRGGBB), rgb(r, g, b), rgba(r, g, b, a), or CSS color names.
+</code></pre>
+<hr />
+<h2 id="disabling-opacity-variants">Disabling Opacity Variants</h2>
+<p>By default, every color generates 25%, 50%, and 75% opacity variants. Disable this if you don't need them:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'colors': {...},
+    'generate_variants': False,
+}
+</code></pre>
+<hr />
+<h2 id="accessibility">Accessibility</h2>
+<p>Aim for WCAG AA compliance:</p>
+<ul>
+<li>
+<p><strong>4.5:1</strong> minimum contrast for normal text</p>
+</li>
+<li>
+<p><strong>3:1</strong> minimum contrast for large text and UI components</p>
+</li>
+</ul>
+<p>All built-in presets meet these standards. When building custom themes, test your color combinations with a contrast checker.</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Theme Presets</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>See all nine built-in presets and their color palettes.</p>
+<p><a href="/docs/themes/">Browse Presets →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Color Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The utility classes that use your theme colors.</p>
+<p><a href="/docs/styles/colors/">View Color Classes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

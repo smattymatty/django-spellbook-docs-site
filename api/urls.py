@@ -10,6 +10,25 @@ from .views import (
     markdown_preview_api,
     random_markdown_api,
     spellblock_registry_api,
+    style_preview_bg_core,
+    style_preview_bg_status,
+    style_preview_bg_specialty,
+    style_preview_bg_system,
+    style_preview_bg_base,
+    style_preview_text_colors,
+    style_preview_border_colors,
+    style_preview_opacity_bg,
+    style_preview_opacity_text,
+    style_preview_opacity_border,
+    style_preview_hover_bg,
+    style_preview_hover_text,
+    style_preview_hover_border,
+    style_preview_spacing_p,
+    style_preview_spacing_pxy,
+    style_preview_spacing_psides,
+    style_preview_spacing_m,
+    style_preview_spacing_mb,
+    style_preview_spacing_gap,
 )
 
 app_name = "api"
@@ -44,5 +63,102 @@ urlpatterns = [
         "spellblock-registry/",
         spellblock_registry_api,
         name="spellblock-registry",
+    ),
+    # Style preview endpoints for HTMX color examples
+    path(
+        "styles/preview/bg-core/",
+        style_preview_bg_core,
+        name="style-preview-bg-core",
+    ),
+    path(
+        "styles/preview/bg-status/",
+        style_preview_bg_status,
+        name="style-preview-bg-status",
+    ),
+    path(
+        "styles/preview/bg-specialty/",
+        style_preview_bg_specialty,
+        name="style-preview-bg-specialty",
+    ),
+    path(
+        "styles/preview/bg-system/",
+        style_preview_bg_system,
+        name="style-preview-bg-system",
+    ),
+    path(
+        "styles/preview/bg-base/",
+        style_preview_bg_base,
+        name="style-preview-bg-base",
+    ),
+    path(
+        "styles/preview/text-colors/",
+        style_preview_text_colors,
+        name="style-preview-text-colors",
+    ),
+    path(
+        "styles/preview/border-colors/",
+        style_preview_border_colors,
+        name="style-preview-border-colors",
+    ),
+    path(
+        "styles/preview/opacity-bg/",
+        style_preview_opacity_bg,
+        name="style-preview-opacity-bg",
+    ),
+    path(
+        "styles/preview/opacity-text/",
+        style_preview_opacity_text,
+        name="style-preview-opacity-text",
+    ),
+    path(
+        "styles/preview/opacity-border/",
+        style_preview_opacity_border,
+        name="style-preview-opacity-border",
+    ),
+    path(
+        "styles/preview/hover-bg/",
+        style_preview_hover_bg,
+        name="style-preview-hover-bg",
+    ),
+    path(
+        "styles/preview/hover-text/",
+        style_preview_hover_text,
+        name="style-preview-hover-text",
+    ),
+    path(
+        "styles/preview/hover-border/",
+        style_preview_hover_border,
+        name="style-preview-hover-border",
+    ),
+    # Spacing preview endpoints for HTMX spacing examples
+    path(
+        "styles/preview/spacing-p/",
+        style_preview_spacing_p,
+        name="style-preview-spacing-p",
+    ),
+    path(
+        "styles/preview/spacing-pxy/",
+        style_preview_spacing_pxy,
+        name="style-preview-spacing-pxy",
+    ),
+    path(
+        "styles/preview/spacing-psides/",
+        style_preview_spacing_psides,
+        name="style-preview-spacing-psides",
+    ),
+    path(
+        "styles/preview/spacing-m/",
+        style_preview_spacing_m,
+        name="style-preview-spacing-m",
+    ),
+    path(
+        "styles/preview/spacing-mb/",
+        style_preview_spacing_mb,
+        name="style-preview-spacing-mb",
+    ),
+    path(
+        "styles/preview/spacing-gap/",
+        style_preview_spacing_gap,
+        name="style-preview-spacing-gap",
     ),
 ]

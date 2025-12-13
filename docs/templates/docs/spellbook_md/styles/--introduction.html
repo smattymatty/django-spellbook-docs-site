@@ -1,0 +1,168 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Django Spellbook includes a utility-first CSS system. All classes use the <code>sb-</code> prefix to avoid conflicts with your existing styles.</p>
+<h2 id="the-sb-prefix">The sb- Prefix</h2>
+<p>Every Spellbook class starts with <code>sb-</code> so they never collide with Tailwind, Bootstrap, or your own CSS:</p>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-justify-center sb-p-4 sb-bg-primary sb-rounded-lg&quot;&gt;
+    Your content
+&lt;/div&gt;
+</code></pre>
+<div class="sb-flex sb-justify-center sb-p-4 sb-bg-primary sb-rounded-lg">
+    Your content
+</div>
+
+<h2 id="including-styles">Including Styles</h2>
+<p>If you're using the default sidebar layout, styles are included automatically.</p>
+<p>For custom templates:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+&lt;head&gt;
+    {% spellbook_styles %}
+&lt;/head&gt;
+{% endverbatim %}
+</code></pre>
+<p>This does two things:</p>
+<ol>
+<li>
+<p>Injects CSS variables from your <code>SPELLBOOK_THEME</code> setting</p>
+</li>
+<li>
+<p>Links to the utility and component stylesheets</p>
+</li>
+</ol>
+<h2 id="theme-aware-colors">Theme-Aware Colors</h2>
+<p>Colors aren't hardcoded. They reference CSS variables that change based on your theme:</p>
+<pre><code class="language-html">&lt;!-- These adapt to whatever theme you're using --&gt;
+&lt;div class=&quot;sb-bg-primary&quot;&gt;Uses --primary-color&lt;/div&gt;
+&lt;div class=&quot;sb-text-accent&quot;&gt;Uses --accent-color&lt;/div&gt;
+&lt;div class=&quot;sb-border-success&quot;&gt;Uses --success-color&lt;/div&gt;
+</code></pre>
+<p>Switch from <code>SPELLBOOK_THEME = 'default'</code> to <code>SPELLBOOK_THEME = 'arcane'</code> and every <code>sb-bg-primary</code> element changes from blue to purple. No CSS changes needed.</p>
+<h2 id="opacity-variants">Opacity Variants</h2>
+<p>Every color generates 25%, 50%, and 75% opacity variants automatically:</p>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-primary&quot;&gt;Full opacity&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-75&quot;&gt;75% opacity&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-50&quot;&gt;50% opacity&lt;/div&gt;
+&lt;div class=&quot;sb-bg-primary-25&quot;&gt;25% opacity&lt;/div&gt;
+</code></pre>
+<h2 id="hover-states">Hover States</h2>
+<p>Prefix with <code>sb-hover:</code> for hover effects:</p>
+<pre><code class="language-html">&lt;button class=&quot;sb-bg-white sb-hover:bg-primary sb-hover:text-white&quot;&gt;
+    Hover me
+&lt;/button&gt;
+</code></pre>
+<h2 id="using-with-spellblocks">Using With SpellBlocks</h2>
+<p>The HTML element SpellBlocks (<code>div</code>, <code>span</code>, <code>section</code>, etc.) accept utility classes directly:</p>
+<pre><code class="language-markdown">{~ div class=&quot;sb-flex sb-gap-4 sb-p-6 sb-bg-surface sb-rounded-lg&quot; ~}
+Content with utility styling applied.
+{~~}
+</code></pre>
+<hr />
+<h2 id="reference">Reference</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Colors</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Background colors, text colors, border colors. All theme-aware with opacity variants and hover states.</p>
+<p><a href="/docs/styles/colors/">View Color Classes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Spacing</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Padding, margin, and gap utilities. From <code>sb-p-0</code> to <code>sb-p-8</code> and everything in between.</p>
+<p><a href="/docs/styles/spacing/">View Spacing Classes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Layout</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Flexbox, grid, width, height, display utilities. Building blocks for structure.</p>
+<p><a href="/docs/styles/layout/">View Layout Classes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Typography</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Font sizes, weights, alignment, and text decoration.</p>
+<p><a href="/docs/styles/typography/">View Typography Classes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Components</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Styles for SpellBlock components. Cards, alerts, accordions, progress bars, and more.</p>
+<p><a href="/docs/styles/components/">View Component Classes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

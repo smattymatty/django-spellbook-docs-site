@@ -1,0 +1,475 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>All Django Spellbook settings live in your <code>settings.py</code> file.</p>
+<h2 id="required-settings">Required Settings</h2>
+<p>These two settings are mandatory. Without them, <code>spellbook_md</code> won't run.</p>
+<h3 id="spellbook_md_path">SPELLBOOK_MD_PATH</h3>
+<pre><code class="language-python"># Single directory
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+
+# Multiple directories
+SPELLBOOK_MD_PATH = [
+    BASE_DIR / 'docs',
+    BASE_DIR / 'blog',
+]
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_MD_PATH</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Where your markdown files live.</p>
+<p><strong>Type:</strong> <code>Path</code>, <code>str</code>, or <code>list</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Required
+        </div>
+
+</div>
+
+<h3 id="spellbook_md_app">SPELLBOOK_MD_APP</h3>
+<pre><code class="language-python"># Single app
+SPELLBOOK_MD_APP = 'my_app'
+
+# Multiple apps (must match SPELLBOOK_MD_PATH length)
+SPELLBOOK_MD_APP = ['docs_app', 'blog_app']
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_MD_APP</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Which Django app receives the generated templates, views, and URLs. Must be in <code>INSTALLED_APPS</code>.</p>
+<p><strong>Type:</strong> <code>str</code> or <code>list[str]</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Required
+        </div>
+
+</div>
+
+<hr />
+<h2 id="layout-templates">Layout &amp; Templates</h2>
+<h3 id="spellbook_md_base_template">SPELLBOOK_MD_BASE_TEMPLATE</h3>
+<pre><code class="language-python"># Use default sidebar layout (recommended)
+# Just don't set it - this is the default
+
+# Use your own template
+SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/base.html'
+
+# No wrapper - raw HTML only
+SPELLBOOK_MD_BASE_TEMPLATE = None
+
+# Per-app templates
+SPELLBOOK_MD_BASE_TEMPLATE = ['docs/base.html', 'blog/base.html']
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_MD_BASE_TEMPLATE</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Template that wraps your rendered content. Your custom template needs one block: <code>{% verbatim %}{% block spellbook_md %}{% endverbatim %}</code></p>
+<p><strong>Type:</strong> <code>str</code>, <code>None</code>, or <code>list</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Default: django_spellbook/bases/sidebar_left.html
+        </div>
+
+</div>
+
+<p>{~ accordion title="Full custom template example" ~}</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- my_app/base.html --&gt;
+{% extends 'base.html' %}
+{% load spellbook_tags %}
+
+{% block content %}
+&lt;div class=&quot;docs-container&quot;&gt;
+    {% block spellbook_md %}{% endblock %}
+&lt;/div&gt;
+{% endblock %}
+
+{% block extra_css %}
+{% spellbook_styles %}
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<p>{~~}</p>
+<h3 id="spellbook_base_extend_from">SPELLBOOK_BASE_EXTEND_FROM</h3>
+<pre><code class="language-python"># Wrap Spellbook's sidebar inside your site's base template
+SPELLBOOK_BASE_EXTEND_FROM = 'base.html'
+
+# Per-app base templates
+SPELLBOOK_BASE_EXTEND_FROM = ['base.html', 'blog/base.html']
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_BASE_EXTEND_FROM</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Wraps Spellbook's entire sidebar layout inside your existing base template. Spellbook auto-generates a wrapper template that extends your base and includes the sidebar, TOC, and content.</p>
+<p><strong>Type:</strong> <code>str</code> or <code>list</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Default: None (Spellbook renders standalone)
+        </div>
+
+</div>
+
+<p>Your base template needs one block where Spellbook renders:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- base.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Site&lt;/title&gt;
+    &lt;!-- Your site's CSS/JS --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;&lt;!-- Your site navigation --&gt;&lt;/nav&gt;
+
+    {% block spellbook %}
+    &lt;!-- Spellbook sidebar + content renders here --&gt;
+    {% endblock %}
+
+    &lt;footer&gt;&lt;!-- Your site footer --&gt;&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p><strong>EXTEND_FROM vs BASE_TEMPLATE</strong></p>
+<ul>
+<li>
+<p><code>SPELLBOOK_BASE_EXTEND_FROM</code> - Wraps the <em>entire</em> Spellbook layout (sidebar + content) inside your template</p>
+</li>
+<li>
+<p><code>SPELLBOOK_MD_BASE_TEMPLATE</code> - Replaces Spellbook's layout entirely with your own</p>
+</li>
+</ul>
+<p>Use <code>EXTEND_FROM</code> when you want Spellbook's sidebar but need your site's header/footer. Use <code>BASE_TEMPLATE</code> when you want complete control over the layout.</p>
+    </span>
+</div>
+
+<p><a href="/docs/customization/custom-base/">Learn more about custom bases →</a></p>
+<hr />
+<h2 id="url-routing">URL Routing</h2>
+<h3 id="spellbook_md_url_prefix">SPELLBOOK_MD_URL_PREFIX</h3>
+<pre><code class="language-python"># Content at /docs/
+SPELLBOOK_MD_URL_PREFIX = 'docs'
+
+# Content at root /
+SPELLBOOK_MD_URL_PREFIX = ''
+
+# Per-app prefixes
+SPELLBOOK_MD_URL_PREFIX = ['docs', 'blog']
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_MD_URL_PREFIX</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Prefix for generated URL patterns.</p>
+<p><strong>Type:</strong> <code>str</code> or <code>list[str]</code></p>
+<p><strong>Default behavior for multi-app:</strong> First app gets empty prefix (root), other apps use their app name.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Default: &#x27;&#x27; for single app, app names for multi-app
+        </div>
+
+</div>
+
+<hr />
+<h2 id="theming">Theming</h2>
+<h3 id="spellbook_theme">SPELLBOOK_THEME</h3>
+<pre><code class="language-python"># Use a preset
+SPELLBOOK_THEME = 'arcane'
+
+# Custom colors
+SPELLBOOK_THEME = {
+    'colors': {
+        'primary': '#3B82F6',
+        'secondary': '#64748B',
+        'accent': '#F59E0B',
+    }
+}
+
+# Extend a preset
+SPELLBOOK_THEME = {
+    'preset': 'ocean',
+    'colors': {
+        'primary': '#0EA5E9',
+    }
+}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_THEME</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Visual theme for your content. Use a preset name or provide custom colors.</p>
+<p><strong>Type:</strong> <code>str</code> or <code>dict</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Default: &#x27;default&#x27;
+        </div>
+
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Available presets</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li>
+<p><strong>default</strong> - Blue and gray, professional</p>
+</li>
+<li>
+<p><strong>arcane</strong> - Purple and gold, mysterious</p>
+</li>
+<li>
+<p><strong>celestial</strong> - Light and airy, divine</p>
+</li>
+<li>
+<p><strong>forest</strong> - Green and brown, natural</p>
+</li>
+<li>
+<p><strong>ocean</strong> - Blue and cyan, aquatic</p>
+</li>
+<li>
+<p><strong>phoenix</strong> - Red and orange, fiery</p>
+</li>
+<li>
+<p><strong>shadow</strong> - Monochrome, dark</p>
+</li>
+<li>
+<p><strong>enchanted</strong> - Pink and gold, magical</p>
+</li>
+<li>
+<p><strong>pastel</strong> - Soft colors, gentle</p>
+</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Available color keys</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
+<li>
+<p><strong>Core:</strong> primary, secondary, accent, neutral</p>
+</li>
+<li>
+<p><strong>Status:</strong> error, warning, success, info</p>
+</li>
+<li>
+<p><strong>Specialty:</strong> emphasis, subtle, distinct</p>
+</li>
+<li>
+<p><strong>System:</strong> background, surface, text, text-secondary</p>
+</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<hr />
+<h2 id="metadata-display">Metadata Display</h2>
+<h3 id="spellbook_md_metadata_base">SPELLBOOK_MD_METADATA_BASE</h3>
+<pre><code class="language-python"># Custom templates for all apps
+SPELLBOOK_MD_METADATA_BASE = (
+    'my_app/metadata/user.html',
+    'my_app/metadata/dev.html'
+)
+
+# Per-app templates
+SPELLBOOK_MD_METADATA_BASE = [
+    ('docs/meta_user.html', 'docs/meta_dev.html'),
+    ('blog/meta_user.html', 'blog/meta_dev.html'),
+]
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">SPELLBOOK_MD_METADATA_BASE</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Templates for the <code>{% verbatim %}{% show_metadata %}{% endverbatim %}</code> tag. Tuple is <code>(user_template, dev_template)</code>.</p>
+<p><strong>Type:</strong> <code>tuple</code> or <code>list[tuple]</code></p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Default: built-in templates
+        </div>
+
+</div>
+
+<hr />
+<h2 id="multi-app-configuration">Multi-App Configuration</h2>
+<p>When using multiple source directories, all list settings must have the same length:</p>
+<pre><code class="language-python">SPELLBOOK_MD_PATH = [
+    BASE_DIR / 'docs',
+    BASE_DIR / 'blog', 
+    BASE_DIR / 'wiki',
+]
+
+SPELLBOOK_MD_APP = ['docs', 'blog', 'wiki']
+
+SPELLBOOK_MD_URL_PREFIX = ['docs', 'blog', 'wiki']
+
+SPELLBOOK_MD_BASE_TEMPLATE = [
+    'docs/base.html',
+    'blog/base.html',
+    None,  # wiki uses default
+]
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Each index corresponds across all settings. Index 0 of PATH goes to index 0 of APP with index 0 of URL_PREFIX.</p>
+    </span>
+</div>
+
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">All Settings</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li>
+<p><strong>SPELLBOOK_MD_PATH</strong> - Markdown source directory <em>(required)</em></p>
+</li>
+<li>
+<p><strong>SPELLBOOK_MD_APP</strong> - Target Django app <em>(required)</em></p>
+</li>
+<li>
+<p><strong>SPELLBOOK_MD_URL_PREFIX</strong> - URL path prefix <em>(default: '')</em></p>
+</li>
+<li>
+<p><strong>SPELLBOOK_MD_BASE_TEMPLATE</strong> - Wrapper template <em>(default: sidebar layout)</em></p>
+</li>
+<li>
+<p><strong>SPELLBOOK_THEME</strong> - Color theme <em>(default: 'default')</em></p>
+</li>
+<li>
+<p><strong>SPELLBOOK_MD_METADATA_BASE</strong> - Metadata templates <em>(default: built-in)</em></p>
+</li>
+</ul>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="minimal-example">Minimal Example</h2>
+<pre><code class="language-python"># settings.py
+INSTALLED_APPS = [
+    # ...
+    'django_spellbook',
+    'my_app',
+]
+
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+SPELLBOOK_MD_APP = 'my_app'
+</code></pre>
+<p>That's it. Everything else has sensible defaults.</p>
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Template Tags</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The Django template tags that power Spellbook layouts. Include styles, display metadata, render the table of contents, and use SpellBlocks directly in your Django templates.</p>
+<p><a href="/docs/template-tags/">View Template Tags →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">SpellBlocks</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The component library you'll use in your markdown. Alerts, cards, accordions, heroes, progress bars, and HTML element blocks for HTMX and Alpine.js.</p>
+<p><a href="/examples/introduction/">Browse SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-024-unreleased"><strong>Version 0.2.4</strong> (Unreleased)</h2>
+<h3 id="added">Added</h3>
+<h4 id="new-parser-function-spellbook_render">New Parser Function: <code>spellbook_render</code></h4>
+<p>Introduced a new, cleaner parser function name for better developer experience.</p>
+<p><strong>New function:</strong></p>
+<pre><code class="language-python">from django_spellbook.parsers import spellbook_render
+
+html = spellbook_render(markdown_text)
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>
+<p>Shorter, easier to remember</p>
+</li>
+<li>
+<p>Better aligns with "spellbook" branding</p>
+</li>
+<li>
+<p>Improved documentation and examples</p>
+</li>
+</ul>
+<h3 id="deprecated">Deprecated</h3>
+<h4 id="parser-function-render_spellbook_markdown_to_html">Parser Function: <code>render_spellbook_markdown_to_html</code></h4>
+<p>The function <code>render_spellbook_markdown_to_html</code> is now deprecated in favor of <code>spellbook_render</code>.</p>
+<p><strong>Migration:</strong></p>
+<pre><code class="language-python"># Old (deprecated - will be removed in 0.4.0)
+from django_spellbook.parsers import render_spellbook_markdown_to_html
+html = render_spellbook_markdown_to_html(markdown_text)
+
+# New (recommended)
+from django_spellbook.parsers import spellbook_render
+html = spellbook_render(markdown_text)
+</code></pre>
+<p><strong>Timeline:</strong></p>
+<ul>
+<li>
+<p><strong>0.2.4</strong>: Deprecation warning added</p>
+</li>
+<li>
+<p><strong>0.4.0</strong>: Function will be removed</p>
+</li>
+</ul>
+<p><strong>What to do:</strong></p>
+<ul>
+<li>
+<p>Replace all uses of <code>render_spellbook_markdown_to_html</code> with <code>spellbook_render</code></p>
+</li>
+<li>
+<p>Signatures are identical - simple find/replace works</p>
+</li>
+<li>
+<p>Deprecation warnings will guide you to update</p>
+</li>
+</ul>
+{% endblock %}

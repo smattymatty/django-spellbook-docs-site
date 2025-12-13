@@ -1,0 +1,366 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Spellbook provides a complete sidebar layout out of the box. You can wrap it inside your existing site, replace it entirely, or use it standalone.</p>
+<h2 id="two-approaches">Two Approaches</h2>
+<h3 id="spellbook_base_extend_from">SPELLBOOK_BASE_EXTEND_FROM</h3>
+<p>Wraps Spellbook's sidebar layout inside your existing base template. Your site's header, footer, and navigation stay intact.</p>
+<pre><code class="language-python">SPELLBOOK_BASE_EXTEND_FROM = 'base.html'
+</code></pre>
+<h3 id="spellbook_md_base_template">SPELLBOOK_MD_BASE_TEMPLATE</h3>
+<p>Replaces Spellbook's layout entirely. You control everything—sidebar, TOC, metadata, navigation.</p>
+<pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/custom_layout.html'
+</code></pre>
+<hr />
+<h2 id="using-extend_from">Using EXTEND_FROM</h2>
+<p>The simplest way to integrate Spellbook into an existing site.</p>
+<h3 id="setup">Setup</h3>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+SPELLBOOK_MD_APP = 'docs'
+SPELLBOOK_BASE_EXTEND_FROM = 'base.html'
+</code></pre>
+<h3 id="your-base-template">Your Base Template</h3>
+<p>Add one block where Spellbook renders:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- base.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;{% block title %}My Site{% endblock %}&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{% static 'css/main.css' %}&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;!-- Your site navigation --&gt;
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+        {% block spellbook %}
+        &lt;!-- Spellbook sidebar + content renders here --&gt;
+        {% endblock %}
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;!-- Your site footer --&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The block must be named <code>spellbook</code> (not <code>spellbook_md</code>). Spellbook auto-generates a wrapper template that extends your base and includes the full sidebar layout.</p>
+    </span>
+</div>
+
+<h3 id="what-gets-generated">What Gets Generated</h3>
+<p>When you run <code>python manage.py spellbook_md</code>, Spellbook creates:</p>
+<pre><code>docs/
+└── templates/
+    └── docs/
+        └── spellbook_base.html  ← Auto-generated wrapper
+</code></pre>
+<p>This wrapper extends your base and includes Spellbook's sidebar layout. You never edit this file—it's regenerated on each run.</p>
+<h3 id="per-app-configuration">Per-App Configuration</h3>
+<p>For multi-app setups:</p>
+<pre><code class="language-python">SPELLBOOK_MD_PATH = [BASE_DIR / 'docs', BASE_DIR / 'blog']
+SPELLBOOK_MD_APP = ['docs', 'blog']
+SPELLBOOK_BASE_EXTEND_FROM = ['base.html', 'blog/base.html']
+</code></pre>
+<hr />
+<h2 id="using-base_template">Using BASE_TEMPLATE</h2>
+<p>Full control over the layout. You're responsible for rendering the sidebar, TOC, metadata, and navigation.</p>
+<h3 id="setup_1">Setup</h3>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+SPELLBOOK_MD_APP = 'docs'
+SPELLBOOK_MD_BASE_TEMPLATE = 'docs/spellbook_base.html'
+</code></pre>
+<h3 id="minimal-custom-template">Minimal Custom Template</h3>
+<p>At minimum, you need the content block:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- docs/spellbook_base.html --&gt;
+{% extends 'base.html' %}
+{% load spellbook_tags %}
+
+{% block content %}
+    {% spellbook_styles %}
+    {% block spellbook_md %}{% endblock %}
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>The block must be named <code>spellbook_md</code>. This is where your rendered markdown content appears.</p>
+    </span>
+</div>
+
+<h3 id="full-custom-template">Full Custom Template</h3>
+<p>Recreate the sidebar layout with your own structure:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- docs/spellbook_base.html --&gt;
+{% extends 'base.html' %}
+{% load spellbook_tags %}
+{% load static %}
+
+{% block extra_css %}
+    {% spellbook_styles %}
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{% static 'django_spellbook/css_modules/sidebar_left.css' %}&quot;&gt;
+{% endblock %}
+
+{% block content %}
+&lt;div class=&quot;spellbook-container&quot;&gt;
+    &lt;div class=&quot;spellbook-layout&quot;&gt;
+        &lt;nav class=&quot;spellbook-toc&quot;&gt;
+            {% if is_directory_index %}
+                {% directory_metadata %}
+            {% else %}
+                {% page_metadata %}
+            {% endif %}
+
+            {% include &quot;django_spellbook/tocs/sidebar_toc.html&quot; %}
+
+            {% if user.is_staff %}
+                {% if is_directory_index %}
+                    {% directory_metadata &quot;for_dev&quot; %}
+                {% else %}
+                    {% page_metadata &quot;for_dev&quot; %}
+                {% endif %}
+            {% endif %}
+        &lt;/nav&gt;
+
+        &lt;main class=&quot;spellbook-content&quot;&gt;
+            {% page_header %}
+            {% block spellbook_md %}{% endblock %}
+        &lt;/main&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<hr />
+<h2 id="the-default-layout">The Default Layout</h2>
+<p>Spellbook's built-in <code>sidebar_left.html</code> provides:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+{% load static %}
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    {% spellbook_styles %}
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{% static 'django_spellbook/css_modules/sidebar_left.css' %}&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;sb-bg-background sb-text-text&quot;&gt;
+    &lt;div class=&quot;spellbook-container&quot;&gt;
+        &lt;div class=&quot;spellbook-layout&quot;&gt;
+            &lt;nav class=&quot;spellbook-toc&quot;&gt;
+                {% if is_directory_index %}
+                    {% directory_metadata %}
+                {% else %}
+                    {% page_metadata %}
+                {% endif %}
+
+                {% include &quot;django_spellbook/tocs/sidebar_toc.html&quot; %}
+
+                {% if user.is_staff %}
+                    {% if is_directory_index %}
+                        {% directory_metadata &quot;for_dev&quot; %}
+                    {% else %}
+                        {% page_metadata &quot;for_dev&quot; %}
+                    {% endif %}
+                {% endif %}
+            &lt;/nav&gt;
+
+            &lt;main class=&quot;spellbook-content&quot;&gt;
+                {% page_header %}
+                {% block spellbook_md %}{% endblock %}
+            &lt;/main&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<hr />
+<h2 id="template-tags-reference">Template Tags Reference</h2>
+<h3 id="spellbook_styles">spellbook_styles</h3>
+<p>Injects theme CSS variables. Required in <code>&lt;head&gt;</code>.</p>
+<pre><code class="language-django">{% verbatim %}
+{% spellbook_styles %}
+{% endverbatim %}
+</code></pre>
+<h3 id="page_metadata-directory_metadata">page_metadata / directory_metadata</h3>
+<p>Displays metadata in the sidebar. Shows different info for pages vs directories.</p>
+<pre><code class="language-django">{% verbatim %}
+{# User-facing metadata (dates, tags, reading time) #}
+{% page_metadata %}
+{% directory_metadata %}
+
+{# Developer metadata (URL paths, namespaces) - staff only #}
+{% page_metadata &quot;for_dev&quot; %}
+{% directory_metadata &quot;for_dev&quot; %}
+{% endverbatim %}
+</code></pre>
+<h3 id="page_header">page_header</h3>
+<p>Renders title, author, and prev/next navigation above the content.</p>
+<pre><code class="language-django">{% verbatim %}
+{% page_header %}
+{% endverbatim %}
+</code></pre>
+<h3 id="sidebar_toc">sidebar_toc</h3>
+<p>Renders the table of contents. Usually included via template:</p>
+<pre><code class="language-django">{% verbatim %}
+{% include &quot;django_spellbook/tocs/sidebar_toc.html&quot; %}
+{% endverbatim %}
+</code></pre>
+<hr />
+<h2 id="css-structure">CSS Structure</h2>
+<h3 id="container-classes">Container Classes</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.spellbook-container</code></td>
+<td>Max-width wrapper (1200px)</td>
+</tr>
+<tr>
+<td><code>.spellbook-layout</code></td>
+<td>Grid container (sidebar + content)</td>
+</tr>
+<tr>
+<td><code>.spellbook-toc</code></td>
+<td>Sidebar navigation</td>
+</tr>
+<tr>
+<td><code>.spellbook-content</code></td>
+<td>Main content area</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grid-layout">Grid Layout</h3>
+<p>Desktop (768px+): 3-column grid</p>
+<pre><code>| 250px sidebar | 800px content | flexible |
+</code></pre>
+<p>Mobile: Stacked layout with sidebar above content.</p>
+<h3 id="utility-classes">Utility Classes</h3>
+<p>The body uses theme-aware utilities:</p>
+<pre><code class="language-html">&lt;body class=&quot;sb-bg-background sb-text-text&quot;&gt;
+</code></pre>
+<p>These adapt to your <code>SPELLBOOK_THEME</code> setting.</p>
+<hr />
+<h2 id="context-variables">Context Variables</h2>
+<p>These variables are available in your templates:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toc</code></td>
+<td>dict</td>
+<td>Table of contents tree</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>dict</td>
+<td>Page frontmatter (title, author, dates, tags)</td>
+</tr>
+<tr>
+<td><code>current_url</code></td>
+<td>str</td>
+<td>Current page URL name</td>
+</tr>
+<tr>
+<td><code>is_directory_index</code></td>
+<td>bool</td>
+<td>True if this is a directory index page</td>
+</tr>
+<tr>
+<td><code>parent_directory_url</code></td>
+<td>str</td>
+<td>URL name of parent directory</td>
+</tr>
+<tr>
+<td><code>parent_directory_name</code></td>
+<td>str</td>
+<td>Display name of parent directory</td>
+</tr>
+<tr>
+<td><code>directory_stats</code></td>
+<td>dict</td>
+<td>Stats for directory pages (total pages, subdirs)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="disabling-the-wrapper">Disabling the Wrapper</h2>
+<p>For raw HTML output with no template wrapper:</p>
+<pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = None
+</code></pre>
+<p>Generated templates contain only the rendered HTML—no <code>{% verbatim %}{% extends %}{% endverbatim %}</code>, no blocks. Useful for embedding in other systems.</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Template Tags</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Full reference for all available template tags.</p>
+<p><a href="/docs/template-tags/">View Template Tags →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Themes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Customize the colors that these templates use.</p>
+<p><a href="/docs/themes/">View Themes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

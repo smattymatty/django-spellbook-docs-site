@@ -1,7 +1,110 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Quick Start</h1>
-<p>This is a quick start guide to your magical documentation.<br />
-he</p>
+<p>Get Django Spellbook running in five minutes.</p>
+<h2 id="1-install">1. Install</h2>
+<pre><code class="language-bash">pip install django-spellbook
+</code></pre>
+<h2 id="2-configure-settings">2. Configure Settings</h2>
+<pre><code class="language-python"># settings.py
+
+INSTALLED_APPS = [
+    # ...
+    'django_spellbook',
+    'my_app',  # Your app that will hold generated templates
+]
+
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+SPELLBOOK_MD_APP = 'my_app'
+</code></pre>
+<h2 id="3-create-a-markdown-file">3. Create a Markdown File</h2>
+<pre><code class="language-bash">mkdir docs
+</code></pre>
+<pre><code class="language-md">&lt;!-- docs/index.md --&gt;
+---
+title: Welcome
+---
+
+# Hello, Spellbook
+
+This is your first page.
+
+{~ alert type=&quot;success&quot; ~}
+It works!
+{~~}
+</code></pre>
+<h2 id="4-run-the-command">4. Run the Command</h2>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p>You'll see:</p>
+<pre><code>SpellbookMarkdownEngine: Markdown to HTML conversion complete.
+Generating URLs and views...
+Successfully processed 1 files for my_app
+</code></pre>
+<h2 id="5-wire-up-urls">5. Wire Up URLs</h2>
+<pre><code class="language-python"># urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    path('docs/', include('my_app.spellbook_urls')),
+]
+</code></pre>
+<h2 id="6-visit-your-page">6. Visit Your Page</h2>
+<p>Start the dev server and open <code>http://localhost:8000/docs/</code></p>
+<p>You've got a styled page with sidebar navigation, table of contents, and theme support - no templates written.</p>
+<hr />
+<h2 id="what-just-happened">What Just Happened</h2>
+<p>Spellbook read your markdown, converted it to a Django template, generated a view function and URL pattern, and wrapped everything in a responsive layout.</p>
+<p>Your file structure:</p>
+<pre><code>my_app/
+├── templates/
+│   └── my_app/
+│       └── spellbook/
+│           └── index.html
+├── spellbook_urls.py
+├── spellbook_views.py
+└── spellbook_manifest.json
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<h2 id="add-more-pages">Add More Pages</h2>
+<p>Create more <code>.md</code> files in your docs folder. Folder structure becomes URL structure:</p>
+<pre><code>docs/
+├── index.md          → /docs/
+├── getting-started.md → /docs/getting-started/
+└── api/
+    ├── index.md      → /docs/api/
+    └── reference.md  → /docs/api/reference/
+</code></pre>
+<p>Run <code>python manage.py spellbook_md</code> after changes.</p>
+<h2 id="use-spellblocks">Use Spellblocks</h2>
+<p>SpellBlocks are components you embed in markdown:</p>
+<pre><code class="language-md">{~ card title=&quot;Feature&quot; ~}
+Cards for highlighting content.
+{~~}
+
+{~ alert type=&quot;warning&quot; ~}
+Alerts for important notices.
+{~~}
+
+{~ accordion title=&quot;Expandable&quot; ~}
+Accordions for collapsible sections.
+{~~}
+</code></pre>
+<p><a href="/examples/introduction/">Browse all SpellBlocks →</a></p>
+<h2 id="pick-a-theme">Pick a Theme</h2>
+<p>Nine built-in themes. Add to settings:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'arcane'  # or ocean, forest, ember, etc.
+</code></pre>
+<p><a href="/styles/themes/">Explore themes →</a></p>
+<h2 id="customize-the-layout">Customize the Layout</h2>
+<p>Use your own base template:</p>
+<pre><code class="language-python">SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/base.html'
+</code></pre>
+<p>Your template needs one block:</p>
+<pre><code class="language-django">{% verbatim %}
+{% block spellbook_md %}{% endblock %}
+{% endverbatim %}
+</code></pre>
+<p><a href="/docs/configuration/">Configuration reference →</a></p>
 {% endblock %}

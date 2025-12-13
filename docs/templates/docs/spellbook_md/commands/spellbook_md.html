@@ -1,0 +1,200 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="spellbook_md">spellbook_md</h1>
+<p>The main event. This command reads your markdown files and generates everything Django needs to serve them as pages.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p>That's it. Run it after changing your markdown files, and your site updates.</p>
+<p><section
+  class="sb-hero sb-hero-layout--image-top-text-bottom sb-items-center sb-bg-surface sb-white "
+
+
+>
+
+
+<div class="sb-hero-content-wrapper sb-flex sb-flex-col sb-items-center sb-w-full">
+
+  <div class="sb-hero-media-fullwidth sb-mb-6"> 
+    <img src="https://i.imgur.com/2oJBgpR.png" alt="spellbook_md command output" class="sb-hero-image sb-w-full"> 
+  </div>
+
+  <div class="sb-hero-text-bottom-content sb-bg-black-25 sb-w-full sb-text-center md:sb-text-left"> 
+    <p><em>Example output from spellbook_md</em> </p>
+<ul>
+<li>
+<p><strong>Generates views, URLs, templates, and manifests for navigation</strong> </p>
+</li>
+<li>
+<p><strong>Supports multi-app workflows</strong></p>
+</li>
+</ul>
+  </div>
+</div>
+
+</section>
+</p>
+<!-- Block 'img' not found -->
+
+<h2 id="what-it-does">What It Does</h2>
+<p>For each markdown file in your source directory, the command:</p>
+<ol>
+<li>
+<p><strong>Parses frontmatter</strong> - YAML metadata becomes template context</p>
+</li>
+<li>
+<p><strong>Renders SpellBlocks</strong> - Components like <code>{~ alert ~}</code> become HTML</p>
+</li>
+<li>
+<p><strong>Converts markdown</strong> - Standard markdown processing with syntax highlighting</p>
+</li>
+<li>
+<p><strong>Generates templates</strong> - Output lands in <code>{app}/templates/{app}/spellbook/</code></p>
+</li>
+<li>
+<p><strong>Creates views</strong> - One view function per page</p>
+</li>
+<li>
+<p><strong>Wires URLs</strong> - Routes matching your folder structure</p>
+</li>
+<li>
+<p><strong>Builds navigation</strong> - Previous/next links and table of contents</p>
+</li>
+<li>
+<p><strong>Writes manifest</strong> - <code>spellbook_manifest.json</code> for sitemap integration</p>
+</li>
+</ol>
+<h2 id="required-settings">Required Settings</h2>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_MD_PATH = BASE_DIR / 'docs'
+SPELLBOOK_MD_APP = 'my_app'
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SPELLBOOK_MD_PATH</code></td>
+<td><code>Path</code> or <code>list[Path]</code></td>
+<td>Where your markdown files live</td>
+</tr>
+<tr>
+<td><code>SPELLBOOK_MD_APP</code></td>
+<td><code>str</code> or <code>list[str]</code></td>
+<td>Which app receives the generated files</td>
+</tr>
+</tbody>
+</table>
+<p>The app must be in <code>INSTALLED_APPS</code>.</p>
+<h2 id="optional-settings">Optional Settings</h2>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_MD_URL_PREFIX = 'docs'
+SPELLBOOK_MD_BASE_TEMPLATE = 'my_app/base.html'
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SPELLBOOK_MD_URL_PREFIX</code></td>
+<td><code>str</code> or <code>list[str]</code></td>
+<td><code>''</code></td>
+<td>URL prefix for generated routes</td>
+</tr>
+<tr>
+<td><code>SPELLBOOK_MD_BASE_TEMPLATE</code></td>
+<td><code>str</code> or <code>None</code></td>
+<td><code>'django_spellbook/bases/sidebar_left.html'</code></td>
+<td>Template that wraps your content</td>
+</tr>
+</tbody>
+</table>
+<p>Set <code>SPELLBOOK_MD_BASE_TEMPLATE = None</code> to get raw HTML without any wrapper.</p>
+<h2 id="command-options">Command Options</h2>
+<pre><code class="language-bash">python manage.py spellbook_md --continue-on-error
+python manage.py spellbook_md --report-level=minimal
+python manage.py spellbook_md --report-format=json --report-output=report.json
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--continue-on-error</code></td>
+<td>flag</td>
+<td>Keep processing if a file fails</td>
+</tr>
+<tr>
+<td><code>--report-level</code></td>
+<td><code>minimal</code>, <code>detailed</code>, <code>debug</code></td>
+<td>How much output to show</td>
+</tr>
+<tr>
+<td><code>--report-format</code></td>
+<td><code>text</code>, <code>json</code>, <code>none</code></td>
+<td>Output format</td>
+</tr>
+<tr>
+<td><code>--report-output</code></td>
+<td>filepath</td>
+<td>Save report to file instead of stdout</td>
+</tr>
+</tbody>
+</table>
+<h2 id="multi-source-configuration">Multi-Source Configuration</h2>
+<p>Process multiple markdown directories into different apps:</p>
+<pre><code class="language-python">SPELLBOOK_MD_PATH = [
+    BASE_DIR / 'docs',
+    BASE_DIR / 'blog',
+]
+SPELLBOOK_MD_APP = ['docs_app', 'blog_app']
+SPELLBOOK_MD_URL_PREFIX = ['docs', 'blog']
+SPELLBOOK_MD_BASE_TEMPLATE = [None, 'blog/base.html']
+</code></pre>
+<p>Lists must be the same length. Each index corresponds across all settings.</p>
+<h2 id="generated-files">Generated Files</h2>
+<p>After running the command, you'll find:</p>
+<pre><code>my_app/
+├── templates/
+│   └── my_app/
+│       └── spellbook/
+│           ├── index.html
+│           ├── getting-started.html
+│           └── api/
+│               └── reference.html
+├── spellbook_urls.py
+├── spellbook_views.py
+└── spellbook_manifest.json
+</code></pre>
+<p>Include the URLs in your project:</p>
+<pre><code class="language-python"># urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    path('docs/', include('my_app.spellbook_urls')),
+]
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>The command fails fast by default. If one file has a syntax error, processing stops.</p>
+<p>Use <code>--continue-on-error</code> to process everything and see all errors at once:</p>
+<pre><code class="language-bash">python manage.py spellbook_md --continue-on-error
+</code></pre>
+<p>The summary report shows which files succeeded and which failed.</p>
+{% endblock %}

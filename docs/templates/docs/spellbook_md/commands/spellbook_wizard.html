@@ -1,0 +1,308 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Interactive menu for common Spellbook tasks. No flags to memorize.</p>
+<pre><code class="language-bash">python manage.py spellbook_wizard
+</code></pre>
+<hr />
+<h2 id="main-menu">Main Menu</h2>
+<pre><code>Spellbook Wizard
+
+  [1] Batch process
+  [2] Validate
+
+  [0] Exit
+
+&gt;
+</code></pre>
+<p>Type a number and press Enter. <code>[0]</code> exits or goes back.</p>
+<hr />
+<h2 id="batch-process">Batch Process</h2>
+<p>Run markdown processing commands.</p>
+<pre><code>Batch Process
+
+  [1] Process markdown (spellbook_md)
+
+  [0] ← Back
+
+&gt;
+</code></pre>
+<h3 id="process-markdown">Process Markdown</h3>
+<p>Runs <code>spellbook_md</code> — the full pipeline:</p>
+<ol>
+<li>
+<p>Discovers SpellBlocks from all apps</p>
+</li>
+<li>
+<p>Finds markdown files in <code>SPELLBOOK_MD_PATH</code></p>
+</li>
+<li>
+<p>Processes SpellBlocks and markdown</p>
+</li>
+<li>
+<p>Generates Django views, URLs, templates</p>
+</li>
+<li>
+<p>Creates sitemaps and navigation</p>
+</li>
+</ol>
+<p>Same as running:</p>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<hr />
+<h2 id="validate">Validate</h2>
+<p>Check your content for issues.</p>
+<pre><code>🔍 Validate
+
+  [1] Validate frontmatter (spellbook_validate)
+  [2] Find dead links
+
+  [0] ← Back
+
+&gt;
+</code></pre>
+<h3 id="validate-frontmatter">Validate Frontmatter</h3>
+<p>Checks every markdown file for required metadata.</p>
+<p><strong>Required fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td><code>"Getting Started"</code></td>
+</tr>
+<tr>
+<td><code>published</code></td>
+<td>date (YYYY-MM-DD)</td>
+<td><code>2025-12-12</code></td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>string</td>
+<td><code>"Jane Doe"</code></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>list (≥1 item)</td>
+<td><code>["guide", "setup"]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example output:</strong></p>
+<pre><code>❌ docs/getting-started.md
+   • Missing: author
+   • tags: must have at least 1 item
+
+❌ blog/old-post.md
+   • published: invalid date format &quot;Dec 2025&quot; (expected YYYY-MM-DD)
+
+────────────────────────────────
+⚠️  2 pages with issues
+✅ 45 pages valid
+
+Run interactive fix? (y/n):
+</code></pre>
+<p><strong>Interactive fix mode:</strong></p>
+<p>When issues are found, you can fix them one by one:</p>
+<pre><code>Fixing: docs/getting-started.md
+
+Missing: author
+Enter author (or 'skip'): Jane Doe
+✓ Added author
+
+tags: must have at least 1 item
+Enter tags (comma-separated, or 'skip'): guide, tutorial
+✓ Added tags
+
+File updated!
+</code></pre>
+<p><strong>Shortcuts:</strong></p>
+<ul>
+<li>
+<p><code>today</code> — inserts current date for <code>published</code> field</p>
+</li>
+<li>
+<p><code>skip</code> — skip this field, leave unfixed</p>
+</li>
+</ul>
+<h3 id="find-dead-links">Find Dead Links</h3>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Coming soon. This feature is planned but not yet implemented.</p>
+    </span>
+</div>
+
+<p>Will scan markdown files for broken internal links and missing pages.</p>
+<hr />
+<h2 id="standalone-commands">Standalone Commands</h2>
+<p>Every wizard action is also available as a direct command.</p>
+<h3 id="spellbook_validate">spellbook_validate</h3>
+<pre><code class="language-bash"># Audit mode (report only)
+python manage.py spellbook_validate
+
+# Interactive fix mode
+python manage.py spellbook_validate --fix
+
+# Specific directory
+python manage.py spellbook_validate --source-path /path/to/content
+</code></pre>
+<h3 id="spellbook_md">spellbook_md</h3>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<hr />
+<h2 id="when-to-use-the-wizard">When to Use the Wizard</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Use the Wizard When...</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li>
+<p>You're new to Spellbook</p>
+</li>
+<li>
+<p>You forget command names or flags</p>
+</li>
+<li>
+<p>You want guided validation with fixes</p>
+</li>
+<li>
+<p>You prefer menus over typing commands</p>
+</li>
+</ul>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Use Direct Commands When...</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ul>
+<li>
+<p>You're in a CI/CD pipeline</p>
+</li>
+<li>
+<p>You're scripting deployments</p>
+</li>
+<li>
+<p>You know exactly what you need</p>
+</li>
+<li>
+<p>Speed matters more than guidance</p>
+</li>
+</ul>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Back / Exit</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>Exit immediately</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>Select menu option</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>Confirm selection</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">spellbook_md Command</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Full reference for the markdown processing command.</p>
+<p><a href="/docs/commands/spellbook-md/">View spellbook_md →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Configuration</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Settings that control how Spellbook processes your content.</p>
+<p><a href="/docs/configuration/">View Configuration →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Frontmatter Reference</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All available frontmatter fields and their effects.</p>
+<p><a href="/docs/frontmatter/">View Frontmatter →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

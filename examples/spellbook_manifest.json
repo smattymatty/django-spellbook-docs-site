@@ -1,0 +1,55 @@
+{
+  "generated_at": "2025-12-12T20:01:09.707161Z",
+  "app_name": "examples",
+  "pages": [
+    {
+      "path": "/examples/introduction/",
+      "title": "Introduction"
+    },
+    {
+      "path": "/examples/rendering/by_function/",
+      "title": "Custom View Function",
+      "lastmod": "2025-05-26"
+    },
+    {
+      "path": "/examples/spellblocks/accordion/",
+      "title": "Accordion"
+    },
+    {
+      "path": "/examples/spellblocks/button/",
+      "title": "Button",
+      "lastmod": "2025-06-01"
+    },
+    {
+      "path": "/examples/spellblocks/align/",
+      "title": "Align",
+      "lastmod": "2025-06-01"
+    },
+    {
+      "path": "/examples/spellblocks/card/",
+      "title": "Card"
+    },
+    {
+      "path": "/examples/spellblocks/quote/",
+      "title": "Quote"
+    },
+    {
+      "path": "/examples/spellblocks/alert/",
+      "title": "Alert"
+    },
+    {
+      "path": "/examples/spellblocks/practice/",
+      "title": "Practice"
+    },
+    {
+      "path": "/examples/spellblocks/hero/",
+      "title": "Hero",
+      "lastmod": "2025-05-14"
+    },
+    {
+      "path": "/examples/spellblocks/progress/",
+      "title": "Progress Bar",
+      "lastmod": "2025-05-13"
+    }
+  ]
+}

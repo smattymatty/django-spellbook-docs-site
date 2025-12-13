@@ -1,0 +1,124 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-021"><strong>Version 0.2.1</strong></h2>
+<h3 id="added">Added</h3>
+<h4 id="auto-generated-directory-index-pages">Auto-Generated Directory Index Pages</h4>
+<p>Visit any directory in your content and see a beautiful listing page automatically - no more 404 errors!</p>
+<p><strong>Before:</strong> Visiting <code>/docs/</code> showed "Page not found"</p>
+<p><strong>Now:</strong> Visiting <code>/docs/</code> shows all your content organized by subdirectories and pages</p>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>
+<p>Directory indexes for every folder containing markdown files</p>
+</li>
+<li>
+<p>Subdirectories listed first with page counts</p>
+</li>
+<li>
+<p>Individual pages listed with their metadata</p>
+</li>
+<li>
+<p>Alphabetically sorted for easy browsing</p>
+</li>
+<li>
+<p>Matches your site's theme automatically</p>
+</li>
+<li>
+<p>Zero configuration required</p>
+</li>
+</ul>
+<p><strong>Example:</strong><br />
+When you visit <code>/docs/</code>, you'll see:</p>
+<ul>
+<li>
+<p>All subdirectories (Getting Started, Advanced, API Reference)</p>
+</li>
+<li>
+<p>All pages in that directory with their publish dates and tags</p>
+</li>
+<li>
+<p>Clean, organized layout matching your site's design</p>
+</li>
+</ul>
+<p><strong>How to use:</strong><br />
+Just run <code>python manage.py spellbook_md</code> like always. Directory indexes are created automatically for every folder.</p>
+<p><strong>Special notes:</strong></p>
+<ul>
+<li>
+<p>If you already have an <code>index.md</code> file in a directory, your file takes priority</p>
+</li>
+<li>
+<p>Empty directories won't get index pages</p>
+</li>
+<li>
+<p>Works with nested directories at any depth</p>
+</li>
+</ul>
+<h4 id="page-header-navigation">Page Header Navigation</h4>
+<p>Every page now has a clean navigation header showing where you are and where you can go.</p>
+<p><strong>What's included:</strong></p>
+<ul>
+<li>
+<p>Page title prominently displayed</p>
+</li>
+<li>
+<p>Author name (if set in frontmatter)</p>
+</li>
+<li>
+<p>"Back to [Directory]" link to browse related content</p>
+</li>
+<li>
+<p>Previous/Next buttons to move between pages in the same directory</p>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>← Back to Docs
+
+        Getting Started
+        by Jane Smith
+
+← Introduction              Setup Guide →
+</code></pre>
+<p><strong>What changed:</strong></p>
+<ul>
+<li>
+<p>Navigation moved to its own section at the top of each page</p>
+</li>
+<li>
+<p>Metadata box now only shows publication info (dates, tags, word count)</p>
+</li>
+<li>
+<p>Cleaner separation between navigation and content information</p>
+</li>
+</ul>
+<p><strong>How to use:</strong><br />
+If you're using the default <code>sidebar_left.html</code> template, you already have it. Custom templates can add <code>{% page_header %}</code> anywhere in the template.</p>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>
+<p>Metadata display reorganized: navigation elements moved to page header</p>
+</li>
+<li>
+<p>Publication information (dates, tags, word count) stays in metadata box</p>
+</li>
+<li>
+<p>Default templates now include page header automatically</p>
+</li>
+</ul>
+<h3 id="backward-compatibility">Backward Compatibility</h3>
+<ul>
+<li>
+<p>Existing <code>{% show_metadata %}</code> tag continues working</p>
+</li>
+<li>
+<p>Custom templates without <code>{% page_header %}</code> work normally (just won't show the header)</p>
+</li>
+<li>
+<p>All frontmatter fields work exactly as before</p>
+</li>
+<li>
+<p>No breaking changes to any existing functionality</p>
+</li>
+</ul>
+{% endblock %}

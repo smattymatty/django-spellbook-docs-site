@@ -1,0 +1,246 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Padding, margin, and gap utilities for controlling space in your layouts.</p>
+<hr />
+<h2 id="spacing-scale">Spacing Scale</h2>
+<p>All spacing utilities use a consistent scale:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Size</th>
+<th>Pixels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0px</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.25rem</td>
+<td>4px</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.5rem</td>
+<td>8px</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1rem</td>
+<td>16px</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1.5rem</td>
+<td>24px</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2rem</td>
+<td>32px</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3rem</td>
+<td>48px</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="padding">Padding</h2>
+<h3 id="p-all-sides">p (all sides)</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-p-0 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-0: No padding&lt;/div&gt;
+&lt;div class=&quot;sb-p-1 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-1: 0.25rem&lt;/div&gt;
+&lt;div class=&quot;sb-p-2 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-2: 0.5rem&lt;/div&gt;
+&lt;div class=&quot;sb-p-3 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-3: 1rem&lt;/div&gt;
+&lt;div class=&quot;sb-p-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-4: 1.5rem&lt;/div&gt;
+&lt;div class=&quot;sb-p-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;p-6: 2rem&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-p/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="px-py-horizontal-vertical">px / py (horizontal / vertical)</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-px-6 sb-py-1 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;px-6 py-1: Wide horizontal&lt;/div&gt;
+&lt;div class=&quot;sb-px-1 sb-py-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;px-1 py-4: Tall vertical&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-pxy/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="pt-pr-pb-pl-individual-sides">pt / pr / pb / pl (individual sides)</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-pt-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;pt-4: Padding top&lt;/div&gt;
+&lt;div class=&quot;sb-pr-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;pr-6: Padding right&lt;/div&gt;
+&lt;div class=&quot;sb-pb-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;pb-4: Padding bottom&lt;/div&gt;
+&lt;div class=&quot;sb-pl-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral&quot;&gt;pl-6: Padding left&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-psides/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="margin">Margin</h2>
+<h3 id="m-all-sides">m (all sides)</h3>
+<pre><code class="language-html">&lt;!-- Containers show the margin space --&gt;
+&lt;div class=&quot;sb-bg-neutral-5 sb-p-1&quot;&gt;
+  &lt;div class=&quot;sb-m-0 sb-bg-surface sb-text-text sb-p-2&quot;&gt;m-0 inside container&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sb-bg-neutral-5 sb-p-1&quot;&gt;
+  &lt;div class=&quot;sb-m-2 sb-bg-surface sb-text-text sb-p-2&quot;&gt;m-2 inside container&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sb-bg-neutral-5 sb-p-1&quot;&gt;
+  &lt;div class=&quot;sb-m-4 sb-bg-surface sb-text-text sb-p-2&quot;&gt;m-4 inside container&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-m/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="mb-margin-bottom-most-common">mb (margin bottom) - Most common</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-surface sb-text-text sb-p-3 sb-mb-2 sb-border-2 sb-border-neutral&quot;&gt;mb-2: Small gap below&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface sb-text-text sb-p-3 sb-mb-4 sb-border-2 sb-border-neutral&quot;&gt;mb-4: Medium gap below&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface sb-text-text sb-p-3 sb-mb-8 sb-border-2 sb-border-neutral&quot;&gt;mb-8: Large gap below&lt;/div&gt;
+&lt;div class=&quot;sb-bg-surface sb-text-text sb-p-3 sb-border-2 sb-border-neutral&quot;&gt;Next element after gaps&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-mb/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="gap">Gap</h2>
+<p>Space between flex/grid children. Cleaner than margins.</p>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Gap requires <code>sb-flex</code> or <code>sb-grid</code> on the parent container.</p>
+    </span>
+</div>
+
+<pre><code class="language-html">&lt;!-- gap-2 --&gt;
+&lt;div class=&quot;sb-flex sb-gap-2&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;A&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;B&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- gap-4 --&gt;
+&lt;div class=&quot;sb-flex sb-gap-4&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;A&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;B&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- gap-8 --&gt;
+&lt;div class=&quot;sb-flex sb-gap-8&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;A&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;B&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/spacing-gap/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Padding</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>All:</strong> <code>sb-p-{0,1,2,3,4,6,8}</code></p>
+<p><strong>Axis:</strong> <code>sb-px-*</code>, <code>sb-py-*</code></p>
+<p><strong>Sides:</strong> <code>sb-pt-*</code>, <code>sb-pr-*</code>, <code>sb-pb-*</code>, <code>sb-pl-*</code></p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Margin</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>All:</strong> <code>sb-m-{0,1,2,3,4,6,8}</code></p>
+<p><strong>Axis:</strong> <code>sb-mx-*</code>, <code>sb-my-*</code></p>
+<p><strong>Sides:</strong> <code>sb-mt-*</code>, <code>sb-mr-*</code>, <code>sb-mb-*</code>, <code>sb-ml-*</code></p>
+<p><strong>Negative:</strong> <code>sb-m-n*</code>, <code>sb-mt-n*</code>, etc.</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Gap</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>Gap:</strong> <code>sb-gap-{1,2,3,4,6,8}</code></p>
+<p><strong>Space Between:</strong> <code>sb-space-x-*</code>, <code>sb-space-y-*</code></p>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Layout Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Flexbox, grid, and positioning utilities.</p>
+<p><a href="/docs/styles/layout/">View Layout →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Color Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Background, text, and border colors.</p>
+<p><a href="/docs/styles/colors/">View Colors →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

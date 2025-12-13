@@ -1,168 +1,368 @@
 {% extends 'docs/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1 id="template-tags">Template Tags</h1>
-<p>Django Spellbook includes several useful template tags to enhance your templates with markdown-specific features. These tags help with presenting table of contents, metadata, styling, and URL handling for your markdown-generated content.</p>
-<h2 id="loading-the-template-tags">Loading the Template Tags</h2>
-<p>To use these template tags, you need to load them at the top of your Django template:</p>
+<p>Template tags for use in your Django templates. Load them with <code>{% verbatim %}{% load spellbook_tags %}{% endverbatim %}</code>.</p>
+<h2 id="styles-theming">Styles &amp; Theming</h2>
+<h3 id="spellbook_styles">spellbook_styles</h3>
+<p>Injects CSS variables and theme styles into your page. Required if you're using a custom base template.</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}
-{% endverbatim %}
-</code></pre>
-<h2 id="available-template-tags">Available Template Tags</h2>
-<h3 id="sidebar_toc">sidebar_toc</h3>
-<p>Generates a structured table of contents based on your markdown content hierarchy for display in a sidebar.</p>
-<p><strong>Syntax</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-{% sidebar_toc %}
-{% endverbatim %}
-</code></pre>
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
 
-            ℹ️
-
-    </span>
-    <span class="sb-alert-content">
-        <p>This tag requires a <code>toc</code> variable in the template context. The Django Spellbook views automatically provide this when using the built-in base templates.</p>
-    </span>
-</div>
-
-<p>When rendered, this tag produces a hierarchical navigation menu based on your markdown files directory structure.</p>
-<h3 id="spellbook_styles">spellbook_styles</h3>
-<p>Includes the Spellbook's default styles in your template. These styles ensure proper rendering of SpellBlocks, code highlighting, and other markdown-specific features.</p>
-<p><strong>Syntax</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-{% spellbook_styles %}
+&lt;head&gt;
+    {% spellbook_styles %}
+&lt;/head&gt;
 {% endverbatim %}
 </code></pre>
 <div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
 
         <div class="sb-card-header sb-p-2 sb-bold">
-            <h5 class="sb-card-title">Best Practice</h5>
+            <h5 class="sb-card-title">spellbook_styles</h5>
         </div>
 
     <div class="sb-card-body sb-p-3">
-        <p>Include this tag in your base template's <code>&lt;head&gt;</code> section to ensure consistent styling across all your markdown-rendered pages.</p>
+        <p>Generates a <code>&lt;style&gt;</code> tag with CSS custom properties based on your <code>SPELLBOOK_THEME</code> setting. Place it in your <code>&lt;head&gt;</code> before any Spellbook CSS files.</p>
     </div>
 
+        <div class="sb-card-footer sb-p-2">
+            No arguments
+        </div>
+
 </div>
 
-<h3 id="spellbook_url">spellbook_url</h3>
-<p>Does what Django's built-in <code>url</code> tag does, but for markdown-generated content.</p>
-<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
-    <span class="sb-alert-icon">
-
-            ℹ️
-
-    </span>
-    <span class="sb-alert-content">
-        <p><code>blog/tech/first-blog-post</code> will be converted to <code>blog:tech_first-blog-post</code> before being passed to the <code>url</code> of the generated context of each markdown file. <code>/</code> will be replaced with <code>_</code> and all dashes will remain.</p>
-    </span>
-</div>
-
-<p><strong>Syntax</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-{% spellbook_url 'docs:folder_first-page' %}
-{% endverbatim %}
-</code></pre>
-<p><strong>Examples</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-&lt;a href=&quot;{% spellbook_url 'tutorials:beginner_getting-started' %}&quot;&gt;Getting Started&lt;/a&gt; &lt;
-{% endverbatim %}
-</code></pre>
-<p>If the URL can't be reversed, it will return the original path.</p>
-<h3 id="dash_strip">dash_strip</h3>
-<p>Removes leading dashes from a string. This is particularly useful for cleaning up file names when displaying them as titles or navigation items.</p>
-<p><strong>Syntax</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-{% dash_strip string %}
-{% endverbatim %}
-</code></pre>
-<p><strong>Examples</strong>:</p>
-<pre><code class="language-django">{% verbatim %}
-&lt;h1&gt;{% dash_strip &quot;---introduction&quot; %}&lt;/h1&gt;
-&lt;!-- Renders as: &lt;h1&gt;introduction&lt;/h1&gt; --&gt;
-{% endverbatim %}
-</code></pre>
-<h3 id="show_metadata">show_metadata</h3>
-<p>Displays metadata in a formatted way. This tag is designed to present page metadata such as author, date, tags, etc.</p>
-<ol>
-<li>User-Facing Metadata:</li>
-</ol>
+<hr />
+<h2 id="metadata-display">Metadata Display</h2>
+<h3 id="show_metadata-page_metadata">show_metadata / page_metadata</h3>
+<p>Displays page metadata (published date, reading time, tags, word count).</p>
 <pre><code class="language-django">{% verbatim %}
 {% load spellbook_tags %}
+
+{# User-facing metadata #}
 {% show_metadata %}
+
+{# Developer metadata (URL paths, namespaces) #}
+{% show_metadata 'for_dev' %}
+
+{# Alias - same as show_metadata #}
+{% page_metadata %}
+{% page_metadata 'for_dev' %}
 {% endverbatim %}
 </code></pre>
-<p>You can include this tag in your spellbook base template to display metadata for the current page. This page contains the following metadata:</p>
-<ul>
-<li>
-<p><strong>Title</strong> {{ metadata.title }}</p>
-</li>
-<li>
-<p><strong>Created</strong> At {{ metadata.created_at }}</p>
-</li>
-<li>
-<p><strong>Tags</strong> {{ metadata.tags }}</p>
-</li>
-<li>
-<p><strong>Custom</strong> <strong>Meta</strong> {{ metadata.custom_meta }}</p>
-</li>
-<li>
-<p><strong>Word</strong> <strong>Count</strong> {{ metadata.word_count }}</p>
-</li>
-<li>
-<p><strong>Reading</strong> <strong>Time</strong> {{ metadata.reading_time_minutes }}</p>
-</li>
-<li>
-<p><strong>Prev</strong> <strong>Page</strong> {{ metadata.prev_page }} <em>(optional)</em></p>
-</li>
-<li>
-<p><strong>Next</strong> <strong>Page</strong> {{ metadata.next_page }} <em>(optional)</em></p>
-</li>
-</ul>
-<p>TODO: Add an author field to the metadata and update the defeault metadata template to display it.</p>
-<ol>
-<li>Developer-Facing Metadata:</li>
-</ol>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">show_metadata</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>display_type:</strong> <code>'for_user'</code> (default) or <code>'for_dev'</code></p>
+<p>User view shows: title, published date, reading time, tags, word count.</p>
+<p>Dev view shows: URL path, namespace, namespaced URL. Useful for debugging.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Arguments: display_type (optional)
+        </div>
+
+</div>
+
+<p>{~ accordion title="Restrict dev metadata to staff users" ~}</p>
 <pre><code class="language-django">{% verbatim %}
-{% load spellbook_tags %}
-{% if user.is_authenticated and user.is_staff %}
+{% if user.is_staff %}
     {% show_metadata 'for_dev' %}
 {% endif %}
 {% endverbatim %}
 </code></pre>
-<p>You can include this tag in your spellbook base template to display metadata for the current page.</p>
-<p>This page contains the following metadata:</p>
-<ul>
-<li>URL {{ metadata.url_path }}</li>
-</ul>
-<p>TODO: Add more fields that developers can use to debug and troubleshoot their content.</p>
-<ul>
-<li><code>SPELLBOOK_MD_METADATA_BASE</code> (default: ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')): The base template to use for the generated metadata of files when using the <code>% show_metadata %</code> template tag.</li>
-</ul>
-<pre><code class="language-python">SPELLBOOK_MD_METADATA_BASE = ('django_spellbook/metadata/for_user.html', 'django_spellbook/metadata/for_dev.html')
+<p>{~~}</p>
+<h3 id="directory_metadata">directory_metadata</h3>
+<p>Displays metadata for directory index pages (total pages, subdirectories).</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
 
-# This setting takes a tuple to apply to all sources, or a list to apply to each source individually
+{% directory_metadata %}
+{% directory_metadata 'for_dev' %}
+{% endverbatim %}
 </code></pre>
-<p><a href="https://github.com/smattymatty/django_spellbook/tree/main/django_spellbook/templates/django_spellbook/metadata">Check out the metadata templates</a> to see how to customize the display of metadata.</p>
-<p>Features:</p>
-<ul>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">directory_metadata</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>display_type:</strong> <code>'for_user'</code> (default) or <code>'for_dev'</code></p>
+<p>Only renders on directory index pages. Returns empty string on regular content pages.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Arguments: display_type (optional)
+        </div>
+
+</div>
+
+<hr />
+<h2 id="navigation">Navigation</h2>
+<h3 id="sidebar_toc">sidebar_toc</h3>
+<p>Renders the table of contents in the sidebar.</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+&lt;nav class=&quot;spellbook-toc&quot;&gt;
+    {% sidebar_toc %}
+&lt;/nav&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">sidebar_toc</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Renders a nested list of all pages in your content directory. Highlights the current page. Requires the <code>toc</code> variable in template context (automatically provided by Spellbook views).</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            No arguments | Requires &#x27;toc&#x27; in context
+        </div>
+
+</div>
+
+<h3 id="page_header">page_header</h3>
+<p>Renders the page title, author, and prev/next navigation.</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+&lt;main&gt;
+    {% page_header %}
+    {% block spellbook_md %}{% endblock %}
+&lt;/main&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">page_header</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Displays: back link to parent directory, page title from frontmatter, author (if set), and previous/next page links.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            No arguments
+        </div>
+
+</div>
+
+<hr />
+<h2 id="spellblocks-in-templates">SpellBlocks in Templates</h2>
+<h3 id="spellblock">spellblock</h3>
+<p>Render SpellBlocks directly in Django templates without writing markdown.</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+{% spellblock 'alert' type='warning' %}
+    &lt;p&gt;This is a warning message.&lt;/p&gt;
+{% endspellblock %}
+
+{% spellblock 'card' title='Welcome' footer='Updated today' %}
+    &lt;p&gt;Card content with {{ template_variable }}&lt;/p&gt;
+{% endspellblock %}
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">spellblock</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>block_name:</strong> Name of the SpellBlock (<code>'alert'</code>, <code>'card'</code>, <code>'accordion'</code>, etc.)</p>
+<p><strong>kwargs:</strong> Block-specific parameters (same as markdown syntax)</p>
+<p>Content between tags is passed to the block. Supports template variables and nested tags.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Arguments: block_name, **kwargs
+        </div>
+
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">All available blocks</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <ul>
 <li>
-<p>Automatic date tracking (created)</p>
+<p><code>alert</code> - type: info, success, warning, error</p>
 </li>
 <li>
-<p>Reading time estimates</p>
+<p><code>card</code> - title, footer</p>
 </li>
 <li>
-<p>Content navigation links</p>
+<p><code>accordion</code> - title, open</p>
 </li>
 <li>
-<p>Custom key-value pairs</p>
+<p><code>hero</code> - layout, image_src, image_alt, min_height, bg_color</p>
 </li>
 <li>
-<p>Responsive grid layout</p>
+<p><code>progress</code> - value, max, label</p>
+</li>
+<li>
+<p><code>quote</code> - author, source</p>
+</li>
+<li>
+<p><code>div</code>, <code>span</code>, <code>section</code>, <code>article</code>, <code>nav</code>, <code>aside</code>, <code>header</code>, <code>footer</code> - any HTML attributes</p>
 </li>
 </ul>
+        </div>
+    </div>
+</div>
+
+<hr />
+<h2 id="utility-tags">Utility Tags</h2>
+<h3 id="spellbook_url">spellbook_url</h3>
+<p>Convert a TOC URL path to a Django URL.</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+&lt;a href=&quot;{% spellbook_url 'docs:getting-started' %}&quot;&gt;Getting Started&lt;/a&gt;
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">spellbook_url</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><strong>url_path:</strong> Namespaced URL path (e.g., <code>'myapp:page-name'</code>)</p>
+<p>Returns the reversed URL. Returns <code>'# Not Found'</code> if the path doesn't exist.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Arguments: url_path
+        </div>
+
+</div>
+
+<h3 id="dash_strip">dash_strip</h3>
+<p>Remove leading dashes from a string. Useful for cleaning up auto-generated names.</p>
+<pre><code class="language-django">{% verbatim %}
+{{ &quot;-my-page-name&quot;|dash_strip }}
+{# Output: my-page-name #}
+{% endverbatim %}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">dash_strip</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Strips leading dashes from strings. Used internally for TOC display names.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Filter
+        </div>
+
+</div>
+
+<hr />
+<h2 id="complete-example">Complete Example</h2>
+<p>Custom base template using all the tags:</p>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- my_app/spellbook_base.html --&gt;
+{% extends 'base.html' %}
+{% load spellbook_tags %}
+{% load static %}
+
+{% block extra_head %}
+    {% spellbook_styles %}
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{% static 'django_spellbook/css_modules/sidebar_left.css' %}&quot;&gt;
+{% endblock %}
+
+{% block content %}
+&lt;div class=&quot;spellbook-layout&quot;&gt;
+    &lt;nav class=&quot;spellbook-toc&quot;&gt;
+        {% if is_directory_index %}
+            {% directory_metadata %}
+        {% else %}
+            {% page_metadata %}
+        {% endif %}
+
+        {% sidebar_toc %}
+
+        {% if user.is_staff %}
+            {% if is_directory_index %}
+                {% directory_metadata 'for_dev' %}
+            {% else %}
+                {% page_metadata 'for_dev' %}
+            {% endif %}
+        {% endif %}
+    &lt;/nav&gt;
+
+    &lt;main class=&quot;spellbook-content&quot;&gt;
+        {% page_header %}
+        {% block spellbook_md %}{% endblock %}
+    &lt;/main&gt;
+&lt;/div&gt;
+{% endblock %}
+{% endverbatim %}
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Configuration</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All the settings that control how Spellbook processes your markdown and generates templates.</p>
+<p><a href="/docs/configuration/">View Configuration →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">SpellBlocks</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The component library you'll use in your markdown. Alerts, cards, accordions, heroes, and more.</p>
+<p><a href="/docs/spellblocks/introduction/">Browse SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}

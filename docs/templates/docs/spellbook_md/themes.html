@@ -1,0 +1,297 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Django Spellbook includes nine color presets. Pick one in your settings and every SpellBlock, sidebar, and utility class adapts automatically.</p>
+<h2 id="using-a-preset">Using a Preset</h2>
+<pre><code class="language-python"># settings.py
+SPELLBOOK_THEME = 'arcane'
+</code></pre>
+<p>That's it. Run <code>python manage.py spellbook_md</code> and your content renders with the new colors.</p>
+<h2 id="available-presets">Available Presets</h2>
+<h3 id="default">default</h3>
+<p>Blue and gray. Professional, readable, familiar.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'default'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>The classic Spellbook look. Blue primary actions, amber accents, gray supporting elements. Works everywhere.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #2563eb | Accent: #d97706
+        </div>
+
+</div>
+
+<hr />
+<h3 id="arcane">arcane</h3>
+<p>Purple and gold. Mysterious, magical, dramatic.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'arcane'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Deep violet primary with golden spell glows. For documentation that feels like a grimoire.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #7c3aed | Accent: #d97706
+        </div>
+
+</div>
+
+<hr />
+<h3 id="celestial">celestial</h3>
+<p>Sky blue and gold. Light, airy, divine.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'celestial'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Heavenly blues with sacred gold accents. Clean and uplifting.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #0284c7 | Accent: #d97706
+        </div>
+
+</div>
+
+<hr />
+<h3 id="forest">forest</h3>
+<p>Green and brown. Natural, grounded, earthy.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'forest'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Deep forest greens with autumn orange accents. Organic and calm.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #15803d | Accent: #ea580c
+        </div>
+
+</div>
+
+<hr />
+<h3 id="ocean">ocean</h3>
+<p>Blue and cyan. Deep, fluid, aquatic.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'ocean'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Ocean depths and coastal teals. Cool and refreshing.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #0369a1 | Accent: #0891b2
+        </div>
+
+</div>
+
+<hr />
+<h3 id="phoenix">phoenix</h3>
+<p>Red and orange. Fiery, bold, energetic.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'phoenix'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Flame reds with ember orange. For content that demands attention.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #dc2626 | Accent: #ea580c
+        </div>
+
+</div>
+
+<hr />
+<h3 id="shadow">shadow</h3>
+<p>Monochrome grays. Dark, minimal, focused.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'shadow'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Pure grayscale palette. No color distraction, maximum readability.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #374151 | Accent: #6b7280
+        </div>
+
+</div>
+
+<hr />
+<h3 id="enchanted">enchanted</h3>
+<p>Pink and gold. Magical, whimsical, vibrant.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'enchanted'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Bright magical pinks with fairy gold. Playful and memorable.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #db2777 | Accent: #ca8a04
+        </div>
+
+</div>
+
+<hr />
+<h3 id="pastel">pastel</h3>
+<p>Soft violet and amber. Gentle, soft, approachable.</p>
+<pre><code class="language-python">SPELLBOOK_THEME = 'pastel'
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+    <div class="sb-card-body sb-p-3">
+        <p>Darker pastels that meet accessibility standards while staying soft. Easy on the eyes.</p>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Primary: #7c3aed | Accent: #d97706
+        </div>
+
+</div>
+
+<hr />
+<h2 id="quick-customization">Quick Customization</h2>
+<p>Override specific colors while keeping the rest of a preset:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'preset': 'ocean',
+    'colors': {
+        'primary': '#0EA5E9',
+        'accent': '#F59E0B',
+    }
+}
+</code></pre>
+<p>This starts with the ocean preset and replaces just the primary and accent colors.</p>
+<hr />
+<h2 id="custom-colors">Custom Colors</h2>
+<p>Define your own palette from scratch:</p>
+<pre><code class="language-python">SPELLBOOK_THEME = {
+    'name': 'corporate',
+    'colors': {
+        'primary': '#1E40AF',
+        'secondary': '#64748B',
+        'accent': '#F59E0B',
+    }
+}
+</code></pre>
+<p>Undefined colors fall back to the default theme values.</p>
+<hr />
+<h2 id="color-categories">Color Categories</h2>
+<p>Each theme defines colors in four groups:</p>
+<p><strong>Core</strong> - Your brand identity</p>
+<ul>
+<li>
+<p><code>primary</code> - Main action color (buttons, links, active states)</p>
+</li>
+<li>
+<p><code>secondary</code> - Supporting color (borders, muted elements)</p>
+</li>
+<li>
+<p><code>accent</code> - Highlight color (calls to action, badges)</p>
+</li>
+<li>
+<p><code>neutral</code> - Background elements</p>
+</li>
+</ul>
+<p><strong>Status</strong> - User feedback</p>
+<ul>
+<li>
+<p><code>success</code> - Positive outcomes</p>
+</li>
+<li>
+<p><code>warning</code> - Caution states</p>
+</li>
+<li>
+<p><code>error</code> - Problems and failures</p>
+</li>
+<li>
+<p><code>info</code> - Informational messages</p>
+</li>
+</ul>
+<p><strong>Specialty</strong> - Extended palette</p>
+<ul>
+<li>
+<p><code>emphasis</code> - Strong highlights</p>
+</li>
+<li>
+<p><code>subtle</code> - Soft backgrounds</p>
+</li>
+<li>
+<p><code>distinct</code> - Differentiation</p>
+</li>
+<li>
+<p><code>aether</code>, <code>artifact</code>, <code>sylvan</code>, <code>danger</code> - Theme-specific accents</p>
+</li>
+</ul>
+<p><strong>System</strong> - Page structure</p>
+<ul>
+<li>
+<p><code>background</code> - Page background</p>
+</li>
+<li>
+<p><code>surface</code> - Card and panel backgrounds</p>
+</li>
+<li>
+<p><code>text</code> - Primary text color</p>
+</li>
+<li>
+<p><code>text-secondary</code> - Muted text</p>
+</li>
+</ul>
+<hr />
+<h2 id="accessibility">Accessibility</h2>
+<p>All presets are WCAG AA compliant with a minimum 4.5:1 contrast ratio. The colors were specifically chosen to be readable while maintaining their visual character.</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Custom Themes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Build a complete theme from scratch. Define every color, add custom color names, and create a cohesive brand experience.</p>
+<p><a href="/docs/customization/custom-themes/">Create Custom Themes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Color Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The CSS utility classes that use these theme colors. Backgrounds, text, borders, and hover states.</p>
+<p><a href="/docs/styles/colors/">View Color Classes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

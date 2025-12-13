@@ -1,0 +1,396 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Convert markdown to HTML anywhere in your Django app. One function, full SpellBlock support.</p>
+<pre><code class="language-python">from django_spellbook.parsers import spellbook_render
+
+html = spellbook_render(markdown_text)
+</code></pre>
+<hr />
+<h2 id="basic-usage">Basic Usage</h2>
+<pre><code class="language-python">from django_spellbook.parsers import spellbook_render
+
+markdown = &quot;&quot;&quot;
+# Welcome
+
+This is **bold** and *italic*.
+
+- Item one
+
+- Item two
+&quot;&quot;&quot;
+
+html = spellbook_render(markdown)
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-html">&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Item one&lt;/li&gt;
+&lt;li&gt;Item two&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<hr />
+<h2 id="spellblocks-just-work">SpellBlocks Just Work</h2>
+<p>Every SpellBlock available in markdown files works in <code>spellbook_render</code>:</p>
+<pre><code class="language-python">markdown = &quot;&quot;&quot;
+{~ alert type=&quot;warning&quot; ~}
+Check your settings before deploying.
+{~~}
+
+{~ card title=&quot;Quick Stats&quot; ~}
+
+- Users: 1,234
+
+- Revenue: $56,789
+{~~}
+
+{~ accordion title=&quot;Click to expand&quot; ~}
+Hidden content revealed on click.
+{~~}
+&quot;&quot;&quot;
+
+html = spellbook_render(markdown)
+</code></pre>
+<p>Full theme support. Full styling. No extra setup.</p>
+<hr />
+<h2 id="in-views">In Views</h2>
+<h3 id="template-context">Template Context</h3>
+<pre><code class="language-python">from django.shortcuts import render
+from django_spellbook.parsers import spellbook_render
+
+def article_view(request, slug):
+    article = Article.objects.get(slug=slug)
+
+    return render(request, 'article.html', {
+        'title': article.title,
+        'content': spellbook_render(article.markdown_content),
+    })
+</code></pre>
+<pre><code class="language-django">{% verbatim %}
+&lt;!-- article.html --&gt;
+{% load spellbook_tags %}
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    {% spellbook_styles %}
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;{{ title }}&lt;/h1&gt;
+    {{ content|safe }}
+&lt;/body&gt;
+&lt;/html&gt;
+{% endverbatim %}
+</code></pre>
+<h3 id="direct-response">Direct Response</h3>
+<pre><code class="language-python">from django.http import HttpResponse
+from django_spellbook.parsers import spellbook_render
+
+def preview_markdown(request):
+    markdown = request.POST.get('markdown', '')
+    html = spellbook_render(markdown)
+    return HttpResponse(html)
+</code></pre>
+<hr />
+<h2 id="in-apis">In APIs</h2>
+<h3 id="django-rest-framework">Django REST Framework</h3>
+<pre><code class="language-python">from rest_framework.views import APIView
+from rest_framework.response import Response
+from django_spellbook.parsers import spellbook_render
+
+class RenderMarkdownView(APIView):
+    def post(self, request):
+        markdown = request.data.get('markdown', '')
+        return Response({
+            'html': spellbook_render(markdown)
+        })
+</code></pre>
+<h3 id="simple-json-endpoint">Simple JSON Endpoint</h3>
+<pre><code class="language-python">import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django_spellbook.parsers import spellbook_render
+
+@csrf_exempt
+def api_render(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        return JsonResponse({
+            'html': spellbook_render(data.get('markdown', ''))
+        })
+</code></pre>
+<hr />
+<h2 id="dynamic-content">Dynamic Content</h2>
+<h3 id="user-generated-content">User-Generated Content</h3>
+<pre><code class="language-python">from django.shortcuts import render
+from django_spellbook.parsers import spellbook_render
+
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+
+    # User's bio is stored as markdown
+    bio_html = spellbook_render(user.profile.bio)
+
+    return render(request, 'profile.html', {
+        'user': user,
+        'bio': bio_html,
+    })
+</code></pre>
+<h3 id="comments-with-formatting">Comments with Formatting</h3>
+<pre><code class="language-python">def comment_list(request, post_id):
+    comments = Comment.objects.filter(post_id=post_id)
+
+    rendered_comments = [
+        {
+            'author': c.author,
+            'content': spellbook_render(c.markdown_content),
+            'created': c.created_at,
+        }
+        for c in comments
+    ]
+
+    return render(request, 'comments.html', {
+        'comments': rendered_comments,
+    })
+</code></pre>
+<hr />
+<h2 id="email-templates">Email Templates</h2>
+<p>Generate rich HTML emails from markdown:</p>
+<pre><code class="language-python">from django.core.mail import send_mail
+from django_spellbook.parsers import spellbook_render
+
+def send_newsletter(subscriber, issue):
+    html_content = spellbook_render(f&quot;&quot;&quot;
+# {issue.title}
+
+{issue.intro}
+
+{~ card title=&quot;This Week's Highlight&quot; ~}
+{issue.highlight}
+{~~}
+
+---
+
+{issue.body}
+
+{~ alert type=&quot;info&quot; ~}
+You're receiving this because you subscribed at example.com
+{~~}
+&quot;&quot;&quot;)
+
+    send_mail(
+        subject=issue.title,
+        message=issue.plain_text,  # Fallback
+        html_message=html_content,
+        from_email='newsletter@example.com',
+        recipient_list=[subscriber.email],
+    )
+</code></pre>
+<hr />
+<h2 id="admin-previews">Admin Previews</h2>
+<p>Live preview in Django admin:</p>
+<pre><code class="language-python"># admin.py
+from django.contrib import admin
+from django.utils.html import format_html
+from django_spellbook.parsers import spellbook_render
+from .models import Post
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created']
+    readonly_fields = ['content_preview']
+
+    def content_preview(self, obj):
+        if obj.markdown_content:
+            html = spellbook_render(obj.markdown_content)
+            return format_html(
+                '&lt;div style=&quot;max-width: 600px; padding: 1rem; '
+                'border: 1px solid #ccc; border-radius: 4px;&quot;&gt;'
+                '{}&lt;/div&gt;',
+                html
+            )
+        return &quot;No content&quot;
+
+    content_preview.short_description = &quot;Preview&quot;
+</code></pre>
+<hr />
+<h2 id="management-commands">Management Commands</h2>
+<p>Process markdown in scripts:</p>
+<pre><code class="language-python"># management/commands/export_docs.py
+from django.core.management.base import BaseCommand
+from django_spellbook.parsers import spellbook_render
+from pathlib import Path
+
+class Command(BaseCommand):
+    help = 'Export markdown files as HTML'
+
+    def handle(self, *args, **options):
+        docs_dir = Path('docs')
+        output_dir = Path('exported')
+        output_dir.mkdir(exist_ok=True)
+
+        for md_file in docs_dir.glob('**/*.md'):
+            markdown = md_file.read_text()
+            html = spellbook_render(markdown)
+
+            output_path = output_dir / md_file.with_suffix('.html').name
+            output_path.write_text(html)
+
+            self.stdout.write(f'Exported: {output_path}')
+</code></pre>
+<hr />
+<h2 id="markdown-features-included">Markdown Features Included</h2>
+<p>Out of the box, <code>spellbook_render</code> supports:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fenced code blocks</td>
+<td><code>```</code></td>
+</tr>
+<tr>
+<td>Tables</td>
+<td><code>\| col \| col \|</code></td>
+</tr>
+<tr>
+<td>Footnotes</td>
+<td><code>[^1]</code></td>
+</tr>
+<tr>
+<td>Attribute lists</td>
+<td><code>{: .class #id }</code></td>
+</tr>
+<tr>
+<td>Auto-generated TOC</td>
+<td><code>[TOC]</code></td>
+</tr>
+<tr>
+<td>All SpellBlocks</td>
+<td><code>{~ block ~}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Code blocks are protected—SpellBlocks inside ``` fences render as literal text, not components.</p>
+<hr />
+<h2 id="advanced-custom-engine">Advanced: Custom Engine</h2>
+<p>For more control, use <code>SpellbookMarkdownEngine</code> directly:</p>
+<pre><code class="language-python">from django_spellbook.markdown.engine import SpellbookMarkdownEngine
+
+# Custom markdown extensions
+engine = SpellbookMarkdownEngine(
+    markdown_extensions=[
+        'markdown.extensions.fenced_code',
+        'markdown.extensions.tables',
+        # Add your own extensions
+    ]
+)
+
+html = engine.parse_and_render(markdown_text)
+</code></pre>
+<h3 id="engine-options">Engine Options</h3>
+<pre><code class="language-python">SpellbookMarkdownEngine(
+    reporter=None,           # Custom logging
+    markdown_extensions=None, # Override extensions list
+    fail_on_error=False,     # Raise exceptions on SpellBlock errors
+)
+</code></pre>
+<p>When <code>fail_on_error=False</code> (default), broken SpellBlocks insert an HTML comment instead of crashing. Set to <code>True</code> for strict validation during development.</p>
+<hr />
+<h2 id="performance">Performance</h2>
+<p><code>spellbook_render</code> is lightweight:</p>
+<ul>
+<li>
+<p>No database queries</p>
+</li>
+<li>
+<p>No file I/O</p>
+</li>
+<li>
+<p>Pure string processing</p>
+</li>
+</ul>
+<p>For high-traffic views, cache the output:</p>
+<pre><code class="language-python">from django.core.cache import cache
+from django_spellbook.parsers import spellbook_render
+
+def get_rendered_content(article):
+    cache_key = f'article_html_{article.id}_{article.updated_at.timestamp()}'
+
+    html = cache.get(cache_key)
+    if html is None:
+        html = spellbook_render(article.markdown_content)
+        cache.set(cache_key, html, timeout=3600)
+
+    return html
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">SpellBlocks Reference</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All available SpellBlocks for use in your markdown.</p>
+<p><a href="/docs/spellblocks/">View SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Template Tags</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Use SpellBlocks directly in Django templates with <code>{% verbatim %}{% spellblock %}{% endverbatim %}</code>.</p>
+<p><a href="/docs/template-tags/">View Template Tags →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Themes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Style your rendered content with theme presets.</p>
+<p><a href="/docs/themes/">View Themes →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<h1 id="django-spellbook">Django Spellbook</h1>
+<p>Markdown with components for Django.</p>
+<h2 id="the-core">The Core</h2>
+<p>One function. Markdown in, HTML out, with full component support.</p>
+<pre><code class="language-python">from django_spellbook.parsers import spellbook_render
+
+html = spellbook_render(&quot;&quot;&quot;
+# Welcome
+
+{~ alert type=&quot;success&quot; ~}
+Your account is ready.
+{~~}
+&quot;&quot;&quot;)
+</code></pre>
+<p>Use it in views, APIs, emails, admin panels, management commands—anywhere you have markdown and want HTML.</p>
+<h2 id="spellblocks">SpellBlocks</h2>
+<p>Standard markdown covers text. SpellBlocks cover structure.</p>
+<pre><code class="language-markdown">{~ alert type=&quot;warning&quot; ~}
+This requires Django 5.0 or higher.
+{~~}
+
+{~ card title=&quot;Quick Install&quot; ~}
+`pip install django-spellbook`
+{~~}
+</code></pre>
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This requires Django 5.0 or higher.</p>
+    </span>
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Quick Install</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>pip install django-spellbook</code></p>
+    </div>
+
+</div>
+
+<p>Cards, alerts, accordions, quotes, heroes, progress bars—visual components embedded directly in markdown. They nest, support markdown inside, and you can create your own.</p>
+<h2 id="two-ways-to-use-it">Two Ways To Use It</h2>
+<h3 id="programmatic">Programmatic</h3>
+<p>Call <code>spellbook_render()</code> anywhere:</p>
+<ul>
+<li>
+<p>Database-backed content (CMS, blogs, user profiles)</p>
+</li>
+<li>
+<p>API endpoints that return rendered HTML</p>
+</li>
+<li>
+<p>Email templates with rich formatting</p>
+</li>
+<li>
+<p>Admin preview panels</p>
+</li>
+<li>
+<p>Dynamic content from any source</p>
+</li>
+</ul>
+<h3 id="file-based">File-Based</h3>
+<p>Run one command, get a full Django content system:</p>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p>Spellbook processes a directory of markdown files and generates:</p>
+<ul>
+<li>
+<p>Django templates with rendered content</p>
+</li>
+<li>
+<p>View functions for each page</p>
+</li>
+<li>
+<p>URL patterns matching your folder structure</p>
+</li>
+<li>
+<p>Sidebar navigation with table of contents</p>
+</li>
+<li>
+<p>Previous/next page links</p>
+</li>
+</ul>
+<p>Your folder hierarchy becomes your URL hierarchy. Frontmatter becomes page metadata. You write markdown, Spellbook handles the wiring.</p>
+<p><strong>Good fit for:</strong> Documentation sites, knowledge bases, content in version control, markdown-native workflows.</p>
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Quick Start</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <p>Get a working Spellbook site in five minutes. Install the package, add three settings, run one command.</p>
+<p><a href="/docs/quick-start/">Go to Quick Start →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">spellbook_render()</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Use Spellbook programmatically in views, APIs, and anywhere else you need markdown-to-HTML conversion.</p>
+<p><a href="/docs/spellbook-render/">View Function Docs →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">SpellBlocks</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The full component library. Alerts, cards, accordions, quotes, heroes, progress bars, and HTML element blocks for HTMX and Alpine.js.</p>
+<p><a href="/examples/introduction/">Browse SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Configuration</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All the settings. Multiple source directories, URL prefixes, custom base templates, theme selection, and sitemap integration.</p>
+<p><a href="/docs/configuration/">View Configuration →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

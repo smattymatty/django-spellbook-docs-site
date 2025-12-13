@@ -507,3 +507,338 @@ def random_markdown_api(
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content_type="text/plain",
         )
+
+
+# Style Preview API Views for HTMX color examples
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_bg_core(request):
+    """Preview for core background colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">Primary</div>
+        <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">Secondary</div>
+        <div class="sb-bg-accent sb-text-text sb-p-3 sb-rounded">Accent</div>
+        <div class="sb-bg-neutral sb-text-text sb-p-3 sb-rounded">Neutral</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_bg_status(request):
+    """Preview for status background colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-success sb-text-text sb-p-3 sb-rounded">Success</div>
+        <div class="sb-bg-warning sb-text-text sb-p-3 sb-rounded">Warning</div>
+        <div class="sb-bg-error sb-text-text sb-p-3 sb-rounded">Error</div>
+        <div class="sb-bg-info sb-text-text sb-p-3 sb-rounded">Info</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_bg_specialty(request):
+    """Preview for specialty background colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-emphasis sb-text-text sb-p-3 sb-rounded">Emphasis</div>
+        <div class="sb-bg-subtle sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">Subtle</div>
+        <div class="sb-bg-distinct sb-text-text sb-p-3 sb-rounded">Distinct</div>
+        <div class="sb-bg-aether sb-text-text sb-p-3 sb-rounded">Aether</div>
+        <div class="sb-bg-artifact sb-text-text sb-p-3 sb-rounded">Artifact</div>
+        <div class="sb-bg-sylvan sb-text-text sb-p-3 sb-rounded">Sylvan</div>
+        <div class="sb-bg-danger sb-text-text sb-p-3 sb-rounded">Danger</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_bg_system(request):
+    """Preview for system background colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-background sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">Background</div>
+        <div class="sb-bg-surface sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">Surface</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_bg_base(request):
+    """Preview for base background colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-black sb-text-white sb-p-3 sb-rounded">Black</div>
+        <div class="sb-bg-white sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">White</div>
+        <div class="sb-bg-transparent sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">Transparent</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_text_colors(request):
+    """Preview for text colors."""
+    html = '''
+    <div class="sb-flex sb-gap-4 sb-flex-wrap">
+        <span class="sb-text-primary sb-font-bold">Primary</span>
+        <span class="sb-text-secondary sb-font-bold">Secondary</span>
+        <span class="sb-text-accent sb-font-bold">Accent</span>
+        <span class="sb-text-neutral sb-font-bold">Neutral</span>
+        <span class="sb-text-success sb-font-bold">Success</span>
+        <span class="sb-text-warning sb-font-bold">Warning</span>
+        <span class="sb-text-error sb-font-bold">Error</span>
+        <span class="sb-text-info sb-font-bold">Info</span>
+        <span class="sb-text-text sb-font-bold">Text (default)</span>
+        <span class="sb-text-text-secondary sb-font-bold">Text Secondary (muted)</span>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_border_colors(request):
+    """Preview for border colors."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-border-2 sb-border-primary sb-p-3 sb-rounded sb-text-text">Primary</div>
+        <div class="sb-border-2 sb-border-secondary sb-p-3 sb-rounded sb-text-text">Secondary</div>
+        <div class="sb-border-2 sb-border-accent sb-p-3 sb-rounded sb-text-text">Accent</div>
+        <div class="sb-border-2 sb-border-success sb-p-3 sb-rounded sb-text-text">Success</div>
+        <div class="sb-border-2 sb-border-warning sb-p-3 sb-rounded sb-text-text">Warning</div>
+        <div class="sb-border-2 sb-border-error sb-p-3 sb-rounded sb-text-text">Error</div>
+        <div class="sb-border-2 sb-border-info sb-p-3 sb-rounded sb-text-text">Info</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_opacity_bg(request):
+    """Preview for background opacity variants."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">100%</div>
+        <div class="sb-bg-primary-90 sb-text-text sb-p-3 sb-rounded">90%</div>
+        <div class="sb-bg-primary-75 sb-text-text sb-p-3 sb-rounded">75%</div>
+        <div class="sb-bg-primary-50 sb-text-text sb-p-3 sb-rounded">50%</div>
+        <div class="sb-bg-primary-25 sb-text-text sb-p-3 sb-rounded">25%</div>
+        <div class="sb-bg-primary-10 sb-text-text sb-p-3 sb-rounded sb-border sb-border-neutral-25">10%</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_opacity_text(request):
+    """Preview for text opacity variants."""
+    html = '''
+    <div class="sb-flex sb-gap-4 sb-flex-wrap">
+        <span class="sb-text-primary sb-font-bold">100%</span>
+        <span class="sb-text-primary-75 sb-font-bold">75%</span>
+        <span class="sb-text-primary-50 sb-font-bold">50%</span>
+        <span class="sb-text-primary-25 sb-font-bold">25%</span>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_opacity_border(request):
+    """Preview for border opacity variants."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-border-2 sb-border-primary sb-p-3 sb-rounded sb-text-text">100%</div>
+        <div class="sb-border-2 sb-border-primary-75 sb-p-3 sb-rounded sb-text-text">75%</div>
+        <div class="sb-border-2 sb-border-primary-50 sb-p-3 sb-rounded sb-text-text">50%</div>
+        <div class="sb-border-2 sb-border-primary-25 sb-p-3 sb-rounded sb-text-text">25%</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_hover_bg(request):
+    """Preview for background hover states."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-bg-white sb-hover:bg-primary sb-hover:text-white sb-p-3 sb-rounded sb-border sb-border-neutral-25 sb-transition sb-cursor-pointer">
+            White → Primary
+        </div>
+        <div class="sb-bg-surface sb-hover:bg-accent sb-hover:text-white sb-p-3 sb-rounded sb-border sb-border-neutral-25 sb-transition sb-cursor-pointer">
+            Surface → Accent
+        </div>
+        <div class="sb-bg-transparent sb-hover:bg-primary-25 sb-p-3 sb-rounded sb-border sb-border-neutral-25 sb-transition sb-cursor-pointer">
+            Transparent → 25%
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_hover_text(request):
+    """Preview for text hover states."""
+    html = '''
+    <div class="sb-flex sb-gap-4 sb-flex-wrap">
+        <span class="sb-text-secondary sb-hover:text-primary sb-font-bold sb-transition sb-cursor-pointer">
+            Secondary → Primary
+        </span>
+        <span class="sb-text-primary sb-hover:text-accent sb-font-bold sb-transition sb-cursor-pointer">
+            Primary → Accent
+        </span>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_hover_border(request):
+    """Preview for border hover states."""
+    html = '''
+    <div class="sb-flex sb-gap-2 sb-flex-wrap">
+        <div class="sb-border-2 sb-border-secondary sb-hover:border-primary sb-p-3 sb-rounded sb-text-text sb-transition sb-cursor-pointer">
+            Secondary → Primary
+        </div>
+        <div class="sb-border-2 sb-border-neutral sb-hover:border-accent sb-p-3 sb-rounded sb-text-text sb-transition sb-cursor-pointer">
+            Neutral → Accent
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+# Spacing Preview API Views for HTMX spacing examples
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_p(request):
+    """Preview for padding (all sides)."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-2">
+        <div class="sb-p-0 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-0: No padding</div>
+        <div class="sb-p-1 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-1: 0.25rem</div>
+        <div class="sb-p-2 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-2: 0.5rem</div>
+        <div class="sb-p-3 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-3: 1rem</div>
+        <div class="sb-p-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-4: 1.5rem</div>
+        <div class="sb-p-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">p-6: 2rem</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_pxy(request):
+    """Preview for px/py padding."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-2">
+        <div class="sb-px-6 sb-py-1 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">px-6 py-1: Wide horizontal</div>
+        <div class="sb-px-1 sb-py-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">px-1 py-4: Tall vertical</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_psides(request):
+    """Preview for padding individual sides."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-2">
+        <div class="sb-pt-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">pt-4: Padding top</div>
+        <div class="sb-pr-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">pr-6: Padding right</div>
+        <div class="sb-pb-4 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">pb-4: Padding bottom</div>
+        <div class="sb-pl-6 sb-bg-surface sb-text-text sb-border-2 sb-border-neutral">pl-6: Padding left</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_m(request):
+    """Preview for margin (all sides)."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-2">
+        <div class="sb-bg-neutral-5 sb-p-1">
+            <div class="sb-m-0 sb-bg-surface sb-text-text sb-p-2">m-0 inside container</div>
+        </div>
+        <div class="sb-bg-neutral-5 sb-p-1">
+            <div class="sb-m-2 sb-bg-surface sb-text-text sb-p-2">m-2 inside container</div>
+        </div>
+        <div class="sb-bg-neutral-5 sb-p-1">
+            <div class="sb-m-4 sb-bg-surface sb-text-text sb-p-2">m-4 inside container</div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_mb(request):
+    """Preview for margin-bottom."""
+    html = '''
+    <div>
+        <div class="sb-bg-surface sb-text-text sb-p-3 sb-mb-2 sb-border-2 sb-border-neutral">mb-2: Small gap below</div>
+        <div class="sb-bg-surface sb-text-text sb-p-3 sb-mb-4 sb-border-2 sb-border-neutral">mb-4: Medium gap below</div>
+        <div class="sb-bg-surface sb-text-text sb-p-3 sb-mb-8 sb-border-2 sb-border-neutral">mb-8: Large gap below</div>
+        <div class="sb-bg-surface sb-text-text sb-p-3 sb-border-2 sb-border-neutral">Next element after gaps</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_spacing_gap(request):
+    """Preview for gap utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <div>
+            <div class="sb-text-text-secondary sb-mb-1">gap-2:</div>
+            <div class="sb-flex sb-gap-2">
+                <div class="sb-bg-primary sb-text-text sb-p-3">A</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">B</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">C</div>
+            </div>
+        </div>
+        <div>
+            <div class="sb-text-text-secondary sb-mb-1">gap-4:</div>
+            <div class="sb-flex sb-gap-4">
+                <div class="sb-bg-primary sb-text-text sb-p-3">A</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">B</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">C</div>
+            </div>
+        </div>
+        <div>
+            <div class="sb-text-text-secondary sb-mb-1">gap-8:</div>
+            <div class="sb-flex sb-gap-8">
+                <div class="sb-bg-primary sb-text-text sb-p-3">A</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">B</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3">C</div>
+            </div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')

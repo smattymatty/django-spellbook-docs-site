@@ -1,0 +1,134 @@
+{% extends 'changelog/sb_base.html' %}
+
+{% block spellbook_md %}
+<h2 id="version-022"><strong>Version 0.2.2</strong></h2>
+<h3 id="added">Added</h3>
+<h4 id="spellbook-wizard-interactive-command-menu">Spellbook Wizard - Interactive Command Menu</h4>
+<p>New interactive wizard makes Django Spellbook easier to use with a menu-driven interface.</p>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-bash">python manage.py spellbook_wizard
+</code></pre>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>
+<p>Clean menu interface for all Spellbook commands</p>
+</li>
+<li>
+<p>No need to remember command names and flags</p>
+</li>
+<li>
+<p>Categories organize related tasks</p>
+</li>
+<li>
+<p>Easy navigation with numbered selections</p>
+</li>
+</ul>
+<p><strong>Example session:</strong></p>
+<pre><code>Spellbook Wizard
+
+  [1] Batch process
+  [2] Validate
+
+  [0] Exit
+
+&gt; 1
+
+Batch Process
+
+  [1] Process markdown (spellbook_md)
+
+  [0] ← Back
+
+&gt; 1
+
+Running spellbook_md...
+[normal spellbook_md output]
+</code></pre>
+<p><strong>Current features:</strong></p>
+<ul>
+<li>
+<p>Batch process category with spellbook_md integration</p>
+</li>
+<li>
+<p>Validate category with frontmatter validation</p>
+</li>
+</ul>
+<h4 id="frontmatter-validation">Frontmatter Validation</h4>
+<p>New validation tools help ensure your markdown files have proper metadata.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>
+<p><strong>Audit mode</strong> - Reports frontmatter issues without changes</p>
+</li>
+<li>
+<p><strong>Interactive fix mode</strong> - Walk through fixes with user prompts</p>
+</li>
+<li>
+<p>Validates required fields: title, published, author, tags</p>
+</li>
+<li>
+<p>Type checking for dates (YYYY-MM-DD format), lists, and strings</p>
+</li>
+<li>
+<p>Shortcuts like 'today' for date entry, 'skip' to skip fixes</p>
+</li>
+</ul>
+<p><strong>Usage - Standalone Command:</strong></p>
+<pre><code class="language-bash"># Audit mode (reports issues only)
+python manage.py spellbook_validate
+
+# Interactive fix mode
+python manage.py spellbook_validate --fix
+
+# Validate specific directory
+python manage.py spellbook_validate --source-path /path/to/markdown
+</code></pre>
+<p><strong>Usage - Via Wizard:</strong></p>
+<pre><code class="language-bash">python manage.py spellbook_wizard
+# Select [2] Validate → [1] Validate frontmatter
+</code></pre>
+<p><strong>What it validates:</strong></p>
+<ul>
+<li>
+<p><code>title</code>: Required, non-empty string</p>
+</li>
+<li>
+<p><code>published</code>: Required, valid date in YYYY-MM-DD format</p>
+</li>
+<li>
+<p><code>author</code>: Required, non-empty string</p>
+</li>
+<li>
+<p><code>tags</code>: Required, must be a list with at least 1 item</p>
+</li>
+</ul>
+<p><strong>Example output:</strong></p>
+<pre><code>❌ docs/getting-started.md
+   • Missing: author
+   • tags: must have at least 1 item
+
+❌ blog/old-post.md
+   • published: invalid date format &quot;Dec 2025&quot; (expected YYYY-MM-DD)
+
+────────────────────────────────
+⚠️  2 pages with issues
+✅ 45 pages valid
+
+Run interactive fix? (y/n):
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>
+<p>Perfect for new users learning Spellbook</p>
+</li>
+<li>
+<p>Faster workflow for common tasks</p>
+</li>
+<li>
+<p>Consistent interface as features grow</p>
+</li>
+<li>
+<p>Graceful error handling</p>
+</li>
+</ul>
+{% endblock %}

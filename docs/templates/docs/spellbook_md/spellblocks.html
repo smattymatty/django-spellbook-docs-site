@@ -1,0 +1,879 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>SpellBlocks are reusable content components embedded directly in markdown. They render as styled HTML while you write in simple syntax.</p>
+<pre><code class="language-markdown">{~ blockname parameter=&quot;value&quot; ~}
+Content goes here
+{~~}
+</code></pre>
+<hr />
+<h2 id="component-blocks">Component Blocks</h2>
+<p>Pre-styled, interactive components.</p>
+<h3 id="alert">alert</h3>
+<p>Highlight important information with colored callouts.</p>
+<pre><code class="language-markdown">{~ alert type=&quot;info&quot; ~}
+This is an informational message.
+{~~}
+
+{~ alert type=&quot;warning&quot; ~}
+Proceed with caution.
+{~~}
+
+{~ alert type=&quot;success&quot; ~}
+Operation completed successfully!
+{~~}
+
+{~ alert type=&quot;danger&quot; ~}
+This action cannot be undone.
+{~~}
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This is an informational message.</p>
+    </span>
+</div>
+
+<div class="sb-alert sb-alert-warning sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ⚠️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Proceed with caution.</p>
+    </span>
+</div>
+
+<div class="sb-alert sb-alert-success sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ✅
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Operation completed successfully!</p>
+    </span>
+</div>
+
+<div class="sb-alert sb-alert-danger sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            🚫
+
+    </span>
+    <span class="sb-alert-content">
+        <p>This action cannot be undone.</p>
+    </span>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Values</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>info</code>, <code>warning</code>, <code>success</code>, <code>danger</code>, <code>primary</code>, <code>secondary</code></td>
+<td><code>info</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="card">card</h3>
+<p>Container with optional header and footer.</p>
+<pre><code class="language-markdown">{~ card title=&quot;Getting Started&quot; footer=&quot;Updated December 2025&quot; ~}
+Cards group related content with visual separation.
+
+- Supports markdown inside
+
+- Including **bold** and *italic*
+
+- And lists
+{~~}
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Getting Started</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>Cards group related content with visual separation.</p>
+<ul>
+<li>
+<p>Supports markdown inside</p>
+</li>
+<li>
+<p>Including <strong>bold</strong> and <em>italic</em></p>
+</li>
+<li>
+<p>And lists</p>
+</li>
+</ul>
+    </div>
+
+        <div class="sb-card-footer sb-p-2">
+            Updated December 2025
+        </div>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Header text</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>footer</code></td>
+<td>Footer text</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Additional CSS classes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="accordion">accordion</h3>
+<p>Collapsible content sections.</p>
+<pre><code class="language-markdown">{~ accordion title=&quot;Click to expand&quot; ~}
+This content is hidden until the user clicks.
+
+Great for FAQs, optional details, or reducing page length.
+{~~}
+
+{~ accordion title=&quot;Start open&quot; open=&quot;true&quot; ~}
+This accordion starts expanded.
+{~~}
+</code></pre>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Click to expand</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>This content is hidden until the user clicks.</p>
+<p>Great for FAQs, optional details, or reducing page length.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="true" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Start open</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="false">
+        <div class="sb-accordion-body">
+            <p>This accordion starts expanded.</p>
+        </div>
+    </div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Clickable header text</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td>Start expanded</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="quote">quote</h3>
+<p>Styled blockquotes with attribution.</p>
+<pre><code class="language-markdown">{~ quote author=&quot;Grace Hopper&quot; source=&quot;Interview, 1986&quot; ~}
+The most dangerous phrase in the language is, &quot;We've always done it this way.&quot;
+{~~}
+</code></pre>
+<blockquote class="sb-blockquote sb-pl-4 sb-border-accent sb-border-0 sb-border-solid sb-border-l sb-mb-4  ">
+    <div class="sb-quote-inner">
+
+        <div class="sb-quote-content">
+            <p class="sb-italic"><p>The most dangerous phrase in the language is, "We've always done it this way."</p></p>
+
+            <footer class="sb-text-sm sb-mt-2">
+                <cite class="sb-bold">Grace Hopper</cite>
+                <span class="sb-neutral-50">, Interview, 1986</span>
+            </footer>
+
+        </div>
+    </div>
+</blockquote>
+
+<p>With author image:</p>
+<pre><code class="language-markdown">{~ quote author=&quot;Ada Lovelace&quot; image=&quot;/static/images/ada.jpg&quot; ~}
+The Analytical Engine weaves algebraic patterns, just as the Jacquard loom weaves flowers and leaves.
+{~~}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>author</code></td>
+<td>Attribution name</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Source reference</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>Author image URL</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Additional CSS classes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="progress">progress</h3>
+<p>Visual progress indicators.</p>
+<pre><code class="language-markdown">{~ progress value=&quot;75&quot; label=&quot;{{percentage}}% Complete&quot; ~}{~~}
+
+{~ progress value=&quot;3&quot; max_value=&quot;10&quot; label=&quot;{{value}}/{{max_value}} tasks&quot; color=&quot;success&quot; ~}{~~}
+
+{~ progress value=&quot;60&quot; striped=&quot;true&quot; animated=&quot;true&quot; ~}{~~}
+</code></pre>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-"
+  >
+
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-primary 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 75.0%;"
+      aria-valuenow="75.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+
+          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
+          sb-text-md
+          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
+
+            75.0% Complete
+          </span>
+
+
+    </div>
+  </div>
+</div>
+</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-"
+  >
+
+
+    <div class="sb-progress-label-external sb-mb-1 
+    sb-text-md
+    ">
+      3.0/10.0 tasks
+    </div>
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-success 
+             sb-border-radius-md 
+
+             " 
+      role="progressbar"
+      style="width: 30.0%;"
+      aria-valuenow="30.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+    </div>
+  </div>
+</div>
+</p>
+<p><div
+  class="sb-progress-container sb-shadow-md sb-w-full "
+  id="progress-container-"
+  >
+
+
+
+
+  <div
+    class="sb-progress sb-w-full sb-overflow-hidden 
+           sb-bg-white-50 
+           sb-h-8 
+           sb-border-radius-md" 
+  >
+
+    <div
+      class="sb-progress-bar sb-h-full sb-flex sb-items-center sb-justify-center 
+             sb-bg-primary 
+             sb-border-radius-md 
+             sb-progress-bar-striped 
+             sb-progress-bar-animated" 
+      role="progressbar"
+      style="width: 60.0%;"
+      aria-valuenow="60.0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+
+
+
+          <span class="sb-progress-label-internal sb-flex sb-text-center sb-black-75 
+          sb-text-md
+          sb-font-semibold sb-whitespace-nowrap sb-overflow-show sb-text-ellipsis sb-px-1">
+
+            60.0%
+          </span>
+
+
+    </div>
+  </div>
+</div>
+</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>Current progress value</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>max_value</code></td>
+<td>Maximum value</td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Text label (supports <code>{{value}}</code>, <code>{{max_value}}</code>, <code>{{percentage}}</code>)</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>Bar color (theme colors)</td>
+<td><code>primary</code></td>
+</tr>
+<tr>
+<td><code>bg_color</code></td>
+<td>Track background color</td>
+<td><code>white-50</code></td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>sm</code>, <code>md</code>, <code>lg</code></td>
+<td><code>md</code></td>
+</tr>
+<tr>
+<td><code>striped</code></td>
+<td>Add stripe pattern</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>animated</code></td>
+<td>Animate stripes</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>rounded</code></td>
+<td>Round corners</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>show_percentage</code></td>
+<td>Show percentage in bar</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="hero">hero</h3>
+<p>Full-width hero sections for landing pages.</p>
+<pre><code class="language-markdown">{~ hero layout=&quot;text_left_image_right&quot; image_src=&quot;/static/hero.jpg&quot; image_alt=&quot;Hero image&quot; ~}
+# Welcome to Our Site
+
+Start your journey here.
+{~~}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>layout</code></td>
+<td>Layout style (see below)</td>
+<td><code>text_left_image_right</code></td>
+</tr>
+<tr>
+<td><code>image_src</code></td>
+<td>Image URL</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>image_alt</code></td>
+<td>Image alt text</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>bg_color</code></td>
+<td>Background color</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>text_color</code></td>
+<td>Text color</td>
+<td><code>white</code></td>
+</tr>
+<tr>
+<td><code>text_bg_color</code></td>
+<td>Text area background</td>
+<td><code>black-25</code></td>
+</tr>
+<tr>
+<td><code>min_height</code></td>
+<td>Minimum height</td>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>HTML id attribute</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Layout options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text_left_image_right</code></td>
+<td>Two columns, text on left</td>
+</tr>
+<tr>
+<td><code>text_right_image_left</code></td>
+<td>Two columns, text on right</td>
+</tr>
+<tr>
+<td><code>text_center_image_background</code></td>
+<td>Centered text over background image</td>
+</tr>
+<tr>
+<td><code>text_only_centered</code></td>
+<td>Centered text, no image</td>
+</tr>
+<tr>
+<td><code>image_top_text_bottom</code></td>
+<td>Stacked, image above text</td>
+</tr>
+<tr>
+<td><code>image_only_full</code></td>
+<td>Full-bleed image</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="practice">practice</h3>
+<p>Exercise or activity blocks with metadata.</p>
+<pre><code class="language-markdown">{~ practice difficulty=&quot;Beginner&quot; timeframe=&quot;15 minutes&quot; impact=&quot;High&quot; focus=&quot;Python&quot; ~}
+## String Manipulation
+
+Write a function that reverses a string without using built-in reverse methods.
+
+1. Accept a string parameter
+
+2. Return the reversed string
+
+3. Handle edge cases (empty string, single character)
+{~~}
+</code></pre>
+<div class="sb-practice-block sb-border sb-border-radius-lg sb-p-4 sb-mb-4 sb-shadow-sm ">
+    <div class="sb-practice-metadata sb-flex sb-flex-wrap sb-gap-3 sb-mb-3 sb-p-2 sb-border-radius-md">
+        <span class="sb-difficulty-level sb-badge" data-difficulty="beginner">
+            <strong>Difficulty:</strong> Beginner
+        </span>
+        <span class="sb-time-commitment sb-badge">
+            <strong>Time:</strong> 15 minutes
+        </span>
+        <span class="sb-impact-level sb-badge" data-impact="high">
+            <strong>Impact:</strong> High
+        </span>
+        <span class="sb-focus-area sb-badge">
+            <strong>Focus:</strong> Python
+        </span>
+    </div>
+    <div class="sb-practice-content">
+        <h2 id="string-manipulation">String Manipulation</h2>
+<p>Write a function that reverses a string without using built-in reverse methods.</p>
+<ol>
+<li>
+<p>Accept a string parameter</p>
+</li>
+<li>
+<p>Return the reversed string</p>
+</li>
+<li>
+<p>Handle edge cases (empty string, single character)</p>
+</li>
+</ol>
+    </div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>difficulty</code></td>
+<td>Difficulty level</td>
+<td><code>Moderate</code></td>
+</tr>
+<tr>
+<td><code>timeframe</code></td>
+<td>Estimated time</td>
+<td><code>Varies</code></td>
+</tr>
+<tr>
+<td><code>impact</code></td>
+<td>Learning impact</td>
+<td><code>Medium</code></td>
+</tr>
+<tr>
+<td><code>focus</code></td>
+<td>Topic/skill focus</td>
+<td><code>General</code></td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Additional CSS classes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="html-elements">HTML Elements</h2>
+<p>Semantic HTML with shorthand syntax. Use these for structure and styling without leaving markdown.</p>
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-markdown">{~ element .class-name #element-id attribute=&quot;value&quot; ~}
+Content
+{~~}
+</code></pre>
+<ul>
+<li>
+<p><code>.classname</code> — adds a CSS class (multiple allowed: <code>.class1 .class2</code>)</p>
+</li>
+<li>
+<p><code>#id-name</code> — sets the element ID</p>
+</li>
+<li>
+<p><code>attribute="value"</code> — any HTML attribute</p>
+</li>
+</ul>
+<h3 id="available-elements">Available Elements</h3>
+<p><strong>Block elements:</strong> <code>div</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>header</code>, <code>footer</code>, <code>nav</code>, <code>main</code></p>
+<p><strong>Void elements:</strong> <code>hr</code>, <code>br</code> (self-closing, no content)</p>
+<h3 id="examples">Examples</h3>
+<p>Basic structure:</p>
+<pre><code class="language-markdown">{~ section .features #main-features ~}
+## Our Features
+
+Feature content here.
+{~~}
+</code></pre>
+<pre><code class="language-html">&lt;section class=&quot;features&quot; id=&quot;main-features&quot;&gt;
+  &lt;h2&gt;Our Features&lt;/h2&gt;
+  &lt;p&gt;Feature content here.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<p>Multiple classes:</p>
+<pre><code class="language-markdown">{~ div .card .shadow .p-4 ~}
+Styled container
+{~~}
+</code></pre>
+<p>Horizontal rule:</p>
+<pre><code class="language-markdown">{~ hr .my-8 .border-accent ~}{~~}
+</code></pre>
+<hr />
+<h2 id="framework-integration">Framework Integration</h2>
+<p>HTML element blocks accept any attribute, making them perfect for frontend frameworks.</p>
+<h3 id="htmx">HTMX</h3>
+<pre><code class="language-markdown">{~ button hx-get=&quot;/api/load-more&quot; hx-target=&quot;#results&quot; hx-swap=&quot;beforeend&quot; .btn .btn-primary ~}
+Load More
+{~~}
+
+{~ div #results .mt-4 ~}
+Results appear here...
+{~~}
+</code></pre>
+<h3 id="alpinejs">Alpine.js</h3>
+<pre><code class="language-markdown">{~ div x-data=&quot;{ open: false }&quot; ~}
+
+{~ button @click=&quot;open = !open&quot; .btn ~}
+Toggle Panel
+{~~}
+
+{~ div x-show=&quot;open&quot; x-transition .panel ~}
+Panel content revealed!
+{~~}
+
+{~~}
+</code></pre>
+<h3 id="data-attributes">Data Attributes</h3>
+<pre><code class="language-markdown">{~ div data-controller=&quot;chart&quot; data-chart-type=&quot;line&quot; data-chart-animate=&quot;true&quot; ~}
+Chart container
+{~~}
+</code></pre>
+<h3 id="aria-attributes">ARIA Attributes</h3>
+<pre><code class="language-markdown">{~ nav aria-label=&quot;Main navigation&quot; role=&quot;navigation&quot; ~}
+
+- [Home](/)
+
+- [About](/about/)
+
+- [Contact](/contact/)
+{~~}
+</code></pre>
+<hr />
+<h2 id="nesting-blocks">Nesting Blocks</h2>
+<p>SpellBlocks can be nested for complex layouts:</p>
+<pre><code class="language-markdown">{~ section .feature-grid ~}
+
+{~ card title=&quot;Feature One&quot; ~}
+First feature description.
+{~~}
+
+{~ card title=&quot;Feature Two&quot; ~}
+Second feature description.
+{~~}
+
+{~ card title=&quot;Feature Three&quot; ~}
+Third feature description.
+{~~}
+
+{~~}
+</code></pre>
+<section class="feature-grid">
+
+<p><div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Feature One</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><br /><br />
+First feature description.</p><br />
+</section>
+</p>
+<p><div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Feature Two</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><br /><br />
+Second feature description.</p><br />
+    </div></p>
+</div>
+<p><div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Feature Three</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><br /><br />
+Third feature description.</p><br />
+    </div></p>
+<p></div><br />
+    </div></p>
+</div>
+<hr />
+<h2 id="in-django-templates">In Django Templates</h2>
+<p>Use SpellBlocks directly in templates with the <code>{% verbatim %}{% spellblock %}{% endverbatim %}</code> tag:</p>
+<pre><code class="language-django">{% verbatim %}
+{% load spellbook_tags %}
+
+{% spellblock 'alert' type='success' %}
+    Welcome back, {{ user.username }}!
+{% endspellblock %}
+
+{% spellblock 'card' title=article.title %}
+    {{ article.excerpt }}
+{% endspellblock %}
+{% endverbatim %}
+</code></pre>
+<p>Full Django template variable support. See <a href="/docs/template-tags/">Template Tags</a> for details.</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Create Custom SpellBlocks</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Build your own SpellBlocks with custom templates and logic.</p>
+<p><a href="/docs/customization/custom-spellblocks/">View Custom SpellBlocks →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Style Classes</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Utility classes for styling SpellBlocks and content.</p>
+<p><a href="/docs/styles/introduction/">View Style Classes →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">spellbook_render</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Use SpellBlocks in Python code via the render function.</p>
+<p><a href="/docs/functions/spellbook-render/">View spellbook_render →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
