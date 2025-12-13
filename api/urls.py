@@ -29,6 +29,22 @@ from .views import (
     style_preview_spacing_m,
     style_preview_spacing_mb,
     style_preview_spacing_gap,
+    style_preview_layout_flexbox_direction,
+    style_preview_layout_flexbox_justify,
+    style_preview_layout_grid,
+    style_preview_layout_width,
+    style_preview_layout_patterns_centered,
+    style_preview_layout_patterns_sidebar,
+    style_preview_layout_patterns_cards,
+    style_preview_typography_sizes,
+    style_preview_typography_weights,
+    style_preview_typography_families,
+    style_preview_typography_alignment,
+    style_preview_typography_decoration,
+    style_preview_typography_transform,
+    style_preview_typography_patterns_title,
+    style_preview_typography_patterns_body,
+    style_preview_typography_patterns_label,
 )
 
 app_name = "api"
@@ -160,5 +176,87 @@ urlpatterns = [
         "styles/preview/spacing-gap/",
         style_preview_spacing_gap,
         name="style-preview-spacing-gap",
+    ),
+    # Layout preview endpoints for HTMX layout examples
+    path(
+        "styles/preview/layout-flexbox-direction/",
+        style_preview_layout_flexbox_direction,
+        name="style-preview-layout-flexbox-direction",
+    ),
+    path(
+        "styles/preview/layout-flexbox-justify/",
+        style_preview_layout_flexbox_justify,
+        name="style-preview-layout-flexbox-justify",
+    ),
+    path(
+        "styles/preview/layout-grid/",
+        style_preview_layout_grid,
+        name="style-preview-layout-grid",
+    ),
+    path(
+        "styles/preview/layout-width/",
+        style_preview_layout_width,
+        name="style-preview-layout-width",
+    ),
+    path(
+        "styles/preview/layout-patterns-centered/",
+        style_preview_layout_patterns_centered,
+        name="style-preview-layout-patterns-centered",
+    ),
+    path(
+        "styles/preview/layout-patterns-sidebar/",
+        style_preview_layout_patterns_sidebar,
+        name="style-preview-layout-patterns-sidebar",
+    ),
+    path(
+        "styles/preview/layout-patterns-cards/",
+        style_preview_layout_patterns_cards,
+        name="style-preview-layout-patterns-cards",
+    ),
+    # Typography preview endpoints for HTMX typography examples
+    path(
+        "styles/preview/typography-sizes/",
+        style_preview_typography_sizes,
+        name="style-preview-typography-sizes",
+    ),
+    path(
+        "styles/preview/typography-weights/",
+        style_preview_typography_weights,
+        name="style-preview-typography-weights",
+    ),
+    path(
+        "styles/preview/typography-families/",
+        style_preview_typography_families,
+        name="style-preview-typography-families",
+    ),
+    path(
+        "styles/preview/typography-alignment/",
+        style_preview_typography_alignment,
+        name="style-preview-typography-alignment",
+    ),
+    path(
+        "styles/preview/typography-decoration/",
+        style_preview_typography_decoration,
+        name="style-preview-typography-decoration",
+    ),
+    path(
+        "styles/preview/typography-transform/",
+        style_preview_typography_transform,
+        name="style-preview-typography-transform",
+    ),
+    path(
+        "styles/preview/typography-patterns-title/",
+        style_preview_typography_patterns_title,
+        name="style-preview-typography-patterns-title",
+    ),
+    path(
+        "styles/preview/typography-patterns-body/",
+        style_preview_typography_patterns_body,
+        name="style-preview-typography-patterns-body",
+    ),
+    path(
+        "styles/preview/typography-patterns-label/",
+        style_preview_typography_patterns_label,
+        name="style-preview-typography-patterns-label",
     ),
 ]

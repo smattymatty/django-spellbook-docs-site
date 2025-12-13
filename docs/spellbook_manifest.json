@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-12T20:01:09.706161Z",
+  "generated_at": "2025-12-13T18:18:45.862377Z",
   "app_name": "docs",
   "pages": [
     {
@@ -8,8 +8,18 @@
       "lastmod": "2025-12-12"
     },
     {
+      "path": "/docs/frontmatter/",
+      "title": "Frontmatter Reference",
+      "lastmod": "2025-12-12"
+    },
+    {
       "path": "/docs/quick-start/",
       "title": "Quick Start",
+      "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/sitemaps/",
+      "title": "Sitemaps",
       "lastmod": "2025-12-12"
     },
     {
@@ -33,6 +43,11 @@
       "lastmod": "2025-12-12"
     },
     {
+      "path": "/docs/commands/spellbook_validate/",
+      "title": "Spellbook_validate",
+      "lastmod": "2025-12-12"
+    },
+    {
       "path": "/docs/commands/spellbook_md/",
       "title": "Spellbook_md",
       "lastmod": "2025-12-12"
@@ -48,9 +63,29 @@
       "lastmod": "2025-12-12"
     },
     {
+      "path": "/docs/styles/effects/",
+      "title": "Effects Classes",
+      "lastmod": "2025-12-13"
+    },
+    {
       "path": "/docs/styles/spacing/",
       "title": "Spacing Classes",
       "lastmod": "2025-12-12"
+    },
+    {
+      "path": "/docs/styles/border/",
+      "title": "Border Classes",
+      "lastmod": "2025-12-13"
+    },
+    {
+      "path": "/docs/styles/layout/",
+      "title": "Layout Classes",
+      "lastmod": "2025-12-13"
+    },
+    {
+      "path": "/docs/styles/typography/",
+      "title": "Typography Classes",
+      "lastmod": "2025-12-13"
     },
     {
       "path": "/docs/styles/colors/",

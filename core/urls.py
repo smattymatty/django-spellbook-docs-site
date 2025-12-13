@@ -11,10 +11,17 @@ from django.conf import (
 from django.conf.urls.static import (
     static,
 )
+from django.contrib.sitemaps.views import (
+    sitemap,
+)
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+)
+
+from core.sitemaps import (
+    sitemaps,
 )
 
 urlpatterns = [
@@ -56,6 +63,13 @@ urlpatterns = [
         "api/token/refresh/",
         TokenRefreshView.as_view(),
         name="token_refresh",
+    ),
+    # Sitemap
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
     ),
 ] + static(
     settings.STATIC_URL,

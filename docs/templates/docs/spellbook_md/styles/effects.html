@@ -1,0 +1,570 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Shadows, filters, transitions, transforms, and visual effects.</p>
+<hr />
+<h2 id="box-shadow">Box Shadow</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-shadow-none</code></td>
+<td>No shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow-sm</code></td>
+<td>Subtle shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow</code></td>
+<td>Default shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow-md</code></td>
+<td>Medium shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow-lg</code></td>
+<td>Large shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow-xl</code></td>
+<td>Extra large shadow</td>
+</tr>
+<tr>
+<td><code>sb-shadow-inner</code></td>
+<td>Inset shadow</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="opacity">Opacity</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-opacity-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-opacity-10</code></td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><code>sb-opacity-25</code></td>
+<td>0.25</td>
+</tr>
+<tr>
+<td><code>sb-opacity-40</code></td>
+<td>0.4</td>
+</tr>
+<tr>
+<td><code>sb-opacity-50</code></td>
+<td>0.5</td>
+</tr>
+<tr>
+<td><code>sb-opacity-60</code></td>
+<td>0.6</td>
+</tr>
+<tr>
+<td><code>sb-opacity-75</code></td>
+<td>0.75</td>
+</tr>
+<tr>
+<td><code>sb-opacity-80</code></td>
+<td>0.8</td>
+</tr>
+<tr>
+<td><code>sb-opacity-90</code></td>
+<td>0.9</td>
+</tr>
+<tr>
+<td><code>sb-opacity-100</code></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hover-opacity">Hover Opacity</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-hover:opacity-80</code></td>
+<td>80% opacity on hover</td>
+</tr>
+<tr>
+<td><code>sb-hover:opacity-100</code></td>
+<td>Full opacity on hover</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="blur">Blur</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-blur-none</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-blur-sm</code></td>
+<td>2px</td>
+</tr>
+<tr>
+<td><code>sb-blur</code></td>
+<td>4px</td>
+</tr>
+<tr>
+<td><code>sb-blur-md</code></td>
+<td>6px</td>
+</tr>
+<tr>
+<td><code>sb-blur-lg</code></td>
+<td>8px</td>
+</tr>
+<tr>
+<td><code>sb-blur-xl</code></td>
+<td>12px</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="brightness">Brightness</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-brightness-0</code></td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>sb-brightness-50</code></td>
+<td>50%</td>
+</tr>
+<tr>
+<td><code>sb-brightness-75</code></td>
+<td>75%</td>
+</tr>
+<tr>
+<td><code>sb-brightness-100</code></td>
+<td>100% (normal)</td>
+</tr>
+<tr>
+<td><code>sb-brightness-125</code></td>
+<td>125%</td>
+</tr>
+<tr>
+<td><code>sb-brightness-150</code></td>
+<td>150%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="contrast">Contrast</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-contrast-0</code></td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>sb-contrast-50</code></td>
+<td>50%</td>
+</tr>
+<tr>
+<td><code>sb-contrast-75</code></td>
+<td>75%</td>
+</tr>
+<tr>
+<td><code>sb-contrast-100</code></td>
+<td>100% (normal)</td>
+</tr>
+<tr>
+<td><code>sb-contrast-125</code></td>
+<td>125%</td>
+</tr>
+<tr>
+<td><code>sb-contrast-150</code></td>
+<td>150%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="transitions">Transitions</h2>
+<h3 id="transition-property">Transition Property</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-transition-all</code></td>
+<td>All properties</td>
+</tr>
+<tr>
+<td><code>sb-transition-bg</code></td>
+<td>Background color</td>
+</tr>
+<tr>
+<td><code>sb-transition-color</code></td>
+<td>Text color</td>
+</tr>
+</tbody>
+</table>
+<h3 id="duration">Duration</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-duration-75</code></td>
+<td>75ms</td>
+</tr>
+<tr>
+<td><code>sb-duration-100</code></td>
+<td>100ms</td>
+</tr>
+<tr>
+<td><code>sb-duration-150</code></td>
+<td>150ms</td>
+</tr>
+<tr>
+<td><code>sb-duration-200</code></td>
+<td>200ms</td>
+</tr>
+<tr>
+<td><code>sb-duration-300</code></td>
+<td>300ms</td>
+</tr>
+<tr>
+<td><code>sb-duration-500</code></td>
+<td>500ms</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timing-function">Timing Function</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Easing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-ease-linear</code></td>
+<td>Linear</td>
+</tr>
+<tr>
+<td><code>sb-ease-in</code></td>
+<td>Ease in</td>
+</tr>
+<tr>
+<td><code>sb-ease-out</code></td>
+<td>Ease out</td>
+</tr>
+<tr>
+<td><code>sb-ease-in-out</code></td>
+<td>Ease in-out</td>
+</tr>
+<tr>
+<td><code>sb-ease-bounce</code></td>
+<td>Bounce effect</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delay">Delay</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-delay-75</code></td>
+<td>75ms</td>
+</tr>
+<tr>
+<td><code>sb-delay-100</code></td>
+<td>100ms</td>
+</tr>
+<tr>
+<td><code>sb-delay-150</code></td>
+<td>150ms</td>
+</tr>
+<tr>
+<td><code>sb-delay-300</code></td>
+<td>300ms</td>
+</tr>
+<tr>
+<td><code>sb-delay-500</code></td>
+<td>500ms</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="transforms">Transforms</h2>
+<h3 id="scale">Scale</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-scale-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-scale-50</code></td>
+<td>0.5</td>
+</tr>
+<tr>
+<td><code>sb-scale-75</code></td>
+<td>0.75</td>
+</tr>
+<tr>
+<td><code>sb-scale-90</code></td>
+<td>0.9</td>
+</tr>
+<tr>
+<td><code>sb-scale-95</code></td>
+<td>0.95</td>
+</tr>
+<tr>
+<td><code>sb-scale-100</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>sb-scale-105</code></td>
+<td>1.05</td>
+</tr>
+<tr>
+<td><code>sb-scale-110</code></td>
+<td>1.1</td>
+</tr>
+<tr>
+<td><code>sb-scale-125</code></td>
+<td>1.25</td>
+</tr>
+<tr>
+<td><code>sb-scale-150</code></td>
+<td>1.5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rotate">Rotate</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-rotate-0</code></td>
+<td>0deg</td>
+</tr>
+<tr>
+<td><code>sb-rotate-45</code></td>
+<td>45deg</td>
+</tr>
+<tr>
+<td><code>sb-rotate-90</code></td>
+<td>90deg</td>
+</tr>
+<tr>
+<td><code>sb-rotate-180</code></td>
+<td>180deg</td>
+</tr>
+</tbody>
+</table>
+<h3 id="translate">Translate</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-translate-x-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-translate-x-1</code></td>
+<td>0.25rem</td>
+</tr>
+<tr>
+<td><code>sb-translate-x-2</code></td>
+<td>0.5rem</td>
+</tr>
+<tr>
+<td><code>sb-translate-x-4</code></td>
+<td>1rem</td>
+</tr>
+<tr>
+<td><code>sb-translate-y-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-translate-y-1</code></td>
+<td>0.25rem</td>
+</tr>
+<tr>
+<td><code>sb-translate-y-2</code></td>
+<td>0.5rem</td>
+</tr>
+<tr>
+<td><code>sb-translate-y-4</code></td>
+<td>1rem</td>
+</tr>
+</tbody>
+</table>
+<h3 id="skew">Skew</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-skew-x-0</code></td>
+<td>0deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-x-3</code></td>
+<td>3deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-x-6</code></td>
+<td>6deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-x-12</code></td>
+<td>12deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-y-0</code></td>
+<td>0deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-y-3</code></td>
+<td>3deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-y-6</code></td>
+<td>6deg</td>
+</tr>
+<tr>
+<td><code>sb-skew-y-12</code></td>
+<td>12deg</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="hover-card-effect">Hover Card Effect</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-shadow sb-transition-all sb-duration-200 sb-hover:shadow-lg sb-hover:scale-105&quot;&gt;
+  Card with lift effect on hover
+&lt;/div&gt;
+</code></pre>
+<h3 id="fade-in-element">Fade In Element</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-opacity-0 sb-transition-all sb-duration-300&quot; 
+     x-show=&quot;visible&quot; 
+     x-transition:enter=&quot;sb-opacity-100&quot;&gt;
+  Fading content
+&lt;/div&gt;
+</code></pre>
+<h3 id="image-hover-brightness">Image Hover Brightness</h3>
+<pre><code class="language-html">&lt;img class=&quot;sb-brightness-100 sb-transition-all sb-duration-200 sb-hover:brightness-110&quot; 
+     src=&quot;...&quot; alt=&quot;...&quot;&gt;
+</code></pre>
+<h3 id="disabled-state">Disabled State</h3>
+<pre><code class="language-html">&lt;button class=&quot;sb-opacity-50 sb-cursor-not-allowed&quot; disabled&gt;
+  Disabled Button
+&lt;/button&gt;
+</code></pre>
+<h3 id="smooth-background-transition">Smooth Background Transition</h3>
+<pre><code class="language-html">&lt;a class=&quot;sb-bg-primary sb-transition-bg sb-duration-150 sb-hover:bg-primary-75&quot;&gt;
+  Hover me
+&lt;/a&gt;
+</code></pre>
+<h3 id="glassmorphism-effect">Glassmorphism Effect</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-bg-white-50 sb-blur-sm sb-rounded-lg sb-shadow-lg&quot;&gt;
+  Frosted glass panel
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="accessibility">Accessibility</h2>
+<p>Spellbook respects <code>prefers-reduced-motion</code>. When users have reduced motion enabled:</p>
+<ul>
+<li>
+<p><code>sb-scroll-smooth</code> falls back to <code>auto</code></p>
+</li>
+<li>
+<p>All animations and transitions are reduced to near-instant (0.01ms)</p>
+</li>
+</ul>
+<p>This happens automatically — no additional classes needed.</p>
+<hr />
+<h2 id="related">Related</h2>
+<ul>
+<li>
+<p><a href="/docs/styles/colors/">Color Classes</a> — Background and text colors for hover states</p>
+</li>
+<li>
+<p><a href="/docs/styles/layout/">Layout Classes</a> — Positioning for transformed elements</p>
+</li>
+<li>
+<p><a href="/docs/styles/interactivity/">Interactivity Classes</a> — Cursor and pointer events</p>
+</li>
+</ul>
+{% endblock %}

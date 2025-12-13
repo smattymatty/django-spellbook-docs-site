@@ -7,7 +7,7 @@ from django_spellbook.parsers import spellbook_render
 
 def home(request):
     # Load the get started content from markdown
-    markdown_path = Path(__file__).resolve().parent.parent / 'markdown_content' / 'home_get_started.md'
+    markdown_path = Path(__file__).resolve().parent / 'home_get_started.md'
     
     try:
         with open(markdown_path, 'r', encoding='utf-8') as f:

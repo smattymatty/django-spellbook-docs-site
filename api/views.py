@@ -842,3 +842,319 @@ def style_preview_spacing_gap(request):
     </div>
     '''
     return HttpResponse(html, content_type='text/html')
+
+
+# Layout Preview API Views for HTMX layout examples
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_flexbox_direction(request):
+    """Preview for flexbox direction utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <div class="sb-grow sb-border sb-border-neutral-25">
+            <div class="sb-text-text-secondary sb-mb-2">flex-row (default):</div>
+            <div class="sb-flex sb-flex-row sb-gap-2 sb-p-3 sb-bg-neutral-5 sb-rounded">
+                <div class="sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded">1</div>
+                <div class="sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded">2</div>
+                <div class="sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded">3</div>
+            </div>
+        </div>
+        <div class="sb-grow">
+            <div class="sb-text-text-secondary sb-mb-2">flex-col:</div>
+            <div class="sb-flex sb-flex-col sb-gap-2 sb-p-3 sb-bg-neutral-5 sb-rounded">
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">1</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">2</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">3</div>
+            </div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_flexbox_justify(request):
+    """Preview for justify-content utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <div class="sb-grow sb-border sb-border-neutral-25">
+            <div class="sb-text-text-secondary sb-mb-2 sb-ml-2">justify-start:</div>
+            <div class="sb-flex sb-justify-start sb-gap-2 sb-p-3 sb-bg-neutral-5 sb-rounded">
+                <div class="sb-bg-primary sb-text-text sb-p-2 sb-rounded">A</div>
+                <div class="sb-bg-primary sb-text-text sb-p-2 sb-rounded">B</div>
+                <div class="sb-bg-primary sb-text-text sb-p-2 sb-rounded">C</div>
+            </div>
+        </div>
+        <div class="sb-grow ">
+            <div class="sb-text-text-secondary sb-mb-2">justify-center:</div>
+            <div class="sb-flex sb-justify-center sb-gap-2 sb-p-3 sb-bg-neutral-5 sb-rounded">
+                <div class="sb-bg-secondary sb-text-text sb-p-2 sb-rounded">A</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-2 sb-rounded">B</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-2 sb-rounded">C</div>
+            </div>
+        </div>
+        <div class="sb-grow sb-border sb-border-neutral-25">
+            <div class="sb-text-text-secondary sb-mb-2 sb-ml-2">justify-between:</div>
+            <div class="sb-flex sb-justify-between sb-p-3 sb-bg-neutral-5 sb-rounded">
+                <div class="sb-bg-accent sb-text-text sb-p-2 sb-rounded">A</div>
+                <div class="sb-bg-accent sb-text-text sb-p-2 sb-rounded">B</div>
+                <div class="sb-bg-accent sb-text-text sb-p-2 sb-rounded">C</div>
+            </div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_grid(request):
+    """Preview for grid layout utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <div>
+            <div class="sb-text-text-secondary sb-mb-2">grid-cols-2:</div>
+            <div class="sb-grid sb-grid-cols-2 sb-gap-2">
+                <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">1</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">2</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">3</div>
+                <div class="sb-bg-primary sb-text-text sb-p-3 sb-rounded">4</div>
+            </div>
+        </div>
+        <div>
+            <div class="sb-text-text-secondary sb-mb-2">grid-cols-3:</div>
+            <div class="sb-grid sb-grid-cols-3 sb-gap-2">
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">1</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">2</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">3</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">4</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">5</div>
+                <div class="sb-bg-secondary sb-text-text sb-p-3 sb-rounded">6</div>
+            </div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_width(request):
+    """Preview for width utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <div>
+            <div class="sb-text-text-secondary sb-mb-2">w-1/2 (50%):</div>
+            <div class="sb-w-1/2 sb-bg-primary sb-text-text sb-p-3 sb-rounded">Half width</div>
+        </div>
+        <div>
+            <div class="sb-text-text-secondary sb-mb-2">w-1/3 (33.333%):</div>
+            <div class="sb-w-1/3 sb-bg-secondary sb-text-text sb-p-3 sb-rounded">Third width</div>
+        </div>
+        <div>
+            <div class="sb-text-text-secondary sb-mb-2">w-full (100%):</div>
+            <div class="sb-w-full sb-bg-accent sb-text-text sb-p-3 sb-rounded">Full width</div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_patterns_centered(request):
+    """Preview for centered content pattern."""
+    html = '''
+    <div class="sb-flex sb-justify-center sb-items-center sb-h-64 sb-bg-neutral-5 sb-rounded">
+        <div class="sb-bg-primary sb-text-text sb-p-6 sb-rounded-lg">Centered Content</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_patterns_sidebar(request):
+    """Preview for sidebar layout pattern."""
+    html = '''
+    <div class="sb-flex sb-flex-row sb-gap-4">
+        <aside class="sb-w-1/4 sb-bg-neutral sb-text-text sb-p-4 sb-rounded">Sidebar</aside>
+        <main class="sb-grow sb-bg-surface sb-text-text sb-p-4 sb-rounded">Main content area expands to fill available space</main>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_layout_patterns_cards(request):
+    """Preview for card grid pattern."""
+    html = '''
+    <div class="sb-grid sb-grid-cols-3 sb-gap-4">
+        <div class="sb-bg-surface sb-text-text sb-p-4 sb-rounded-lg sb-border sb-border-neutral-25">
+            <div class="sb-text-text sb-font-bold sb-mb-2">Card 1</div>
+            <div class="sb-text-text-secondary">Card content here</div>
+        </div>
+        <div class="sb-bg-surface sb-text-text sb-p-4 sb-rounded-lg sb-border sb-border-neutral-25">
+            <div class="sb-text-text sb-font-bold sb-mb-2">Card 2</div>
+            <div class="sb-text-text-secondary">Card content here</div>
+        </div>
+        <div class="sb-bg-surface sb-text-text sb-p-4 sb-rounded-lg sb-border sb-border-neutral-25">
+            <div class="sb-text-text sb-font-bold sb-mb-2">Card 3</div>
+            <div class="sb-text-text-secondary">Card content here</div>
+        </div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+# Typography Preview API Views for HTMX typography examples
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_sizes(request):
+    """Preview for font size utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-3">
+        <div class="sb-text-xs sb-text-text">text-xs: 0.75rem (12px)</div>
+        <div class="sb-text-sm sb-text-text">text-sm: 0.875rem (14px)</div>
+        <div class="sb-text-base sb-text-text">text-base: 1rem (16px)</div>
+        <div class="sb-text-lg sb-text-text">text-lg: 1.125rem (18px)</div>
+        <div class="sb-text-xl sb-text-text">text-xl: 1.25rem (20px)</div>
+        <div class="sb-text-2xl sb-text-text">text-2xl: 1.5rem (24px)</div>
+        <div class="sb-text-3xl sb-text-text">text-3xl: 1.875rem (30px)</div>
+        <div class="sb-text-4xl sb-text-text">text-4xl: 2.25rem (36px)</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_weights(request):
+    """Preview for font weight utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-2">
+        <div class="sb-text-text sb-text-lg">Normal weight (default)</div>
+        <div class="sb-text-text sb-text-lg sb-font-semibold">Semibold: 600</div>
+        <div class="sb-text-text sb-text-lg sb-font-bold">Bold: 700</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_families(request):
+    """Preview for font family utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-3">
+        <div class="sb-font-sans sb-text-text sb-text-lg">Sans-serif: System UI, Segoe UI, Roboto</div>
+        <div class="sb-font-serif sb-text-text sb-text-lg">Serif: Georgia, Cambria, Times New Roman</div>
+        <div class="sb-font-mono sb-text-text sb-text-lg">Monospace: SFMono, Menlo, Monaco, Consolas</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_alignment(request):
+    """Preview for text alignment utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-3">
+        <div class="sb-text-left sb-text-text sb-p-2 sb-bg-neutral-5 sb-rounded">Left aligned text</div>
+        <div class="sb-text-center sb-text-text sb-p-2 sb-bg-neutral-5 sb-rounded">Center aligned text</div>
+        <div class="sb-text-right sb-text-text sb-p-2 sb-bg-neutral-5 sb-rounded">Right aligned text</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_decoration(request):
+    """Preview for text decoration utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-3">
+        <div class="sb-text-text sb-text-lg">Normal text</div>
+        <div class="sb-text-text sb-text-lg sb-underline">Underlined text</div>
+        <div class="sb-text-text sb-text-lg sb-line-through">Line-through text</div>
+        <div class="sb-text-text sb-text-lg sb-underline sb-decoration-dotted">Dotted underline</div>
+        <div class="sb-text-text sb-text-lg sb-underline sb-decoration-dashed">Dashed underline</div>
+        <div class="sb-text-text sb-text-lg sb-underline sb-decoration-wavy">Wavy underline</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_transform(request):
+    """Preview for text transform utilities."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-3">
+        <div class="sb-text-text sb-text-lg sb-uppercase">uppercase text</div>
+        <div class="sb-text-text sb-text-lg sb-lowercase">LOWERCASE TEXT</div>
+        <div class="sb-text-text sb-text-lg sb-capitalize">capitalize each word</div>
+        <div class="sb-text-text sb-text-lg sb-normal-case">Normal Case Text</div>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_patterns_title(request):
+    """Preview for page title pattern."""
+    html = '''
+    <h1 class="sb-text-4xl sb-font-bold sb-leading-tight sb-text-text sb-mb-4">
+        Page Title Example
+    </h1>
+    <p class="sb-text-base sb-text-text-secondary">This demonstrates a common page title pattern with large, bold text.</p>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_patterns_body(request):
+    """Preview for body text patterns."""
+    html = '''
+    <div class="sb-flex sb-flex-column sb-gap-4">
+        <p class="sb-text-base sb-leading-relaxed sb-text-text">
+            Body text with comfortable line height for readability. This example shows how text flows naturally with the leading-relaxed class applied.
+        </p>
+        <p class="sb-text-sm sb-text-text-secondary">
+            Secondary information in smaller text with muted color for less emphasis.
+        </p>
+        <code class="sb-font-mono sb-text-sm sb-bg-secondary-10 sb-text-text sb-px-2 sb-py-1 sb-rounded">
+            inline code example
+        </code>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')
+
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def style_preview_typography_patterns_label(request):
+    """Preview for label and badge patterns."""
+    html = '''
+    <div class="sb-flex sb-gap-3 sb-flex-wrap">
+        <span class="sb-text-xs sb-uppercase sb-tracking-widest sb-font-semibold sb-text-text sb-bg-primary sb-px-3 sb-py-1 sb-rounded">
+            Category
+        </span>
+        <span class="sb-text-xs sb-uppercase sb-tracking-widest sb-font-semibold sb-text-text sb-bg-secondary sb-px-3 sb-py-1 sb-rounded">
+            Featured
+        </span>
+        <span class="sb-text-xs sb-uppercase sb-tracking-widest sb-font-semibold sb-text-text sb-bg-accent sb-px-3 sb-py-1 sb-rounded">
+            New
+        </span>
+    </div>
+    '''
+    return HttpResponse(html, content_type='text/html')

@@ -1,0 +1,424 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Border width, style, radius, and individual side controls.</p>
+<hr />
+<h2 id="border-width">Border Width</h2>
+<h3 id="all-sides">All Sides</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-border</code></td>
+<td>1px</td>
+</tr>
+<tr>
+<td><code>sb-border-2</code></td>
+<td>2px</td>
+</tr>
+<tr>
+<td><code>sb-border-3</code></td>
+<td>3px</td>
+</tr>
+<tr>
+<td><code>sb-border-4</code></td>
+<td>4px</td>
+</tr>
+<tr>
+<td><code>sb-border-8</code></td>
+<td>8px</td>
+</tr>
+</tbody>
+</table>
+<h3 id="individual-sides-1px">Individual Sides (1px)</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-t</code></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><code>sb-border-r</code></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><code>sb-border-b</code></td>
+<td>Bottom</td>
+</tr>
+<tr>
+<td><code>sb-border-l</code></td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<h3 id="individual-sides-2px">Individual Sides (2px)</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-t-2</code></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><code>sb-border-r-2</code></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><code>sb-border-b-2</code></td>
+<td>Bottom</td>
+</tr>
+<tr>
+<td><code>sb-border-l-2</code></td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<h3 id="individual-sides-4px">Individual Sides (4px)</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-t-4</code></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><code>sb-border-r-4</code></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><code>sb-border-b-4</code></td>
+<td>Bottom</td>
+</tr>
+<tr>
+<td><code>sb-border-l-4</code></td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<h3 id="individual-sides-8px">Individual Sides (8px)</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-t-8</code></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><code>sb-border-r-8</code></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><code>sb-border-b-8</code></td>
+<td>Bottom</td>
+</tr>
+<tr>
+<td><code>sb-border-l-8</code></td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="border-style">Border Style</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-solid</code></td>
+<td>Solid</td>
+</tr>
+<tr>
+<td><code>sb-border-dashed</code></td>
+<td>Dashed</td>
+</tr>
+<tr>
+<td><code>sb-border-dotted</code></td>
+<td>Dotted</td>
+</tr>
+<tr>
+<td><code>sb-border-double</code></td>
+<td>Double</td>
+</tr>
+<tr>
+<td><code>sb-border-none</code></td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="border-radius">Border Radius</h2>
+<h3 id="shorthand-classes">Shorthand Classes</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-rounded-none</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-rounded-sm</code></td>
+<td>0.125rem (2px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-md</code></td>
+<td>0.375rem (6px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-lg</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-full</code></td>
+<td>9999px (circle)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="verbose-classes">Verbose Classes</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-radius-none</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-sm</code></td>
+<td>0.125rem (2px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-md</code></td>
+<td>0.375rem (6px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-lg</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-xl</code></td>
+<td>0.75rem (12px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-2xl</code></td>
+<td>1rem (16px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-3xl</code></td>
+<td>1.5rem (24px)</td>
+</tr>
+<tr>
+<td><code>sb-border-radius-full</code></td>
+<td>9999px (circle)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="border-colors">Border Colors</h2>
+<p>Border colors use theme variables. See <a href="/docs/styles/colors/">Color Classes</a> for the full list.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-primary</code></td>
+<td>Primary theme color</td>
+</tr>
+<tr>
+<td><code>sb-border-secondary</code></td>
+<td>Secondary theme color</td>
+</tr>
+<tr>
+<td><code>sb-border-accent</code></td>
+<td>Accent color</td>
+</tr>
+<tr>
+<td><code>sb-border-neutral</code></td>
+<td>Neutral color</td>
+</tr>
+<tr>
+<td><code>sb-border-error</code></td>
+<td>Error/danger color</td>
+</tr>
+<tr>
+<td><code>sb-border-warning</code></td>
+<td>Warning color</td>
+</tr>
+<tr>
+<td><code>sb-border-success</code></td>
+<td>Success color</td>
+</tr>
+<tr>
+<td><code>sb-border-info</code></td>
+<td>Info color</td>
+</tr>
+</tbody>
+</table>
+<h3 id="with-opacity">With Opacity</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-border-primary-25</code></td>
+<td>25% opacity</td>
+</tr>
+<tr>
+<td><code>sb-border-primary-50</code></td>
+<td>50% opacity</td>
+</tr>
+<tr>
+<td><code>sb-border-primary-75</code></td>
+<td>75% opacity</td>
+</tr>
+<tr>
+<td><code>sb-border-neutral-25</code></td>
+<td>25% opacity</td>
+</tr>
+<tr>
+<td><code>sb-border-neutral-50</code></td>
+<td>50% opacity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hover-states">Hover States</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-hover:border-primary</code></td>
+<td>Primary on hover</td>
+</tr>
+<tr>
+<td><code>sb-hover:border-secondary</code></td>
+<td>Secondary on hover</td>
+</tr>
+<tr>
+<td><code>sb-hover:border-accent</code></td>
+<td>Accent on hover</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="basic-card-border">Basic Card Border</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border sb-border-neutral-25 sb-rounded-lg sb-p-4&quot;&gt;
+  Card with subtle border
+&lt;/div&gt;
+</code></pre>
+<h3 id="accent-left-border">Accent Left Border</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-l-4 sb-border-primary sb-pl-4 sb-py-2&quot;&gt;
+  Highlighted content with left accent
+&lt;/div&gt;
+</code></pre>
+<h3 id="input-field">Input Field</h3>
+<pre><code class="language-html">&lt;input class=&quot;sb-border sb-border-neutral-50 sb-rounded sb-px-3 sb-py-2 
+              sb-hover:border-primary sb-transition-all&quot; 
+       type=&quot;text&quot;&gt;
+</code></pre>
+<h3 id="divider-line">Divider Line</h3>
+<pre><code class="language-html">&lt;hr class=&quot;sb-border-t sb-border-neutral-25 sb-my-6&quot;&gt;
+</code></pre>
+<h3 id="circular-avatar">Circular Avatar</h3>
+<pre><code class="language-html">&lt;img class=&quot;sb-w-16 sb-h-16 sb-rounded-full sb-border-2 sb-border-white&quot; 
+     src=&quot;...&quot; alt=&quot;Avatar&quot;&gt;
+</code></pre>
+<h3 id="dashed-upload-area">Dashed Upload Area</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-2 sb-border-dashed sb-border-neutral-50 sb-rounded-lg 
+            sb-p-8 sb-text-center sb-hover:border-primary sb-transition-all&quot;&gt;
+  Drop files here
+&lt;/div&gt;
+</code></pre>
+<h3 id="bottom-border-only">Bottom Border Only</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-border-b sb-border-neutral-25 sb-pb-4 sb-mb-4&quot;&gt;
+  Section with bottom divider
+&lt;/div&gt;
+</code></pre>
+<h3 id="pill-badge">Pill Badge</h3>
+<pre><code class="language-html">&lt;span class=&quot;sb-border sb-border-primary sb-rounded-full sb-px-3 sb-py-1 sb-text-sm&quot;&gt;
+  Badge
+&lt;/span&gt;
+</code></pre>
+<h3 id="focus-ring-via-border">Focus Ring (via border)</h3>
+<pre><code class="language-html">&lt;button class=&quot;sb-border-2 sb-border-transparent sb-rounded 
+               sb-focus:border-primary sb-transition-all&quot;&gt;
+  Focusable Button
+&lt;/button&gt;
+</code></pre>
+<hr />
+<h2 id="related">Related</h2>
+<ul>
+<li>
+<p><a href="/docs/styles/colors/">Color Classes</a> — Full list of border color options</p>
+</li>
+<li>
+<p><a href="/docs/styles/layout/">Layout Classes</a> — Border radius with <code>sb-rounded-*</code></p>
+</li>
+<li>
+<p><a href="/docs/styles/effects/">Effects Classes</a> — Box shadows for depth</p>
+</li>
+</ul>
+{% endblock %}

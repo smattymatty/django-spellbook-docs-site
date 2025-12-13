@@ -1,0 +1,457 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Font families, sizes, weights, and text styling utilities.</p>
+<hr />
+<h2 id="font-family">Font Family</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-font-sans</code></td>
+<td>System UI, Segoe UI, Roboto, Helvetica, Arial</td>
+</tr>
+<tr>
+<td><code>sb-font-serif</code></td>
+<td>Georgia, Cambria, Times New Roman, serif</td>
+</tr>
+<tr>
+<td><code>sb-font-mono</code></td>
+<td>SFMono, Menlo, Monaco, Consolas, monospace</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-font-sans sb-text-text sb-text-lg&quot;&gt;Sans-serif font&lt;/div&gt;
+&lt;div class=&quot;sb-font-serif sb-text-text sb-text-lg&quot;&gt;Serif font&lt;/div&gt;
+&lt;div class=&quot;sb-font-mono sb-text-text sb-text-lg&quot;&gt;Monospace font&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-families/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="font-size">Font Size</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-text-xs</code></td>
+<td>0.75rem (12px)</td>
+</tr>
+<tr>
+<td><code>sb-text-sm</code></td>
+<td>0.875rem (14px)</td>
+</tr>
+<tr>
+<td><code>sb-text-base</code></td>
+<td>1rem (16px)</td>
+</tr>
+<tr>
+<td><code>sb-text-lg</code></td>
+<td>1.125rem (18px)</td>
+</tr>
+<tr>
+<td><code>sb-text-xl</code></td>
+<td>1.25rem (20px)</td>
+</tr>
+<tr>
+<td><code>sb-text-2xl</code></td>
+<td>1.5rem (24px)</td>
+</tr>
+<tr>
+<td><code>sb-text-3xl</code></td>
+<td>1.875rem (30px)</td>
+</tr>
+<tr>
+<td><code>sb-text-4xl</code></td>
+<td>2.25rem (36px)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-text-sm sb-text-text&quot;&gt;text-sm: 0.875rem (14px)&lt;/div&gt;
+&lt;div class=&quot;sb-text-base sb-text-text&quot;&gt;text-base: 1rem (16px)&lt;/div&gt;
+&lt;div class=&quot;sb-text-lg sb-text-text&quot;&gt;text-lg: 1.125rem (18px)&lt;/div&gt;
+&lt;div class=&quot;sb-text-2xl sb-text-text&quot;&gt;text-2xl: 1.5rem (24px)&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-sizes/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="font-weight">Font Weight</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-bold</code></td>
+<td>700</td>
+</tr>
+<tr>
+<td><code>sb-font-bold</code></td>
+<td>700</td>
+</tr>
+<tr>
+<td><code>sb-font-semibold</code></td>
+<td>600</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-text-text sb-text-lg&quot;&gt;Normal weight&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-font-semibold&quot;&gt;Semibold: 600&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-font-bold&quot;&gt;Bold: 700&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-weights/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="font-style">Font Style</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-italic</code></td>
+<td><code>font-style: italic</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="line-height">Line Height</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-leading-none</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>sb-leading-tight</code></td>
+<td>1.25</td>
+</tr>
+<tr>
+<td><code>sb-leading-snug</code></td>
+<td>1.375</td>
+</tr>
+<tr>
+<td><code>sb-leading-normal</code></td>
+<td>1.5</td>
+</tr>
+<tr>
+<td><code>sb-leading-relaxed</code></td>
+<td>1.625</td>
+</tr>
+<tr>
+<td><code>sb-leading-loose</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="letter-spacing">Letter Spacing</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-tracking-tighter</code></td>
+<td>-0.05em</td>
+</tr>
+<tr>
+<td><code>sb-tracking-tight</code></td>
+<td>-0.025em</td>
+</tr>
+<tr>
+<td><code>sb-tracking-normal</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-tracking-wide</code></td>
+<td>0.025em</td>
+</tr>
+<tr>
+<td><code>sb-tracking-wider</code></td>
+<td>0.05em</td>
+</tr>
+<tr>
+<td><code>sb-tracking-widest</code></td>
+<td>0.1em</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="text-alignment">Text Alignment</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-text-left</code></td>
+<td><code>text-align: left</code></td>
+</tr>
+<tr>
+<td><code>sb-text-center</code></td>
+<td><code>text-align: center</code></td>
+</tr>
+<tr>
+<td><code>sb-text-right</code></td>
+<td><code>text-align: right</code></td>
+</tr>
+<tr>
+<td><code>sb-text-justify</code></td>
+<td><code>text-align: justify</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-text-left sb-text-text sb-p-2 sb-bg-neutral-5&quot;&gt;Left aligned&lt;/div&gt;
+&lt;div class=&quot;sb-text-center sb-text-text sb-p-2 sb-bg-neutral-5&quot;&gt;Center aligned&lt;/div&gt;
+&lt;div class=&quot;sb-text-right sb-text-text sb-p-2 sb-bg-neutral-5&quot;&gt;Right aligned&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-alignment/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="text-decoration">Text Decoration</h2>
+<h3 id="decoration-line">Decoration Line</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-underline</code></td>
+<td><code>text-decoration-line: underline</code></td>
+</tr>
+<tr>
+<td><code>sb-line-through</code></td>
+<td><code>text-decoration-line: line-through</code></td>
+</tr>
+<tr>
+<td><code>sb-no-underline</code></td>
+<td><code>text-decoration-line: none</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="decoration-style">Decoration Style</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-decoration-dotted</code></td>
+<td><code>text-decoration-style: dotted</code></td>
+</tr>
+<tr>
+<td><code>sb-decoration-dashed</code></td>
+<td><code>text-decoration-style: dashed</code></td>
+</tr>
+<tr>
+<td><code>sb-decoration-wavy</code></td>
+<td><code>text-decoration-style: wavy</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-text-text sb-text-lg sb-underline&quot;&gt;Underlined text&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-line-through&quot;&gt;Line-through text&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-underline sb-decoration-wavy&quot;&gt;Wavy underline&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-decoration/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="text-transform">Text Transform</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-uppercase</code></td>
+<td><code>text-transform: uppercase</code></td>
+</tr>
+<tr>
+<td><code>sb-lowercase</code></td>
+<td><code>text-transform: lowercase</code></td>
+</tr>
+<tr>
+<td><code>sb-capitalize</code></td>
+<td><code>text-transform: capitalize</code></td>
+</tr>
+<tr>
+<td><code>sb-normal-case</code></td>
+<td><code>text-transform: none</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-text-text sb-text-lg sb-uppercase&quot;&gt;uppercase text&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-lowercase&quot;&gt;LOWERCASE TEXT&lt;/div&gt;
+&lt;div class=&quot;sb-text-text sb-text-lg sb-capitalize&quot;&gt;capitalize each word&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-transform/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="word-break-whitespace">Word Break &amp; Whitespace</h2>
+<h3 id="word-break">Word Break</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-break-normal</code></td>
+<td>Normal word break behavior</td>
+</tr>
+<tr>
+<td><code>sb-break-words</code></td>
+<td><code>overflow-wrap: break-word</code></td>
+</tr>
+<tr>
+<td><code>sb-break-all</code></td>
+<td><code>word-break: break-all</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="whitespace">Whitespace</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-whitespace-normal</code></td>
+<td><code>white-space: normal</code></td>
+</tr>
+<tr>
+<td><code>sb-whitespace-nowrap</code></td>
+<td><code>white-space: nowrap</code></td>
+</tr>
+<tr>
+<td><code>sb-whitespace-pre</code></td>
+<td><code>white-space: pre</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="page-title">Page Title</h3>
+<pre><code class="language-html">&lt;h1 class=&quot;sb-text-4xl sb-font-bold sb-leading-tight sb-mb-4&quot;&gt;
+  Page Title
+&lt;/h1&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-patterns-title/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="section-header">Section Header</h3>
+<pre><code class="language-html">&lt;h2 class=&quot;sb-text-2xl sb-font-semibold sb-mb-3&quot;&gt;
+  Section Header
+&lt;/h2&gt;
+</code></pre>
+<h3 id="body-text">Body Text</h3>
+<pre><code class="language-html">&lt;p class=&quot;sb-text-base sb-leading-relaxed&quot;&gt;
+  Body text with comfortable line height for readability.
+&lt;/p&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-patterns-body/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="small-print">Small Print</h3>
+<pre><code class="language-html">&lt;p class=&quot;sb-text-sm sb-text-text-secondary&quot;&gt;
+  Secondary information in smaller text.
+&lt;/p&gt;
+</code></pre>
+<h3 id="code-inline">Code Inline</h3>
+<pre><code class="language-html">&lt;code class=&quot;sb-font-mono sb-text-sm sb-bg-secondary-10 sb-px-1 sb-rounded&quot;&gt;
+  inline code
+&lt;/code&gt;
+</code></pre>
+<h3 id="all-caps-label">All Caps Label</h3>
+<pre><code class="language-html">&lt;span class=&quot;sb-text-xs sb-uppercase sb-tracking-widest sb-font-semibold&quot;&gt;
+  Category Label
+&lt;/span&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/typography-patterns-label/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="truncated-text">Truncated Text</h3>
+<pre><code class="language-html">&lt;p class=&quot;sb-whitespace-nowrap sb-overflow-hidden&quot; style=&quot;text-overflow: ellipsis;&quot;&gt;
+  Long text that will be truncated with ellipsis...
+&lt;/p&gt;
+</code></pre>
+<hr />
+<h2 id="related">Related</h2>
+<ul>
+<li>
+<p><a href="/docs/styles/colors/">Color Classes</a> — Text colors with <code>sb-text-*</code></p>
+</li>
+<li>
+<p><a href="/docs/styles/spacing/">Spacing Classes</a> — Margins and padding</p>
+</li>
+<li>
+<p><a href="/docs/styles/layout/">Layout Classes</a> — Text alignment in flex/grid contexts</p>
+</li>
+</ul>
+{% endblock %}

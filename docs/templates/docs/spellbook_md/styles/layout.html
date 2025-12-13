@@ -1,0 +1,973 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Control element display, positioning, sizing, and arrangement with layout utilities.</p>
+<hr />
+<h2 id="display">Display</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-block</code></td>
+<td><code>display: block</code></td>
+</tr>
+<tr>
+<td><code>sb-inline</code></td>
+<td><code>display: inline</code></td>
+</tr>
+<tr>
+<td><code>sb-inline-block</code></td>
+<td><code>display: inline-block</code></td>
+</tr>
+<tr>
+<td><code>sb-flex</code></td>
+<td><code>display: flex</code></td>
+</tr>
+<tr>
+<td><code>sb-grid</code></td>
+<td><code>display: grid</code></td>
+</tr>
+<tr>
+<td><code>sb-hidden</code></td>
+<td><code>display: none</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="flexbox">Flexbox</h2>
+<h3 id="container">Container</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex&quot;&gt;Flex container&lt;/div&gt;
+</code></pre>
+<h3 id="direction">Direction</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-flex-row</code></td>
+<td><code>flex-direction: row</code></td>
+</tr>
+<tr>
+<td><code>sb-flex-col</code></td>
+<td><code>flex-direction: column</code></td>
+</tr>
+<tr>
+<td><code>sb-flex-row-reverse</code></td>
+<td><code>flex-direction: row-reverse</code></td>
+</tr>
+<tr>
+<td><code>sb-flex-col-reverse</code></td>
+<td><code>flex-direction: column-reverse</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responsive variants:</strong> <code>sb-sm:flex-row</code>, <code>sb-md:flex-col</code>, <code>sb-lg:flex-row-reverse</code></p>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-flex-row sb-gap-2&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-w-1/3 sb-p-3 sb-rounded&quot;&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-flexbox-direction/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="wrap">Wrap</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-flex-wrap</code></td>
+<td><code>flex-wrap: wrap</code></td>
+</tr>
+<tr>
+<td><code>sb-flex-wrap-reverse</code></td>
+<td><code>flex-wrap: wrap-reverse</code></td>
+</tr>
+<tr>
+<td><code>sb-flex-nowrap</code></td>
+<td><code>flex-wrap: nowrap</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responsive variants:</strong> <code>sb-sm:flex-wrap</code>, <code>sb-md:flex-nowrap</code></p>
+<h3 id="justify-content">Justify Content</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-justify-start</code></td>
+<td><code>justify-content: flex-start</code></td>
+</tr>
+<tr>
+<td><code>sb-justify-end</code></td>
+<td><code>justify-content: flex-end</code></td>
+</tr>
+<tr>
+<td><code>sb-justify-center</code></td>
+<td><code>justify-content: center</code></td>
+</tr>
+<tr>
+<td><code>sb-justify-between</code></td>
+<td><code>justify-content: space-between</code></td>
+</tr>
+<tr>
+<td><code>sb-justify-around</code></td>
+<td><code>justify-content: space-around</code></td>
+</tr>
+<tr>
+<td><code>sb-justify-evenly</code></td>
+<td><code>justify-content: space-evenly</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-justify-center sb-gap-2&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;A&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;B&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-flexbox-justify/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="align-items">Align Items</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-items-start</code></td>
+<td><code>align-items: flex-start</code></td>
+</tr>
+<tr>
+<td><code>sb-items-end</code></td>
+<td><code>align-items: flex-end</code></td>
+</tr>
+<tr>
+<td><code>sb-items-center</code></td>
+<td><code>align-items: center</code></td>
+</tr>
+<tr>
+<td><code>sb-items-baseline</code></td>
+<td><code>align-items: baseline</code></td>
+</tr>
+<tr>
+<td><code>sb-items-stretch</code></td>
+<td><code>align-items: stretch</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="grow-shrink">Grow &amp; Shrink</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-grow</code></td>
+<td><code>flex-grow: 1</code></td>
+</tr>
+<tr>
+<td><code>sb-grow-0</code></td>
+<td><code>flex-grow: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-shrink</code></td>
+<td><code>flex-shrink: 1</code></td>
+</tr>
+<tr>
+<td><code>sb-shrink-0</code></td>
+<td><code>flex-shrink: 0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gap">Gap</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-gap-1</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-gap-2</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-gap-3</code></td>
+<td>1rem (16px)</td>
+</tr>
+<tr>
+<td><code>sb-gap-4</code></td>
+<td>1.5rem (24px)</td>
+</tr>
+<tr>
+<td><code>sb-gap-6</code></td>
+<td>2rem (32px)</td>
+</tr>
+<tr>
+<td><code>sb-gap-8</code></td>
+<td>3rem (48px)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="grid">Grid</h2>
+<h3 id="container_1">Container</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-grid sb-grid-cols-3 sb-gap-4&quot;&gt;Grid layout&lt;/div&gt;
+</code></pre>
+<h3 id="columns">Columns</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-grid-cols-1</code></td>
+<td><code>grid-template-columns: repeat(1, minmax(0, 1fr))</code></td>
+</tr>
+<tr>
+<td><code>sb-grid-cols-2</code></td>
+<td><code>grid-template-columns: repeat(2, minmax(0, 1fr))</code></td>
+</tr>
+<tr>
+<td><code>sb-grid-cols-3</code></td>
+<td><code>grid-template-columns: repeat(3, minmax(0, 1fr))</code></td>
+</tr>
+<tr>
+<td><code>sb-grid-cols-4</code></td>
+<td><code>grid-template-columns: repeat(4, minmax(0, 1fr))</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responsive variants:</strong> <code>sb-md:grid-cols-2</code>, <code>sb-md:grid-cols-3</code>, <code>sb-md:grid-cols-4</code></p>
+<pre><code class="language-html">&lt;div class=&quot;sb-grid sb-grid-cols-3 sb-gap-2&quot;&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-grid/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<hr />
+<h2 id="position">Position</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-static</code></td>
+<td><code>position: static</code></td>
+</tr>
+<tr>
+<td><code>sb-relative</code></td>
+<td><code>position: relative</code></td>
+</tr>
+<tr>
+<td><code>sb-absolute</code></td>
+<td><code>position: absolute</code></td>
+</tr>
+<tr>
+<td><code>sb-fixed</code></td>
+<td><code>position: fixed</code></td>
+</tr>
+<tr>
+<td><code>sb-sticky</code></td>
+<td><code>position: sticky</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="placement">Placement</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-inset-0</code></td>
+<td><code>top: 0; right: 0; bottom: 0; left: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-top-0</code></td>
+<td><code>top: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-right-0</code></td>
+<td><code>right: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-bottom-0</code></td>
+<td><code>bottom: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-left-0</code></td>
+<td><code>left: 0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="z-index">Z-Index</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-z-0</code></td>
+<td><code>z-index: 0</code></td>
+</tr>
+<tr>
+<td><code>sb-z-10</code></td>
+<td><code>z-index: 10</code></td>
+</tr>
+<tr>
+<td><code>sb-z-20</code></td>
+<td><code>z-index: 20</code></td>
+</tr>
+<tr>
+<td><code>sb-z-30</code></td>
+<td><code>z-index: 30</code></td>
+</tr>
+<tr>
+<td><code>sb-z-40</code></td>
+<td><code>z-index: 40</code></td>
+</tr>
+<tr>
+<td><code>sb-z-50</code></td>
+<td><code>z-index: 50</code></td>
+</tr>
+<tr>
+<td><code>sb-z-auto</code></td>
+<td><code>z-index: auto</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="width">Width</h2>
+<h3 id="fixed-widths">Fixed Widths</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-w-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-w-1</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-w-2</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-w-3</code></td>
+<td>0.75rem (12px)</td>
+</tr>
+<tr>
+<td><code>sb-w-4</code></td>
+<td>1rem (16px)</td>
+</tr>
+<tr>
+<td><code>sb-w-5</code></td>
+<td>1.25rem (20px)</td>
+</tr>
+<tr>
+<td><code>sb-w-6</code></td>
+<td>1.5rem (24px)</td>
+</tr>
+<tr>
+<td><code>sb-w-7</code></td>
+<td>1.75rem (28px)</td>
+</tr>
+<tr>
+<td><code>sb-w-8</code></td>
+<td>2rem (32px)</td>
+</tr>
+<tr>
+<td><code>sb-w-16</code></td>
+<td>4rem (64px)</td>
+</tr>
+<tr>
+<td><code>sb-w-32</code></td>
+<td>8rem (128px)</td>
+</tr>
+<tr>
+<td><code>sb-w-64</code></td>
+<td>16rem (256px)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="percentage-widths">Percentage Widths</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-w-1/2</code></td>
+<td>50%</td>
+</tr>
+<tr>
+<td><code>sb-w-1/3</code></td>
+<td>33.333%</td>
+</tr>
+<tr>
+<td><code>sb-w-2/3</code></td>
+<td>66.666%</td>
+</tr>
+<tr>
+<td><code>sb-w-1/4</code></td>
+<td>25%</td>
+</tr>
+<tr>
+<td><code>sb-w-3/4</code></td>
+<td>75%</td>
+</tr>
+<tr>
+<td><code>sb-w-full</code></td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responsive variants:</strong> <code>sb-sm:w-1/2</code>, <code>sb-md:w-1/3</code>, <code>sb-lg:w-full</code>, <code>sb-xl:w-1/2</code></p>
+<pre><code class="language-html">&lt;div class=&quot;sb-w-1/2 sb-bg-primary sb-text-text sb-p-3 sb-rounded&quot;&gt;Half width (50%)&lt;/div&gt;
+&lt;div class=&quot;sb-w-1/3 sb-bg-secondary sb-text-text sb-p-3 sb-rounded&quot;&gt;Third width (33.333%)&lt;/div&gt;
+&lt;div class=&quot;sb-w-full sb-bg-accent sb-text-text sb-p-3 sb-rounded&quot;&gt;Full width (100%)&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-width/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="viewport-widths">Viewport Widths</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-w-screen</code></td>
+<td>100vw</td>
+</tr>
+<tr>
+<td><code>sb-w-50vw</code></td>
+<td>50vw</td>
+</tr>
+<tr>
+<td><code>sb-w-75vw</code></td>
+<td>75vw</td>
+</tr>
+</tbody>
+</table>
+<h3 id="minmax-width">Min/Max Width</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-min-w-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-min-w-full</code></td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>sb-min-w-screen</code></td>
+<td>100vw</td>
+</tr>
+<tr>
+<td><code>sb-max-w-xs</code></td>
+<td>20rem (320px)</td>
+</tr>
+<tr>
+<td><code>sb-max-w-sm</code></td>
+<td>24rem (384px)</td>
+</tr>
+<tr>
+<td><code>sb-max-w-md</code></td>
+<td>28rem (448px)</td>
+</tr>
+<tr>
+<td><code>sb-max-w-lg</code></td>
+<td>32rem (512px)</td>
+</tr>
+<tr>
+<td><code>sb-max-w-xl</code></td>
+<td>36rem (576px)</td>
+</tr>
+<tr>
+<td><code>sb-max-w-full</code></td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="height">Height</h2>
+<h3 id="fixed-heights">Fixed Heights</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-h-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-h-1</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-h-2</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-h-3</code></td>
+<td>0.75rem (12px)</td>
+</tr>
+<tr>
+<td><code>sb-h-4</code></td>
+<td>1rem (16px)</td>
+</tr>
+<tr>
+<td><code>sb-h-5</code></td>
+<td>1.25rem (20px)</td>
+</tr>
+<tr>
+<td><code>sb-h-6</code></td>
+<td>1.5rem (24px)</td>
+</tr>
+<tr>
+<td><code>sb-h-7</code></td>
+<td>1.75rem (28px)</td>
+</tr>
+<tr>
+<td><code>sb-h-8</code></td>
+<td>2rem (32px)</td>
+</tr>
+<tr>
+<td><code>sb-h-16</code></td>
+<td>4rem (64px)</td>
+</tr>
+<tr>
+<td><code>sb-h-24</code></td>
+<td>6rem (96px)</td>
+</tr>
+<tr>
+<td><code>sb-h-32</code></td>
+<td>8rem (128px)</td>
+</tr>
+<tr>
+<td><code>sb-h-64</code></td>
+<td>16rem (256px)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-heights">Special Heights</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-h-auto</code></td>
+<td>auto</td>
+</tr>
+<tr>
+<td><code>sb-h-full</code></td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>sb-h-screen</code></td>
+<td>100vh</td>
+</tr>
+<tr>
+<td><code>sb-h-50vh</code></td>
+<td>50vh</td>
+</tr>
+<tr>
+<td><code>sb-h-75vh</code></td>
+<td>75vh</td>
+</tr>
+</tbody>
+</table>
+<h3 id="minmax-height">Min/Max Height</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-min-h-0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-min-h-full</code></td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>sb-min-h-screen</code></td>
+<td>100vh</td>
+</tr>
+<tr>
+<td><code>sb-max-h-full</code></td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>sb-max-h-screen</code></td>
+<td>100vh</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="aspect-ratio">Aspect Ratio</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-aspect-square</code></td>
+<td>1 / 1</td>
+</tr>
+<tr>
+<td><code>sb-aspect-video</code></td>
+<td>16 / 9</td>
+</tr>
+<tr>
+<td><code>sb-aspect-portrait</code></td>
+<td>3 / 4</td>
+</tr>
+<tr>
+<td><code>sb-aspect-wide</code></td>
+<td>21 / 9</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="object-fit">Object Fit</h2>
+<p>For images and videos within constrained containers.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-object-contain</code></td>
+<td><code>object-fit: contain</code></td>
+</tr>
+<tr>
+<td><code>sb-object-cover</code></td>
+<td><code>object-fit: cover</code></td>
+</tr>
+<tr>
+<td><code>sb-object-fill</code></td>
+<td><code>object-fit: fill</code></td>
+</tr>
+<tr>
+<td><code>sb-object-none</code></td>
+<td><code>object-fit: none</code></td>
+</tr>
+<tr>
+<td><code>sb-object-scale-down</code></td>
+<td><code>object-fit: scale-down</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="overflow">Overflow</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-overflow-auto</code></td>
+<td><code>overflow: auto</code></td>
+</tr>
+<tr>
+<td><code>sb-overflow-hidden</code></td>
+<td><code>overflow: hidden</code></td>
+</tr>
+<tr>
+<td><code>sb-overflow-visible</code></td>
+<td><code>overflow: visible</code></td>
+</tr>
+<tr>
+<td><code>sb-overflow-scroll</code></td>
+<td><code>overflow: scroll</code></td>
+</tr>
+<tr>
+<td><code>sb-overflow-x-auto</code></td>
+<td><code>overflow-x: auto</code></td>
+</tr>
+<tr>
+<td><code>sb-overflow-y-auto</code></td>
+<td><code>overflow-y: auto</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="container_2">Container</h2>
+<p>Centered container with responsive max-width.</p>
+<pre><code class="language-html">&lt;div class=&quot;sb-container&quot;&gt;Centered, responsive content&lt;/div&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Breakpoint</th>
+<th>Max Width</th>
+<th>Padding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 640px</td>
+<td>100%</td>
+<td>0</td>
+</tr>
+<tr>
+<td>≥ 640px</td>
+<td>640px</td>
+<td>0</td>
+</tr>
+<tr>
+<td>≥ 768px</td>
+<td>768px</td>
+<td>0</td>
+</tr>
+<tr>
+<td>≥ 1024px</td>
+<td>1024px</td>
+<td>1rem</td>
+</tr>
+<tr>
+<td>≥ 1280px</td>
+<td>1280px</td>
+<td>2rem</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="border-radius">Border Radius</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-rounded-none</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sb-rounded-sm</code></td>
+<td>0.125rem (2px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded</code></td>
+<td>0.25rem (4px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-md</code></td>
+<td>0.375rem (6px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-lg</code></td>
+<td>0.5rem (8px)</td>
+</tr>
+<tr>
+<td><code>sb-rounded-full</code></td>
+<td>9999px</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="responsive-breakpoints">Responsive Breakpoints</h2>
+<p>All responsive variants use these breakpoints:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Min Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sb-sm:</code></td>
+<td>640px</td>
+</tr>
+<tr>
+<td><code>sb-md:</code></td>
+<td>768px</td>
+</tr>
+<tr>
+<td><code>sb-lg:</code></td>
+<td>1024px</td>
+</tr>
+<tr>
+<td><code>sb-xl:</code></td>
+<td>1280px</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-responsive-grid">Example: Responsive Grid</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-grid sb-grid-cols-1 sb-md:grid-cols-2 sb-lg:grid-cols-3 sb-gap-4&quot;&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>
+<p>Mobile: 1 column</p>
+</li>
+<li>
+<p>Tablet (768px+): 2 columns</p>
+</li>
+<li>
+<p>Desktop (1024px+): 3 columns</p>
+</li>
+</ul>
+<hr />
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="centered-content">Centered Content</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-justify-center sb-items-center sb-h-screen&quot;&gt;
+  Centered vertically and horizontally
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-mb-4" hx-get="/api/v1/styles/preview/layout-patterns-centered/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="sidebar-layout">Sidebar Layout</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-flex sb-flex-col sb-md:flex-row sb-gap-4&quot;&gt;
+  &lt;aside class=&quot;sb-w-full sb-md:w-1/4&quot;&gt;Sidebar&lt;/aside&gt;
+  &lt;main class=&quot;sb-grow&quot;&gt;Main content&lt;/main&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-patterns-sidebar/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="card-grid">Card Grid</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-grid sb-grid-cols-1 sb-md:grid-cols-2 sb-lg:grid-cols-3 sb-gap-6&quot;&gt;
+  &lt;div class=&quot;sb-bg-surface sb-p-4 sb-rounded-lg&quot;&gt;Card 1&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-surface sb-p-4 sb-rounded-lg&quot;&gt;Card 2&lt;/div&gt;
+  &lt;div class=&quot;sb-bg-surface sb-p-4 sb-rounded-lg&quot;&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="sb-border sb-border-neutral-25 sb-rounded sb-p-3 sb-mb-4" hx-get="/api/v1/styles/preview/layout-patterns-cards/" hx-trigger="load">
+
+<p>Loading preview...</p>
+</div>
+
+<h3 id="sticky-header">Sticky Header</h3>
+<pre><code class="language-html">&lt;header class=&quot;sb-sticky sb-top-0 sb-z-50 sb-bg-background&quot;&gt;
+  Navigation
+&lt;/header&gt;
+</code></pre>
+<h3 id="full-width-image">Full-Width Image</h3>
+<pre><code class="language-html">&lt;div class=&quot;sb-w-full sb-aspect-video sb-overflow-hidden&quot;&gt;
+  &lt;img src=&quot;...&quot; class=&quot;sb-w-full sb-h-full sb-object-cover&quot; alt=&quot;...&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="related">Related</h2>
+<ul>
+<li>
+<p><a href="/docs/styles/spacing/">Spacing Classes</a> — Padding, margin, and gap utilities</p>
+</li>
+<li>
+<p><a href="/docs/styles/colors/">Color Classes</a> — Background, text, and border colors</p>
+</li>
+</ul>
+{% endblock %}

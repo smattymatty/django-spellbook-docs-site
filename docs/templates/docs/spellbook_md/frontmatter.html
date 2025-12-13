@@ -1,0 +1,405 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Frontmatter is YAML metadata at the top of your markdown files. It controls how pages are processed, displayed, and indexed.</p>
+<pre><code class="language-yaml">---
+title: My Page Title
+published: 2025-12-12
+author: Jane Doe
+tags:
+
+  - guide
+
+  - tutorial
+---
+
+Your content starts here...
+</code></pre>
+<hr />
+<h2 id="required-fields">Required Fields</h2>
+<p>These fields are validated by <code>spellbook_validate</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Page title displayed in navigation and headers</td>
+</tr>
+<tr>
+<td><code>published</code></td>
+<td>date</td>
+<td>Publication date (YYYY-MM-DD format)</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>string</td>
+<td>Content author</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>list</td>
+<td>At least one tag for categorization</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-yaml">---
+title: Getting Started Guide
+published: 2025-12-12
+author: Storm Developments
+tags:
+
+  - quickstart
+
+  - beginner
+---
+</code></pre>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Files without frontmatter still work — the filename becomes the title and defaults are used for other fields.</p>
+    </span>
+</div>
+
+<hr />
+<h2 id="date-fields">Date Fields</h2>
+<h3 id="published">published</h3>
+<p>Primary publication date. Used for sorting and sitemap <code>&lt;lastmod&gt;</code>.</p>
+<pre><code class="language-yaml">published: 2025-12-12
+</code></pre>
+<p><strong>Aliases</strong> (first found is used):</p>
+<ul>
+<li>
+<p><code>published</code></p>
+</li>
+<li>
+<p><code>published_at</code></p>
+</li>
+<li>
+<p><code>date</code></p>
+</li>
+<li>
+<p><code>created</code></p>
+</li>
+<li>
+<p><code>created_at</code></p>
+</li>
+</ul>
+<h3 id="modified">modified</h3>
+<p>Last modification date. Takes precedence over <code>published</code> for sitemap <code>&lt;lastmod&gt;</code>.</p>
+<pre><code class="language-yaml">modified: 2025-12-15
+</code></pre>
+<p><strong>Aliases</strong> (first found is used):</p>
+<ul>
+<li>
+<p><code>modified</code></p>
+</li>
+<li>
+<p><code>modified_at</code></p>
+</li>
+<li>
+<p><code>updated</code></p>
+</li>
+<li>
+<p><code>updated_at</code></p>
+</li>
+</ul>
+<p><strong>Accepted formats:</strong></p>
+<ul>
+<li>
+<p><code>2025-12-12</code> (YYYY-MM-DD)</p>
+</li>
+<li>
+<p><code>2025-12-12T10:30:00</code> (ISO datetime)</p>
+</li>
+</ul>
+<hr />
+<h2 id="visibility">Visibility</h2>
+<h3 id="is_public">is_public</h3>
+<p>Controls whether the page is publicly accessible and included in sitemaps.</p>
+<pre><code class="language-yaml">is_public: false  # Hidden from sitemap, but page still generated
+</code></pre>
+<p><strong>Default:</strong> <code>true</code></p>
+<p><strong>Accepted values:</strong> <code>true</code>, <code>false</code>, <code>yes</code>, <code>no</code>, <code>1</code>, <code>0</code></p>
+<hr />
+<h2 id="navigation">Navigation</h2>
+<h3 id="prev-next">prev / next</h3>
+<p>Override automatic prev/next navigation. By default, Spellbook auto-generates sequential navigation alphabetically within each directory.</p>
+<p><strong>Path format</strong> (same app):</p>
+<pre><code class="language-yaml">prev: getting-started
+next: advanced-topics
+</code></pre>
+<p><strong>Namespaced format</strong> (cross-app):</p>
+<pre><code class="language-yaml">prev: blog:intro-post
+next: docs:chapter-2
+</code></pre>
+<p><strong>Disable navigation:</strong></p>
+<pre><code class="language-yaml">prev: null
+next: null
+</code></pre>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Auto Navigation</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p>If you don't specify <code>prev</code>/<code>next</code>, Spellbook automatically links pages alphabetically within each directory. Most sites never need manual overrides.</p>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="sitemap-control">Sitemap Control</h2>
+<h3 id="sitemap_priority">sitemap_priority</h3>
+<p>Search engine priority hint (0.0 to 1.0).</p>
+<pre><code class="language-yaml">sitemap_priority: 0.9  # High priority page
+</code></pre>
+<p><strong>Default:</strong> Omitted (search engines use their own judgment)</p>
+<h3 id="sitemap_changefreq">sitemap_changefreq</h3>
+<p>How often the page is likely to change.</p>
+<pre><code class="language-yaml">sitemap_changefreq: daily
+</code></pre>
+<p><strong>Values:</strong> <code>always</code>, <code>hourly</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>yearly</code>, <code>never</code></p>
+<p><strong>Default:</strong> <code>weekly</code></p>
+<h3 id="sitemap_exclude">sitemap_exclude</h3>
+<p>Exclude from sitemap while keeping page public.</p>
+<pre><code class="language-yaml">sitemap_exclude: true  # Page exists but not in sitemap.xml
+</code></pre>
+<p><strong>Default:</strong> <code>false</code></p>
+<hr />
+<h2 id="custom-metadata">Custom Metadata</h2>
+<p>Any field not in the reserved list becomes custom metadata, accessible in templates via <code>metadata.custom_meta</code>.</p>
+<pre><code class="language-yaml">---
+title: Product Page
+published: 2025-12-12
+author: Marketing Team
+tags:
+
+  - product
+
+# Custom fields:
+product_id: SKU-12345
+price: 99.99
+featured: true
+category: electronics
+---
+</code></pre>
+<p><strong>Access in templates:</strong></p>
+<pre><code class="language-django">{% verbatim %}
+{{ metadata.custom_meta.product_id }}
+{{ metadata.custom_meta.price }}
+{% if metadata.custom_meta.featured %}★ Featured{% endif %}
+{% endverbatim %}
+</code></pre>
+<p><strong>Reserved fields</strong> (not available in <code>custom_meta</code>):</p>
+<ul>
+<li>
+<p><code>title</code>, <code>author</code>, <code>tags</code>, <code>is_public</code></p>
+</li>
+<li>
+<p><code>published</code>, <code>published_at</code>, <code>date</code>, <code>created</code>, <code>created_at</code></p>
+</li>
+<li>
+<p><code>modified</code>, <code>modified_at</code>, <code>updated</code>, <code>updated_at</code></p>
+</li>
+<li>
+<p><code>prev</code>, <code>next</code></p>
+</li>
+<li>
+<p><code>sitemap_priority</code>, <code>sitemap_changefreq</code>, <code>sitemap_exclude</code></p>
+</li>
+</ul>
+<hr />
+<h2 id="complete-example">Complete Example</h2>
+<pre><code class="language-yaml">---
+# Required
+title: Complete Django Spellbook Guide
+published: 2025-12-01
+author: Storm Developments
+tags:
+
+  - django
+
+  - spellbook
+
+  - complete-guide
+
+# Optional dates
+modified: 2025-12-12
+
+# Visibility
+is_public: true
+
+# Navigation overrides
+prev: introduction
+next: docs:advanced-config
+
+# Sitemap
+sitemap_priority: 0.8
+sitemap_changefreq: weekly
+
+# Custom metadata
+difficulty: intermediate
+reading_time: 15 min
+version: 0.2.2
+---
+
+Your content here...
+</code></pre>
+<hr />
+<h2 id="validation">Validation</h2>
+<p>Check all your files for frontmatter issues:</p>
+<pre><code class="language-bash"># Audit mode (report only)
+python manage.py spellbook_validate
+
+# Interactive fix mode
+python manage.py spellbook_validate --fix
+
+# Via wizard
+python manage.py spellbook_wizard
+# Select [2] Validate → [1] Validate frontmatter
+</code></pre>
+<p><strong>Example output:</strong></p>
+<pre><code>❌ docs/getting-started.md
+   • Missing: author
+   • tags: must have at least 1 item
+
+❌ blog/old-post.md
+   • published: invalid date format &quot;Dec 2025&quot; (expected YYYY-MM-DD)
+
+────────────────────────────────
+⚠️  2 pages with issues
+✅ 45 pages valid
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Required</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>title</code> · <code>published</code> · <code>author</code> · <code>tags</code></p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Dates</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>published</code> (or <code>date</code>, <code>created</code>)</p>
+<p><code>modified</code> (or <code>updated</code>)</p>
+<p>Format: <code>YYYY-MM-DD</code></p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Visibility &amp; Navigation</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>is_public</code>: true/false</p>
+<p><code>prev</code>: path or app:page</p>
+<p><code>next</code>: path or app:page</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Sitemap</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>sitemap_priority</code>: 0.0–1.0</p>
+<p><code>sitemap_changefreq</code>: daily, weekly, etc.</p>
+<p><code>sitemap_exclude</code>: true/false</p>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Spellbook Wizard</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Interactive tool for validating and fixing frontmatter.</p>
+<p><a href="/docs/commands/spellbook-wizard/">View Wizard →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Sitemaps</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>How Spellbook generates and manages sitemaps.</p>
+<p><a href="/docs/sitemaps/">View Sitemaps →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Custom Base Templates</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Access frontmatter data in your templates.</p>
+<p><a href="/docs/customization/custom-base/">View Custom Templates →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

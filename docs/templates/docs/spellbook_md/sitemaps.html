@@ -1,0 +1,382 @@
+{% extends 'docs/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Django Spellbook integrates with Django's sitemap framework to automatically generate SEO-friendly sitemaps from your markdown content.</p>
+<hr />
+<h2 id="quick-setup">Quick Setup</h2>
+<p><strong>1. Create sitemaps.py in your project:</strong></p>
+<pre><code class="language-python"># myproject/sitemaps.py
+from django_spellbook.sitemaps import SpellbookSitemap
+
+sitemaps = {
+    'spellbook': SpellbookSitemap,
+}
+</code></pre>
+<p><strong>2. Add sitemap URL to urls.py:</strong></p>
+<pre><code class="language-python"># myproject/urls.py
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import sitemaps
+
+urlpatterns = [
+    # ... your other URLs
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+]
+</code></pre>
+<p><strong>3. Visit <code>/sitemap.xml</code></strong> — your sitemap is ready.</p>
+<hr />
+<h2 id="how-it-works">How It Works</h2>
+<p>When you run <code>python manage.py spellbook_md</code>:</p>
+<ol>
+<li>
+<p>Spellbook processes all markdown files</p>
+</li>
+<li>
+<p>Generates a <code>spellbook_manifest.json</code> in each content app</p>
+</li>
+<li>
+<p>The manifest contains page paths, titles, and dates</p>
+</li>
+</ol>
+<p>When a search engine requests <code>/sitemap.xml</code>:</p>
+<ol>
+<li>
+<p>Django calls <code>SpellbookSitemap</code></p>
+</li>
+<li>
+<p>It reads the manifest files</p>
+</li>
+<li>
+<p>Returns all public pages with their metadata</p>
+</li>
+</ol>
+<div class="sb-alert sb-alert-info sb-p-3 sb-border-radius-lg sb-mb-3 sb-shadow-sm ">
+    <span class="sb-alert-icon">
+
+            ℹ️
+
+    </span>
+    <span class="sb-alert-content">
+        <p>Sitemaps are generated dynamically at request time, so they're always up-to-date with your latest <code>spellbook_md</code> run.</p>
+    </span>
+</div>
+
+<hr />
+<h2 id="output-format">Output Format</h2>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://your-site.com/docs/intro/&lt;/loc&gt;
+    &lt;lastmod&gt;2025-12-08&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://your-site.com/docs/guide/&lt;/loc&gt;
+    &lt;lastmod&gt;2025-12-10&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+<hr />
+<h2 id="per-page-control">Per-Page Control</h2>
+<p>Control sitemap behavior with frontmatter:</p>
+<pre><code class="language-yaml">---
+title: Important Page
+published: 2025-12-01
+modified: 2025-12-12
+
+# Sitemap options
+sitemap_priority: 0.9
+sitemap_changefreq: daily
+---
+</code></pre>
+<h3 id="sitemap_priority">sitemap_priority</h3>
+<p>Hint to search engines about page importance (0.0 to 1.0).</p>
+<pre><code class="language-yaml">sitemap_priority: 0.9  # High priority
+sitemap_priority: 0.3  # Low priority
+</code></pre>
+<p><strong>Default:</strong> Omitted (search engines decide)</p>
+<h3 id="sitemap_changefreq">sitemap_changefreq</h3>
+<p>How often the content is likely to change.</p>
+<pre><code class="language-yaml">sitemap_changefreq: daily
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>always</code></td>
+<td>Live data, real-time content</td>
+</tr>
+<tr>
+<td><code>hourly</code></td>
+<td>News, frequently updated</td>
+</tr>
+<tr>
+<td><code>daily</code></td>
+<td>Blog posts, active content</td>
+</tr>
+<tr>
+<td><code>weekly</code></td>
+<td>Documentation, guides</td>
+</tr>
+<tr>
+<td><code>monthly</code></td>
+<td>Reference material</td>
+</tr>
+<tr>
+<td><code>yearly</code></td>
+<td>Archives, historical</td>
+</tr>
+<tr>
+<td><code>never</code></td>
+<td>Permanent content</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Default:</strong> <code>weekly</code></p>
+<h3 id="sitemap_exclude">sitemap_exclude</h3>
+<p>Keep page public but exclude from sitemap.</p>
+<pre><code class="language-yaml">sitemap_exclude: true
+</code></pre>
+<p>Useful for: landing pages you promote differently, duplicate content, utility pages.</p>
+<h3 id="is_public">is_public</h3>
+<p>Exclude page from sitemap AND make it private.</p>
+<pre><code class="language-yaml">is_public: false
+</code></pre>
+<p>Page is still generated but hidden from sitemap.</p>
+<hr />
+<h2 id="multi-app-support">Multi-App Support</h2>
+<p><code>SpellbookSitemap</code> automatically discovers all apps in <code>SPELLBOOK_MD_APP</code>.</p>
+<p><strong>For manual control:</strong></p>
+<pre><code class="language-python">from django_spellbook.sitemaps import SpellbookSitemap
+
+sitemaps = {
+    'docs': SpellbookSitemap(app_names=['docs_app']),
+    'blog': SpellbookSitemap(app_names=['blog_app']),
+}
+</code></pre>
+<p>This creates separate sitemap sections, useful for large sites.</p>
+<hr />
+<h2 id="mixing-with-other-sitemaps">Mixing with Other Sitemaps</h2>
+<p>Combine Spellbook pages with your existing Django sitemaps:</p>
+<pre><code class="language-python">from django.contrib.sitemaps import Sitemap
+from django_spellbook.sitemaps import SpellbookSitemap
+from myapp.models import Product, BlogPost
+
+class ProductSitemap(Sitemap):
+    changefreq = 'weekly'
+    priority = 0.8
+
+    def items(self):
+        return Product.objects.filter(is_active=True)
+
+    def lastmod(self, obj):
+        return obj.updated_at
+
+class BlogPostSitemap(Sitemap):
+    changefreq = 'daily'
+
+    def items(self):
+        return BlogPost.objects.filter(published=True)
+
+sitemaps = {
+    'products': ProductSitemap,
+    'blog': BlogPostSitemap,
+    'spellbook': SpellbookSitemap,  # All Spellbook pages
+}
+</code></pre>
+<hr />
+<h2 id="date-handling">Date Handling</h2>
+<p><code>&lt;lastmod&gt;</code> uses dates from frontmatter:</p>
+<ol>
+<li>
+<p><code>modified</code> (or <code>modified_at</code>, <code>updated</code>, <code>updated_at</code>) — preferred</p>
+</li>
+<li>
+<p><code>published</code> (or <code>published_at</code>, <code>date</code>, <code>created</code>, <code>created_at</code>) — fallback</p>
+</li>
+</ol>
+<pre><code class="language-yaml">---
+title: My Page
+published: 2025-12-01
+modified: 2025-12-12  # ← This is used for lastmod
+---
+</code></pre>
+<p>If no date is found, <code>&lt;lastmod&gt;</code> is omitted.</p>
+<hr />
+<h2 id="the-manifest-file">The Manifest File</h2>
+<p>Each content app gets a <code>spellbook_manifest.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;generated_at&quot;: &quot;2025-12-12T14:32:00Z&quot;,
+  &quot;app_name&quot;: &quot;docs_app&quot;,
+  &quot;url_prefix&quot;: &quot;docs&quot;,
+  &quot;pages&quot;: [
+    {
+      &quot;path&quot;: &quot;/docs/intro/&quot;,
+      &quot;title&quot;: &quot;Introduction&quot;,
+      &quot;lastmod&quot;: &quot;2025-12-12&quot;
+    },
+    {
+      &quot;path&quot;: &quot;/docs/guide/&quot;,
+      &quot;title&quot;: &quot;User Guide&quot;,
+      &quot;lastmod&quot;: &quot;2025-12-10&quot;
+    }
+  ]
+}
+</code></pre>
+<p><strong>Automatic filtering:</strong></p>
+<ul>
+<li>
+<p>Pages with <code>is_public: false</code> are excluded</p>
+</li>
+<li>
+<p>Pages with <code>sitemap_exclude: true</code> are excluded</p>
+</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="empty-sitemap">Empty sitemap</h3>
+<p><strong>Check:</strong> Did you run <code>spellbook_md</code> after adding content?</p>
+<pre><code class="language-bash">python manage.py spellbook_md
+</code></pre>
+<p><strong>Check:</strong> Are all pages set to <code>is_public: false</code>?</p>
+<h3 id="missing-pages">Missing pages</h3>
+<p><strong>Check:</strong> Does the page have <code>sitemap_exclude: true</code>?</p>
+<p><strong>Check:</strong> Is the manifest file generated?</p>
+<pre><code class="language-bash">ls your_app/spellbook_manifest.json
+</code></pre>
+<h3 id="wrong-urls">Wrong URLs</h3>
+<p><strong>Check:</strong> Is your <code>SPELLBOOK_MD_URL_PREFIX</code> configured correctly?</p>
+<pre><code class="language-python">SPELLBOOK_MD_URL_PREFIX = ['docs', 'blog']  # Matches SPELLBOOK_MD_APP order
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Setup</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ol>
+<li>
+<p>Create <code>sitemaps.py</code> with <code>SpellbookSitemap</code></p>
+</li>
+<li>
+<p>Add <code>path('sitemap.xml', ...)</code> to <code>urls.py</code></p>
+</li>
+<li>
+<p>Run <code>spellbook_md</code> to generate manifests</p>
+</li>
+</ol>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Frontmatter Options</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <p><code>sitemap_priority</code>: 0.0–1.0</p>
+<p><code>sitemap_changefreq</code>: always, hourly, daily, weekly, monthly, yearly, never</p>
+<p><code>sitemap_exclude</code>: true/false</p>
+<p><code>is_public</code>: true/false</p>
+    </div>
+
+</div>
+
+<div class="sb-card sb-border sb-border-radius-lg sb-shadow-sm sb-transition sb-mb-3 sb-bg-light ">
+
+        <div class="sb-card-header sb-p-2 sb-bold">
+            <h5 class="sb-card-title">Date Priority</h5>
+        </div>
+
+    <div class="sb-card-body sb-p-3">
+        <ol>
+<li>
+<p><code>modified</code> (or aliases)</p>
+</li>
+<li>
+<p><code>published</code> (or aliases)</p>
+</li>
+<li>
+<p>Omitted if no date</p>
+</li>
+</ol>
+    </div>
+
+</div>
+
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Frontmatter Reference</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>All available frontmatter fields.</p>
+<p><a href="/docs/frontmatter/">View Frontmatter →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">Configuration</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>Full settings reference for Spellbook.</p>
+<p><a href="/docs/configuration/">View Configuration →</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sb-accordion ">
+    <button class="sb-accordion-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="sb-accordion-title">spellbook_md Command</span>
+        <span class="sb-accordion-icon">
+            <svg class="sb-icon-plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="sb-icon-minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+    </button>
+    <div class="sb-accordion-content" aria-hidden="true">
+        <div class="sb-accordion-body">
+            <p>The command that generates manifests.</p>
+<p><a href="/docs/commands/spellbook-md/">View spellbook_md →</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
